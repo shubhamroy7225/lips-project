@@ -4,6 +4,7 @@ import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
+import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, updateUser, logout } from 'redux/reducers/auth/authReducer';
 
 function getHistory() {
     const storeState = store.getState();
@@ -11,35 +12,55 @@ function getHistory() {
     return history;
 }
 
-
-export const login = (credentials) => dispatch => dispatch({
-    type: AuthActionTypes.LOGIN,
-    payload: API.login(credentials)
+export const login = (credentials) => {
+    loginPending();
+    return API.login(credentials)
         .then(response => {
             if (response.data.error || response.data.code) {
                 // errorHandler(response.data);
-            } else {
-                const history = getHistory();
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            // errorHandler(error);
-            return error;
-        })
-});
+                let user = response.data.user;
+                let authToken = response.data.authToken;
+                let refreshToken = response.data.refreshToken;
 
-export const signup = (credentials) => dispatch => dispatch({
-    type: AuthActionTypes.SIGNUP,
-    payload: API.signup(credentials)
-        .then(response => {
-            return response.data;
+                console.log("user:" + user);
+
+                storage.set('token', authToken);
+                storage.set('refresh_token', refreshToken);
+                storage.set('user', user);
+                loginSuccessful(response.data.user)
+                authorizeUser(user, authToken, refreshToken);
+            }
         }).catch(error => {
             console.log(error);
             // errorHandler(error);
             return error;
         })
-});
+}
+
+export const signup = (credentials) => {
+    signupPending();
+    return API.signup(credentials)
+        .then(response => {
+            if (response.data.error || response.data.code) {
+                // errorHandler(response.data);
+                let user = response.data.user;
+                let authToken = response.data.authToken;
+                let refreshToken = response.data.refreshToken;
+
+                console.log("user:" + user);
+
+                storage.set('token', authToken);
+                storage.set('refresh_token', refreshToken);
+                storage.set('user', user);
+                signupSuccessful(response.data.user)
+                authorizeUser(user, authToken, refreshToken);
+            }
+        }).catch(error => {
+            console.log(error);
+            // errorHandler(error);
+            return error;
+        })
+}
 
 export const forgotPassword = (credentials) => dispatch => dispatch({
     type: AuthActionTypes.FORGOT_PASSWORD,
@@ -88,41 +109,11 @@ export const resetPassword = (credentials) => dispatch => dispatch({
         })
 });
 
-export const authorizeUser = (user_profile) => {
-    console.log("authorize:" + user_profile.access_token);
-    console.log("user:" + user_profile);
-
-    storage.set('token', user_profile.access_token);
-    storage.set('refresh_token', user_profile.refresh_token);
-    storage.set('user', user_profile);
-
-
-    const token = user_profile.access_token;
-    const refresh_token = user_profile.refresh_token;
-
-    return {
-        type: AuthActionTypes.AUTHORIZE,
-        payload: {
-            token,
-            user_profile,
-            refresh_token
-        }
-    }
-};
-
-export const logout = () => {
-
+export const signOut = () => {
     storage.remove('token');
     storage.remove('user');
     storage.remove('refresh_token');
     storage.remove('step');
-    window.location.replace(routes.HOME);
-    return {
-        type: AuthActionTypes.LOGOUT,
-    }
+    window.location.replace(routes.FEEDS);
+    logout();
 };
-
-export const updateUserProfile = (user) => dispatch => dispatch({
-    type: AuthActionTypes.UPDATE_USER,
-    payload: user
-})

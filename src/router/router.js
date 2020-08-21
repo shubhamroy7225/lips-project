@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from '../hoc/Layout/Layout';
 import { routes } from '../utility/constants/constants';
-import MainFeed from '../container/MainFeed/MainFeed';
+import MainFeed from 'components/MainFeed';
 
 const Router = (props) => {
     let routeList = null;
@@ -11,7 +11,7 @@ const Router = (props) => {
         //when user is logged in
         routeList = (
             <Switch>
-                <Route exact path={routes.ROOT} render={(props) => <Redirect to={routes.HOME} />} />
+                <Route exact path={routes.ROOT} render={(props) => <Redirect to={routes.FEEDS} />} />
                 <Route exact path={routes.FEEDS} component={MainFeed} />
                 <Route path='*' render={() => <Redirect to={routes.FEEDS} />} />
             </Switch>

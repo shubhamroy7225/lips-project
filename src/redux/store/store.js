@@ -3,6 +3,7 @@ import loggerMiddleware from 'redux-logger';
 import promiseMiddleware from 'redux-promise-middleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, compose, applyMiddleware } from 'redux'
+
 import reducers from '../reducers';
 let composeEnhancers;
 

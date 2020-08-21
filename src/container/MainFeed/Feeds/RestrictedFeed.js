@@ -1,5 +1,5 @@
 import React from 'react';
-import FeedWidget from 'container/MainFeed/FeedWidget';
+import FeedWidget from './node_modules/container/MainFeed/FeedWidget';
 
 
 const RestrictedFeed = () => {
