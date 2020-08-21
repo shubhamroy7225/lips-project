@@ -1,5 +1,5 @@
 import React from 'react';
-import FeedWidget from 'components/MainFeed/FeedWidget';
+import FeedWidget from 'scenes/Feed/components/FeedWidget';
 
 
 const TextFeed = () => {

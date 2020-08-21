@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
-import ReportModal from 'components/FeedModal/ReportModal';
-import TaggedModal from 'components/FeedModal/TaggedModal';
-import RepostModal from 'components/FeedModal/RepostModal';
-import ImageFeed from 'components/Feed/ImageFeed';
-import TextFeed from 'components/Feed/TextFeed';
-import RestrictedFeed from 'components/Feed/RestrictedFeed';
+import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
+import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
+import RepostModal from 'scenes/Feed/components/FeedModal/RepostModal';
+import ImageFeed from 'scenes/Feed/components/ImageFeed';
+import TextFeed from 'scenes/Feed/components/TextFeed';
+import RestrictedFeed from 'scenes/Feed/components/RestrictedFeed';
 
 const MainFeed = (props) => {
     useEffect(() => {

@@ -1,25 +1,16 @@
 import React from 'react';
-import FeedWidget from 'components/MainFeed/FeedWidget';
+import FeedWidget from 'scenes/Feed/components/FeedWidget';
 
 
-const RestrictedFeed = () => {
+const ImageFeed = () => {
     return (
-        <div class="lps_list lps_post_blr">
-            <div class="lps_flx_vm_jc lps_bg_txt_white on_boarding_wrp lps_post_blr_drop">
-                <div class="lps_form_wrp on_boarding_wrp_spwn">
-                    <article class="lps_art lps_art_white text_center">
-                        <p>This post includes</p>
-                    </article>
-                    <ul class="lps_btn_grps lps_ul lps_hash_ul">
-                        <li>
-                            <a href="#" class="theme_btn theme_outline_light">#Hashtag</a>
-                        </li>
-                    </ul>
-                    <div class="pos_wrp onboarding_btm text_center">
-                        <a href="main_feed_browse_choose_tags_1.html" class="theme_btn theme_outline_light btn_block theme_btn_rds25 text_uppercase">View IT anyway</a>
-                        <p class="btm_links mt_25 text_white">Review your <a href="#" class="link_underline link_white">Feed Settings</a></p>
-                    </div>
-                </div>
+        <div class="lps_list">
+            <div class="lps_sm_shape"></div>
+            <div class="post_img_block lps_pink_bg lps_widgets_wrp">
+                <figure class="feed_galary">
+                    <img src="/images/icons/landscape-image.png" alt="Add Image" />
+                </figure>
+                <FeedWidget />
             </div>
             <div class="lps_inner_wrp lps_inner_wrp_media pd_b0">
                 <div class="lps_media">
@@ -37,4 +28,4 @@ const RestrictedFeed = () => {
     );
 }
 
-export default RestrictedFeed
+export default ImageFeed
