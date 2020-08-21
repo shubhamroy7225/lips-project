@@ -1,0 +1,27 @@
+footer.main_footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $black;
+  padding: 16px 15px;
+  .link_list_group {
+    text-align: center;
+  }
+  .footer_link {
+    margin-right: 36px;
+    font-size: 14px;
+    color: $white;
+    display: inline-block;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  a{
+    color: $white;
+    &:hover,&:focus,&:active{
+      color: $brand-primary;
+
+    }
+  }
+}

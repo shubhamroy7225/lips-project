@@ -1,26 +1,29 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import RouteChangeListener from './utility/RouteChangeListener';
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import { withRouter } from 'react-router'
+import AppRouter from './router/router';
+import { connect } from 'react-redux';
 
-function App() {
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RouteChangeListener />
+      <ReactNotification />
+      <AppRouter {...props} />
+    </>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  user: state.authReducer.user,
+});
+
+const mapStateToDispatch = (dispatch) => ({
+});
+
+export default connect(mapStateToProps, mapStateToDispatch)(withRouter(App));
+

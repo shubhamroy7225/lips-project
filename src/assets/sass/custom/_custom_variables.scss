@@ -1,0 +1,44 @@
+//colors
+
+$black:    #000000 !default;
+$white: #ffffff !default;
+$blue:    #2d83e8 !default;
+$gray-900: #526C79 !default;
+$pink:   #F94F7A !default;
+$yellow:  #FBF9F0 !default;
+$gray-800: #555555 !default;
+
+$brand-primary: #fd3398 !default;
+$brand-secondary: #141414 !default;
+$brand-danger: #FF242B !default;
+$brand-success: #17BE32 !default;
+$brand-warning: #e7b000 !default;
+$link-danger: #E8242A !default;
+
+$brand-primary-100: #FEF1EB;
+$brand-primary-200: #FFCCCC;
+$brand-primary-300: #faccd4;
+$brand-primary-400: #cfa2a9;
+$brand-primary-500: #ffe8e8;
+$brand-primary-600: #ea8fc4;
+
+
+$brand-red100: #999933;
+$gray-600: #bfbfbf;
+$gray-700: #4D4D4D;
+$gray-800: #707070;
+$gray-900: #8b8b8b;
+$gray-1000: #838296;
+
+
+$input-border: #a6a6a6;
+$black-o1: rgba(0, 0, 0, 0.125);
+
+// applied colors:
+$link-color:       $brand-primary !default;
+$link-hover-color: darken($link-color, 10%) !default;
+$brand-primary-hover: darken($brand-primary, 10%) !default;
+$brand-secondary-hover: darken($brand-secondary, 10%) !default;
+$brand-danger-hover: darken($brand-danger, 10%) !default;
+
+

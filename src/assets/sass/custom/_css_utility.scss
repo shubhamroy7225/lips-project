@@ -1,0 +1,122 @@
+// color define
+.text_white {
+  color: $white !important;
+}
+
+// margin and padding define
+  .mt45 {
+    margin-top: 40px;
+  }
+  .lps_mb10 {
+    margin-bottom: 10px !important;
+  }
+  .lps_mb5 {
+    margin-bottom: 5px !important;
+  }
+  .lps_ml10 {
+    margin-left: 10px !important;
+  }
+  .lps_mb15 {
+    margin-bottom: 15px !important;
+  }
+  .lps_mb20 {
+    margin-bottom: 20px !important;
+  }
+  .mb25 {
+    margin-bottom: 25px !important;
+  }
+  .mb30 {
+    margin-bottom: 30px !important;
+  }
+  .mb100 {
+    margin-bottom: 100px !important;
+  }
+  .mb_0 {
+    margin-bottom: 0 !important;
+  }
+  .mt_0 {
+    margin-top: 0 !important;
+  }
+  .mb_5 {
+    margin-bottom: 5px !important;
+  }
+  .ml_15 {
+    margin-left: 15px !important;
+  }
+  .mr_15 {
+    margin-right: 15px;
+  }
+  .mt_10 {
+    margin-top: 10px !important;
+  }
+  .mt_15 {
+    margin-top: 15px;
+  }
+  .mb20 {
+    margin-bottom: 20px;
+  }
+  .my25 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .mt_35 {
+    margin-top: 35px !important;
+  }
+  .mt_25 {
+    margin-top: 25px;
+  }
+  .pd_b0 {
+    padding-bottom: 0 !important;
+  }
+  .pd_t0 {
+    padding-top: 0 !important;
+  }
+  .pd_y {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .pd_t10  {
+      padding-top: 10px !important;
+  }
+  .pd_b10  {
+    padding-bottom: 10px !important;
+  }
+  .px_0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .link_underline {
+    text-decoration: underline;
+  }
+  .link_white {
+    color: $white !important;
+    &:hover {
+      color: $black !important;
+    }
+  }
+  .border_0 {
+    border: 0 !important;
+  }
+  .border_top_0 {
+    border-top: 0 !important;
+  }
+  
+  .lps_pink_border {
+    border: 1px solid $brand-primary;
+  }
+  .link_white {
+    color: $white !important;
+  }
+  .pt100 {
+    padding-top: 100px;
+    display: inline-block;
+}
+.lps_flt_right {
+  float: right;
+}
+.lps_pos_rltv {
+  position: relative;
+}
+.text_right {
+  text-align: right !important;
+}
