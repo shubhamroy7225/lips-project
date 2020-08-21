@@ -11,7 +11,7 @@ const Header = (props) => {
     let headerTabsContent = (
         <>
             <a class="logo" href="#">
-                <img src="/images/thumbnails/logo.png" alt="BitCot Logo" class="header__logo" />
+                <img src={require("assets/images/thumbnails/logo.png")} alt="BitCot Logo" class="header__logo" />
             </a>
             <ul class="lp_nav">
                 <li class="nav-item">
@@ -19,7 +19,7 @@ const Header = (props) => {
                         <li class="lps_dropdown">
                             <a href="#" class="dropdown-toggle nav-link user_menu_dropdown not_line" role="button">
                                 <span class="avatar_circle">
-                                    <img src="/images/icons/icn_heart.png" alt="heart Icon" />
+                                    <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                 </span>
                             </a>
                             <NotificationSliderComponent />
@@ -29,7 +29,7 @@ const Header = (props) => {
                 <li class="nav-item">
                     <a href="settings.html" class="nav-link not_line">
                         <span class="avatar_circle">
-                            <img src="/images/icons/icn_settings.png" alt="Settings Icon" />
+                            <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
                         </span>
                     </a>
                 </li>
@@ -68,7 +68,7 @@ class Layout extends Component {
                         <div className="clearfix"></div>
                         {this.props.children}
                         <div className="clearfix"></div>
-                        <Footer {...this.props} />
+                        {/* <Footer {...this.props} /> */}
                     </div>
                 </div>
             </Aux>
@@ -98,7 +98,7 @@ const NotificationSliderComponent = () => {
             <li class="list-group-item">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src="/images/icons/user.jpg" alt="User" />
+                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <p>Jon Snow added you to their --- list</p>
@@ -109,7 +109,7 @@ const NotificationSliderComponent = () => {
             <li class="list-group-item">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src="/images/icons/user.jpg" alt="User" />
+                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <p>Jon Snow wants to follow you
@@ -123,7 +123,7 @@ const NotificationSliderComponent = () => {
             <li class="list-group-item">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src="/images/icons/user.jpg" alt="User" />
+                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <p>Jon Snow added you <a href="#" class="link_underline link_white">post</a> <a href="#"
@@ -135,7 +135,7 @@ const NotificationSliderComponent = () => {
             <li class="list-group-item">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src="/images/icons/user.jpg" alt="User" />
+                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <p>Jon Snow your <a href="#" class="link_underline link_white">post</a></p>
@@ -146,7 +146,7 @@ const NotificationSliderComponent = () => {
             <li class="list-group-item">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src="/images/icons/user.jpg" alt="User" />
+                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <p>Jon Snow your <a href="#" class="link_underline link_white">post</a></p>
@@ -157,7 +157,7 @@ const NotificationSliderComponent = () => {
             <li class="list-group-item">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src="/images/icons/user.jpg" alt="User" />
+                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <p>Jon Snow your <a href="#" class="link_underline link_white">post</a></p>
@@ -168,7 +168,7 @@ const NotificationSliderComponent = () => {
             <li class="list-group-item">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src="/images/icons/user.jpg" alt="User" />
+                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <p>Jon Snow your <a href="#" class="link_underline link_white">post</a></p>

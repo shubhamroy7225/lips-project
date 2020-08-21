@@ -8,7 +8,7 @@ const ReportModal = () => {
                 <span class="helper"></span>
                 <div class="popup_cont">
                     <div class="popup_body">
-                        <div class="popupCloseButton"><img src="/images/icons/icn_close_white.png" /></div>
+                        <div class="popupCloseButton"><img src={require("assets/images/icons/icn_close_white.png")} /></div>
                         <ul class="lps_btn_grps lps_ul">
                             <li class="lps_title">
                                 Don't want to see this?

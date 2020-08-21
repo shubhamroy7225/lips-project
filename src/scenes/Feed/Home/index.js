@@ -58,22 +58,22 @@ const MenuOptionSlider = () => {
                 <ul class="ul_list custom_ul">
                     <li class="listed_item">
                         <a href="post.html" class="collapse_links">
-                            <img src="/images/icons/white_plus.svg" class="ci_image" alt="plus" />
+                            <img src={require("assets/images/icons/white_plus.svg")} class="ci_image" alt="plus" />
                         </a>
                     </li>
                     <li class="listed_item">
                         <a href="explore.html" class="collapse_links">
-                            <img src="/images/icons/white_search.svg" class="ci_image" alt="search" />
+                            <img src={require("assets/images/icons/white_search.svg")} class="ci_image" alt="search" />
                         </a>
                     </li>
                     <li class="listed_item">
                         <a href="liked.html" class="collapse_links">
-                            <img src="/images/icons/white_kiss.svg" class="ci_image" alt="mouth" />
+                            <img src={require("assets/images/icons/white_kiss.svg")} class="ci_image" alt="mouth" />
                         </a>
                     </li>
                     <li class="listed_item">
                         <a href="my_user_profile.html" class="collapse_links">
-                            <img src="/images/icons/user_white.svg" class="ci_image" alt="user" />
+                            <img src={require("assets/images/icons/user_white.svg")} class="ci_image" alt="user" />
                         </a>
                     </li>
                     <li class="listed_item">

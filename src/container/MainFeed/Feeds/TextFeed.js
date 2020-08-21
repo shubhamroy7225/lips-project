@@ -26,7 +26,7 @@ const TextFeed = () => {
             <div class="lps_inner_wrp lps_inner_wrp_media pd_b0">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src="/images/icons/user.jpg" alt="User" />
+                        <img src={require("assets/images/images/icons/user.jpg")} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <div class="lps_media_body">

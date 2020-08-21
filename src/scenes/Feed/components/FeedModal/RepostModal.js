@@ -7,7 +7,7 @@ const RepostModal = () => {
             <div class="modal-dialog-centered">
                 <div class="popup_cont">
                     <div class="popup_body">
-                        <div class="popupCloseButton"><img src="/images/icons/icn_close_white.png" /></div>
+                        <div class="popupCloseButton"><img src={require("assets/images/icons/icn_close_white.png")} /></div>
                         <ul class="lps_btn_grps lps_ul mb100">
                             <li>
                                 <a href="#" class="text_white">Post reposted</a>
