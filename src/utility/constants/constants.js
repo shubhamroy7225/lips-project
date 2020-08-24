@@ -18,7 +18,11 @@ export const routes = {
     FORGOT_PASSWORD: '/reset_password',
     FEEDS: '/feeds',
     LOGOUT: '/logout',
-    DASHBOARD: '/dashboard'
+    EXPLORE: '/explore',
+    CREATE: '/create',
+    LIKES: '/likes',
+    PROFILE: '/profile'
+
 };
 
 export const MinImageResolution = {
