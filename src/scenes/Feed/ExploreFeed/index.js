@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
-import ImageItem from './components/ImageItem';
 import SearchInput from './components/SearchInput';
 import MenuOptionSlider from '../components/MenuOptionSlider';
+import ImageItem from '../components/ImageItem';
 
 const ExploreFeed = (props) => {
     useEffect(() => {
