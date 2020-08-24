@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from '../hoc/Layout/Layout';
 import { routes } from '../utility/constants/constants';
 import Home from 'scenes/Feed/Home';
+import Landing from 'scenes/Landing/InitialLanding';
 
 const Router = (props) => {
     let routeList = null;
@@ -25,6 +26,7 @@ const Router = (props) => {
                 <Route exact path={routes.REGISTER} component={() => <h1>Register</h1>} />
                 <Route exact path={routes.FORGOT_PASSWORD} component={() => <h1>Forgot password</h1>} />
                 <Route exact path={routes.FEEDS} component={Home} />
+                <Route exact path={routes.Landing} component={Landing} />
                 <Route path='*' render={(props) => <Redirect to={routes.FEEDS} />} />
             </Switch>
         )
@@ -33,7 +35,7 @@ const Router = (props) => {
     return (
         <Layout>
             {routeList}
-        </Layout >
+        </Layout>
     )
 };
 

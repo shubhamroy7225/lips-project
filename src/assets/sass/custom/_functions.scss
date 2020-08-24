@@ -1,5 +1,5 @@
 @function image_url($path) {
-  @return url("/images/background/" + $path);
+  @return url("../../images/background/" + $path);
 }
 
 @function font-path($path) {

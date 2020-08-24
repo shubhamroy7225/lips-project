@@ -17,6 +17,7 @@ export const routes = {
     REGISTER: '/register',
     FORGOT_PASSWORD: '/reset_password',
     FEEDS: '/feeds',
+    Landing: '/landing',
     LOGOUT: '/logout',
     DASHBOARD: '/dashboard'
 };
