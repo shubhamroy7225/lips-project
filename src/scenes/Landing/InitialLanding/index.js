@@ -60,7 +60,7 @@ export default () => {
                     </div>
                     <div className="pos_wrp">
                       <a href="sign_in.html" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase lps_mb10">Signe In</a>
-                      <a href="landing_no_cookies_browse.html" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Just Browse</a>
+                      <a href="/browse-landing" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Just Browse</a>
                       <p className="btm_links mt_25 text_white">You must be 18 or older to use Lips <a href="#" className="link_underline link_white">Leave</a></p>
                     </div>
                   </form>

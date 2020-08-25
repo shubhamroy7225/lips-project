@@ -4,9 +4,9 @@ import Layout from '../hoc/Layout/Layout';
 import { routes } from '../utility/constants/constants';
 import Home from 'scenes/Feed/Home';
 import BrowseFeeds from 'scenes/Feed/components/BrowseFeed';
+import BrowseFeedsTag from 'scenes/Feed/components/BrowseFeedTag';
 import Landing from 'scenes/Landing/InitialLanding';
 import BrowseLanding from 'scenes/Landing/browseLanding';
-
 const Router = (props) => {
     let routeList = null;
     let user = props.user;
@@ -29,6 +29,7 @@ const Router = (props) => {
                 <Route exact path={routes.FORGOT_PASSWORD} component={() => <h1>Forgot password</h1>} />
                 <Route exact path={routes.FEEDS} component={Home} />
                 <Route exact path={routes.BrowseFeeds} component={BrowseFeeds} />
+                <Route exact path={routes.BrowseFeedsTag} component={BrowseFeedsTag} />
                 <Route exact path={routes.Landing} component={Landing} />
                 <Route exact path={routes.BrowseLanding} component={BrowseLanding} />
                 <Route path='*' render={(props) => <Redirect to={routes.FEEDS} />} />

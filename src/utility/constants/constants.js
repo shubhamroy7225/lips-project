@@ -18,6 +18,7 @@ export const routes = {
     FORGOT_PASSWORD: '/reset_password',
     FEEDS: '/feeds',
     BrowseFeeds: '/browse-feeds',
+    BrowseFeedsTag: '/browse-feeds-tags',
     Landing: '/landing',
     BrowseLanding: '/browse-landing',
     LOGOUT: '/logout',

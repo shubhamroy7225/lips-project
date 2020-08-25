@@ -18,8 +18,8 @@ export default () => {
                          </p>
                       </article>
                       <div className="pos_wrp onboarding_btm">
-                         <Link to="main_feed_browse_choose_tags.html" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase lps_mb10">Customize</Link>
-                         <Link to="browse_main_feed_no_account.html" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Auto Generate</Link>
+                         <Link to="/browse-feeds" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase lps_mb10">Customize</Link>
+                         <Link to="/" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Auto Generate</Link>
                       </div>
                    </div>
                 </div>
