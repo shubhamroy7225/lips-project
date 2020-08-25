@@ -16,24 +16,24 @@ export default () => {
                       </article>
                       <ul className="lps_btn_grps lps_ul lps_hash_ul">
                          <li>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
                          </li>
                          <li>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
                          </li>
                          <li className="lps_pos_rltv">
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
                          </li>
                          <li>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light">#Hashtag</Link>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
+                            <button className="theme_btn theme_outline_light">#Hashtag</button>
                          </li>
                       </ul>
                       <div className="pos_wrp onboarding_btm">
