@@ -47,7 +47,7 @@ export default () => {
                          </li>
                       </ul>
                       <div className="pos_wrp onboarding_btm">
-                         <Link to="/browse-feeds-tags" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Continue</Link>
+                         <Link to="/provide-feeds-tags" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Continue</Link>
                       </div>
                    </div>
                 </div>

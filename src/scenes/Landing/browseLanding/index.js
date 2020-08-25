@@ -18,7 +18,7 @@ export default () => {
                          </p>
                       </article>
                       <div className="pos_wrp onboarding_btm">
-                         <Link to="/browse-feeds" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase lps_mb10">Customize</Link>
+                         <Link to="/main-feeds" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase lps_mb10">Customize</Link>
                          <Link to="/" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Auto Generate</Link>
                       </div>
                    </div>

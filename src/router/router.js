@@ -3,8 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from '../hoc/Layout/Layout';
 import { routes } from '../utility/constants/constants';
 import Home from 'scenes/Feed/Home';
-import BrowseFeeds from 'scenes/Feed/components/BrowseFeed';
-import BrowseFeedsTag from 'scenes/Feed/components/BrowseFeedTag';
+import BrowseFeeds from 'scenes/Landing/browseLanding/BrowseFeed';
+import BrowseFeedsTag from 'scenes/Landing/browseLanding/BrowseFeedTag';
 import Landing from 'scenes/Landing/InitialLanding';
 import BrowseLanding from 'scenes/Landing/browseLanding';
 const Router = (props) => {
