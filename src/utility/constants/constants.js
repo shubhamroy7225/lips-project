@@ -28,6 +28,7 @@ export const routes = {
     LIKES: '/likes',
     PROFILE: '/profile',
     COMMUNITY_GUIDELINES: '/community-guidelines',
+    ACCOUNT_PRIVACY: '/account-privacy',
 
 };
 
