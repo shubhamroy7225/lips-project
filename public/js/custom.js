@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 jQuery(function ($) {
 
-  $('.element').responsiveEqualHeightGrid();
+  //$('.element').responsiveEqualHeightGrid();
 
   var wow = new WOW(
     {
