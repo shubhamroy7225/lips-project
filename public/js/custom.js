@@ -173,11 +173,11 @@ $(document).ready(function () {
   });
   // popup jquery here
   // post tabs jquery here
-  $('.tab-list a').on('click', function (e) {
-    $(this).parents('li').addClass('active').siblings().removeClass('active');
-    var active_tab = $(this).attr('href');
-    $(active_tab).addClass('active').siblings().removeClass('active');
-  })
+  // $('.tab-list a').on('click', function (e) {
+  //   $(this).parents('li').addClass('active').siblings().removeClass('active');
+  //   var active_tab = $(this).attr('href');
+  //   $(active_tab).addClass('active').siblings().removeClass('active');
+  // })
 });
 // jquery dropdown
 // $( function() {

@@ -8,7 +8,7 @@ import ImageFeed from 'scenes/Feed/components/ImageFeed';
 import TextFeed from 'scenes/Feed/components/TextFeed';
 import RestrictedFeed from 'scenes/Feed/components/RestrictedFeed';
 import MenuOptionSlider from '../components/MenuOptionSlider';
-import { BrowserView, MobileView, isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 const MainFeed = (props) => {
     useEffect(() => {
