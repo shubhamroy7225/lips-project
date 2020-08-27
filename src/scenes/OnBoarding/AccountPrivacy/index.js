@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Link } from "react-router-dom";
 export default () => {
   return (
       <div class="limiter">
@@ -37,7 +37,7 @@ export default () => {
                             </li>
                           </ul>
                             <div class="btn_block">
-                              <a href="Just_registered_browse_or_customize.html" class="theme_btn theme_primary btn_r25 text_uppercase">Continue</a>
+                              <Link to="/customize-tags" class="theme_btn theme_primary btn_r25 text_uppercase">Continue</Link>
                             </div>
                           </div>
                         </div>
