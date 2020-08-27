@@ -8,35 +8,50 @@ import ImageFeed from 'scenes/Feed/components/ImageFeed';
 import TextFeed from 'scenes/Feed/components/TextFeed';
 import RestrictedFeed from 'scenes/Feed/components/RestrictedFeed';
 import MenuOptionSlider from '../components/MenuOptionSlider';
+import { BrowserView, MobileView, isMobile } from 'react-device-detect';
 
 const MainFeed = (props) => {
     useEffect(() => {
         // Update the document title using the browser API
         console.log(props);
     });
-
-    return (
-        <>
+    if (isMobile) {
+        return (
+            <>
+                <div id="wrap">
+                    <div className="lps_container main_feed_cont">
+                        <ImageFeed />
+                        <TextFeed />
+                        <ImageFeed />
+                        <ImageFeed />
+                        <ImageFeed />
+                        {/* <RestrictedFeed /> */}
+                        <div className="lps_loader">Loading...</div>
+                        {/* <!-- Menu bottom here --> */}
+                        <MenuOptionSlider />
+                        {/* <!-- //end Menu bottom here --> */}
+                    </div>
+                </div>
+                {/* //   popup */}
+                <RepostModal />
+                <TaggedModal />
+                <ReportModal />
+            </>
+        )
+    } else {
+        return (
             <div id="wrap">
                 <div className="lps_container main_feed_cont">
                     <ImageFeed />
+                    <ImageFeed />
+                    <ImageFeed />
                     <TextFeed />
                     <ImageFeed />
-                    <ImageFeed />
-                    <ImageFeed />
-                    <RestrictedFeed />
-                    <div className="lps_loader">Loading...</div>
-                    {/* <!-- Menu bottom here --> */}
-                    <MenuOptionSlider />
-                    {/* <!-- //end Menu bottom here --> */}
                 </div>
+                <MenuOptionSlider />
             </div>
-            {/* //   popup */}
-            <RepostModal />
-            <TaggedModal />
-            <ReportModal />
-        </>
-    );
+        );
+    }
 }
 
 const mapStateToProps = (state) => ({

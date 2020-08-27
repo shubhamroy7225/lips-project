@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from '../hoc/Layout/Layout';
 import { routes } from '../utility/constants/constants';
-import Home from 'scenes/Feed/Home';
+import MainFeed from 'scenes/Feed/Home';
 
 import ExploreFeed from 'scenes/Feed/ExploreFeed';
 import Create from 'scenes/Feed/Create';
@@ -30,7 +30,7 @@ const Router = (props) => {
     //when user is not logged in
     routeList = (
         <Switch>
-            <Route exact path={routes.ROOT} component={Home} />
+            <Route exact path={routes.ROOT} component={MainFeed} />
             <Route exact path={routes.CREATE} component={Create} />
             <Route exact path={routes.EXPLORE} component={ExploreFeed} />
             <Route exact path={routes.LIKES} component={Likes} />
@@ -38,7 +38,7 @@ const Router = (props) => {
             <Route exact path={routes.LOGIN} component={() => <h1>Login</h1>} />
             <Route exact path={routes.REGISTER} component={() => <h1>Register</h1>} />
             <Route exact path={routes.FORGOT_PASSWORD} component={() => <h1>Forgot password</h1>} />
-            <Route exact path={routes.ROOT} component={Home} />
+            <Route exact path={routes.ROOT} component={MainFeed} />
             <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
             <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
             <Route exact path={routes.LANDING} component={Landing} />
