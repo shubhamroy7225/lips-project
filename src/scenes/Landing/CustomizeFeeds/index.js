@@ -1,6 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import {useDispatch} from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+
+import * as AuthActions from "redux/actions";
+
 export default () => {
+   const history = useHistory();
+   const disptach = useDispatch();
+   const completeOnBoard = () => {
+      disptach(AuthActions.completeOnBordingFlow());
+      history.push("/");
+   };
   return (
     <div className="limiter">
        <div className="container-login100">
@@ -19,7 +29,7 @@ export default () => {
                       </article>
                       <div className="pos_wrp onboarding_btm">
                          <Link to="/favorite-tags" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase lps_mb10">Customize</Link>
-                         <Link to="/" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Auto Generate</Link>
+                         <button onClick={completeOnBoard} className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Auto Generate</button>
                       </div>
                    </div>
                 </div>
