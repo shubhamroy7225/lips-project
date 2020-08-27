@@ -22,7 +22,11 @@ export const routes = {
     Landing: '/landing',
     BrowseLanding: '/browse-landing',
     LOGOUT: '/logout',
-    DASHBOARD: '/dashboard'
+    EXPLORE: '/explore',
+    CREATE: '/create',
+    LIKES: '/likes',
+    PROFILE: '/profile'
+
 };
 
 export const MinImageResolution = {

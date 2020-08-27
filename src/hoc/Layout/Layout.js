@@ -10,15 +10,15 @@ const Header = (props) => {
     //default when user is not logged in
     let headerTabsContent = (
         <>
-            <a class="logo" href="#">
-                <img src={require("assets/images/thumbnails/logo.png")} alt="BitCot Logo" class="header__logo" />
+            <a className="logo" href="#">
+                <img src={require("assets/images/thumbnails/logo.png")} alt="BitCot Logo" className="header__logo" />
             </a>
-            <ul class="lp_nav">
-                <li class="nav-item">
-                    <ul class="profile_dropdown avatar_dropdown">
-                        <li class="lps_dropdown">
-                            <a href="#" class="dropdown-toggle nav-link user_menu_dropdown not_line" role="button">
-                                <span class="avatar_circle">
+            <ul className="lp_nav">
+                <li className="nav-item">
+                    <ul className="profile_dropdown avatar_dropdown">
+                        <li className="lps_dropdown">
+                            <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button">
+                                <span className="avatar_circle">
                                     <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                 </span>
                             </a>
@@ -26,9 +26,9 @@ const Header = (props) => {
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="settings.html" class="nav-link not_line">
-                        <span class="avatar_circle">
+                <li className="nav-item">
+                    <a href="settings.html" className="nav-link not_line">
+                        <span className="avatar_circle">
                             <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
                         </span>
                     </a>
@@ -38,8 +38,8 @@ const Header = (props) => {
     );
 
     return (
-        <header class="main_header">
-            <nav class="theme_navigation">
+        <header className="main_header">
+            <nav className="theme_navigation">
                 {headerTabsContent}
             </nav>
         </header >
@@ -61,8 +61,8 @@ class Layout extends Component {
     render() {
         return (
             <Aux>
-                <div class="limiter">
-                    <div class="container-login100">
+                <div className="limiter">
+                    <div className="container-login100">
                         <Header {...this.props} />
 
                         <div className="clearfix"></div>
@@ -94,84 +94,84 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
 
 const NotificationSliderComponent = () => {
     return (
-        <ul class="lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list">
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
+        <ul className="lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list">
+            <li className="list-group-item">
+                <div className="lps_media">
+                    <figure className="lps_fig lps_fig_circle">
                         <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
-                    <div class="lps_media_body">
+                    <div className="lps_media_body">
                         <p>Jon Snow added you to their --- list</p>
                         <span>1 day ago</span>
                     </div>
                 </div>
             </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
+            <li className="list-group-item">
+                <div className="lps_media">
+                    <figure className="lps_fig lps_fig_circle">
                         <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
-                    <div class="lps_media_body">
+                    <div className="lps_media_body">
                         <p>Jon Snow wants to follow you
-                                                                    <a href="#" class="link_underline link_white">accept</a>
-                            <a href="#" class="link_underline link_white">deny</a>
+                                                                    <a href="#" className="link_underline link_white">accept</a>
+                            <a href="#" className="link_underline link_white">deny</a>
                         </p>
                         <span>1 day ago</span>
                     </div>
                 </div>
             </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
+            <li className="list-group-item">
+                <div className="lps_media">
+                    <figure className="lps_fig lps_fig_circle">
                         <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
-                    <div class="lps_media_body">
-                        <p>Jon Snow added you <a href="#" class="link_underline link_white">post</a> <a href="#"
-                            class="link_underline link_white">i don't want it there</a></p>
+                    <div className="lps_media_body">
+                        <p>Jon Snow added you <a href="#" className="link_underline link_white">post</a> <a href="#"
+                            className="link_underline link_white">i don't want it there</a></p>
                         <span>1 day ago</span>
                     </div>
                 </div>
             </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
+            <li className="list-group-item">
+                <div className="lps_media">
+                    <figure className="lps_fig lps_fig_circle">
                         <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
-                    <div class="lps_media_body">
-                        <p>Jon Snow your <a href="#" class="link_underline link_white">post</a></p>
+                    <div className="lps_media_body">
+                        <p>Jon Snow your <a href="#" className="link_underline link_white">post</a></p>
                         <span>1 day ago</span>
                     </div>
                 </div>
             </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
+            <li className="list-group-item">
+                <div className="lps_media">
+                    <figure className="lps_fig lps_fig_circle">
                         <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
-                    <div class="lps_media_body">
-                        <p>Jon Snow your <a href="#" class="link_underline link_white">post</a></p>
+                    <div className="lps_media_body">
+                        <p>Jon Snow your <a href="#" className="link_underline link_white">post</a></p>
                         <span>1 day ago</span>
                     </div>
                 </div>
             </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
+            <li className="list-group-item">
+                <div className="lps_media">
+                    <figure className="lps_fig lps_fig_circle">
                         <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
-                    <div class="lps_media_body">
-                        <p>Jon Snow your <a href="#" class="link_underline link_white">post</a></p>
+                    <div className="lps_media_body">
+                        <p>Jon Snow your <a href="#" className="link_underline link_white">post</a></p>
                         <span>1 day ago</span>
                     </div>
                 </div>
             </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
+            <li className="list-group-item">
+                <div className="lps_media">
+                    <figure className="lps_fig lps_fig_circle">
                         <img src={require("assets/images/icons/user.jpg")} alt="User" />
                     </figure>
-                    <div class="lps_media_body">
-                        <p>Jon Snow your <a href="#" class="link_underline link_white">post</a></p>
+                    <div className="lps_media_body">
+                        <p>Jon Snow your <a href="#" className="link_underline link_white">post</a></p>
                         <span>1 day ago</span>
                     </div>
                 </div>
