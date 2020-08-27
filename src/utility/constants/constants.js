@@ -16,6 +16,7 @@ export const routes = {
     LOGIN: '/login',
     REGISTER: '/register',
     FORGOT_PASSWORD: '/reset_password',
+    TERMS_AND_CONDITION: '/terms-and-condition',
     FEEDS: '/feeds',
     SELECT_FAVORITE_TAGS: '/favorite-tags',
     SELECT_AVOID_TAGS: '/avoid-tags',
@@ -25,7 +26,8 @@ export const routes = {
     EXPLORE: '/explore',
     CREATE: '/create',
     LIKES: '/likes',
-    PROFILE: '/profile'
+    PROFILE: '/profile',
+    COMMUNITY_GUIDELINES: '/community-guidelines',
 
 };
 

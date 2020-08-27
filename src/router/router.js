@@ -6,16 +6,18 @@ import Home from 'scenes/Feed/Home';
 
 import Login from "scenes/Auth/Login";
 import Register from "scenes/Auth/Register";
+import TermsAndCondition from "scenes/OnBoarding/TermsAndCondition";
+import CommunityGuidelines from "scenes/OnBoarding/CommunityGuidelines";
 
 import ExploreFeed from 'scenes/Feed/ExploreFeed';
 import Create from 'scenes/Feed/Create';
 import Likes from 'scenes/Feed/Likes';
 import Profile from 'scenes/Profile';
 
-import SelectFavoriteTags from 'scenes/Landing/CustomizeFeeds/SelectFavoriteTags';
-import SelectAvoidTags from 'scenes/Landing/CustomizeFeeds/SelectAvoidTags';
-import Landing from 'scenes/Landing/InitialLanding';
-import CustomizeFeeds from 'scenes/Landing/CustomizeFeeds';
+import SelectFavoriteTags from 'scenes/OnBoarding/CustomizeFeeds/SelectFavoriteTags';
+import SelectAvoidTags from 'scenes/OnBoarding/CustomizeFeeds/SelectAvoidTags';
+import Landing from 'scenes/OnBoarding/InitialLanding';
+import CustomizeFeeds from 'scenes/OnBoarding/CustomizeFeeds';
 
 const Router = (props) => {
     let routeList = null;
@@ -40,6 +42,8 @@ const Router = (props) => {
             <Route exact path={routes.PROFILE} component={Profile} />
             <Route exact path={routes.LOGIN}  component={Login} />
             <Route exact path={routes.REGISTER} component={Register} />
+            <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
+            <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
             <Route exact path={routes.FORGOT_PASSWORD} component={() => <h1>Forgot password</h1>} />
             <Route exact path={routes.ROOT} component={Home} />
             <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
