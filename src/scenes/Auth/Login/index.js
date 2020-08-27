@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 let LoginForm = (props) => {
   const history = useHistory();
   const handleSubmit = () => {
@@ -42,7 +42,7 @@ let LoginForm = (props) => {
                     </div>
                     <div className="pos_wrp onboarding_btm">
                       <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase">Signe In</button>
-                      <p className="btm_links mt_25 text_white">New to Lips? <a href="register.html" className="link_underline lps_link">Register</a></p>
+                      <p className="btm_links mt_25 text_white">New to Lips? <Link to="/register" className="link_underline lps_link">Register</Link></p>
                     </div>
                   </form>
                 </div>
