@@ -39,10 +39,10 @@ const Router = (props) => {
             <Route exact path={routes.REGISTER} component={() => <h1>Register</h1>} />
             <Route exact path={routes.FORGOT_PASSWORD} component={() => <h1>Forgot password</h1>} />
             <Route exact path={routes.ROOT} component={Home} />
-                      <Route exact path={routes.BrowseFeeds} component={BrowseFeeds} />
-                <Route exact path={routes.BrowseFeedsTag} component={BrowseFeedsTag} />
-                <Route exact path={routes.Landing} component={Landing} />
-                <Route exact path={routes.BrowseLanding} component={BrowseLanding} />
+            <Route exact path={routes.BrowseFeeds} component={BrowseFeeds} />
+            <Route exact path={routes.BrowseFeedsTag} component={BrowseFeedsTag} />
+            <Route exact path={routes.Landing} component={Landing} />
+            <Route exact path={routes.BrowseLanding} component={BrowseLanding} />
             <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
         </Switch>
     )
