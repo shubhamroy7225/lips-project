@@ -2,6 +2,8 @@ import React, { Component, useState } from 'react';
 import Aux from '../Oux/Oux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+
 import "assets/sass/style.scss";
 
 const Header = (props) => {
@@ -59,11 +61,12 @@ const Footer = (props) => {
 
 class Layout extends Component {
     render() {
+
         return (
             <Aux>
                 <div className="limiter">
                     <div className="container-login100">
-                        <Header {...this.props} />
+                        {this.props.isOnBoard && <Header {...this.props} />}
 
                         <div className="clearfix"></div>
                         {this.props.children}
@@ -80,6 +83,7 @@ const mapStateToProps = (state) => {
     return {
         user: state.authReducer.user,
         token: state.authReducer.token,
+        isOnBoard: state.authReducer.isOnBoard
     }
 }
 

@@ -4,6 +4,7 @@ import store from 'redux/store/store';
 const token = storage.get("token", null);
 const refresh_token = storage.get("refresh_token", null);
 const user = storage.get("user", null);
+const isOnBoard = storage.get("isOnBoard", null);
 
 const updateObject = (oldState, updatedProps) => {
     return {
@@ -20,6 +21,7 @@ export const signupSuccessful = createAction('Sign up API successful', (user) =>
 export const authorizeUser = createAction('Authorize user after authentication', (user, token, refresh_token) => ({ user, token, refresh_token }));
 export const updateUser = createAction('Update user after authentication', (user) => ({ user }));
 export const logout = createAction('Update user after authentication');
+export const completeOnBorading = createAction('Complete on boarding flow');
 
 loginPending.assignTo(store);
 loginSuccessful.assignTo(store);
@@ -28,6 +30,7 @@ signupSuccessful.assignTo(store);
 authorizeUser.assignTo(store);
 updateUser.assignTo(store);
 logout.assignTo(store);
+completeOnBorading.assignTo(store);
 
 
 export const initialState = {
@@ -35,7 +38,8 @@ export const initialState = {
     refresh_token: refresh_token,
     user: user,
     isloading: false,
-    resetPasswordToken: null
+    resetPasswordToken: null,
+    isOnBoard: isOnBoard
 }
 
 export const authReducer = createReducer({
@@ -71,5 +75,10 @@ export const authReducer = createReducer({
                 user: user,
                 isloading: false,
                 resetPasswordToken: null
+            }),
+    [completeOnBorading]: (state) =>
+        updateObject(state,
+            {
+                isOnBoard: true,
             })
 }, initialState); // <-- This is the default state

@@ -4,7 +4,7 @@ import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
-import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, logout } from 'redux/reducers/auth/authReducer';
+import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, logout, completeOnBording } from 'redux/reducers/auth/authReducer';
 
 function getHistory() {
     const storeState = store.getState();
@@ -117,3 +117,8 @@ export const signOut = () => {
     window.location.replace(routes.FEEDS);
     logout();
 };
+
+export const completeOnBording = () => {
+    storage.set('isOnBoard', true);
+    completeOnBording()
+}

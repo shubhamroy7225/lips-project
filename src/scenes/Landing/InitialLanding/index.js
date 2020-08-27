@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 export default () => {
   return (
       <div className="limiter">
@@ -60,7 +60,7 @@ export default () => {
                     </div>
                     <div className="pos_wrp">
                       <Link to="sign_in.html" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase lps_mb10">Signe In</Link>
-                      <Link to="/browse-landing" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Just Browse</Link>
+                      <Link to="/customize-tags" className="theme_btn theme_light btn_block theme_btn_rds25 text_uppercase">Just Browse</Link>
                       <p className="btm_links mt_25 text_white">You must be 18 or older to use Lips <Link to="#" className="link_underline link_white">Leave</Link></p>
                     </div>
                   </form>

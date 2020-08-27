@@ -9,10 +9,10 @@ import Create from 'scenes/Feed/Create';
 import Likes from 'scenes/Feed/Likes';
 import Profile from 'scenes/Profile';
 
-import BrowseFeeds from 'scenes/Landing/browseLanding/BrowseFeed';
-import BrowseFeedsTag from 'scenes/Landing/browseLanding/BrowseFeedTag';
+import SelectFavoriteTags from 'scenes/Landing/CustomizeFeeds/SelectFavoriteTags';
+import SelectAvoidTags from 'scenes/Landing/CustomizeFeeds/SelectAvoidTags';
 import Landing from 'scenes/Landing/InitialLanding';
-import BrowseLanding from 'scenes/Landing/browseLanding';
+import CustomizeFeeds from 'scenes/Landing/CustomizeFeeds';
 
 const Router = (props) => {
     let routeList = null;
@@ -39,10 +39,10 @@ const Router = (props) => {
             <Route exact path={routes.REGISTER} component={() => <h1>Register</h1>} />
             <Route exact path={routes.FORGOT_PASSWORD} component={() => <h1>Forgot password</h1>} />
             <Route exact path={routes.ROOT} component={Home} />
-            <Route exact path={routes.BrowseFeeds} component={BrowseFeeds} />
-            <Route exact path={routes.BrowseFeedsTag} component={BrowseFeedsTag} />
-            <Route exact path={routes.Landing} component={Landing} />
-            <Route exact path={routes.BrowseLanding} component={BrowseLanding} />
+            <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
+            <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
+            <Route exact path={routes.LANDING} component={Landing} />
+            <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
             <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
         </Switch>
     )
