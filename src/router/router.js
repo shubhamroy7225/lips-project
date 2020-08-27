@@ -5,6 +5,7 @@ import { routes } from '../utility/constants/constants';
 import Home from 'scenes/Feed/Home';
 
 import Login from "scenes/Auth/Login";
+import Register from "scenes/Auth/Register";
 
 import ExploreFeed from 'scenes/Feed/ExploreFeed';
 import Create from 'scenes/Feed/Create';
@@ -38,7 +39,7 @@ const Router = (props) => {
             <Route exact path={routes.LIKES} component={Likes} />
             <Route exact path={routes.PROFILE} component={Profile} />
             <Route exact path={routes.LOGIN}  component={Login} />
-            <Route exact path={routes.REGISTER} component={() => <h1>Register</h1>} />
+            <Route exact path={routes.REGISTER} component={Register} />
             <Route exact path={routes.FORGOT_PASSWORD} component={() => <h1>Forgot password</h1>} />
             <Route exact path={routes.ROOT} component={Home} />
             <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
