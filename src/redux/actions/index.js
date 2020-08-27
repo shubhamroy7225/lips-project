@@ -1,13 +1,13 @@
 export {
     login,
     signup,
-    authorizeUser,
-    logout,
-    completeOnBording,
-    forgotPassword,
-    resetPassword
+    //authorizeUser,
+    signOut,
+    completeOnBordingFlow,
+    //forgotPassword,
+    //resetPassword
 } from './usersActions/action';
 
-export {
-    addHistory,
-} from './usersActions/miscAction'
+//export {
+//    addHistory,
+//} from './usersActions/miscAction'

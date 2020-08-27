@@ -61,12 +61,11 @@ const Footer = (props) => {
 
 class Layout extends Component {
     render() {
-
         return (
             <Aux>
                 <div className="limiter">
                     <div className="container-login100">
-                        {this.props.isOnBoard && <Header {...this.props} />}
+                        {(this.props.isOnBoard || this.props.token) && <Header {...this.props} />}
 
                         <div className="clearfix"></div>
                         {this.props.children}

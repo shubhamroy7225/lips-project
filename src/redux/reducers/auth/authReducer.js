@@ -76,9 +76,11 @@ export const authReducer = createReducer({
                 isloading: false,
                 resetPasswordToken: null
             }),
-    [completeOnBorading]: (state) =>
-        updateObject(state,
+    [completeOnBorading]: (state) => {
+        debugger
+        return updateObject(state,
             {
                 isOnBoard: true,
             })
+    }
 }, initialState); // <-- This is the default state
