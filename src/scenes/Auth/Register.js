@@ -1,11 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 
 export default () => {
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirm_password: ""
+  });
+
   const history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
     history.push("/terms-and-condition");
+  };
+
+  const handleChange= (e) => {
+    setUser({...user, [e.target.name]: e.target.value});
   };
 
   return (
@@ -24,19 +35,23 @@ export default () => {
                     </article>
                     <div className="lps_fields">
                       <div className="form_group_modify">
-                        <input type="text" className="input_modify" placeholder="Username" name="username" required/>
+                        <input type="text" className="input_modify" placeholder="Username" name="username"  value={user.username}
+                               onChange={handleChange} required/>
                       </div>
                       <div className="form_group_modify">
-                        <input type="email" className="input_modify" placeholder="Email" name="email" required/>
+                        <input type="email" className="input_modify" placeholder="Email" name="email"  value={user.email}
+                               onChange={handleChange} required/>
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
-                        <input type="password" className="input_modify" placeholder="Password" name="password" required/>
+                        <input type="password" className="input_modify" placeholder="Password" name="password"  value={user.password}
+                               onChange={handleChange} required/>
                         <span className="icn_passAbslt">
                           <img src={require("assets/images/icons/icb_eye_white.png")} />
                         </span>
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
-                        <input type="password" className="input_modify" placeholder="Repeat Password" name="password_confirmation" required/>
+                        <input type="password" className="input_modify" placeholder="Repeat Password"  value={user.confirm_password}
+                               onChange={handleChange} name="confirm_password" required/>
                         <span className="icn_passAbslt">
                           <img src={require("assets/images/icons/icb_eye_white.png")} />
                         </span>
