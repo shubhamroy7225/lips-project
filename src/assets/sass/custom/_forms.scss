@@ -81,9 +81,13 @@
     min-width: 160px;
     height: 48px;
   }
+  &.select_xs{
+      width: 50px;
+      height: 40px;
+  }
 }
 .label_modify {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 14px;
   font-weight: 400;
   display: inline-block;
@@ -332,6 +336,12 @@
   padding-left: 20px;
   padding-right: 20px;
   .lps_form_wrp {
+    .input_modify {
+      border-bottom-color: $brand-primary;
+      &:focus, &:active {
+        border-bottom-color: $white !important;
+      }
+    }
     .pos_wrp {
       margin-top: 0;
     }
@@ -342,7 +352,7 @@
   }
   .lps_Checkmark {
     background-color: transparent;
-    border: 1px solid $white;
+    border: 1px solid $brand-primary;
     border-radius: 5px;
     transition: 0.3s ease-in-out;
  }
@@ -350,11 +360,11 @@
   background-color: transparent;
   }
  .lps_cont_check input:checked ~ .lps_Checkmark {
-  background-color: $white;
+  background-color: $brand-primary;
   transition: 0.3s ease-in-out;
   }
   .lps_cont_check input:checked ~ .lps_Checkmark:after {
-    border-color: $brand-primary;
+    border-color: $brand-secondary;
   }
   .lps_cont_check .lps_Checkmark:after {
     left: 5px;
@@ -374,7 +384,7 @@
     padding: 0 30px;
     text-align: center;
     .product_item {
-      background-color: $brand-primary;
+      background-color: $white;
       border: 1px solid $white;
       padding: 50px 0;
     }

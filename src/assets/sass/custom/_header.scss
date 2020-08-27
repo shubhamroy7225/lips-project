@@ -5,10 +5,10 @@ header.main_header{
     width: 100%;
     z-index: 999;
     transition: all .1s ease-in-out;
-    background: $brand-primary-100;
+    background: $brand-secondary;
     -webkit-box-shadow: 0 0 10px 0 rgba(35, 35, 35, 0.15);
     box-shadow: 0 0 10px 0 rgba(35, 35, 35, 0.15);
-    border-bottom: 1px solid $brand-primary-300;
+    border-bottom: 1px solid $brand-primary;
     .theme_navigation {
         padding: 0.31rem 1.5rem;
         height: 70px;
@@ -25,6 +25,7 @@ header.main_header{
     }
     .logo {
         max-height: 100%;
+        line-height: 0;
     }
     ul{
         .nav-item{
@@ -71,7 +72,7 @@ header.main_header{
                     display: none;
                 }
                 &.a-btn {
-                    color: #fff;
+                    color: $white;
                     padding: 0 1.5rem;
                     line-height: 2.5;
                 }
@@ -83,7 +84,7 @@ header.main_header{
     }
 }
 .header__logo {
-    height: 32px;
+    height: 40px;
 }
 .lp_nav_customize {
     padding: 0;

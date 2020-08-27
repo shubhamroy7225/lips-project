@@ -1,5 +1,10 @@
 /* Media query */
+
 @media screen and ( min-width: 992px) {
+    .lps_container {
+        max-width: 960px;
+        width: 100%;
+    }
     .header__logo {
         height: 40px;
     }
@@ -16,10 +21,49 @@
     .hover_bkgr_fricc .popup_cont .lps_btn_grps {
         padding: 10% 15px 0;
     }
+    .lps_xl_view header.main_header .theme_navigation {
+        padding: 0.31rem 4.5rem;
+    }
+}
+@media screen and ( min-width: 1200px) {
+    .lps_container {
+        max-width: 1140px;
+        width: 100%;
+    }
+}
+
+@media screen and ( max-width: 1480px) {
+    .lps_xl_view .main_feed_cont .lps_widgets_wrp .feed_galary {
+        min-height: 450px;
+    }
+    .lps_xl_view .main_feed_cont .hover_bkgr_fricc .popup_cont, .lps_xl_view .main_feed_cont .hover_bkgr_fricc{
+        min-height: 450px;
+    }
+}
+@media screen and ( max-width: 1299px) {
+    .lps_xl_view .main_feed_cont .lps_widgets_wrp {
+        width: 500px;
+    }
+    .lps_xl_view .main_feed_cont .hover_bkgr_fricc {
+        width: 500px;
+    }
 }
 @media screen and ( max-width: 1199px) {
     .container{
         max-width: 100%;
+    }
+    .lps_xl_view .main_feed_cont .lps_widgets_wrp {
+        width: 420px;
+    }
+    .lps_xl_view .main_feed_cont .lps_widgets_wrp .feed_galary {
+        min-height: 550px;
+    }
+    .lps_xl_view .main_feed_cont .hover_bkgr_fricc {
+        width:420px;
+        min-height: 550px;
+    }
+    .lps_xl_view .main_feed_cont .hover_bkgr_fricc .popup_cont {
+        min-height: 550px;
     }
 }
 @media screen and ( max-width:991px) {
@@ -59,6 +103,48 @@
     .hover_bkgr_fricc .popup_cont .lps_btn_grps {
         padding: 15% 15px 0;
     }
+
+    .lps_xl_view .lps_dsk_list {
+        flex-direction: column-reverse;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .lps_xl_view .main_feed_cont .lps_inner_wrp_media {
+        width: 100%;
+        padding-right: 0;
+        margin-top: 20px;
+    }
+    .lps_xl_view .main_feed_cont .lps_widgets_wrp {
+        width: 100%;
+    }
+    .lps_xl_view .footer-menu-list {
+        right: 30px;
+        top: 290px;
+    }
+    .lps_xl_view .main_feed_cont .lps_widgets {
+        position: absolute;
+        width: auto;
+        padding-left: 0;
+        bottom: 150px;
+        left: 50px;
+    }
+    .lps_xl_view .main_feed_cont .hover_bkgr_fricc {
+        width: 100%;
+        min-height: auto;
+    }
+    .lps_xl_view .main_feed_cont .hover_bkgr_fricc .popup_cont {
+        min-height: auto;
+    }
+    .loader_wrpr {
+        margin-left: 0;
+    }
+    .lps_xl_view .search_category {
+        padding: 0;
+    }
+    .lps_xl_view .category_block {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 @media (max-width: 991px) and (orientation: landscape) {
     .theme_navigation .nav>li {
@@ -90,7 +176,7 @@
         margin-top: 0;
         box-shadow: none;
         height: 100vh;
-        background-color: $brand-primary;
+        background-color: $bg_grayCCC;
     }
     .browse_category .product_img_block .sm_title {
         font-size: 14px;
@@ -114,7 +200,25 @@
     }
     .post_poup .hash_tag_block .hashtag_btn {
         margin: 5px 3px;
-      }
+    }
+    .hashtag_btn {
+        padding: 5px 7px;
+        font-size: 13px;
+    }
+    .lps_xl_view .category_block .product_card {
+        margin-bottom: 20px;
+        padding: 50px 0;
+    }
+    .lps_xl_view .category_block .product_grid {
+        grid-column-gap: 20px;
+        grid-template-columns: 1fr 1fr;
+    }
+    .lps_xl_view .theme_input_group {
+        width: 100%;
+    }
+    .main_header .logo_txt {
+        line-height: 0;
+    }
 }
 @media screen and ( max-width:450px) {
     header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
@@ -164,6 +268,9 @@ header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
     }
     .lps_inline_field .lps_number .minus, .lps_inline_field .lps_number .plus {
         width: 20px;
+    }
+    .acctn_privacy.mt_45 {
+        margin: 0;
     }
 }
 @media screen and ( max-width: 330px) {
