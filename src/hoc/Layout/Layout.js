@@ -61,7 +61,7 @@ const Header = (props) => {
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <a href="settings.html" className="nav-link not_line">
+                            <a href="/setting" className="nav-link not_line">
                                 <span className="avatar_circle">
                                     <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
                                 </span>

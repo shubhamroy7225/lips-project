@@ -29,6 +29,14 @@ export const routes = {
     PROFILE: '/profile',
     COMMUNITY_GUIDELINES: '/community-guidelines',
     ACCOUNT_PRIVACY: '/account-privacy',
+    
+    SETTING: '/setting',
+    MY_ACCOUNT: '/my-account',
+    SWITCH_ACCCOUNT: '/switch-account',
+    MANAGE_DATA: '/manage-data',
+    FEED_SETTING: '/feed-setting',
+    NOTIFICATION: '/notification',
+    PRIVACY_POLICY: '/privacy-policy'
 
 };
 

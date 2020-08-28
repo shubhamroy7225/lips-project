@@ -20,6 +20,14 @@ import SelectAvoidTags from 'scenes/OnBoarding/CustomizeFeeds/SelectAvoidTags';
 import Landing from 'scenes/OnBoarding/InitialLanding';
 import CustomizeFeeds from 'scenes/OnBoarding/CustomizeFeeds';
 
+import Setting from 'scenes/Setting';
+import MyAccount from 'scenes/Setting/MyAccount';
+import SwitchAccount from 'scenes/Setting/SwitchAccount';
+import ManageData from 'scenes/Setting/ManageData';
+import FeedSetting from 'scenes/Setting/FeedSetting';
+import Notification from 'scenes/Setting/Notifications';
+import PrivacyPolicy from 'scenes/Setting/PrivacyPolicy';
+
 const Router = (props) => {
     let routeList = null;
     let user = props.user;
@@ -52,6 +60,14 @@ const Router = (props) => {
             <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
             <Route exact path={routes.LANDING} component={Landing} />
             <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
+            
+            <Route exact path={routes.SETTING} component={Setting} />
+            <Route exact path={routes.MY_ACCCOUNT} component={MyAccount} />
+            <Route exact path={routes.SWITCH_ACCCOUNT} component={SwitchAccount} />
+            <Route exact path={routes.MANAGE_DATA} component={ManageData} />
+            <Route exact path={routes.FEED_SETTING} component={FeedSetting} />
+            <Route exact path={routes.NOTIFICATION} component={Notification} />
+            <Route exact path={routes.PRIVACY_POLICY} component={PrivacyPolicy} />
             <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
         </Switch>
     )
