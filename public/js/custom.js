@@ -195,28 +195,6 @@ $(function (e) {
     $('.lps_dropdown').toggleClass('open');
     $('.lps_dropdown-menu').toggleClass('animated fadeInDown');
   });
-  // followers
-  $('.followers_trigger').on("click", function () {
-    $('.followers_wrp').removeClass('close');
-    $('.followers_wrp').toggleClass('open');
-    $('.followers_wrp_inner').toggleClass('animated fadeInUp');
-  });
-  $('.close_follow').on("click", function () {
-    $('.followers_wrp').addClass('close');
-    $('.followers_wrp').removeClass('open');
-    $('.followers_wrp_inner').toggleClass('animated fadeInUp');
-  });
-  // following
-  $('.following_trigger').on("click", function () {
-    $('.following_wrp').removeClass('close');
-    $('.following_wrp').toggleClass('open');
-    $('.following_wrp_inner').toggleClass('animated fadeInUp');
-  });
-  $('.close_following').on("click", function () {
-    $('.following_wrp').addClass('close');
-    $('.following_wrp').removeClass('open');
-    $('.following_wrp_inner').toggleClass('animated fadeInUp');
-  });
 });
 
 // read more and read less
