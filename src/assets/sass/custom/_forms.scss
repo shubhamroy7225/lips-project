@@ -455,3 +455,13 @@
           justify-content: space-between;
   padding: 35px 0;
 }
+.lps_search {
+  .inner_form {
+    .input_field {
+      .input_modify {
+        border-color: $white;
+        background-color: $bg_grayCCC;
+      }
+    }
+  }
+}

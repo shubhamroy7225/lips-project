@@ -41,6 +41,7 @@ body.body_overflow {
     z-index: 1;
     width: 800px;
     height: 100%;
+    background-color: $bg_grayCCC;
 }
 .lps_inner_wrp {
   padding-left: 15px;
@@ -1401,23 +1402,24 @@ p.more {
 }
 /**** footer menu css here ****/
 .footer-menu-list {
-  overflow: hidden;
+  //overflow: hidden;
   position: fixed;
   right: 0;
   left: 0;
-  bottom: 0;
+  bottom: 15px;
   z-index: 1;
-  border-bottom: 12px solid $brand-secondary;
   .horizantal_coll {
     float: right;
     width: 45px;
     height: 45px;
     cursor: pointer;
     background: $brand-secondary;
+    -webkit-box-shadow: 0 3px 15px 0 rgba(253, 51, 152, 0.5);
+                box-shadow: 0 3px 15px 0 rgba(253, 51, 152, 0.5);
     border-radius: 50%;
     position: relative;
     right: 43px;
-    bottom: -23px;
+    bottom: 0px;
   }
   .wr_icon {
     position: absolute;
@@ -1441,7 +1443,7 @@ p.more {
     font-family: FontAwesome;
     left: 18px;
     position: absolute;
-    top: -6px;
+    top: 2px;
     transform: rotate(90deg);
     color: $brand-primary;
     font-size: 25px;
@@ -1468,6 +1470,8 @@ p.more {
   position: relative;
   border-radius: 50%;
   background-color: $brand-secondary;
+  -webkit-box-shadow: 0 3px 15px 0 rgba(253, 51, 152, 0.5);
+                box-shadow: 0 3px 15px 0 rgba(253, 51, 152, 0.5);
 }
 .ci_image {
   display: block;
@@ -3202,10 +3206,21 @@ header.post_page_header  {
 .lps_approval {
   padding-left: 15px;
   padding-right: 15px;
+  .label_modify {
+    color: $white;
+  }
+  .lps_cont_check {
+    color: $white;
+  }
+  .input_modify {
+    background-color: $brand-secondary;
+    border-color: $brand-primary;
+    color: $white;
+  }
   .add_product_grid {
     padding: 0;
     .add_product_box {
-      border-color: $brand-secondary;
+      border-color: $brand-primary;
       padding: 10px;
       display: inline-block;
       margin-right: 15px;
@@ -3215,8 +3230,8 @@ header.post_page_header  {
     width: 75px;
     height: 75px;
     line-height: 75px;
-    border: 1px solid $brand-secondary;
-    color: $brand-secondary;
+    border: 1px solid $brand-primary;
+    color: $brand-primary;
     display: block;
     border-radius: 50%;
     margin: 30px auto 15px auto;
@@ -3241,7 +3256,7 @@ header.post_page_header  {
     text-align: center;
   }
   .cancel_post {
-    color: $brand-secondary;
+    color: $white;
   }
   
 }
@@ -3522,6 +3537,12 @@ header.post_page_header  {
 }
 .lps_text_white {
   height: 100%;
+  h3 {
+    color: $white;
+  }
+  h4 {
+    color: $white;
+  }
   h5 {
     color: $white;
   }

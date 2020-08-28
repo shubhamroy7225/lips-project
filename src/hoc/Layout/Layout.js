@@ -10,13 +10,6 @@ import { routes } from 'utility/constants/constants';
 const Header = (props) => {
     console.log(props);
 
-    // const toggle = (e) => {
-    //     debugger;
-    //     window.$(e).parents('li').addClass('active').siblings().removeClass('active');
-    //     // var active_tab = window.$(this).attr('href');
-    //     // window.$(active_tab).addClass('active').siblings().removeClass('active');
-    // }
-
     useEffect(() => {
         if (window.$) {
             window.$('.tab-list a').on('click', function (e) {
@@ -25,7 +18,6 @@ const Header = (props) => {
                 window.$(active_tab).addClass('active').siblings().removeClass('active');
             })
         }
-
     })
 
     if (props.history.location.pathname === routes.CREATE) {
