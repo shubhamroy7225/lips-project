@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState,  useRef} from "react";
 import {Link, useHistory} from "react-router-dom";
+import SimpleReactValidator from 'simple-react-validator';
 
 export default () => {
   const [user, setUser] = useState({
@@ -10,13 +11,22 @@ export default () => {
   });
 
   const history = useHistory();
+  //initialize validations
+  const simpleValidator = useRef(new SimpleReactValidator());
+  const [, forceUpdate] = useState();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push("/terms-and-condition");
+    if (simpleValidator.current.allValid()) history.push("/terms-and-condition"); //check validations
+    else {
+      simpleValidator.current.showMessages(); //show validation messages
+      forceUpdate(1)
+    }
   };
 
   const handleChange= (e) => {
     setUser({...user, [e.target.name]: e.target.value});
+    forceUpdate(1)
   };
 
   return (
@@ -36,36 +46,40 @@ export default () => {
                     <div className="lps_fields">
                       <div className="form_group_modify">
                         <input type="text" className="input_modify" placeholder="Username" name="username"  value={user.username}
-                               onChange={handleChange} required/>
+                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('username')}  required/>
+                         {simpleValidator.current.message('username', user.username, 'required')}      
                       </div>
                       <div className="form_group_modify">
                         <input type="email" className="input_modify" placeholder="Email" name="email"  value={user.email}
-                               onChange={handleChange} required/>
+                         onBlur={() => simpleValidator.current.showMessageFor('email')} onChange={handleChange} required/>
+                         {simpleValidator.current.message('email', user.email, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
                         <input type="password" className="input_modify" placeholder="Password" name="password"  value={user.password}
-                               onChange={handleChange} required/>
+                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} required/>
                         <span className="icn_passAbslt">
                           <img src={require("assets/images/icons/icb_eye_white.png")} />
                         </span>
+                          {simpleValidator.current.message('password', user.password, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
-                        <input type="password" className="input_modify" placeholder="Repeat Password"  value={user.confirm_password}
-                               onChange={handleChange} name="confirm_password" required/>
+                        <input  type="password" className="input_modify" placeholder="Repeat Password"  value={user.confirm_password}
+                               onChange={handleChange} name="confirm_password" onBlur={() => simpleValidator.current.showMessageFor('confirm_password')} required/>
                         <span className="icn_passAbslt">
                           <img src={require("assets/images/icons/icb_eye_white.png")} />
                         </span>
+                          {simpleValidator.current.message('confirm_password', user.confirm_password, `required|in:${user.password}`)}
                       </div>
                       <div className="mt_25">
                         <div className="form_group_modify">
                           <label className="lps_cont_check">I am 18 years or older
-                            <input type="checkbox" />
+                            <input type="checkbox" checked />
                             <span className="lps_Checkmark"></span>
                           </label>
                         </div>
                         <div className="form_group_modify">
                           <label className="lps_cont_check">Keep me signed in
-                            <input type="checkbox" />
+                            <input type="checkbox" checked />
                             <span className="lps_Checkmark"></span>
                           </label>
                         </div>
