@@ -12,7 +12,17 @@ export default () => {
 
   const history = useHistory();
   //initialize validations
-  const simpleValidator = useRef(new SimpleReactValidator());
+  const simpleValidator = useRef(new SimpleReactValidator({validators: {
+    sameAs: {  // name the rule
+      message: 'The password and :attribute are not matched.',
+          rule: (val, params, validator) => {
+            debugger
+        return validator.helpers.testRegex(val,/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/i) && params.indexOf(val) === -1
+      },
+
+          required: true  // optional
+    }}
+  }));
   const [, forceUpdate] = useState();
 
   const handleSubmit = (e) => {
@@ -46,17 +56,17 @@ export default () => {
                     <div className="lps_fields">
                       <div className="form_group_modify">
                         <input type="text" className="input_modify" placeholder="Username" name="username"  value={user.username}
-                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('username')}  required/>
+                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('username')}  />
                          {simpleValidator.current.message('username', user.username, 'required')}      
                       </div>
                       <div className="form_group_modify">
                         <input type="email" className="input_modify" placeholder="Email" name="email"  value={user.email}
-                         onBlur={() => simpleValidator.current.showMessageFor('email')} onChange={handleChange} required/>
-                         {simpleValidator.current.message('email', user.email, 'required')}
+                         onBlur={() => simpleValidator.current.showMessageFor('email')} onChange={handleChange} />
+                         {simpleValidator.current.message('email', user.email, 'required|email')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
                         <input type="password" className="input_modify" placeholder="Password" name="password"  value={user.password}
-                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} required/>
+                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} />
                         <span className="icn_passAbslt">
                           <img src={require("assets/images/icons/icb_eye_white.png")} />
                         </span>
@@ -64,11 +74,11 @@ export default () => {
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
                         <input  type="password" className="input_modify" placeholder="Repeat Password"  value={user.confirm_password}
-                               onChange={handleChange} name="confirm_password" onBlur={() => simpleValidator.current.showMessageFor('confirm_password')} required/>
+                               onChange={handleChange} name="confirm_password" onBlur={() => simpleValidator.current.showMessageFor('confirm_password')} />
                         <span className="icn_passAbslt">
                           <img src={require("assets/images/icons/icb_eye_white.png")} />
                         </span>
-                          {simpleValidator.current.message('confirm_password', user.confirm_password, `required|in:${user.password}`)}
+                          {simpleValidator.current.message('confirm_password', user.confirm_password, `required|sameAs:${user.password}`)}
                       </div>
                       <div className="mt_25">
                         <div className="form_group_modify">
