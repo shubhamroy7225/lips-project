@@ -33,7 +33,7 @@ const MenuOptionSlider = () => {
             </li>
             {isMobile && <li className="listed_item">
                 <a href="javascript: void(0);" className="right_widget">
-                    {/* <i className="fa fa-angle-right wr_icon" aria-hidden="true"></i> */}
+                    <i className="fa fa-angle-right wr_icon" aria-hidden="true"></i>
                 </a>
             </li>}
         </ul>
@@ -42,6 +42,7 @@ const MenuOptionSlider = () => {
         return (
             <div className="footer-menu-list" onClick={() => toggle()}>
                 <div className="horizantal_coll" >
+                    <i class="fa fa-angle-top wr_icon_top" aria-hidden="true"></i>
                     {/* <i className="fa fa-angle-right wr_icon" aria-hidden="true"></i> */}
                 </div>
                 <div className="collapsible">
