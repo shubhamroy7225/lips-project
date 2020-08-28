@@ -5,21 +5,25 @@ import SimpleReactValidator from 'simple-react-validator';
 
 let LoginForm = (props) => {
   const history = useHistory();
-  const simpleValidator = useRef(new SimpleReactValidator())
-  const [user, setUser] = useState({username: "", password: ""})
+  //initialize validations
+  const simpleValidator = useRef(new SimpleReactValidator());
+  const [, forceUpdate] = useState();
+  //user data state
+  const [user, setUser] = useState({username: "", password: ""});
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (simpleValidator.current.allValid()) history.push("/");
+    if (simpleValidator.current.allValid()) history.push("/"); //check validations
     else {
-      simpleValidator.current.showMessageFor('username')
-      simpleValidator.current.showMessageFor('password')
+      simpleValidator.current.showMessages(); //show validation messages
+      forceUpdate(1)
     }
-  }
+  };
 
   const handleChange= (e) => {
     setUser({...user, [e.target.name]: e.target.value});
+    forceUpdate(1)
   };
-
   return (
       <div className="limiter">
         <div className="container-login100">
@@ -28,7 +32,7 @@ let LoginForm = (props) => {
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp">
                 <div className="lps_form_wrp">
                   <form
-                                 onSubmit={handleSubmit}>
+                      onSubmit={handleSubmit}>
                     <article className="text_center lps_logo_center">
                       <a className="logo mb_0" href="#">
                         <img src={require("assets/images/thumbnails/logo.png")} alt="Lips Logo" className="header__logo" />
@@ -39,17 +43,17 @@ let LoginForm = (props) => {
                       <div className="form_group_modify">
                         <input type="text" name="username" className="form-control input_modify"
                                placeholder="Username" value={user.username}
-
-                               onChange={handleChange} required/>
+                               onBlur={() => simpleValidator.current.showMessageFor('username')}
+                               onChange={handleChange}/>
                         {simpleValidator.current.message('username', user.username, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
                         <input type="password"  name="password" className="input_modify" placeholder="Password"
                                value={user.password}
                                onChange={handleChange}
+                               onBlur={() => simpleValidator.current.showMessageFor('password')}
 
-                               required
-                             />
+                            />
                         <span className="icn_passAbslt">
                           <img src={require("assets/images/icons/icb_eye_white.png")} />
                         </span>
