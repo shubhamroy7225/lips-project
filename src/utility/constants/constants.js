@@ -10,33 +10,38 @@ export const URL = new RegExp('^(https?:\\/\\/)?' + // protocol
     '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
 export const PhNoPattern = /^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/;
 
-
-export const routes = {
-    ROOT: '/',
-    LOGIN: '/login',
-    REGISTER: '/register',
-    FORGOT_PASSWORD: '/reset_password',
-    TERMS_AND_CONDITION: '/terms-and-condition',
+export const SETTINGS_PATH = {
+    MY_ACCOUNT: '/settings/my-account',
+    SWITCH_ACCOUNT: '/settings/switch-account',
+    MANAGE_DATA: '/settings/manage-data',
+    FEED_SETTING: '/settings/feed-setting',
+    NOTIFICATION: '/settings/notification',
+    PRIVACY_POLICY: '/settings/privacy-policy'
+};
+export const PRIVATE_PATH = {
     FEEDS: '/feeds',
-    SELECT_FAVORITE_TAGS: '/favorite-tags',
-    SELECT_AVOID_TAGS: '/avoid-tags',
-    LANDING: '/landing',
-    CUSTOMIZE_FEEDS: '/customize-tags',
     LOGOUT: '/logout',
     EXPLORE: '/explore',
     CREATE: '/create',
     LIKES: '/likes',
     PROFILE: '/profile',
+    SETTING: '/settings',
+};
+
+export const routes = {
+    ROOT: '/',
+    CUSTOMIZE_FEEDS: '/customize-tags',
+    LOGIN: '/login',
+    REGISTER: '/register',
+    FORGOT_PASSWORD: '/reset_password',
+    TERMS_AND_CONDITION: '/terms-and-condition',
+    SELECT_FAVORITE_TAGS: '/favorite-tags',
+    SELECT_AVOID_TAGS: '/avoid-tags',
+    LANDING: '/landing',
     COMMUNITY_GUIDELINES: '/community-guidelines',
     ACCOUNT_PRIVACY: '/account-privacy',
-    
-    SETTING: '/setting',
-    MY_ACCOUNT: '/my-account',
-    SWITCH_ACCOUNT: '/switch-account',
-    MANAGE_DATA: '/manage-data',
-    FEED_SETTING: '/feed-setting',
-    NOTIFICATION: '/notification',
-    PRIVACY_POLICY: '/privacy-policy'
+    ...PRIVATE_PATH,
+    ...SETTINGS_PATH
 
 };
 
