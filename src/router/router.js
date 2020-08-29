@@ -62,8 +62,8 @@ const Router = (props) => {
             <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
             
             <Route exact path={routes.SETTING} component={Setting} />
-            <Route exact path={routes.MY_ACCCOUNT} component={MyAccount} />
-            <Route exact path={routes.SWITCH_ACCCOUNT} component={SwitchAccount} />
+            <Route exact path={routes.MY_ACCOUNT} component={MyAccount} />
+            <Route exact path={routes.SWITCH_ACCOUNT} component={SwitchAccount} />
             <Route exact path={routes.MANAGE_DATA} component={ManageData} />
             <Route exact path={routes.FEED_SETTING} component={FeedSetting} />
             <Route exact path={routes.NOTIFICATION} component={Notification} />

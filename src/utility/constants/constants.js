@@ -32,7 +32,7 @@ export const routes = {
     
     SETTING: '/setting',
     MY_ACCOUNT: '/my-account',
-    SWITCH_ACCCOUNT: '/switch-account',
+    SWITCH_ACCOUNT: '/switch-account',
     MANAGE_DATA: '/manage-data',
     FEED_SETTING: '/feed-setting',
     NOTIFICATION: '/notification',
