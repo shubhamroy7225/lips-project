@@ -1,10 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import Header from 'scenes/Setting/SettingHeader';
 const FeedSetting = () => {
   return (
     <>
-            <div id="wrap">
+            <div id="wrap" className="feed-settings">
                <div className="lps_container">
                   <ul className="lps_list_group my_acctn_list">
                      <li className="list-group-item">
@@ -48,32 +47,32 @@ const FeedSetting = () => {
                            <p className="lps_md_title">Thing you're seeing more of </p>
                         </div>
                         <div className="hash_tag_block hash_tag_links lps_user_info">
-                           <div className="hashtag">
+                           <div className="hashtag text-left">
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                            </div>
-                           <div className="hashtag">
+                           <div className="hashtag text-left">
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                            </div>
-                           <div className="hashtag">
+                           <div className="hashtag text-left">
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                            </div>
-                           <div className="hashtag">
+                           <div className="hashtag text-left">
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                            </div>
-                           <div className="hashtag">
+                           <div className="hashtag text-left">
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                            </div>
-                           <div className="hashtag">
+                           <div className="hashtag text-left">
                               <Link to ="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to ="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
                               <Link to ="javascript:void(0);" className="hashtag_btn">#Hashtag</Link>
