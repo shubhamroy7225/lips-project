@@ -36,10 +36,10 @@ const Setting = () => {
                         <Link to="#">Invit someone to lips</Link>
                      </li>
                      <li className="list-group-item">
-                        <Link to="/settings/community-guidelines">community guid</Link>
+                        <Link to="/community-guidelines">community guid</Link>
                      </li>
                      <li className="list-group-item">
-                        <Link to="/settings/terms-and-condition">Terms and Conditions</Link>
+                        <Link to="/terms-and-condition">Terms and Conditions</Link>
                      </li>
                      <li className="list-group-item">
                         <Link to="/settings/privacy-policy">Privacy Policy</Link>

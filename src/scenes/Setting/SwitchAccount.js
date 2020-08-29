@@ -4,8 +4,6 @@ import Header from 'scenes/Setting/SettingHeader';
 const SwitchAccount = () => {
   return (
     <>
-      <div className="limiter">
-         <div className="container-login100">
             <div id="wrap">
                <div className="lps_container">
                   <ul className="lps_list_group my_acctn_list">
@@ -38,8 +36,6 @@ const SwitchAccount = () => {
                   </ul>
                </div>
             </div>
-         </div>
-      </div>
     </>
   );
 }

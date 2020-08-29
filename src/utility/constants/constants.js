@@ -16,7 +16,7 @@ export const SETTINGS_PATH = {
     MANAGE_DATA: '/settings/manage-data',
     FEED_SETTING: '/settings/feed-setting',
     NOTIFICATION: '/settings/notification',
-    PRIVACY_POLICY: '/settings/privacy-policy'
+    PRIVACY_POLICY: '/settings/privacy-policy',
 };
 export const PRIVATE_PATH = {
     FEEDS: '/feeds',

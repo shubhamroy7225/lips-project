@@ -4,9 +4,6 @@ import Header from 'scenes/Setting/SettingHeader';
 const PrivacyPolicy = () => {
   return (
     <>
-      <div className="limiter">
-         <div className="container-login100">
-            <Header/>
             <div id="wrap">
                <div className="lps_container">
                   <div className="lps_inner_wrp">
@@ -88,8 +85,6 @@ const PrivacyPolicy = () => {
                   </div>
                </div>
             </div>
-         </div>
-      </div>
     </>
   );
 }

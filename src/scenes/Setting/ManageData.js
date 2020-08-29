@@ -4,9 +4,6 @@ import Header from 'scenes/Setting/SettingHeader';
 const ManageData = () => {
   return (
     <>
-      <div className="limiter">
-         <div className="container-login100">
-            <Header/>
             <div id="wrap">
                <div className="lps_container">
                   <ul className="lps_list_group my_acctn_list">
@@ -100,8 +97,6 @@ const ManageData = () => {
                   </ul>
                </div>
             </div>
-         </div>
-      </div>
     </>
   );
 }
