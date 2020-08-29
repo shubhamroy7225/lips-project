@@ -16,7 +16,6 @@ export default () => {
     sameAs: {  // name the rule
       message: 'The password and :attribute are not matched.',
           rule: (val, params, validator) => {
-            debugger
         return validator.helpers.testRegex(val,/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/i) && params.indexOf(val) === -1
       },
 
