@@ -53,9 +53,9 @@ const Header = (props) => {
         return (
             <header className="main_header">
                 <nav className="theme_navigation">
-                    <a className="logo" href="#">
+                    <Link className="logo" to="/">
                         <img src={require("assets/images/thumbnails/logo.png")} alt="BitCot Logo" className="header__logo" />
-                    </a>
+                    </Link>
                     <ul className="lp_nav">
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
@@ -70,11 +70,11 @@ const Header = (props) => {
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <a href="/settings" className="nav-link not_line">
+                            <Link to="/settings" className="nav-link not_line">
                                 <span className="avatar_circle">
                                     <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
                                 </span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
