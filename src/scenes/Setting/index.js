@@ -37,7 +37,7 @@ const Setting = () => {
                         <Link to="/feed-setting">Feed Settings</Link>
                      </li>
                      <li className="list-group-item">
-                        <Link to="/notifications">Notifications</Link>
+                        <Link to="/notification">Notifications</Link>
                      </li>
                      <li className="list-group-item">
                         <Link to="#">Invit someone to lips</Link>
