@@ -32,6 +32,8 @@ import SettingCommunityGuidelines from 'scenes/Setting/CommunityGuidelines';
 
 import NoNetwork from 'scenes/components/NoNetwork';
 
+import ContactUser from 'scenes/ContactUser';
+
 const Router = (props) => {
     let routeList = null;
     let user = props.user;
@@ -75,6 +77,7 @@ const Router = (props) => {
             <Route exact path={routes.SETTING_TERMS_AND_CONDITIONS} component={SettingTermsAndCondition} />
             <Route exact path={routes.SETTING_COMMUNITY_GUIDELINES} component={SettingCommunityGuidelines} />
             <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
+            <Route exact path={routes.CONTACT_USER} component={ContactUser} />
             <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
         </Switch>
     )

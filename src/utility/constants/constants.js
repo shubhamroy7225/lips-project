@@ -47,6 +47,7 @@ export const routes = {
     COMMUNITY_GUIDELINES: '/community-guidelines',
     ACCOUNT_PRIVACY: '/account-privacy',
     SETTING: '/settings',
+    CONTACT_USER: '/contact_user',
     ...PRIVATE_PATH,
     ...SETTINGS_PATH,
     ...NO_HEADER_ROUTES

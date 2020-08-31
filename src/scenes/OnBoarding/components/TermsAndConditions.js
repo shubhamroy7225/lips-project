@@ -36,7 +36,7 @@ export default () => {
             <div className="lps_terms_list" id="intellectual">
               <h5>Intellectual Property Rights</h5>
               <p>
-                Othe than the content you own, under these Terms. Lips and /or its users own all the intellectual
+                Other than the content you own, under these Terms. Lips and /or its users own all the intellectual
                 property rights and materials contained in this website.
               </p>
               <p>
