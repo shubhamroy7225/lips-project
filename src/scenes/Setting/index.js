@@ -8,7 +8,7 @@ const Setting = () => {
                <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
                <span className="lp_left_auto">Settings</span>
             </Link>
-            <div className="lps_inner_wrp lps_search">
+            {/*<div className="lps_inner_wrp lps_search">
                <div className="inner_form">
                   <div className="input_field">
                      <button className="btn_search" type="button">
@@ -19,7 +19,7 @@ const Setting = () => {
                      <input className="input_modify" type="text" />
                   </div>
                </div>
-            </div>
+            </div>*/}
             <ul className="lps_list_group">
                <li className="list-group-item">
                   <Link to="/settings/my-account">My Account</Link>
@@ -34,13 +34,13 @@ const Setting = () => {
                   <Link to="/settings/notification">Notifications</Link>
                </li>
                <li className="list-group-item">
-                  <Link to="#">Invit someone to lips</Link>
+                  <Link to="#">Invite someone to lips</Link>
                </li>
                <li className="list-group-item">
-                  <Link to="/community-guidelines">community guid</Link>
+                  <Link to="/settings/community-guidelines">community guide</Link>
                </li>
                <li className="list-group-item">
-                  <Link to="/terms-and-condition">Terms and Conditions</Link>
+                  <Link to="/settings/terms-and-condition">Terms and Conditions</Link>
                </li>
                <li className="list-group-item">
                   <Link to="/settings/privacy-policy">Privacy Policy</Link>
