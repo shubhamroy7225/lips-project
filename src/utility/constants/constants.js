@@ -25,7 +25,6 @@ export const PRIVATE_PATH = {
     CREATE: '/create',
     LIKES: '/likes',
     PROFILE: '/profile',
-    SETTING: '/settings',
 };
 
 export const routes = {
@@ -40,6 +39,7 @@ export const routes = {
     LANDING: '/landing',
     COMMUNITY_GUIDELINES: '/community-guidelines',
     ACCOUNT_PRIVACY: '/account-privacy',
+    SETTING: '/settings',
     ...PRIVATE_PATH,
     ...SETTINGS_PATH
 

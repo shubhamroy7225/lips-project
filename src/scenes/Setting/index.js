@@ -4,6 +4,10 @@ const Setting = () => {
   return (
     <>
                <div className="lps_container">
+                  <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="/">
+                     <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
+                     <span className="lp_left_auto">Settings</span>
+                  </Link>
                   <div className="lps_inner_wrp lps_search">
                      <div className="inner_form">
                         <div className="input_field">
@@ -19,9 +23,6 @@ const Setting = () => {
                   <ul className="lps_list_group">
                      <li className="list-group-item">
                         <Link to="/settings/my-account">My Account</Link>
-                     </li>
-                     <li className="list-group-item">
-                        <Link to="/settings/switch-account">Switch Account</Link>
                      </li>
                      <li className="list-group-item">
                         <Link to="/settings/manage-data">Manage your data</Link>
