@@ -27,6 +27,7 @@ import ManageData from 'scenes/Setting/ManageData';
 import FeedSetting from 'scenes/Setting/FeedSetting';
 import Notification from 'scenes/Setting/Notifications';
 import PrivacyPolicy from 'scenes/Setting/PrivacyPolicy';
+import NoNetwork from 'scenes/components/NoNetwork';
 
 const Router = (props) => {
     let routeList = null;
@@ -49,7 +50,7 @@ const Router = (props) => {
             <Route exact path={routes.EXPLORE} component={ExploreFeed} />
             <Route exact path={routes.LIKES} component={Likes} />
             <Route exact path={routes.PROFILE} component={Profile} />
-            <Route exact path={routes.LOGIN}  component={Login} />
+            <Route exact path={routes.LOGIN} component={Login} />
             <Route exact path={routes.REGISTER} component={Register} />
             <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
             <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
@@ -60,7 +61,7 @@ const Router = (props) => {
             <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
             <Route exact path={routes.LANDING} component={Landing} />
             <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
-            
+
             <Route exact path={routes.SETTING} component={Setting} />
             <Route exact path={routes.MY_ACCOUNT} component={MyAccount} />
             <Route exact path={routes.SWITCH_ACCOUNT} component={SwitchAccount} />
@@ -68,6 +69,8 @@ const Router = (props) => {
             <Route exact path={routes.FEED_SETTING} component={FeedSetting} />
             <Route exact path={routes.NOTIFICATION} component={Notification} />
             <Route exact path={routes.PRIVACY_POLICY} component={PrivacyPolicy} />
+            <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
+
             <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
         </Switch>
     )

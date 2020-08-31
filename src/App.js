@@ -7,7 +7,9 @@ import 'react-notifications-component/dist/theme.css'
 import { withRouter } from 'react-router'
 import AppRouter from './router/router';
 import { connect } from 'react-redux';
-import { isMobile, isBrowser } from 'react-device-detect';
+import { isBrowser } from 'react-device-detect';
+import { Offline, Online, Detector } from "react-detect-offline";
+import { routes } from 'utility/constants/constants';
 
 
 const addBodyClass = className => document.body.classList.add(className);
@@ -21,8 +23,21 @@ const App = (props) => {
       removeBodyClass("lps_xl_view")
     }
   })
+
+  const detectedNetworkChange = (isOnline) => {
+    if (isOnline) {
+      props.history.push(routes.ROOT)
+    } else {
+      props.history.push(routes.NO_NETWORK)
+    }
+  }
+
   return (
     <>
+      <Detector
+        onChange={(e) => { detectedNetworkChange(e) }}
+        render={({ online }) => (<></>)}
+      />
       <RouteChangeListener />
       <ReactNotification />
       <AppRouter {...props} />

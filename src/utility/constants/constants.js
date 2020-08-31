@@ -27,6 +27,11 @@ export const PRIVATE_PATH = {
     PROFILE: '/profile',
 };
 
+export const NO_HEADER_ROUTES = {
+    NO_NETWORK: "/network_error"
+};
+
+
 export const routes = {
     ROOT: '/',
     CUSTOMIZE_FEEDS: '/customize-tags',
@@ -41,7 +46,8 @@ export const routes = {
     ACCOUNT_PRIVACY: '/account-privacy',
     SETTING: '/settings',
     ...PRIVATE_PATH,
-    ...SETTINGS_PATH
+    ...SETTINGS_PATH,
+    ...NO_HEADER_ROUTES
 
 };
 
