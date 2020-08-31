@@ -21,16 +21,7 @@ const Header = (props) => {
         }
     })
 
-    if (props.history.location.pathname === routes.SETTING) {
-        return (
-            <div className="lps_container">
-                <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="/">
-                    <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
-                    <span className="lp_left_auto">Settings</span>
-                </Link>
-            </div>
-        );
-    } else if (props.history.location.pathname === routes.CREATE) {
+    if (props.history.location.pathname === routes.CREATE) {
         return (
             <header class="main_header post_page_header">
                 <nav class="theme_tabs">
