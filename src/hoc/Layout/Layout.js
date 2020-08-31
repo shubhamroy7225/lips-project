@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Aux from '../Oux/Oux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -24,21 +24,32 @@ const Header = (props) => {
     if (props.history.location.pathname === routes.SETTING) {
         return (
             <div className="lps_container">
-            <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="/">
-                <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
-                <span className="lp_left_auto">Settings</span>
-            </Link>
-                </div>
+                <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="/">
+                    <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
+                    <span className="lp_left_auto">Settings</span>
+                </Link>
+            </div>
         );
-    }  if (Object.values(SETTINGS_PATH).includes(props.history.location.pathname)) {
+    } else if (props.history.location.pathname === routes.CREATE) {
+        return (
+            <header class="main_header post_page_header">
+                <nav class="theme_tabs">
+                    <ul class="tab-list">
+                        <li class="active"><a href="#imageTab">IMAGE</a></li>
+                        <li><a href="#textTab">TEXT</a></li>
+                    </ul>
+                </nav>
+            </header>
+        )
+    } else if (Object.values(SETTINGS_PATH).includes(props.history.location.pathname)) {
         return (
             <header class="main_header">
                 <nav class="theme_navigation">
                     <Link class="lps_header_link lps_flx_vm_jc text_uppercase" to="/settings">
                         <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" class="lps_header_img" /> Settings
                         </Link>
-                    </nav>
-                </header>
+                </nav>
+            </header>
         );
     } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) || props.history.location.pathname === "/") {
         //default when user is not logged in
