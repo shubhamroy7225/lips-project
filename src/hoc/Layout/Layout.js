@@ -126,88 +126,84 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
 
 const NotificationSliderComponent = () => {
     return (
-        <ul className="lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list">
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <p>Jon Snow added you to their --- list</p>
-                        <span>1 day ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <p>Jon Snow wants to follow you
-                                                                    <a href="#" className="link_underline link_white">accept</a>
-                            <a href="#" className="link_underline link_white">deny</a>
-                        </p>
-                        <span>1 day ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <p>Jon Snow added you <a href="#" className="link_underline link_white">post</a> <a href="#"
-                            className="link_underline link_white">i don't want it there</a></p>
-                        <span>1 day ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <p>Jon Snow your <a href="#" className="link_underline link_white">post</a></p>
-                        <span>1 day ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <p>Jon Snow your <a href="#" className="link_underline link_white">post</a></p>
-                        <span>1 day ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <p>Jon Snow your <a href="#" className="link_underline link_white">post</a></p>
-                        <span>1 day ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/user.jpg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <p>Jon Snow your <a href="#" className="link_underline link_white">post</a></p>
-                        <span>1 day ago</span>
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <ul class="lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list">
+                    <li class="list-group-item">
+                      <div class="lps_media">
+                        <figure class="lps_fig lps_fig_circle">
+                           <img src={require("assets/images/icons/user.jpg")} alt="User" />
+                        </figure>
+                        <div class="lps_media_body">
+                          <p>Jon Snow wants to follow you</p>
+                          <div class="btn_group">
+                            <a href="#" role="button" class="theme_btn theme_outline_primary accept">accept</a>
+                            <a href="#" role="button" class="theme_btn theme_outline_primary deny">deny</a>
+                          </div>
+                          <span class="durations">1 minute ago</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="lps_media">
+                        <figure class="lps_fig lps_fig_circle">
+                           <img src={require("assets/images/icons/user.jpg")} alt="User" />
+                        </figure>
+                        <div class="lps_media_body">
+                          <p>Jon Snow added your post <img src={require("assets/images/icons/icn_folder.png")} class="inline_img"/></p>
+                          <div class="btn_group">
+                            <a href="#" role="button" class="theme_btn theme_outline_primary text_sendry">Remove</a>
+                          </div>
+                          <span class="durations">1 day ago</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="lps_media">
+                        <figure class="lps_fig lps_fig_circle">
+                           <img src={require("assets/images/icons/user.jpg")} alt="User" />
+                        </figure>
+                        <div class="lps_media_body">
+                          <p>Jon Snow <img src={require("assets/images/icons/icn_mouth.png")} class="inline_img"/> your post</p>
+                          <span class="durations">1 week ago</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="lps_media">
+                        <figure class="lps_fig lps_fig_circle">
+                           <img src={require("assets/images/icons/user.jpg")} alt="User" />
+                        </figure>
+                        <div class="lps_media_body">
+                          <p>Jon Snow <img src={require("assets/images/icons/icn_mouth.png")} class="inline_img"/> your post</p>
+                          <span class="durations">1 week ago</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="lps_media">
+                        <figure class="lps_fig lps_fig_circle lps_fig_circle_xs">
+                           <img src={require("assets/images/thumbnails/logo.png")} alt="User" />
+                        </figure>
+                        <div class="lps_media_body">
+                          <p>You've been approved <br/> <small>You can now post</small></p>
+                          <span class="durations">1 month ago</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="lps_media">
+                        <figure class="lps_fig lps_fig_circle">
+                           <img src={require("assets/images/icons/user.jpg")} alt="User" />
+                        </figure>
+                        <div class="lps_media_body">
+                          <p>Jon Snow wants to follow you</p>
+                          <div class="btn_group">
+                            <a href="#" role="button" class="theme_btn theme_outline_primary accept">accept</a>
+                            <a href="#" role="button" class="theme_btn theme_outline_primary deny">deny</a>
+                          </div>
+                          <span class="durations">1 minute ago</span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
     )
 }
