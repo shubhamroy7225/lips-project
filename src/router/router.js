@@ -27,6 +27,8 @@ import ManageData from 'scenes/Setting/ManageData';
 import FeedSetting from 'scenes/Setting/FeedSetting';
 import Notification from 'scenes/Setting/Notifications';
 import PrivacyPolicy from 'scenes/Setting/PrivacyPolicy';
+import SettingTermsAndCondition from 'scenes/Setting/TermsAndCondition';
+import SettingCommunityGuidelines from 'scenes/Setting/CommunityGuidelines';
 
 const Router = (props) => {
     let routeList = null;
@@ -68,6 +70,8 @@ const Router = (props) => {
             <Route exact path={routes.FEED_SETTING} component={FeedSetting} />
             <Route exact path={routes.NOTIFICATION} component={Notification} />
             <Route exact path={routes.PRIVACY_POLICY} component={PrivacyPolicy} />
+            <Route exact path={routes.SETTING_TERMS_AND_CONDITIONS} component={SettingTermsAndCondition} />
+            <Route exact path={routes.SETTING_COMMUNITY_GUIDELINES} component={SettingCommunityGuidelines} />
             <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
         </Switch>
     )
