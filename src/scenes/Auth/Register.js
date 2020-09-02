@@ -67,7 +67,8 @@ export default () => {
                         <input type="password" className="input_modify" placeholder="Password" name="password"  value={user.password}
                                onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} />
                         <span className="icn_passAbslt">
-                          <img src={require("assets/images/icons/icb_eye_white.png")} />
+                          <img src={require("assets/images/icons/icb_eye_white.png")} style={{marginRight: "5px"}}/>
+                          <img src={require("assets/images/icons/icn_hide_white.png")} />
                         </span>
                           {simpleValidator.current.message('password', user.password, 'required')}
                       </div>
