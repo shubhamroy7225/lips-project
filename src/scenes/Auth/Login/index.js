@@ -10,6 +10,10 @@ let LoginForm = (props) => {
   const [, forceUpdate] = useState();
   //user data state
   const [user, setUser] = useState({username: "", password: ""});
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = ()=> {
+    setPasswordShown(passwordShown ? false : true);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,14 +50,16 @@ let LoginForm = (props) => {
                         {simpleValidator.current.message('username', user.username, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
-                        <input type="password"  name="password" className="input_modify" placeholder="Password"
+                        <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="Password"
                                value={user.password}
                                onChange={handleChange}
                                onBlur={() => simpleValidator.current.showMessageFor('password')}
 
                             />
                         <span className="icn_passAbslt">
-                          <img src={require("assets/images/icons/icb_eye_white.png")} />
+                          <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_white.png")} className={passwordShown ? "hidden" : ""}/>
+
+                          <img onClick={togglePasswordVisiblity} src={require( "assets/images/icons/icn_hide_white.png")} className={!passwordShown ? "hidden" : ""} />
                         </span>
                         {simpleValidator.current.message('password', user.password, 'required')}
                       </div>

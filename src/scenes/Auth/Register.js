@@ -33,6 +33,16 @@ export default () => {
     }
   };
 
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [resetPasswordShown, setResetPasswordShown] = useState(false);
+  const togglePasswordVisiblity = (reset_password )=> () => {
+    if(reset_password){
+      setResetPasswordShown(resetPasswordShown ? false : true);
+    }else{
+      setPasswordShown(passwordShown ? false : true);
+    }
+  };
+  
   const handleChange= (e) => {
     setUser({...user, [e.target.name]: e.target.value});
     forceUpdate(1)
@@ -64,19 +74,22 @@ export default () => {
                          {simpleValidator.current.message('email', user.email, 'required|email')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
-                        <input type="password" className="input_modify" placeholder="Password" name="password"  value={user.password}
+                        <input type={passwordShown ? "text" : "password"} className="input_modify" placeholder="Password" name="password"  value={user.password}
                                onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} />
                         <span className="icn_passAbslt">
-                          <img src={require("assets/images/icons/icb_eye_white.png")} style={{marginRight: "5px"}}/>
-                          <img src={require("assets/images/icons/icn_hide_white.png")} />
+                          <img onClick={togglePasswordVisiblity(false)} src={require("assets/images/icons/icb_eye_white.png")} className={passwordShown ? "hidden" : ""} />
+
+                          <img onClick={togglePasswordVisiblity(false)} src={require("assets/images/icons/icn_hide_white.png")} className={!passwordShown ? "hidden" : ""} />
                         </span>
                           {simpleValidator.current.message('password', user.password, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
-                        <input  type="password" className="input_modify" placeholder="Repeat Password"  value={user.confirm_password}
+                        <input  type={resetPasswordShown ? "text" : "password"} className="input_modify" placeholder="Repeat Password"  value={user.confirm_password}
                                onChange={handleChange} name="confirm_password" onBlur={() => simpleValidator.current.showMessageFor('confirm_password')} />
                         <span className="icn_passAbslt">
-                          <img src={require("assets/images/icons/icb_eye_white.png")} />
+                          <img onClick={togglePasswordVisiblity(true)} src={require("assets/images/icons/icb_eye_white.png")} className={resetPasswordShown ? "hidden" : ""}/>
+
+                          <img onClick={togglePasswordVisiblity(true)} src={require( "assets/images/icons/icn_hide_white.png")} className={!resetPasswordShown ? "hidden" : ""} />
                         </span>
                           {simpleValidator.current.message('confirm_password', user.confirm_password, `required|sameAs:${user.password}`)}
                       </div>
