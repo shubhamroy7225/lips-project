@@ -5,10 +5,6 @@ const FeedSetting = () => {
     <>
             <div id="wrap" className="feed-settings">
                <div className="lps_container">
-                  <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
-                     <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img"/> 
-                     <span className="lp_left_auto text_black">Feed Settings</span>
-                  </Link>
                   <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
                      <li className="list-group-item">
                         
