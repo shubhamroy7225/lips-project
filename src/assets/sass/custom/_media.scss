@@ -1,5 +1,12 @@
 /* Media query */
 
+@media screen and ( min-width: 576px) {
+    .W-50P {
+        width: 50% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
 @media screen and ( min-width: 992px) {
     .lps_container {
         max-width: 960px;
@@ -56,7 +63,7 @@
         width: 420px;
     }
     .lps_xl_view .main_feed_cont .lps_widgets_wrp .feed_galary {
-        min-height: 550px;
+        min-height: 400px;
     }
     .lps_xl_view .main_feed_cont .hover_bkgr_fricc {
         width:420px;
