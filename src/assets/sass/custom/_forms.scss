@@ -13,7 +13,9 @@
     height: 52px;
     border-radius: 5px;
     padding: 10px 16px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: $regular;
+    letter-spacing: 0.16px;
     line-height: 1.33;
     display: block;
     background-color: $white;
@@ -28,15 +30,15 @@
     }
     &::placeholder {
       color: $gray-900;
-      font-weight: 300;
+      font-weight: $regular;
     }
     &::-webkit-input-placeholder {
       color: $gray-900;
-      font-weight: 300;
+      font-weight: $regular;
     }
     &::-moz-placeholder {
       color: $gray-900;
-      font-weight: 300;
+      font-weight: $regular;
     }
     &.txtarea_modify {
       height: auto;
@@ -218,7 +220,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $white;
+    background-color: transparent;
     -webkit-transition: .4s;
     transition: .4s;
     border: 1px solid $brand-primary;
@@ -232,7 +234,7 @@
   bottom: 3px;
   -webkit-transition: .4s;
   transition: .4s;
-  background-color: white;
+  background-color: transparent;
   border: 1px solid $brand-primary;
 }
   input:checked + .lps_int_slider {
@@ -245,6 +247,7 @@
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+    background-color: $white;
   }
   .lps_int_slider.round {
     border-radius: 34px;
@@ -310,9 +313,8 @@
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    padding-left: 0;
-    font-weight: 300;
-    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: $white;
     height: 38px;
     &:focus, &:active {
@@ -333,8 +335,12 @@
   }
 }
 .on_boarding_wrp {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 28px;
+  padding-right: 28px;
+  &.on_boardingNChng {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
   .lps_form_wrp {
     .input_modify {
       border-bottom-color: $brand-primary;
@@ -353,7 +359,7 @@
   .lps_Checkmark {
     background-color: transparent;
     border: 1px solid $brand-primary;
-    border-radius: 5px;
+    border-radius: 3px;
     transition: 0.3s ease-in-out;
  }
  .lps_cont_check:hover input ~ .lps_Checkmark {
@@ -374,10 +380,10 @@
   }
   .icn_passAbslt {
     position: absolute;
-    bottom: 3px;
+    top: 8px;
     right: 0;
     img {
-      width: 28px;
+      width: 25px;
     }
   }
   .product_item_wrp {
@@ -433,7 +439,7 @@
   }
   .lps_hash_ul {
     .theme_btn {
-      margin-right: 4px;
+      margin-right: 10px;
       margin-bottom: 8px;
       padding: 5px 8px;
       min-width: 80px;
@@ -459,7 +465,7 @@
   .inner_form {
     .input_field {
       .input_modify {
-        border-color: $white;
+        border-color: $white-200;
         background-color: $bg_grayCCC;
       }
     }

@@ -32,7 +32,7 @@ header.main_header{
             // position: relative;
             list-style: none;
             display: inline-block;
-            margin-left: 15px;
+            margin-left: 10px;
             &:hover {
                 .nav-link:before {
                     opacity: 1;
@@ -82,9 +82,26 @@ header.main_header{
             }
         }
     }
+    .lps_fig_circle {
+        width: 44px;
+        height: 44px;
+    }
+    .lps_list_group {
+        .lps_media_body {
+            h5 {
+                margin-bottom: 5px;
+                font-weight: $ft_Weight_MD;
+                color: $brand-secondary;
+            }
+            p {
+                font-size: 16px;
+                font-weight: $ft_Weight_MD;
+            }
+        }
+    }
 }
 .header__logo {
-    height: 40px;
+    height: 50px;
 }
 .lp_nav_customize {
     padding: 0;
