@@ -5,13 +5,13 @@ export default () => {
     <div className="limiter">
        <div className="container-login100">
           <div id="wrap" className="mt_0">
-             <div className="lps_container">
+             <div className="lps_container lps_NewChngCon">
                 <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp">
                    <div className="lps_form_wrp">
                       <form>
                          <article className="text_center lps_logo_center">
                             <Link className="logo" to="#">
-                            <img src={require("assets/images/thumbnails/logo.png")} alt="Lips Logo" className="header__logo"/>
+                            <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo"/>
                             </Link>
                          </article>
                          <div className="product_grid_block saved_product pd_y brand_product_wrp px_0">
@@ -64,9 +64,7 @@ export default () => {
                             <Link to="/customize-tags" className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">
                             Just Browse</Link>
                             <p className="btm_links mt_25 text_white">
-                               You must be 18 or older to use Lips <br/>
-                               <Link to="#" className="link_underline link_white">
-                               Leave</Link>
+                              You must be 18 or older to use Lips
                             </p>
                          </div>
                       </form>

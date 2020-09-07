@@ -10,10 +10,11 @@ const [selectTags, setSelectTags] = useState([]);
                 <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
                    <div className="lps_form_wrp on_boarding_wrp_spwn border_0">
                       <article className="lps_art lps_art_white">
-                         <h4 className="mb30">You decide what's personal for you (not the algorithm)</h4>
-                         <p>
+                         <h3>You decide what's personal for you</h3>
+                         <h4 className="mb30">(not the algorithm)</h4>
+                         <h5 className="ft_Weight_400">
                             Begin by choosing a few things you'd like to see more of.
-                         </p>
+                         </h5>
                       </article>
                       <ul className="lps_btn_grps lps_ul lps_hash_ul">
                          <li>
@@ -32,7 +33,7 @@ const [selectTags, setSelectTags] = useState([]);
                             <button className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</button>
                          </li>
                          <li className="mt_15">
-                            <Link to="#" className="theme_btn theme_outline_primary text_white min_w_150 theme_btn_rds25 text_uppercase">View more</Link>
+                            <Link to="#" className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">View more</Link>
                           </li>
                       </ul>
                       <div className="pos_wrp onboarding_btm">

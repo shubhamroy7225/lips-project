@@ -18,10 +18,10 @@ export default () => {
                 <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
                    <div className="lps_form_wrp on_boarding_wrp_spwn border_0">
                       <article className="lps_art lps_art_white">
-                         <h4 className="mb30">Some things are not for everybody</h4>
-                         <p>
+                         <h3 className="mb30">Some things are not for everybody</h3>
+                         <h5 className="ft_Weight_400">
                             Mark the ones you don't want to see and we will do our best to provide tag-based warnings.
-                         </p>
+                         </h5>
                       </article>
                       <ul className="lps_btn_grps lps_ul lps_hash_ul">
                          <li>
@@ -45,7 +45,7 @@ export default () => {
                             <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
                          </li>
                          <li className="mt_15">
-                            <Link to="#" className="theme_btn theme_outline_primary text_white min_w_150 theme_btn_rds25 text_uppercase">
+                            <Link to="#" className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
                             View more</Link>
                          </li>
                       </ul>

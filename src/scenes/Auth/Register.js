@@ -53,12 +53,12 @@ export default () => {
         <div className="container-login100">
           <div id="wrap" className="mt_0">
             <div className="lps_container">
-              <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp">
+              <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
                 <div className="lps_form_wrp">
                   <form onSubmit={handleSubmit}>
                     <article className="text_center lps_logo_center">
                       <a className="logo mb_0" href="#">
-                        <img src={require("assets/images/thumbnails/logo.png")} alt="Lips Logo" className="header__logo" />
+                        <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
                         <h5 className="text_uppercase text_white">Register</h5>
                       </a>
                     </article>
@@ -94,7 +94,7 @@ export default () => {
                           {simpleValidator.current.message('confirm_password', user.confirm_password, `required|sameAs:${user.password}`)}
                       </div>
                       <div className="mt_25">
-                        <div className="form_group_modify">
+                        <div className="form_group_modify mb_25">
                           <label className="lps_cont_check">I am 18 years or older
                             <input type="checkbox" checked />
                             <span className="lps_Checkmark"></span>
