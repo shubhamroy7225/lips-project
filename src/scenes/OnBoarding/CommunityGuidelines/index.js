@@ -9,18 +9,18 @@ export default () => {
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary lps_text_white on_boarding_wrp">
                 <div className="lps_form_wrp on_boarding_wrp_spwn border_0">
                   <article className="lps_art">
-                    <h5 className="text_white mb45"><span className="text_primary">10</span> Community guidelines </h5>
+                    <h3 className="text_white mb45"><span className="text_primary">10</span> Community guidelines </h3>
                     <p>You can find the detailed version in settings</p>
                   </article>
                   <div className="count_wrp text_center">
-                    <h1 className="text_primary">1</h1>
-                    <p>Lorem ipsum dolor sit amet, cons<br/>
+                    <h1 className="text_primary display-1">1</h1>
+                    <h4>Lorem ipsum dolor sit amet, cons<br/>
                       entelur adipiscing elit, sed do.
-                    </p>
+                    </h4>
                     </div>
                     <div className="onboarding_btm lps_flx_vm_jsbtwn">
-                      <Link to="/account-privacy" className="link_underline lps_link">Skip</Link>
-                      <Link to="/account-privacy" className="theme_btn theme_outline_primary text_white min_w_150 theme_btn_rds25 text_uppercase">Next</Link>
+                      <Link to="/account-privacy" className="link_underline lps_link ft_Weight_500">Skip</Link>
+                      <Link to="/account-privacy" className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">Next</Link>
                     </div>
                   </div>
                 </div>

@@ -5,49 +5,58 @@ const Notifications = () => {
     <>
             <div id="wrap">
                <div className="lps_container">
-                  <ul className="lps_list_group my_acctn_list">
-                     <li className="list-group-item">
-                        <div className="lps_media lps_flx_vm my_acctn_pt10">
-                           <figure className="lps_fig lps_fig_circle lps_fig_circle_visible">
-                              <img src={require("assets/images/icons/icn_settings_black.png")} alt="User"/>
-                           </figure>
-                           <div className="lps_media_body">
-                              <p className="lps_md_title">Notifications</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li className="list-group-item lps_pink_bg">
+                  <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
+                     <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img"/> 
+                     <span className="lp_left_auto text_black">Notifications</span>
+                  </Link>
+                  <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
+                     
+                     <li className="list-group-item bg_gray_feed">
                         <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm">
                            <p className="lps_md_title mb_0">Allow All</p>
                            <label className="lps_switch">
-                           <input type="checkbox"/>
+                           <input type="checkbox" checked/>
                            <span className="lps_int_slider round"></span>
                            </label>
                         </div>
                      </li>
                      <li className="list-group-item">
                         <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
+                           <article>
+                             <h5 className="ft_Weight_500 mb_5">This product</h5>
+                             <p className="mb_0">is meant for educational purposes only.</p>
+                           </article>
                            <label className="lps_switch">
-                           <input type="checkbox"/>
+                           <input type="checkbox" checked/>
                            <span className="lps_int_slider round"></span>
                            </label>
                         </div>
+                     </li>   
+                        <li className="list-group-item">
                         <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
+                           <article>
+                             <h5 className="ft_Weight_500 mb_5">This product</h5>
+                             <p className="mb_0">is meant for educational purposes only.</p>
+                           </article>
                            <label className="lps_switch">
-                           <input type="checkbox"/>
+                           <input type="checkbox" checked/>
                            <span className="lps_int_slider round"></span>
                            </label>
                         </div>
-                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
+                     </li>   
+                        <li className="list-group-item">
+                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
+                           <article>
+                             <h5 className="ft_Weight_500 mb_5">This product</h5>
+                             <p className="mb_0">is meant for educational purposes only.</p>
+                           </article>
                            <label className="lps_switch">
-                           <input type="checkbox"/>
+                           <input type="checkbox" checked/>
                            <span className="lps_int_slider round"></span>
                            </label>
                         </div>
-                     </li>
+                     </li>   
+                     
                   </ul>
                </div>
             </div>
