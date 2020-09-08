@@ -1,10 +1,12 @@
 import React, {useState,  useRef} from "react";
 import {Link, useHistory} from "react-router-dom";
 import SimpleReactValidator from 'simple-react-validator';
-
+import {useDispatch} from "react-redux";
+import * as AuthActions from "redux/actions";
 export default () => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
-    username: "",
+    user_name: "",
     email: "",
     password: "",
     confirm_password: ""
@@ -16,7 +18,7 @@ export default () => {
     sameAs: {  // name the rule
       message: 'The password and :attribute are not matched.',
           rule: (val, params, validator) => {
-        return validator.helpers.testRegex(val,/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/i) && params.indexOf(val) === -1
+        return true//validator.helpers.testRegex(val,/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/) && params.indexOf(val) === -1
       },
 
           required: true  // optional
@@ -26,7 +28,13 @@ export default () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (simpleValidator.current.allValid()) history.push("/terms-and-condition"); //check validations
+    if (simpleValidator.current.allValid()) {
+      delete user.confirm_password;
+      AuthActions.signup({user}).then(res =>{
+        history.push("/terms-and-condition");
+      });
+
+    } //check validations
     else {
       simpleValidator.current.showMessages(); //show validation messages
       forceUpdate(1)
@@ -64,9 +72,9 @@ export default () => {
                     </article>
                     <div className="lps_fields">
                       <div className="form_group_modify">
-                        <input type="text" className="input_modify" placeholder="Username" name="username"  value={user.username}
-                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('username')}  />
-                         {simpleValidator.current.message('username', user.username, 'required')}      
+                        <input type="text" className="input_modify" placeholder="user_name" name="user_name"  value={user.user_name}
+                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('user_name')}  />
+                         {simpleValidator.current.message('user_name', user.user_name, 'required')}      
                       </div>
                       <div className="form_group_modify">
                         <input type="email" className="input_modify" placeholder="Email" name="email"  value={user.email}

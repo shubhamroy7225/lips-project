@@ -1,4 +1,4 @@
-import axios from '../config';
+import axios,{API_VERSION} from '../config';
 
 export const login = (credentials) => {
     return axios.post('/users/sign_in', credentials, {
@@ -11,7 +11,7 @@ export const login = (credentials) => {
 };
 
 export const signup = (credentials) => {
-    return axios.post('/users', credentials, {
+    return axios.post(`${API_VERSION}/auth/signup`, credentials, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
