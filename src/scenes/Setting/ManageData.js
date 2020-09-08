@@ -4,7 +4,7 @@ const ManageData = () => {
   return (
     <>
             <div id="wrap" className="mt_0">
-               <div className="lps_container">
+               <div className="lps_container mt_0">
                <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
                   <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
                   <span className="lp_left_auto text_black">Manage Your Data</span>

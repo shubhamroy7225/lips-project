@@ -5,7 +5,7 @@ const SwitchAccount = () => {
   return (
     <>
             <div id="wrap">
-               <div className="lps_container">
+               <div className="lps_container mt_0">
                   <ul className="lps_list_group my_acctn_list">
                      <li className="list-group-item">
                         <div className="lps_media lps_flx_vm my_acctn_pt10">

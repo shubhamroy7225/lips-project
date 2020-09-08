@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Setting = () => {
    return (
       <div id="wrap" className="mt_0">
-         <div className="lps_container">
+         <div className="lps_container mt_0">
          <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="main_feed.html">
             <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
             <span className="lp_left_auto">Settings</span>
