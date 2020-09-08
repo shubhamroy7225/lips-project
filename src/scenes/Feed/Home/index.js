@@ -19,7 +19,7 @@ const MainFeed = (props) => {
         return (
             <>
                 <div id="wrap">
-                    <div className="lps_container main_feed_cont">
+                    <div class="lps_container main_feed_cont bg_grayCCC">
                         <ImageFeed />
                         <TextFeed />
                         <ImageFeed />
