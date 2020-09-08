@@ -3,8 +3,6 @@ import {Link} from "react-router-dom";
 import TermsAndCondition from "../components/TermsAndConditions";
 export default () => {
   return (
-      <div className="limiter">
-        <div className="container-login100">
           <div id="wrap" className="mt_0">
           <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
               <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img"/> 
@@ -25,7 +23,5 @@ export default () => {
             </div>
             </div>
           </div>
-        </div>
-      </div>
   )
 }

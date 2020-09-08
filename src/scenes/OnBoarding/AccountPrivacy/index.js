@@ -2,9 +2,6 @@ import React from "react";
 import {Link } from "react-router-dom";
 export default () => {
   return (
-      <div className="limiter">
-
-        <div className="container-login100">
           <div id="wrap" className="mt_0">
             <div className="lps_container lps_bg_secondary lps_text_white">
               <div className="acctn_privacy on_boarding_wrp_spwn border_0">
@@ -42,7 +39,6 @@ export default () => {
                           </div>
                         </div>
                         </div>
-                      </div>
-                    </div>
+                     
   )
 }
