@@ -70,7 +70,7 @@ export default () => {
                     </article>
                     <div className="lps_fields">
                       <div className="form_group_modify">
-                        <input type="text" className="input_modify" placeholder="user_name" name="user_name"  value={user.user_name}
+                        <input type="text" className="input_modify" placeholder="Username" name="user_name"  value={user.user_name}
                                onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('user_name')}  />
                          {simpleValidator.current.message('user_name', user.user_name, 'required')}      
                       </div>

@@ -51,7 +51,7 @@ let LoginForm = (props) => {
                     <div className="lps_fields">
                       <div className="form_group_modify">
                         <input type="text" name="email" className="input_modify"
-                               placeholder="email" value={user.email}
+                               placeholder="Username" value={user.email}
                                onBlur={() => simpleValidator.current.showMessageFor('email')}
                                onChange={handleChange}/>
                         {simpleValidator.current.message('email', user.email, 'required')}
@@ -64,9 +64,9 @@ let LoginForm = (props) => {
 
                             />
                         <span className="icn_passAbslt">
-                          <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_white.png")} className={passwordShown ? "hidden" : ""}/>
 
-                          <img onClick={togglePasswordVisiblity} src={require( "assets/images/icons/icn_hide_white.png")} className={!passwordShown ? "hidden" : ""} />
+
+                          {passwordShown ? <img onClick={togglePasswordVisiblity} src={require( "assets/images/icons/icn_hide_white.png")} /> : <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_white.png")} /> }
                         </span>
                         {simpleValidator.current.message('password', user.password, 'required')}
                       </div>
