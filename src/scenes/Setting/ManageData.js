@@ -3,74 +3,52 @@ import {Link} from "react-router-dom";
 const ManageData = () => {
   return (
     <>
-            <div id="wrap">
-               <div className="lps_container">
-                  <ul className="lps_list_group my_acctn_list">
-                     <li className="list-group-item">
-                        <div className="lps_media lps_flx_vm my_acctn_pt10">
-                           <figure className="lps_fig lps_fig_circle lps_fig_circle_visible">
-                              <img src={require("assets/images/icons/icn_lock.png")} alt="User" />
-                           </figure>
-                           <div className="lps_media_body">
-                              <p className="lps_md_title">Manage your data</p>
-                           </div>
-                        </div>
-                     </li>
-                     <li className="list-group-item lps_pink_bg">
+            <div id="wrap" className="mt_0">
+               <div className="lps_container mt_0">
+               <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
+                  <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
+                  <span className="lp_left_auto text_black">Manage Your Data</span>
+               </Link>
+                  <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
+                     <li className="list-group-item bg_gray_feed">
                         <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm">
                            <p className="lps_md_title mb_0">Allow All</p>
                            <label className="lps_switch">
-                           <input type="checkbox" checked/>
-                           <span className="lps_int_slider round"></span>
-                           </label>
-                        </div>
-                     </li>
-                     <li className="list-group-item">
-                        <div className="lps_user_info lps_accnt_links lps_mb20">
-                           <p className="lps_md_title">Personalization</p>
-                        </div>
-                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
-                           <label className="lps_switch">
-                           <input type="checkbox"/>
-                           <span className="lps_int_slider round"></span>
-                           </label>
-                        </div>
-                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
-                           <label className="lps_switch">
-                           <input type="checkbox"/>
-                           <span className="lps_int_slider round"></span>
-                           </label>
-                        </div>
-                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
-                           <label className="lps_switch">
                            <input type="checkbox"/>
                            <span className="lps_int_slider round"></span>
                            </label>
                         </div>
                      </li>
                      <li className="list-group-item">
-                        <div className="lps_user_info lps_accnt_links lps_mb20">
-                           <p className="lps_md_title">Ads</p>
-                        </div>
                         <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
+                            <article>
+                              <h5 className="ft_Weight_500 mb_5">This product</h5>
+                              <p className="mb_0">is meant for educational purposes only.</p>
+                             </article>
                            <label className="lps_switch">
                            <input type="checkbox"/>
                            <span className="lps_int_slider round"></span>
                            </label>
                         </div>
+                     </li>   
+                     <li className="list-group-item">
                         <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
+                            <article>
+                              <h5 className="ft_Weight_500 mb_5">This product</h5>
+                              <p className="mb_0">is meant for educational purposes only.</p>
+                             </article>
                            <label className="lps_switch">
                            <input type="checkbox"/>
                            <span className="lps_int_slider round"></span>
                            </label>
                         </div>
-                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm">
-                           <p className="mb_0">This product is meant for educational<br/> purposes only.</p>
+                     </li> 
+                     <li className="list-group-item">
+                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
+                            <article>
+                              <h5 className="ft_Weight_500 mb_5">This product</h5>
+                              <p className="mb_0">is meant for educational purposes only.</p>
+                             </article>
                            <label className="lps_switch">
                            <input type="checkbox"/>
                            <span className="lps_int_slider round"></span>
@@ -78,19 +56,13 @@ const ManageData = () => {
                         </div>
                      </li>
                      <li className="list-group-item">
-                        <div className="lps_user_info lps_accnt_links">
-                           <p className="user_info_label mb_0">
-                              <Link to="#">
-                              Cached data</Link>
-                           </p>
+                        <div className="lps_user_info">
+                           <Link to="#"><h5 className="mb_0 ft_Weight_500">Cached data</h5></Link>
                         </div>
                      </li>
                      <li className="list-group-item">
-                        <div className="lps_user_info lps_accnt_links">
-                           <p className="user_info_label mb_0">
-                              <Link to="#">
-                              Download your data (pdf)</Link>
-                           </p>
+                        <div className="lps_user_info">
+                           <Link to="#"><h5 className="mb_0 ft_Weight_500">Download your data (pdf)</h5></Link>
                         </div>
                      </li>
                   </ul>

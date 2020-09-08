@@ -3,15 +3,10 @@ import React from "react";
 export default () => {
   return (
       <>
-        <div className="lps_inner_wrp text_center">
-          <article className="lps_art mt45">
-            <h4 className="text_uppercase mt45">Terms & Conditions</h4>
-          </article>
-        </div>
+        
         <div className="lps_inner_wrp">
           <div className="lps_terms_cont">
             <div className="lps_terms_list">
-              <h5>Table of contents</h5>
               <p>
                 <a href="#Introduction" className="link_underline links_black_block">Introduction</a>
                 <a href="#intellectual" className="link_underline links_black_block">Intellectual property rights</a>

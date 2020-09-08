@@ -1,15 +1,18 @@
 import React, {useState, useRef} from "react";
 import { Link, useHistory } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import * as AuthActions from "redux/actions";
 
 import SimpleReactValidator from 'simple-react-validator';
 
 let LoginForm = (props) => {
+  const dispatch = useDispatch();
   const history = useHistory();
   //initialize validations
   const simpleValidator = useRef(new SimpleReactValidator());
   const [, forceUpdate] = useState();
   //user data state
-  const [user, setUser] = useState({username: "", password: ""});
+  const [user, setUser] = useState({email: "", password: ""});
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = ()=> {
     setPasswordShown(passwordShown ? false : true);
@@ -17,7 +20,11 @@ let LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (simpleValidator.current.allValid()) history.push("/"); //check validations
+    if (simpleValidator.current.allValid()) {
+      AuthActions.login({user}).then(res =>{
+        history.push("/");
+      });
+    } //check validations
     else {
       simpleValidator.current.showMessages(); //show validation messages
       forceUpdate(1)
@@ -30,7 +37,7 @@ let LoginForm = (props) => {
   };
   return (
           <div id="wrap" className="mt_0">
-            <div className="lps_container">
+            <div className="lps_container mt_0">
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
                 <div className="lps_form_wrp">
                   <form
@@ -43,11 +50,11 @@ let LoginForm = (props) => {
                     </article>
                     <div className="lps_fields">
                       <div className="form_group_modify">
-                        <input type="text" name="username" className="input_modify"
-                               placeholder="Username" value={user.username}
-                               onBlur={() => simpleValidator.current.showMessageFor('username')}
+                        <input type="text" name="email" className="input_modify"
+                               placeholder="Username" value={user.email}
+                               onBlur={() => simpleValidator.current.showMessageFor('email')}
                                onChange={handleChange}/>
-                        {simpleValidator.current.message('username', user.username, 'required')}
+                        {simpleValidator.current.message('email', user.email, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
                         <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="Password"
@@ -57,9 +64,9 @@ let LoginForm = (props) => {
 
                             />
                         <span className="icn_passAbslt">
-                          <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_white.png")} className={passwordShown ? "hidden" : ""}/>
 
-                          <img onClick={togglePasswordVisiblity} src={require( "assets/images/icons/icn_hide_white.png")} className={!passwordShown ? "hidden" : ""} />
+
+                          {passwordShown ? <img onClick={togglePasswordVisiblity} src={require( "assets/images/icons/icn_hide_white.png")} /> : <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_white.png")} /> }
                         </span>
                         {simpleValidator.current.message('password', user.password, 'required')}
                       </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 export const BASE_URL = () => {
   let url;
   if (process.env.REACT_APP_ENV === 'development') {
-    url = ''
+    url = "https://lips-api.bitcotapps.com"
   }
   if (process.env.REACT_APP_ENV === 'staging') {
     url = ''
@@ -15,7 +15,7 @@ export const BASE_URL = () => {
   return url;
 };
 
-export const API_VERSION = "api/v1/"
+export const API_VERSION = "/v1"
 
 const instance = axios.create({
   baseURL: BASE_URL()

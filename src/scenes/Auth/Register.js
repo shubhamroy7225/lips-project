@@ -1,10 +1,12 @@
 import React, {useState,  useRef} from "react";
 import {Link, useHistory} from "react-router-dom";
 import SimpleReactValidator from 'simple-react-validator';
-
+import {useDispatch} from "react-redux";
+import * as AuthActions from "redux/actions";
 export default () => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
-    username: "",
+    user_name: "",
     email: "",
     password: "",
     confirm_password: ""
@@ -16,7 +18,7 @@ export default () => {
     sameAs: {  // name the rule
       message: 'The password and :attribute are not matched.',
           rule: (val, params, validator) => {
-        return validator.helpers.testRegex(val,/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/i) && params.indexOf(val) === -1
+        return val === params[0]//validator.helpers.testRegex(val,/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/) && params.indexOf(val) === -1
       },
 
           required: true  // optional
@@ -26,7 +28,13 @@ export default () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (simpleValidator.current.allValid()) history.push("/terms-and-condition"); //check validations
+    if (simpleValidator.current.allValid()) {
+      delete user.confirm_password;
+      AuthActions.signup({user}).then(res =>{
+        history.push("/terms-and-condition");
+      });
+
+    } //check validations
     else {
       simpleValidator.current.showMessages(); //show validation messages
       forceUpdate(1)
@@ -49,10 +57,8 @@ export default () => {
   };
 
   return (
-      <div className="limiter">
-        <div className="container-login100">
           <div id="wrap" className="mt_0">
-            <div className="lps_container">
+            <div className="lps_container mt_0">
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
                 <div className="lps_form_wrp">
                   <form onSubmit={handleSubmit}>
@@ -64,9 +70,9 @@ export default () => {
                     </article>
                     <div className="lps_fields">
                       <div className="form_group_modify">
-                        <input type="text" className="input_modify" placeholder="Username" name="username"  value={user.username}
-                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('username')}  />
-                         {simpleValidator.current.message('username', user.username, 'required')}      
+                        <input type="text" className="input_modify" placeholder="Username" name="user_name"  value={user.user_name}
+                               onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('user_name')}  />
+                         {simpleValidator.current.message('user_name', user.user_name, 'required')}      
                       </div>
                       <div className="form_group_modify">
                         <input type="email" className="input_modify" placeholder="Email" name="email"  value={user.email}
@@ -77,9 +83,7 @@ export default () => {
                         <input type={passwordShown ? "text" : "password"} className="input_modify" placeholder="Password" name="password"  value={user.password}
                                onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} />
                         <span className="icn_passAbslt">
-                          <img onClick={togglePasswordVisibility(false)} src={require("assets/images/icons/icb_eye_white.png")} className={passwordShown ? "hidden" : ""} />
-
-                          <img onClick={togglePasswordVisibility(false)} src={require("assets/images/icons/icn_hide_white.png")} className={!passwordShown ? "hidden" : ""} />
+                          { passwordShown ? <img onClick={togglePasswordVisibility(false)} src={require("assets/images/icons/icn_hide_white.png")} /> : <img onClick={togglePasswordVisibility(false)} src={require("assets/images/icons/icb_eye_white.png")} />}
                         </span>
                           {simpleValidator.current.message('password', user.password, 'required')}
                       </div>
@@ -87,9 +91,8 @@ export default () => {
                         <input  type={resetPasswordShown ? "text" : "password"} className="input_modify" placeholder="Repeat Password"  value={user.confirm_password}
                                onChange={handleChange} name="confirm_password" onBlur={() => simpleValidator.current.showMessageFor('confirm_password')} />
                         <span className="icn_passAbslt">
-                          <img onClick={togglePasswordVisibility(true)} src={require("assets/images/icons/icb_eye_white.png")} className={resetPasswordShown ? "hidden" : ""}/>
 
-                          <img onClick={togglePasswordVisibility(true)} src={require( "assets/images/icons/icn_hide_white.png")} className={!resetPasswordShown ? "hidden" : ""} />
+                        {resetPasswordShown ? <img onClick={togglePasswordVisibility(true)} src={require( "assets/images/icons/icn_hide_white.png")}  /> : <img onClick={togglePasswordVisibility(true)} src={require("assets/images/icons/icb_eye_white.png")} /> }
                         </span>
                           {simpleValidator.current.message('confirm_password', user.confirm_password, `required|sameAs:${user.password}`)}
                       </div>
@@ -119,7 +122,5 @@ export default () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
   )
 }

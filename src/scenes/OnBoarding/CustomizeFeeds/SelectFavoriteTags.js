@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 export default () => {
 const [selectTags, setSelectTags] = useState([]);
   return (
-    <div className="limiter">
-       <div className="container-login100">
           <div id="wrap" className="mt_0">
-             <div className="lps_container">
+             <div className="lps_container mt_0">
                 <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
                    <div className="lps_form_wrp on_boarding_wrp_spwn border_0">
                       <article className="lps_art lps_art_white">
@@ -44,7 +42,5 @@ const [selectTags, setSelectTags] = useState([]);
                 </div>
              </div>
           </div>
-       </div>
-    </div>
   )
 }
