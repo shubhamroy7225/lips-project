@@ -4,6 +4,8 @@ import { MobileView, BrowserView, isMobile } from 'react-device-detect';
 import RepostModal from './FeedModal/RepostModal';
 import TaggedModal from './FeedModal/TaggedModal';
 import ReportModal from './FeedModal/ReportModal';
+import SharedModal from './FeedModal/SharedModal';
+import RemoveFeedModal from './FeedModal/RemoveFeedModal';
 
 
 const ImageFeed = ({ reposted }) => {
@@ -56,14 +58,21 @@ const ImageFeed = ({ reposted }) => {
                 </div>
                 <div class="post_img_block lps_pink_bg lps_widgets_wrp">
                     <div class="lps_sm_shape"></div>
-                    <figure class="feed_galary lps_flx_vm_jc lps_f_vm">
+                    {/* <figure class="feed_galary lps_flx_vm_jc lps_f_vm">
                         <img src={require("assets/images/icons/landscape-image.png")} alt="Add Image" />
-                    </figure>
+                    </figure> */}
+                    <a href="javascript:void(0);" onClick={() => setShowWidget(!showWidget)}>
+                        <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
+                            <img src={require("assets/images/thumbnails/thumbnail3.jpg")} alt="Add Image" />
+                        </figure>
+                    </a>
                     <RepostModal />
                     <TaggedModal />
                     <ReportModal />
+                    <SharedModal />
+                    <RemoveFeedModal />
                 </div>
-                <FeedWidget />
+                <FeedWidget showWidget={showWidget} />
             </div>
         );
     }

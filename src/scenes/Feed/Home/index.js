@@ -9,6 +9,8 @@ import TextFeed from 'scenes/Feed/components/TextFeed';
 import RestrictedFeed from 'scenes/Feed/components/RestrictedFeed';
 import MenuOptionSlider from '../components/MenuOptionSlider';
 import { isMobile } from 'react-device-detect';
+import SharedModal from '../components/FeedModal/SharedModal';
+import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 
 const MainFeed = (props) => {
     useEffect(() => {
@@ -36,6 +38,8 @@ const MainFeed = (props) => {
                 <RepostModal />
                 <TaggedModal />
                 <ReportModal />
+                <SharedModal />
+                <RemoveFeedModal />
             </>
         )
     } else {

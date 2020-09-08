@@ -7,26 +7,23 @@ const TaggedModal = () => {
             <div className="modal-dialog-centered">
                 <span className="helper"></span>
                 <div className="popup_cont">
-                    <div className="popup_body">
-                        <div className="popupCloseButton"><img src={require("assets/images/icons/icn_close_white.png")} /></div>
-                        <ul className="lps_btn_grps lps_ul lps_hash_ul">
+                    <div class="popup_close_header">
+                        <div class="popupCloseButton"><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
+                    </div>
+                    <div class="popup_body">
+                        <ul class="lps_btn_grps lps_ul lps_hash_ul">
                             <li>
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
+                                <a href="#" class="theme_btn theme_light text_secondary">#Hashtag</a>
+                                <a href="#" class="theme_btn theme_light text_secondary">#Hashtag</a>
+                                <a href="#" class="theme_btn theme_light text_secondary">#Hashtag</a>
                             </li>
                             <li>
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
-                            </li>
-                            <li className="lps_pos_rltv">
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
-                                <a href="#" className="theme_btn theme_outline_light">#Hashtag</a>
+                                <a href="#" class="theme_btn theme_light text_secondary">#Hashtag</a>
+                                <a href="#" class="theme_btn theme_light text_secondary">#Hashtag</a>
+                                <a href="#" class="theme_btn theme_light text_secondary">#Hashtag</a>
                             </li>
                         </ul>
-                        <a href="#" className="lps_liks_white">Tagged Improperly?</a>
+                        <a href="#" class="theme_btn theme_outline_primary text_white text_uppercase min_w_170 btnr_25">Wrong tags?</a>
                     </div>
                 </div>
             </div>
