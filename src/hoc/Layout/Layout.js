@@ -38,16 +38,6 @@ const Header = (props) => {
                 </nav>
             </header>
         )
-    } else if (Object.values(SETTINGS_PATH).includes(props.history.location.pathname)) {
-        return (
-            <header class="main_header">
-                <nav class="theme_navigation">
-                    <Link class="lps_header_link lps_flx_vm_jc text_uppercase" to="/settings">
-                        <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" class="lps_header_img" /> Settings
-                        </Link>
-                </nav>
-            </header>
-        );
     } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) || props.history.location.pathname === "/") {
         //default when user is not logged in
         return (
