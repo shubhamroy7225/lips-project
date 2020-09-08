@@ -1,15 +1,18 @@
 import React, {useState, useRef} from "react";
 import { Link, useHistory } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import * as AuthActions from "redux/actions";
 
 import SimpleReactValidator from 'simple-react-validator';
 
 let LoginForm = (props) => {
+  const dispatch = useDispatch();
   const history = useHistory();
   //initialize validations
   const simpleValidator = useRef(new SimpleReactValidator());
   const [, forceUpdate] = useState();
   //user data state
-  const [user, setUser] = useState({username: "", password: ""});
+  const [user, setUser] = useState({user_name: "", password: ""});
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = ()=> {
     setPasswordShown(passwordShown ? false : true);
@@ -17,7 +20,11 @@ let LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (simpleValidator.current.allValid()) history.push("/"); //check validations
+    if (simpleValidator.current.allValid()) {
+      AuthActions.login({user}).then(res =>{
+        history.push("/");
+      });
+    } //check validations
     else {
       simpleValidator.current.showMessages(); //show validation messages
       forceUpdate(1)
@@ -43,11 +50,11 @@ let LoginForm = (props) => {
                     </article>
                     <div className="lps_fields">
                       <div className="form_group_modify">
-                        <input type="text" name="username" className="input_modify"
-                               placeholder="Username" value={user.username}
-                               onBlur={() => simpleValidator.current.showMessageFor('username')}
+                        <input type="text" name="user_name" className="input_modify"
+                               placeholder="user_name" value={user.user_name}
+                               onBlur={() => simpleValidator.current.showMessageFor('user_name')}
                                onChange={handleChange}/>
-                        {simpleValidator.current.message('username', user.username, 'required')}
+                        {simpleValidator.current.message('user_name', user.user_name, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
                         <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="Password"

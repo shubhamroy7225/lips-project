@@ -1,7 +1,7 @@
 import axios,{API_VERSION} from '../config';
 
 export const login = (credentials) => {
-    return axios.post('/users/sign_in', credentials, {
+    return axios.post(`${API_VERSION}/auth/login`, credentials, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
