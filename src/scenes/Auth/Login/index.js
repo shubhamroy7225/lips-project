@@ -12,7 +12,7 @@ let LoginForm = (props) => {
   const simpleValidator = useRef(new SimpleReactValidator());
   const [, forceUpdate] = useState();
   //user data state
-  const [user, setUser] = useState({user_name: "", password: ""});
+  const [user, setUser] = useState({email: "", password: ""});
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = ()=> {
     setPasswordShown(passwordShown ? false : true);
@@ -50,11 +50,11 @@ let LoginForm = (props) => {
                     </article>
                     <div className="lps_fields">
                       <div className="form_group_modify">
-                        <input type="text" name="user_name" className="input_modify"
-                               placeholder="user_name" value={user.user_name}
-                               onBlur={() => simpleValidator.current.showMessageFor('user_name')}
+                        <input type="text" name="email" className="input_modify"
+                               placeholder="email" value={user.email}
+                               onBlur={() => simpleValidator.current.showMessageFor('email')}
                                onChange={handleChange}/>
-                        {simpleValidator.current.message('user_name', user.user_name, 'required')}
+                        {simpleValidator.current.message('email', user.email, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
                         <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="Password"

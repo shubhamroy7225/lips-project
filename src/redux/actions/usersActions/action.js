@@ -17,10 +17,12 @@ export const login = (credentials) => {
     return API.login(credentials)
         .then(response => {
             if (response.data.error || response.data.code) {
-                // errorHandler(response.data);
+                 //errorHandler(response.data);
+            }
+            else {
                 let user = response.data.user;
-                let authToken = response.data.authToken;
-                let refreshToken = response.data.refreshToken;
+                let authToken = response.data.token;
+                let refreshToken = response.data.refresh_token;
 
                 console.log("user:" + user);
 
