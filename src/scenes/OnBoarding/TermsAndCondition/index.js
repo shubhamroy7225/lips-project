@@ -6,6 +6,10 @@ export default () => {
       <div className="limiter">
         <div className="container-login100">
           <div id="wrap" className="mt_0">
+          <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
+              <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img"/> 
+              <span className="lp_left_auto text_secondary ft_Weight_500">Terms & Conditions</span>
+            </Link>
             <div className="top_text_wrp lps_bg_secondary">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incidi. Please reach out if ....
