@@ -3,7 +3,7 @@ import {Link } from "react-router-dom";
 export default () => {
   return (
           <div id="wrap" className="mt_0">
-            <div className="lps_container lps_bg_secondary lps_text_white">
+            <div className="lps_container lps_bg_secondary lps_text_white mt_0">
               <div className="acctn_privacy on_boarding_wrp_spwn border_0">
                 <article className="lps_art lps_px15">
                   <h3>How private do you want your <br/>account?</h3>

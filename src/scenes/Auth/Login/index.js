@@ -37,7 +37,7 @@ let LoginForm = (props) => {
   };
   return (
           <div id="wrap" className="mt_0">
-            <div className="lps_container">
+            <div className="lps_container mt_0">
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
                 <div className="lps_form_wrp">
                   <form

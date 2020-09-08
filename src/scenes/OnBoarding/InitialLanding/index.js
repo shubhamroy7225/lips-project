@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default () => {
   return (
           <div id="wrap" className="mt_0">
-             <div className="lps_container lps_NewChngCon">
+             <div className="lps_container lps_NewChngCon mt_0">
                 <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp">
                    <div className="lps_form_wrp">
                       <form>
