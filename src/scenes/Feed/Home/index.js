@@ -22,7 +22,7 @@ const MainFeed = (props) => {
                     <div class="lps_container main_feed_cont bg_grayCCC">
                         <ImageFeed />
                         <TextFeed />
-                        <ImageFeed />
+                        <ImageFeed reposted={true} />
                         <ImageFeed />
                         <ImageFeed />
                         {/* <RestrictedFeed /> */}

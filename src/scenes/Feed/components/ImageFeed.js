@@ -6,7 +6,7 @@ import TaggedModal from './FeedModal/TaggedModal';
 import ReportModal from './FeedModal/ReportModal';
 
 
-const ImageFeed = () => {
+const ImageFeed = ({ reposted }) => {
     const [showWidget, setShowWidget] = useState(false)
     if (isMobile) {
         return (
@@ -17,6 +17,8 @@ const ImageFeed = () => {
                         <figure class="feed_galary">
                             <img src={require("assets/images/icons/image_icon.svg")} alt="Add Image" />
                         </figure>
+                        {reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
+                        }
                     </a>
                     <FeedWidget showWidget={showWidget} />
                 </div>
