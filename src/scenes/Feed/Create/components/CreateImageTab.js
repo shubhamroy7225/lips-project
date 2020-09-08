@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-const CreateImageTab = (props) => {
+const CreateImageTab = ({ toggleAddTags, toggleLipsInfo }) => {
     const [imageBase64, setImageBase64] = useState(null)
 
     const fileSelector = useRef(null)
@@ -25,58 +25,40 @@ const CreateImageTab = (props) => {
         <div class="content active" id="imageTab">
             <div class="tab_inn_con">
                 <div class="add_img_block">
-                    <figure class="add_image" onClick={() => handleFileSelect()}>
-                        <img src={imageBase64 ? imageBase64 : require("assets/images/icons/icn_add_img.png")} alt="Add Image" />
+                    <figure class="add_image lps_fig" onClick={() => handleFileSelect()}>
+                        <img src={imageBase64 ? imageBase64 : require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
                     </figure>
                     <input type="file" id="file" ref={fileSelector} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e)} />
                 </div>
                 <div class="about_gallery">
-                    <textarea class="textarea_modifier" rows="4" cols="50"
-                        placeholder="Say something about this..."></textarea>
-                    <p class="mb_0">What's going on in this post? Be sure to @credit others.</p>
+                    <textarea class="textarea_modifier" rows="8" placeholder="Say something about this..."></textarea>
+                    <span class="textRange">0/50000</span>
+                    <p class="mb_0 mt_5">What's going on in this post? Be sure to @credit others.</p>
                 </div>
                 <div class="hash_tag_block">
                     <div class="hashtag">
-                        <a href="javascript:void(0);" class="hashtag_btn">#Hashtag</a>
-                        <a href="javascript:void(0);" class="hashtag_btn">#Hashtag</a>
-                        <a href="javascript:void(0);" class="hashtag_btn">#Hashtag</a>
-                        <a href="javascript:void(0);" class="add_tag avtar_25" id="trigger_lips_tag">
-                            <img src={require("assets/images/icons/icn_question_white.png")} alt="Add Icon" class="add_icn_outline" />
-                        </a>
-                    </div>
-                    <div class="hashtag">
-                        <h6 class="sm_title">CW?</h6>
-                        <a href="javascript:void(0);" class="add_tag" id="trigger_add">
-                            <img src={require("assets/images/icons/plus_pink.png")} alt="Add Icon" class="add_icn_outline" />
+                        <a href="javascript:void(0);" onClick={() => toggleAddTags()} class="theme_btn theme_outline_primary text_secondary ft_Weight_500 btnr_25 min_w_170 text_uppercase">
+                            add tags
+                            </a>
+                        <a href="javascript:void(0);" class="add_tag1 avtar_25" onClick={() => toggleLipsInfo()}>
+                            <img src={require("assets/images/icons/icn_question_active.png")} alt="Add Icon" class="add_icn_outline" />
                         </a>
                     </div>
                 </div>
-                <div class="tag_product_con">
-                    <div class="d_inline">
+                <div class="tag_product_con border_white_box">
+                    <div class="d_inline mb_0">
                         <div class="grid_left lps_flx_vm_jsbtwn lps_flx_vm others_wrp">
-                            <h6 class="sm_title">Others Can <img src={require("assets/images/icons/icn_mouth.png")} alt="kiss" /></h6>
+                            <h6 class="sm_title">Others Can <img src={require("assets/images/icons/icn_mouth.png")} alt="kiss" /> </h6>
                             <label class="lps_switch">
                                 <input type="checkbox" checked />
                                 <span class="lps_int_slider round"></span>
                             </label>
                         </div>
                     </div>
-                    <div class="d_inline">
-                        <div class="grid_left">
-                            <h6 class="sm_title">Delete this Automatically After</h6>
-                        </div>
-                        <div class="select_box">
-                            <select name="cars" id="cars" class="cst_select">
-                                <option value="1" selected>never</option>
-                                <option value="2">1</option>
-                                <option value="3">2</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div class="post_block mb20">
-                    <a href="my_user_profile.html" class="circle">Post</a>
-                    <a href="javascript:void(0);" class="cancel_post">Cancel</a>
+                    <a href="/" class="circle">Post</a>
+                    <a href="/" class="cancel_post">Cancel</a>
                 </div>
             </div>
         </div>
