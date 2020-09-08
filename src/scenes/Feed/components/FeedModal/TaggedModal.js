@@ -3,14 +3,12 @@ import React from 'react';
 
 const TaggedModal = () => {
     return (
-        <div className="hover_bkgr_fricc" id="trigger_hashtag_popup">
-            <div className="modal-dialog-centered">
-                <span className="helper"></span>
-                <div className="popup_cont">
-                    <div class="popup_close_header">
-                        <div class="popupCloseButton"><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
-                    </div>
+        <div class="hover_bkgr_fricc" id="trigger_hashtag_popup">
+            <div class="modal-dialog-centered">
+                <span class="helper"></span>
+                <div class="popup_cont">
                     <div class="popup_body">
+                        <div class="popupCloseButton"><img src={require("assets/images/icons/icn_close_white.png")} /></div>
                         <ul class="lps_btn_grps lps_ul lps_hash_ul">
                             <li>
                                 <a href="#" class="theme_btn theme_light text_secondary">#Hashtag</a>
