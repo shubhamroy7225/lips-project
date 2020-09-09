@@ -27,6 +27,8 @@ export const PRIVATE_PATH = {
     CREATE: '/create',
     LIKES: '/likes',
     PROFILE: '/profile',
+    OTHER_PROFILE: '/profile/:id',
+
 };
 
 export const NO_HEADER_ROUTES = {

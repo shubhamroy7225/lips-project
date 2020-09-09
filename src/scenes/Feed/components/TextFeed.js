@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import FeedWidget from 'scenes/Feed/components/FeedWidget';
 import { isMobile } from 'react-device-detect';
+import { withRouter } from 'react-router-dom';
+import { routes } from 'utility/constants/constants';
 
 
-const TextFeed = () => {
+const TextFeed = ({history}) => {
     const [showWidget, setShowWidget] = useState(false)
 
     if (isMobile) {
@@ -54,7 +56,7 @@ const TextFeed = () => {
                         </figure>
                         <div className="lps_media_body">
                             <div className="lps_media_body">
-                            <p><span class="text_primary ft_Weight_600">username </span></p>
+                            <p><span class="text_primary ft_Weight_600"><a onClick={() => { history.push(routes.PROFILE) }}>username</a> </span></p>
                             </div>
                         </div>
                     </div>
@@ -71,7 +73,7 @@ const TextFeed = () => {
                 </figure>
                 <div class="lps_media_body">
                   <div class="lps_media_body">
-                    <p><span class="text_primary">Jon snow </span></p>
+                    <p><span class="text_primary"><a onClick={() => { history.push(routes.PROFILE) }}>Jon snow</a> </span></p>
                   </div>
                 </div>
               </div>
@@ -121,4 +123,4 @@ const TextFeed = () => {
     
 }
 
-export default TextFeed
+export default withRouter(TextFeed)
