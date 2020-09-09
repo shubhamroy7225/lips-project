@@ -1,8 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import $ from 'jquery';
 
 const FeedWidget = ({ showWidget }) => {
     let className = !showWidget ? "lps_widgets lps_widgets_none" : "lps_widgets";
-    console.log(showWidget);
+
+    useEffect(() => {
+        $("#trigger_delete").click(function () {
+            $('#trigger_delete_popup').show();
+        });
+
+        $("#trigger_hashtag").click(function () {
+            $('#trigger_hashtag_popup').show();
+        });
+
+        // share popup
+        $("#trigger_share").click(function () {
+            $('#trigger_share_popup').show();
+        });
+
+        // Close popup
+        $("#trigger_hashtag_close").click(function () {
+            $('#trigger_close_popup').show();
+        });
+
+        //share
+        $("#trigger_popup_fricc").click(function () {
+            $('#trigger_popup').show();
+        });
+
+        $('.popupCloseButton').click(function () {
+            $('#trigger_hashtag_popup').hide();
+            $('#trigger_delete_popup').hide();
+            $('#trigger_share_popup').hide();
+            $('#trigger_close_popup').hide();
+            $('#trigger_popup').hide();
+        });
+
+    }, [])
+
     return (
         <ul className={className} id="lps_widgets">
             <li class="listed_item">
@@ -21,7 +56,7 @@ const FeedWidget = ({ showWidget }) => {
                 </a>
             </li>
             <li className="listed_item">
-                <a href="javascript: void(0);" className="circle_image lps_flx_vm_jc">
+                <a href="javascript: void(0);" className="circle_image lps_flx_vm_jc" id="trigger_share">
                     <img src={require("assets/images/icons/icn_share_white.png")} className="inner_image" alt="Share Icon" />
                 </a>
             </li>
