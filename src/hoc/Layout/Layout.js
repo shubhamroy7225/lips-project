@@ -9,6 +9,10 @@ import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH } from 'utility/constants/constants';
 
 const Header = (props) => {
+    const [modalShown, setModalShown] = useState(false);
+    const modalToggle = () => {
+        setModalShown(modalShown ? false : true);
+    }
     console.log(props);
 
     useEffect(() => {
@@ -32,34 +36,25 @@ const Header = (props) => {
                 </nav>
             </header>
         )
-    } else if (Object.values(SETTINGS_PATH).includes(props.history.location.pathname)) {
-        return (
-            <header class="main_header">
-                <nav class="theme_navigation">
-                    <Link class="lps_header_link lps_flx_vm_jc text_uppercase" to="/settings">
-                        <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" class="lps_header_img" /> Settings
-                        </Link>
-                </nav>
-            </header>
-        );
     } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) || props.history.location.pathname === "/") {
         //default when user is not logged in
         return (
             <header className="main_header">
                 <nav className="theme_navigation">
                     <Link className="logo" to="/">
-                        <img src={require("assets/images/thumbnails/logo.svg")} alt="BitCot Logo" className="header__logo" />
+                        <img src={require("assets/images/thumbnails/logo.png")} alt="BitCot Logo" className="header__logo" />
                     </Link>
                     <ul className="lp_nav">
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
-                                <li className="lps_dropdown">
-                                    <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button">
+                                <li className="lps_dropdown" onClick={modalToggle}>
+                                    <a href="#"  className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button">
                                         <span className="avatar_circle">
-                                            <img src={require("assets/images/icons/icn_heart_active.svg")} alt="heart Icon" />
+                                            <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
                                     </a>
-                                    <NotificationSliderComponent />
+                                    <ul class={`lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
+                                        <NotificationSliderComponent modalShown={modalShown}  /> </ul>
                                 </li>
                             </ul>
                         </li>
@@ -124,92 +119,89 @@ const mapDispatchToProps = (dispatch) => {
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
 
 
-const NotificationSliderComponent = () => {
+const NotificationSliderComponent = (modalShown) => {
+
     return (
-        <ul class="lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list">
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5>username wants to follow you</h5>
-                        <div class="btn_group">
-                            <a href="#" role="button" class="theme_btn theme_outline_primary accept active">accept</a>
-                            <a href="#" role="button" class="theme_btn theme_outline_primary deny">deny</a>
-                        </div>
-                        <span class="durations">1 minute ago</span>
+        <>
+        <li class="list-group-item">
+            <div class="lps_media">
+                <figure class="lps_fig lps_fig_circle">
+                    <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                </figure>
+                <div class="lps_media_body">
+                    <h5>username wants to follow you</h5>
+                    <div class="btn_group">
+                        <a href="#" role="button" class="theme_btn theme_outline_primary accept active">accept</a>
+                        <a href="#" role="button" class="theme_btn theme_outline_primary deny">deny</a>
                     </div>
+                    <span class="durations">1 minute ago</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5 class="lps_inline_img_wrp">username added your <span
-                            class="ft_Weight_600 ml_5">post</span>
-                            <img src={require("assets/images/icons/icn_folder.png")}
-                                class="inline_img" />
-                        </h5>
-                        <div class="btn_group">
-                            <a href="#" role="button"
-                                class="theme_btn theme_outline_primary text_sendry min_w_170">Remove</a>
-                        </div>
-                        <span class="durations">1 day ago</span>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="lps_media">
+                <figure class="lps_fig lps_fig_circle">
+                    <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                </figure>
+                <div class="lps_media_body">
+                    <h5 class="lps_inline_img_wrp">username added your <span
+                        class="ft_Weight_600 ml_5">post</span> <img src={require("assets/images/icons/icn_folder.png")}
+                                                                    class="inline_img"/></h5>
+                    <div class="btn_group">
+                        <a href="#" role="button"
+                           class="theme_btn theme_outline_primary text_sendry min_w_170">Remove</a>
                     </div>
+                    <span class="durations">1 day ago</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5 class="lps_inline_img_wrp">username <img src={require("assets/images/icons/icn_repeat.png")}
-                            class="inline_img" /> your <span class="ft_Weight_600 ml_5">post</span>
-                        </h5>
-                        <span class="durations">1 week ago</span>
-                        <span class="durations">1 week ago</span>
-                    </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="lps_media">
+                <figure class="lps_fig lps_fig_circle">
+                    <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                </figure>
+                <div class="lps_media_body">
+                    <h5 class="lps_inline_img_wrp">username <img src={require("assets/images/icons/icn_repeat.png")}
+                                                                 class="inline_img"/> your <span class="ft_Weight_600 ml_5">post</span></h5>
+                    <span class="durations">1 week ago</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5 class="lps_inline_img_wrp">username <img src={require("assets/images/icons/icn_mouth.png")}
-                            class="inline_img" /> your <span class="ft_Weight_600 ml_5"> post</span></h5>
-                        <span class="durations">1 week ago</span>
-                    </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="lps_media">
+                <figure class="lps_fig lps_fig_circle">
+                    <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                </figure>
+                <div class="lps_media_body">
+                    <h5 class="lps_inline_img_wrp">username <img src={require("assets/images/icons/icn_mouth.png")}
+                                                                 class="inline_img"/> your <span class="ft_Weight_600 ml_5"> post</span></h5>
+                    <span class="durations">1 week ago</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle lps_fig_circle_xs">
-                        <img src={require("assets/images/thumbnails/logo.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5>You've been approved <br /> <small>You can now post</small></h5>
-                        <span class="durations">1 month ago</span>
-                    </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="lps_media">
+                <figure class="lps_fig lps_fig_circle lps_fig_circle_xs">
+                    <img src={require("assets/images/thumbnails/logo.svg")} alt="User"/>
+                </figure>
+                <div class="lps_media_body">
+                    <h5>You've been approved <br/> <small>You can now post</small></h5>
+                    <span class="durations">1 month ago</span>
                 </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5>Message from Lips</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur a dipiscing elit sed do eiusmod tempor incidi</p>
-                        <span class="durations">1 minute ago</span>
-                    </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="lps_media">
+                <figure class="lps_fig lps_fig_circle">
+                    <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                </figure>
+                <div class="lps_media_body">
+                    <h5>Message from Lips</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur a dipiscing elit sed do eiusmod tempor incidi</p>
+                    <span class="durations">1 minute ago</span>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </li>
+        </>
     )
 }
