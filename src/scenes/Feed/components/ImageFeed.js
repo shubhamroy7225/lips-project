@@ -63,7 +63,7 @@ const ImageFeed = ({ reposted }) => {
                     </figure> */}
                     <a href="javascript:void(0);" onClick={() => setShowWidget(!showWidget)}>
                         <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
-                            <img src={require("assets/images/thumbnails/thumbnail3.jpg")} alt="Add Image" />
+                            <img src={require("assets/images/thumbnails/thumbnail2.jpg")} alt="Add Image" />
                         </figure>
                     </a>
                     <RepostModal />
