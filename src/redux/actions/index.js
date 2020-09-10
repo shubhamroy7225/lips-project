@@ -9,7 +9,8 @@ export {
 } from './usersActions/action';
 
 export {
-    getAllHashTags
+    getAllHashTags,
+    setFavoriteAvoidTags
 } from './feedsActions/action';
 
 //export {

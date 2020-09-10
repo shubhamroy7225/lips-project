@@ -29,3 +29,19 @@ export const getAllHashTags = (credentials) =>  {
         return error;
       })
 }
+export const setFavoriteAvoidTags = (credentials) =>  {
+  store.dispatch(hashTagPending());
+  return API.setFavoriteAvoidTags(credentials)
+      .then(response => {
+        if (response.data.error || response.data.code) {
+          //errorHandler(response.data);
+        }
+        else {
+          store.dispatch(hashTagSuccessful(response.data))
+        }
+      }).catch(error => {
+        console.log(error);
+        // errorHandler(error);
+        return error;
+      })
+}

@@ -14,12 +14,16 @@ export default () => {
     }
   }, []);
 
-  const toggleHashTag = (hash) => {
-    if (selectTags.includes(hash)) {
-      selectTags.splice(selectTags.findIndex(e => e === hash), 1);
+  const toggleHashTag = (tag) => {
+    if (selectTags.includes(tag.name)) {
+      selectTags.splice(selectTags.findIndex(e => e.name === tag.name), 1);
       setSelectTags([...selectTags]);
     }
-    else setSelectTags([...selectTags, hash]);
+    else setSelectTags([...selectTags, tag.name]);
+  };
+
+  const addFavoriteTags = () => {
+    actions.setFavoriteAvoidTags({hashtags: {show: selectTags, hide: [], remove: []}});
   };
 
   return (
@@ -35,8 +39,8 @@ export default () => {
                          </h5>
                       </article>
                       <ul className="lps_btn_grps lps_ul lps_hash_ul">
-                        {["first", "sec", "third", "forth"].map((hash, index) =>
-                                  <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(hash) ? "active" : ""}`} onClick={() => toggleHashTag(hash)}>#{hash}</button>
+                        {hashTags.map((tag, index) =>
+                                  <li><button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button></li>
                         )}
                          {/*<li>
                             <button className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</button>
@@ -58,8 +62,8 @@ export default () => {
                           </li>*/}
                       </ul>
                       <div className="pos_wrp onboarding_btm">
-                         <Link to="/avoid-tags" className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">
-                         Continue</Link>
+                         <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">
+                         Continue</button>
                       </div>
                    </div>
                 </div>
