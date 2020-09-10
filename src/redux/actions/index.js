@@ -8,6 +8,10 @@ export {
     //resetPassword
 } from './usersActions/action';
 
+export {
+    getAllHashTags
+} from './feedsActions/action';
+
 //export {
 //    addHistory,
 //} from './usersActions/miscAction'

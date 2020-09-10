@@ -13,7 +13,7 @@ function getHistory() {
 }
 
 export const login = (credentials) => {
-    loginPending();
+    store.dispatch(loginPending());
     return API.login(credentials)
         .then(response => {
             if (response.data.error || response.data.code) {
@@ -29,8 +29,8 @@ export const login = (credentials) => {
                 storage.set('token', authToken);
                 storage.set('refresh_token', refreshToken);
                 storage.set('user', user);
-                loginSuccessful(response.data.user)
-                authorizeUser(user, authToken, refreshToken);
+                store.dispatch(loginSuccessful(response.data.user))
+                store.dispatch(authorizeUser(user, authToken, refreshToken));
             }
         }).catch(error => {
             console.log(error);
@@ -40,8 +40,7 @@ export const login = (credentials) => {
 }
 
 export const signup = (credentials) => {
-    debugger
-    signupPending();
+    store.dispatch(signupPending());
     return API.signup(credentials)
         .then(response => {
             if (response.data.error || response.data.code) {
@@ -55,8 +54,8 @@ export const signup = (credentials) => {
                 storage.set('token', authToken);
                 storage.set('refresh_token', refreshToken);
                 storage.set('user', user);
-                signupSuccessful(response.data.user)
-                return authorizeUser(user, authToken, refreshToken);
+                store.dispatch(signupSuccessful(response.data.user));
+                return  store.dispatch(authorizeUser(user, authToken, refreshToken));
             }
         }).catch(error => {
             console.log(error);

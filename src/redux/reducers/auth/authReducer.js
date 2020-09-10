@@ -45,10 +45,12 @@ export const initialState = {
 export const authReducer = createReducer({
     [loginPending]: (state) =>
         updateObject(state, { isloading: true }),
-    [loginSuccessful]: (state, payload) =>
-        updateObject(state, {
+    [loginSuccessful]: (state, payload) => {
+        debugger
+        return updateObject(state, {
             isloading: false, user: payload ? payload.user : state.user,
-        }),
+        })
+    },
     [signupPending]: (state) =>
         updateObject(state, { isloading: true }),
     [signupSuccessful]: (state, payload) =>

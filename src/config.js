@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import storage from 'utility/storage';
 export const BASE_URL = () => {
   let url;
   if (process.env.REACT_APP_ENV === 'development') {
@@ -20,5 +20,6 @@ export const API_VERSION = "/v1"
 const instance = axios.create({
   baseURL: BASE_URL()
 });
-
+const token = storage.get("token", null);
+if (token) instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 export default instance;
