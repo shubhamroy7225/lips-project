@@ -3,10 +3,11 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import MenuOptionSlider from '../components/MenuOptionSlider';
 import ImageItem from '../components/ImageItem';
+import { isMobile } from 'react-device-detect';
 
 const Likes = () => {
     return (
-        <div id="wrap">
+        <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div class="lps_container liked_con">
                 <div class="lps_inner_wrp">
                     <div class="lps_inner_cont">

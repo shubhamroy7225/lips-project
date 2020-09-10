@@ -3,6 +3,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import MenuOptionSlider from 'scenes/Feed/components/MenuOptionSlider';
 import $ from 'jquery';
+import { isMobile } from 'react-device-detect';
 
 const FollowerItem = (props) => {
     return (
@@ -45,7 +46,7 @@ const Profile = () => {
     }, [])
 
     return (
-        <div id="wrap">
+        <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div class="lps_container bg_grayCCC">
                 <div class="lps_list">
                     <div class="lps_inner_wrp lps_inner_wrp_media">

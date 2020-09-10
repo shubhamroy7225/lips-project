@@ -33,6 +33,7 @@ import SettingCommunityGuidelines from 'scenes/Setting/CommunityGuidelines';
 import NoNetwork from 'scenes/components/NoNetwork';
 
 import ContactUser from 'scenes/ContactUser';
+import PostApproval from 'scenes/Feed/PostApproval';
 
 const Router = (props) => {
     let routeList = null;
@@ -66,6 +67,9 @@ const Router = (props) => {
             <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
             <Route exact path={routes.LANDING} component={Landing} />
             <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
+
+            {/* Approval for posting */}
+            <Route exact path={routes.POST_APPROVAL} component={PostApproval} />
 
             <Route exact path={routes.SETTING} component={Setting} />
             <Route exact path={routes.MY_ACCOUNT} component={MyAccount} />

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import SearchInput from './components/SearchInput';
 import MenuOptionSlider from '../components/MenuOptionSlider';
 import ImageItem from '../components/ImageItem';
+import { isMobile } from 'react-device-detect';
 
 const ExploreFeed = (props) => {
     useEffect(() => {
@@ -12,7 +13,7 @@ const ExploreFeed = (props) => {
     });
 
     return (
-        <div id="wrap">
+        <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div className="lps_container">
                 <SearchInput />
                 <div className="category_block browse_category">

@@ -17,11 +17,11 @@ const removeBodyClass = className => document.body.classList.remove(className);
 
 const App = (props) => {
   useEffect(() => {
-    if (isBrowser) {
-      addBodyClass("lps_xl_view")
-    } else {
-      removeBodyClass("lps_xl_view")
-    }
+    // if (isBrowser) {
+    //   addBodyClass("lps_xl_view")
+    // } else {
+    //   removeBodyClass("lps_xl_view")
+    // }
   })
 
   const detectedNetworkChange = (isOnline) => {

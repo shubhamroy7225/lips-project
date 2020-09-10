@@ -44,7 +44,7 @@ const MainFeed = (props) => {
         )
     } else {
         return (
-            <div id="wrap">
+            <div id="wrap" className="lps_xl_view">
                 <div className="lps_container main_feed_cont">
                     <ImageFeed />
                     <ImageFeed />
