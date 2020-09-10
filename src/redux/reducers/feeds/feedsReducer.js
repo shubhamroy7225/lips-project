@@ -11,7 +11,7 @@ const updateObject = (oldState, updatedProps) => {
 
 //actions
 export const hashTagPending = createAction('Hash tag API started fetching');
-export const hashTagSuccessful = createAction('Hash tag API successful', (hashtag) => ({ hashtag }));
+export const hashTagSuccessful = createAction('Hash tag API successful', (hashtag) => (hashtag));
 
 hashTagPending.assignTo(store);
 hashTagSuccessful.assignTo(store);
@@ -24,8 +24,8 @@ export const initialState = {
 export const feedsReducer = createReducer({
     [hashTagPending]: (state) =>
         updateObject(state, { isloading: true }),
-    [hashTagSuccessful]: (state, payload) =>  updateObject(state, {
+    [hashTagSuccessful]: (state, payload) =>   updateObject(state, {
             isloading: false, hashTags: payload.hashtags,
-        }),
+        })
 
 }, initialState); // <-- This is the default state
