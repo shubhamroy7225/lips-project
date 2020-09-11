@@ -21,6 +21,6 @@ const instance = axios.create({
   baseURL: BASE_URL()
 });
 const token = storage.get("token", null);
-debugger
+
 if (token) instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 export default instance;

@@ -4,7 +4,7 @@ import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
-import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, logout, completeOnBorading } from 'redux/actions/auth';
+import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
@@ -45,6 +45,7 @@ export const signup = (credentials) => {
         .then(response => {
             if (response.data.error || response.data.code) {
                 // errorHandler(response.data);
+            } else {
                 let user = response.data.user;
                 let authToken = response.data.authToken;
                 let refreshToken = response.data.refreshToken;
@@ -56,6 +57,23 @@ export const signup = (credentials) => {
                 storage.set('user', user);
                 store.dispatch(signupSuccessful(response.data.user));
                 return  store.dispatch(authorizeUser(user, authToken, refreshToken));
+            }
+        }).catch(error => {
+            console.log(error);
+            // errorHandler(error);
+            return error;
+        })
+}
+export const changePrivacy = ({privacy_settings}) => {
+    store.dispatch(changePrivacyPending());
+    return API.changePrivacy({privacy_settings})
+        .then(response => {
+            if (response.data.error || response.data.code) {
+                // errorHandler(response.data);
+            } else {
+                let user = storage.get('user', null);
+                storage.set('user', {...user, privacy_settings});
+                store.dispatch(changePrivacySuccessful({privacy_settings}));
             }
         }).catch(error => {
             console.log(error);

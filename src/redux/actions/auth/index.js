@@ -10,3 +10,5 @@ export const updateUser = createAction('Update user after authentication', (user
 export const logout = createAction('Update user after authentication');
 export const completeOnBorading = createAction('Complete on boarding flow');
 export const allowedToPost = createAction('Approved to post feeds');
+export const changePrivacyPending = createAction('Change Privacy policy of user');
+export const changePrivacySuccessful = createAction('Change Privacy policy of user successful');

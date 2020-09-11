@@ -41,3 +41,11 @@ export const resetPassword = (user) => {
         // defaultErrorHandler: false
     });
 };
+export const changePrivacy = (body) => {
+    return axios.put(`${API_VERSION}/user/settings/post`,body, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
