@@ -7,7 +7,6 @@ import MainFeed from 'scenes/Feed/Home';
 import Login from "scenes/Auth/Login";
 import Register from "scenes/Auth/Register";
 import ForgotPassword from "scenes/Auth/ForgotPassword";
-import ResetPassword from "scenes/Auth/ResetPassword";
 import TermsAndCondition from "scenes/OnBoarding/TermsAndCondition";
 import CommunityGuidelines from "scenes/OnBoarding/CommunityGuidelines";
 import AccountPrivacy from "scenes/OnBoarding/AccountPrivacy";
@@ -52,27 +51,22 @@ const Router = (props) => {
     //     )
     // } else {
     //when user is not logged in
-
     if (user) {
-    routeList = (
-        <Switch>
-            <Route exact path={routes.ROOT} component={MainFeed} />
-            <Route exact path={routes.CREATE} component={Create} />
-            <Route exact path={routes.EXPLORE} component={ExploreFeed} />
-            <Route exact path={routes.LIKES} component={Likes} />
-            <Route exact path={routes.PROFILE} component={Profile} />
-            <Route exact path={routes.LOGIN} component={Login} />
-            <Route exact path={routes.REGISTER} component={Register} />
-            <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
-            <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
-            <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
-            <Route exact path={routes.FORGOT_PASSWORD} component={ForgotPassword} />
-            <Route exact path={routes.RESET_PASSWORD} component={ResetPassword} />
-            <Route exact path={routes.ROOT} component={MainFeed} />
-            <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
-            <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
-            <Route exact path={routes.LANDING} component={Landing} />
-            <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
+        routeList = (
+            <Switch>
+                <Route exact path={routes.ROOT} component={MainFeed} />
+                <Route exact path={routes.CREATE} component={Create} />
+                <Route exact path={routes.EXPLORE} component={ExploreFeed} />
+                <Route exact path={routes.LIKES} component={Likes} />
+                <Route exact path={routes.PROFILE} component={Profile} />
+                <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
+                <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
+                <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
+                <Route exact path={routes.ROOT} component={MainFeed} />
+                <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
+                <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
+                <Route exact path={routes.LANDING} component={Landing} />
+                <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
 
                 {/* Approval for posting */}
                 <Route exact path={routes.POST_APPROVAL} component={PostApproval} />
