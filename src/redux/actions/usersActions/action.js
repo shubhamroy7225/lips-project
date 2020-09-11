@@ -13,16 +13,16 @@ function getHistory() {
     return history;
 }
 const setUserData = (data) => {
-    const {user, authToken, refreshToken} = data;
-    storage.set('token', authToken);
-    storage.set('refresh_token', refreshToken);
-    storage.set('user', user);
+    storage.set('token', data.authToken);
+    storage.set('refresh_token', data.refreshToken);
+    storage.set('user', data.user);
 };
 
 export const login = (credentials) => {
     store.dispatch(loginPending());
     return API.login(credentials)
         .then(response => {
+            const {user, authToken, refreshToken} = response.data;
             setUserData(response.data);
             store.dispatch(loginSuccessful(response.data.user));
             store.dispatch(authorizeUser(user, authToken, refreshToken));
@@ -34,7 +34,8 @@ export const signup = (credentials) => {
     store.dispatch(signupPending());
     return API.signup(credentials)
         .then(response => {
-            setUserData(response.data);
+            const {user, authToken, refreshToken} = response.data;
+            setUserData({user, authToken, refreshToken});
             store.dispatch(signupSuccessful(response.data.user));
             return  store.dispatch(authorizeUser(user, authToken, refreshToken));
         })
