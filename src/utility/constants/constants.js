@@ -33,6 +33,7 @@ export const PRIVATE_PATH = {
 export const NO_HEADER_ROUTES = {
     NO_NETWORK: "/network_error",
     POST_APPROVAL: '/post-approval',
+    LOGIN_TO_PROCEED: '/create-account'
 };
 
 

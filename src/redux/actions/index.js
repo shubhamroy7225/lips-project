@@ -6,6 +6,7 @@ export {
     completeOnBordingFlow,
     changePrivacy,
     forgotPassword,
+    verifyUsername
     //resetPassword
 } from './usersActions/action';
 

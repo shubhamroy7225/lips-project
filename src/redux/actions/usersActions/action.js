@@ -52,6 +52,12 @@ export const changePrivacy = ({privacy_settings}) => {
             return res
         })
 };
+export const verifyUsername = (user_name) => {
+    return API.verifyUsername(user_name)
+        .then(res => {
+            return res
+        })
+};
 
 export const forgotPassword = (credentials) => {
     store.dispatch(forgotpasswordPending());

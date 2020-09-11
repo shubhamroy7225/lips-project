@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import FeedWidget from 'scenes/Feed/components/FeedWidget';
-import { MobileView, BrowserView, isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import RepostModal from './FeedModal/RepostModal';
 import TaggedModal from './FeedModal/TaggedModal';
 import ReportModal from './FeedModal/ReportModal';
 import SharedModal from './FeedModal/SharedModal';
 import RemoveFeedModal from './FeedModal/RemoveFeedModal';
 import { routes } from 'utility/constants/constants';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
-const ImageFeed = ({ reposted, history }) => {
+const ImageFeed = ({ reposted, user }) => {
 
     const [showWidget, setShowWidget] = useState(false)
+    let history = useHistory()
+    debugger;
     if (isMobile) {
         return (
             <div className="lps_list">
@@ -35,7 +38,7 @@ const ImageFeed = ({ reposted, history }) => {
                         <div class="lps_media_body">
                             <div class="lps_media_body">
                                 <p class="mb_5">
-                                    <span class="text_primary ft_Weight_600"><a onClick={() => { history.push(routes.PROFILE) }}>username</a> </span> adipiscing elit, sed do eiusmod tempor incididunt elit
+                                    <span class="text_primary ft_Weight_600"><a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>username</a> </span> adipiscing elit, sed do eiusmod tempor incididunt elit
                                 </p>
                                 <a href="main_feed_full_post_description.html" class="lps_link more_zindex ft_Weight_600">more</a>
                             </div>
@@ -54,7 +57,7 @@ const ImageFeed = ({ reposted, history }) => {
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
-                                <p><span class="text_primary"><a onClick={() => { history.push(routes.PROFILE) }}>Jon snow </a></span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid unt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p><span class="text_primary"><a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>Jon snow </a></span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid unt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                             </div>
                         </div>
                     </div>
@@ -82,4 +85,17 @@ const ImageFeed = ({ reposted, history }) => {
 
 }
 
-export default withRouter(ImageFeed);
+const mapStateToProps = (state) => {
+    return {
+        user: state.authReducer.user,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageFeed);
+

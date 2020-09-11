@@ -5,7 +5,7 @@ import MenuOptionSlider from '../components/MenuOptionSlider';
 import ImageItem from '../components/ImageItem';
 import { isMobile } from 'react-device-detect';
 
-const Likes = () => {
+const Likes = (props) => {
     return (
         <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div class="lps_container liked_con">

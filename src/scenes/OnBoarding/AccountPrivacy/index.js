@@ -8,12 +8,9 @@ export default () => {
   const [privacy_settings, setPrivacy] = useState(user.privacy_settings);
 
   const changePrivacyPolicy = () => {
-    debugger
-
     actions.changePrivacy({privacy_settings}).then(res => {
       history.push("/customize-tags");
     });
-
   };
   return (
           <div id="wrap" className="mt_0">
