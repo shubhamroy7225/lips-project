@@ -18,25 +18,54 @@ const MenuOptionSlider = (props) => {
         }
     }
 
+    let createPostRoute = routes.CREATE
+    let likedPostRoute = routes.LIKES
+    let explorePostRoute = routes.EXPLORE
+    let profileRoute = routes.PROFILE
+
+    if (props.user) {
+        if (!props.user.account_approved) {
+            createPostRoute = routes.POST_APPROVAL;
+        }
+    } else {
+        createPostRoute = likedPostRoute = explorePostRoute = profileRoute = routes.LOGIN_TO_PROCEED;
+    }
+
     let menuItems = (
         <ul className="ul_list custom_ul">
             <li className="listed_item">
-                <Link to={props.isFeedApproved ? routes.CREATE : routes.POST_APPROVAL} className="collapse_links">
+                <Link to={{
+                    pathname: createPostRoute, state: {
+                        type: routes.CREATE
+                    }
+                }} className="collapse_links">
                     <img src={require("assets/images/icons/white_plus.svg")} className="ci_image" alt="plus" />
                 </Link>
             </li>
             <li className="listed_item">
-                <Link to={routes.EXPLORE} className="collapse_links">
+                <Link to={{
+                    pathname: explorePostRoute, state: {
+                        type: routes.EXPLORE
+                    }
+                }} className="collapse_links">
                     <img src={require("assets/images/icons/white_search.svg")} className="ci_image" alt="search" />
                 </Link>
             </li>
             <li className="listed_item">
-                <Link to={routes.LIKES} className="collapse_links">
+                <Link to={{
+                    pathname: likedPostRoute, state: {
+                        type: routes.LIKES
+                    }
+                }} className="collapse_links">
                     <img src={require("assets/images/icons/white_kiss.svg")} className="ci_image" alt="mouth" />
                 </Link>
             </li>
             <li className="listed_item">
-                <Link to={routes.PROFILE} className="collapse_links">
+                <Link to={{
+                    pathname: profileRoute, state: {
+                        type: routes.PROFILE
+                    }
+                }} className="collapse_links">
                     <img src={require("assets/images/icons/user_white.svg")} className="ci_image" alt="user" />
                 </Link>
             </li>
@@ -72,6 +101,7 @@ const MenuOptionSlider = (props) => {
 
 const mapStateToProps = (state) => ({
     isFeedApproved: state.authReducer.isFeedApproved,
+    user: state.authReducer.user
 });
 
 export default connect(mapStateToProps, null)(MenuOptionSlider);

@@ -35,6 +35,7 @@ import NoNetwork from 'scenes/components/NoNetwork';
 
 import ContactUser from 'scenes/ContactUser';
 import PostApproval from 'scenes/Feed/PostApproval';
+import NonRegisteredView from 'scenes/NonRegisteredView';
 
 const Router = (props) => {
     let routeList = null;
@@ -68,6 +69,7 @@ const Router = (props) => {
             <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
             <Route exact path={routes.LANDING} component={Landing} />
             <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
+            <Route exact path={routes.LOGIN_TO_PROCEED} component={NonRegisteredView} />
 
             {/* Approval for posting */}
             <Route exact path={routes.POST_APPROVAL} component={PostApproval} />

@@ -7,6 +7,7 @@ import { isMobile } from 'react-device-detect';
 import ImageFeed from 'scenes/Feed/components/ImageFeed';
 import TextFeed from 'scenes/Feed/components/TextFeed';
 import FollowerItem from './components/FollowerItem';
+import NonRegisteredView from 'scenes/NonRegisteredView';
 
 const ProfileHeader = ({ isUserProfile }) => {
     return (
@@ -81,7 +82,7 @@ const ProfileHeader = ({ isUserProfile }) => {
     )
 }
 
-const Profile = ({ isUserProfile }) => {
+const Profile = (props) => {
     useEffect(() => {
         $('.close_follow').on("click", function () {
             $('.followers_wrp').addClass('close');
@@ -96,61 +97,67 @@ const Profile = ({ isUserProfile }) => {
         });
     }, [])
 
-    return (
-        <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
-            <div class="lps_container bg_grayCCC">
-                <ProfileHeader isUserProfile={isUserProfile} />
-                {/* <!-- Lips Tab --> */}
-                <section class="lips_tab tabs_grid_view_sec">
-                    <ul class="tabs_block_cst">
-                        <li class="tab-link current" data-tab="tab-1">
-                            <figure class="lps_fig lps_fig_sm">
-                                <img src={require("assets/images/icons/icn_image_sm_white.svg")} alt="Picture" />
-                            </figure>
-                        </li>
-                    </ul>
+    if (props.user) {
+        return (
+            <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
+                <div class="lps_container bg_grayCCC">
+                    <ProfileHeader isUserProfile={props.isUserProfile} />
+                    {/* <!-- Lips Tab --> */}
+                    <section class="lips_tab tabs_grid_view_sec">
+                        <ul class="tabs_block_cst">
+                            <li class="tab-link current" data-tab="tab-1">
+                                <figure class="lps_fig lps_fig_sm">
+                                    <img src={require("assets/images/icons/icn_image_sm_white.svg")} alt="Picture" />
+                                </figure>
+                            </li>
+                        </ul>
 
-                    <div id="tab-1" class="tab-content_cst current">
-                        <div class="main_feed_cont">
-                            <div class="list_view">
-                                <ImageFeed />
-                                <ImageFeed />
-                                <TextFeed />
-                                <ImageFeed />
-                                <ImageFeed />
-                                <ImageFeed />
+                        <div id="tab-1" class="tab-content_cst current">
+                            <div class="main_feed_cont">
+                                <div class="list_view">
+                                    <ImageFeed />
+                                    <ImageFeed />
+                                    <TextFeed />
+                                    <ImageFeed />
+                                    <ImageFeed />
+                                    <ImageFeed />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                {/* <!-- Menu bottom here --> */}
-                <MenuOptionSlider />
-                {/* <!-- // Menu bottom here --> */}
+                    {/* <!-- Menu bottom here --> */}
+                    <MenuOptionSlider />
+                    {/* <!-- // Menu bottom here --> */}
 
-                {/* <!-- followers content --> */}
-                <div class="bg_grayCCC lps_h_100 followers_wrp close">
-                    <div class="lps_inner_wrp lps_inner_content lps_h_100 bg_grayCCC followers_wrp_inner">
-                        <div class="lps_title_wrp text_center lps_pos_rltv">
-                            <a class="lps_arrow_left close_follow" href="#">
-                                <img src={require("assets/images/icons/icn_close.png")} alt="Icon Arrow" class="lps_header_img" />
-                            </a>
-                            <div class="lps_txtFollow_center">
-                                <span class="lps_sm_folow">Followers</span>
+                    {/* <!-- followers content --> */}
+                    <div class="bg_grayCCC lps_h_100 followers_wrp close">
+                        <div class="lps_inner_wrp lps_inner_content lps_h_100 bg_grayCCC followers_wrp_inner">
+                            <div class="lps_title_wrp text_center lps_pos_rltv">
+                                <a class="lps_arrow_left close_follow" href="#">
+                                    <img src={require("assets/images/icons/icn_close.png")} alt="Icon Arrow" class="lps_header_img" />
+                                </a>
+                                <div class="lps_txtFollow_center">
+                                    <span class="lps_sm_folow">Followers</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="follow_overflow">
-                            <FollowerItem />
-                            <FollowerItem />
-                            <FollowerItem />
-                            <FollowerItem />
-                            <FollowerItem />
+                            <div class="follow_overflow">
+                                <FollowerItem />
+                                <FollowerItem />
+                                <FollowerItem />
+                                <FollowerItem />
+                                <FollowerItem />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        );
+    } else {
+        return <NonRegisteredView />
+    }
+
+
 }
 
 const mapStateToProps = (state) => ({
