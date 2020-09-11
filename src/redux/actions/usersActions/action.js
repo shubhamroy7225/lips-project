@@ -1,4 +1,5 @@
 //import { AuthActionTypes } from './actionType';
+import errorHandler from "utility/errorHandler/errorHandler"
 import * as API from '../../../api/authAPI';
 import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
@@ -17,13 +18,12 @@ export const login = (credentials) => {
     return API.login(credentials)
         .then(response => {
             if (response.data.error || response.data.code) {
-                //errorHandler(response.data);
+                errorHandler(response.data);
             }
             else {
                 let user = response.data.user;
                 let authToken = response.data.token;
                 let refreshToken = response.data.refresh_token;
-                debugger
                 console.log("user:" + user);
 
                 storage.set('token', authToken);
@@ -31,6 +31,7 @@ export const login = (credentials) => {
                 storage.set('user', user);
                 store.dispatch(loginSuccessful(response.data.user))
                 store.dispatch(authorizeUser(user, authToken, refreshToken));
+                return true
             }
         }).catch(error => {
             console.log(error);

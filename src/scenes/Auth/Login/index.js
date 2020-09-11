@@ -22,7 +22,8 @@ let LoginForm = (props) => {
     e.preventDefault();
     if (simpleValidator.current.allValid()) {
       AuthActions.login({user}).then(res =>{
-        history.push("/");
+        debugger
+        if (res) history.push("/");
       });
     } //check validations
     else {

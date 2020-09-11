@@ -1,5 +1,5 @@
 import axios from 'axios';
-import swal from 'sweetalert';
+import { toastMsg } from 'utility/utility';
 import { lowerCase } from 'lodash';
 import store from '../../redux/store/store';
 
@@ -9,19 +9,9 @@ export default function errorHandler(error) {
     }
  
     if (error.data){
-        swal({
-            icon: '',
-            title: 'Oops!',
-            text: error.data.error.message,
-            className: 'error-handler-modal'
-        });
-    }else if (error.message) {  
-        swal({
-            icon: '',
-            title: 'Oops!',
-            text: error.message,
-            className: 'error-handler-modal'
-        });
+        toastMsg(error.data, true);
+    }else if (error.message) {
+        toastMsg(error.message, true);
     }
 
     return Promise.reject(error.message);
