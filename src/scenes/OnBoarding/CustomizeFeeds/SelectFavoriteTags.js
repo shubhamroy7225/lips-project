@@ -44,10 +44,12 @@ export default () => {
                             Begin by choosing a few things you'd like to see more of.
                          </h5>
                       </article>
-                      <ul className="lps_btn_grps lps_ul lps_hash_ul">
+                      <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
+                        <li>
                         {hashTags.map((tag, index) =>
-                                  <li><button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button></li>
+                                  <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
                         )}
+                        </li>
                       </ul>
                       <div className="pos_wrp onboarding_btm">
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">

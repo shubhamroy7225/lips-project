@@ -39,10 +39,12 @@ export default () => {
                             Mark the ones you don't want to see and we will do our best to provide tag-based warnings.
                          </h5>
                       </article>
-                      <ul className="lps_btn_grps lps_ul lps_hash_ul">
+                      <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
+                        <li>
                         {hashTags.map((tag, index) =>
-                                <li><button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button></li>
+                                <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
                         )}
+                        </li>
                          {/*
                          <li className="mt_15">
                             <Link to="#" className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
