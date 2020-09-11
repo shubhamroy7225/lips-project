@@ -12,50 +12,33 @@ function getHistory() {
     const history = storeState.historyReducer.history;
     return history;
 }
+const setUserData = (data) => {
+    const {user, authToken, refreshToken} = data;
+    storage.set('token', authToken);
+    storage.set('refresh_token', refreshToken);
+    storage.set('user', user);
+};
 
 export const login = (credentials) => {
     store.dispatch(loginPending());
     return API.login(credentials)
         .then(response => {
-                let user = response.data.user;
-                let authToken = response.data.token;
-                let refreshToken = response.data.refresh_token;
-                console.log("user:" + user);
-
-                storage.set('token', authToken);
-                storage.set('refresh_token', refreshToken);
-                storage.set('user', user);
-                store.dispatch(loginSuccessful(response.data.user))
-                store.dispatch(authorizeUser(user, authToken, refreshToken));
-                return true
-        }).catch(error => {
-            console.log(error);
-            // errorHandler(error);
-            return error;
+            setUserData(response.data);
+            store.dispatch(loginSuccessful(response.data.user));
+            store.dispatch(authorizeUser(user, authToken, refreshToken));
+            return true
         })
-}
+};
 
 export const signup = (credentials) => {
     store.dispatch(signupPending());
     return API.signup(credentials)
         .then(response => {
-                let user = response.data.user;
-                let authToken = response.data.authToken;
-                let refreshToken = response.data.refreshToken;
-
-                console.log("user:" + user);
-
-                storage.set('token', authToken);
-                storage.set('refresh_token', refreshToken);
-                storage.set('user', user);
-                store.dispatch(signupSuccessful(response.data.user));
-                return  store.dispatch(authorizeUser(user, authToken, refreshToken));
-        }).catch(error => {
-            console.log(error);
-            // errorHandler(error);
-            return error;
+            setUserData(response.data);
+            store.dispatch(signupSuccessful(response.data.user));
+            return  store.dispatch(authorizeUser(user, authToken, refreshToken));
         })
-}
+};
 export const changePrivacy = ({privacy_settings}) => {
     store.dispatch(changePrivacyPending());
     return API.changePrivacy({privacy_settings})
@@ -63,30 +46,20 @@ export const changePrivacy = ({privacy_settings}) => {
                 let user = storage.get('user', null);
                 storage.set('user', {...user, privacy_settings});
                 store.dispatch(changePrivacySuccessful({privacy_settings}));
-        }).catch(error => {
-            console.log(error);
-            // errorHandler(error);
-            return error;
         })
-}
+};
 
 export const forgotPassword = (credentials) => {
     store.dispatch(forgotpasswordPending());
    return API.forgotPassword(credentials)
        .then(response => {
-        debugger
            if (response.data.error) {
-               toastMsg(response.data);
+               toastMsg(response.data, true);
           } else {
                toastMsg("Please check your email to reset your password!")
            }
 
            return response.data;
-       })
-       .catch(error => {
-           console.log(error);
-           // errorHandler(error);
-           return error;
        })
 };
 //
