@@ -2,8 +2,11 @@ import thunkMiddleware from 'redux-thunk';
 import loggerMiddleware from 'redux-logger';
 import promiseMiddleware from 'redux-promise-middleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { createStore, compose, applyMiddleware } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux';
+
 import * as actions from 'redux/actions/auth';
+import * as feedActions from 'redux/actions/feed';
+
 import reducers from '../reducers';
 import { assignAll } from 'redux-act';
 let composeEnhancers;
@@ -21,6 +24,7 @@ const configureStore = () => {
     }
     const store = createStore(reducers, composeEnhancers);
     assignAll(actions, store);
+    assignAll(feedActions, store);
     return store;
 }
 
