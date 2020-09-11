@@ -17,7 +17,7 @@ export default () => {
 
   const toggleHashTag = (tag) => {
     if (selectTags.includes(tag.name)) {
-      selectTags.splice(selectTags.findIndex(e => e.name === tag.name), 1);
+      selectTags.splice(selectTags.findIndex(e => e === tag.name), 1);
       setSelectTags([...selectTags]);
     }
     else setSelectTags([...selectTags, tag.name]);
@@ -25,7 +25,7 @@ export default () => {
 
   const addFavoriteTags = () => {
     actions.setFavoriteAvoidTags({hashtags: {hide: selectTags}}).then(res => {
-      history.push("/");
+      if(res) history.push("/");
     });
   };
   return (

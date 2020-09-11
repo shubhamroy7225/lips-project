@@ -1,4 +1,5 @@
 //import { AuthActionTypes } from './actionType';
+import axios  from 'config';
 import errorHandler from "utility/errorHandler/errorHandler"
 import * as API from '../../../api/authAPI';
 import storage from '../../../utility/storage';
@@ -13,19 +14,20 @@ function getHistory() {
     return history;
 }
 const setUserData = (data) => {
-    storage.set('token', data.authToken);
-    storage.set('refresh_token', data.refreshToken);
+    storage.set('token', data.token);
+    storage.set('refresh_token', data.refresh_token);
     storage.set('user', data.user);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 };
 
 export const login = (credentials) => {
     store.dispatch(loginPending());
     return API.login(credentials)
         .then(response => {
-            const {user, authToken, refreshToken} = response.data;
+            const {user, token, refresh_token} = response.data
             setUserData(response.data);
             store.dispatch(loginSuccessful(response.data.user));
-            store.dispatch(authorizeUser(user, authToken, refreshToken));
+            store.dispatch(authorizeUser(user, token, refresh_token));
             return true
         })
 };
@@ -34,34 +36,29 @@ export const signup = (credentials) => {
     store.dispatch(signupPending());
     return API.signup(credentials)
         .then(response => {
-            const {user, authToken, refreshToken} = response.data;
-            setUserData({user, authToken, refreshToken});
+            const {user, token, refresh_token} = response.data;
+            setUserData(response.data);
             store.dispatch(signupSuccessful(response.data.user));
-            return  store.dispatch(authorizeUser(user, authToken, refreshToken));
+            return  store.dispatch(authorizeUser(user, token, refresh_token));
         })
 };
 export const changePrivacy = ({privacy_settings}) => {
     store.dispatch(changePrivacyPending());
     return API.changePrivacy({privacy_settings})
-        .then(response => {
-                let user = storage.get('user', null);
-                storage.set('user', {...user, privacy_settings});
-                store.dispatch(changePrivacySuccessful({privacy_settings}));
+        .then(res => {
+            let user = storage.get('user', null);
+            storage.set('user', {...user, privacy_settings});
+            store.dispatch(changePrivacySuccessful({privacy_settings}));
+            return res
         })
 };
 
 export const forgotPassword = (credentials) => {
     store.dispatch(forgotpasswordPending());
-   return API.forgotPassword(credentials)
-       .then(response => {
-           if (response.data.error) {
-               toastMsg(response.data, true);
-          } else {
-               toastMsg("Please check your email to reset your password!")
-           }
-
-           return response.data;
-       })
+    return API.forgotPassword(credentials)
+        .then(response => {
+            return response.data;
+        })
 };
 //
 //export const resetPassword = (credentials) => dispatch => dispatch({
