@@ -29,16 +29,18 @@ export default () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (simpleValidator.current.allValid()) {
-      delete user.confirm_password;
-      AuthActions.signup({user}).then(res =>{
-        history.push("/terms-and-condition");
+      AuthActions.varifyUsername(user.user_name).then(res => {
+        delete user.confirm_password;
+        AuthActions.signup({user}).then(res => {
+          history.push("/terms-and-condition");
+        });
       });
-
-    } //check validations
-    else {
-      simpleValidator.current.showMessages(); //show validation messages
-      forceUpdate(1)
     }
+    else {
+        simpleValidator.current.showMessages(); //show validation messages
+        forceUpdate(1)
+      }
+
   };
 
   const [passwordShown, setPasswordShown] = useState(false);
