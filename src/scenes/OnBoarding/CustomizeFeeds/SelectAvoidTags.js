@@ -3,12 +3,14 @@ import {useSelector} from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as actions from "redux/actions";
 export default () => {
-  const {hashTags} = useSelector(store => store.feedsReducer);
+  const history = useHistory();
+  const {hashTags} = useSelector(store => store.feedReducer);
   const [selectTags, setSelectTags] = useState([]);
   const [loaded, setLoaded] = useState(false);
   console.log(hashTags);
   useEffect(() => {
     if (!loaded) {
+      setLoaded(true)
       actions.getAllHashTags();
     }
   }, []);
@@ -22,7 +24,9 @@ export default () => {
   };
 
   const addFavoriteTags = () => {
-    actions.setFavoriteAvoidTags({hashtags: {hide: selectTags, show: [], remove: []}});
+    actions.setFavoriteAvoidTags({hashtags: {hide: selectTags}}).then(res => {
+      history.push("/");
+    });
   };
   return (
           <div id="wrap" className="mt_0">
@@ -36,30 +40,14 @@ export default () => {
                          </h5>
                       </article>
                       <ul className="lps_btn_grps lps_ul lps_hash_ul">
-                         <li>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                         </li>
-                         <li>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                         </li>
-                         <li>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                         </li>
-                         <li>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                         </li>
+                        {hashTags.map((tag, index) =>
+                                <li><button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button></li>
+                        )}
+                         {/*
                          <li className="mt_15">
                             <Link to="#" className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
                             View more</Link>
-                         </li>
+                         </li>*/}
                       </ul>
                       <div className="pos_wrp onboarding_btm">
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">Browse</button>

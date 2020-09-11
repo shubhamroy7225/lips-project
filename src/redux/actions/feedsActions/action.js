@@ -4,7 +4,7 @@ import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
-import { hashTagPending, hashTagSuccessful } from 'redux/reducers/feeds/feedsReducer';
+import { hashTagPending, hashTagSuccessful } from 'redux/actions/feed';
 //import store from 'redux/store/store';
 
 function getHistory() {
@@ -36,9 +36,7 @@ export const setFavoriteAvoidTags = (credentials) =>  {
         if (response.data.error || response.data.code) {
           //errorHandler(response.data);
         }
-        else {
-          store.dispatch(hashTagSuccessful(response.data))
-        }
+        return true;
       }).catch(error => {
         console.log(error);
         // errorHandler(error);
