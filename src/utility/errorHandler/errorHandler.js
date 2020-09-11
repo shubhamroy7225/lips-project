@@ -9,7 +9,7 @@ export default function errorHandler(error) {
     }
  
     if (error.data){
-        toastMsg(error.data, true);
+        toastMsg(error.data.message, true);
     }else if (error.message) {
         toastMsg(error.message, true);
     }

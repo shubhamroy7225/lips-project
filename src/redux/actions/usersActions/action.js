@@ -17,10 +17,6 @@ export const login = (credentials) => {
     store.dispatch(loginPending());
     return API.login(credentials)
         .then(response => {
-            if (response.data.error || response.data.code) {
-                errorHandler(response.data);
-            }
-            else {
                 let user = response.data.user;
                 let authToken = response.data.token;
                 let refreshToken = response.data.refresh_token;
@@ -32,7 +28,6 @@ export const login = (credentials) => {
                 store.dispatch(loginSuccessful(response.data.user))
                 store.dispatch(authorizeUser(user, authToken, refreshToken));
                 return true
-            }
         }).catch(error => {
             console.log(error);
             // errorHandler(error);
@@ -44,9 +39,6 @@ export const signup = (credentials) => {
     store.dispatch(signupPending());
     return API.signup(credentials)
         .then(response => {
-            if (response.data.error || response.data.code) {
-                // errorHandler(response.data);
-            } else {
                 let user = response.data.user;
                 let authToken = response.data.authToken;
                 let refreshToken = response.data.refreshToken;
@@ -58,7 +50,6 @@ export const signup = (credentials) => {
                 storage.set('user', user);
                 store.dispatch(signupSuccessful(response.data.user));
                 return  store.dispatch(authorizeUser(user, authToken, refreshToken));
-            }
         }).catch(error => {
             console.log(error);
             // errorHandler(error);
@@ -69,13 +60,9 @@ export const changePrivacy = ({privacy_settings}) => {
     store.dispatch(changePrivacyPending());
     return API.changePrivacy({privacy_settings})
         .then(response => {
-            if (response.data.error || response.data.code) {
-                // errorHandler(response.data);
-            } else {
                 let user = storage.get('user', null);
                 storage.set('user', {...user, privacy_settings});
                 store.dispatch(changePrivacySuccessful({privacy_settings}));
-            }
         }).catch(error => {
             console.log(error);
             // errorHandler(error);
