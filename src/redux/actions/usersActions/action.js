@@ -52,8 +52,8 @@ export const changePrivacy = ({privacy_settings}) => {
             return res
         })
 };
-export const varifyUsername = (user_name) => {
-    return API.varifyUsername(user_name)
+export const verifyUsername = (user_name) => {
+    return API.verifyUsername(user_name)
         .then(res => {
             return res
         })

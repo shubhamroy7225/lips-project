@@ -49,4 +49,4 @@ export const changePrivacy = (body) => {
         },
     });
 };
-export const varifyUsername = (name) => axios.get(`${API_VERSION}/auth/username/${name}`);
+export const verifyUsername = (name) => axios.get(`${API_VERSION}/auth/username/${name}`);

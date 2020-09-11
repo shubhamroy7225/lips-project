@@ -29,7 +29,7 @@ export default () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (simpleValidator.current.allValid()) {
-      AuthActions.varifyUsername(user.user_name).then(res => {
+      AuthActions.verifyUsername(user.user_name).then(res => {
         delete user.confirm_password;
         AuthActions.signup({user}).then(res => {
           history.push("/terms-and-condition");
