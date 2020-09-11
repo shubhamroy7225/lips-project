@@ -12,3 +12,5 @@ export const completeOnBorading = createAction('Complete on boarding flow');
 export const allowedToPost = createAction('Approved to post feeds');
 export const changePrivacyPending = createAction('Change Privacy policy of user');
 export const changePrivacySuccessful = createAction('Change Privacy policy of user successful');
+export const forgotpasswordPending = createAction('forgot password API started fetching');
+export const forgotpasswordSuccessful = createAction('forgot password API successful');

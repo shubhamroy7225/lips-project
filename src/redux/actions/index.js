@@ -4,8 +4,8 @@ export {
     //authorizeUser,
     signOut,
     completeOnBordingFlow,
-    changePrivacy
-    //forgotPassword,
+    changePrivacy,
+    forgotPassword,
     //resetPassword
 } from './usersActions/action';
 

@@ -4,7 +4,7 @@ import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
-import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful } from 'redux/actions/auth';
+import { loginPending, loginSuccessful, signupPending, signupSuccessful,  forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
@@ -82,27 +82,25 @@ export const changePrivacy = ({privacy_settings}) => {
         })
 }
 
-//export const forgotPassword = (credentials) => dispatch => dispatch({
-//    type: AuthActionTypes.FORGOT_PASSWORD,
-//    payload: API.forgotPassword(credentials)
-//        .then(response => {
-//
-//            if (response.data.error) {
-//                toastMsg(response.data);
-//            } else {
-//                toastMsg("Please check your email to reset your password!")
-//                const history = getHistory();
-//                history.push(routes.LOGIN);
-//            }
-//
-//            return response.data;
-//        })
-//        .catch(error => {
-//            console.log(error);
-//            // errorHandler(error);
-//            return error;
-//        })
-//});
+export const forgotPassword = (credentials) => {
+    store.dispatch(forgotpasswordPending());
+   return API.forgotPassword(credentials)
+       .then(response => {
+        debugger
+           if (response.data.error) {
+               toastMsg(response.data);
+          } else {
+               toastMsg("Please check your email to reset your password!")
+           }
+
+           return response.data;
+       })
+       .catch(error => {
+           console.log(error);
+           // errorHandler(error);
+           return error;
+       })
+};
 //
 //export const resetPassword = (credentials) => dispatch => dispatch({
 //    type: AuthActionTypes.RESET_PASSWORD,

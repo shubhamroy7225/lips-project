@@ -43,6 +43,13 @@ export const authReducer = createReducer({
                 user: payload.user,
                 refresh_token: payload.refresh_token,
             }),
+    [actions.forgotpasswordPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.forgotpasswordSuccessful]: (state, payload) => {
+        return updateObject(state, {
+            isloading: false
+        })
+    },     
     [actions.updateUser]: (state, payload) =>
         updateObject(state,
             {

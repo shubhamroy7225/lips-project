@@ -22,7 +22,7 @@ export const signup = (credentials) => {
 
 export const forgotPassword = (credentials) => {
 
-    return axios.post('/auth/forgotpassword', credentials, {
+    return axios.post(`${API_VERSION}/auth/forgotpassword`, credentials, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
