@@ -1,18 +1,27 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { routes } from 'utility/constants/constants';
 import { isMobile } from 'react-device-detect';
-
-const MenuOptionSlider = () => {
+import { connect } from 'react-redux';
+const MenuOptionSlider = (props) => {
 
     const toggle = () => {
         window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
     }
 
+    const postFeed = () => {
+        console.log(props.isFeedApproved);
+        if (props.isFeedApproved) {
+
+        } else {
+
+        }
+    }
+
     let menuItems = (
         <ul className="ul_list custom_ul">
             <li className="listed_item">
-                <Link to={routes.CREATE} className="collapse_links">
+                <Link to={props.isFeedApproved ? routes.CREATE : routes.POST_APPROVAL} className="collapse_links">
                     <img src={require("assets/images/icons/white_plus.svg")} className="ci_image" alt="plus" />
                 </Link>
             </li>
@@ -60,4 +69,9 @@ const MenuOptionSlider = () => {
 
 }
 
-export default MenuOptionSlider
+
+const mapStateToProps = (state) => ({
+    isFeedApproved: state.authReducer.isFeedApproved,
+});
+
+export default connect(mapStateToProps, null)(MenuOptionSlider);

@@ -6,9 +6,12 @@ import TaggedModal from './FeedModal/TaggedModal';
 import ReportModal from './FeedModal/ReportModal';
 import SharedModal from './FeedModal/SharedModal';
 import RemoveFeedModal from './FeedModal/RemoveFeedModal';
+import { routes } from 'utility/constants/constants';
+import { withRouter } from 'react-router-dom';
 
 
-const ImageFeed = ({ reposted }) => {
+const ImageFeed = ({ reposted, history }) => {
+
     const [showWidget, setShowWidget] = useState(false)
     if (isMobile) {
         return (
@@ -32,7 +35,7 @@ const ImageFeed = ({ reposted }) => {
                         <div class="lps_media_body">
                             <div class="lps_media_body">
                                 <p class="mb_5">
-                                    <span class="text_primary ft_Weight_600">username </span> adipiscing elit, sed do eiusmod tempor incididunt elit
+                                    <span class="text_primary ft_Weight_600"><a onClick={() => { history.push(routes.PROFILE) }}>username</a> </span> adipiscing elit, sed do eiusmod tempor incididunt elit
                                 </p>
                                 <a href="main_feed_full_post_description.html" class="lps_link more_zindex ft_Weight_600">more</a>
                             </div>
@@ -51,7 +54,7 @@ const ImageFeed = ({ reposted }) => {
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
-                                <p><span class="text_primary">Jon snow </span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid unt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p><span class="text_primary"><a onClick={() => { history.push(routes.PROFILE) }}>Jon snow </a></span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid unt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +66,7 @@ const ImageFeed = ({ reposted }) => {
                     </figure> */}
                     <a href="javascript:void(0);" onClick={() => setShowWidget(!showWidget)}>
                         <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
-                            <img src={require("assets/images/thumbnails/thumbnail3.jpg")} alt="Add Image" />
+                            <img src={require("assets/images/thumbnails/thumbnail2.jpg")} alt="Add Image" />
                         </figure>
                     </a>
                     <RepostModal />
@@ -79,4 +82,4 @@ const ImageFeed = ({ reposted }) => {
 
 }
 
-export default ImageFeed
+export default withRouter(ImageFeed);

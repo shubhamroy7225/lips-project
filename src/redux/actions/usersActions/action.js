@@ -4,7 +4,7 @@ import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
-import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, logout, completeOnBorading } from 'redux/reducers/auth/authReducer';
+import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, logout, completeOnBorading } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
@@ -17,7 +17,7 @@ export const login = (credentials) => {
     return API.login(credentials)
         .then(response => {
             if (response.data.error || response.data.code) {
-                 //errorHandler(response.data);
+                //errorHandler(response.data);
             }
             else {
                 let user = response.data.user;

@@ -27,10 +27,12 @@ export const PRIVATE_PATH = {
     CREATE: '/create',
     LIKES: '/likes',
     PROFILE: '/profile',
+    OTHER_PROFILE: '/profile/:id',
 };
 
 export const NO_HEADER_ROUTES = {
-    NO_NETWORK: "/network_error"
+    NO_NETWORK: "/network_error",
+    POST_APPROVAL: '/post-approval',
 };
 
 

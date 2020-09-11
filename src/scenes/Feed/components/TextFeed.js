@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import FeedWidget from 'scenes/Feed/components/FeedWidget';
 import { isMobile } from 'react-device-detect';
+import { withRouter } from 'react-router-dom';
+import { routes } from 'utility/constants/constants';
 
 
-const TextFeed = () => {
+const TextFeed = ({history}) => {
     const [showWidget, setShowWidget] = useState(false)
 
     if (isMobile) {
         return (
             <div className="lps_list">
                 <div className="lps_sm_shape lps_sm_shape1"></div>
-                <div class="lps_inner_wrp bg_gray_feed lps_mt_50" onClick={() => setShowWidget(!showWidget)}>
+                <div class="lps_inner_wrp bg_gray_feed lps_mt_50">
                     <div className="lps_inner_cont lps_pos_rltv">
                         <article className="lps_art">
+                        <a id="trigger_text_feed1" onClick={() => setShowWidget(!showWidget)}>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                                 et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -41,6 +44,7 @@ const TextFeed = () => {
                                 est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
                             modi tempora incidunt ut labore et dolore magnam aliquam </p>
                             <a href="main_feed_full_text.html" class="lps_link ft_Weight_600" title="more">more</a>
+                            </a>
                         </article>
                         <FeedWidget showWidget={showWidget} />
                     </div>
@@ -52,7 +56,7 @@ const TextFeed = () => {
                         </figure>
                         <div className="lps_media_body">
                             <div className="lps_media_body">
-                            <p><span class="text_primary ft_Weight_600">username </span></p>
+                            <p><span class="text_primary ft_Weight_600"><a onClick={() => { history.push(routes.PROFILE) }}>username</a> </span></p>
                             </div>
                         </div>
                     </div>
@@ -69,7 +73,7 @@ const TextFeed = () => {
                 </figure>
                 <div class="lps_media_body">
                   <div class="lps_media_body">
-                    <p><span class="text_primary">Jon snow </span></p>
+                    <p><span class="text_primary"><a onClick={() => { history.push(routes.PROFILE) }}>Jon snow</a> </span></p>
                   </div>
                 </div>
               </div>
@@ -78,6 +82,8 @@ const TextFeed = () => {
               <div class="lps_sm_shape lps_sm_shape1"></div>
               <div class="lps_inner_cont lps_pos_rltv">
               <article className="lps_art">
+              <a id="trigger_text_feed1" onClick={() => setShowWidget(!showWidget)}>
+
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                                 et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -106,14 +112,15 @@ const TextFeed = () => {
                                 est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
                             modi tempora incidunt ut labore et dolore magnam aliquam </p>
                             <a href="main_feed_full_text.html" className="lps_link" title="more">more</a>
+                            </a>
                         </article>
               </div>
             </div>
-           <FeedWidget/>
+            <FeedWidget showWidget={showWidget} />
           </div>
         );
     }
     
 }
 
-export default TextFeed
+export default withRouter(TextFeed)
