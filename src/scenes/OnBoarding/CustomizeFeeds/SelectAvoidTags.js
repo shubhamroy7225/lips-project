@@ -1,14 +1,28 @@
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import * as AuthActions from "redux/actions";
+import * as actions from "redux/actions";
 export default () => {
-  const history = useHistory();
-  const disptach = useDispatch();
+  const {hashTags} = useSelector(store => store.feedsReducer);
   const [selectTags, setSelectTags] = useState([]);
-  const completeOnBoard = () => {
-    disptach(AuthActions.completeOnBordingFlow());
-    history.push("/");
+  const [loaded, setLoaded] = useState(false);
+  console.log(hashTags);
+  useEffect(() => {
+    if (!loaded) {
+      actions.getAllHashTags();
+    }
+  }, []);
+
+  const toggleHashTag = (tag) => {
+    if (selectTags.includes(tag.name)) {
+      selectTags.splice(selectTags.findIndex(e => e.name === tag.name), 1);
+      setSelectTags([...selectTags]);
+    }
+    else setSelectTags([...selectTags, tag.name]);
+  };
+
+  const addFavoriteTags = () => {
+    actions.setFavoriteAvoidTags({hashtags: {hide: selectTags, show: [], remove: []}});
   };
   return (
           <div id="wrap" className="mt_0">
@@ -48,7 +62,7 @@ export default () => {
                          </li>
                       </ul>
                       <div className="pos_wrp onboarding_btm">
-                         <button onClick={completeOnBoard} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">Browse</button>
+                         <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">Browse</button>
                       </div>
                    </div>
                 </div>
