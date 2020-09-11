@@ -22,7 +22,7 @@ export const signup = (credentials) => {
 
 export const forgotPassword = (credentials) => {
 
-    return axios.post('/users/password', credentials, {
+    return axios.post(`${API_VERSION}/auth/forgotpassword`, credentials, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -39,5 +39,13 @@ export const resetPassword = (user) => {
             'Accept': 'application/json'
         },
         // defaultErrorHandler: false
+    });
+};
+export const changePrivacy = (body) => {
+    return axios.put(`${API_VERSION}/user/settings/post`,body, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
     });
 };

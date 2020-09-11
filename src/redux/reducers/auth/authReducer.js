@@ -43,6 +43,13 @@ export const authReducer = createReducer({
                 user: payload.user,
                 refresh_token: payload.refresh_token,
             }),
+    [actions.forgotpasswordPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.forgotpasswordSuccessful]: (state, payload) => {
+        return updateObject(state, {
+            isloading: false
+        })
+    },     
     [actions.updateUser]: (state, payload) =>
         updateObject(state,
             {
@@ -58,10 +65,16 @@ export const authReducer = createReducer({
                 resetPasswordToken: null
             }),
     [actions.completeOnBorading]: (state) => {
-        debugger
         return updateObject(state,
             {
                 isOnBoard: true,
+            })
+    },
+    [actions.changePrivacySuccessful]: (state, payload) => {
+        return updateObject(state,
+            {
+                isOnBoard: true,
+                user: {...user, privacy_settings: payload.privacy_settings}
             })
     },
     [actions.allowedToPost]: (state) => updateObject(state, { isFeedApproved: true })

@@ -1,14 +1,32 @@
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import * as AuthActions from "redux/actions";
+import * as actions from "redux/actions";
 export default () => {
   const history = useHistory();
-  const disptach = useDispatch();
+  const {hashTags} = useSelector(store => store.feedReducer);
   const [selectTags, setSelectTags] = useState([]);
-  const completeOnBoard = () => {
-    disptach(AuthActions.completeOnBordingFlow());
-    history.push("/");
+  const [loaded, setLoaded] = useState(false);
+  console.log(hashTags);
+  useEffect(() => {
+    if (!loaded) {
+      setLoaded(true)
+      actions.getAllHashTags();
+    }
+  }, []);
+
+  const toggleHashTag = (tag) => {
+    if (selectTags.includes(tag.name)) {
+      selectTags.splice(selectTags.findIndex(e => e === tag.name), 1);
+      setSelectTags([...selectTags]);
+    }
+    else setSelectTags([...selectTags, tag.name]);
+  };
+
+  const addFavoriteTags = () => {
+    actions.setFavoriteAvoidTags({hashtags: {hide: selectTags}}).then(res => {
+      if(res) history.push("/");
+    });
   };
   return (
           <div id="wrap" className="mt_0">
@@ -21,34 +39,20 @@ export default () => {
                             Mark the ones you don't want to see and we will do our best to provide tag-based warnings.
                          </h5>
                       </article>
-                      <ul className="lps_btn_grps lps_ul lps_hash_ul">
-                         <li>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                         </li>
-                         <li>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                         </li>
-                         <li>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                         </li>
-                         <li>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                            <Link to="#" className="theme_btn theme_outline_light" onClick={() => setSelectTags([...selectTags, "selected"])}>#Hashtag</Link>
-                         </li>
+                      <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
+                        <li>
+                        {hashTags.map((tag, index) =>
+                                <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
+                        )}
+                        </li>
+                         {/*
                          <li className="mt_15">
                             <Link to="#" className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
                             View more</Link>
-                         </li>
+                         </li>*/}
                       </ul>
                       <div className="pos_wrp onboarding_btm">
-                         <button onClick={completeOnBoard} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">Browse</button>
+                         <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">Browse</button>
                       </div>
                    </div>
                 </div>

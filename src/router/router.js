@@ -6,6 +6,7 @@ import MainFeed from 'scenes/Feed/Home';
 
 import Login from "scenes/Auth/Login";
 import Register from "scenes/Auth/Register";
+import ForgotPassword from "scenes/Auth/ForgotPassword";
 import TermsAndCondition from "scenes/OnBoarding/TermsAndCondition";
 import CommunityGuidelines from "scenes/OnBoarding/CommunityGuidelines";
 import AccountPrivacy from "scenes/OnBoarding/AccountPrivacy";
@@ -61,7 +62,7 @@ const Router = (props) => {
             <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
             <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
             <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
-            <Route exact path={routes.FORGOT_PASSWORD} component={() => <h1>Forgot password</h1>} />
+            <Route exact path={routes.FORGOT_PASSWORD} component={ForgotPassword} />
             <Route exact path={routes.ROOT} component={MainFeed} />
             <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
             <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />

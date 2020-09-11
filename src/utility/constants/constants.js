@@ -41,7 +41,7 @@ export const routes = {
     CUSTOMIZE_FEEDS: '/customize-tags',
     LOGIN: '/login',
     REGISTER: '/register',
-    FORGOT_PASSWORD: '/reset_password',
+    FORGOT_PASSWORD: '/forgot_password',
     TERMS_AND_CONDITION: '/terms-and-condition',
     SELECT_FAVORITE_TAGS: '/favorite-tags',
     SELECT_AVOID_TAGS: '/avoid-tags',

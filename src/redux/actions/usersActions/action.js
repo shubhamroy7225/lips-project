@@ -1,91 +1,65 @@
 //import { AuthActionTypes } from './actionType';
+import axios  from 'config';
+import errorHandler from "utility/errorHandler/errorHandler"
 import * as API from '../../../api/authAPI';
 import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
-import { loginPending, loginSuccessful, signupPending, signupSuccessful, authorizeUser, logout, completeOnBorading } from 'redux/actions/auth';
+import { loginPending, loginSuccessful, signupPending, signupSuccessful,  forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
     const history = storeState.historyReducer.history;
     return history;
 }
+const setUserData = (data) => {
+    storage.set('token', data.token);
+    storage.set('refresh_token', data.refresh_token);
+    storage.set('user', data.user);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+};
 
 export const login = (credentials) => {
-    loginPending();
+    store.dispatch(loginPending());
     return API.login(credentials)
         .then(response => {
-            if (response.data.error || response.data.code) {
-                //errorHandler(response.data);
-            }
-            else {
-                let user = response.data.user;
-                let authToken = response.data.token;
-                let refreshToken = response.data.refresh_token;
-
-                console.log("user:" + user);
-
-                storage.set('token', authToken);
-                storage.set('refresh_token', refreshToken);
-                storage.set('user', user);
-                loginSuccessful(response.data.user)
-                authorizeUser(user, authToken, refreshToken);
-            }
-        }).catch(error => {
-            console.log(error);
-            // errorHandler(error);
-            return error;
+            const {user, token, refresh_token} = response.data
+            setUserData(response.data);
+            store.dispatch(loginSuccessful(response.data.user));
+            store.dispatch(authorizeUser(user, token, refresh_token));
+            return true
         })
-}
+};
 
 export const signup = (credentials) => {
-    debugger
-    signupPending();
+    store.dispatch(signupPending());
     return API.signup(credentials)
         .then(response => {
-            if (response.data.error || response.data.code) {
-                // errorHandler(response.data);
-                let user = response.data.user;
-                let authToken = response.data.authToken;
-                let refreshToken = response.data.refreshToken;
-
-                console.log("user:" + user);
-
-                storage.set('token', authToken);
-                storage.set('refresh_token', refreshToken);
-                storage.set('user', user);
-                signupSuccessful(response.data.user)
-                return authorizeUser(user, authToken, refreshToken);
-            }
-        }).catch(error => {
-            console.log(error);
-            // errorHandler(error);
-            return error;
+            const {user, token, refresh_token} = response.data;
+            setUserData(response.data);
+            store.dispatch(signupSuccessful(response.data.user));
+            return  store.dispatch(authorizeUser(user, token, refresh_token));
         })
-}
+};
+export const changePrivacy = ({privacy_settings}) => {
+    store.dispatch(changePrivacyPending());
+    return API.changePrivacy({privacy_settings})
+        .then(res => {
+            let user = storage.get('user', null);
+            storage.set('user', {...user, privacy_settings});
+            store.dispatch(changePrivacySuccessful({privacy_settings}));
+            return res
+        })
+};
 
-//export const forgotPassword = (credentials) => dispatch => dispatch({
-//    type: AuthActionTypes.FORGOT_PASSWORD,
-//    payload: API.forgotPassword(credentials)
-//        .then(response => {
-//
-//            if (response.data.error) {
-//                toastMsg(response.data);
-//            } else {
-//                toastMsg("Please check your email to reset your password!")
-//                const history = getHistory();
-//                history.push(routes.LOGIN);
-//            }
-//
-//            return response.data;
-//        })
-//        .catch(error => {
-//            console.log(error);
-//            // errorHandler(error);
-//            return error;
-//        })
-//});
+export const forgotPassword = (credentials) => {
+    store.dispatch(forgotpasswordPending());
+    return API.forgotPassword(credentials)
+        .then(response => {
+            return response.data;
+        })
+};
 //
 //export const resetPassword = (credentials) => dispatch => dispatch({
 //    type: AuthActionTypes.RESET_PASSWORD,

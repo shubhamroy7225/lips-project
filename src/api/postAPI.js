@@ -1,16 +1,17 @@
 import axios, { API_VERSION } from '../config';
 
-export const fetchConfig = () => {
-    return axios.get(API_VERSION + 'config', {
+export const createPost = (credentials) => {
+    return axios.post(`${API_VERSION}/post`, credentials, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
+        // defaultErrorHandler: false
     });
 };
 
-export const presignUrl = (credentials) => {
-    return axios.patch(`${API_VERSION}/presign_url`,credentials, {
+export const updatePost = (credentials, id) => {
+    return axios.put(`${API_VERSION}/post/${id}`, credentials, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
