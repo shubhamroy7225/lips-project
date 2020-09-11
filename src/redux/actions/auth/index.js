@@ -14,3 +14,5 @@ export const changePrivacyPending = createAction('Change Privacy policy of user'
 export const changePrivacySuccessful = createAction('Change Privacy policy of user successful');
 export const forgotpasswordPending = createAction('forgot password API started fetching');
 export const forgotpasswordSuccessful = createAction('forgot password API successful');
+export const resetpasswordPending = createAction('reset password API started fetching');
+export const resetpasswordSuccessful = createAction('reset password API successful');

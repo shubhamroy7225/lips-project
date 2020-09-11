@@ -31,9 +31,9 @@ export const forgotPassword = (credentials) => {
     });
 };
 
-export const resetPassword = (user) => {
+export const resetPassword = (credentials) => {
 
-    return axios.put('/users/password', user, {
+    return axios.put(`${API_VERSION}/auth/resetpassword`, credentials, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'

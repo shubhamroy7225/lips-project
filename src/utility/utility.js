@@ -25,6 +25,12 @@ export const replaceAMPM = (time) => {
     }
 }
 
+export const getSearchParams = (history, key) => {
+  const queryParamsString = history.location.search.substring(1), // remove the "?" at the start
+      searchParams = new URLSearchParams( queryParamsString );
+  return searchParams.get(key)
+};
+
 export const closeCompaignUI = (enable) => {
     storage.set("close_campaign_ui", enable);
 }

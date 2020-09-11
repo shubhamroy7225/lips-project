@@ -55,8 +55,7 @@ export const authReducer = createReducer({
     [actions.resetpasswordSuccessful]: (state, payload) => {
         debugger
         return updateObject(state, {
-            isloading: false,
-            user: {...user, reset_password_token: payload.reset_password_token}
+            isloading: false
         })
     },      
     [actions.updateUser]: (state, payload) =>

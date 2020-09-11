@@ -43,6 +43,7 @@ export const routes = {
     LOGIN: '/login',
     REGISTER: '/register',
     FORGOT_PASSWORD: '/forgot_password',
+    RESET_PASSWORD: '/reset_password',
     TERMS_AND_CONDITION: '/terms-and-condition',
     SELECT_FAVORITE_TAGS: '/favorite-tags',
     SELECT_AVOID_TAGS: '/avoid-tags',
