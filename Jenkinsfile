@@ -33,18 +33,6 @@ pipeline {
  
     stage("Deliver for staging") { 
         when {
-                branch 'staging'
-            }
-      steps {
-        script {
-          //enable remote triggers
-          properties([pipelineTriggers([pollSCM('* * * * *')])])
-    
-        }
-      }
-    }
-    stage("Deliver for master") { 
-        when {
                 branch 'master'
             }
       steps {
@@ -52,11 +40,20 @@ pipeline {
           //enable remote triggers
           properties([pipelineTriggers([pollSCM('* * * * *')])])
           sh 'npm install'
-          sh 'npm run build'
+          sh 'npm run build:staging'
           sh '/usr/local/bin/aws s3 sync ./build/ s3://stage-lips.bitcotapps.com --profile ss'
-          sh '/usr/local/bin/aws cloudfront create-invalidation --distribution-id EGZY1LSOMFUIM --paths "/*" --profile ss'
-
-
+          sh '/usr/local/bin/aws cloudfront create-invalidation --distribution-id EGZY1LSOMFUIM --paths "/*" --profile ss'    
+        }
+      }
+    }
+    stage("Deliver for master") { 
+        when {
+                branch ''
+            }
+      steps {
+        script {
+          //enable remote triggers
+          properties([pipelineTriggers([pollSCM('* * * * *')])])
         }
       }
     }
