@@ -38,8 +38,12 @@ const Header = (props) => {
         )
     } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) || props.history.location.pathname === "/") {
         //default when user is not logged in
+        let headerClassName = "main_header";
+        if (props.history.location.pathname === routes.ROOT) {
+            headerClassName = "main_header page-header"
+        }
         return (
-            <header className="main_header">
+            <header className={headerClassName}>
                 <nav className="theme_navigation">
                     <Link className="logo" to="/">
                         <img src={require("assets/images/thumbnails/logo.svg")} alt="BitCot Logo" className="header__logo" />

@@ -4,7 +4,6 @@ header.main_header{
     top:0;
     width: 100%;
     z-index: 999;
-    transition: all .1s ease-in-out;
     background: $brand-secondary;
     -webkit-box-shadow: 0 0 10px 0 rgba(35, 35, 35, 0.15);
     box-shadow: 0 0 10px 0 rgba(35, 35, 35, 0.15);
@@ -22,6 +21,7 @@ header.main_header{
             -ms-flex-pack: justify;
                 justify-content: space-between;
                 position: relative;
+        transition: all .1s ease-in-out;
     }
     .logo {
         max-height: 100%;
@@ -127,3 +127,21 @@ header.main_header{
     }
 }
 /**** Main header css here ****/
+
+.main_header {
+    -webkit-transition: -webkit-transform 0.4s;
+    transition: -webkit-transform 0.4s;
+    -o-transition: transform 0.4s;
+    transition: transform 0.4s;
+    transition: transform 0.4s, -webkit-transform 0.4s;
+}
+.scroll-down .main_header {
+    transform: translate3d(0, -100%, 0);
+}
+.scroll-up .main_header {
+    transform: none;
+}
+//.scroll-up:not(.profile_dropdown) .main_header {
+//   background: var(--lightpurple);
+//  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+//}

@@ -12,6 +12,10 @@ import { isMobile } from 'react-device-detect';
 import SharedModal from '../components/FeedModal/SharedModal';
 import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 
+const addBodyClass = className => document.body.classList.add(className);
+const removeBodyClass = className => document.body.classList.remove(className);
+
+
 const MainFeed = (props) => {
     useEffect(() => {
         // Update the document title using the browser API
