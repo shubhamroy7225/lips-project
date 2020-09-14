@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
@@ -17,10 +17,42 @@ const removeBodyClass = className => document.body.classList.remove(className);
 
 
 const MainFeed = (props) => {
+    const [lastScrollTop, setLastScrollTop] = useState(0);
+    const [bodyOffset, setBodyOffset] = useState(
+        document.body.getBoundingClientRect()
+    );
+    const [scrollY, setScrollY] = useState(bodyOffset.top);
+    const [scrollX, setScrollX] = useState(bodyOffset.left);
+    const [scrollDirection, setScrollDirection] = useState();
+
+    const listener = e => {
+        debugger;
+        setBodyOffset(document.body.getBoundingClientRect());
+        setScrollY(-bodyOffset.top);
+        setScrollX(bodyOffset.left);
+        setScrollDirection(lastScrollTop > -bodyOffset.top ? "down" : "up");
+        // console.log(scrollDirection);
+        let scrollDirection = lastScrollTop > -bodyOffset.top ? "down" : "up"
+        if (scrollDirection === "up") {
+            addBodyClass("scroll-down")
+            removeBodyClass("scroll-up")
+        } else {
+            removeBodyClass("scroll-down")
+            addBodyClass("scroll-up")
+        }
+        setLastScrollTop(-bodyOffset.top);
+    };
+
     useEffect(() => {
-        // Update the document title using the browser API
-        console.log(props);
+        // if (lastScrollTop === 0) {
+        //     debugger;
+        window.addEventListener("scroll", listener);
+        // }
+        return () => {
+            window.removeEventListener("scroll", listener);
+        };
     });
+
     if (isMobile) {
         return (
             <>
