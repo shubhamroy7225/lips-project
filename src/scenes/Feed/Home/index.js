@@ -26,7 +26,6 @@ const MainFeed = (props) => {
     const [scrollDirection, setScrollDirection] = useState();
 
     const listener = e => {
-        debugger;
         setBodyOffset(document.body.getBoundingClientRect());
         setScrollY(-bodyOffset.top);
         setScrollX(bodyOffset.left);
@@ -44,10 +43,7 @@ const MainFeed = (props) => {
     };
 
     useEffect(() => {
-        // if (lastScrollTop === 0) {
-        //     debugger;
         window.addEventListener("scroll", listener);
-        // }
         return () => {
             window.removeEventListener("scroll", listener);
         };
