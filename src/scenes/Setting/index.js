@@ -5,7 +5,7 @@ const Setting = () => {
    const history = useHistory();
    const logout = () => {
        AuthActions.signOut();
-       history.push("/login");
+       setTimeout(() => history.push("/login"), 500);
    };
    return (
       <div id="wrap" className="mt_0">
