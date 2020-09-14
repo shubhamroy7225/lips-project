@@ -9,11 +9,11 @@ export const BASE_URL = () => {
     url = "https://lips-api.bitcotapps.com"
   }
   if (process.env.REACT_APP_ENV === 'staging') {
-    url = ''
+    url = "https://lips-api.bitcotapps.com"
   }
   if (process.env.REACT_APP_ENV === 'production') {
     console.log("production if");
-    url = ''
+    url = "https://lips-api.bitcotapps.com"
   }
   return url;
 };
@@ -36,8 +36,8 @@ instance.interceptors.response.use(config => {
 });
 const token = storage.get("token", null);
 instance.interceptors.response.use(
-        response => successHandler(response),
-        error => errorHandler(error)
+  response => successHandler(response),
+  error => errorHandler(error)
 );
 if (token) instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 export default instance;
