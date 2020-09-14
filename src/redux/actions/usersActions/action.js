@@ -63,11 +63,17 @@ export const forgotPassword = (credentials) => {
     store.dispatch(forgotpasswordPending());
     return API.forgotPassword(credentials)
         .then(response => {
+            if (response.data.error) {
+                toastMsg(response.data);
+            } else 
+            {
+                toastMsg("Please check your email to reset your password!")
+            }
+                
             return response.data;
         })
        .catch(error => {
            console.log(error);
-           // errorHandler(error);
            return error;
        })
 };
