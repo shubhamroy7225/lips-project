@@ -110,7 +110,7 @@ const Router = (props) => {
                 <Route exact path={routes.POST_APPROVAL} component={PostApproval} />
 
 
-                <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
+                <Route path='*' render={(props) => <Redirect to={routes.LOGIN} />} />
             </Switch>
         )
     }

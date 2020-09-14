@@ -64,14 +64,14 @@ export const authReducer = createReducer({
                 user: payload.user,
             }),
     [actions.logout]: (state) => {
-        debugger
     return    updateObject(state,
             {
                 token: token,
                 refresh_token: refresh_token,
                 user: user,
                 isloading: false,
-                resetPasswordToken: null
+                resetPasswordToken: null,
+                isOnBoard: false
             })
     },
     [actions.completeOnBorading]: (state) => {
