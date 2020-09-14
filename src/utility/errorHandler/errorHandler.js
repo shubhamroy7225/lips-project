@@ -2,8 +2,9 @@ import axios from 'axios';
 import { toastMsg } from 'utility/utility';
 import { lowerCase } from 'lodash';
 import store from '../../redux/store/store';
-
+import * as commonService from "utility/utility";
 export default function errorHandler (error) {
+    commonService.isLoading.onNext(false);
     if (axios.isCancel(error)) {
         return Promise.reject(error);
     }
