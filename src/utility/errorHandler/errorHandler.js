@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { toastMsg } from 'utility/utility';
-import { lowerCase } from 'lodash';
-import store from '../../redux/store/store';
 import * as commonService from "utility/utility";
-export default function errorHandler (error) {
+export default function errorHandler(error) {
     commonService.isLoading.onNext(false);
     if (axios.isCancel(error)) {
         return Promise.reject(error);
@@ -12,7 +10,7 @@ export default function errorHandler (error) {
         toastMsg('Error connecting server. Please check your internet connection.', true);
         return Promise.reject(error.message);
     }
-    const message  = error.response && error.response.data.message? error.response.data.message : 'Seems like something went wrong!' ;
+    const message = error.response && error.response.data.message ? error.response.data.message : 'Seems like something went wrong!';
     switch (error.response.status) {
         case 400:
             toastMsg(message, true);
@@ -24,13 +22,13 @@ export default function errorHandler (error) {
             toastMsg(message, true);
             break;
         case 504:
-            toastMsg('Sorry, could not access the external resource to refine the data for your request, please try again later!' , true);
+            toastMsg('Sorry, could not access the external resource to refine the data for your request, please try again later!', true);
             break;
         case 700:
             toastMsg(message, true);
             break;
         default:
-            toastMsg(message ? message : 'something went wrong' , true);
+            toastMsg(message ? message : 'something went wrong', true);
             break;
     }
     return Promise.reject(error.response);
