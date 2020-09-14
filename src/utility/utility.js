@@ -1,7 +1,10 @@
 import { store } from 'react-notifications-component';
 import storage from '../utility/storage';
+import { BehaviorSubject } from "rx";
 import { useEffect } from 'react';
 var moment = require('moment-timezone');
+// for global loader service
+export const isLoading = new BehaviorSubject(false);
 
 export const toFloatWithDecimal = (number) => {
     return parseFloat(number).toFixed(2);
@@ -24,6 +27,12 @@ export const replaceAMPM = (time) => {
         return time;
     }
 }
+
+export const getSearchParams = (history, key) => {
+  const queryParamsString = history.location.search.substring(1), // remove the "?" at the start
+      searchParams = new URLSearchParams( queryParamsString );
+  return searchParams.get(key)
+};
 
 export const closeCompaignUI = (enable) => {
     storage.set("close_campaign_ui", enable);

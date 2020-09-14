@@ -1,6 +1,12 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import * as AuthActions from "redux/actions";
 const Setting = () => {
+   const history = useHistory();
+   const logout = () => {
+       AuthActions.signOut();
+       setTimeout(() => history.push("/login"), 300);
+   };
    return (
       <div id="wrap" className="mt_0">
          <div className="lps_container mt_0">
@@ -43,7 +49,7 @@ const Setting = () => {
                <li className="list-group-item">
                   <Link to="/settings/privacy-policy">Privacy policy</Link>
                </li>
-               <li className="list-group-item">
+               <li className="list-group-item" onClick={logout}>
                   <Link to="#">Log out</Link>
                </li>
                <li className="list-group-item">

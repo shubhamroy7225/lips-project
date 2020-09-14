@@ -49,21 +49,31 @@ export const authReducer = createReducer({
         return updateObject(state, {
             isloading: false
         })
-    },     
+    },
+    [actions.resetpasswordPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.resetpasswordSuccessful]: (state, payload) => {
+        debugger
+        return updateObject(state, {
+            isloading: false
+        })
+    },      
     [actions.updateUser]: (state, payload) =>
         updateObject(state,
             {
                 user: payload.user,
             }),
-    [actions.logout]: (state) =>
-        updateObject(state,
+    [actions.logout]: (state) => {
+    return    updateObject(state,
             {
                 token: token,
                 refresh_token: refresh_token,
                 user: user,
                 isloading: false,
-                resetPasswordToken: null
-            }),
+                resetPasswordToken: null,
+                isOnBoard: false
+            })
+    },
     [actions.completeOnBorading]: (state) => {
         return updateObject(state,
             {

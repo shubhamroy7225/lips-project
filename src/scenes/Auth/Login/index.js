@@ -43,10 +43,10 @@ let LoginForm = (props) => {
                   <form
                       onSubmit={handleSubmit}>
                     <article className="text_center lps_logo_center">
-                      <a className="logo mb_0" href="#">
+                      <Link className="logo mb_0" to="#">
                         <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
                         <h5 className="text_uppercase text_white">Sign In</h5>
-                      </a>
+                      </Link>
                     </article>
                     <div className="lps_fields">
                       <div className="form_group_modify">
@@ -71,7 +71,7 @@ let LoginForm = (props) => {
                         {simpleValidator.current.message('password', user.password, 'required')}
                       </div>
                       <div className="form_group_modify text_right mb20">
-                        <a href="#" className="link_white">Forgot Password</a>
+                        <Link to="/forgot_password" className="link_white">Forgot Password</Link>
                       </div>
                       <div className="form_group_modify">
                         <label className="lps_cont_check">Keep me signed in

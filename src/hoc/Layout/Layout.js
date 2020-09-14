@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Aux from '../Oux/Oux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import Loader from "scenes/shared/loader";
 
 import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH } from 'utility/constants/constants';
@@ -94,7 +94,7 @@ class Layout extends Component {
                 <div className="limiter">
                     <div className="container-login100">
                         <Header {...this.props} />
-
+                        <Loader/>
                         <div className="clearfix"></div>
                         {this.props.children}
                         <div className="clearfix"></div>
