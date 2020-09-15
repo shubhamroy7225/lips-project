@@ -14,7 +14,7 @@ const Header = (props) => {
         setModalShown(modalShown ? false : true);
     }
     console.log(props);
-
+    debugger
     useEffect(() => {
         if (window.$) {
             window.$('.tab-list a').on('click', function (e) {
@@ -36,7 +36,7 @@ const Header = (props) => {
                 </nav>
             </header>
         )
-    } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) || props.history.location.pathname === "/") {
+    } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) || props.history.location.pathname === "/" && props.user || props.history.location.pathname === "/main-feeds") {
         //default when user is not logged in
         let headerClassName = "main_header";
         if (props.history.location.pathname === routes.ROOT) {
@@ -62,13 +62,13 @@ const Header = (props) => {
                                 </li>
                             </ul>
                         </li>
-                        <li className="nav-item">
+                        {props.user && <li className="nav-item">
                             <Link to="/settings" className="nav-link not_line">
                                 <span className="avatar_circle">
                                     <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
                                 </span>
                             </Link>
-                        </li>
+                        </li>  }
                     </ul>
                 </nav>
             </header >
