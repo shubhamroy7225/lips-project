@@ -32,15 +32,16 @@ const MainFeed = (props) => {
         setScrollDirection(lastScrollTop > -bodyOffset.top ? "down" : "up");
         // console.log(scrollDirection);
         let scrollDirection = lastScrollTop > -bodyOffset.top ? "down" : "up"
-        console.log(scrollDirection)
+        console.log(scrollY)
         // debugger;
-        if (scrollDirection === "up") {
+        if (scrollDirection === "up" && scrollY > 70) {
             addBodyClass("scroll-down")
             removeBodyClass("scroll-up")
         } else {
             removeBodyClass("scroll-down")
             addBodyClass("scroll-up")
         }
+
         setLastScrollTop(-bodyOffset.top);
     };
 
