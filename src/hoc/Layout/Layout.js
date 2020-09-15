@@ -94,7 +94,7 @@ class Layout extends Component {
                 <div className="limiter">
                     <div className="container-login100">
                         <Header {...this.props} />
-                        <Loader/>
+                        <Loader />
                         <div className="clearfix"></div>
                         {this.props.children}
                         <div className="clearfix"></div>
@@ -124,7 +124,6 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
 
 
 const NotificationSliderComponent = (modalShown) => {
-
     return (
         <>
             <li class="list-group-item">
@@ -191,18 +190,6 @@ const NotificationSliderComponent = (modalShown) => {
                     <div class="lps_media_body">
                         <h5>You've been approved <br /> <small>You can now post</small></h5>
                         <span class="durations">1 month ago</span>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5>Message from Lips</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur a dipiscing elit sed do eiusmod tempor incidi</p>
-                        <span class="durations">1 minute ago</span>
                     </div>
                 </div>
             </li>
