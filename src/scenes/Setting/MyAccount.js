@@ -1,6 +1,23 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-const MyAccount = () => {
+import React, {useState} from 'react';
+import {Link, useHistory} from "react-router-dom";
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from "redux/actions";
+const MyAccount = ({user}) => {
+   const history = useHistory();
+   const [privacy_settings, setPrivacy] = useState(user.privacy_settings);
+   const deleteUser = () =>{
+      actions.deleteUser().then(res => {
+         history.push("/settings");
+       });
+   }
+
+   const changePrivacyPolicy = () => {
+      actions.changePrivacy({privacy_settings}).then(res => {
+        return res
+      });
+    };
+   
   return (
     <>
             <div id="wrap" className="mt_0">
@@ -14,7 +31,7 @@ const MyAccount = () => {
                         <div className="lps_user_info">
                            <p className="user_info_label">Username <Link to="#" className="lps_link ft_Weight_600">change</Link></p>
                            <div className="user_info_field">
-                              <span className="input_modify">Username</span>
+                              <span className="input_modify">{user.user_name}</span>
                            </div>
                         </div>
                      </li>
@@ -22,7 +39,7 @@ const MyAccount = () => {
                         <div className="lps_user_info">
                            <p className="user_info_label">Email <Link to="#" className="lps_link ft_Weight_600">change</Link></p>
                            <div className="user_info_field">
-                              <span className="input_modify">JonSnow@gmail.com</span>
+                              <span className="input_modify">{user.email}</span>
                            </div>
                         </div>
                      </li>
@@ -32,19 +49,19 @@ const MyAccount = () => {
                            <label className="lps_cont_rdo">
                            <span class="ft_Weight_500">Public</span> <br/>
                            Anyone on the internet can see you posts                  
-                           <input type="radio" checked="checked" name="radio"/>
+                           <input type="radio" value={privacy_settings} checked={privacy_settings === "public"} name="radio" onChange={changePrivacyPolicy} onClick={e=> setPrivacy("public")} />
                            <span className="lps_checkmark"></span>
                            </label>
                            <label className="lps_cont_rdo">
                            <span className="ft_Weight_500">Only Lips users</span><br/>
                            Only registered Lips users can find & see me
-                           <input type="radio" name="radio"/>
+                           <input type="radio" name="radio" value={privacy_settings} checked={privacy_settings === "registered"} onChange={changePrivacyPolicy} onClick={e=> setPrivacy("registered")} />
                            <span className="lps_checkmark"></span>
                            </label>
                            <label className="lps_cont_rdo">
                            <span className="ft_Weight_500">Private</span><br/>
                            Only People who follow you can see your posts
-                           <input type="radio" name="radio"/>
+                           <input type="radio" name="radio" value={privacy_settings} checked={privacy_settings === "private"} onChange={changePrivacyPolicy} onClick={e=> setPrivacy("private")}  />
                            <span className="lps_checkmark"></span>
                            </label>                
                         </div>
@@ -58,7 +75,7 @@ const MyAccount = () => {
                      </li> 
                       <li className="list-group-item">
                         <div className="lps_user_info lps_accnt_links">     
-                           <p className="user_info_label">
+                           <p className="user_info_label" onClick={deleteUser}>
                               <Link to="#" classname="ft_Weight_500">Delete Account</Link>
                            </p>
                         </div>
@@ -69,4 +86,15 @@ const MyAccount = () => {
     </>
   );
 }
-export default MyAccount
+
+const mapStateToProps = (state) => {
+   return {
+      user: state.authReducer.user
+   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+   return {}
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyAccount));

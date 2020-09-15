@@ -7,7 +7,9 @@ export {
     changePrivacy,
     forgotPassword,
     verifyUsername,
-    //resetPassword
+    //resetPassword,
+    updateUser,
+    deleteUser,
     resetPassword
 } from './usersActions/action';
 
