@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { withRouter } from 'react-router'
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import MenuOptionSlider from 'scenes/Feed/components/MenuOptionSlider';
 import $ from 'jquery';
@@ -10,6 +9,8 @@ import FollowerItem from './components/FollowerItem';
 import NonRegisteredView from 'scenes/NonRegisteredView';
 
 const ProfileHeader = ({ isUserProfile }) => {
+    const [isFollowerHeaderHidden, setIsFollowerHeaderHidden] = useState(true)
+    const [following, setFollowing] = useState(false)
     return (
         <div class="lps_list">
             {/* cover image */}
@@ -41,13 +42,13 @@ const ProfileHeader = ({ isUserProfile }) => {
                                 :
                                 <>
                                     <figure class="lps_fig lps_fig_circle lps_float_right">
-                                        <a href="javascript:void(0);" class="icn_hover_chng" id="heart_notify">
+                                        <a onClick={() => { setFollowing(!following) }} href="javascript:void(0);" class={following ? "icn_hover_chng active" : "icn_hover_chng"} id="heart_notify">
                                             <img src={require("assets/images/icons/icn_outline_follow.svg")} class="icn_dfltD" alt="User" />
                                             <img src={require("assets/images/icons/icn_fill_follow.svg")} class="icn_hvrA" alt="User" />
                                         </a>
                                     </figure>
                                     <div class="hover_bkgr_fricc heart_notify_box"
-                                        id="trigger_heart_popup">
+                                        id="trigger_heart_popup" style={{ display: following ? "block" : "none" }}>
                                         <div class="popup_cont lps_pos_rltv">
                                             <div class="popup_body">
                                                 Get notified every time the post
@@ -70,9 +71,10 @@ const ProfileHeader = ({ isUserProfile }) => {
                   <a href="#" class="link_underline text_secondary">www.website.com </a> lorem ipsum
                   <a href="#" class="link_underline text_secondary"> www.anotherwebsite.com</a>lorem ipsum dolor
                 </p>
-                <a class="dots_link" id="trigger_followers_block"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                <a class="dots_link" id="trigger_followers_block" onClick={() => { setIsFollowerHeaderHidden(!isFollowerHeaderHidden) }}><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                 <div
                     class="followers_block followers_block_none"
+                    style={{ display: isFollowerHeaderHidden ? "none" : "block" }}
                     id="followers_block">
                     <a class="followers_trigger"> 000 <br /> Followers</a>
                     <a class="followers_trigger"> 000 <br />Following</a>
