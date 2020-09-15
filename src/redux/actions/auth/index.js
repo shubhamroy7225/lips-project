@@ -16,3 +16,7 @@ export const forgotpasswordPending = createAction('forgot password API started f
 export const forgotpasswordSuccessful = createAction('forgot password API successful');
 export const resetpasswordPending = createAction('reset password API started fetching');
 export const resetpasswordSuccessful = createAction('reset password API successful');
+export const updateuserPending = createAction('update user API started fetching');
+export const updateuserSuccessful = createAction('update user API successful');
+export const deleteuserPending = createAction('delete user API started fetching');
+export const deleteuserSuccessful = createAction('delete user API successful');

@@ -9,7 +9,7 @@ export default () => {
    const disptach = useDispatch();
    const completeOnBoard = () => {
       disptach(AuthActions.completeOnBordingFlow());
-      history.push("/");
+      history.push("/main-feeds");
    };
   return (
     <div id="wrap" className="mt_0">

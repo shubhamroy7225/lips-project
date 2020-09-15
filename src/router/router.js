@@ -66,7 +66,6 @@ const Router = (props) => {
                 <Route exact path={routes.ROOT} component={MainFeed} />
                 <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
                 <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
-                <Route exact path={routes.LANDING} component={Landing} />
                 <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
 
                 {/* Approval for posting */}
@@ -89,7 +88,8 @@ const Router = (props) => {
     } else {
         routeList = (
             <Switch>
-                <Route exact path={routes.ROOT} component={MainFeed} />
+                <Route exact path={routes.ROOT} component={Landing} />
+                <Route exact path={routes.MAIN_FEED} component={MainFeed} />
                 <Route exact path={routes.CREATE} component={Create} />
                 <Route exact path={routes.EXPLORE} component={ExploreFeed} />
                 <Route exact path={routes.LIKES} component={Likes} />
@@ -100,17 +100,15 @@ const Router = (props) => {
                 <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
                 <Route exact path={routes.FORGOT_PASSWORD} component={ForgotPassword} />
                 <Route exact path={routes.RESET_PASSWORD} component={ResetPassword} />
-                <Route exact path={routes.ROOT} component={MainFeed} />
                 <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
                 <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
-                <Route exact path={routes.LANDING} component={Landing} />
                 <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
                 <Route exact path={routes.LOGIN_TO_PROCEED} component={NonRegisteredView} />
                 {/* Approval for posting */}
                 <Route exact path={routes.POST_APPROVAL} component={PostApproval} />
 
 
-                <Route path='*' render={(props) => <Redirect to={routes.LOGIN} />} />
+                <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
             </Switch>
         )
     }

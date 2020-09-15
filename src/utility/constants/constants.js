@@ -39,6 +39,7 @@ export const NO_HEADER_ROUTES = {
 
 export const routes = {
     ROOT: '/',
+    MAIN_FEED: '/main-feeds',
     CUSTOMIZE_FEEDS: '/customize-tags',
     LOGIN: '/login',
     REGISTER: '/register',

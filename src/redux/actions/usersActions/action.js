@@ -2,11 +2,12 @@
 import axios  from 'config';
 import errorHandler from "utility/errorHandler/errorHandler"
 import * as API from '../../../api/authAPI';
+import * as UserAPI from '../../../api/userAPI';
 import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
-import { loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful } from 'redux/actions/auth';
+import { loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
@@ -69,6 +70,32 @@ export const forgotPassword = (credentials) => {
             {
                 toastMsg("Please check your email to reset your password!")
             }
+                
+            return response.data;
+        })
+       .catch(error => {
+           console.log(error);
+           return error;
+       })
+};
+
+export const deleteUser = () => {
+    store.dispatch(deleteuserPending());
+    return UserAPI.deleteUser()
+        .then(response => {
+            return response.data
+        })
+       .catch(error => {
+           console.log(error);
+           return error;
+       })
+};
+
+export const updateUser = (credentials) => {
+    store.dispatch(updateuserPending());
+    return UserAPI.updateUser(credentials)
+        .then(response => {
+            debugger
                 
             return response.data;
         })
