@@ -7,7 +7,13 @@ import $ from 'jquery';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import store from './redux/store/store';
+import axios from './config';
+import authInterceptor from 'utility/interceptors/authInterceptor';
+import tokenInterceptor from 'utility/interceptors/tokenInterceptor';
+import errorHandler from 'utility/errorHandler/errorHandler';
 
+axios.interceptors.request.use(authInterceptor, error => Promise.reject(error));
+axios.interceptors.response.use(tokenInterceptor, error => errorHandler(error));
 
 const app = (
   <Provider store={store}>

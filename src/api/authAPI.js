@@ -1,4 +1,4 @@
-import axios,{API_VERSION} from '../config';
+import axios, { API_VERSION } from '../config';
 
 export const login = (credentials) => {
     return axios.post(`${API_VERSION}/auth/login`, credentials, {
@@ -42,7 +42,7 @@ export const resetPassword = (credentials) => {
     });
 };
 export const changePrivacy = (body) => {
-    return axios.put(`${API_VERSION}/user/settings/post`,body, {
+    return axios.put(`${API_VERSION}/user/settings/post`, body, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'

@@ -15,7 +15,7 @@ const ImageFeed = ({ reposted, user }) => {
 
     const [showWidget, setShowWidget] = useState(false)
     let history = useHistory()
-    debugger;
+
     if (isMobile) {
         return (
             <div className="lps_list">

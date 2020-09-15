@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
-$font-family-base: "Dosis", sans-serif;
-$logo_font: "Great Vibes", cursive;
-$font-size-base: 16px !important; // Assumes the browser default, typically `16px`
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+$font-family-base:  'Dosis', sans-serif;
+$logo_font: 'Great Vibes', cursive;
+$font-size-base:   16px !important; // Assumes the browser default, typically `16px`
 // Font Weights
 $ft_Weight_100: 100;
 $ft_Weight_200: 200;
@@ -10,8 +10,7 @@ $regular: 400;
 $ft_Weight_MD: 500;
 $ft_Weight_SM: 600;
 $bold: bold;
-html,
-body {
+html, body {
   height: 100%;
 }
 #wrap {
@@ -22,24 +21,23 @@ div#wrap.post_mt {
   margin-top: 59px;
 }
 a {
-  -webkit-transition: all 0.1s ease-in-out;
-  -o-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
+  -webkit-transition: all .1s ease-in-out;
+  -o-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
   text-decoration: none;
   cursor: pointer;
 }
-:focus,
-:active {
+:focus,:active{
   outline: none;
 }
-body {
+body{
   font-size: $font-size-base;
-  transition: all 0.1s ease-in-out;
+  transition: all .1s ease-in-out;
   color: $brand-secondary;
   font-family: $font-family-base !important;
   font-weight: $regular;
   font-style: normal;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.16px;
   background-color: $bg_grayCCC;
   margin: 0;
   padding: 0;
@@ -65,12 +63,7 @@ $-h5: 18px;
 $-h6: 16px;
 $para-font: 14px;
 $border-rad5: 5px;
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
   margin-top: 0;
   margin-bottom: 15px;
   font-weight: 400;
@@ -102,6 +95,7 @@ p {
   margin-bottom: 15px;
   &:last-child {
     margin-bottom: 0;
+
   }
 }
 .fontS13 {
@@ -146,73 +140,74 @@ p {
 .text_uppercase {
   text-transform: uppercase !important;
 }
-input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -moz-box-shadow: none;
+input{
+	-webkit-appearance:none;
+   -moz-appearance:none;
+   appearance:none;
+   -moz-box-shadow:none;
   -webkit-box-shadow: none;
-  box-shadow: none;
+  box-shadow:none;
 }
 
 // Dosis Fonts
 @font-face {
   font-family: "Dosis";
-  src: url(font-path("dosis/dosis-bold/Dosis-Bold.woff2")) format("woff2"),
-    url(font-path("dosis/dosis-bold/Dosis-Bold.woff")) format("woff");
+  src:url(font-path("dosis/dosis-bold/Dosis-Bold.woff2")) format("woff2"),
+  url(font-path("dosis/dosis-bold/Dosis-Bold.woff")) format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Dosis";
-  src: url(font-path("dosis/dosis-ExtraLight/Dosis-ExtraLight.woff2"))
-      format("woff2"),
-    url(font-path("dosis/dosis-ExtraLight/Dosis-ExtraLight.woff"))
-      format("woff");
+  src:url(font-path("dosis/dosis-ExtraLight/Dosis-ExtraLight.woff2")) format("woff2"),
+  url(font-path("dosis/dosis-ExtraLight/Dosis-ExtraLight.woff")) format("woff");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Dosis";
-  src: url(font-path("dosis/dosis-SemiBold/Dosis-SemiBold.woff2"))
-      format("woff2"),
-    url(font-path("dosis/dosis-SemiBold/Dosis-SemiBold.woff")) format("woff");
+  src:url(font-path("dosis/dosis-SemiBold/Dosis-SemiBold.woff2")) format("woff2"),
+  url(font-path("dosis/dosis-SemiBold/Dosis-SemiBold.woff")) format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Dosis";
-  src: url(font-path("dosis/dosis-ExtraBold/Dosis-ExtraBold.woff2"))
-      format("woff2"),
-    url(font-path("dosis/dosis-ExtraBold/Dosis-ExtraBold.woff")) format("woff");
+  src:url(font-path("dosis/dosis-ExtraBold/Dosis-ExtraBold.woff2")) format("woff2"),
+  url(font-path("dosis/dosis-ExtraBold/Dosis-ExtraBold.woff")) format("woff");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Dosis";
-  src: url(font-path("dosis/dosis-medium/Dosis-Medium.woff2")) format("woff2"),
-    url(font-path("dosis/dosis-medium/Dosis-Medium.woff")) format("woff");
+  src:url(font-path("dosis/dosis-medium/Dosis-Medium.woff2")) format("woff2"),
+  url(font-path("dosis/dosis-medium/Dosis-Medium.woff")) format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Dosis";
-  src: url(font-path("dosis/dosis-regular/Dosis-Regular.woff2")) format("woff2"),
-    url(font-path("dosis/dosis-regular/Dosis-Regular.woff")) format("woff");
+  src:url(font-path("dosis/dosis-regular/Dosis-Regular.woff2")) format("woff2"),
+  url(font-path("dosis/dosis-regular/Dosis-Regular.woff")) format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Dosis";
-  src: url(font-path("dosis/dosis-light/Dosis-Light.woff2")) format("woff2"),
-    url(font-path("dosis/dosis-light/Dosis-Light.woff")) format("woff");
+  src:url(font-path("dosis/dosis-light/Dosis-Light.woff2")) format("woff2"),
+  url(font-path("dosis/dosis-light/Dosis-Light.woff")) format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
+
+
+
+
+
