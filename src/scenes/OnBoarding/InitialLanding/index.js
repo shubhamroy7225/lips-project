@@ -21,7 +21,7 @@ export default () => {
                                  <div className="product_item_wrp">
                                     <div className="product_item">
                                        <figure className="lps_fig">
-                                          <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" />
+                                          {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
                                        </figure>
                                     </div>
                                     <h5>Discover Open & Honest Content</h5>
@@ -31,7 +31,7 @@ export default () => {
                                  <div className="product_item_wrp">
                                     <div className="product_item">
                                        <figure className="lps_fig">
-                                          <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" />
+                                          {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
                                        </figure>
                                     </div>
                                     <h5>Show Lips love</h5>
@@ -41,7 +41,7 @@ export default () => {
                                  <div className="product_item_wrp">
                                     <div className="product_item">
                                        <figure className="lps_fig">
-                                          <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" />
+                                          {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
                                        </figure>
                                     </div>
                                     <h5>Create your collections</h5>
@@ -51,7 +51,7 @@ export default () => {
                                  <div className="product_item_wrp">
                                     <div className="product_item">
                                        <figure className="lps_fig">
-                                          <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" />
+                                          {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
                                        </figure>
                                     </div>
                                     <h5>Express youself</h5>

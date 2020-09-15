@@ -178,6 +178,11 @@ body.body_overflow {
     width: 100%;
     object-fit: cover;
   }
+  &.lps_fig_cont {
+    img {
+      object-fit: contain;
+    }
+  }
 }
 .lps_fig.lps_fig_circle {
   width: 37px;
@@ -524,6 +529,12 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
   z-index:10000;
   overflow-x: hidden;
   overflow-y: auto;
+  &.full_Hvh {
+    // background-color: $brand-secondary;
+    .popup_cont {
+      min-height: 100vh;
+    }
+  }
   &.hover_bkgr_cccc {
     .popup_close_header {
       border: 0;
@@ -814,6 +825,20 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
       }
   }
   }
+.lps_bg_txt_white{
+  .input_modify {
+    background-color: transparent;
+    border-bottom-color: #fd3398;
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-left: 0;
+    padding-right: 10px;
+    color: #ffffff;
+    height: 38px;
+}
+}
 }
 .heart_notify_right {
   text-align: right;
@@ -842,6 +867,10 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
     -ms-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
+    &.popupCloseButtonLeft {
+      left: 15px;
+      right: auto;
+    }
   img {
     width: 18px;
   }
@@ -952,6 +981,7 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
             min-width: 85px;
             text-transform: uppercase;
             font-weight: $ft_Weight_MD;
+            font-size: 15px;
             &:hover {
               color: $white;
             }
@@ -1212,7 +1242,7 @@ p.more {
       display: inline-block;
       padding: 8px 15px;
       cursor: pointer;
-      border: 1px solid $white;
+      border: 1px solid $brand-secondary;
       border-bottom: none;
       margin: 0 2px 0 2px;
       min-width: 170px;
@@ -1231,7 +1261,7 @@ p.more {
   } 
   .tab-content_cst,  .tab-content_cst1{
     display: none;
-    border-top: 1px solid $white;
+    border-top: 1px solid $brand-secondary;
     padding: 15px 0;
   }
   .tab-content_cst.current, .tab-content_cst1.current{
@@ -2458,15 +2488,15 @@ p.more {
   position: relative;
   text-align: center;
   font-weight: 500;
-  color: $brand-red100;
+  color: $brand-secondary;
   &::after {
     position: absolute;
     width: 15px;
     height: 3px;
-    background-color: $brand-secondary;
+    background-color: $brand-primary;
     bottom: -3px;
     content: "";
-    left: -4px;
+    left: -3px;
     text-align: center;
   }
 }
@@ -3043,10 +3073,14 @@ p.more {
 }
 /**** // Stepper wizard css here ****/
 /*Post Page*/
-header.post_page_header  {
-  background-color: transparent;
-  box-shadow: none;
-  border-bottom: none;
+.post_page_header  {
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1020;
 }
 .post_poup {
   background-color: $brand-primary;
@@ -3061,6 +3095,8 @@ header.post_page_header  {
   }
   .hash_tag_block {
     padding: 0;
+    height: 330px;
+    overflow-y: auto;
     .hashtag_btn {
       color: $white;
       border: 1px solid $white;
@@ -3077,7 +3113,7 @@ header.post_page_header  {
     }
   }
   .post_links_undr {
-    padding-top: 40%;
+    padding-top: 40px;
     a {
       display: inline-block;
       text-decoration: none;
@@ -3087,8 +3123,8 @@ header.post_page_header  {
 }
 /* // Post Page*/
 .lps_pink_dashed {
-  border: 1px dashed $brand-primary;
-  background-color: $white;
+  border: 1px dashed $white;
+  background-color: $bg_grayCCC;
 }
 .dots_link {
   display: block;
@@ -3325,13 +3361,16 @@ header.post_page_header  {
 }
 .empty_feed_bg_wrp {
   height: 100%;
-  background-color: $green-255;
+  background-color: $bg_grayCCC;
   display: flex;
   align-items: center;
   justify-content: center;
-  h1 {
-    color: $blue-255;
-    font-weight: 600;
+  padding-left: 15px;
+  padding-right: 15px;
+  h4 {
+    color: $brand-secondary;
+    font-weight: 400;
+    line-height: 26px;
   }
 } 
 .screamin_green_bg {
@@ -4047,4 +4086,61 @@ p.para18L30 {
   margin-top: 13px;
   display: block;
   color: $bg_grayCCC;
+}
+
+.text_sendry {
+  .txtarea_modify {
+      border-bottom: 0;
+      border-radius: 5px 0 0 5px;
+  }
+  .textRange {
+    border-radius: 0 0 5px 5px;
+    border: 1px solid $brand-primary;
+    border-top: 0;
+  }
+}
+.top__sm_header {
+  background-color: $brand-secondary;
+  padding: 0 15px;
+  height: 44px;
+  position: inherit;
+  .lp_nav_customize {
+    margin: 0;
+    li {
+      list-style: none;
+      .nav-link {
+        line-height: 0;
+        img {
+          width: 16px !important;
+        }
+      }
+    }
+  }
+}
+.inline_wrp {
+  .select_modify {
+    border-color: $white;
+    background-color: $bg_grayCCC;
+    margin-left: 20px;
+  }
+  .Atag {
+    margin-left: 20px;
+  } 
+} 
+.mail_about_wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: flex-end;
+      -ms-flex-align: flex-end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+          margin-bottom: 30px;
+    .hr_seprator {
+      display: inline-block;
+      border-bottom: 1px solid #fff;
+      min-width: 227px;
+  }
 }

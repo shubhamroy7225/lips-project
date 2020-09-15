@@ -390,8 +390,8 @@
     padding: 0 30px;
     text-align: center;
     .product_item {
-      background-color: $white;
-      border: 1px solid $white;
+      background-color: $brand-secondary;
+      border: 1px solid $brand-secondary;
       padding: 50px 0;
     }
     h5 {
@@ -409,18 +409,19 @@
         .owl-dot {
           span {
             background: transparent;
-            border: 1px solid $white;
+            border: 1px solid $brand-primary;
+            margin: 5px 4px;
           }
           &.active {
             span {
-              background-color: $white;
-              border-color: $white;
+              background-color: $brand-primary;
+              border-color: $brand-primary;
             }
           }
           &:hover,&:focus {
             span {
-              background-color: $white;
-              border-color: $white;
+              background-color: $brand-primary;
+              border-color: $brand-primary;
             }
           }
         }

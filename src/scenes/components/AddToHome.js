@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const AddToHome = (props) => {
     const [hidden, setHidden] = useState(false)
     return (
-        <div class="hover_bkgr_fricc hover_alternate_W" id="trigger_HomeScreen_popup" style={{ display: hidden ? "none" : "block" }}>
+        <div class="hover_bkgr_fricc hover_alternate_W modal-backdrop" id="trigger_HomeScreen_popup" style={{ display: hidden ? "none" : "block" }}>
             <div class="modal-dialog-centered">
                 <div class="popup_cont">
                     <div class="popup_body">
