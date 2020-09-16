@@ -53,10 +53,12 @@ const EditProfile = ({user, updateProfile}) => {
         <div className="lps_container">
           <div className="lps_list">
             <div className="lps_inner_wrp lps_pink_dashed">
-              <figure className="lps_fig lps_fig160 lps_fig120p20">
+              <label htmlFor="file_input">
+              <figure  className="lps_fig lps_fig160 lps_fig120p20">
               <input type="file" id="file_input" name="image" hidden onChange={handleFile}/>
                 <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
               </figure>
+              </label>
             </div>
             <div className="lps_inner_wrp lps_inner_wrp_media">
               <div className="lps_media lps_pos_rltv lps_f_end mb20">
