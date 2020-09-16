@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import * as commonService from "utility/utility";
 // import {Link, useHistory} from "react-router-dom";
 import * as AuthActions from "redux/actions";
 import { withRouter } from 'react-router-dom';
@@ -29,8 +30,28 @@ const EditProfile = ({user, updateProfile}) => {
   };
 
   const updateUserProfile = (e) => {
-    const {bio, show_following, show_followers} = userForm;
-    AuthActions.updateUser({user: {bio, show_following, show_followers}});
+    if (files.length) {
+      AuthActions.config({ext: ['.png']}).then(res=> {
+        let header_image = res.urls[0].photo_path;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "image/png");
+        let requestOptions = {
+          method: 'PUT',
+          headers: myHeaders,
+          body: files[0].file
+        };
+        commonService.isLoading.onNext(true);
+        fetch(`https://cors-anywhere.herokuapp.com/${res.urls[0].presigned_url}`, requestOptions).then(response=> {
+          const {bio, show_following, show_followers} = userForm;
+          AuthActions.updateUser({user: {bio, show_following, show_followers, header_image}});
+        })
+
+      })
+    }
+    else {
+      const {bio, show_following, show_followers} = userForm;
+      AuthActions.updateUser({user: {bio, show_following, show_followers}});
+    }
   };
   return (
     <>
