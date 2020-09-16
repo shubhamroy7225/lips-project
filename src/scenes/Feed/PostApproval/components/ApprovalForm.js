@@ -103,7 +103,25 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
         const response = await API.fetchUploadUrl({ext:fileExtensions});
         if (response.data.success){
             let urls = response.data.urls;
-            
+            debugger;
+            let base64ToBeUploaded = images[0].base64.split(",")[1]
+             API.uploadImageToS3(urls[0].presigned_url,base64ToBeUploaded)
+             .then(res => {
+                let base64ToBeUploaded = images[1].base64.split(",")[1]
+                 return API.uploadImageToS3(urls[1].presigned_url,base64ToBeUploaded);
+             }).then(res => {
+                let base64ToBeUploaded = images[2].base64.split(",")[1]
+                return API.uploadImageToS3(urls[2].presigned_url,base64ToBeUploaded);
+             }).then(res => {
+                debugger;
+                if (res.status === 200){
+                    //success
+                    //update to server
+                    moveToNextStep();
+                }
+             }).catch(error => {
+                 debugger;
+             })
         }else{
 
         }
@@ -113,7 +131,6 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
 
         //3. update the data to server
 
-        moveToNextStep();
     }
 
     return (
@@ -140,7 +157,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                         </div>
                         <input type="file" id="file" name="portfolio" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
 
-                        <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio', image1.base64, 'required|select')}</span>
+                        <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio', image1.base64, 'required')}</span>
                         <input type="file" id="file" ref={fileSelector2} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector2)} />
                         <input type="file" id="file" ref={fileSelector3} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
 
