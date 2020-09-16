@@ -65,7 +65,17 @@ export const authReducer = createReducer({
         return updateObject(state, {
             isloading: false
         })
-    },        
+    }, 
+    
+    [actions.configPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.configSuccessful]: (state, payload) => {
+        debugger
+        return updateObject(state, {
+            isloading: false
+        })
+    }, 
+
     [actions.updateUser]: (state, payload) =>
         updateObject(state,
             {

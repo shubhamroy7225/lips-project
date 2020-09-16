@@ -9,6 +9,17 @@ export const updateUser = (credentials) => {
     });
 };
 
+export const config = (credentials) => {
+
+    return axios.patch(`${API_VERSION}/presign_url`, credentials,{
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+}
+
+
 export const fetchUsers = () => {
     return axios.get(`${API_VERSION}/user`, {
         headers: {

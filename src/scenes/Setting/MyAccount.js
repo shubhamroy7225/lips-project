@@ -29,15 +29,15 @@ const MyAccount = ({user}) => {
                   <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
                      <li className="list-group-item">
                         <div className="lps_user_info">
-                           <p className="user_info_label">Username <Link to="#" className="lps_link ft_Weight_600">change</Link></p>
+                           <p className="user_info_label">Username</p>
                            <div className="user_info_field">
-                              <span className="input_modify">{user.user_name}</span>
+                              <input className="input_modify" value={user.user_name || ""}/>
                            </div>
                         </div>
                      </li>
                      <li className="list-group-item">
                         <div className="lps_user_info">
-                           <p className="user_info_label">Email <Link to="#" className="lps_link ft_Weight_600">change</Link></p>
+                           <p className="user_info_label">Email</p>
                            <div className="user_info_field">
                               <span className="input_modify">{user.email}</span>
                            </div>

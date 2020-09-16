@@ -10,7 +10,8 @@ export {
     //resetPassword,
     updateUser,
     deleteUser,
-    resetPassword
+    resetPassword,
+    config
 } from './usersActions/action';
 
 export {

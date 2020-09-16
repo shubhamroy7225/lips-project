@@ -4048,3 +4048,123 @@ p.para18L30 {
   display: block;
   color: $bg_grayCCC;
 }
+
+.inline_wrp {
+  .select_modify {
+    border-color: $white;
+    background-color: $bg_grayCCC;
+    margin-left: 20px;
+  }
+  .Atag {
+    margin-left: 20px;
+  } 
+} 
+.mail_about_wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: flex-end;
+      -ms-flex-align: flex-end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+          margin-bottom: 30px;
+    .hr_seprator {
+      display: inline-block;
+      border-bottom: 1px solid #fff;
+      min-width: 227px;
+  }
+}
+
+.lps_pink_dashed {
+  border: 1px dashed $white;
+  background-color: $bg_grayCCC;
+}
+.dots_link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: $brand-secondary;
+}
+.followers_block {
+  margin-top: 20px;
+  text-align: right;
+  a {
+    display: inline-block;
+    margin-left: 50px;
+    color: $brand-primary;
+    text-align: left;
+    font-size: 16px;
+    &:hover {
+      color: $brand-primary-hover;
+    }
+  }
+}
+
+.followers_wrp {
+  display: none;
+  width: 100%;
+}
+.followers_wrp_inner {
+  position: fixed;
+  top: 61px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+}
+.followers_wrp.open{
+  display: block;
+}
+.followers_wrp.open.close{
+  display: none;
+}
+.following_wrp {
+  display: none;
+  width: 100%;
+}
+.following_wrp_inner {
+  position: fixed;
+  top: 61px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+}
+.following_wrp.open{
+  display: block;
+}
+.following_wrp.open.close{
+  display: none;
+}
+.lps_heading_wrp {
+  margin-top: 15px;
+  h5 {
+    margin-bottom: 0;
+  }
+  .lps_fig {
+    img {
+      width: 18px;
+    }
+  }
+}
+.lps_logo_center {
+  .logo {
+    margin-bottom: 10px;
+    display: inline-block;
+    h5 {
+      -webkit-transform: translateY(-40px);
+        -ms-transform: translateY(-40px);
+            transform: translateY(-40px);
+      margin-bottom: 0;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: 1.42px;
+      font-weight: 500;
+    }
+  }
+  .header__logo {
+    height: 100px;
+  }
+}
