@@ -17,6 +17,7 @@ export const initialState = {
     token: token,
     refresh_token: refresh_token,
     user: user,
+    currentUser: {},
     isloading: false,
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
@@ -61,26 +62,35 @@ export const authReducer = createReducer({
     [actions.deleteuserPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.deleteuserSuccessful]: (state, payload) => {
-        debugger
         return updateObject(state, {
             isloading: false
         })
-    }, 
+    },
+    [actions.getUserPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.getUserSuccessful]: (state, payload) => {
+        return updateObject(state, {
+            isloading: false,
+            currentUser: payload.user
+        })
+    },
     
     [actions.configPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.configSuccessful]: (state, payload) => {
-        debugger
         return updateObject(state, {
             isloading: false
         })
     }, 
 
-    [actions.updateUser]: (state, payload) =>
-        updateObject(state,
+    [actions.updateuserSuccessful]: (state, payload) => {
+        debugger
+        return updateObject(state,
             {
                 user: payload.user,
-            }),
+                currentUser: payload.user,
+            })
+    },
     [actions.logout]: (state) => {
     return    updateObject(state,
             {

@@ -1,21 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 // import {Link, useHistory} from "react-router-dom";
+import * as AuthActions from "redux/actions";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {useDispatch} from "react-redux";
 
-const EditProfile = ({user}) => {
-    const [userForm, setUserForm] = useState({...user});
+const EditProfile = ({user, updateProfile}) => {
+    const [userForm, setUserForm] = useState({});
     const [files, setFile] = useState([]);
+    const [loaded, setLoaded] = useState(false);
 
+    useEffect(() => {
+     if (!loaded) {
+       setLoaded(true);
+       AuthActions.fetchUsers()
+     }
+      if (user && !userForm.user_name) setUserForm({...user})
+    }, [user]);
     const handleFile = (e) => {
         let file = e.target.files[0];
         let url = URL.createObjectURL(file);
         let newFiles = [{src: url, file}]
         setFile(newFiles);
       };
-   
-   
+
+  const handleChange = (e) => {
+    setUserForm({...userForm, [e.target.name]: e.target.value});
+  };
+
+  const updateUserProfile = (e) => {
+    const {bio, show_following, show_followers} = userForm;
+    AuthActions.updateUser({user: {bio, show_following, show_followers}});
+  };
   return (
     <>
           
@@ -59,13 +75,9 @@ const EditProfile = ({user}) => {
                   <div className="lps_media_body">                    
                     <div className="inline_wrp">
                     <span className="">
-                        <span className="text_primary ft_Weight_500">{userForm.user_name} </span> <span className="Atag text_uppercase">A</span>
+                        <span className="text_primary ft_Weight_500">{userForm.user_name} </span>
                       </span>
-                      <select className="cst_select select_modify">
-                        <option value="Relevance" selected="">Dosis</option>
-                        <option value="One">Dosis</option>
-                        <option value="Two">Dosis</option>
-                      </select>
+
                     </div>
                    
                   </div>
@@ -79,7 +91,7 @@ const EditProfile = ({user}) => {
                   <img src={require("assets/images/icons/icn_question_active.png")} alt="Add Icon" className="add_icn_outline" />
                 </a>
               </div>
-              <textarea className="input_modify txtarea_modify border_0 brds_0" rows="5">{userForm.bio}</textarea>
+              <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange} value={userForm.bio}>{userForm.bio}</textarea>
               <span className="textRange">0/50000</span>
             </div>
           </div>
@@ -88,7 +100,7 @@ const EditProfile = ({user}) => {
               <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
                 <p className="mb_0">Show Followers</p>
                 <label className="lps_switch">
-                  <input type="checkbox" checked/>
+                  <input type="checkbox" checked={userForm.show_followers} onChange={e => handleChange({target: {name: "show_followers", value: e.target.checked}})}/>
                   <span className="lps_int_slider round"></span>
                 </label>
               </div>
@@ -97,13 +109,13 @@ const EditProfile = ({user}) => {
               <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
                 <p className="mb_0">Show Following</p>
                 <label className="lps_switch">
-                  <input type="checkbox" checked/>
+                  <input type="checkbox" checked={userForm.show_following} onChange={e => handleChange({target: {name: "show_following", value: e.target.checked}})}/>
                   <span className="lps_int_slider round"></span>
                 </label>
               </div>
             </li>
           </ul>
-         
+         <button onClick={updateUserProfile}>update</button>
             <section className="lips_tab lps_tab_cutomize">
               <ul className="tabs_block_cst">
                 <li className="tab-link current" data-tab="tab-1">
@@ -189,12 +201,10 @@ const EditProfile = ({user}) => {
 
 const mapStateToProps = (state) => {
    return {
-      user: state.authReducer.user
+      user: state.authReducer.currentUser
    }
 }
 
-const mapDispatchToProps = (dispatch) => {
-   return {}
-}
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditProfile));
+
+export default withRouter(connect(mapStateToProps, null)(EditProfile));

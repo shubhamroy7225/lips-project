@@ -22,3 +22,5 @@ export const deleteuserPending = createAction('delete user API started fetching'
 export const deleteuserSuccessful = createAction('delete user API successful');
 export const configPending = createAction('config API started fetching');
 export const configSuccessful = createAction('config API API successful');
+export const getUserPending = createAction('get User pending');
+export const getUserSuccessful = createAction('get User successful');
