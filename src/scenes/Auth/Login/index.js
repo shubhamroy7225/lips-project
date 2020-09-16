@@ -21,8 +21,8 @@ let LoginForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (simpleValidator.current.allValid()) {
-      var creds = { ...user, session_info: {} }
-      AuthActions.login({ user: creds }).then(res => {
+      var updatedUser = { ...user, session_info: { platform: 'web' } }
+      AuthActions.login({ user: updatedUser }).then(res => {
         if (res) history.push("/");
       });
     } //check validations

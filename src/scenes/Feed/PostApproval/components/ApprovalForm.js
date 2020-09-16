@@ -50,7 +50,6 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     }
 
     const handleInputChange = (e) => {
-        debugger;
         if (e.target.value === "on") {
             setApprovalForm({ ...approvalForm, [e.target.name]: true });
         } else if (e.target.value === "off") {
@@ -106,7 +105,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                             value={approvalForm.link}
                             onChange={handleInputChange}
                             onBlur={() => simpleValidator.current.showMessageFor('link')} />
-                        {simpleValidator.current.message('link', approvalForm.link, 'url')}
+                        <span style={{ color: "red" }}>{simpleValidator.current.message('link', approvalForm.link, 'url')}</span>
 
                     </div>
                     <div class="form_group_modify">
@@ -116,7 +115,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                             name="description"
                             value={approvalForm.description}
                             onChange={handleInputChange} />
-                        {simpleValidator.current.message('description', approvalForm.description, 'required')}
+                        <span style={{ color: "red" }}>{simpleValidator.current.message('description', approvalForm.description, 'required')}</span>
 
                     </div>
                     <div class="form_group_modify">
