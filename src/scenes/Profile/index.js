@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from "react-router-dom";
 import { connect } from 'react-redux';
 import MenuOptionSlider from 'scenes/Feed/components/MenuOptionSlider';
 import $ from 'jquery';
@@ -37,7 +38,7 @@ const ProfileHeader = ({ isUserProfile = true }) => {
                             </div>
                             {isUserProfile ?
                                 <figure class="lps_fig lps_fig_cont lps_fig_circle lps_float_right">
-                                    <a href="my_user_profile_customize.html"><img src={require("assets/images/icons/icn_paint_active.svg")} alt="User" /></a>
+                                    <Link to="/edit-profile"><img src={require("assets/images/icons/icn_paint_active.svg")} alt="User" /></Link>
                                 </figure>
                                 :
                                 <>
