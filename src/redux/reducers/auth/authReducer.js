@@ -54,7 +54,6 @@ export const authReducer = createReducer({
     [actions.resetpasswordPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.resetpasswordSuccessful]: (state, payload) => {
-        debugger
         return updateObject(state, {
             isloading: false
         })
@@ -83,14 +82,11 @@ export const authReducer = createReducer({
         })
     }, 
 
-    [actions.updateuserSuccessful]: (state, payload) => {
-        debugger
-        return updateObject(state,
+    [actions.updateuserSuccessful]: (state, payload) =>  updateObject(state,
             {
                 user: payload.user,
                 currentUser: payload.user,
-            })
-    },
+            }),
     [actions.logout]: (state) => {
     return    updateObject(state,
             {
