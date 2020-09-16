@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, useHistory} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from "redux/actions";
 const MyAccount = ({user}) => {
    const history = useHistory();
+   const [userForm, setUserForm] = useState({});
+   const [loaded, setLoaded] = useState(false);
    const [privacy_settings, setPrivacy] = useState(user.privacy_settings);
    const deleteUser = () =>{
       actions.deleteUser().then(res => {
@@ -12,10 +14,27 @@ const MyAccount = ({user}) => {
        });
    }
 
+   useEffect(() => {
+      if (!loaded) {
+        setLoaded(true);
+        actions.fetchUsers()
+      }
+       if (user && !userForm.user_name) setUserForm({...user})
+     }, [user]);
+
+   const handleChange = (e) => {
+     setUserForm({...userForm, [e.target.name]: e.target.value});
+   };
+
    const changePrivacyPolicy = () => {
       actions.changePrivacy({privacy_settings}).then(res => {
         return res
       });
+    };
+
+    const updateUser = (e) => {
+      const {user_name} = userForm;
+      actions.updateUser({user: {user_name}});
     };
    
   return (
@@ -31,7 +50,8 @@ const MyAccount = ({user}) => {
                         <div className="lps_user_info">
                            <p className="user_info_label">Username</p>
                            <div className="user_info_field">
-                              <input className="input_modify" value={user.user_name || ""}/>
+                            <input type="text" name="user_name" className="input_modify"  value={userForm.user_name || ""} onChange={handleChange} />
+                              <button type="submit" onClick={updateUser}>Save</button>
                            </div>
                         </div>
                      </li>
@@ -39,7 +59,7 @@ const MyAccount = ({user}) => {
                         <div className="lps_user_info">
                            <p className="user_info_label">Email</p>
                            <div className="user_info_field">
-                              <span className="input_modify">{user.email}</span>
+                              <span className="input_modify">{userForm.email}</span>
                            </div>
                         </div>
                      </li>
