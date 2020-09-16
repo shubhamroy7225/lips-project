@@ -1,6 +1,6 @@
-import React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import * as AuthActions from "redux/actions";
 
 import SimpleReactValidator from 'simple-react-validator';
@@ -12,16 +12,17 @@ let LoginForm = (props) => {
   const simpleValidator = useRef(new SimpleReactValidator());
   const [, forceUpdate] = useState();
   //user data state
-  const [user, setUser] = useState({user: "", password: ""});
+  const [user, setUser] = useState({ user: "", password: "" });
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = ()=> {
+  const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (simpleValidator.current.allValid()) {
-      AuthActions.login({user}).then(res =>{
+      var updatedUser = { ...user, session_info: { platform: 'web' } }
+      AuthActions.login({ user: updatedUser }).then(res => {
         if (res) history.push("/");
       });
     } //check validations
@@ -31,64 +32,64 @@ let LoginForm = (props) => {
     }
   };
 
-  const handleChange= (e) => {
-    setUser({...user, [e.target.name]: e.target.value});
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
     forceUpdate(1)
   };
   return (
-          <div id="wrap" className="mt_0">
-            <div className="lps_container mt_0">
-              <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
-                <div className="lps_form_wrp">
-                  <form
-                      onSubmit={handleSubmit}>
-                    <article className="text_center lps_logo_center">
-                      <Link className="logo mb_0" to="#">
-                        <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
-                        <h5 className="text_uppercase text_white">Sign In</h5>
-                      </Link>
-                    </article>
-                    <div className="lps_fields">
-                      <div className="form_group_modify">
-                        <input type="text" name="user" className="input_modify"
-                               placeholder="User Name" value={user.user}
-                               onBlur={() => simpleValidator.current.showMessageFor('user')}
-                               onChange={handleChange}/>
-                        {simpleValidator.current.message('user', user.user, 'required')}
-                      </div>
-                      <div className="form_group_modify lps_pos_rltv">
-                        <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="Password"
-                               value={user.password}
-                               onChange={handleChange}
-                               onBlur={() => simpleValidator.current.showMessageFor('password')}
+    <div id="wrap" className="mt_0">
+      <div className="lps_container mt_0">
+        <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
+          <div className="lps_form_wrp">
+            <form
+              onSubmit={handleSubmit}>
+              <article className="text_center lps_logo_center">
+                <Link className="logo mb_0" to="#">
+                  <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
+                  <h5 className="text_uppercase text_white">Sign In</h5>
+                </Link>
+              </article>
+              <div className="lps_fields">
+                <div className="form_group_modify">
+                  <input type="text" name="user" className="input_modify"
+                    placeholder="User Name" value={user.user}
+                    onBlur={() => simpleValidator.current.showMessageFor('user')}
+                    onChange={handleChange} />
+                  {simpleValidator.current.message('user', user.user, 'required')}
+                </div>
+                <div className="form_group_modify lps_pos_rltv">
+                  <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="Password"
+                    value={user.password}
+                    onChange={handleChange}
+                    onBlur={() => simpleValidator.current.showMessageFor('password')}
 
-                            />
-                        <span className="icn_passAbslt">
+                  />
+                  <span className="icn_passAbslt">
 
 
-                          {passwordShown ? <img onClick={togglePasswordVisiblity} src={require( "assets/images/icons/icn_hide_white.png")} /> : <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_white.png")} /> }
-                        </span>
-                        {simpleValidator.current.message('password', user.password, 'required')}
-                      </div>
-                      <div className="form_group_modify text_right mb20">
-                        <Link to="/forgot_password" className="link_white">Forgot Password</Link>
-                      </div>
-                      <div className="form_group_modify">
-                        <label className="lps_cont_check">Keep me signed in
+                    {passwordShown ? <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icn_hide_white.png")} /> : <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_white.png")} />}
+                  </span>
+                  {simpleValidator.current.message('password', user.password, 'required')}
+                </div>
+                <div className="form_group_modify text_right mb20">
+                  <Link to="/forgot_password" className="link_white">Forgot Password</Link>
+                </div>
+                <div className="form_group_modify">
+                  <label className="lps_cont_check">Keep me signed in
                           <input type="checkbox" checked />
-                          <span className="lps_Checkmark"></span>
-                        </label>
-                      </div>
-                    </div>
-                    <div className="pos_wrp onboarding_btm">
-                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase">Sign In</button>
-                      <p className="btm_links mt_25 text_white">New to Lips? <Link to="/register" className="link_underline lps_link">Register</Link></p>
-                    </div>
-                  </form>
+                    <span className="lps_Checkmark"></span>
+                  </label>
                 </div>
               </div>
-            </div>
+              <div className="pos_wrp onboarding_btm">
+                <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase">Sign In</button>
+                <p className="btm_links mt_25 text_white">New to Lips? <Link to="/register" className="link_underline lps_link">Register</Link></p>
+              </div>
+            </form>
           </div>
+        </div>
+      </div>
+    </div>
   )
 }
 

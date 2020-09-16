@@ -14,7 +14,6 @@ const Header = (props) => {
         setModalShown(modalShown ? false : true);
     }
     console.log(props);
-    debugger
     useEffect(() => {
         if (window.$) {
             window.$('.tab-list a').on('click', function (e) {
@@ -68,7 +67,7 @@ const Header = (props) => {
                                     <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
                                 </span>
                             </Link>
-                        </li>  }
+                        </li>}
                     </ul>
                 </nav>
             </header >

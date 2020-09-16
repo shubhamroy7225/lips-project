@@ -58,6 +58,9 @@
   .ml_5 {
     margin-left: 5px !important;
   }
+  .ml_0 {
+    margin-left: 0px !important;
+  }
   .mr_15 {
     margin-right: 15px;
   }
@@ -186,6 +189,29 @@
   border-radius: 25px;
 }
 .lps_px15{
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+.lh26{
+  line-height: 26px !important;
+}
+.brds_0 {
+  border-radius: 0 !important;
+}
+.modal-backdrop {
+  display: block;
+  background-color: rgba(10, 19, 36, 0.25);
+  background: rgba(10, 19, 36, 0.25) 0% 0% no-repeat padding-box;
+  opacity: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.modal-open {
+  overflow: hidden;
+}
+.modal_active{
+  display: block;
+}
+.modal_inactive  {
+  display: none;
 }

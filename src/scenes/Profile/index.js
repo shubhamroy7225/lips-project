@@ -8,7 +8,7 @@ import TextFeed from 'scenes/Feed/components/TextFeed';
 import FollowerItem from './components/FollowerItem';
 import NonRegisteredView from 'scenes/NonRegisteredView';
 
-const ProfileHeader = ({ isUserProfile }) => {
+const ProfileHeader = ({ isUserProfile = true }) => {
     const [isFollowerHeaderHidden, setIsFollowerHeaderHidden] = useState(true)
     const [following, setFollowing] = useState(false)
     return (
@@ -36,8 +36,8 @@ const ProfileHeader = ({ isUserProfile }) => {
                                 </a>}
                             </div>
                             {isUserProfile ?
-                                <figure class="lps_fig lps_fig_circle lps_float_right">
-                                    <a href="my_user_profile_customize.html"><img src={require("assets/images/icons/icn_paint.svg")} alt="User" /></a>
+                                <figure class="lps_fig lps_fig_cont lps_fig_circle lps_float_right">
+                                    <a href="my_user_profile_customize.html"><img src={require("assets/images/icons/icn_paint_active.svg")} alt="User" /></a>
                                 </figure>
                                 :
                                 <>

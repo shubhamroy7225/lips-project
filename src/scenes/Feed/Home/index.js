@@ -35,15 +35,29 @@ const MainFeed = (props) => {
         console.log(scrollY)
         // debugger;
         if (scrollDirection === "up" && scrollY > 70) {
-            addBodyClass("scroll-down")
-            removeBodyClass("scroll-up")
+            toggleHeader(false)
         } else {
-            removeBodyClass("scroll-down")
-            addBodyClass("scroll-up")
+            toggleHeader(true)
         }
 
         setLastScrollTop(-bodyOffset.top);
     };
+
+    const toggleHeader = (enable) => {
+        if (enable) {
+            removeBodyClass("scroll-down")
+            addBodyClass("scroll-up")
+        } else {
+            addBodyClass("scroll-down")
+            removeBodyClass("scroll-up")
+        }
+    }
+
+    useEffect(() => {
+        return () => {
+            toggleHeader(true)
+        }
+    }, [])
 
     useEffect(() => {
         window.addEventListener("scroll", listener);
