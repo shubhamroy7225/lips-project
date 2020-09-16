@@ -1,21 +1,29 @@
 import React, { useRef, useState } from 'react'
 import SimpleReactValidator from 'simple-react-validator';
+import * as API from 'api/configAPI';
+
 
 const ApprovalForm = ({ moveToNextStep, cancel }) => {
+    const withoutImageStyle = {
+        width: "50%",
+        height: "48%",
+    };
+
+
     const [approvalForm, setApprovalForm] = useState({ link: "", description: "", ownContent: true })
-    const simpleValidator = useRef(new SimpleReactValidator(
+    const simpleValidator = useRef(new SimpleReactValidator());
+    const simpleValidator2 = useRef(new SimpleReactValidator(
         {
             messages: {
-                description: "please add some description",
-                link: "please add link"
+                required: "Please add image examples of post"
             }
         }
     ));
     const [, forceUpdate] = useState();
 
-    const [imageBase641, setImageBase641] = useState(null)
-    const [imageBase642, setImageBase642] = useState(null)
-    const [imageBase643, setImageBase643] = useState(null)
+    const [image1, setImage1] = useState({file:null, base64:null})
+    const [image2, setImage2] = useState({file:null, base64:null})
+    const [image3, setImage3] = useState({file:null, base64:null})
 
     const fileSelector1 = useRef(null)
     const fileSelector2 = useRef(null)
@@ -37,11 +45,11 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
         reader.readAsDataURL(file);
         reader.onload = function () {
             if (fs === fileSelector1) {
-                setImageBase641(reader.result)
+                setImage1({...image1, base64:reader.result, file:file})
             } else if (fs === fileSelector2) {
-                setImageBase642(reader.result)
+                setImage2({...image1, base64:reader.result, file:file})
             } else {
-                setImageBase643(reader.result)
+                setImage3({...image1, base64:reader.result, file:file})
             }
         };
         reader.onerror = function (error) {
@@ -50,24 +58,62 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     }
 
     const handleInputChange = (e) => {
-        if (e.target.value === "on") {
-            setApprovalForm({ ...approvalForm, [e.target.name]: true });
-        } else if (e.target.value === "off") {
-            setApprovalForm({ ...approvalForm, [e.target.name]: false });
-        } else {
-            setApprovalForm({ ...approvalForm, [e.target.name]: e.target.value });
-        }
+        setApprovalForm({ ...approvalForm, [e.target.name]: e.target.value });
         forceUpdate(1)
     };
 
+    const handleCheckBoxChange = (e) => {
+        if (e.target.value === "true") {
+            setApprovalForm({ ...approvalForm, [e.target.name]: false });
+        } else {
+            setApprovalForm({ ...approvalForm, [e.target.name]: true });
+        }
+    }
+
     const handleSubmit = (e) => {
+        debugger;
         e.preventDefault();
-        if (simpleValidator.current.allValid() && (imageBase641 || imageBase642 || imageBase643)) {
-            moveToNextStep();
+        if (simpleValidator2.current.allValid() && simpleValidator.current.allValid() && (image1.base64 && image2.base64 && image3.base64)) {
+            let formData = {
+                images: [image1, image2, image3],
+                ...approvalForm
+            }
+            console.log(formData);
+            postDataToServer(formData);
         } else {
             simpleValidator.current.showMessages(); //show validation messages
+            simpleValidator2.current.showMessages();
             forceUpdate(1)
         }
+    }
+
+    const postDataToServer = async (formData) =>{
+        let fileExtensions = [];
+
+        let images = formData.images;
+        for (var obj in images){
+            if (images[obj].file.type === "image/png"){
+                fileExtensions.push(".png")
+            }else{
+                fileExtensions.push(".jpeg")
+            }
+        }
+
+        //1. fetch presigned url 
+        const response = await API.fetchUploadUrl({ext:fileExtensions});
+        if (response.data.success){
+            let urls = response.data.urls;
+            
+        }else{
+
+        }
+        debugger;
+
+        //2. upload the images
+
+        //3. update the data to server
+
+        moveToNextStep();
     }
 
     return (
@@ -83,16 +129,18 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                         <label class="label_modify">3 post example <br />(Images example of visuals or text that you'd post)</label>
                         <div class="add_product_grid">
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector1)}>
-                                <img src={imageBase641 ? imageBase641 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
+                                <img style={!image1.base64 ? withoutImageStyle : null} src={image1.base64 ? image1.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
                             </div>
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector2)}>
-                                <img src={imageBase642 ? imageBase642 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
+                                <img style={!image2.base64 ? withoutImageStyle : null} src={image2.base64 ? image2.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
                             </div>
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector3)}>
-                                <img src={imageBase643 ? imageBase643 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
+                                <img style={!image3.base64 ? withoutImageStyle : null} src={image3.base64 ? image3.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
                             </div>
                         </div>
-                        <input type="file" id="file" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
+                        <input type="file" id="file" name="portfolio" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
+
+                        <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio', image1.base64, 'required|select')}</span>
                         <input type="file" id="file" ref={fileSelector2} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector2)} />
                         <input type="file" id="file" ref={fileSelector3} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
 
@@ -120,7 +168,12 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                     </div>
                     <div class="form_group_modify">
                         <label class="lps_cont_check">This Is My Own Original Content
-                            <input type="checkbox" name="ownContent" checked={approvalForm.ownContent} onChange={handleInputChange} />
+                        
+                            <input type="checkbox"
+                                name="ownContent"
+                                defaultChecked
+                                value={approvalForm.ownContent}
+                                onChange={handleCheckBoxChange} />
                             <span class="lps_Checkmark"></span>
                         </label>
                     </div>

@@ -7,6 +7,12 @@ import ApprovalForm from './components/ApprovalForm';
 import StartApproval from './components/StartApproval';
 
 const PostApproval = () => {
+
+    const steps = {
+        StartApproval: "StartApproval",
+        CompleteApproval: "CompleteApproval",
+        ApprovalCompleted: "ApprovalCompleted"
+    }
     const history = useHistory();
 
     const moveToNextStep = () => {
@@ -24,11 +30,11 @@ const PostApproval = () => {
         history.push(routes.ROOT)
     }
 
-    const steps = {
-        StartApproval: "StartApproval",
-        CompleteApproval: "CompleteApproval",
-        ApprovalCompleted: "ApprovalCompleted"
+    const uploadApprovalForm = (formData) => {
+        let [image1, image2, image3, link, description, ownContent] = formData;
+
     }
+
     const [step, setStep] = useState(steps.StartApproval);
     let content = null;
     if (step === steps.StartApproval) {
