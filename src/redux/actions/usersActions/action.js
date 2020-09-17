@@ -83,6 +83,7 @@ export const deleteUser = () => {
     store.dispatch(deleteuserPending());
     return UserAPI.deleteUser()
         .then(response => {
+            signOut();
             return response.data
         })
        .catch(error => {
