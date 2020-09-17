@@ -8,6 +8,13 @@ const MyAccount = ({user}) => {
    const [userForm, setUserForm] = useState({});
    const [loaded, setLoaded] = useState(false);
    const [privacy_settings, setPrivacy] = useState(user.privacy_settings);
+
+   const [inputShown, setInputShown] = useState(false);
+  const inputVisible = () => {
+     debugger
+   setInputShown(inputShown ? false : true);
+  };
+
    const deleteUser = () =>{
       actions.deleteUser().then(res => {
          history.push("/settings");
@@ -35,6 +42,7 @@ const MyAccount = ({user}) => {
     const updateUser = (e) => {
       const {user_name} = userForm;
       actions.updateUser({user: {user_name}});
+      inputVisible() ;
     };
    
   return (
@@ -48,10 +56,18 @@ const MyAccount = ({user}) => {
                   <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
                      <li className="list-group-item">
                         <div className="lps_user_info">
-                           <p className="user_info_label">Username</p>
+                           <p className="user_info_label">Username <buttton className={`lps_link ft_Weight_600 ${inputShown ? 'hidden' : ''}`}  
+                           onClick={inputVisible}>change</buttton></p>
+
                            <div className="user_info_field">
-                            <input type="text" name="user_name" className="input_modify"  value={userForm.user_name || ""} onChange={handleChange} />
-                              <button type="submit" onClick={updateUser}>Save</button>
+                           <div  className={`${inputShown ? '' : 'hidden'}`}>
+                            <input type="text" name="user_name"  value={userForm.user_name || ""} onChange={handleChange} />
+                            <button type="submit" onClick={updateUser}>Save</button>
+                            </div>
+                            
+                            <span className={`input_modify ${inputShown ? 'span-hidden' : ''}`}>{userForm.user_name}</span>
+                             
+                           
                            </div>
                         </div>
                      </li>
