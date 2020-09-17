@@ -114,7 +114,7 @@ const Profile = (props) => {
                         <ul class="tabs_block_cst">
                             <li class="tab-link current" data-tab="tab-1">
                                 <figure class="lps_fig lps_fig_sm">
-                                    <img src={require("assets/images/icons/icn_image_sm_white.svg")} alt="Picture" />
+                                    <img src={require("assets/images/icons/icn_image_sm_black.svg")} alt="Picture" />
                                 </figure>
                             </li>
                         </ul>

@@ -18,3 +18,13 @@ export const updatePost = (credentials, id) => {
         },
     });
 };
+
+export const submitCreateFeedApprovalData = (request) => {
+    return axios.post(`${API_VERSION}/user/approval`, request, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
+

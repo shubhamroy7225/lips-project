@@ -1,20 +1,41 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, useHistory} from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from "redux/actions";
 const MyAccount = ({user}) => {
    const history = useHistory();
+   const [userForm, setUserForm] = useState({...user});
    const [privacy_settings, setPrivacy] = useState(user.privacy_settings);
+
+   const [inputShown, setInputShown] = useState(false);
+  const inputVisible = () => {
+   setInputShown(inputShown ? false : true);
+  };
+
    const deleteUser = () =>{
       actions.deleteUser().then(res => {
          history.push("/");
        });
    }
 
+
+   const handleChange = (e) => {
+     setUserForm({...userForm, [e.target.name]: e.target.value});
+   };
+
    const changePrivacyPolicy = () => {
       actions.changePrivacy({privacy_settings}).then(res => {
         return res
+      });
+    };
+
+    const updateUser = (e) => {
+      const {user_name} = userForm;
+      actions.verifyUsername(user_name).then(res => {
+        actions.updateUser({user: {user_name}}).then(res => {
+          inputVisible()
+        });
       });
     };
    
@@ -29,9 +50,15 @@ const MyAccount = ({user}) => {
                   <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
                      <li className="list-group-item">
                         <div className="lps_user_info">
-                           <p className="user_info_label">Username</p>
+                           <p className="user_info_label">Username
+                             <buttton className={`ml_5 lps_link ft_Weight_600 `}
+                             onClick={inputVisible}> {inputShown ? " Cancel" : " Change"}
+                             </buttton> </p>
                            <div className="user_info_field">
-                              <input className="input_modify" value={user.user_name || ""}/>
+                             {inputShown ? <div>
+                            <input type="text" name="user_name" className="user_field" value={userForm.user_name || ""} onChange={handleChange} />
+                               <button type="button" className="btn-transparent ml_5 lps_link" onClick={updateUser}>Save</button>
+                            </div>:  <span className={`input_modify `}>{user.user_name}</span>}
                            </div>
                         </div>
                      </li>
@@ -39,7 +66,7 @@ const MyAccount = ({user}) => {
                         <div className="lps_user_info">
                            <p className="user_info_label">Email</p>
                            <div className="user_info_field">
-                              <span className="input_modify">{user.email}</span>
+                              <span className="input_modify">{userForm.email}</span>
                            </div>
                         </div>
                      </li>
