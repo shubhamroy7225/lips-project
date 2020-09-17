@@ -11,7 +11,7 @@ export {
     updateUser,
     deleteUser,
     resetPassword,
-    fetchUsers,
+    fetchUser,
     config
 } from './usersActions/action';
 

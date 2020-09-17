@@ -1,7 +1,10 @@
 import React, { useRef, useState } from 'react'
 import SimpleReactValidator from 'simple-react-validator';
 import * as API from 'api/configAPI';
-
+import * as commonService from "utility/utility";
+import * as PostAPI from 'api/postAPI';
+import * as feedsAction from 'redux/actions/feedsActions/action';
+import { post } from 'jquery';
 
 const ApprovalForm = ({ moveToNextStep, cancel }) => {
     const withoutImageStyle = {
@@ -10,12 +13,12 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     };
 
 
-    const [approvalForm, setApprovalForm] = useState({ link: "", description: "", ownContent: true })
+    const [approvalForm, setApprovalForm] = useState({ link: null, description: "", ownContent: true })
     const simpleValidator = useRef(new SimpleReactValidator());
     const simpleValidator2 = useRef(new SimpleReactValidator(
         {
             messages: {
-                required: "Please add image examples of post"
+                required: "Please add 3 image examples of post"
             }
         }
     ));
@@ -30,12 +33,14 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     const fileSelector3 = useRef(null)
 
     const handleFileSelect = (fs) => {
-        if (fs === fileSelector1) {
+        if (!image1.base64){
             fileSelector1.current.click();
-        } else if (fs === fileSelector2) {
+        }else if (!image2.base64){
             fileSelector2.current.click();
-        } else {
+        }else if (!image3.base64){
             fileSelector3.current.click();
+        }else{
+            fs.current.click()
         }
     }
 
@@ -47,9 +52,9 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
             if (fs === fileSelector1) {
                 setImage1({...image1, base64:reader.result, file:file})
             } else if (fs === fileSelector2) {
-                setImage2({...image1, base64:reader.result, file:file})
+                setImage2({...image2, base64:reader.result, file:file})
             } else {
-                setImage3({...image1, base64:reader.result, file:file})
+                setImage3({...image3, base64:reader.result, file:file})
             }
         };
         reader.onerror = function (error) {
@@ -71,15 +76,18 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     }
 
     const handleSubmit = (e) => {
-        debugger;
         e.preventDefault();
-        if (simpleValidator2.current.allValid() && simpleValidator.current.allValid() && (image1.base64 && image2.base64 && image3.base64)) {
-            let formData = {
-                images: [image1, image2, image3],
-                ...approvalForm
+        if (simpleValidator.current.allValid() && ((image1.base64 && image2.base64 && image3.base64) || approvalForm.link)) {
+            
+            let images = [image1, image2, image3];
+            debugger;
+            images = images.filter(ele => ele.base64);
+            //upload all images
+            if (images.length > 0){
+                uploadImages(images);
+            }else{
+                postDataToServer();
             }
-            console.log(formData);
-            postDataToServer(formData);
         } else {
             simpleValidator.current.showMessages(); //show validation messages
             simpleValidator2.current.showMessages();
@@ -87,10 +95,34 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
         }
     }
 
-    const postDataToServer = async (formData) =>{
+    const postDataToServer = async (urls = []) =>{
+        //update data to server
+        debugger;
+        let photoPaths = urls.map(ele => {
+            return ele.photo_path
+        });
+
+        let request = {
+            approval:{
+                link:approvalForm.link,
+                about:approvalForm.description,
+                ownContent: approvalForm.ownContent,
+                photo_paths:photoPaths
+            }
+        }
+
+        feedsAction.submitCreateFeedApprovalData(request)
+        .then(response => {
+            //success
+            if (response.data.success){
+                moveToNextStep();
+            }
+        });
+    }
+
+    const uploadImages = async (images) => {
         let fileExtensions = [];
 
-        let images = formData.images;
         for (var obj in images){
             if (images[obj].file.type === "image/png"){
                 fileExtensions.push(".png")
@@ -98,39 +130,37 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                 fileExtensions.push(".jpeg")
             }
         }
-
-        //1. fetch presigned url 
-        const response = await API.fetchUploadUrl({ext:fileExtensions});
-        if (response.data.success){
-            let urls = response.data.urls;
-            debugger;
-            let base64ToBeUploaded = images[0].base64.split(",")[1]
-             API.uploadImageToS3(urls[0].presigned_url,base64ToBeUploaded)
-             .then(res => {
-                let base64ToBeUploaded = images[1].base64.split(",")[1]
-                 return API.uploadImageToS3(urls[1].presigned_url,base64ToBeUploaded);
-             }).then(res => {
-                let base64ToBeUploaded = images[2].base64.split(",")[1]
-                return API.uploadImageToS3(urls[2].presigned_url,base64ToBeUploaded);
-             }).then(res => {
-                debugger;
-                if (res.status === 200){
-                    //success
-                    //update to server
-                    moveToNextStep();
-                }
-             }).catch(error => {
-                 debugger;
-             })
-        }else{
-
-        }
-        debugger;
-
-        //2. upload the images
-
-        //3. update the data to server
-
+         //1. fetch presigned url 
+         const response = await API.fetchUploadUrl({ext:fileExtensions});
+         if (response.data.success){
+             let urls = response.data.urls;
+             //2. upload all the images
+             commonService.isLoading.onNext(true); // start loading
+             var imagesUploadedCount = 0
+             images.forEach((element, index) => {
+                let base64ToBeUploaded = element.base64.split(",")[1]
+                API.uploadImageToS3(urls[index].presigned_url,base64ToBeUploaded)
+                .then(res => {
+                    if (res.status === 200){
+                        imagesUploadedCount = imagesUploadedCount + 1;
+                        if (imagesUploadedCount === images.length){
+                            //successfully uploaded all images
+                            postDataToServer(urls)
+                        }
+                    }else{
+                        //error
+                        commonService.isLoading.onNext(false); // stop loading
+                    }
+                })
+                .catch(error => {
+                    //error
+                    commonService.isLoading.onNext(false); // stop loading
+                })
+             });
+         }else{
+            //error
+            commonService.isLoading.onNext(false); // stop loading
+         }
     }
 
     return (
@@ -155,11 +185,14 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                                 <img style={!image3.base64 ? withoutImageStyle : null} src={image3.base64 ? image3.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
                             </div>
                         </div>
-                        <input type="file" id="file" name="portfolio" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
+                        <input type="file" id="file" name="portfolio1" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
+                        {!approvalForm.link && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio1', image1.base64, 'required')}</span>}
+                        
+                        <input type="file" id="file" name="portfolio2" ref={fileSelector2} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector2)} />
+                       {!approvalForm.link && image1.base64 && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio2', image2.base64, 'required')}</span>}
 
-                        <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio', image1.base64, 'required')}</span>
-                        <input type="file" id="file" ref={fileSelector2} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector2)} />
-                        <input type="file" id="file" ref={fileSelector3} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
+                        <input type="file" id="file" name="portfolio3" ref={fileSelector3} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
+                        {!approvalForm.link && image2.base64 && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio3', image3.base64, 'required')}</span>}
 
                     </div>
                     <div class="form_group_modify">
