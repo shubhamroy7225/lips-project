@@ -1,5 +1,5 @@
 //import { AuthActionTypes } from './actionType';
-import axios  from 'config';
+import axios from 'config';
 import errorHandler from "utility/errorHandler/errorHandler"
 import * as API from '../../../api/authAPI';
 import * as UserAPI from '../../../api/userAPI';
@@ -15,6 +15,7 @@ function getHistory() {
     const history = storeState.historyReducer.history;
     return history;
 }
+
 const setUserData = (data) => {
     storage.set('token', data.token);
     storage.set('refresh_token', data.refresh_token);
@@ -28,7 +29,7 @@ export const login = (credentials) => {
     return API.login(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
-            const {user, token, refresh_token} = response.data
+            const { user, token, refresh_token } = response.data
             setUserData(response.data);
             store.dispatch(loginSuccessful(response.data.user));
             store.dispatch(authorizeUser(user, token, refresh_token));
@@ -42,21 +43,21 @@ export const signup = (credentials) => {
     return API.signup(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
-            const {user, token, refresh_token} = response.data;
+            const { user, token, refresh_token } = response.data;
             setUserData(response.data);
             store.dispatch(signupSuccessful(response.data.user));
-            return  store.dispatch(authorizeUser(user, token, refresh_token));
+            return store.dispatch(authorizeUser(user, token, refresh_token));
         })
 };
-export const changePrivacy = ({privacy_settings}) => {
+export const changePrivacy = ({ privacy_settings }) => {
     commonService.isLoading.onNext(true);
     store.dispatch(changePrivacyPending());
-    return API.changePrivacy({privacy_settings})
+    return API.changePrivacy({ privacy_settings })
         .then(res => {
             commonService.isLoading.onNext(false);
             let user = storage.get('user', null);
-            storage.set('user', {...user, privacy_settings});
-            store.dispatch(changePrivacySuccessful({privacy_settings}));
+            storage.set('user', { ...user, privacy_settings });
+            store.dispatch(changePrivacySuccessful({ privacy_settings }));
             return res
         })
 };
@@ -77,17 +78,16 @@ export const forgotPassword = (credentials) => {
             commonService.isLoading.onNext(false);
             if (response.data.error) {
                 toastMsg(response.data);
-            } else 
-            {
+            } else {
                 toastMsg("Please check your email to reset your password!")
             }
-                
+
             return response.data;
         })
-       .catch(error => {
-           console.log(error);
-           return error;
-       })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
 };
 
 export const deleteUser = () => {
@@ -99,26 +99,27 @@ export const deleteUser = () => {
             signOut();
             return response.data
         })
-       .catch(error => {
-           console.log(error);
-           return error;
-       })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
 };
 
-export const fetchUsers = (credentials) => {
+export const fetchUser = (credentials) => {
     commonService.isLoading.onNext(true);
     store.dispatch(getUserPending());
-    return UserAPI.fetchUsers(credentials)
+    return UserAPI.fetchUserData()
         .then(response => {
             commonService.isLoading.onNext(false);
             store.dispatch(getUserSuccessful(response.data));
             return response.data;
         })
-       .catch(error => {
-           console.log(error);
-           return error;
-       })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
 };
+
 export const updateUser = (credentials) => {
     commonService.isLoading.onNext(true);
     store.dispatch(updateuserPending());
@@ -129,10 +130,10 @@ export const updateUser = (credentials) => {
             store.dispatch(updateuserSuccessful(response.data));
             return response;
         })
-       .catch(error => {
-           console.log(error);
-           return error;
-       })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
 };
 
 export const config = (credentials) => {
@@ -143,26 +144,26 @@ export const config = (credentials) => {
             commonService.isLoading.onNext(false);
             return response.data;
         })
-       .catch(error => {
-           console.log(error);
-           return error;
-       })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
 };
 //
 export const resetPassword = (credentials) => {
-   commonService.isLoading.onNext(true);
-   store.dispatch(resetpasswordPending());
-   return API.resetPassword(credentials)
-       .then(response => {
-        commonService.isLoading.onNext(false);
+    commonService.isLoading.onNext(true);
+    store.dispatch(resetpasswordPending());
+    return API.resetPassword(credentials)
+        .then(response => {
+            commonService.isLoading.onNext(false);
             return true;
-           
-       })
-       .catch(error => {
-           console.log(error);
-           // errorHandler(error);
-           return error;
-       })
+
+        })
+        .catch(error => {
+            console.log(error);
+            // errorHandler(error);
+            return error;
+        })
 };
 
 export const signOut = () => {

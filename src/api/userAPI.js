@@ -10,8 +10,7 @@ export const updateUser = (credentials) => {
 };
 
 export const config = (credentials) => {
-
-    return axios.patch(`${API_VERSION}/presign_url`, credentials,{
+    return axios.patch(`${API_VERSION}/presign_url`, credentials, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -19,8 +18,7 @@ export const config = (credentials) => {
     });
 }
 
-
-export const fetchUsers = () => {
+export const fetchUserData = () => {
     return axios.get(`${API_VERSION}/user`, {
         headers: {
             'Content-Type': 'application/json',
