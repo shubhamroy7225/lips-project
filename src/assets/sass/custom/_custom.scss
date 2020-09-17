@@ -65,7 +65,7 @@ body.body_overflow {
   height: 106px;
   margin-top: -20px;
   background: transparent linear-gradient(0deg, #f385a840 0%, #ffffff40 100%) 0%
-    0% no-repeat padding-box;
+  0% no-repeat padding-box;
 }
 .lps_media {
   display: -ms-flexbox;
@@ -347,7 +347,7 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
   border-radius: 50%;
   background: $white;
   background: transparent linear-gradient(0deg, #fef1eb80 0%, #fd3398 100%) 0%
-    0% no-repeat padding-box;
+  0% no-repeat padding-box;
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
   animation: load3 1.4s infinite linear;
@@ -1739,28 +1739,28 @@ p.more {
 .theme_gradient {
   background: $brand-primary-100;
   background: -moz-linear-gradient(
-    top,
-    #fef1eb 70%,
-    #fef4ef 70%,
-    #fef4ef 40%,
-    #fde6e6 80%,
-    #fbd6da 100%
+                  top,
+                  #fef1eb 70%,
+                  #fef4ef 70%,
+                  #fef4ef 40%,
+                  #fde6e6 80%,
+                  #fbd6da 100%
   );
   background: -webkit-linear-gradient(
-    top,
-    #fef1eb 70%,
-    #fef4ef 70%,
-    #fef4ef 40%,
-    #fde6e6 80%,
-    #fbd6da 100%
+                  top,
+                  #fef1eb 70%,
+                  #fef4ef 70%,
+                  #fef4ef 40%,
+                  #fde6e6 80%,
+                  #fbd6da 100%
   );
   background: linear-gradient(
-    to bottom,
-    #fef1eb 70%,
-    #fef4ef 70%,
-    #fef4ef 40%,
-    #fde6e6 80%,
-    #fbd6da 100%
+                  to bottom,
+                  #fef1eb 70%,
+                  #fef4ef 70%,
+                  #fef4ef 40%,
+                  #fde6e6 80%,
+                  #fbd6da 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fef1eb', endColorstr='#fbd6da',GradientType=0 );
 }
