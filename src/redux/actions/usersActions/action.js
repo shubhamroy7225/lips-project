@@ -6,6 +6,7 @@ import * as UserAPI from '../../../api/userAPI';
 import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
+import * as commonService from "../../../utility/utility";
 import store from '../../../redux/store/store';
 import { loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful } from 'redux/actions/auth';
 
@@ -22,9 +23,11 @@ const setUserData = (data) => {
 };
 
 export const login = (credentials) => {
+    commonService.isLoading.onNext(true);
     store.dispatch(loginPending());
     return API.login(credentials)
         .then(response => {
+            commonService.isLoading.onNext(false);
             const {user, token, refresh_token} = response.data
             setUserData(response.data);
             store.dispatch(loginSuccessful(response.data.user));
@@ -34,9 +37,11 @@ export const login = (credentials) => {
 };
 
 export const signup = (credentials) => {
+    commonService.isLoading.onNext(true);
     store.dispatch(signupPending());
     return API.signup(credentials)
         .then(response => {
+            commonService.isLoading.onNext(false);
             const {user, token, refresh_token} = response.data;
             setUserData(response.data);
             store.dispatch(signupSuccessful(response.data.user));
@@ -44,9 +49,11 @@ export const signup = (credentials) => {
         })
 };
 export const changePrivacy = ({privacy_settings}) => {
+    commonService.isLoading.onNext(true);
     store.dispatch(changePrivacyPending());
     return API.changePrivacy({privacy_settings})
         .then(res => {
+            commonService.isLoading.onNext(false);
             let user = storage.get('user', null);
             storage.set('user', {...user, privacy_settings});
             store.dispatch(changePrivacySuccessful({privacy_settings}));
@@ -54,16 +61,20 @@ export const changePrivacy = ({privacy_settings}) => {
         })
 };
 export const verifyUsername = (user_name) => {
+    commonService.isLoading.onNext(true);
     return API.verifyUsername(user_name)
         .then(res => {
+            commonService.isLoading.onNext(false);
             return res
         })
 };
 
 export const forgotPassword = (credentials) => {
+    commonService.isLoading.onNext(true);
     store.dispatch(forgotpasswordPending());
     return API.forgotPassword(credentials)
         .then(response => {
+            commonService.isLoading.onNext(false);
             if (response.data.error) {
                 toastMsg(response.data);
             } else 
@@ -80,9 +91,11 @@ export const forgotPassword = (credentials) => {
 };
 
 export const deleteUser = () => {
+    commonService.isLoading.onNext(true);
     store.dispatch(deleteuserPending());
     return UserAPI.deleteUser()
         .then(response => {
+            commonService.isLoading.onNext(false);
             signOut();
             return response.data
         })
@@ -93,9 +106,11 @@ export const deleteUser = () => {
 };
 
 export const fetchUsers = (credentials) => {
+    commonService.isLoading.onNext(true);
     store.dispatch(getUserPending());
     return UserAPI.fetchUsers(credentials)
         .then(response => {
+            commonService.isLoading.onNext(false);
             store.dispatch(getUserSuccessful(response.data));
             return response.data;
         })
@@ -105,9 +120,11 @@ export const fetchUsers = (credentials) => {
        })
 };
 export const updateUser = (credentials) => {
+    commonService.isLoading.onNext(true);
     store.dispatch(updateuserPending());
     return UserAPI.updateUser(credentials)
         .then(response => {
+            commonService.isLoading.onNext(false);
             storage.set('user', response.data.user);
             store.dispatch(updateuserSuccessful(response.data));
             return response;
@@ -119,9 +136,11 @@ export const updateUser = (credentials) => {
 };
 
 export const config = (credentials) => {
+    commonService.isLoading.onNext(true);
     store.dispatch(configPending());
     return UserAPI.config(credentials)
         .then(response => {
+            commonService.isLoading.onNext(false);
             return response.data;
         })
        .catch(error => {
@@ -131,9 +150,11 @@ export const config = (credentials) => {
 };
 //
 export const resetPassword = (credentials) => {
+   commonService.isLoading.onNext(true);
    store.dispatch(resetpasswordPending());
    return API.resetPassword(credentials)
        .then(response => {
+        commonService.isLoading.onNext(false);
             return true;
            
        })
