@@ -17,14 +17,20 @@ const PostApproval = (props) => {
     const history = useHistory();
 
     const moveToNextStep = () => {
-        if (step === steps.StartApproval) {
-            setStep(steps.CompleteApproval);
-        } else if (step === steps.CompleteApproval) {
-            setStep(steps.ApprovalCompleted);
-        } else {
-            allowedToPost();
+        debugger;
+        if (props.user.approval_status !== ApprovalStatus.not_submitted) {
+            //already submitted so take back to feeds
             history.push(routes.ROOT)
+        } else {
+            if (step === steps.StartApproval) {
+                setStep(steps.CompleteApproval);
+            } else if (step === steps.CompleteApproval) {
+                setStep(steps.ApprovalCompleted);
+            } else {
+                history.push(routes.ROOT)
+            }
         }
+
     }
 
     const dismissApprovalForm = () => {
