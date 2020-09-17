@@ -17,7 +17,6 @@ export const initialState = {
     token: token,
     refresh_token: refresh_token,
     user: user,
-    currentUser: {},
     isloading: false,
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
@@ -85,7 +84,6 @@ export const authReducer = createReducer({
     [actions.updateuserSuccessful]: (state, payload) =>  updateObject(state,
             {
                 user: payload.user,
-                currentUser: payload.user,
             }),
     [actions.logout]: (state) => {
     return    updateObject(state,

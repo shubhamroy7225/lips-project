@@ -9,7 +9,9 @@ import TextFeed from 'scenes/Feed/components/TextFeed';
 import FollowerItem from './components/FollowerItem';
 import NonRegisteredView from 'scenes/NonRegisteredView';
 
-const ProfileHeader = ({ isUserProfile = true }) => {
+import EditProfile from "./components/EditProfile";
+
+const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
     const [isFollowerHeaderHidden, setIsFollowerHeaderHidden] = useState(true)
     const [following, setFollowing] = useState(false)
     return (
@@ -31,14 +33,14 @@ const ProfileHeader = ({ isUserProfile = true }) => {
                     <div class="lps_media_body">
                         <div class="lps_media_body">
                             <div class="user_wrp_mail">
-                                <span class="text_primary">Jon Snow </span>
+                                <span class="text_primary">{user.user_name} gdfg</span>
                                 {!isUserProfile && <a class="link_target_mail">
                                     <img src={require("assets/images/icons/icn_message.svg")} alt="Mail" />
                                 </a>}
                             </div>
                             {isUserProfile ?
                                 <figure class="lps_fig lps_fig_cont lps_fig_circle lps_float_right">
-                                    <Link to="/edit-profile"><img src={require("assets/images/icons/icn_paint_active.svg")} alt="User" /></Link>
+                                    <Link to="/profile" onClick={e => setEdit(true)}><img src={require("assets/images/icons/icn_paint_active.svg")} alt="User" /></Link>
                                 </figure>
                                 :
                                 <>
@@ -86,6 +88,7 @@ const ProfileHeader = ({ isUserProfile = true }) => {
 }
 
 const Profile = (props) => {
+    const [isEdit, setEdit] = useState(false)
     useEffect(() => {
         $('.close_follow').on("click", function () {
             $('.followers_wrp').addClass('close');
@@ -101,10 +104,11 @@ const Profile = (props) => {
     }, [])
 
     if (props.user) {
-        return (
+        return (<>
+        {isEdit ? <EditProfile setIsEdit={setEdit} /> :
             <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
                 <div class="lps_container bg_grayCCC">
-                    <ProfileHeader isUserProfile={props.isUserProfile} />
+                    <ProfileHeader isEdit={isEdit} setEdit={setEdit} user={props.user} isUserProfile={props.isUserProfile} />
                     {/* <!-- Lips Tab --> */}
                     <section class="lips_tab tabs_grid_view_sec">
                         <ul class="tabs_block_cst">
@@ -154,7 +158,8 @@ const Profile = (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> }
+        </>
         );
     } else {
         return <NonRegisteredView />

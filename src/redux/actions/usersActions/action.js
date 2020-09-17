@@ -107,6 +107,7 @@ export const updateUser = (credentials) => {
     store.dispatch(updateuserPending());
     return UserAPI.updateUser(credentials)
         .then(response => {
+            storage.set('user', response.data.user);
             store.dispatch(updateuserSuccessful(response.data));
             return response;
         })
