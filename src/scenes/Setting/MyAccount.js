@@ -8,7 +8,7 @@ const MyAccount = ({user}) => {
    const [privacy_settings, setPrivacy] = useState(user.privacy_settings);
    const deleteUser = () =>{
       actions.deleteUser().then(res => {
-         history.push("/settings");
+         history.push("/");
        });
    }
 
@@ -29,15 +29,15 @@ const MyAccount = ({user}) => {
                   <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
                      <li className="list-group-item">
                         <div className="lps_user_info">
-                           <p className="user_info_label">Username <Link to="#" className="lps_link ft_Weight_600">change</Link></p>
+                           <p className="user_info_label">Username</p>
                            <div className="user_info_field">
-                              <span className="input_modify">{user.user_name}</span>
+                              <input className="input_modify" value={user.user_name || ""}/>
                            </div>
                         </div>
                      </li>
                      <li className="list-group-item">
                         <div className="lps_user_info">
-                           <p className="user_info_label">Email <Link to="#" className="lps_link ft_Weight_600">change</Link></p>
+                           <p className="user_info_label">Email</p>
                            <div className="user_info_field">
                               <span className="input_modify">{user.email}</span>
                            </div>
@@ -76,7 +76,7 @@ const MyAccount = ({user}) => {
                       <li className="list-group-item">
                         <div className="lps_user_info lps_accnt_links">     
                            <p className="user_info_label" onClick={deleteUser}>
-                              <Link to="#" classname="ft_Weight_500">Delete Account</Link>
+                              <Link to="/settings/my-account" classname="ft_Weight_500">Delete Account</Link>
                            </p>
                         </div>
                      </li>

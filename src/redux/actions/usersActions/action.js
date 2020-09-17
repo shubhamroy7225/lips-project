@@ -7,7 +7,7 @@ import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import store from '../../../redux/store/store';
-import { loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful } from 'redux/actions/auth';
+import { loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
@@ -83,6 +83,7 @@ export const deleteUser = () => {
     store.dispatch(deleteuserPending());
     return UserAPI.deleteUser()
         .then(response => {
+            signOut();
             return response.data
         })
        .catch(error => {
@@ -91,12 +92,36 @@ export const deleteUser = () => {
        })
 };
 
+export const fetchUsers = (credentials) => {
+    store.dispatch(getUserPending());
+    return UserAPI.fetchUsers(credentials)
+        .then(response => {
+            store.dispatch(getUserSuccessful(response.data));
+            return response.data;
+        })
+       .catch(error => {
+           console.log(error);
+           return error;
+       })
+};
 export const updateUser = (credentials) => {
     store.dispatch(updateuserPending());
     return UserAPI.updateUser(credentials)
         .then(response => {
-            debugger
-                
+            storage.set('user', response.data.user);
+            store.dispatch(updateuserSuccessful(response.data));
+            return response;
+        })
+       .catch(error => {
+           console.log(error);
+           return error;
+       })
+};
+
+export const config = (credentials) => {
+    store.dispatch(configPending());
+    return UserAPI.config(credentials)
+        .then(response => {
             return response.data;
         })
        .catch(error => {
@@ -106,11 +131,10 @@ export const updateUser = (credentials) => {
 };
 //
 export const resetPassword = (credentials) => {
-    debugger
    store.dispatch(resetpasswordPending());
    return API.resetPassword(credentials)
        .then(response => {
-            debugger
+            return true;
            
        })
        .catch(error => {
