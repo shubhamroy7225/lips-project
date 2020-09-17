@@ -75,7 +75,7 @@ const EditProfile = ({setIsEdit, user}) => {
                     <figure  className="lps_fig lps_fig160 lps_fig120p20">
                       <input type="file" id="file_input" name="image" hidden onChange={handleFile}/>
                       {files.length ?  <img src={files[0].src} alt="Add Image" /> :
-                          (userForm.header_image ? <img src={userForm.header_image.medium} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
+                          (userForm.header_images ? <img src={userForm.header_images.medium} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
                     </figure>
                   </label>
                 </div>
