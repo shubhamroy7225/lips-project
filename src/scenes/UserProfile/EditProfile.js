@@ -1,65 +1,10 @@
 import React, {useState, useEffect} from 'react';
 // import {Link, useHistory} from "react-router-dom";
-import * as AuthActions from "redux/actions";
+
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as commonService from "utility/utility";
 
-const EditProfile = ({user, updateProfile}) => {
-    const [userForm, setUserForm] = useState({});
-    const [filePath, setFilePath] = useState('');
-
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-     if (!loaded) {
-       setLoaded(true);
-       AuthActions.fetchUsers()
-     }
-      if (user && !userForm.user_name) setUserForm({...user})
-    }, [user]);
-
-    const handleFile = (e) => {
-      debugger
-      if (e.target.files[0]) {
-        let file = e.target.files[0];
-        (AuthActions.config({ "ext": [".png"]})).then(res => {
-          debugger
-          let url = res.urls[res.urls.length -1 ];
-          if (url.presigned_url && url.photo_path) {
-            commonService.isLoading.onNext(true);
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "image/png");
-            let requestOptions = {
-              method: 'PUT',
-              headers: myHeaders,
-              body: file
-            };
-            fetch(url.presigned_url, requestOptions).then(res=>{
-              debugger
-              commonService.isLoading.onNext(false);
-              setUserForm({...userForm,photo_url: url.photo_path, header_image: url.photo_path});
-              debugger
-            },
-            error =>  commonService.isLoading.onNext(false))
-          }
-          return res.url;
-        });
-        let url = URL.createObjectURL(e.target.files[0]);
-        setFilePath(url)
-      }
-  
-    };
-      
-
-  const handleChange = (e) => {
-    setUserForm({...userForm, [e.target.name]: e.target.value});
-  };
-
-  const updateUserProfile = (e) => {
-    const {bio, user_name, header_image, show_following, show_followers} = userForm;
-    AuthActions.updateUser({user: {bio, user_name, header_image, show_following, show_followers}});
-  };
+const EditProfile = ({user}) => {
   return (
     <>
           
@@ -83,14 +28,8 @@ const EditProfile = ({user, updateProfile}) => {
             <div className="lps_inner_wrp lps_pink_dashed">
               <label htmlFor="file_input">
               <figure  className="lps_fig lps_fig160 lps_fig120p20">
-              <input type="file" id="file_input" name="image" hidden onChange={handleFile} />
+              <input type="file" id="file_input" name="image" hidden  />
                 <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
-                <div className="avatar-preview">
-                                    {filePath ? <img src={filePath} alt="img-pict" style={{height: "100%",
-                                      width: "100%",borderRadius: "50%"}}/> : ""}
-                                      {!filePath && userForm.photoPath ? <img src={userForm.photo_url.medium} alt="img-pict" style={{height: "100%",
-                                              width: "100%",borderRadius: "50%"}}/> : ""}
-                                 </div>
               </figure>
               </label>
             </div>
@@ -109,7 +48,7 @@ const EditProfile = ({user, updateProfile}) => {
                   <div className="lps_media_body">                    
                     <div className="inline_wrp">
                     <span className="">
-                    <input type="text" name="user_name"  value={userForm.user_name || ""} onChange={handleChange} />
+                    <input type="text" name="user_name"  value={userForm.user_name || ""} />
                       </span>
 
                     </div>
@@ -125,7 +64,7 @@ const EditProfile = ({user, updateProfile}) => {
                   <img src={require("assets/images/icons/icn_question_active.png")} alt="Add Icon" className="add_icn_outline" />
                 </a>
               </div>
-              <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange} value={userForm.bio}>{userForm.bio}</textarea>
+              <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5"  value={userForm.bio}>{userForm.bio}</textarea>
               <span className="textRange">0/50000</span>
             </div>
           </div>
