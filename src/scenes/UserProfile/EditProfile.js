@@ -1,10 +1,21 @@
 import React, {useState, useEffect} from 'react';
 // import {Link, useHistory} from "react-router-dom";
-
+import * as AuthActions from "redux/actions";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as commonService from "utility/utility";
 
-const EditProfile = ({user}) => {
+const EditProfile = ({user, updateProfile}) => {
+    const [userForm, setUserForm] = useState({});
+
+  const handleChange = (e) => {
+    setUserForm({...userForm, [e.target.name]: e.target.value});
+  };
+
+  const updateUserProfile = (e) => {
+    const {bio, user_name, header_image, show_following, show_followers} = userForm;
+    AuthActions.updateUser({user: {bio, user_name, header_image, show_following, show_followers}});
+  };
   return (
     <>
           
@@ -28,7 +39,7 @@ const EditProfile = ({user}) => {
             <div className="lps_inner_wrp lps_pink_dashed">
               <label htmlFor="file_input">
               <figure  className="lps_fig lps_fig160 lps_fig120p20">
-              <input type="file" id="file_input" name="image" hidden  />
+              <input type="file" id="file_input" name="image" hidden />
                 <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
               </figure>
               </label>
@@ -48,7 +59,7 @@ const EditProfile = ({user}) => {
                   <div className="lps_media_body">                    
                     <div className="inline_wrp">
                     <span className="">
-                    <input type="text" name="user_name"  value={userForm.user_name || ""} />
+                    <input type="text" name="user_name"  value={userForm.user_name || ""} onChange={handleChange} />
                       </span>
 
                     </div>
@@ -64,7 +75,7 @@ const EditProfile = ({user}) => {
                   <img src={require("assets/images/icons/icn_question_active.png")} alt="Add Icon" className="add_icn_outline" />
                 </a>
               </div>
-              <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5"  value={userForm.bio}>{userForm.bio}</textarea>
+              <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange} value={userForm.bio}>{userForm.bio}</textarea>
               <span className="textRange">0/50000</span>
             </div>
           </div>
