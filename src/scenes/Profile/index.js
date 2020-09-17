@@ -33,7 +33,7 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
                     <div class="lps_media_body">
                         <div class="lps_media_body">
                             <div class="user_wrp_mail">
-                                <span class="text_primary">{user.user_name} gdfg</span>
+                                <span class="text_primary">{user.user_name}</span>
                                 {!isUserProfile && <a class="link_target_mail">
                                     <img src={require("assets/images/icons/icn_message.svg")} alt="Mail" />
                                 </a>}
