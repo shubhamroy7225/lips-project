@@ -27,8 +27,7 @@ export const PRIVATE_PATH = {
     CREATE: '/create',
     LIKES: '/likes',
     PROFILE: '/profile',
-    USERPROFILE: '/user-profile',
-    EDITPROFILE: '/edit-profile',
+    EDIT_PROFILE: '/edit-profile',
     OTHER_PROFILE: '/profile/:id',
 };
 

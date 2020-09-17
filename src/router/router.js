@@ -38,8 +38,6 @@ import ContactUser from 'scenes/ContactUser';
 import PostApproval from 'scenes/Feed/PostApproval';
 import NonRegisteredView from 'scenes/NonRegisteredView';
 
-import UserProfile from 'scenes/UserProfile'
-import EditProfile from 'scenes/UserProfile/EditProfile'
 
 const Router = (props) => {
     let routeList = null;
@@ -63,8 +61,6 @@ const Router = (props) => {
                 <Route exact path={routes.EXPLORE} component={ExploreFeed} />
                 <Route exact path={routes.LIKES} component={Likes} />
                 <Route exact path={routes.PROFILE} component={Profile} />
-                <Route exact path={routes.USERPROFILE} component={UserProfile} />
-                <Route exact path={routes.EDITPROFILE} component={EditProfile} />
                 <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
                 <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
                 <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
