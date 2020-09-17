@@ -5,8 +5,9 @@ import { allowedToPost } from 'redux/actions/auth';
 import ApprovalCompleted from './components/ApprovalCompleted';
 import ApprovalForm from './components/ApprovalForm';
 import StartApproval from './components/StartApproval';
-
-const PostApproval = () => {
+import { connect } from 'react-redux';
+import { ApprovalStatus } from 'utility/constants/constants';
+const PostApproval = (props) => {
 
     const steps = {
         StartApproval: "StartApproval",
@@ -30,16 +31,11 @@ const PostApproval = () => {
         history.push(routes.ROOT)
     }
 
-    const uploadApprovalForm = (formData) => {
-        let [image1, image2, image3, link, description, ownContent] = formData;
-
-    }
-
     const [step, setStep] = useState(steps.StartApproval);
     let content = null;
-    if (step === steps.StartApproval) {
+    if (step === steps.StartApproval && props.user.approval_status === ApprovalStatus.not_submitted) {
         content = <StartApproval moveToNextStep={moveToNextStep} />
-    } else if (step === steps.CompleteApproval) {
+    } else if (step === steps.CompleteApproval && props.user.approval_status === ApprovalStatus.not_submitted) {
         content = <ApprovalForm moveToNextStep={moveToNextStep} cancel={dismissApprovalForm} />
     } else {
         content = <ApprovalCompleted moveToNextStep={moveToNextStep} />
@@ -52,4 +48,9 @@ const PostApproval = () => {
 
 }
 
-export default PostApproval;
+
+const mapStateToProps = (state) => ({
+    user: state.authReducer.user,
+});
+
+export default connect(mapStateToProps, null)(PostApproval);

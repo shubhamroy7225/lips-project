@@ -2,9 +2,7 @@ import React, { useRef, useState } from 'react'
 import SimpleReactValidator from 'simple-react-validator';
 import * as API from 'api/configAPI';
 import * as commonService from "utility/utility";
-import * as PostAPI from 'api/postAPI';
 import * as feedsAction from 'redux/actions/feedsActions/action';
-import { post } from 'jquery';
 
 const ApprovalForm = ({ moveToNextStep, cancel }) => {
     const withoutImageStyle = {
@@ -106,7 +104,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
             approval:{
                 link:approvalForm.link,
                 about:approvalForm.description,
-                ownContent: approvalForm.ownContent,
+                own_content: approvalForm.ownContent,
                 photo_paths:photoPaths
             }
         }
