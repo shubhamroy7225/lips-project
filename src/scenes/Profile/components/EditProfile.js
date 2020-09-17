@@ -68,7 +68,7 @@ const EditProfile = ({setIsEdit, user}) => {
                 </li>
               </ul>
             </div>
-            <div className="lps_container">
+            <div className="lps_container mt_10">
               <div className="lps_list">
                 <div className="lps_inner_wrp lps_pink_dashed">
                   <label htmlFor="file_input">
