@@ -149,7 +149,7 @@ export const signOut = () => {
     storage.remove('user');
     storage.remove('refresh_token');
     storage.remove('step');
-    logout();
+    store.dispatch(logout());
 };
 
 export const completeOnBordingFlow = () => {
