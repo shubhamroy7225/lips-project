@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const AddTags = ({ show, dismiss }) => {
     let style = show ? { display: "block" } : { display: "none" };
@@ -52,4 +53,9 @@ const AddTags = ({ show, dismiss }) => {
     );
 }
 
-export default AddTags
+
+const mapStateToProps = (state) => ({
+    user: state.authReducer.user
+});
+
+export default connect(mapStateToProps, null)(AddTags);
