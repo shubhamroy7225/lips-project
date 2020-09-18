@@ -24,7 +24,6 @@ const App = (props) => {
   useEffect(() => {
     console.log("calling on launch api!");
     if (props.user) {
-      debugger;
       actions.fetchUser();
     }
   }, []);

@@ -111,6 +111,7 @@ export const fetchUser = () => {
     return UserAPI.fetchUserData()
         .then(response => {
             commonService.isLoading.onNext(false);
+            storage.set('user', response.data.user);
             store.dispatch(getUserSuccessful(response.data));
             return response.data;
         })
