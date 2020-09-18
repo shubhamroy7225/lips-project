@@ -7,22 +7,11 @@ import 'react-notifications-component/dist/theme.css'
 import { withRouter } from 'react-router'
 import AppRouter from './router/router';
 import { connect } from 'react-redux';
-import { isBrowser } from 'react-device-detect';
-import { Offline, Online, Detector } from "react-detect-offline";
+import { Detector } from "react-detect-offline";
 import { routes } from 'utility/constants/constants';
-
-
-const addBodyClass = className => document.body.classList.add(className);
-const removeBodyClass = className => document.body.classList.remove(className);
+import * as actions from 'redux/actions';
 
 const App = (props) => {
-  useEffect(() => {
-    // if (isBrowser) {
-    //   addBodyClass("lps_xl_view")
-    // } else {
-    //   removeBodyClass("lps_xl_view")
-    // }
-  })
 
   const detectedNetworkChange = (isOnline) => {
     if (isOnline) {
@@ -31,6 +20,13 @@ const App = (props) => {
       props.history.push(routes.NO_NETWORK)
     }
   }
+
+  useEffect(() => {
+    console.log("calling on launch api!");
+    if (props.user) {
+      actions.fetchUser();
+    }
+  }, []);
 
   return (
     <>
