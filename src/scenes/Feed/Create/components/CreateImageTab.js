@@ -1,6 +1,11 @@
 import React, { useRef, useState } from 'react';
 
 const CreateImageTab = ({ toggleAddTags, toggleLipsInfo }) => {
+    const withoutImageStyle = {
+        width: "50%",
+        height: "41%",
+    };
+
     const [imageBase64, setImageBase64] = useState(null)
 
     const fileSelector = useRef(null)
@@ -24,9 +29,9 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo }) => {
     return (
         <div class="content active" id="imageTab">
             <div class="tab_inn_con">
-                <div class="add_img_block">
-                    <figure class="add_image lps_fig" onClick={() => handleFileSelect()}>
-                        <img src={imageBase64 ? imageBase64 : require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
+                <div class="add_img_block add_img_blockP0">
+                    <figure class="lps_img_fixed lps_flx_vm_jc lps_f_vm" onClick={() => handleFileSelect()}>
+                        <img style={!imageBase64 ? withoutImageStyle : null} src={imageBase64 ? imageBase64 : require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
                     </figure>
                     <input type="file" id="file" ref={fileSelector} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e)} />
                 </div>

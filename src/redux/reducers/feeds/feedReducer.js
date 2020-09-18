@@ -18,7 +18,7 @@ export const initialState = {
 export const feedReducer = createReducer({
     [actions.hashTagPending]: (state) =>
         updateObject(state, { isloading: true }),
-    [actions.hashTagSuccessful]: (state, payload) =>   updateObject(state, {
+    [actions.hashTagSuccessful]: (state, payload) => updateObject(state, {
         isloading: false, hashTags: payload.hashtags,
     })
 }, initialState); // <-- This is the default state

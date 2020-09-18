@@ -679,7 +679,7 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
     .lps_btn_grps {
       padding: 25% 15px 0;
       &.gredient_ul {
-        padding: 50px 15px 0;
+        padding: 30px 15px 0;
         li {
           margin-bottom: 25px;
           h6 {
@@ -1027,10 +1027,10 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
     margin-bottom: 30px;
     .list-group-item {
       &:first-child {
-        border-top: 1px solid rgba(0, 0, 0, 0.125);
+        border-top: 1px solid $white;
       }
       &:last-child {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        border-bottom: 1px solid $white;
       }
       .lps_user_info {
         padding-left: 0;
@@ -1247,7 +1247,7 @@ p.more {
       background-color: $bg_grayCCC;
       color: $brand-secondary;
       display: inline-block;
-      padding: 8px 15px;
+      padding: 6px 15px;
       cursor: pointer;
       border: 1px solid $brand-secondary;
       border-bottom: none;
@@ -1264,7 +1264,7 @@ p.more {
       background-color: $bg_grayCCC;
       border-bottom-color: $bg_grayCCC;
       position: relative;
-      top: 1px;
+      top: 2px;
     }
   }
   .tab-content_cst,
@@ -1280,10 +1280,6 @@ p.more {
   &.lps_tab_cutomize {
     .tabs_block_cst {
       text-align: left;
-      li {
-        margin: 0 2px 0 15px;
-        min-width: 148px;
-      }
     }
     .tab-content_cst {
       padding-top: 0;
@@ -3167,8 +3163,12 @@ p.more {
 }
 /* // Post Page*/
 .lps_pink_dashed {
-  border: 1px dashed $white;
+  border: 2px dashed $white;
   background-color: $bg_grayCCC;
+  .lps_fig90 {
+    width: 90px;
+    margin: 26px auto;
+  }
 }
 .dots_link {
   display: block;
@@ -3815,13 +3815,24 @@ p.more {
   }
   .product_card {
     margin-bottom: 0;
-    padding: 40px 0;
+    padding: 40px 10px;
+    font-size: 15px;
     background-color: $white-200;
     border-bottom: 1px solid $bg_grayCCC;
     border-right: 1px solid $bg_grayCCC;
     text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     img {
-      width: 60px;
+      width: 63px;
+      height: 43px;
     }
   }
 }
@@ -4003,8 +4014,10 @@ p.more {
 }
 .hashtags {
   .theme_btn {
-    margin-right: 7px;
-    min-width: 85px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    min-width: 80px;
+    padding: 7px 4px;
   }
 }
 .lps_inline_img_wrp {
@@ -4077,7 +4090,7 @@ span.textRange {
   display: block;
   text-align: right;
   background-color: $white;
-  color: $brand-secondary;
+  color: $gray-1000;
   padding: 10px;
   font-size: 14px;
   position: relative;
@@ -4213,4 +4226,27 @@ p.para18L30 {
     border-bottom: 1px solid #fff;
     min-width: 227px;
   }
+}
+.paint_tool_wrp {
+  text-align: right;
+  margin-bottom: 10px;
+  a {
+    img {
+      width: 30px;
+    }
+  }
+}
+.lps_img_fixed {
+  height: 320px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.hashtags {
+  text-align: left;
+}
+.lps_floatRight {
+  float: right;
 }

@@ -30,22 +30,24 @@
     top: 0;
     left: 0;
     pointer-events: none;
-    background: radial-gradient(circle, $white 10%, transparent 10.01%) no-repeat 50%;
+    background: radial-gradient(circle, $white 10%, transparent 10.01%)
+      no-repeat 50%;
     transform: scale(10, 10);
     opacity: 0;
-    transition: transform .5s, opacity 1s;
+    transition: transform 0.5s, opacity 1s;
   }
   &:active:after {
     transform: scale(0, 0);
-    opacity: .3;
+    opacity: 0.3;
     transition: 0s;
   }
-  &:focus, &:active {
+  &:focus,
+  &:active {
     box-shadow: none;
     outline: 0;
   }
 }
-@mixin btn-color-style($color,$background-color,$border-color) {
+@mixin btn-color-style($color, $background-color, $border-color) {
   color: $color;
   background-color: $background-color;
   border-color: $border-color;
@@ -66,49 +68,57 @@
 .theme_primary {
   @include btn-color-style($white, $brand-primary, $brand-primary);
 }
-.theme_primary:hover, .theme_primary:focus{
+.theme_primary:hover,
+.theme_primary:focus {
   @include btn-color-style($white, $brand-primary-hover, $brand-primary-hover);
 }
 .theme_secondary {
   @include btn-color-style($white, $black, $black);
 }
-.theme_secondary:hover, .theme_secondary:focus{
+.theme_secondary:hover,
+.theme_secondary:focus {
   @include btn-color-style($white, #5a6268, #545b62);
 }
 .theme_success {
   @include btn-color-style($white, #28a745, #28a745);
 }
-.theme_success:hover, .theme_success:focus{
+.theme_success:hover,
+.theme_success:focus {
   @include btn-color-style($white, #218838, #1e7e34);
 }
 .theme_danger {
   @include btn-color-style($white, $brand-danger, $brand-danger);
 }
-.theme_danger:hover, .theme_danger:focus{
+.theme_danger:hover,
+.theme_danger:focus {
   @include btn-color-style($white, $brand-danger-hover, $brand-danger-hover);
 }
 .theme_warning {
   @include btn-color-style(#212529, #ffc107, #ffc107);
 }
-.theme_warning:hover, .theme_warning:focus{
+.theme_warning:hover,
+.theme_warning:focus {
   @include btn-color-style(#212529, #e0a800, #d39e00);
 }
 .theme_info {
   @include btn-color-style($white, #17a2b8, #17a2b8);
 }
-.theme_info:hover, .theme_info:focus{
+.theme_info:hover,
+.theme_info:focus {
   @include btn-color-style($white, #138496, #117a8b);
 }
 .theme_light {
   @include btn-color-style($brand-primary, #f8f9fa, #f8f9fa);
 }
-.theme_light:hover, .theme_light:focus{
+.theme_light:hover,
+.theme_light:focus {
   @include btn-color-style($brand-primary, #e2e6ea, #dae0e5);
 }
 .theme_dark {
   @include btn-color-style($white, #343a40, #343a40);
 }
-.theme_dark:hover, .theme_dark:focus{
+.theme_dark:hover,
+.theme_dark:focus {
   @include btn-color-style(#212529, #e2e6ea, #dae0e5);
 }
 .theme_primary500 {
@@ -131,7 +141,7 @@
 .theme_link:hover {
   color: $brand-primary;
   background-color: transparent;
-  border-color: transparent
+  border-color: transparent;
 }
 
 /*outline btn css*/
@@ -147,7 +157,11 @@
   background-image: none;
 }
 .theme_outline_secondary:hover {
-  @include btn-color-style($white, $brand-secondary-hover, $brand-secondary-hover);
+  @include btn-color-style(
+    $white,
+    $brand-secondary-hover,
+    $brand-secondary-hover
+  );
 }
 .theme_outline_success {
   @include btn-color-style(#28a745, transparent, #28a745);
@@ -181,7 +195,7 @@
 .theme_outline_light {
   color: #f8f9fa;
   background: transparent none;
-  border-color: #f8f9fa
+  border-color: #f8f9fa;
 }
 .theme_outline_light:hover {
   @include btn-color-style(#212529, #f8f9fa, #f8f9fa);
@@ -202,10 +216,10 @@
   padding: 4px 10px;
   font-weight: 400;
 }
-%primary_shad{
-  box-shadow: -3px 0 22px 0 rgba(29,73,149,0.30);
-  -webkit-box-shadow: -3px 0 22px 0 rgba(29,73,149,0.30);
-  -moz-box-shadow: -3px 0 22px 0 rgba(29,73,149,0.30);
+%primary_shad {
+  box-shadow: -3px 0 22px 0 rgba(29, 73, 149, 0.3);
+  -webkit-box-shadow: -3px 0 22px 0 rgba(29, 73, 149, 0.3);
+  -moz-box-shadow: -3px 0 22px 0 rgba(29, 73, 149, 0.3);
 }
 .btn_primary_shad {
   @extend %primary_shad;
