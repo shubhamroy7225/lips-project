@@ -11,15 +11,6 @@ const MenuOptionSlider = (props) => {
         window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
     }
 
-    const postFeed = () => {
-        console.log(props.isFeedApproved);
-        if (props.isFeedApproved) {
-
-        } else {
-
-        }
-    }
-
     let createPostRoute = routes.CREATE
     let likedPostRoute = routes.LIKES
     let explorePostRoute = routes.EXPLORE
@@ -27,7 +18,6 @@ const MenuOptionSlider = (props) => {
 
     if (props.user) {
         //if user 
-        debugger;
         if (props.user.approval_status !== ApprovalStatus.accepted) {
             createPostRoute = routes.POST_APPROVAL;
         }
@@ -104,7 +94,6 @@ const MenuOptionSlider = (props) => {
 
 
 const mapStateToProps = (state) => ({
-    isFeedApproved: state.authReducer.isFeedApproved,
     user: state.authReducer.user
 });
 

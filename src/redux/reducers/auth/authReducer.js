@@ -20,7 +20,6 @@ export const initialState = {
     isloading: false,
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
-    isFeedApproved: false
 }
 
 export const authReducer = createReducer({
@@ -72,21 +71,21 @@ export const authReducer = createReducer({
             currentUser: payload.user
         })
     },
-    
+
     [actions.configPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.configSuccessful]: (state, payload) => {
         return updateObject(state, {
             isloading: false
         })
-    }, 
+    },
 
-    [actions.updateuserSuccessful]: (state, payload) =>  updateObject(state,
-            {
-                user: payload.user,
-            }),
+    [actions.updateuserSuccessful]: (state, payload) => updateObject(state,
+        {
+            user: payload.user,
+        }),
     [actions.logout]: (state) => {
-    return    updateObject(state,
+        return updateObject(state,
             {
                 token: token,
                 refresh_token: refresh_token,
@@ -106,8 +105,7 @@ export const authReducer = createReducer({
         return updateObject(state,
             {
                 isOnBoard: true,
-                user: {...user, privacy_settings: payload.privacy_settings}
+                user: { ...user, privacy_settings: payload.privacy_settings }
             })
-    },
-    [actions.allowedToPost]: (state) => updateObject(state, { isFeedApproved: true })
+    }
 }, initialState); // <-- This is the default state
