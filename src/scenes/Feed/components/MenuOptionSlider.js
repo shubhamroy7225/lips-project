@@ -27,7 +27,8 @@ const MenuOptionSlider = (props) => {
 
     if (props.user) {
         //if user 
-        if (!props.user.account_approved || props.user.approval_status !== ApprovalStatus.accepted) {
+        debugger;
+        if (props.user.approval_status !== ApprovalStatus.accepted) {
             createPostRoute = routes.POST_APPROVAL;
         }
     } else {

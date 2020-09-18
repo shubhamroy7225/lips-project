@@ -13,13 +13,9 @@ export {
     resetPassword,
     fetchUser,
     config
-} from './usersActions/action';
+} from './user/action';
 
 export {
     getAllHashTags,
     setFavoriteAvoidTags
-} from './feedsActions/action';
-
-//export {
-//    addHistory,
-//} from './usersActions/miscAction'
+} from './feed/action';
