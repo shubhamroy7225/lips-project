@@ -38,6 +38,8 @@ import ContactUser from 'scenes/ContactUser';
 import PostApproval from 'scenes/Feed/PostApproval';
 import NonRegisteredView from 'scenes/NonRegisteredView';
 
+import FeedSettingModal from 'scenes/Setting/FeedSettingModal';
+
 
 const Router = (props) => {
     let routeList = null;
@@ -83,6 +85,8 @@ const Router = (props) => {
                 <Route exact path={routes.SETTING_COMMUNITY_GUIDELINES} component={SettingCommunityGuidelines} />
                 <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
                 <Route exact path={routes.CONTACT_USER} component={ContactUser} />
+
+                <Route exact path={routes.FEED_SETTING_MODAL} component={FeedSettingModal} />
                 <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
             </Switch>
         )

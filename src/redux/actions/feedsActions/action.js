@@ -1,7 +1,7 @@
 //import { AuthActionTypes } from './actionType';
 import * as API from '../../../api/feedsAPI';
 import store from '../../../redux/store/store';
-import { hashTagPending, hashTagSuccessful } from 'redux/actions/feed';
+import { hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful } from 'redux/actions/feed';
 
 export const getAllHashTags = (credentials) =>  {
   store.dispatch(hashTagPending());
@@ -11,6 +11,16 @@ export const getAllHashTags = (credentials) =>  {
         return response
       })
 }
+
+export const getUserHashTags = (credentials) =>  {
+  store.dispatch(userhashTagPending());
+  return API.getUserHashTags(credentials)
+      .then(response => {
+        store.dispatch(userhashTagSuccessful(response.data))
+        return response
+      })
+}
+
 export const setFavoriteAvoidTags = (credentials) =>  {
   store.dispatch(hashTagPending());
   return API.setFavoriteAvoidTags(credentials)

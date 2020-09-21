@@ -17,7 +17,8 @@ export {
 
 export {
     getAllHashTags,
-    setFavoriteAvoidTags
+    setFavoriteAvoidTags,
+    getUserHashTags
 } from './feedsActions/action';
 
 //export {

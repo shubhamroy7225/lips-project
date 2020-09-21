@@ -13,6 +13,7 @@ const updateObject = (oldState, updatedProps) => {
 
 export const initialState = {
     hashTags: [],
+    hideHashtag: []
 }
 
 export const feedReducer = createReducer({
@@ -20,5 +21,13 @@ export const feedReducer = createReducer({
         updateObject(state, { isloading: true }),
     [actions.hashTagSuccessful]: (state, payload) =>   updateObject(state, {
         isloading: false, hashTags: payload.hashtags,
+    }),
+
+    [actions.userhashTagPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.userhashTagSuccessful]: (state, payload) =>   updateObject(state, {
+        isloading: false, hashTags: payload.show, hideHashtag: payload.hide
     })
 }, initialState); // <-- This is the default state
+
+

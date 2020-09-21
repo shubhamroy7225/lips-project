@@ -1,6 +1,40 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import * as actions from "redux/actions";
 const FeedSetting = () => {
+   // const history = useHistory();
+   const {hashTags} = useSelector(store => store.feedReducer);
+   const {hideHashtag} = useSelector(store => store.feedReducer);
+   const [selectTags, setSelectTags] = useState([]);
+   const [loaded, setLoaded] = useState(false);
+   useEffect(() => {
+      if (!loaded) {
+        setLoaded(true)
+        actions.getUserHashTags()
+      }
+    }, []);
+
+    const toggleHashTag = (tag) => {
+      if (selectTags.includes(tag)) {
+        selectTags.splice(selectTags.findIndex(e => e === tag), 1);
+        setSelectTags([...selectTags]);
+      }
+      else setSelectTags([...selectTags, tag]);
+    };
+
+    const showFavoriteTags = () => {
+      actions.setFavoriteAvoidTags({hashtags: {show: selectTags}}).then(res => {
+        if(res) return res;
+      });
+    };
+
+    const hideAvoidTags = () => {
+      actions.setFavoriteAvoidTags({hashtags: {hide: selectTags}}).then(res => {
+        if(res) return res;
+      });
+    };
+    
   return (
     <>
             <div id="wrap" className="mt_0 feed-setting">
@@ -56,26 +90,19 @@ const FeedSetting = () => {
                         </div>
                         <div className="lps_hash_tags_wrp hash_tag_block hash_tag_links lps_user_info">
                            <div className="hashtag">
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtagtag</Link>
+                              <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
+                                 <li>
+                                    {hashTags.map((tag, index) =>
+                                         <button key={index} className={`theme_btn theme_outline_light btn-color ${selectTags.includes(tag) ? "active" : ""}`} 
+                                         onClick={() => toggleHashTag(tag)}>{tag}</button>
+                                    )}
+                                    
+                                 </li>
+                              </ul>
                            </div>
-                           <div className="hashtag">
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtagtag</Link>
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                           </div>
-                           <div className="hashtag">
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                           </div>
-                           
-                           <div className="hashtag">
-                              <Link to="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                           </div>
+                          
                            <div className="hashtag my_10">
-                              <Link to ="javascript:void(0);" className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">Add more</Link>
+                             <Link to="/settings/feed-setting-modal" onClick={showFavoriteTags} class="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170" id="trigger_addMore">Add more</Link>
                            </div>
                         </div>
                      </li>
@@ -86,17 +113,18 @@ const FeedSetting = () => {
                         </div>
                         <div className="lps_hash_tags_wrp hash_tag_block hash_tag_links lps_user_info">
                            <div className="hashtag">
-                              <Link to ="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                              <Link to ="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
-                              <Link to ="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtagtag</Link>
-                           </div>
-                           <div className="hashtag">
-                              <Link to ="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtagtag</Link>
-                              <Link to ="javascript:void(0);" className="theme_btn theme_secondary text_white">#Hashtag</Link>
+                              <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
+                                 <li>
+                                 {hideHashtag.map((tag, index) =>
+                                         <button key={index} className={`theme_btn theme_outline_light btn-color ${selectTags.includes(tag) ? "active" : ""}`} 
+                                         onClick={() => toggleHashTag(tag)}>{tag}</button>
+                                    )}
+                                 </li>
+                              </ul>
                            </div>
                            
                            <div className="hashtag my_10">
-                              <Link to="javascript:void(0);" className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">Add more</Link>
+                              <Link to="javascript:void(0);" onClick={hideAvoidTags}  className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">Add more</Link>
                               
                            </div>
                         </div>
@@ -159,7 +187,8 @@ const FeedSetting = () => {
                   </ul>
                </div>
             </div>
-    </>
+           
+      </>
   );
 }
 export default FeedSetting
