@@ -65,7 +65,7 @@ body.body_overflow {
   height: 106px;
   margin-top: -20px;
   background: transparent linear-gradient(0deg, #f385a840 0%, #ffffff40 100%) 0%
-  0% no-repeat padding-box;
+    0% no-repeat padding-box;
 }
 .lps_media {
   display: -ms-flexbox;
@@ -347,7 +347,7 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
   border-radius: 50%;
   background: $white;
   background: transparent linear-gradient(0deg, #fef1eb80 0%, #fd3398 100%) 0%
-  0% no-repeat padding-box;
+    0% no-repeat padding-box;
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
   animation: load3 1.4s infinite linear;
@@ -1739,28 +1739,28 @@ p.more {
 .theme_gradient {
   background: $brand-primary-100;
   background: -moz-linear-gradient(
-                  top,
-                  #fef1eb 70%,
-                  #fef4ef 70%,
-                  #fef4ef 40%,
-                  #fde6e6 80%,
-                  #fbd6da 100%
+    top,
+    #fef1eb 70%,
+    #fef4ef 70%,
+    #fef4ef 40%,
+    #fde6e6 80%,
+    #fbd6da 100%
   );
   background: -webkit-linear-gradient(
-                  top,
-                  #fef1eb 70%,
-                  #fef4ef 70%,
-                  #fef4ef 40%,
-                  #fde6e6 80%,
-                  #fbd6da 100%
+    top,
+    #fef1eb 70%,
+    #fef4ef 70%,
+    #fef4ef 40%,
+    #fde6e6 80%,
+    #fbd6da 100%
   );
   background: linear-gradient(
-                  to bottom,
-                  #fef1eb 70%,
-                  #fef4ef 70%,
-                  #fef4ef 40%,
-                  #fde6e6 80%,
-                  #fbd6da 100%
+    to bottom,
+    #fef1eb 70%,
+    #fef4ef 70%,
+    #fef4ef 40%,
+    #fde6e6 80%,
+    #fbd6da 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fef1eb', endColorstr='#fbd6da',GradientType=0 );
 }
@@ -2201,7 +2201,9 @@ p.more {
   }
 }
 .morelink {
-  margin-top: 25px;
+  margin-top: 10px;
+  position: relative;
+  z-index: 2;
 }
 .saved_product {
   padding: 20px 15px;
@@ -3528,7 +3530,7 @@ p.more {
     padding: 0;
     .add_product_box {
       border-color: $brand-primary;
-      padding: 10px;
+      padding: 0px;
       margin-right: 15px;
       width: 70px;
       height: 60px;
@@ -3542,8 +3544,9 @@ p.more {
       -ms-flex-pack: center;
       justify-content: center;
       img {
-        width: 41px;
-        height: 31px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
@@ -3925,10 +3928,10 @@ p.more {
   justify-content: center;
   .lps_top_d {
     background-color: $white-200;
-    padding: 40px 15px 0 15px;
-    border-radius: 12px 12px 0 0;
+    padding: 40px 15px 40px 15px;
+    border-radius: 0;
     .lps_fig {
-      width: 150px;
+      width: 70px;
       margin: 0 auto;
     }
   }
@@ -3943,13 +3946,20 @@ p.more {
     text-align: center;
   }
   .lps_art {
-    color: $white;
+    text-align: center;
+    color: $brand-secondary;
     h2 {
-      margin-bottom: 10px;
+      color: $brand-secondary;
+      font-weight: 600;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      line-height: 30px;
     }
     p {
-      color: $white;
-      margin-bottom: 20px;
+      color: $brand-secondary;
+      font-size: 18px;
+      line-height: 26px;
+      margin-bottom: 40px;
     }
   }
 }

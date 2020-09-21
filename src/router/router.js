@@ -109,10 +109,6 @@ const Router = (props) => {
                 <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
                 <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
                 <Route exact path={routes.LOGIN_TO_PROCEED} component={NonRegisteredView} />
-                {/* Approval for posting */}
-                <Route exact path={routes.POST_APPROVAL} component={PostApproval} />
-
-
                 <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
             </Switch>
         )

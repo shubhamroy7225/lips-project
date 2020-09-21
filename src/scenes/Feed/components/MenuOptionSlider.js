@@ -3,19 +3,12 @@ import { Link, useHistory } from 'react-router-dom';
 import { routes } from 'utility/constants/constants';
 import { isMobile } from 'react-device-detect';
 import { connect } from 'react-redux';
+import { ApprovalStatus } from 'utility/constants/constants';
+
 const MenuOptionSlider = (props) => {
 
     const toggle = () => {
         window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
-    }
-
-    const postFeed = () => {
-        console.log(props.isFeedApproved);
-        if (props.isFeedApproved) {
-
-        } else {
-
-        }
     }
 
     let createPostRoute = routes.CREATE
@@ -24,7 +17,8 @@ const MenuOptionSlider = (props) => {
     let profileRoute = routes.PROFILE
 
     if (props.user) {
-        if (!props.user.account_approved) {
+        //if user 
+        if (props.user.approval_status !== ApprovalStatus.accepted) {
             createPostRoute = routes.POST_APPROVAL;
         }
     } else {
@@ -100,7 +94,6 @@ const MenuOptionSlider = (props) => {
 
 
 const mapStateToProps = (state) => ({
-    isFeedApproved: state.authReducer.isFeedApproved,
     user: state.authReducer.user
 });
 

@@ -6,3 +6,6 @@ export const getUserHashTags = () => axios.get(API_VERSION + '/user/settings/has
 
 export const setFavoriteAvoidTags = (body) => axios.put(API_VERSION + '/user/settings/hashtag', body);
 
+export const createFeed = (request) => {
+    return axios.post(`${API_VERSION}/post`, request)
+};

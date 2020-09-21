@@ -1,12 +1,10 @@
 import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import * as AuthActions from "redux/actions";
 
 import SimpleReactValidator from 'simple-react-validator';
 
 let LoginForm = (props) => {
-  const dispatch = useDispatch();
   const history = useHistory();
   //initialize validations
   const simpleValidator = useRef(new SimpleReactValidator());

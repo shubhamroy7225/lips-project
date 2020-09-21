@@ -38,7 +38,6 @@ export const NO_HEADER_ROUTES = {
     LOGIN_TO_PROCEED: '/create-account'
 };
 
-
 export const routes = {
     ROOT: '/',
     MAIN_FEED: '/main-feeds',
@@ -60,6 +59,13 @@ export const routes = {
     ...NO_HEADER_ROUTES
 
 };
+
+export const ApprovalStatus = {
+    not_submitted: "not_submitted",
+    requested: "requested",
+    accepted: "accepted",
+    denied: "denied"
+}
 
 export const MinImageResolution = {
     height: 683,

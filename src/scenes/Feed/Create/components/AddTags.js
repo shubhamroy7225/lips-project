@@ -1,12 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const AddTags = ({ show, dismiss }) => {
     let style = show ? { display: "block" } : { display: "none" };
     return (
-        <div class="hover_bkgr_fricc" id="trigger_add_popup" style={style}>
+        <div class="hover_bkgr_fricc full_Hvh" id="trigger_submit_tag_popup" style={style}>
             <div class="modal-dialog-centered">
                 <div class="popup_cont">
-                    <div class="popup_body post_poup lps_bg_secondary lps_text_white">
+                    <div class="popup_body post_poup lps_bg_secondary lps_text_white lps_bg_txt_white">
                         <div class="popupCloseButton" onClick={() => dismiss()}>
                             <img src={require("assets/images/icons/icn_close_white.png")} /></div>
                         <div class="lps_search">
@@ -42,6 +43,7 @@ const AddTags = ({ show, dismiss }) => {
                             </div>
                             <div class="post_links post_links_undr">
                                 <a href="#" class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</a>
+                                <a href="#" class="lps_link mt_15 btn_block" id="trigger_submit_tag">Can't find what you're looking for</a>
                             </div>
                         </div>
                     </div>
@@ -51,4 +53,9 @@ const AddTags = ({ show, dismiss }) => {
     );
 }
 
-export default AddTags
+
+const mapStateToProps = (state) => ({
+    user: state.authReducer.user
+});
+
+export default connect(mapStateToProps, null)(AddTags);
