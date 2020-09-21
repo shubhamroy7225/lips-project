@@ -3165,9 +3165,10 @@ p.more {
 .lps_pink_dashed {
   border: 2px dashed $white;
   background-color: $bg_grayCCC;
+  padding: 0;
   .lps_fig90 {
-    width: 90px;
-    margin: 26px auto;
+    width: 100%;
+    height: 118px;
   }
 }
 .dots_link {
@@ -4018,6 +4019,13 @@ p.more {
     margin-bottom: 5px;
     min-width: 80px;
     padding: 7px 4px;
+    &.theme_outline_light {
+      &:hover {
+        color: #f8f9fa;
+        background: transparent none;
+        border-color: #f8f9fa;
+      }
+    }
   }
 }
 .lps_inline_img_wrp {

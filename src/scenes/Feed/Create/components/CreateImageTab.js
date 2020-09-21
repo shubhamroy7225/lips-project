@@ -1,14 +1,17 @@
 import React, { useRef, useState } from 'react';
 
-const CreateImageTab = ({ toggleAddTags, toggleLipsInfo }) => {
+const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => {
     const withoutImageStyle = {
         width: "50%",
         height: "41%",
     };
 
     const [imageBase64, setImageBase64] = useState(null)
+    const [likable, setLikable] = useState(true);
+    const [caption, setCaption] = useState("");
 
-    const fileSelector = useRef(null)
+
+    const fileSelector = useRef(null);
 
     const handleFileSelect = () => {
         fileSelector.current.click();
@@ -26,6 +29,16 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo }) => {
         };
     }
 
+    const handleInputChange = (e) => {
+        setCaption(e.target.value)
+    }
+
+    const createPost = () => {
+        //1. Upload Image
+
+        //2. Create Post API 
+    }
+
     return (
         <div class="content active" id="imageTab">
             <div class="tab_inn_con">
@@ -36,20 +49,29 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo }) => {
                     <input type="file" id="file" ref={fileSelector} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e)} />
                 </div>
                 <div class="about_gallery">
-                    <textarea class="textarea_modifier" rows="8" placeholder="Say something about this..."></textarea>
+                    <textarea onChange={handleInputChange} value={caption} class="textarea_modifier" rows="8" placeholder="Say something about this..."></textarea>
                     <span class="textRange">0/50000</span>
                     <p class="mb_0 mt_5">What's going on in this post? Be sure to @credit others.</p>
                 </div>
+
                 <div class="hash_tag_block">
-                    <div class="hashtag">
-                        <a href="javascript:void(0);" onClick={() => toggleAddTags()} class="theme_btn theme_outline_primary text_secondary ft_Weight_500 btnr_25 min_w_170 text_uppercase">
+                    <div class="hashtags">
+                        {
+                            selectedHashTags.map((ele, index) => {
+                                return <a class="theme_btn theme_secondary">{ele.name}</a>
+                            })
+                        }
+                    </div>
+                    <div class="hashtag mt_15">
+                        <a onClick={() => toggleAddTags()} class="theme_btn theme_outline_primary text_secondary ft_Weight_500 btnr_25 min_w_170 text_uppercase trigger_add_bodyClass" id="trigger_add_tags">
                             add tags
-                            </a>
-                        <a href="javascript:void(0);" class="add_tag1 avtar_25" onClick={() => toggleLipsInfo()}>
+                    </a>
+                        <a onClick={() => toggleLipsInfo()} class="add_tag1 avtar_25 trigger_add_bodyClass" id="trigger_lips_tag">
                             <img src={require("assets/images/icons/icn_question_active.png")} alt="Add Icon" class="add_icn_outline" />
                         </a>
                     </div>
                 </div>
+
                 <div class="tag_product_con border_white_box">
                     <div class="d_inline mb_0">
                         <div class="grid_left lps_flx_vm_jsbtwn lps_flx_vm others_wrp">
