@@ -26,7 +26,7 @@ import Setting from 'scenes/Setting';
 import MyAccount from 'scenes/Setting/MyAccount';
 import SwitchAccount from 'scenes/Setting/SwitchAccount';
 import ManageData from 'scenes/Setting/ManageData';
-import FeedSetting from 'scenes/Setting/FeedSetting';
+import FeedSetting from 'scenes/Setting/FeedSetting/index';
 import Notification from 'scenes/Setting/Notifications';
 import PrivacyPolicy from 'scenes/Setting/PrivacyPolicy';
 import SettingTermsAndCondition from 'scenes/Setting/TermsAndCondition';
@@ -38,7 +38,7 @@ import ContactUser from 'scenes/ContactUser';
 import PostApproval from 'scenes/Feed/PostApproval';
 import NonRegisteredView from 'scenes/NonRegisteredView';
 
-import FeedSettingModal from 'scenes/Setting/FeedSettingModal';
+import FeedSettingModal from 'scenes/Setting/FeedSetting/FeedSettingModal';
 
 
 const Router = (props) => {
