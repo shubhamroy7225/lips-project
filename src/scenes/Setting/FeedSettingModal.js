@@ -27,7 +27,7 @@ const FeedSettingModal = () => {
 
   const showFavoriteTags = () => {
     actions.setFavoriteAvoidTags({hashtags: {show: selectTags}}).then(res => {
-      if(res) history.push("/settings");
+      if(res) history.push("/settings/feed-setiing");
     });
   };
 

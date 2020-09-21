@@ -14,26 +14,6 @@ const FeedSetting = () => {
         actions.getUserHashTags()
       }
     }, []);
-
-    const toggleHashTag = (tag) => {
-      if (selectTags.includes(tag)) {
-        selectTags.splice(selectTags.findIndex(e => e === tag), 1);
-        setSelectTags([...selectTags]);
-      }
-      else setSelectTags([...selectTags, tag]);
-    };
-
-    const showFavoriteTags = () => {
-      actions.setFavoriteAvoidTags({hashtags: {show: selectTags}}).then(res => {
-        if(res) return res;
-      });
-    };
-
-    const hideAvoidTags = () => {
-      actions.setFavoriteAvoidTags({hashtags: {hide: selectTags}}).then(res => {
-        if(res) return res;
-      });
-    };
     
   return (
     <>
@@ -93,8 +73,7 @@ const FeedSetting = () => {
                               <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                                  <li>
                                     {hashTags.map((tag, index) =>
-                                         <button key={index} className={`theme_btn theme_outline_light btn-color ${selectTags.includes(tag) ? "active" : ""}`} 
-                                         onClick={() => toggleHashTag(tag)}>{tag}</button>
+                                         <button key={index} className="theme_btn theme_outline_light btn-color">{tag}</button>
                                     )}
                                     
                                  </li>
@@ -102,7 +81,7 @@ const FeedSetting = () => {
                            </div>
                           
                            <div className="hashtag my_10">
-                             <Link to="/settings/feed-setting-modal" onClick={showFavoriteTags} class="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170" id="trigger_addMore">Add more</Link>
+                             <Link to="/settings/feed-setting-modal" class="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170" id="trigger_addMore">Add more</Link>
                            </div>
                         </div>
                      </li>
@@ -116,15 +95,14 @@ const FeedSetting = () => {
                               <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                                  <li>
                                  {hideHashtag.map((tag, index) =>
-                                         <button key={index} className={`theme_btn theme_outline_light btn-color ${selectTags.includes(tag) ? "active" : ""}`} 
-                                         onClick={() => toggleHashTag(tag)}>{tag}</button>
+                                         <button key={index} className="theme_btn theme_outline_light btn-color">{tag}</button>
                                     )}
                                  </li>
                               </ul>
                            </div>
                            
                            <div className="hashtag my_10">
-                              <Link to="javascript:void(0);" onClick={hideAvoidTags}  className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">Add more</Link>
+                              <Link to="javascript:void(0);"  className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">Add more</Link>
                               
                            </div>
                         </div>
