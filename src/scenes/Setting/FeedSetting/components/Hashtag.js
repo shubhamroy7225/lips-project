@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import * as actions from "redux/actions";
-const hashtag = ({hashTags, hideHashtag}) => {
+const hashtag = ({showhashTags, hideHashtag}) => {
   return (
     <>
       <li className="list-group-item">
@@ -14,7 +14,7 @@ const hashtag = ({hashTags, hideHashtag}) => {
             <div className="hashtag">
                <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                   <li>
-                     {hashTags.map((tag, index) =>
+                     {showhashTags.map((tag, index) =>
                      <button key={index} className="theme_btn theme_outline_light btn-color">{tag}</button>
                      )}
                   </li>

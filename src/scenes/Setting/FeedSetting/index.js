@@ -5,7 +5,7 @@ import UserHashtag from "./components/Hashtag.js";
 import BlockUser from "./components/BlockUser.js";
 import * as actions from "redux/actions";
 const FeedSetting = () => {
-  const {hashTags} = useSelector(store => store.feedReducer);
+  const {showhashTags} = useSelector(store => store.feedReducer);
   const {hideHashtag} = useSelector(store => store.feedReducer);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -59,7 +59,7 @@ const FeedSetting = () => {
                      </label>
                   </div>
                </li>
-               <UserHashtag hashTags={hashTags} hideHashtag={hideHashtag}/>
+               <UserHashtag showhashTags={showhashTags} hideHashtag={hideHashtag}/>
                <BlockUser/>
             </ul>
          </div>
