@@ -1,40 +1,5 @@
 .link_target_mail {
-  display: inline-block;
-  vertical-align: bottom;
-  margin-left: 10px;
-}
-.srv-validation-message {
-  color: $brand-danger;
-}
-
-.feed-setting .hashtag {
-  text-align: left;
-}
-.theme_outline_light.active,.theme_outline_light:hover, {
-  color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-}
-@media screen and (min-width: 1024px) {
-  .lips-hash-tags li {
-    display: block;
-    width: 25%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 10px;
   }
-}
-
-.hidden{
-  display: none;
-}
-
-.span-hidden{
-  display: none !important;
-}
-.user_field {
-  padding: 5px;
-  border: solid 1px #eee;
-}
-.btn-transparent  {
-  background: none;
-  border: none;
-  cursor: pointer;
-}

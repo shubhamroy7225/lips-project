@@ -7,7 +7,7 @@ const NoNetwork = (props) => {
                 <div class="lps_inner_wrp wave_shape_mxW">
                     <div class="lps_top_d">
                         <figure class="lps_fig">
-                            <img src={require("assets/images/icons/no_network.png")} />
+                            <img src={require("assets/images/icons/no_network.svg")} />
                         </figure>
                         <article class="lps_art">
                             <h2 class="btm_xs_bdr">Oh Snap!</h2>

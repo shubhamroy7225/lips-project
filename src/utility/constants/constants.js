@@ -66,6 +66,11 @@ export const ApprovalStatus = {
     denied: "denied"
 }
 
+export const FeedType = {
+    image: "image",
+    text: "text"
+}
+
 export const MinImageResolution = {
     height: 683,
     width: 1024
