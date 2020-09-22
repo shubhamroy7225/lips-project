@@ -6,3 +6,17 @@ export const setFavoriteAvoidTags = (body) => axios.put(API_VERSION + '/user/set
 
 export const createFeed = (request) => axios.post(`${API_VERSION}/post`, request);
 
+export const fetchFeeds = (request, queryString = "") => axios.get(`${API_VERSION}/post${queryString}`);
+
+export const fetchFeed = (feedID) => axios.get(`${API_VERSION}/post/${feedID}`);
+
+export const deleteFeed = (feedID) => axios.delete(`${API_VERSION}/post/${feedID}`);
+
+export const repostFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/respost`);
+
+export const likeFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/like`);
+
+export const unlikeFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/unlike`);
+
+export const hideFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/hide`);
+
