@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { FeedType } from 'utility/constants/constants';
+import * as commonService from "utility/utility";
 
-const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => {
+const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submitFeedRequest }) => {
     const [likable, setLikable] = useState(true);
     const [caption, setCaption] = useState("");
+    const captionCharCount = 10000;
+    const [inputCount, setInputCount] = useState(captionCharCount)
 
     const handleInputChange = (e) => {
+        let value = e.target.value;
+        setInputCount(captionCharCount - value.length)
         setCaption(e.target.value)
     }
 
@@ -16,13 +22,32 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => {
         }
     }
 
+    const createPost = () => {
+        if (caption.length > 0) {
+            // create a request to post it to server 
+            var request = {}
+            var postRequest = {}
+            postRequest["type"] = FeedType.text;
+            postRequest["description"] = caption;
+            postRequest["likable"] = likable;
+            request["post"] = postRequest
+            if (selectedHashTags.length > 0) {
+                request["hashTags"] = selectedHashTags;
+            }
+            //send it to parent
+            submitFeedRequest(request)
+        } else {
+            commonService.toastInfo("Please add the text to proceed!")
+        }
+    }
+
     return (
         <div class="content" id="textTab">
             <div class="tab_inn_con">
                 <div class="about_gallery">
                     <div class="textRange_wrp">
                         <textarea onChange={handleInputChange} value={caption} class="textarea_modifier" rows="18"></textarea>
-                        <span class="textRange">0/10000</span>
+                        <span class="textRange">0/{inputCount}</span>
                     </div>
                     <p class="mb_0 mt_15">What's going on in this post? Be sure to @credit others.</p>
                 </div>
@@ -58,7 +83,7 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => {
                     </div>
                 </div>
                 <div class="post_block mb20">
-                    <a href="/" class="circle">Post</a>
+                    <a onClick={createPost} class="circle">Post</a>
                     <a href="/" class="cancel_post">Cancel</a>
                 </div>
             </div>

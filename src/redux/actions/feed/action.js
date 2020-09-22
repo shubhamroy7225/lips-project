@@ -40,3 +40,15 @@ export const submitCreateFeedApprovalData = (request) => {
       return error;
     })
 }
+
+export const createFeed = (request) => {
+  commonService.isLoading.onNext(true); // start loading
+  return API.createFeed(request)
+    .then(response => {
+      commonService.isLoading.onNext(false); // start loading
+      return response;
+    }).catch(error => {
+      commonService.isLoading.onNext(false); // start loading
+      return error;
+    })
+}

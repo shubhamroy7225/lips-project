@@ -68,7 +68,7 @@ export const authReducer = createReducer({
     [actions.getUserSuccessful]: (state, payload) => {
         return updateObject(state, {
             isloading: false,
-            currentUser: payload.user
+            user: payload.user
         })
     },
 

@@ -1,10 +1,17 @@
 import React, { useRef, useState } from 'react';
+import * as ConfigAPI from 'api/configAPI';
+import * as commonService from "utility/utility";
+import { FeedType, routes } from 'utility/constants/constants';
+import { useHistory } from 'react-router-dom';
+import { decode, encode } from 'base64-arraybuffer';
 
-const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => {
-
-    const [imageBase64, setImageBase64] = useState(null)
+const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submitFeedRequest }) => {
+    let history = useHistory();
+    const [imageData, setImageData] = useState({ base64: null, file: null, photo_path: null })
     const [likable, setLikable] = useState(true);
     const [caption, setCaption] = useState("");
+    const captionCharCount = 5000;
+    const [inputCount, setInputCount] = useState(captionCharCount)
 
 
     const fileSelector = useRef(null);
@@ -18,7 +25,7 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => 
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            setImageBase64(reader.result)
+            setImageData({ ...imageData, base64: reader.result, file: file })
         };
         reader.onerror = function (error) {
             console.log('Error: ', error);
@@ -26,6 +33,8 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => 
     }
 
     const handleInputChange = (e) => {
+        let value = e.target.value;
+        setInputCount(captionCharCount - value.length)
         setCaption(e.target.value)
     }
 
@@ -37,15 +46,59 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => 
         }
     }
 
-
     const createPost = () => {
         //1. Upload Image
-
-        //2. Create Post API 
+        if (imageData.base64) {
+            //1. presign url
+            let photo_path = null
+            let fileExtensions = [];
+            if (imageData.file.type === "image/png") {
+                fileExtensions.push(".png")
+            } else {
+                fileExtensions.push(".jpeg")
+            }
+            commonService.isLoading.onNext(true); // start loading
+            ConfigAPI.fetchUploadUrl({ ext: fileExtensions })
+                .then(res => {
+                    //2. upload image
+                    if (res.data.success) {
+                        let urls = res.data.urls;
+                        photo_path = urls[0].photo_path
+                        let base64ToBeUploaded = imageData.base64.split(",")[1]
+                        return ConfigAPI.uploadImageToS3(urls[0].presigned_url, decode(base64ToBeUploaded))
+                    }
+                })
+                .then(res => {
+                    if (res.status === 200) {
+                        // create a request to post it to server 
+                        var request = {}
+                        var postRequest = {}
+                        postRequest["type"] = FeedType.image;
+                        postRequest["photo_paths"] = [photo_path];
+                        if (caption.length > 0) {
+                            postRequest["description"] = caption;
+                        }
+                        postRequest["likable"] = likable;
+                        request["post"] = postRequest
+                        if (selectedHashTags.length > 0) {
+                            request["hashTags"] = selectedHashTags.map(ele => ele.name);
+                        }
+                        //send it to parent
+                        submitFeedRequest(request)
+                    }
+                })
+                .catch(error => {
+                    commonService.isLoading.onNext(false); // start loading
+                    commonService.toastMsg(error.message, true);
+                })
+        } else {
+            //didn't select the image
+            commonService.toastInfo("Please add the image to proceed!");
+        }
     }
 
     let imgClassNames = ["lps_img_fixed lps_flx_vm_jc lps_f_vm"];
-    if (!imageBase64) {
+    if (!imageData.base64) {
         imgClassNames.push("add_image");
     }
 
@@ -54,13 +107,13 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => 
             <div class="tab_inn_con">
                 <div class="add_img_block add_img_blockP0">
                     <figure class={imgClassNames.join(" ")} onClick={() => handleFileSelect()}>
-                        <img src={imageBase64 ? imageBase64 : require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
+                        <img src={imageData.base64 ? imageData.base64 : require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
                     </figure>
                     <input type="file" id="file" ref={fileSelector} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e)} />
                 </div>
                 <div class="about_gallery">
                     <textarea onChange={handleInputChange} value={caption} class="textarea_modifier" rows="8" placeholder="Say something about this..."></textarea>
-                    <span class="textRange">0/50000</span>
+                    <span class="textRange">0/{inputCount}</span>
                     <p class="mb_0 mt_5">What's going on in this post? Be sure to @credit others.</p>
                 </div>
 
@@ -100,8 +153,8 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => 
                     </div>
                 </div>
                 <div class="post_block mb20">
-                    <a href="/" class="circle">Post</a>
-                    <a href="/" class="cancel_post">Cancel</a>
+                    <a onClick={createPost} class="circle">Post</a>
+                    <a onClick={() => history.push(routes.ROOT)} class="cancel_post">Cancel</a>
                 </div>
             </div>
         </div>
