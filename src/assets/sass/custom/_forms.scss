@@ -125,9 +125,9 @@
     left: 0;
     height: 20px;
     width: 20px;
-    background-color: #fff;
+    background-color: $white;
     border-radius: 50%;
-    border: 1px solid #707070;
+    border: 1px solid $bg_grayCCC;
 }
   .lps_cont_rdo:hover input ~ .lps_checkmark {
     background-color: #ccc;
@@ -149,7 +149,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: $gray-800;
+    background: $brand-secondary;
   }
   /**** // Radio css here ****/
   /**** Input Checkbox css here ****/
@@ -476,4 +476,8 @@
       }
     }
   }
+}
+
+input:checked + .lps_int_slider.toogle_active {
+  background-color: #fd3398;
 }

@@ -22,10 +22,11 @@ const Create = () => {
                             toggleAddTags={() => setShowAddTags(!showAddTags)}
                             toggleLipsInfo={() => setShowLipsInfo(!showLipsInfo)} />
                         <CreateTextTab
+                            selectedHashTags={selectedHashTags}
                             toggleAddTags={() => setShowAddTags(!showAddTags)}
                             toggleLipsInfo={() => setShowLipsInfo(!showLipsInfo)} />
                     </div>
-                    {/* <MenuOptionSlider /> */}
+                    <MenuOptionSlider />
                 </div>
             </div>
             <AddTags show={showAddTags} dismiss={() => {

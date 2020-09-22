@@ -1,10 +1,6 @@
 import React, { useRef, useState } from 'react';
 
 const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => {
-    const withoutImageStyle = {
-        width: "50%",
-        height: "41%",
-    };
 
     const [imageBase64, setImageBase64] = useState(null)
     const [likable, setLikable] = useState(true);
@@ -33,18 +29,32 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => 
         setCaption(e.target.value)
     }
 
+    const handleCheckBoxChange = (e) => {
+        if (e.target.value === "true") {
+            setLikable(false);
+        } else {
+            setLikable(true);
+        }
+    }
+
+
     const createPost = () => {
         //1. Upload Image
 
         //2. Create Post API 
     }
 
+    let imgClassNames = ["lps_img_fixed lps_flx_vm_jc lps_f_vm"];
+    if (!imageBase64) {
+        imgClassNames.push("add_image");
+    }
+
     return (
         <div class="content active" id="imageTab">
             <div class="tab_inn_con">
                 <div class="add_img_block add_img_blockP0">
-                    <figure class="lps_img_fixed lps_flx_vm_jc lps_f_vm" onClick={() => handleFileSelect()}>
-                        <img style={!imageBase64 ? withoutImageStyle : null} src={imageBase64 ? imageBase64 : require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
+                    <figure class={imgClassNames.join(" ")} onClick={() => handleFileSelect()}>
+                        <img src={imageBase64 ? imageBase64 : require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
                     </figure>
                     <input type="file" id="file" ref={fileSelector} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e)} />
                 </div>
@@ -77,7 +87,13 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags }) => 
                         <div class="grid_left lps_flx_vm_jsbtwn lps_flx_vm others_wrp">
                             <h6 class="sm_title">Others Can <img src={require("assets/images/icons/icn_mouth.png")} alt="kiss" /> </h6>
                             <label class="lps_switch">
-                                <input type="checkbox" checked />
+                                {/* <input type="checkbox" checked /> */}
+
+                                <input type="checkbox"
+                                    name="ownContent"
+                                    defaultChecked
+                                    value={likable}
+                                    onChange={handleCheckBoxChange} />
                                 <span class="lps_int_slider round"></span>
                             </label>
                         </div>

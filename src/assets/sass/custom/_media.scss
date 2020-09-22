@@ -12,6 +12,10 @@
     .footer_menu_hide_lg {
         display: none;
     }
+    .lps_tb_para {
+        padding: 10% 15px;
+    }
+
 }
 @media screen and ( min-width: 992px) {
     .lps_container {
@@ -39,6 +43,9 @@
     }
     .lps_xl_view header.main_header .theme_navigation {
         padding: 0.31rem 4.5rem;
+    }
+    .lps_tb_para {
+        padding: 20% 15px;
     }
 }
 @media screen and ( min-width: 1200px) {
@@ -349,6 +356,12 @@ header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
     .lips_tab .tabs_block_cst li {
         padding: 8px 10px;
         min-width: 90px;
+    }
+    .lps_tb_para h4 br {
+        display: none;
+    }
+    .lps_tb_para {
+        padding: 20% 15px;
     }
 }
 /* // Media query */

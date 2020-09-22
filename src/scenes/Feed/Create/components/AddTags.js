@@ -4,10 +4,19 @@ import * as feedActions from 'redux/actions/feed/action';
 
 const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTags }) => {
     const style = show ? { display: "block" } : { display: "none" };
+    const [filteredHashtags, setFilteredHashtags] = useState(hashTags);
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         validateHashtags();
     }, []);
+
+    useEffect(() => {
+        setFilteredHashtags(hashTags);
+        return () => {
+            setSearchText("")
+        }
+    }, [hashTags]);
 
     const validateHashtags = () => {
         if (!hashTags || hashTags.length === 0) {
@@ -16,7 +25,6 @@ const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTag
     }
 
     const onHashtagSelectionnHandler = (hashtag) => {
-        debugger;
         let isExistingHashtag = selectedHashTags.filter(ele => ele.name === hashtag.name).length > 0;
         if (isExistingHashtag) {
             let filteredArray = selectedHashTags.filter(ele => ele.name !== hashtag.name);
@@ -26,7 +34,20 @@ const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTag
             setSelectedHashTags(updatedHashtags);
         }
     }
-    debugger;
+
+    const handInputChange = (e) => {
+        let searchText = e.target.value;
+        setSearchText(searchText);
+        if (searchText.length > 0) {
+            let filteredHashtags = hashTags.filter(ele => {
+                return ele.name.toLowerCase().includes(searchText)
+            })
+            setFilteredHashtags(filteredHashtags);
+        } else {
+            setFilteredHashtags(hashTags)
+        }
+    }
+
     return (
         <div class="hover_bkgr_fricc full_Hvh" id="trigger_submit_tag_popup" style={style}>
             <div class="modal-dialog-centered">
@@ -41,14 +62,14 @@ const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTag
                                     <button class="btn_search" type="button">
                                         <img src={require("assets/images/icons/icn_search_white.svg")} alt="Search" />
                                     </button>
-                                    <input class="input_modify" type="text" />
+                                    <input class="input_modify" type="text" value={searchText} onChange={handInputChange} />
                                 </div>
                             </div>
                         </div>
                         <div class="hash_tag_block mt_30">
                             <div class="hashtags">
                                 {
-                                    hashTags.map((ele, index) => {
+                                    filteredHashtags.map((ele, index) => {
                                         if (selectedHashTags.includes(ele)) {
                                             return <a class="theme_btn theme_outline_light active"
                                                 key={index}
