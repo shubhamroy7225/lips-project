@@ -82,7 +82,7 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submit
                         </div>
                     </div>
                 </div>
-                <div class="post_block mb20">
+                <div class="post_block mb20 overlap_menu">
                     <a onClick={createPost} class="circle">Post</a>
                     <a href="/" class="cancel_post">Cancel</a>
                 </div>

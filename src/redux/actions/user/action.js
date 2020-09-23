@@ -106,7 +106,6 @@ export const deleteUser = () => {
 };
 
 export const fetchUser = () => {
-    commonService.isLoading.onNext(true);
     store.dispatch(getUserPending());
     return UserAPI.fetchUserData()
         .then(response => {

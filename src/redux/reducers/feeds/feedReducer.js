@@ -13,12 +13,26 @@ const updateObject = (oldState, updatedProps) => {
 
 export const initialState = {
     hashTags: [],
+    feeds: [],
+    userFeeds: []
 }
 
 export const feedReducer = createReducer({
     [actions.hashTagPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.hashTagSuccessful]: (state, payload) => updateObject(state, {
-        isloading: false, hashTags: payload.hashtags,
+        hashTags: payload.hashtags,
+    }),
+    [actions.fetchedFeedSuccessfully]: (state, payload) => updateObject(state, {
+        feeds: payload.feeds,
+    }),
+    [actions.nextPageFeeds]: (state, payload) => {
+        let updatedFeeds = [...state.feeds, ...payload.feeds];
+        return updateObject(state, {
+            feeds: updatedFeeds,
+        })
+    },
+    [actions.clearAllFeeds]: (state, payload) => updateObject(state, {
+        feeds: [],
     })
 }, initialState); // <-- This is the default state

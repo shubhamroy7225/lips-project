@@ -6,7 +6,7 @@ export const setFavoriteAvoidTags = (body) => axios.put(API_VERSION + '/user/set
 
 export const createFeed = (request) => axios.post(`${API_VERSION}/post`, request);
 
-export const fetchFeeds = (request, queryString = "") => axios.get(`${API_VERSION}/post${queryString}`);
+export const fetchFeeds = (queryString = "") => axios.get(`${API_VERSION}/post${queryString}`)
 
 export const fetchFeed = (feedID) => axios.get(`${API_VERSION}/post/${feedID}`);
 
