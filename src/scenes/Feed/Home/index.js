@@ -155,11 +155,11 @@ const MainFeed = (props) => {
                     </div>
                 </div>
                 {/* //   popup */}
-                <RepostModal />
-                <TaggedModal />
-                <ReportModal />
-                <SharedModal />
-                <RemoveFeedModal />
+                <RepostModal feed={selectedFeed} />
+                <TaggedModal feed={selectedFeed} />
+                <ReportModal feed={selectedFeed} />
+                <SharedModal feed={selectedFeed} />
+                <RemoveFeedModal feed={selectedFeed} />
             </>
         )
     } else {

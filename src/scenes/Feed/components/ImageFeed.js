@@ -91,11 +91,11 @@ const ImageFeed = (props) => {
                             reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
                         }
                     </a>
-                    <RepostModal />
-                    <TaggedModal />
-                    <ReportModal />
-                    <SharedModal />
-                    <RemoveFeedModal />
+                    <RepostModal feed={feed} />
+                    <TaggedModal feed={feed} />
+                    <ReportModal feed={feed} />
+                    <SharedModal feed={feed} />
+                    <RemoveFeedModal feed={feed} />
                 </div>
                 <FeedWidget showWidget={showWidget} feed={feed} user={user} />
             </div>
