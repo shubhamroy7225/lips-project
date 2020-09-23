@@ -30,9 +30,9 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submit
             postRequest["type"] = FeedType.text;
             postRequest["description"] = caption;
             postRequest["likable"] = likable;
-            request["post"] = postRequest
+            request["post"] = postRequest;
             if (selectedHashTags.length > 0) {
-                request["hashTags"] = selectedHashTags;
+                request["hashTags"] = selectedHashTags.map(ele => ele.name);
             }
             //send it to parent
             submitFeedRequest(request)

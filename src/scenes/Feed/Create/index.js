@@ -9,6 +9,7 @@ import LipsTagsInfo from './components/LipsTagsInfo';
 import * as feedsAction from 'redux/actions/feed/action';
 import { routes } from 'utility/constants/constants';
 import { isMobile } from 'react-device-detect';
+import { toastMsg } from 'utility/utility';
 
 const Create = () => {
     let history = useHistory();
@@ -18,9 +19,11 @@ const Create = () => {
     const [selectedHashTags, setSelectedHashTags] = useState([])
 
     const submitFeedRequest = (request) => {
+        //API - create a post
         debugger;
         feedsAction.createFeed(request)
             .then(res => {
+                toastMsg("Post created successfully!");
                 history.push(routes.ROOT);
             })
     }
