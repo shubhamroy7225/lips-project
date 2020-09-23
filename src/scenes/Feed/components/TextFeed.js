@@ -12,9 +12,14 @@ const TextFeed = (props) => {
     }
 
     const { reposted, user, feed } = props
-    const { description, hashtagPosts, likable, liked, parent_id } = feed;
+    const { description, hashtagPosts, likable, liked, parent_id, selectionHandler } = feed;
     let history = useHistory();
     const [showWidget, setShowWidget] = useState(false)
+
+    const clickHandler = () => {
+        setShowWidget(!showWidget)
+        selectionHandler();
+    }
 
     if (isMobile) {
         return (

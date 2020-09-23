@@ -12,18 +12,23 @@ import { connect } from 'react-redux';
 
 
 const ImageFeed = (props) => {
-    const { reposted, user, feed } = props
+    const { reposted, user, feed, selectionHandler } = props
     const { attachments, description, hashtagPosts, likable, liked, parent_id } = feed;
     const { photo_urls } = attachments[0]
     const [showWidget, setShowWidget] = useState(false)
     let history = useHistory()
+
+    const clickHandler = () => {
+        setShowWidget(!showWidget)
+        selectionHandler();
+    }
 
     if (isMobile) {
         return (
             <div className="lps_list">
                 <div className="lps_sm_shape"></div>
                 <div class="post_img_block lps_widgets_wrp bg_gray_feed">
-                    <a href="javascript:void(0);" onClick={() => setShowWidget(!showWidget)} id="trigger_main_feed">
+                    <a href="javascript:void(0);" onClick={() => clickHandler} id="trigger_main_feed">
                         <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
@@ -31,7 +36,7 @@ const ImageFeed = (props) => {
                             reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
                         }
                     </a>
-                    <FeedWidget showWidget={showWidget} />
+                    <FeedWidget showWidget={showWidget} feed={feed} user={user} />
                 </div>
                 <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
                     <div className="lps_media">
@@ -78,7 +83,7 @@ const ImageFeed = (props) => {
                     {/* <figure class="feed_galary lps_flx_vm_jc lps_f_vm">
                         <img src={require("assets/images/icons/landscape-image.png")} alt="Add Image" />
                     </figure> */}
-                    <a href="javascript:void(0);" onClick={() => setShowWidget(!showWidget)}>
+                    <a href="javascript:void(0);" onClick={clickHandler}>
                         <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
@@ -92,7 +97,7 @@ const ImageFeed = (props) => {
                     <SharedModal />
                     <RemoveFeedModal />
                 </div>
-                <FeedWidget showWidget={showWidget} />
+                <FeedWidget showWidget={showWidget} feed={feed} user={user} />
             </div>
         );
     }

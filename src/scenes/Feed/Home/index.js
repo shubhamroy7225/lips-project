@@ -31,9 +31,9 @@ const MainFeed = (props) => {
     const [page, setPage] = useState(1);
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
+    const [selectedFeed, setSelectedFeed] = useState(null);
 
     const validatePaginationCompletion = () => {
-        debugger;
         let feedsCount = props.feeds.length;
         if (feedsCount % pageSize !== 0) {
             setIsPaginationCompleted(true)
@@ -94,7 +94,6 @@ const MainFeed = (props) => {
     const fetchFeedsFromServer = () => {
         let pageQuery = `?limit=${pageSize}&page=${page}`;
         fetchFeeds(pageQuery).then(res => {
-            debugger;
             if (res.data.success === true) {
                 if (res.data.posts.length > 0) {
                     let updatedPage = page + 1;
@@ -123,16 +122,20 @@ const MainFeed = (props) => {
         console.log(props.feeds);
         //keep validating on every update of feeds
         validatePaginationCompletion();
-    }, [props.feeds])
+    }, [props.feeds]);
+
+    const onFeedSelectionHandler = feed => {
+        console.log(feed.id);
+    }
 
 
     let feedContent = [];
     if (props.feeds) {
         feedContent = props.feeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
-                return <ImageFeed feed={feed} />
+                return <ImageFeed feed={feed} selectionHandler={() => onFeedSelectionHandler(feed)} />
             } else {
-                return <TextFeed feed={feed} />
+                return <TextFeed feed={feed} selectionHandler={() => onFeedSelectionHandler(feed)} />
             }
         })
     }
@@ -147,7 +150,7 @@ const MainFeed = (props) => {
                         {/* <RestrictedFeed /> */}
                         <PaginationLoader show={!isPaginationCompleted} />
                         {/* <!-- Menu bottom here --> */}
-                        <MenuOptionSlider />
+                        <MenuOptionSlider feed={selectedFeed} />
                         {/* <!-- //end Menu bottom here --> */}
                     </div>
                 </div>
@@ -166,7 +169,7 @@ const MainFeed = (props) => {
                     {feedContent}
                 </div>
                 <PaginationLoader show={!isPaginationCompleted} />
-                <MenuOptionSlider />
+                <MenuOptionSlider feed={selectedFeed} />
             </div>
         );
     }
