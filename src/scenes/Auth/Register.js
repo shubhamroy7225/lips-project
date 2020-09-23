@@ -77,7 +77,7 @@ export default () => {
                 <div className="form_group_modify">
                   <input type="text" className="input_modify" placeholder="Username" name="user_name" value={user.user_name}
                     onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('user_name')} />
-                  {simpleValidator.current.message('user_name', user.user_name, 'required')}
+                  {simpleValidator.current.message('user_name', user.user_name, 'required|alpha')}
                 </div>
                 <div className="form_group_modify">
                   <input type="email" className="input_modify" placeholder="Email" name="email" value={user.email}
