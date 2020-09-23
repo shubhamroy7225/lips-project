@@ -24,3 +24,5 @@ export const configPending = createAction('config API started fetching');
 export const configSuccessful = createAction('config API API successful');
 export const getUserPending = createAction('get User pending');
 export const getUserSuccessful = createAction('get User successful');
+export const refreshTokenPending = createAction('get Refresh token pending');
+export const refreshTokenSuccessful = createAction('get Refresh token successful');

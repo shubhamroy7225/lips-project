@@ -7,6 +7,7 @@ export {
     changePrivacy,
     forgotPassword,
     verifyUsername,
+    refreshToken,
     //resetPassword,
     updateUser,
     deleteUser,

@@ -8,7 +8,7 @@ import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import * as commonService from "../../../utility/utility";
 import store from '../../store/store';
-import { loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful } from 'redux/actions/auth';
+import { refreshTokenPending, refreshTokenSuccessful, loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
@@ -49,6 +49,20 @@ export const signup = (credentials) => {
             return store.dispatch(authorizeUser(user, token, refresh_token));
         })
 };
+export const refreshToken = (credentials) => {
+    commonService.isLoading.onNext(true);
+    store.dispatch(refreshTokenPending());
+    return API.refreshToken(credentials)
+        .then(response => {
+            commonService.isLoading.onNext(false);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
+            const { user, token, refresh_token } = response.data;
+            setUserData(response.data);
+            store.dispatch(refreshTokenSuccessful(response.data.user));
+            return response.data
+        })
+};
+
 export const changePrivacy = ({ privacy_settings }) => {
     commonService.isLoading.onNext(true);
     store.dispatch(changePrivacyPending());

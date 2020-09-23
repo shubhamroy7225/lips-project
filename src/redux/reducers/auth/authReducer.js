@@ -29,6 +29,12 @@ export const authReducer = createReducer({
         updateObject(state, {
             isloading: false, user: payload ? payload.user : state.user,
         }),
+    [actions.refreshTokenPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.refreshTokenSuccessful]: (state, payload) =>
+        updateObject(state, {
+            isloading: false, user: payload ? payload.user : state.user,
+        }),
     [actions.signupPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.signupSuccessful]: (state, payload) =>
