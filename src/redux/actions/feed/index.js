@@ -9,3 +9,5 @@ export const fetchedFeedSuccessfully = createAction('fetch feed completed with s
 export const clearAllFeeds = createAction('clear all feeds');
 
 export const nextPageFeeds = createAction('fetch feeds for next page completed with success', (feeds) => (feeds));
+
+export const setPage = createAction('set page for feed pagination', (page) => (page));

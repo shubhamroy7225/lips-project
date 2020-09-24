@@ -14,7 +14,9 @@ const updateObject = (oldState, updatedProps) => {
 export const initialState = {
     hashTags: [],
     feeds: [],
-    userFeeds: []
+    userFeeds: [],
+    pageSize: 2,
+    page: 1
 }
 
 export const feedReducer = createReducer({
@@ -34,5 +36,8 @@ export const feedReducer = createReducer({
     },
     [actions.clearAllFeeds]: (state, payload) => updateObject(state, {
         feeds: [],
+    }),
+    [actions.setPage]: (state, payload) => updateObject(state, {
+        page: payload.page,
     })
 }, initialState); // <-- This is the default state
