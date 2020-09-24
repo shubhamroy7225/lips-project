@@ -44,7 +44,6 @@ const Create = () => {
                             toggleLipsInfo={() => setShowLipsInfo(!showLipsInfo)}
                             submitFeedRequest={submitFeedRequest} />
                     </div>
-                    <MenuOptionSlider />
                 </div>
             </div>
             <AddTags show={showAddTags} dismiss={() => {
