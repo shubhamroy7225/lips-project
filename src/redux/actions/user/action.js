@@ -58,7 +58,7 @@ export const refreshToken = (credentials) => {
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
             const { user, token, refresh_token } = response.data;
             setUserData(response.data);
-            store.dispatch(refreshTokenSuccessful(response.data.user));
+            store.dispatch(authorizeUser(user, token, refresh_token));
             return response.data
         })
 };

@@ -9,7 +9,7 @@ export const login = (credentials) => {
         // defaultErrorHandler: false
     });
 };
-export const refreshToken = () =>  axios.post(`${API_VERSION}/auth/refreshtoken`);
+export const refreshToken = () =>  axios.post(`${API_VERSION}/auth/refresh_token`);
 
 export const signup = (credentials) => {
     return axios.post(`${API_VERSION}/auth/signup`, credentials, {
