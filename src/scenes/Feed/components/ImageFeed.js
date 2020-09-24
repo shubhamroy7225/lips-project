@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FeedWidget from 'scenes/Feed/components/FeedWidget';
 import { isMobile } from 'react-device-detect';
 import RepostModal from './FeedModal/RepostModal';
@@ -10,13 +10,19 @@ import { routes } from 'utility/constants/constants';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-
 const ImageFeed = (props) => {
     const { reposted, user, feed, selectionHandler } = props
     const { attachments, description, hashtagPosts, likable, liked, parent_id } = feed;
     const { photo_urls } = attachments[0]
     const [showWidget, setShowWidget] = useState(false)
     let history = useHistory()
+
+    //more or less description
+    var showChar = 135;  // How many characters are shown by default
+    var ellipsestext = "...";
+    let shortDesc = description.substr(0, showChar);
+    var pendingText = description.substr(showChar, description.length - showChar);
+    const [moreTextEnabled, setMoreTextEnabled] = useState(false)
 
     const clickHandler = () => {
         setShowWidget(!showWidget)
@@ -45,13 +51,21 @@ const ImageFeed = (props) => {
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
-                                <p class="mb_5" style={{ whiteSpace: "pre-line" }}>
-                                    <span class="text_primary ft_Weight_600">
-                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>username</a>
-                                    </span>
-                                    {description}
+                                <p class="mb_5 more">
+                                    <span class="text_primary ft_Weight_500">
+                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>username </a>
+                                    </span> {shortDesc}
+                                    {pendingText.length > 0 &&
+                                        <>
+                                            <span class="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
+                                            <span class="morecontent">
+                                                <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
+                                                </span>&nbsp;&nbsp;
+                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} class={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
+                                            </span>
+                                        </>
+                                    }
                                 </p>
-                                <a href="main_feed_full_post_description.html" class="lps_link more_zindex ft_Weight_600">more</a>
                             </div>
                         </div>
                     </div>

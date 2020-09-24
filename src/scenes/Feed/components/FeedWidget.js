@@ -38,7 +38,6 @@ const FeedWidget = ({ user, showWidget, feed }) => {
 
     }, [])
 
-    debugger;
     let isOwner = false
     if (feed && parseInt(feed.user_id) === user.id) {
         isOwner = true

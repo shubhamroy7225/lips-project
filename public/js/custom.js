@@ -284,6 +284,7 @@ $(document).ready(function () {
   var lesstext = "less";
 
   $('.more').each(function () {
+    debugger;
     var content = $(this).html();
 
     if (content.length > showChar) {
