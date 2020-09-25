@@ -13,6 +13,9 @@ import { connect } from 'react-redux';
 const ImageFeed = (props) => {
     const { reposted, user, feed } = props
     const { attachments, description, hashtagPosts, likable, liked, parent_id } = feed;
+    const feed_user = feed.user;
+    const user_name = feed_user.user_name;
+    const feed_user_photo = feed_user.photo_urls;
     const { photo_urls } = attachments[0]
     const [showWidget, setShowWidget] = useState(false)
     let history = useHistory()
@@ -47,13 +50,13 @@ const ImageFeed = (props) => {
                 <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
                     <div className="lps_media">
                         <figure className="lps_fig lps_fig_circle">
-                            <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                            <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
                                 <p class="mb_5 more">
                                     <span class="text_primary ft_Weight_500">
-                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>username </a>
+                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                     </span> {shortDesc}
                                     {pendingText.length > 0 &&
                                         <>
@@ -78,13 +81,13 @@ const ImageFeed = (props) => {
                 <div class="lps_inner_wrp_media">
                     <div class="lps_media">
                         <figure class="lps_fig lps_fig_circle">
-                            <img src={require("assets/images/icons/user.jpg")} alt="User" />
+                            <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
                                 <p>
                                     <span class="text_primary">
-                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>Jon snow </a>
+                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                     </span>
                                     {description}
                                 </p>

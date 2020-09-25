@@ -20,6 +20,9 @@ const TextFeed = (props) => {
     const { reposted, user, feed } = props
     const { description, hashtagPosts, likable, liked, parent_id } = feed;
     const [showWidget, setShowWidget] = useState(false)
+    const feed_user = feed.user;
+    const user_name = feed_user.user_name;
+    const feed_user_photo = feed_user.photo_urls;
 
     const clickHandler = () => {
         setShowWidget(!showWidget)
@@ -46,7 +49,7 @@ const TextFeed = (props) => {
                 <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
                     <div className="lps_media">
                         <figure className="lps_fig lps_fig_circle">
-                            <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                            <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                         </figure>
                         <div className="lps_media_body">
                             <div className="lps_media_body">
@@ -63,11 +66,11 @@ const TextFeed = (props) => {
                 <div class="lps_inner_wrp_media">
                     <div class="lps_media">
                         <figure class="lps_fig lps_fig_circle">
-                            <img src={require("assets/images/icons/user.jpg")} alt="User" />
+                            <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
-                                <p><span class="text_primary"><a onClick={() => { history.push(routes.PROFILE) }}>Jon snow</a> </span></p>
+                                <p><span class="text_primary"><a onClick={() => { history.push(routes.PROFILE) }}>{user_name}</a> </span></p>
                             </div>
                         </div>
                     </div>
