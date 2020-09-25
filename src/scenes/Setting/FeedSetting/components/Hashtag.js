@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import * as actions from "redux/actions";
-const hashtag = ({showhashTags, hideHashtag}) => {
+const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
   return (
     <>
       <li className="list-group-item">
@@ -21,8 +21,8 @@ const hashtag = ({showhashTags, hideHashtag}) => {
                </ul>
             </div>
             <div className="hashtag my_10">
-               <Link to="/settings/feed-setting-modal" class="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170" id="trigger_addMore">
-               Add more</Link>
+               <button onClick={e => setEditTag("show")} class="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170" id="trigger_addMore">
+               Add more</button>
             </div>
          </div>
       </li>
@@ -42,8 +42,8 @@ const hashtag = ({showhashTags, hideHashtag}) => {
                </ul>
             </div>
             <div className="hashtag my_10">
-               <Link to="javascript:void(0);"  className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">
-               Add more</Link>
+               <button onClick={e => setEditTag("hide")}  className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">
+               Add more</button>
             </div>
          </div>
       </li>

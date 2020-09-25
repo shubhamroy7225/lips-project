@@ -3,14 +3,22 @@ import {Link, useHistory} from "react-router-dom";
 import {useSelector} from "react-redux";
 import * as actions from "redux/actions";
 
-const FeedSettingModal = () => {
+const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) => {
     const history = useHistory();
    const {hashTags} = useSelector(store => store.feedReducer);
    const [loaded, setLoaded] = useState(false);
    const [selectTags, setSelectTags] = useState([]);
+   const [removedTags, setRemovedTags] = useState([]);
 
    const toggleHashTag = (tag) => {
-    if (selectTags.includes(tag.name)) {
+    if (existingTags.includes(tag.name)) {
+      if (removedTags.includes(tag.name)) {
+        removedTags.splice(removedTags.findIndex(e => e === tag.name), 1);
+        setRemovedTags([...removedTags]);
+      }
+      else setRemovedTags([tag.name, ...removedTags])
+    }
+    else if (selectTags.includes(tag.name)) {
       selectTags.splice(selectTags.findIndex(e => e === tag.name), 1);
       setSelectTags([...selectTags]);
     }
@@ -23,11 +31,15 @@ const FeedSettingModal = () => {
       setLoaded(true)
       actions.getAllHashTags()
     }
-  }, []);
+  }, [loaded]);
 
   const showFavoriteTags = () => {
-    actions.setFavoriteAvoidTags({hashtags: {show: selectTags}}).then(res => {
-      if(res) history.push("/settings/feed-setiing");
+    actions.setFavoriteAvoidTags({hashtags: {
+      [editTag]: selectTags,
+      remove: removedTags
+    }}).then(res => {
+      setParentLoaded(false);
+      setEditTag(null);
     });
   };
 
@@ -57,7 +69,7 @@ const FeedSettingModal = () => {
                         <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                                  <li>
                                  {hashTags.map((tag, index) =>
-                                  <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
+                                  <button key={index} className={`theme_btn theme_outline_light ${(!removedTags.includes(tag.name) && existingTags.includes(tag.name)) || selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
                                  )}
                                     
                                  </li>
