@@ -9,6 +9,10 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
    const [loaded, setLoaded] = useState(false);
    const [selectTags, setSelectTags] = useState([]);
    const [removedTags, setRemovedTags] = useState([]);
+   const [search, setSearch] = useState({
+      page: 1, limit: 10,
+     name: ""
+   });
 
    const toggleHashTag = (tag) => {
     if (existingTags.includes(tag.name)) {
@@ -27,9 +31,9 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
   
 
    useEffect(() => {
-    if (!loaded) {
-      setLoaded(true)
-      actions.getAllHashTags()
+    if (!loaded && !hashTags.length) {
+      setLoaded(true);
+      actions.getAllHashTags(search);
     }
   }, [loaded]);
 
@@ -43,13 +47,27 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
     });
   };
 
+  const handleChange = (e) => {
+    let tempSearch = {...search};
+    tempSearch.name=e.target.value;
+    tempSearch.page=1;
+    setSearch(tempSearch);
+    actions.getAllHashTags(tempSearch)
+  };
+  const loadMore = () => {
+    let tempSearch = {...search};
+    tempSearch.page +=1;
+    setSearch(tempSearch);
+    actions.getAllHashTags(tempSearch)
+  };
+
   return (
     <>
         <div class="hover_bkgr_fricc hover_fullS" id="trigger_addMore_popup" style={{display: "block"}}>
             <div class="modal-dialog-centered">
                 <div class="popup_cont lps_text_white">
                     <div class="popupCloseButton">
-                        <Link to="/settings/feed-setting" className="nav-link not_line">
+                        <Link to="/settings/feed-setting" onClick={e => setEditTag(null)} className="nav-link not_line">
                             <img src={require("assets/images/icons/icn_close_white.png")} alt="Icon Search"/>
                         </Link>
                     </div>
@@ -61,20 +79,18 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
                             <button class="btn_search" type="button">
                                 <img src={require("assets/images/icons/icn_search_white.svg")} alt="Icon Search"/>
                             </button>
-                            <input class="input_modify" type="text"/>
+                            <input class="input_modify" type="text" value={search.name} onChange={e => handleChange(e)}/>
                             </div>
                         </div>
                         </div>
                         <div class="hashtag">
-                        <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
-                                 <li>
-                                 {hashTags.map((tag, index) =>
-                                  <button key={index} className={`theme_btn theme_outline_light ${(!removedTags.includes(tag.name) && existingTags.includes(tag.name)) || selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
-                                 )}
-                                    
-                                 </li>
-                              </ul>
+                           {hashTags.map((tag, index) =>
+                            <button key={index} className={`theme_btn theme_outline_light ${(!removedTags.includes(tag.name) && existingTags.includes(tag.name)) || selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
+                           )}
                         </div>
+                      <div class="hashtag">
+                        <button onClick={e => loadMore()} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">View more</button>
+                      </div>
                     </div>
                     <div class="plans_wrp">
                         <a onClick={showFavoriteTags} class="theme_btn theme_outline_primary text_white btn_r25 text_uppercase min_w_170 W-50P">add selected</a>

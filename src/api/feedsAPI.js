@@ -1,6 +1,6 @@
 import axios, { API_VERSION } from '../config';
 
-export const getAllHashTags = () => axios.get(API_VERSION + '/hashtag');
+export const getAllHashTags = (params) => axios.get(API_VERSION + '/hashtag', {params});
 
 export const getUserHashTags = () => axios.get(API_VERSION + '/user/settings/hashtag');
 

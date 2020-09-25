@@ -4,9 +4,9 @@ export const hashTagPending = createAction('Hash tag API started fetching');
 
 export const hashTagSuccessful = createAction('Hash tag API successful', (hashtag) => (hashtag));
 
-export const userhashTagPending = createAction('User Hash tag API started fetching');
+export const userhashTagPending = createAction('User tag API started fetching');
 
-export const userhashTagSuccessful = createAction(' User Hash tag API successful', (hashtag) => (hashtag));
+export const userhashTagSuccessful = createAction(' User tag API successful', (hashtag) => (hashtag));
 
 export const fetchedFeedSuccessfully = createAction('fetch feed completed with success', (feeds) => (feeds));
 

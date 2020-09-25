@@ -8,18 +8,18 @@ import * as actions from 'redux/actions';
 
 export const getAllHashTags = (credentials) => {
   commonService.isLoading.onNext(true);
-  store.dispatch(hashTagPending());
+  hashTagPending();
   return API.getAllHashTags(credentials)
     .then(response => {
       commonService.isLoading.onNext(false);
-      store.dispatch(hashTagSuccessful(response.data))
+      hashTagSuccessful(response.data)
       return response
     })
 }
 
 export const setFavoriteAvoidTags = (credentials) => {
   commonService.isLoading.onNext(true);
-  store.dispatch(hashTagPending());
+  hashTagPending();
   return API.setFavoriteAvoidTags(credentials)
     .then(response => {
       commonService.isLoading.onNext(false);
@@ -29,11 +29,11 @@ export const setFavoriteAvoidTags = (credentials) => {
 
 export const getUserHashTags = (credentials) =>  {
   commonService.isLoading.onNext(true);
-  store.dispatch(userhashTagPending());
+  userhashTagPending();
   return API.getUserHashTags(credentials)
       .then(response => {
         commonService.isLoading.onNext(false);
-        store.dispatch(userhashTagSuccessful(response.data))
+       userhashTagSuccessful(response.data)
         return response
       })
 }
