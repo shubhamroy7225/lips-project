@@ -24,6 +24,7 @@ const ImageFeed = (props) => {
     var pendingText = description.substr(showChar, description.length - showChar);
     const [moreTextEnabled, setMoreTextEnabled] = useState(false)
 
+
     const clickHandler = () => {
         setShowWidget(!showWidget)
         selectionHandler();
@@ -34,7 +35,7 @@ const ImageFeed = (props) => {
             <div className="lps_list">
                 <div className="lps_sm_shape"></div>
                 <div class="post_img_block lps_widgets_wrp bg_gray_feed">
-                    <a href="javascript:void(0);" onClick={() => clickHandler} id="trigger_main_feed">
+                    <a href="javascript:void(0);" onClick={clickHandler} id="trigger_main_feed">
                         <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>

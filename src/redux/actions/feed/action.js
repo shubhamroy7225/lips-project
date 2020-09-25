@@ -3,7 +3,7 @@ import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import store from '../../../redux/store/store';
 import * as commonService from "../../../utility/utility";
-import { fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, nextPageFeeds } from 'redux/actions/feed';
+import { fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, likeFeedUpdate, nextPageFeeds, unlikeFeedUpdate } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
 export const getAllHashTags = (credentials) => {
@@ -65,6 +65,26 @@ export const fetchFeeds = (queryString = "?limit=20&page=1") => {
       return response;
     }).catch(error => {
       commonService.isLoading.onNext(false); // start loading
+      return error;
+    })
+}
+
+export const likeAFeed = (feedId) => {
+  return API.likeFeed(feedId)
+    .then(response => {
+      likeFeedUpdate({ feedId });
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
+
+export const unlikeAFeed = (feedId) => {
+  return API.unlikeFeed(feedId)
+    .then(response => {
+      unlikeFeedUpdate({ feedId });
+      return response;
+    }).catch(error => {
       return error;
     })
 }

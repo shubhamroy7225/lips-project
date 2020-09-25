@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import $ from 'jquery';
+import { likeAFeed, unlikeAFeed } from 'redux/actions/feed/action';
 
 const FeedWidget = ({ user, showWidget, feed }) => {
-    let className = !showWidget ? "lps_widgets lps_widgets_none" : "lps_widgets";
 
+    const [like, setLike] = useState(feed.liked);
+
+    let className = !showWidget ? "lps_widgets lps_widgets_none" : "lps_widgets";
     useEffect(() => {
         $("#trigger_delete").click(function () {
             $('#trigger_delete_popup').show();
@@ -43,6 +46,20 @@ const FeedWidget = ({ user, showWidget, feed }) => {
         isOwner = true
     }
 
+    let likeIconClasses = "lip_icon_wrp circle_image lps_flx_vm_jc icn_hover_chng ";
+    if (like) {
+        likeIconClasses = likeIconClasses + "active";
+    }
+
+    const toggleLike = () => {
+        if (like) {
+            unlikeAFeed(feed.id);
+        } else {
+            likeAFeed(feed.id);
+        }
+        setLike(!like)
+    }
+
     return (
         <ul className={className} id="lps_widgets">
             {isOwner && <li class="listed_item">
@@ -71,7 +88,7 @@ const FeedWidget = ({ user, showWidget, feed }) => {
                 </a>
             </li>}
             <li class="listed_item">
-                <a href="javascript: void(0);" class="lip_icon_wrp circle_image lps_flx_vm_jc icn_hover_chng">
+                <a onClick={() => toggleLike()} class={likeIconClasses}>
                     <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
                     <img src={require("assets/images/icons/icn_lips.png")} class="icn_hvrA" alt="User" />
                 </a>

@@ -39,5 +39,32 @@ export const feedReducer = createReducer({
     }),
     [actions.setPage]: (state, payload) => updateObject(state, {
         page: payload.page,
-    })
+    }),
+    [actions.likeFeedUpdate]: (state, payload) => {
+        let { feedId } = payload;
+        let feedsCopy = [...state.feeds];
+        let feedIndex = feedsCopy.findIndex(ele => ele.id === feedId);
+        feedsCopy[feedIndex].liked = true;
+        return updateObject(state, {
+            feeds: feedsCopy
+        })
+    },
+    [actions.unlikeFeedUpdate]: (state, payload) => {
+        let { feedId } = payload;
+        let feedsCopy = [...state.feeds];
+        let feedIndex = feedsCopy.findIndex(ele => ele.id === feedId);
+        feedsCopy[feedIndex].liked = false;
+        return updateObject(state, {
+            feeds: feedsCopy
+        })
+    },
+    [actions.deleteFeedUpdate]: (state, payload) => {
+        let { feedId } = payload;
+        let feedIndex = state.feeds.findIndex(ele => ele.id === feedId);
+        let updatedFeeds = [...state.feeds]
+        updatedFeeds.splice(feedIndex, 1);
+        return updateObject(state, {
+            feeds: updatedFeeds
+        })
+    }
 }, initialState); // <-- This is the default state

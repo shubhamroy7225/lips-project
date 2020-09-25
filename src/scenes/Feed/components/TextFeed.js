@@ -3,17 +3,18 @@ import FeedWidget from 'scenes/Feed/components/FeedWidget';
 import { isMobile } from 'react-device-detect';
 import { useHistory, withRouter } from 'react-router-dom';
 import { routes } from 'utility/constants/constants';
+import { connect } from 'react-redux';
 
 
 const TextFeed = (props) => {
+    let history = useHistory();
     const descriptionViewStyle = {
         whiteSpace: "pre-line",
         textAlign: "justify"
     }
 
-    const { reposted, user, feed } = props
-    const { description, hashtagPosts, likable, liked, parent_id, selectionHandler } = feed;
-    let history = useHistory();
+    const { reposted, user, feed, selectionHandler } = props
+    const { description, hashtagPosts, likable, liked, parent_id } = feed;
     const [showWidget, setShowWidget] = useState(false)
 
     const clickHandler = () => {
@@ -28,7 +29,7 @@ const TextFeed = (props) => {
                 <div class="lps_inner_wrp bg_gray_feed lps_mt_50">
                     <div className="lps_inner_cont lps_pos_rltv">
                         <article className="lps_art">
-                            <a id="trigger_text_feed1" onClick={() => setShowWidget(!showWidget)}>
+                            <a id="trigger_text_feed1" onClick={clickHandler}>
                                 <p style={descriptionViewStyle}>{description}</p>
                                 <a href="main_feed_full_text.html" class="lps_link ft_Weight_600" title="more">more</a>
                                 {
@@ -36,7 +37,7 @@ const TextFeed = (props) => {
                                 }
                             </a>
                         </article>
-                        <FeedWidget showWidget={showWidget} />
+                        <FeedWidget showWidget={showWidget} feed={feed} user={user} />
                     </div>
                 </div>
                 <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
@@ -72,7 +73,7 @@ const TextFeed = (props) => {
                     <div class="lps_sm_shape lps_sm_shape1"></div>
                     <div class="lps_inner_cont lps_pos_rltv">
                         <article className="lps_art">
-                            <a id="trigger_text_feed1" onClick={() => setShowWidget(!showWidget)}>
+                            <a id="trigger_text_feed1" onClick={clickHandler}>
                                 <p style={descriptionViewStyle}>{description}</p>
                                 <a href="main_feed_full_text.html" className="lps_link" title="more">more</a>
                                 {
@@ -82,11 +83,24 @@ const TextFeed = (props) => {
                         </article>
                     </div>
                 </div>
-                <FeedWidget showWidget={showWidget} />
+                <FeedWidget showWidget={showWidget} feed={feed} user={user} />
             </div>
         );
     }
 
 }
 
-export default withRouter(TextFeed)
+const mapStateToProps = (state) => {
+    return {
+        user: state.authReducer.user,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TextFeed);
+
