@@ -3,7 +3,7 @@ import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import store from '../../../redux/store/store';
 import * as commonService from "../../../utility/utility";
-import { fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful,userhashTagPending, userhashTagSuccessful, nextPageFeeds } from 'redux/actions/feed';
+import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful,userhashTagPending, userhashTagSuccessful, nextPageFeeds } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
 export const getAllHashTags = (credentials) => {
@@ -13,6 +13,16 @@ export const getAllHashTags = (credentials) => {
     .then(response => {
       commonService.isLoading.onNext(false);
       hashTagSuccessful(response.data)
+      return response
+    })
+}
+export const filterHashTags = (credentials) => {
+  commonService.isLoading.onNext(true);
+  hashTagPending();
+  return API.getAllHashTags(credentials)
+    .then(response => {
+      commonService.isLoading.onNext(false);
+        filterHashTagsSuccessful(response.data)
       return response
     })
 }

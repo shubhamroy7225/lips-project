@@ -48,10 +48,9 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
 
   const handleChange = (e) => {
     let tempSearch = {...search};
-    tempSearch.name=e.target.value;
     tempSearch.page=1;
     setSearch(tempSearch);
-    actions.getAllHashTags(tempSearch)
+    actions.filterHashTags(tempSearch)
   };
   const loadMore = () => {
     let tempSearch = {...search};
@@ -75,10 +74,10 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
                         <div class="lps_search">
                         <div class="inner_form mt_0">
                             <div class="input_field">
-                            <button class="btn_search" type="button">
+                            <button class="btn_search" type="button" onClick={e => handleChange(e)}>
                                 <img src={require("assets/images/icons/icn_search_white.svg")} alt="Icon Search"/>
                             </button>
-                            <input class="input_modify" type="text" value={search.name} onChange={e => handleChange(e)}/>
+                            <input class="input_modify" type="text" value={search.name} onChange={e => setSearch({...search, name: e.target.value})}/>
                             </div>
                         </div>
                         </div>

@@ -4,6 +4,8 @@ export const hashTagPending = createAction('Hash tag API started fetching');
 
 export const hashTagSuccessful = createAction('Hash tag API successful', (hashtag) => (hashtag));
 
+export const filterHashTagsSuccessful = createAction('Filter Hash tag API successful', (hashtag) => (hashtag));
+
 export const userhashTagPending = createAction('User tag API started fetching');
 
 export const userhashTagSuccessful = createAction(' User tag API successful', (hashtag) => (hashtag));

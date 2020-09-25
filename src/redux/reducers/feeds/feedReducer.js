@@ -26,6 +26,9 @@ export const feedReducer = createReducer({
     [actions.hashTagSuccessful]: (state, payload) =>  updateObject(state, {
         isloading: false, hashTags: [...state.hashTags, ...payload.hashtags], count: payload.count
     }),
+    [actions.filterHashTagsSuccessful]: (state, payload) =>  updateObject(state, {
+        isloading: false, hashTags: payload.hashtags, count: payload.count
+    }),
     [actions.userhashTagPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.userhashTagSuccessful]: (state, payload) =>   updateObject(state, {
