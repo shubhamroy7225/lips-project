@@ -11,8 +11,10 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-const ImageFeed = ({ reposted, user }) => {
-
+const ImageFeed = (props) => {
+    const { reposted, user, feed } = props
+    const { attachments, description, hashtagPosts, likable, liked, parent_id } = feed;
+    const { photo_urls } = attachments[0]
     const [showWidget, setShowWidget] = useState(false)
     let history = useHistory()
 
@@ -22,10 +24,11 @@ const ImageFeed = ({ reposted, user }) => {
                 <div className="lps_sm_shape"></div>
                 <div class="post_img_block lps_widgets_wrp bg_gray_feed">
                     <a href="javascript:void(0);" onClick={() => setShowWidget(!showWidget)} id="trigger_main_feed">
-                        <figure class="feed_galary">
-                            <img src={require("assets/images/icons/image_icon.svg")} alt="Add Image" />
+                        <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
+                            <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
-                        {reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
+                        {
+                            reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
                         }
                     </a>
                     <FeedWidget showWidget={showWidget} />
@@ -37,8 +40,11 @@ const ImageFeed = ({ reposted, user }) => {
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
-                                <p class="mb_5">
-                                    <span class="text_primary ft_Weight_600"><a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>username</a> </span> adipiscing elit, sed do eiusmod tempor incididunt elit
+                                <p class="mb_5" style={{ whiteSpace: "pre-line" }}>
+                                    <span class="text_primary ft_Weight_600">
+                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>username</a>
+                                    </span>
+                                    {description}
                                 </p>
                                 <a href="main_feed_full_post_description.html" class="lps_link more_zindex ft_Weight_600">more</a>
                             </div>
@@ -57,7 +63,12 @@ const ImageFeed = ({ reposted, user }) => {
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
-                                <p><span class="text_primary"><a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>Jon snow </a></span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid unt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>
+                                    <span class="text_primary">
+                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>Jon snow </a>
+                                    </span>
+                                    {description}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -69,8 +80,11 @@ const ImageFeed = ({ reposted, user }) => {
                     </figure> */}
                     <a href="javascript:void(0);" onClick={() => setShowWidget(!showWidget)}>
                         <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
-                            <img src={require("assets/images/thumbnails/thumbnail2.jpg")} alt="Add Image" />
+                            <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
+                        {
+                            reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
+                        }
                     </a>
                     <RepostModal />
                     <TaggedModal />
