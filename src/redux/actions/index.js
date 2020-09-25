@@ -20,7 +20,7 @@ export {
     getAllHashTags,
     setFavoriteAvoidTags,
     getUserHashTags
-} from './feedsActions/action';
+} from './feed/action';
 
 //export {
 //    addHistory,

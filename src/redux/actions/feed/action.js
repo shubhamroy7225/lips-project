@@ -3,7 +3,7 @@ import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import store from '../../../redux/store/store';
 import * as commonService from "../../../utility/utility";
-import { fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, nextPageFeeds } from 'redux/actions/feed';
+import { fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful,userhashTagPending, userhashTagSuccessful, nextPageFeeds } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
 export const getAllHashTags = (credentials) => {
@@ -27,6 +27,16 @@ export const setFavoriteAvoidTags = (credentials) => {
     })
 }
 
+export const getUserHashTags = (credentials) =>  {
+  commonService.isLoading.onNext(true);
+  store.dispatch(userhashTagPending());
+  return API.getUserHashTags(credentials)
+      .then(response => {
+        commonService.isLoading.onNext(false);
+        store.dispatch(userhashTagSuccessful(response.data))
+        return response
+      })
+}
 
 export const submitCreateFeedApprovalData = (request) => {
   commonService.isLoading.onNext(true); // start loading
