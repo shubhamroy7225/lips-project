@@ -17,3 +17,7 @@ export const likeFeedUpdate = createAction('update the feed response on successf
 export const unlikeFeedUpdate = createAction('update the feed response on successful unlike', (feedId) => (feedId));
 
 export const deleteFeedUpdate = createAction('delete the feed from the feeds response on successful delete', (feedId) => (feedId));
+
+export const setSelectedFeed = createAction('set selected feed - in case of feed widgets option', (feed) => (feed));
+
+export const setFeedModalType = createAction('set modal type to open from feed widget', (modalType) => (modalType));

@@ -29,7 +29,7 @@ const MainFeed = (props) => {
 
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
-    const [selectedFeed, setSelectedFeed] = useState(null);
+    const selectedFeed = props.selectedFeed;
 
     const validatePaginationCompletion = () => {
         let feedsCount = props.feeds.length;
@@ -133,9 +133,9 @@ const MainFeed = (props) => {
     if (props.feeds) {
         feedContent = props.feeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
-                return <ImageFeed feed={feed} selectionHandler={() => onFeedSelectionHandler(feed)} />
+                return <ImageFeed feed={feed} />
             } else {
-                return <TextFeed feed={feed} selectionHandler={() => onFeedSelectionHandler(feed)} />
+                return <TextFeed feed={feed} />
             }
         })
     }
@@ -154,12 +154,18 @@ const MainFeed = (props) => {
                         {/* <!-- //end Menu bottom here --> */}
                     </div>
                 </div>
-                {/* //   popup */}
-                <RepostModal feed={selectedFeed} />
-                <TaggedModal feed={selectedFeed} />
-                <ReportModal feed={selectedFeed} />
-                <SharedModal feed={selectedFeed} />
-                <RemoveFeedModal feed={selectedFeed} />
+
+                {/*   popup */}
+                {
+                    selectedFeed &&
+                    <>
+                        <RepostModal />
+                        <TaggedModal />
+                        <ReportModal />
+                        <SharedModal />
+                        <RemoveFeedModal />
+                    </>
+                }
             </>
         )
     } else {
@@ -179,7 +185,8 @@ const mapStateToProps = (state) => ({
     user: state.authReducer.user,
     feeds: state.feedReducer.feeds,
     pageSize: state.feedReducer.pageSize,
-    page: state.feedReducer.page
+    page: state.feedReducer.page,
+    selectedFeed: state.feedReducer.selectedFeed
 });
 
 const mapStateToDispatch = (dispatch) => ({

@@ -4,7 +4,11 @@ import { isMobile } from 'react-device-detect';
 import { useHistory, withRouter } from 'react-router-dom';
 import { routes } from 'utility/constants/constants';
 import { connect } from 'react-redux';
-
+import RepostModal from './FeedModal/RepostModal';
+import TaggedModal from './FeedModal/TaggedModal';
+import ReportModal from './FeedModal/ReportModal';
+import SharedModal from './FeedModal/SharedModal';
+import RemoveFeedModal from './FeedModal/RemoveFeedModal';
 
 const TextFeed = (props) => {
     let history = useHistory();
@@ -13,13 +17,12 @@ const TextFeed = (props) => {
         textAlign: "justify"
     }
 
-    const { reposted, user, feed, selectionHandler } = props
+    const { reposted, user, feed } = props
     const { description, hashtagPosts, likable, liked, parent_id } = feed;
     const [showWidget, setShowWidget] = useState(false)
 
     const clickHandler = () => {
         setShowWidget(!showWidget)
-        selectionHandler();
     }
 
     if (isMobile) {
@@ -82,6 +85,11 @@ const TextFeed = (props) => {
                             </a>
                         </article>
                     </div>
+                    <RepostModal feed={feed} />
+                    <TaggedModal feed={feed} />
+                    <ReportModal feed={feed} />
+                    <SharedModal feed={feed} />
+                    <RemoveFeedModal feed={feed} />
                 </div>
                 <FeedWidget showWidget={showWidget} feed={feed} user={user} />
             </div>

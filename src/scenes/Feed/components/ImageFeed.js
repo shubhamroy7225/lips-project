@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const ImageFeed = (props) => {
-    const { reposted, user, feed, selectionHandler } = props
+    const { reposted, user, feed } = props
     const { attachments, description, hashtagPosts, likable, liked, parent_id } = feed;
     const { photo_urls } = attachments[0]
     const [showWidget, setShowWidget] = useState(false)
@@ -27,7 +27,6 @@ const ImageFeed = (props) => {
 
     const clickHandler = () => {
         setShowWidget(!showWidget)
-        selectionHandler();
     }
 
     if (isMobile) {

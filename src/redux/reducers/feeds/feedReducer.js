@@ -2,6 +2,7 @@ import storage from '../../../utility/storage';
 import { createReducer } from 'redux-act';
 import * as actions from 'redux/actions/feed';
 import store from 'redux/store/store';
+import { FeedModalType } from 'utility/constants/constants';
 
 const updateObject = (oldState, updatedProps) => {
     return {
@@ -14,9 +15,11 @@ const updateObject = (oldState, updatedProps) => {
 export const initialState = {
     hashTags: [],
     feeds: [],
+    selectedFeed: null,
     userFeeds: [],
     pageSize: 2,
-    page: 1
+    page: 1,
+    modalType: FeedModalType.undefined
 }
 
 export const feedReducer = createReducer({
@@ -65,6 +68,16 @@ export const feedReducer = createReducer({
         updatedFeeds.splice(feedIndex, 1);
         return updateObject(state, {
             feeds: updatedFeeds
+        })
+    },
+    [actions.setSelectedFeed]: (state, payload) => {
+        return updateObject(state, {
+            selectedFeed: payload.feed
+        })
+    },
+    [actions.setFeedModalType]: (state, payload) => {
+        return updateObject(state, {
+            modalType: payload.modalType
         })
     }
 }, initialState); // <-- This is the default state
