@@ -16,14 +16,15 @@ export const initialState = {
     showhashTags: [],
     hideHashtag: [],
     feeds: [],
-    userFeeds: []
+    userFeeds: [],
+    count: 0
 }
 
 export const feedReducer = createReducer({
     [actions.hashTagPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.hashTagSuccessful]: (state, payload) =>  updateObject(state, {
-        isloading: false, hashTags: [...state.hashTags, ...payload.hashtags],
+        isloading: false, hashTags: [...state.hashTags, ...payload.hashtags], count: payload.count
     }),
     [actions.userhashTagPending]: (state) =>
         updateObject(state, { isloading: true }),

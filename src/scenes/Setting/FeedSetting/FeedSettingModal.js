@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import * as actions from "redux/actions";
 
 const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) => {
-    const history = useHistory();
-   const {hashTags} = useSelector(store => store.feedReducer);
+   const {hashTags, count} = useSelector(store => store.feedReducer);
    const [loaded, setLoaded] = useState(false);
    const [selectTags, setSelectTags] = useState([]);
    const [removedTags, setRemovedTags] = useState([]);
