@@ -122,6 +122,12 @@ const Profile = (props) => {
                         <div id="tab-1" class="tab-content_cst current">
                             <div class="main_feed_cont">
                                 <div class="list_view">
+                                    <ImageFeed />
+                                    <ImageFeed />
+                                    <TextFeed />
+                                    <ImageFeed />
+                                    <ImageFeed />
+                                    <ImageFeed />
                                 </div>
                             </div>
                         </div>
