@@ -46,3 +46,13 @@
   width: 100%;
   max-width: 366px;
 }
+.profile-image-container {
+  i {
+    color: $pink;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: 9999;
+    font-size: large;
+  }
+}

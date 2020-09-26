@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import * as commonService from "utility/utility";
 import {Link, useHistory} from "react-router-dom";
+import * as ConfigAPI from 'api/configAPI';
 import * as AuthActions from "redux/actions";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -8,12 +9,18 @@ import {useDispatch} from "react-redux";
 
 const EditProfile = ({setIsEdit, user}) => {
   const [userForm, setUserForm] = useState({...user});
-  const [files, setFile] = useState([]);
+  const [files, setFile] = useState({header_image: {}, photo_url: {}});
 
   const handleFile = (e) => {
     let file = e.target.files[0];
     let url = URL.createObjectURL(file);
-    let newFiles = [{src: url, file}]
+    let fileName= e.target.name;
+    let newFiles = {...files, [e.target.name]: {src: url, file}};
+    AuthActions.config({ext: ['.png']}).then(res=> {
+      let header_image = res.urls[0].photo_path;
+      setUserForm({...userForm, [fileName]: header_image})
+      ConfigAPI.uploadImageToS3(res.urls[0].presigned_url, file)
+    });
     setFile(newFiles);
   };
 
@@ -22,31 +29,10 @@ const EditProfile = ({setIsEdit, user}) => {
   };
 
   const updateUserProfile = (e) => {
-    if (files.length) {
-      AuthActions.config({ext: ['.png']}).then(res=> {
-        let header_image = res.urls[0].photo_path;
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "image/png");
-        let requestOptions = {
-          method: 'PUT',
-          headers: myHeaders,
-          body: files[0].file
-        };
-        commonService.isLoading.onNext(true);
-        fetch(res.urls[0].presigned_url, requestOptions).then(response=> {
-          const {bio, show_following, show_followers} = userForm;
-          AuthActions.updateUser({user: {bio, show_following, show_followers, header_image}}).then(res => {
-            setIsEdit(false)
-          });
-        })
-      })
-    }
-    else {
-      const {bio, show_following, show_followers} = userForm;
-      AuthActions.updateUser({user: {bio, show_following, show_followers}}).then(res => {
-        setIsEdit(false)
-      });
-    }
+    const {bio, show_following, show_followers, header_image, photo_url} = userForm;
+    AuthActions.updateUser({user: {bio, show_following, show_followers, header_image, photo_url}}).then(res => {
+      setIsEdit(false)
+    });
   };
 
   return (
@@ -73,19 +59,23 @@ const EditProfile = ({setIsEdit, user}) => {
                 <div className="lps_inner_wrp lps_pink_dashed">
                   <label htmlFor="file_input">
                     <figure  className="lps_fig lps_fig160 lps_fig120p20">
-                      <input type="file" id="file_input" name="image" hidden onChange={handleFile}/>
-                      {files.length ?  <img src={files[0].src} alt="Add Image" /> :
-                          (userForm.header_images ? <img src={userForm.header_images.medium} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
+                      <input type="file" id="file_input" name="header_image" hidden onChange={handleFile}/>
+                      {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" /> :
+                          (userForm.header_images.medium ? <img src={userForm.header_images.medium} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
                     </figure>
                   </label>
                 </div>
                 <div className="lps_inner_wrp lps_inner_wrp_media">
                   <div className="lps_media lps_pos_rltv lps_f_end mb20">
-                    <figure className="lps_fig lps_fig_circle">
-                      <input type="file" id="file_input" name="image" hidden onChange={handleFile}/>
-                      <img  src={require("assets/images/icons/icn_profile.svg")} alt="User"/>
+                    <label for="profile_file_input">
+                    <figure className="profile-image-container lps_fig lps_fig_circle" style={{position: "relative"}}>
+                      <input type="file" id="profile_file_input" name="photo_url" hidden onChange={handleFile}/>
+                      {files.photo_url.src ?  <img src={files.photo_url.src} alt="Add Image" /> :
+                          (userForm.photo_urls.medium ? <img src={userForm.photo_urls.medium} alt="Add Image" /> : <img  src={require("assets/images/icons/icn_profile.svg")} alt="User"/>) }
 
+                      <i className="fa fa-pencil"></i>
                     </figure>
+                    </label>
                     {/* <div className="avatar-preview">
                      {files ? <img src={files[0]} alt="img-pict" style={{height: "100%", width: "100%",borderRadius: "50%"}}/> : ""}
                      {!files && userForm.photo_url ? <img src={userForm.photo_url.medium} alt="img-pict" style={{height: "100%",
