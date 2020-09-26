@@ -7,19 +7,23 @@ export {
     changePrivacy,
     forgotPassword,
     verifyUsername,
+    refreshToken,
     //resetPassword,
     updateUser,
     deleteUser,
     resetPassword,
     fetchUser,
     config
-} from './usersActions/action';
+} from './user/action';
 
 export {
     getAllHashTags,
-    setFavoriteAvoidTags
-} from './feedsActions/action';
+    setFavoriteAvoidTags,
+    getUserHashTags,
+    filterHashTags
+} from './feed/action';
 
 //export {
 //    addHistory,
 //} from './usersActions/miscAction'
+ 

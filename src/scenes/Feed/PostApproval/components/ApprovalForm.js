@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import SimpleReactValidator from 'simple-react-validator';
 import * as API from 'api/configAPI';
 import * as commonService from "utility/utility";
-import * as feedsAction from 'redux/actions/feedsActions/action';
+import * as feedsAction from 'redux/actions/feed/action';
 
 const ApprovalForm = ({ moveToNextStep, cancel }) => {
     const withoutImageStyle = {

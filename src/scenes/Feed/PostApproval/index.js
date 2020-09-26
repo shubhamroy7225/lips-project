@@ -17,7 +17,6 @@ const PostApproval = (props) => {
     const history = useHistory();
 
     const moveToNextStep = () => {
-        debugger;
         if (props.user.approval_status !== ApprovalStatus.not_submitted) {
             //already submitted so take back to feeds
             history.push(routes.ROOT)

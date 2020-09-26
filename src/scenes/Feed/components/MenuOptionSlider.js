@@ -6,18 +6,8 @@ import { connect } from 'react-redux';
 import { ApprovalStatus } from 'utility/constants/constants';
 
 const MenuOptionSlider = (props) => {
-
     const toggle = () => {
         window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
-    }
-
-    const postFeed = () => {
-        console.log(props.isFeedApproved);
-        if (props.isFeedApproved) {
-
-        } else {
-
-        }
     }
 
     let createPostRoute = routes.CREATE
@@ -27,7 +17,7 @@ const MenuOptionSlider = (props) => {
 
     if (props.user) {
         //if user 
-        if (!props.user.account_approved || props.user.approval_status !== ApprovalStatus.accepted) {
+        if (props.user.approval_status !== ApprovalStatus.accepted) {
             createPostRoute = routes.POST_APPROVAL;
         }
     } else {
@@ -103,7 +93,6 @@ const MenuOptionSlider = (props) => {
 
 
 const mapStateToProps = (state) => ({
-    isFeedApproved: state.authReducer.isFeedApproved,
     user: state.authReducer.user
 });
 

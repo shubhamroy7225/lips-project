@@ -29,12 +29,6 @@ export default () => {
                           <input type="radio" checked="checked" name="radio" value={privacy_settings} checked={privacy_settings === "public"} onClick={e=> setPrivacy("public")} />
                             <span className="lps_checkmark"></span>
                           </label>
-                          <label className="lps_cont_rdo">
-                            <span className="ft_Weight_500 radio_title">Only Registered users</span><br/>
-                            Only registered Lips users can find & see me
-                            <input type="radio" name="radio" value={privacy_settings} checked={privacy_settings === "registered" } onClick={e=> setPrivacy("registered")}/>
-                              <span className="lps_checkmark"></span>
-                            </label>
                             <label className="lps_cont_rdo">
                               <span className="ft_Weight_500 radio_title">Private</span><br/>
                               Only People who follow you can see your posts

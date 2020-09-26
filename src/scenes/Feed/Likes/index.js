@@ -1,95 +1,87 @@
-import React from 'react';
-import { withRouter } from 'react-router'
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useHistory, withRouter } from 'react-router'
+import { useSelector } from 'react-redux';
 import MenuOptionSlider from '../components/MenuOptionSlider';
-import ImageItem from '../components/ImageItem';
 import { isMobile } from 'react-device-detect';
+import { fetchLikedFeeds } from 'redux/actions/feed/action';
+import { FeedType } from 'utility/constants/constants';
+import ImageFeed from '../components/ImageFeed';
+import TextFeed from '../components/TextFeed';
+import * as commonService from "../../../utility/utility";
 
-const Likes = (props) => {
+export default (props) => {
+    const { likedFeeds } = useSelector((state) => state.feedReducer);
+    const [topHashtags, setTopHashtags] = useState([]);
+
+    useEffect(() => {
+        if (likedFeeds.length === 0) {
+            commonService.isLoading.onNext(true); // start loading
+            fetchLikedFeeds();
+        } else {
+            fetchLikedFeeds();
+        }
+    }, [])
+
+    const getTopHashTags = () => {
+        let feeds = likedFeeds;
+        let hashtagCountMapping = {};
+        feeds.forEach(element => {
+            let hashposts = element.hashtagPosts;
+            hashposts.forEach(hashtag => {
+                if (hashtag.hashtag_name in hashtagCountMapping) {
+                    let count = hashtagCountMapping[hashtag.hashtag_name];
+                    hashtagCountMapping[hashtag.hashtag_name] = count + 1;
+                } else {
+                    hashtagCountMapping[hashtag.hashtag_name] = 1;
+                }
+            })
+        });
+        var sortable = [];
+        for (var key in hashtagCountMapping) {
+            sortable.push([key, hashtagCountMapping[key]]);
+        }
+        sortable.sort(function (a, b) {
+            return b[1] - a[1];
+        });
+
+        sortable = sortable.slice(0, 5);
+        // return sortable.map(ele => ele[0]);
+        setTopHashtags(sortable.map(ele => ele[0]));
+
+    }
+
+    useEffect(() => {
+        getTopHashTags();
+    }, [likedFeeds])
+
+    let feedContent = [];
+    if (likedFeeds) {
+        feedContent = likedFeeds.map((feed, index) => {
+            if (feed.type === FeedType.image) {
+                return <ImageFeed feed={feed} />
+            } else {
+                return <TextFeed feed={feed} />
+            }
+        })
+    }
+
     return (
         <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
-            <div class="lps_container liked_con">
+            <div class={isMobile ? "lps_container main_feed_cont bg_grayCCC" : "lps_container main_feed_cont"}>
                 <div class="lps_inner_wrp">
-                    <div class="lps_inner_cont">
-                        <div class="see_also">
-                            <div class="hashtag">
-                                <h5 class="h5_title">YOUR MOST <img src={require("assets/images/icons/lips.svg")} alt="Image" class="lip_icn" />TAGS</h5>
-                                <a href="javascript:void(0);" class="hashtag_btn">#Hashtag</a>
-                                <a href="javascript:void(0);" class="hashtag_btn">#Hashtag</a>
-                                <a href="javascript:void(0);" class="hashtag_btn">#Hashtag</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="data_collection">
-                        <div class="folder_block">
-                            <figure class="folders">
-                                <img src={require("assets/images/icons/folder.svg")} alt="Folder" />
-                                <figcaption><h6 class="sm_title">Collection</h6></figcaption>
-                            </figure>
-                            <figure class="folders">
-                                <img src={require("assets/images/icons/folder.svg")} alt="Folder" />
-                                <figcaption><h6 class="sm_title">Collection</h6></figcaption>
-                            </figure>
-                            <figure class="folders">
-                                <img src={require("assets/images/icons/folder.svg")} alt="Folder" />
-                                <figcaption><h6 class="sm_title">Collection</h6></figcaption>
-                            </figure>
-                            <figure class="folders">
-                                <img src={require("assets/images/icons/folder.svg")} alt="Folder" />
-                                <figcaption><h6 class="sm_title">Collection</h6></figcaption>
-                            </figure>
-                            <figure class="folders">
-                                <img src={require("assets/images/icons/folder.svg")} alt="Folder" />
-                                <figcaption><h6 class="sm_title">Collection</h6></figcaption>
-                            </figure>
+                    <div class="see_also">
+                        <h5 class="h5_title lps_flx_vm tags_lip_inline mb_15">
+                            MOST
+                  <img src={require("assets/images/icons/icn_mouth.png")} alt="Image" class="lip_icn" />TAGS
+                </h5>
+                        <div class="hashtag hashtag_seondary">
+                            {topHashtags.map((tag, index) => <a key={index} class="theme_btn theme_secondary">{tag}</a>)}
                         </div>
                     </div>
                 </div>
-                <div class="category_block browse_category">
-                    <div class="title_block">
-                        <h5 class="h5_title">YOUR RECENT <img src={require("assets/images/icons/lips.svg")} alt="Image" class="lip_icn" /></h5>
-                    </div>
-                    <div class="product_grid liked_product">
-                        <div class="grid_box">
-                            <ImageItem />
-                            <ImageItem />
-                        </div>
-                        <div class="product_card gallery_box_big">
-                            <div class="product_img_block">
-                                <figure class="product_img">
-                                    <img src={require("assets/images/icons/landscape-image.png")} alt="Image" />
-                                </figure>
-                            </div>
-                            <span class="triangle_shape"></span>
-                        </div>
-                    </div>
-                    <div class="product_grid liked_product">
-                        <div class="product_card gallery_box_big">
-                            <div class="product_img_block">
-                                <figure class="product_img">
-                                    <img src={require("assets/images/icons/landscape-image.png")} alt="Image" />
-                                </figure>
-                            </div>
-                            <span class="triangle_shape"></span>
-                        </div>
-                        <div class="grid_box">
-                            <ImageItem />
-                            <ImageItem />
-                        </div>
-                    </div>
-                </div>
+                {feedContent}
                 <MenuOptionSlider />
             </div>
-        </div>
+        </div >
     )
 }
-
-const mapStateToProps = (state) => ({
-    user: state.authReducer.user,
-});
-
-const mapStateToDispatch = (dispatch) => ({
-});
-
-export default connect(mapStateToProps, mapStateToDispatch)(withRouter(Likes));
-

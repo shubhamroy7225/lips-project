@@ -26,14 +26,14 @@ const Header = (props) => {
 
     if (props.history.location.pathname === routes.CREATE) {
         return (
-            <header class="main_header post_page_header">
+            <div class="post_page_header">
                 <nav class="theme_tabs">
                     <ul class="tab-list">
                         <li class="active"><a href="#imageTab">IMAGE</a></li>
                         <li><a href="#textTab">TEXT</a></li>
                     </ul>
                 </nav>
-            </header>
+            </div>
         )
     } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) || props.history.location.pathname === "/" && props.user || props.history.location.pathname === "/main-feeds") {
         //default when user is not logged in

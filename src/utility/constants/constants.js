@@ -19,6 +19,7 @@ export const SETTINGS_PATH = {
     PRIVACY_POLICY: '/settings/privacy-policy',
     SETTING_TERMS_AND_CONDITIONS: '/settings/terms-and-condition',
     SETTING_COMMUNITY_GUIDELINES: '/settings/community-guidelines',
+    FEED_SETTING_MODAL: '/settings/feed-setting-modal'
 };
 export const PRIVATE_PATH = {
     FEEDS: '/feeds',
@@ -66,6 +67,11 @@ export const ApprovalStatus = {
     denied: "denied"
 }
 
+export const FeedType = {
+    image: "image",
+    text: "text"
+}
+
 export const MinImageResolution = {
     height: 683,
     width: 1024
@@ -92,6 +98,12 @@ export const Base64ImagesTypes = {
 }
 
 
-export const AllWeekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+export const FeedModalType = {
+    delete: 'delete',
+    report: 'report',
+    tag: 'tag',
+    share: 'share',
+    repost: 'repost',
+    undefined: 'undefined',
+}
 
-export const FormatedWeekDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];

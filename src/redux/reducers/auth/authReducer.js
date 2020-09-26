@@ -20,13 +20,18 @@ export const initialState = {
     isloading: false,
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
-    isFeedApproved: false
 }
 
 export const authReducer = createReducer({
     [actions.loginPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.loginSuccessful]: (state, payload) =>
+        updateObject(state, {
+            isloading: false, user: payload ? payload.user : state.user,
+        }),
+    [actions.refreshTokenPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.refreshTokenSuccessful]: (state, payload) =>
         updateObject(state, {
             isloading: false, user: payload ? payload.user : state.user,
         }),
@@ -69,24 +74,24 @@ export const authReducer = createReducer({
     [actions.getUserSuccessful]: (state, payload) => {
         return updateObject(state, {
             isloading: false,
-            currentUser: payload.user
+            user: payload.user
         })
     },
-    
+
     [actions.configPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.configSuccessful]: (state, payload) => {
         return updateObject(state, {
             isloading: false
         })
-    }, 
+    },
 
-    [actions.updateuserSuccessful]: (state, payload) =>  updateObject(state,
-            {
-                user: payload.user,
-            }),
+    [actions.updateuserSuccessful]: (state, payload) => updateObject(state,
+        {
+            user: payload.user,
+        }),
     [actions.logout]: (state) => {
-    return    updateObject(state,
+        return updateObject(state,
             {
                 token: token,
                 refresh_token: refresh_token,
@@ -106,8 +111,7 @@ export const authReducer = createReducer({
         return updateObject(state,
             {
                 isOnBoard: true,
-                user: {...user, privacy_settings: payload.privacy_settings}
+                user: { ...user, privacy_settings: payload.privacy_settings }
             })
-    },
-    [actions.allowedToPost]: (state) => updateObject(state, { isFeedApproved: true })
+    }
 }, initialState); // <-- This is the default state

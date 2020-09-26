@@ -679,7 +679,7 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
     .lps_btn_grps {
       padding: 25% 15px 0;
       &.gredient_ul {
-        padding: 50px 15px 0;
+        padding: 30px 15px 0;
         li {
           margin-bottom: 25px;
           h6 {
@@ -744,9 +744,9 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
   &.heart_notify_box {
     position: absolute;
     overflow: visible;
-    top: -78px;
-    right: 50px;
-    width: 160px;
+    top: -18px;
+    right: 48px;
+    width: 135px;
     .popup_cont {
       min-height: auto;
       background-color: $brand-secondary;
@@ -754,7 +754,7 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
       -ms-transform: translateX(8px);
       transform: translateX(8px);
       .popup_body {
-        padding: 15px;
+        padding: 12px 15px;
         font-size: 14px;
         color: $white;
       }
@@ -765,13 +765,17 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
       content: "";
       width: 10px;
       height: 10px;
-      right: 7px;
-      bottom: -5px;
+      right: -10px;
+      bottom: 25px;
       background-color: inherit;
       -webkit-transform: translateX(-6px) rotate(45deg);
       -ms-transform: translateX(-6px) rotate(45deg);
       transform: translateX(-6px) rotate(45deg);
       pointer-events: none;
+    }
+
+    &.notify_box_hide_3S {
+      display: none;
     }
   }
   .popup_close_header {
@@ -1027,10 +1031,10 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
     margin-bottom: 30px;
     .list-group-item {
       &:first-child {
-        border-top: 1px solid rgba(0, 0, 0, 0.125);
+        border-top: 1px solid $white;
       }
       &:last-child {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        border-bottom: 1px solid $white;
       }
       .lps_user_info {
         padding-left: 0;
@@ -1247,7 +1251,7 @@ p.more {
       background-color: $bg_grayCCC;
       color: $brand-secondary;
       display: inline-block;
-      padding: 8px 15px;
+      padding: 6px 15px;
       cursor: pointer;
       border: 1px solid $brand-secondary;
       border-bottom: none;
@@ -1264,7 +1268,7 @@ p.more {
       background-color: $bg_grayCCC;
       border-bottom-color: $bg_grayCCC;
       position: relative;
-      top: 1px;
+      top: 2px;
     }
   }
   .tab-content_cst,
@@ -1280,10 +1284,6 @@ p.more {
   &.lps_tab_cutomize {
     .tabs_block_cst {
       text-align: left;
-      li {
-        margin: 0 2px 0 15px;
-        min-width: 148px;
-      }
     }
     .tab-content_cst {
       padding-top: 0;
@@ -3167,8 +3167,13 @@ p.more {
 }
 /* // Post Page*/
 .lps_pink_dashed {
-  border: 1px dashed $white;
+  border: 2px dashed $white;
   background-color: $bg_grayCCC;
+  padding: 0;
+  .lps_fig90 {
+    width: 100%;
+    height: 118px;
+  }
 }
 .dots_link {
   display: block;
@@ -3815,13 +3820,24 @@ p.more {
   }
   .product_card {
     margin-bottom: 0;
-    padding: 40px 0;
+    padding: 40px 10px;
+    font-size: 15px;
     background-color: $white-200;
     border-bottom: 1px solid $bg_grayCCC;
     border-right: 1px solid $bg_grayCCC;
     text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     img {
-      width: 60px;
+      width: 63px;
+      height: 43px;
     }
   }
 }
@@ -3928,7 +3944,7 @@ p.more {
   justify-content: center;
   .lps_top_d {
     background-color: $white-200;
-    padding: 40px 15px 40px 15px;
+    padding: 40px 26px 40px;
     border-radius: 0;
     .lps_fig {
       width: 70px;
@@ -4003,8 +4019,22 @@ p.more {
 }
 .hashtags {
   .theme_btn {
-    margin-right: 7px;
-    min-width: 85px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    min-width: 80px;
+    padding: 7px 4px;
+    // &.theme_outline_light {
+    //   // &:hover {
+    //   //   color: #f8f9fa;
+    //   //   background: transparent none;
+    //   //   border-color: #f8f9fa;
+    //   // }
+    //   // &.active {
+    //   //   color: #212529;
+    //   //   background-color: #f8f9fa;
+    //   //   border-color: #f8f9fa;
+    //   // }
+    // }
   }
 }
 .lps_inline_img_wrp {
@@ -4077,7 +4107,7 @@ span.textRange {
   display: block;
   text-align: right;
   background-color: $white;
-  color: $brand-secondary;
+  color: $gray-1000;
   padding: 10px;
   font-size: 14px;
   position: relative;
@@ -4213,4 +4243,44 @@ p.para18L30 {
     border-bottom: 1px solid #fff;
     min-width: 227px;
   }
+}
+.paint_tool_wrp {
+  text-align: right;
+  margin-bottom: 10px;
+  a {
+    img {
+      width: 30px;
+    }
+  }
+}
+.lps_img_fixed {
+  height: 320px;
+  text-align: center;
+  img {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
+  &.add_image {
+    padding: 60px 0;
+    text-align: center;
+    width: 160px;
+    margin: 0 auto;
+    height: 100%;
+  }
+}
+.hashtags {
+  text-align: left;
+}
+.lps_floatRight {
+  float: right;
+}
+.lps_tb_para {
+  padding: 30% 15px;
+  text-align: center;
+}
+.overlap_menu {
+  position: relative;
+  z-index: 2;
 }
