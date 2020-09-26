@@ -184,8 +184,8 @@ export const signOut = () => {
     storage.remove('token');
     storage.remove('user');
     storage.remove('refresh_token');
-    storage.remove('step');
     store.dispatch(logout());
+    
 };
 
 export const completeOnBordingFlow = () => {
