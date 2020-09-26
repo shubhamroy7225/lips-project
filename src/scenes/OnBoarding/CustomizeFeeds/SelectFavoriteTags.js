@@ -10,10 +10,8 @@ export default () => {
   
   const [selectTags, setSelectTags] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [loadHashtag, setLoadHashtag] = useState(false);
 
-  const sendRequest = () => {
-    setLoadHashtag(true);
+  const loadMore = () => {
     actions.getAllHashTags();
   }
 
@@ -57,10 +55,11 @@ export default () => {
                                   <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
                         )}
                         </li>
+                        <li class="mt_15">
+                          <button onClick={loadMore} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase" id="trigger_addMore">View more</button>
+                        </li>
                       </ul>
                       <div className="pos_wrp onboarding_btm">
-                      <button onClick={sendRequest} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10">
-                         Load More</button>
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">
                          Continue</button>
                       </div>

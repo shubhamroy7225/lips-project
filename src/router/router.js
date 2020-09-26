@@ -23,7 +23,7 @@ import Landing from 'scenes/OnBoarding/InitialLanding';
 import CustomizeFeeds from 'scenes/OnBoarding/CustomizeFeeds';
 
 import Setting from 'scenes/Setting';
-import MyAccount from 'scenes/Setting/MyAccount/index';
+import MyAccount from 'scenes/Setting/MyAccount';
 import SwitchAccount from 'scenes/Setting/SwitchAccount';
 import ManageData from 'scenes/Setting/ManageData';
 import FeedSetting from 'scenes/Setting/FeedSetting/index';

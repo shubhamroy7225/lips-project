@@ -15,6 +15,10 @@ export default () => {
     }
   }, []);
 
+  const loadMore = () => {
+   actions.getAllHashTags();
+ }
+
   const toggleHashTag = (tag) => {
     if (selectTags.includes(tag.name)) {
       selectTags.splice(selectTags.findIndex(e => e === tag.name), 1);
@@ -45,11 +49,11 @@ export default () => {
                                 <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
                         )}
                         </li>
-                         {/*
+                         
                          <li className="mt_15">
-                            <Link to="#" className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
-                            View more</Link>
-                         </li>*/}
+                            <button onClick={loadMore} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
+                            View more</button>
+                         </li>
                       </ul>
                       <div className="pos_wrp onboarding_btm">
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">Browse</button>
