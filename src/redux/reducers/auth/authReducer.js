@@ -93,9 +93,9 @@ export const authReducer = createReducer({
     [actions.logout]: (state) => {
         return updateObject(state,
             {
-                token: token,
-                refresh_token: refresh_token,
-                user: user,
+                token: null,
+                refresh_token: null,
+                user: null,
                 isloading: false,
                 resetPasswordToken: null,
                 isOnBoard: false
