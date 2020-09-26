@@ -13,22 +13,9 @@ const Setting = () => {
             <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
             <span className="lp_left_auto">Settings</span>
           </Link>
-            <div className="lps_inner_wrp lps_search">
-               <div className="inner_form">
-                  <div className="input_field">
-                     <button className="btn_search" type="button">
-                        <img src={require("assets/images/icons/search.png")} alt="Search"/>
-                     </button>
-                     <input className="input_modify" type="text" />
-                  </div>
-               </div>
-            </div>
             <ul className="lps_list_group lps_listN">
                <li className="list-group-item">
                   <Link to="/settings/my-account">My account</Link>
-               </li>
-               <li className="list-group-item">
-                  <Link to="/settings/manage-data">Manage your data</Link>
                </li>
                <li className="list-group-item">
                   <Link to="/settings/feed-setting">Feed settings</Link>
