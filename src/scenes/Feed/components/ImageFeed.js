@@ -16,7 +16,7 @@ const ImageFeed = (props) => {
     const feed_user = feed.user;
     const user_name = feed_user.user_name;
     const feed_user_photo = feed_user.photo_urls;
-    const { photo_urls } = attachments[0]
+    const { photo_urls } = attachments[0];
     const [showWidget, setShowWidget] = useState(false)
     let history = useHistory()
 

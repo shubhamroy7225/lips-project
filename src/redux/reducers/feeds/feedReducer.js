@@ -19,7 +19,8 @@ export const initialState = {
     userFeeds: [],
     pageSize: 2,
     page: 1,
-    modalType: FeedModalType.undefined
+    modalType: FeedModalType.undefined,
+    likedFeeds: []
 }
 
 export const feedReducer = createReducer({
@@ -79,5 +80,8 @@ export const feedReducer = createReducer({
         return updateObject(state, {
             modalType: payload.modalType
         })
-    }
+    },
+    [actions.fetchedLikedFeedsSuccessfully]: (state, payload) => updateObject(state, {
+        likedFeeds: payload.feeds,
+    }),
 }, initialState); // <-- This is the default state

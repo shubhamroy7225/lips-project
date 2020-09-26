@@ -20,3 +20,5 @@ export const unlikeFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/u
 
 export const hideFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/hide`);
 
+export const fetchLikedFeeds = () => axios.get(`${API_VERSION}/post/liked`);
+

@@ -21,3 +21,5 @@ export const deleteFeedUpdate = createAction('delete the feed from the feeds res
 export const setSelectedFeed = createAction('set selected feed - in case of feed widgets option', (feed) => (feed));
 
 export const setFeedModalType = createAction('set modal type to open from feed widget', (modalType) => (modalType));
+
+export const fetchedLikedFeedsSuccessfully = createAction('fetch most liked feeds with success', (feeds) => (feeds));
