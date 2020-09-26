@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import MenuOptionSlider from 'scenes/Feed/components/MenuOptionSlider';
 import $ from 'jquery';
 import { isMobile } from 'react-device-detect';
@@ -19,8 +19,8 @@ const Profile = (props) => {
     const { userFeeds } = useSelector((state) => state.feedReducer)
     const { user } = useSelector((state) => state.authReducer)
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
-
     const [isEdit, setEdit] = useState(false)
+
     useEffect(() => {
         $('.close_follow').on("click", function () {
             $('.followers_wrp').addClass('close');

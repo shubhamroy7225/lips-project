@@ -109,3 +109,13 @@ export const fetchUserFeeds = () => {
       return error;
     })
 }
+
+export const fetchOtherUserFeeds = (userId) => {
+  return API.fetchUserFeeds()
+    .then(response => {
+      fetchedUserFeedsSuccessfully({ feeds: response.data.posts });
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
