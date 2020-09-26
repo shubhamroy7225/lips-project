@@ -7,9 +7,15 @@ export default () => {
   const history = useHistory();
 
   const {hashTags} = useSelector(store => store.feedReducer);
-
+  
   const [selectTags, setSelectTags] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [loadHashtag, setLoadHashtag] = useState(false);
+
+  const sendRequest = () => {
+    setLoadHashtag(true);
+    actions.getAllHashTags();
+  }
 
   useEffect(() => {
     if (!loaded) {
@@ -17,6 +23,7 @@ export default () => {
       actions.getAllHashTags()
     }
   }, []);
+ 
 
   const toggleHashTag = (tag) => {
     if (selectTags.includes(tag.name)) {
@@ -52,6 +59,8 @@ export default () => {
                         </li>
                       </ul>
                       <div className="pos_wrp onboarding_btm">
+                      <button onClick={sendRequest} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10">
+                         Load More</button>
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">
                          Continue</button>
                       </div>
