@@ -5,8 +5,8 @@ const ImageItem = ({ feed, selectionHandler }) => {
     const { photo_urls } = attachments[0]
 
     return (
-        <div class="product_card">
-            <img src={photo_urls.medium} alt="Add Image" />
+        <div class="product_card" onClick={selectionHandler}>
+            <img src={photo_urls.medium} alt="Add Image" className="add_img" />
         </div>
     );
 }

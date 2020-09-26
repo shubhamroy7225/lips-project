@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 
-const TextItem = (props) => {
+const TextItem = ({ feed, selectionHandler }) => {
+    const { description } = feed;
     return (
-        <div class="product_card">
-            Lorem ipsum dolor sit amet onsect..
+        <div class="product_card" onClick={selectionHandler}>
+            {description.substring(0, 30)}..
         </div>
     );
 }

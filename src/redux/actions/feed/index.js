@@ -23,3 +23,5 @@ export const setSelectedFeed = createAction('set selected feed - in case of feed
 export const setFeedModalType = createAction('set modal type to open from feed widget', (modalType) => (modalType));
 
 export const fetchedLikedFeedsSuccessfully = createAction('fetch most liked feeds with success', (feeds) => (feeds));
+
+export const fetchedUserFeedsSuccessfully = createAction('fetch user feeds with success', (feeds) => (feeds));

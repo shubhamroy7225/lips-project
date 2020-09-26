@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {Link} from "react-router-dom";
-import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
+import { connect, useSelector } from 'react-redux';
 import MenuOptionSlider from 'scenes/Feed/components/MenuOptionSlider';
 import $ from 'jquery';
 import { isMobile } from 'react-device-detect';
@@ -8,12 +8,137 @@ import ImageFeed from 'scenes/Feed/components/ImageFeed';
 import TextFeed from 'scenes/Feed/components/TextFeed';
 import FollowerItem from './components/FollowerItem';
 import NonRegisteredView from 'scenes/NonRegisteredView';
-
 import EditProfile from "./components/EditProfile";
+import { fetchUserFeeds } from 'redux/actions/feed/action';
+import * as commonService from "utility/utility";
+import { FeedType } from 'utility/constants/constants';
+import ImageItem from 'scenes/Feed/components/ImageItem';
+import TextItem from 'scenes/Feed/components/TextItem';
+
+const Profile = (props) => {
+    const { userFeeds } = useSelector((state) => state.feedReducer)
+    const { user } = useSelector((state) => state.authReducer)
+    const [gridlayoutMode, setGridLayoutMode] = useState(true);
+
+    const [isEdit, setEdit] = useState(false)
+    useEffect(() => {
+        $('.close_follow').on("click", function () {
+            $('.followers_wrp').addClass('close');
+            $('.followers_wrp').removeClass('open');
+            $('.followers_wrp_inner').toggleClass('animated fadeInUp');
+        });
+
+        $('.followers_trigger').on("click", function () {
+            $('.followers_wrp').removeClass('close');
+            $('.followers_wrp').addClass('open');
+            $('.followers_wrp_inner').toggleClass('animated fadeInUp');
+        });
+    }, [])
+
+    useEffect(() => {
+        commonService.isLoading.onNext(false); // start loading
+        fetchUserFeeds()
+    }, [])
+
+    const toggleFeedLayoutMode = (feed) => {
+        setGridLayoutMode(false)
+    }
+
+    let gridFeedContent = [];
+    let listFeedContent = [];
+
+    if (userFeeds) {
+        userFeeds.forEach(feed => {
+            if (feed.type === FeedType.image) {
+                gridFeedContent.push(<ImageItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<ImageFeed feed={feed} />)
+            } else {
+                gridFeedContent.push(<TextItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<TextFeed feed={feed} />)
+            }
+        });
+    }
+
+
+    if (user) {
+        if (isEdit) {
+            return <EditProfile setIsEdit={setEdit} />
+        } else {
+            return (
+                <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
+                    <div class="lps_container bg_grayCCC">
+                        <ProfileHeader setEdit={setEdit} user={user} isUserProfile={props.isUserProfile} />
+                        {/* <!-- Lips Tab --> */}
+                        <section class="lips_tab tabs_grid_view_sec">
+                            <ul class="tabs_block_cst">
+                                <li class="tab-link current" data-tab="tab-1">
+                                    <figure class="lps_fig lps_fig_sm">
+                                        <img src={require("assets/images/icons/icn_image_sm_black.svg")} alt="Picture" />
+                                    </figure>
+                                </li>
+                            </ul>
+
+                            <div id="tab-1" class="tab-content_cst current pt_0">
+                                {
+                                    gridlayoutMode ?
+                                        <div class="lps_product_grid">
+                                            {gridFeedContent}
+                                        </div>
+                                        :
+                                        <div class="main_feed_cont">
+                                            <div class="list_view">
+                                                {listFeedContent}
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+                        </section>
+
+                        {/* <!-- Menu bottom here --> */}
+                        <MenuOptionSlider />
+                        {/* <!-- // Menu bottom here --> */}
+
+                        {/* <!-- followers content --> */}
+                        <div class="bg_grayCCC lps_h_100 followers_wrp close">
+                            <div class="lps_inner_wrp lps_inner_content lps_h_100 bg_grayCCC followers_wrp_inner">
+                                <div class="lps_title_wrp text_center lps_pos_rltv">
+                                    <a class="lps_arrow_left close_follow" href="#">
+                                        <img src={require("assets/images/icons/icn_close.png")} alt="Icon Arrow" class="lps_header_img" />
+                                    </a>
+                                    <div class="lps_txtFollow_center">
+                                        <span class="lps_sm_folow">Followers</span>
+                                    </div>
+                                </div>
+                                <div class="follow_overflow">
+                                    <FollowerItem />
+                                    <FollowerItem />
+                                    <FollowerItem />
+                                    <FollowerItem />
+                                    <FollowerItem />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+    } else {
+        return <NonRegisteredView />
+    }
+
+
+}
+
+export default Profile;
+
+
 
 const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
     const [isFollowerHeaderHidden, setIsFollowerHeaderHidden] = useState(true)
     const [following, setFollowing] = useState(false)
+
+    const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user_outline.png");
+
     return (
         <div class="lps_list">
             {/* cover image */}
@@ -28,7 +153,7 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
             <div class="lps_inner_wrp lps_inner_wrp_media">
                 <div class="lps_media lps_pos_rltv lps_f_end">
                     <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/user_outline.png")} alt="User" />
+                        <img src={profilePhoto} alt="User" />
                     </figure>
                     <div class="lps_media_body">
                         <div class="lps_media_body">
@@ -69,10 +194,9 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
                     </div>
                 </div>
                 <p class="mt_15 mb_5">
-                    bio lorem ipsum dolor sit amet, consectetur adipiscing el nam
-                    vel congue nisi
-                  <a href="#" class="link_underline text_secondary">www.website.com </a> lorem ipsum
-                  <a href="#" class="link_underline text_secondary"> www.anotherwebsite.com</a>lorem ipsum dolor
+                    {user.bio}
+                    {/* <a href="#" class="link_underline text_secondary">www.website.com </a> lorem ipsum
+                  <a href="#" class="link_underline text_secondary"> www.anotherwebsite.com</a>lorem ipsum dolor */}
                 </p>
                 <a class="dots_link" id="trigger_followers_block" onClick={() => { setIsFollowerHeaderHidden(!isFollowerHeaderHidden) }}><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                 <div
@@ -86,94 +210,3 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
         </div>
     )
 }
-
-const Profile = (props) => {
-    const [isEdit, setEdit] = useState(false)
-    useEffect(() => {
-        $('.close_follow').on("click", function () {
-            $('.followers_wrp').addClass('close');
-            $('.followers_wrp').removeClass('open');
-            $('.followers_wrp_inner').toggleClass('animated fadeInUp');
-        });
-
-        $('.followers_trigger').on("click", function () {
-            $('.followers_wrp').removeClass('close');
-            $('.followers_wrp').addClass('open');
-            $('.followers_wrp_inner').toggleClass('animated fadeInUp');
-        });
-    }, [])
-
-    if (props.user) {
-        return (<>
-        {isEdit ? <EditProfile setIsEdit={setEdit} /> :
-            <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
-                <div class="lps_container bg_grayCCC">
-                    <ProfileHeader isEdit={isEdit} setEdit={setEdit} user={props.user} isUserProfile={props.isUserProfile} />
-                    {/* <!-- Lips Tab --> */}
-                    <section class="lips_tab tabs_grid_view_sec">
-                        <ul class="tabs_block_cst">
-                            <li class="tab-link current" data-tab="tab-1">
-                                <figure class="lps_fig lps_fig_sm">
-                                    <img src={require("assets/images/icons/icn_image_sm_black.svg")} alt="Picture" />
-                                </figure>
-                            </li>
-                        </ul>
-
-                        <div id="tab-1" class="tab-content_cst current">
-                            <div class="main_feed_cont">
-                                <div class="list_view">
-                                    <ImageFeed />
-                                    <ImageFeed />
-                                    <TextFeed />
-                                    <ImageFeed />
-                                    <ImageFeed />
-                                    <ImageFeed />
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* <!-- Menu bottom here --> */}
-                    <MenuOptionSlider />
-                    {/* <!-- // Menu bottom here --> */}
-
-                    {/* <!-- followers content --> */}
-                    <div class="bg_grayCCC lps_h_100 followers_wrp close">
-                        <div class="lps_inner_wrp lps_inner_content lps_h_100 bg_grayCCC followers_wrp_inner">
-                            <div class="lps_title_wrp text_center lps_pos_rltv">
-                                <a class="lps_arrow_left close_follow" href="#">
-                                    <img src={require("assets/images/icons/icn_close.png")} alt="Icon Arrow" class="lps_header_img" />
-                                </a>
-                                <div class="lps_txtFollow_center">
-                                    <span class="lps_sm_folow">Followers</span>
-                                </div>
-                            </div>
-                            <div class="follow_overflow">
-                                <FollowerItem />
-                                <FollowerItem />
-                                <FollowerItem />
-                                <FollowerItem />
-                                <FollowerItem />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> }
-        </>
-        );
-    } else {
-        return <NonRegisteredView />
-    }
-
-
-}
-
-const mapStateToProps = (state) => ({
-    user: state.authReducer.user,
-});
-
-const mapStateToDispatch = (dispatch) => ({
-});
-
-export default connect(mapStateToProps, mapStateToDispatch)(Profile);
-
