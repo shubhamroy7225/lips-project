@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 
-const ImageItem = (props) => {
+const ImageItem = ({ feed, selectionHandler }) => {
+    const { attachments } = feed;
+    const { photo_urls } = attachments[0]
+
     return (
-        <div className="product_card">
-            <div className="product_img_block">
-                <figure className="product_img">
-                    <img src={require("assets/images/icons/landscape-image.png")} alt="Image" />
-                </figure>
-            </div>
+        <div class="product_card" onClick={selectionHandler}>
+            <img src={photo_urls.medium} alt="Add Image" className="add_img" />
         </div>
     );
 }

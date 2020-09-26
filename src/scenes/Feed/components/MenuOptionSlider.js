@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { ApprovalStatus } from 'utility/constants/constants';
 
 const MenuOptionSlider = (props) => {
-
     const toggle = () => {
         window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
     }

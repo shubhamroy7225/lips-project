@@ -98,6 +98,12 @@ export const Base64ImagesTypes = {
 }
 
 
-export const AllWeekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+export const FeedModalType = {
+    delete: 'delete',
+    report: 'report',
+    tag: 'tag',
+    share: 'share',
+    repost: 'repost',
+    undefined: 'undefined',
+}
 
-export const FormatedWeekDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];

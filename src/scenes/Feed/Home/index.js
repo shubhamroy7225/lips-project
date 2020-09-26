@@ -12,7 +12,7 @@ import SharedModal from '../components/FeedModal/SharedModal';
 import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 import { fetchFeeds } from 'redux/actions/feed/action';
 import { FeedType } from 'utility/constants/constants';
-import { clearAllFeeds } from 'redux/actions/feed';
+import { clearAllFeeds, setPage } from 'redux/actions/feed';
 
 const addBodyClass = className => document.body.classList.add(className);
 const removeBodyClass = className => document.body.classList.remove(className);
@@ -27,15 +27,13 @@ const MainFeed = (props) => {
     const [, setScrollX] = useState(bodyOffset.left);
     const [, setScrollDirection] = useState();
 
-    const pageSize = 2;
-    const [page, setPage] = useState(1);
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
+    const selectedFeed = props.selectedFeed;
 
     const validatePaginationCompletion = () => {
-        debugger;
         let feedsCount = props.feeds.length;
-        if (feedsCount % pageSize !== 0) {
+        if (feedsCount % props.pageSize !== 0) {
             setIsPaginationCompleted(true)
         }
     }
@@ -83,8 +81,10 @@ const MainFeed = (props) => {
 
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
-        clearAllFeeds();
-        fetchFeedsFromServer();
+        if (props.feeds.length === 0) {
+            clearAllFeeds();
+            fetchFeedsFromServer();
+        }
         return () => {
             toggleHeader(true)
         }
@@ -92,13 +92,12 @@ const MainFeed = (props) => {
 
     //fetch feeds from server
     const fetchFeedsFromServer = () => {
-        let pageQuery = `?limit=${pageSize}&page=${page}`;
+        let pageQuery = `?limit=${props.pageSize}&page=${props.page}`;
         fetchFeeds(pageQuery).then(res => {
-            debugger;
             if (res.data.success === true) {
                 if (res.data.posts.length > 0) {
-                    let updatedPage = page + 1;
-                    setPage(updatedPage);
+                    let updatedPage = props.page + 1;
+                    setPage({ page: updatedPage });
                 } else {
                     //empty post means we have fetched all the posts
                     setIsPaginationCompleted(true);
@@ -123,7 +122,11 @@ const MainFeed = (props) => {
         console.log(props.feeds);
         //keep validating on every update of feeds
         validatePaginationCompletion();
-    }, [props.feeds])
+    }, [props.feeds]);
+
+    const onFeedSelectionHandler = feed => {
+        console.log(feed.id);
+    }
 
 
     let feedContent = [];
@@ -147,16 +150,22 @@ const MainFeed = (props) => {
                         {/* <RestrictedFeed /> */}
                         <PaginationLoader show={!isPaginationCompleted} />
                         {/* <!-- Menu bottom here --> */}
-                        <MenuOptionSlider />
+                        <MenuOptionSlider feed={selectedFeed} />
                         {/* <!-- //end Menu bottom here --> */}
                     </div>
                 </div>
-                {/* //   popup */}
-                <RepostModal />
-                <TaggedModal />
-                <ReportModal />
-                <SharedModal />
-                <RemoveFeedModal />
+
+                {/*   popup */}
+                {
+                    selectedFeed &&
+                    <>
+                        <RepostModal />
+                        <TaggedModal />
+                        <ReportModal />
+                        <SharedModal />
+                        <RemoveFeedModal />
+                    </>
+                }
             </>
         )
     } else {
@@ -166,7 +175,7 @@ const MainFeed = (props) => {
                     {feedContent}
                 </div>
                 <PaginationLoader show={!isPaginationCompleted} />
-                <MenuOptionSlider />
+                <MenuOptionSlider feed={selectedFeed} />
             </div>
         );
     }
@@ -174,7 +183,10 @@ const MainFeed = (props) => {
 
 const mapStateToProps = (state) => ({
     user: state.authReducer.user,
-    feeds: state.feedReducer.feeds
+    feeds: state.feedReducer.feeds,
+    pageSize: state.feedReducer.pageSize,
+    page: state.feedReducer.page,
+    selectedFeed: state.feedReducer.selectedFeed
 });
 
 const mapStateToDispatch = (dispatch) => ({

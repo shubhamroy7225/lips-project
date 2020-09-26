@@ -63,6 +63,7 @@ const Router = (props) => {
                 <Route exact path={routes.EXPLORE} component={ExploreFeed} />
                 <Route exact path={routes.LIKES} component={Likes} />
                 <Route exact path={routes.PROFILE} component={Profile} />
+                <Route exact path={routes.OTHER_PROFILE} component={Profile} />
                 <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
                 <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
                 <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
@@ -108,6 +109,7 @@ const Router = (props) => {
                 <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
                 <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
                 <Route exact path={routes.LOGIN_TO_PROCEED} component={NonRegisteredView} />
+                <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
                 <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
             </Switch>
         )

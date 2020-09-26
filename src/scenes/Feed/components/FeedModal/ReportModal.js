@@ -1,14 +1,33 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { setFeedModalType } from 'redux/actions/feed';
+import { FeedModalType } from 'utility/constants/constants';
 
 
-const ReportModal = () => {
+const ReportModal = ({ feed }) => {
+    const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
+    const closeModal = () => {
+        setFeedModalType({ modalType: FeedModalType.undefined })
+    }
+    let style = { display: "none" }
+    if (modalType === FeedModalType.report) {
+        if (feed) {
+            if (feed.id === selectedFeed.id) {
+                style = { display: "block" };
+            } else {
+                style = { display: "none" };
+            }
+        } else {
+            style = { display: "block" };
+        }
+    }
     return (
-        <div className="hover_bkgr_fricc" id="trigger_close_popup">
+        <div className="hover_bkgr_fricc" style={style}>
             <div className="modal-dialog-centered">
                 <span className="helper"></span>
                 <div className="popup_cont">
                     <div className="popup_body">
-                        <div className="popupCloseButton"><img src={require("assets/images/icons/icn_close_white.png")} /></div>
+                        <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_white.png")} /></div>
                         <ul class="lps_btn_grps lps_ul">
                             <li class="lps_title">
                                 Don't want to see this?
