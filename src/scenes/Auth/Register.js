@@ -117,7 +117,7 @@ export default () => {
                 </div>
               </div>
               <div className="pos_wrp onboarding_btm">
-                <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase">Review
+                <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P">Review
                         Terms & Conditions</button>
                 <p className="btm_links mt_25 text_white">Have an account? <Link to="/login"
                   className="link_underline lps_link">Sign in</Link></p>
