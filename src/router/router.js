@@ -44,17 +44,6 @@ import FeedSettingModal from 'scenes/Setting/FeedSetting/FeedSettingModal';
 const Router = (props) => {
     let routeList = null;
     let user = props.user;
-    // if (user) {
-    //     //when user is logged in
-    //     routeList = (
-    //         <Switch>
-    //             <Route exact path={routes.ROOT} render={(props) => <Redirect to={routes.FEEDS} />} />
-    //             <Route exact path={routes.FEEDS} component={Home} />
-    //             <Route path='*' render={() => <Redirect to={routes.FEEDS} />} />
-    //         </Switch>
-    //     )
-    // } else {
-    //when user is not logged in
     if (user) {
         routeList = (
             <Switch>

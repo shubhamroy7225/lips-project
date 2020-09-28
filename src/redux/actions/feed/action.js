@@ -2,7 +2,7 @@
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds } from 'redux/actions/feed';
+import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully } from 'redux/actions/feed';
 import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
@@ -90,7 +90,6 @@ export const fetchFeeds = (queryString = "?limit=20&page=1") => {
 }
 
 export const likeAFeed = (feedId) => {
-  commonService.isLoading.onNext(false); // start loading
   return API.likeFeed(feedId)
     .then(response => {
       likeFeedUpdate({ feedId });
@@ -114,7 +113,6 @@ export const fetchLikedFeeds = () => {
   return API.fetchLikedFeeds()
     .then(response => {
       fetchedLikedFeedsSuccessfully({ feeds: response.data.posts });
-      commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
       return error;
@@ -125,6 +123,7 @@ export const fetchUserFeeds = () => {
   return API.fetchUserFeeds()
     .then(response => {
       fetchedUserFeedsSuccessfully({ feeds: response.data.posts });
+      commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
       return error;
@@ -132,9 +131,10 @@ export const fetchUserFeeds = () => {
 }
 
 export const fetchOtherUserFeeds = (userId) => {
-  return API.fetchUserFeeds()
+  return API.fetchOtherUserFeeds(userId)
     .then(response => {
-      fetchedUserFeedsSuccessfully({ feeds: response.data.posts });
+      fetchedOtherUserFeedsSuccessfully({ feeds: response.data.posts });
+      commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
       return error;
