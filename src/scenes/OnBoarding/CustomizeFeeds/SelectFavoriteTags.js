@@ -59,7 +59,7 @@ export default () => {
                         
                           <li class="mt_15">
                             {
-                              count > 19 ?  
+                              count > hashTags.length ?
                                 <button onClick={loadMore} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase" id="trigger_addMore">View more</button> 
                               : ""
                             }
