@@ -58,16 +58,16 @@ const EditProfile = ({setIsEdit, user}) => {
               <div className="lps_list">
                 <div className="lps_inner_wrp lps_pink_dashed">
                   <label htmlFor="file_input">
-                    <figure  className="lps_fig lps_fig160 lps_fig120p20">
+                    <figure  className="lps_fig lps_fig90">
                       <input type="file" id="file_input" name="header_image" hidden onChange={handleFile}/>
                       {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" /> :
-                          (userForm.header_images.medium ? <img src={userForm.header_images.medium} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
+                          (userForm.header_images.medium ? <img src={userForm.header_images.original} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
                     </figure>
                   </label>
                 </div>
                 <div className="lps_inner_wrp lps_inner_wrp_media">
                   <div className="lps_media lps_pos_rltv lps_f_end mb20">
-                    <label for="profile_file_input">
+                    <label htmlFor="profile_file_input">
                     <figure className="profile-image-container lps_fig lps_fig_circle" style={{position: "relative"}}>
                       <input type="file" id="profile_file_input" name="photo_url" hidden onChange={handleFile}/>
                       {files.photo_url.src ?  <img src={files.photo_url.src} alt="Add Image" /> :
