@@ -1,6 +1,6 @@
 import axios, { API_VERSION } from '../config';
 
-export const getAllHashTags = (params) => axios.get(API_VERSION + '/hashtag', {params});
+export const getAllHashTags = (params) => axios.get(API_VERSION + '/hashtag', { params });
 
 export const getUserHashTags = () => axios.get(API_VERSION + '/user/settings/hashtag');
 
@@ -26,4 +26,4 @@ export const fetchLikedFeeds = () => axios.get(`${API_VERSION}/post/liked`);
 
 export const fetchUserFeeds = () => axios.get(`${API_VERSION}/post/self`);
 
-export const fetchOtherUserFeeds = () => axios.get(`${API_VERSION}/post/self`);
+export const fetchOtherUserFeeds = (userID) => axios.get(`${API_VERSION}/post/user/${userID}`);

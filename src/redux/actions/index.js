@@ -20,10 +20,11 @@ export {
     getAllHashTags,
     setFavoriteAvoidTags,
     getUserHashTags,
-    filterHashTags
+    filterHashTags,
+    fetchOtherUserFeeds
 } from './feed/action';
 
-//export {
-//    addHistory,
-//} from './usersActions/miscAction'
- 
+export {
+    fetchOtherUserData
+} from './auth/action';
+

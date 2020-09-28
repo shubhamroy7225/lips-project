@@ -20,43 +20,6 @@ const Notifications = () => {
                            </label>
                         </div>
                      </li>
-                     <li className="list-group-item">
-                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <article>
-                             <h5 className="ft_Weight_500 mb_5">This product</h5>
-                             <p className="mb_0">is meant for educational purposes only.</p>
-                           </article>
-                           <label className="lps_switch">
-                           <input type="checkbox" checked/>
-                           <span className="lps_int_slider round"></span>
-                           </label>
-                        </div>
-                     </li>   
-                        <li className="list-group-item">
-                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <article>
-                             <h5 className="ft_Weight_500 mb_5">This product</h5>
-                             <p className="mb_0">is meant for educational purposes only.</p>
-                           </article>
-                           <label className="lps_switch">
-                           <input type="checkbox" checked/>
-                           <span className="lps_int_slider round"></span>
-                           </label>
-                        </div>
-                     </li>   
-                        <li className="list-group-item">
-                        <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                           <article>
-                             <h5 className="ft_Weight_500 mb_5">This product</h5>
-                             <p className="mb_0">is meant for educational purposes only.</p>
-                           </article>
-                           <label className="lps_switch">
-                           <input type="checkbox" checked/>
-                           <span className="lps_int_slider round"></span>
-                           </label>
-                        </div>
-                     </li>   
-                     
                   </ul>
                </div>
             </div>

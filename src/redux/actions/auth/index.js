@@ -26,3 +26,4 @@ export const getUserPending = createAction('get User pending');
 export const getUserSuccessful = createAction('get User successful');
 export const refreshTokenPending = createAction('get Refresh token pending');
 export const refreshTokenSuccessful = createAction('get Refresh token successful');
+export const fetchOtherUserSuccessful = createAction('get User successful', (user) => (user));

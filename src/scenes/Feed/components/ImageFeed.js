@@ -56,7 +56,7 @@ const ImageFeed = (props) => {
                             <div class="lps_media_body">
                                 <p class="mb_5 more">
                                     <span class="text_primary ft_Weight_500">
-                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
+                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.id}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                     </span> {shortDesc}
                                     {pendingText.length > 0 &&
                                         <>

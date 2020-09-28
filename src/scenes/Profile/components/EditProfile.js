@@ -58,16 +58,16 @@ const EditProfile = ({setIsEdit, user}) => {
               <div className="lps_list">
                 <div className="lps_inner_wrp lps_pink_dashed">
                   <label htmlFor="file_input">
-                    <figure  className="lps_fig lps_fig160 lps_fig120p20">
+                    <figure  className="lps_fig lps_fig90">
                       <input type="file" id="file_input" name="header_image" hidden onChange={handleFile}/>
                       {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" /> :
-                          (userForm.header_images.medium ? <img src={userForm.header_images.medium} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
+                          (userForm.header_images.medium ? <img src={userForm.header_images.original} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
                     </figure>
                   </label>
                 </div>
                 <div className="lps_inner_wrp lps_inner_wrp_media">
                   <div className="lps_media lps_pos_rltv lps_f_end mb20">
-                    <label for="profile_file_input">
+                    <label htmlFor="profile_file_input">
                     <figure className="profile-image-container lps_fig lps_fig_circle" style={{position: "relative"}}>
                       <input type="file" id="profile_file_input" name="photo_url" hidden onChange={handleFile}/>
                       {files.photo_url.src ?  <img src={files.photo_url.src} alt="Add Image" /> :
@@ -95,12 +95,6 @@ const EditProfile = ({setIsEdit, user}) => {
                     </div>
                   </div>
                   <div className="mail_about_wrp">
-                    <a href="/contact_user" className="link_target_mail ml_0"><img src={require("assets/images/icons/icn_message.svg")} alt="Mail" /></a>
-
-                    <div className="hr_seprator"></div>
-                    <a href="javascript:void(0);" className="add_tag1 avtar_25 trigger_add_bodyclassName" id="trigger_lips_tag">
-                      <img src={require("assets/images/icons/icn_question_active.png")} alt="Add Icon" className="add_icn_outline" />
-                    </a>
                   </div>
                   <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange} value={userForm.bio}>{userForm.bio}</textarea>
                   <span className="textRange">0/50000</span>
@@ -126,83 +120,9 @@ const EditProfile = ({setIsEdit, user}) => {
                   </div>
                 </li>
               </ul>
-              <section className="lips_tab lps_tab_cutomize">
-                <ul className="tabs_block_cst">
-                  <li className="tab-link current" data-tab="tab-1">
-                    <figure className="lps_fig lps_fig_sm">
-                      <img src={require("assets/images/icons/icn_picture.png")} alt="Picture"  />
-                    </figure>
-                  </li>
-                </ul>
-                <div id="tab-1" className="tab-content_cst current">
-                  <div className="lps_inner_cont lps_px15">
-                    <h5 className="text_center">None of your collections are unlocked for others to see yet</h5>
-                  </div>
-                </div>
-              </section>
             </div>
           </div>
 
-          <div className="modal_gredient hover_bkgr_fricc" id="trigger_gredient_popup">
-            <div className="modal_gredient_inner">
-              <div className="popup_cont">
-                <div className="popup_body">
-                  <div className="popupCloseButton"><img src={require("assets/images/icons/icn_close_white.png")} /></div>
-
-                  <ul className="lps_btn_grps lps_ul gredient_ul">
-                    <li>
-                      <h6 className="text_uppercase">Color</h6>
-                      <figure className="lps_fig">
-                        <img src={require("assets/images/thumbnails/gradient1.png")} alt="thumnail" />
-                      </figure>
-                    </li>
-                    <li>
-                      <h6 className="text_uppercase">Brightness</h6>
-                      <figure className="lps_fig">
-                        <img src={require("assets/images/thumbnails/gradient2.png")} alt="thumnail" />
-                      </figure>
-                    </li>
-                    <li>
-                      <a href="#" className="theme_btn theme_outline_light text_uppercase">#ffffff</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="hover_bkgr_fricc full_Hvh" id="trigger_lips_tag_popup">
-            <div className="modal-dialog-centered">
-              <div className="popup_cont">
-                <div className="popup_body post_poup lps_bg_secondary lps_text_white">
-                  <div className="popupCloseButton"><img src={require("assets/images/icons/icn_close_white.png")} alt="thumnail" /></div>
-
-                  <article className="lps_art mt_15 text_left">
-                    <div className="para_list_mb">
-                      <h3 className="text_white">Messaging on lips</h3>
-                    </div>
-                    <div className="para_list_mb">
-                      <h4 className="text_white">Lorem ipsum</h4>
-                      <p className="text_white lh26">
-                        Sed ut perspiciatis unde omnis iste natus error sit volu tatem accusantium doloremque laudantium, totam re aperiam, eaque ipsaquae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                      </p>
-                    </div>
-                    <div className="para_list_mb">
-                      <h4 className="text_white">Dolor</h4>
-                      <p className="text_white lh26">
-                        Sed ut perspiciatis unde omnis iste natus error sit volu tatem accusantium doloremque laudantium, totam re aperiam, eaque ipsaquae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                      </p>
-                    </div>
-                    <div className="para_list_mb">
-                      <h4 className="text_white">se amat</h4>
-                      <p className="text_white lh26">
-                        Sed ut perspiciatis unde omnis iste natus error sit volu tatem accusantium doloremque laudantium, totam re aperiam, eaque ipsaquae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                      </p>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       </>

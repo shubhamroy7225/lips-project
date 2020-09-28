@@ -1268,14 +1268,14 @@ p.more {
       background-color: $bg_grayCCC;
       border-bottom-color: $bg_grayCCC;
       position: relative;
-      top: 2px;
+      top: 1px;
     }
   }
   .tab-content_cst,
   .tab-content_cst1 {
     display: none;
     // border-top: 1px solid $brand-secondary;
-    padding: 15px 0;
+    padding: 0 0 15px 0;
   }
   .tab-content_cst.current,
   .tab-content_cst1.current {
@@ -3846,6 +3846,17 @@ p.more {
       object-fit: cover;
       object-position: center;
     }
+    .card_inforOY {
+      padding: 5px;
+      height: 124px;
+      display: -ms-grid;
+      display: grid;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      text-align: center;
+      overflow-y: auto;
+    }
   }
 }
 .hashtag_seondary {
@@ -4304,4 +4315,14 @@ p.para18L30 {
   color: $brand-secondary;
   border-radius: 50%;
   font-weight: 600;
+}
+figure.feed_fig310 {
+  height: 310px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+  }
 }

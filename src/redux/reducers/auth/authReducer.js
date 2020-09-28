@@ -20,6 +20,7 @@ export const initialState = {
     isloading: false,
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
+    otherUser: null
 }
 
 export const authReducer = createReducer({
@@ -93,9 +94,9 @@ export const authReducer = createReducer({
     [actions.logout]: (state) => {
         return updateObject(state,
             {
-                token: token,
-                refresh_token: refresh_token,
-                user: user,
+                token: null,
+                refresh_token: null,
+                user: null,
                 isloading: false,
                 resetPasswordToken: null,
                 isOnBoard: false
@@ -113,5 +114,7 @@ export const authReducer = createReducer({
                 isOnBoard: true,
                 user: { ...user, privacy_settings: payload.privacy_settings }
             })
-    }
+    },
+    [actions.fetchOtherUserSuccessful]: (state, payload) => updateObject(state, { otherUser: payload.user })
+
 }, initialState); // <-- This is the default state

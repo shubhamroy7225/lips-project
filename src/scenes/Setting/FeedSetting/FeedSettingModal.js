@@ -87,7 +87,12 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
                            )}
                         </div>
                       <div class="hashtag">
-                        <button onClick={e => loadMore()} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">View more</button>
+                        {
+                          count > hashTags.length ?
+                          <button onClick={e => loadMore()} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">View more</button>
+                          : ""
+                        }
+                        
                       </div>
                     </div>
                     <div class="plans_wrp">

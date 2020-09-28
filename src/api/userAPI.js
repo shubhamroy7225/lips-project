@@ -27,6 +27,15 @@ export const fetchUserData = () => {
     });
 };
 
+export const fetchOtherUserData = (userID) => {
+    return axios.get(`${API_VERSION}/user/${userID}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
+
 export const deleteUser = () => {
     return axios.delete(`${API_VERSION}/user`, {
         headers: {

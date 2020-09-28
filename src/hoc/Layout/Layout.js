@@ -35,7 +35,10 @@ const Header = (props) => {
                 </nav>
             </div>
         )
-    } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) || props.history.location.pathname === "/" && props.user || props.history.location.pathname === "/main-feeds") {
+    } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) ||
+        (props.history.location.pathname === routes.ROOT &&
+            (props.user || props.history.location.pathname === routes.MAIN_FEED))
+        || props.history.location.pathname.includes(routes.PROFILE)) {
         //default when user is not logged in
         let headerClassName = "main_header";
         if (props.history.location.pathname === routes.ROOT) {
