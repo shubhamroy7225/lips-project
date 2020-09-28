@@ -6,7 +6,8 @@ import * as actions from "redux/actions";
 export default () => {
   const history = useHistory();
 
-  const {hashTags} = useSelector(store => store.feedReducer);
+  const {hashTags, count} = useSelector(store => store.feedReducer);
+  const [filterParams] = useState({page: 1, limit: 10});
   
   const [selectTags, setSelectTags] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -18,7 +19,7 @@ export default () => {
   useEffect(() => {
     if (!loaded) {
       setLoaded(true)
-      actions.getAllHashTags()
+      actions.getAllHashTags({...filterParams})
     }
   }, []);
  
@@ -55,12 +56,19 @@ export default () => {
                                   <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
                         )}
                         </li>
-                        <li class="mt_15">
-                          <button onClick={loadMore} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase" id="trigger_addMore">View more</button>
-                        </li>
+                        
+                          <li class="mt_15">
+                            {
+                              count > hashTags.length ?
+                                <button onClick={loadMore} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase" id="trigger_addMore">View more</button> 
+                              : ""
+                            }
+                         
+                        </li> 
+                        
                       </ul>
                       <div className="pos_wrp onboarding_btm">
-                         <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">
+                         <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">
                          Continue</button>
                       </div>
                    </div>
