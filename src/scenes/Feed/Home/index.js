@@ -30,6 +30,7 @@ const MainFeed = (props) => {
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
     const selectedFeed = props.selectedFeed;
+    const [hideMenuOptionSlider, setHideMenuOptionSlider] = useState(false);
 
     const validatePaginationCompletion = () => {
         let feedsCount = props.feeds.length;
@@ -66,6 +67,8 @@ const MainFeed = (props) => {
             fetchFeedsFromServer();
             console.log("reached bottom initiate page call");
         }
+        setHideMenuOptionSlider(!hideMenuOptionSlider)
+        console.log(hideMenuOptionSlider);
     };
 
     //for hiding/showing header
@@ -150,7 +153,7 @@ const MainFeed = (props) => {
                         {/* <RestrictedFeed /> */}
                         <PaginationLoader show={!isPaginationCompleted} />
                         {/* <!-- Menu bottom here --> */}
-                        <MenuOptionSlider feed={selectedFeed} />
+                        <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={hideMenuOptionSlider} />
                         {/* <!-- //end Menu bottom here --> */}
                     </div>
                 </div>
@@ -175,7 +178,7 @@ const MainFeed = (props) => {
                     {feedContent}
                 </div>
                 <PaginationLoader show={!isPaginationCompleted} />
-                <MenuOptionSlider feed={selectedFeed} />
+                <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={hideMenuOptionSlider} />
             </div>
         );
     }

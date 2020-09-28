@@ -114,6 +114,7 @@ export const fetchLikedFeeds = () => {
   return API.fetchLikedFeeds()
     .then(response => {
       fetchedLikedFeedsSuccessfully({ feeds: response.data.posts });
+      commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
       return error;
