@@ -14,7 +14,7 @@ export const fetchFeed = (feedID) => axios.get(`${API_VERSION}/post/${feedID}`);
 
 export const deleteFeed = (feedID) => axios.delete(`${API_VERSION}/post/${feedID}`);
 
-export const repostFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/respost`);
+export const repostFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/repost`);
 
 export const likeFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/like`);
 

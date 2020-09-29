@@ -11,9 +11,11 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const ImageFeed = (props) => {
-    const { reposted, user, feed } = props
+    const { user, feed } = props
     const { attachments, description, hashtagPosts, likable, liked, parent_id } = feed;
-    const feed_user = feed.user;
+    const reposted = parent_id && true;
+    const repostedByUser = reposted ? feed.user : "";
+    const feed_user = reposted ? feed.owner : feed.user;
     const user_name = feed_user.user_name;
     const feed_user_photo = feed_user.photo_urls;
     const { photo_urls } = attachments[0];
@@ -42,7 +44,12 @@ const ImageFeed = (props) => {
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
                         {
-                            reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
+                            reposted &&
+                            <div class="lps_inner_wrp pd_b10 text_secondary">repost by
+                            <span class="text_primary">
+                                    <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
+                                </span>
+                            </div>
                         }
                     </a>
                     <FeedWidget showWidget={showWidget} feed={feed} user={user} />
@@ -105,7 +112,9 @@ const ImageFeed = (props) => {
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
                         {
-                            reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
+                            reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
+                                <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
+                            </span></div>
                         }
                     </a>
                     <RepostModal feed={feed} />

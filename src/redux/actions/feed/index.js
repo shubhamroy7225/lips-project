@@ -33,3 +33,5 @@ export const fetchedLikedFeedsSuccessfully = createAction('fetch most liked feed
 export const fetchedUserFeedsSuccessfully = createAction('fetch user feeds with success', (feeds) => (feeds));
 
 export const fetchedOtherUserFeedsSuccessfully = createAction('fetch other user feeds with success', (feeds) => (feeds));
+
+export const updateRepostFeed = createAction('update repost feed', (feed) => (feed));

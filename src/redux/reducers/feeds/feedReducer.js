@@ -117,6 +117,21 @@ export const feedReducer = createReducer({
     [actions.fetchedOtherUserFeedsSuccessfully]: (state, payload) => updateObject(state, {
         otherUserFeeds: payload.feeds,
     }),
+    [actions.updateRepostFeed]: (state, payload) => {
+        let { feed } = payload;
+        let feeds = [...state.feeds];
+        let userFeeds = [...state.userFeeds];
+        if (feeds.length > 0) {
+            feeds = [feed, ...feeds]
+        }
+        if (userFeeds.length > 0) {
+            userFeeds = [feed, ...userFeeds];
+        }
+        return updateObject(state, {
+            feeds: feeds,
+            userFeeds: userFeeds
+        })
+    },
 }, initialState); // <-- This is the default state
 
 
