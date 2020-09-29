@@ -3,6 +3,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import * as API from 'api/configAPI';
 import * as commonService from "utility/utility";
 import * as feedsAction from 'redux/actions/feed/action';
+import { decode } from 'base64-arraybuffer';
 
 const ApprovalForm = ({ moveToNextStep, cancel }) => {
     const withoutImageStyle = {
@@ -137,7 +138,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
              var imagesUploadedCount = 0
              images.forEach((element, index) => {
                 let base64ToBeUploaded = element.base64.split(",")[1]
-                API.uploadImageToS3(urls[index].presigned_url,base64ToBeUploaded)
+                API.uploadImageToS3(urls[index].presigned_url,decode(base64ToBeUploaded))
                 .then(res => {
                     if (res.status === 200){
                         imagesUploadedCount = imagesUploadedCount + 1;
