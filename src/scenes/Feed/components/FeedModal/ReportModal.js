@@ -9,6 +9,7 @@ const ReportModal = ({ feed }) => {
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
     }
+    debugger;
     let style = { display: "none" }
     if (modalType === FeedModalType.report) {
         if (feed) {

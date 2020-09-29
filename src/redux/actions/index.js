@@ -13,7 +13,7 @@ export {
     deleteUser,
     resetPassword,
     fetchUser,
-    config
+    config,
 } from './user/action';
 
 export {
@@ -21,10 +21,12 @@ export {
     setFavoriteAvoidTags,
     getUserHashTags,
     filterHashTags,
-    fetchOtherUserFeeds
+    fetchOtherUserFeeds,
+    fetchUserFeeds
 } from './feed/action';
 
 export {
-    fetchOtherUserData
+    fetchOtherUserData,
+    fetchUserByUserName
 } from './auth/action';
 

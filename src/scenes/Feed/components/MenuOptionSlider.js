@@ -13,8 +13,10 @@ const MenuOptionSlider = (props) => {
     }, [hideMenuOptionSlider])
 
     const toggle = () => {
-        window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
-        window.$(".footer-menu-list").addClass("active");
+        if (window.$) {
+            window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
+            window.$(".footer-menu-list").addClass("active");
+        }
     }
 
     const rightWidgetClickHandler = () => {

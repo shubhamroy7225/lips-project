@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { followUser, unfollowUser } from "api/userAPI";
+import { FollowStatus } from 'utility/constants/constants';
 
 
 const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
@@ -10,18 +11,22 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
     const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user_outline.png");
     const headerImage = user.header_images && user.header_images.medium ? user.header_images.medium : null;
     const { followers_count, following_count } = user
-
-    const [followRequestSet, setFollowRequestSet] = useState(false);
+    const { follow_status } = user;
+    const [followStatus, setFollowStatus] = useState(follow_status);
+    const [followRequest, setFollowRequest] = useState(false);
 
     const toggleFollowRequest = () => {
-        if (followRequestSet) {
-            unfollowUser(user.id);
-        } else {
+        if (followStatus === FollowStatus.NotRequested || FollowStatus.Denied === followStatus) {
             followUser(user.id);
+            setFollowStatus(FollowStatus.Requested);
+            setFollowRequest(true);
+        } else {
+            unfollowUser(user.id);
+            setFollowStatus(FollowStatus.NotRequested);
         }
-        setFollowRequestSet(!followRequestSet);
     }
 
+    let allowRequest = followStatus === FollowStatus.NotRequested || FollowStatus.Denied === followStatus
     return (
         <div class="lps_list">
             {/* cover image */}
@@ -48,12 +53,12 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
                                 :
                                 <>
                                     <figure class="lps_fig lps_fig_circle lps_float_right">
-                                        <a onClick={toggleFollowRequest} class={followRequestSet ? "icn_hover_chng active" : "icn_hover_chng"} id="heart_notify">
+                                        <a onClick={toggleFollowRequest} class={!allowRequest ? "icn_hover_chng active" : "icn_hover_chng"} id="heart_notify">
                                             <img src={require("assets/images/icons/icn_outline_follow.svg")} class="icn_dfltD" alt="User" />
                                             <img src={require("assets/images/icons/icn_fill_follow.svg")} class="icn_hvrA" alt="User" />
                                         </a>
                                     </figure>
-                                    <div class="hover_bkgr_fricc heart_notify_box notify_box_hide_3S" style={{ display: followRequestSet ? "block" : "none" }} id="trigger_heart_popup">
+                                    <div class="hover_bkgr_fricc heart_notify_box notify_box_hide_3S" style={{ display: followRequest ? "block" : "none" }} id="trigger_heart_popup">
                                         <div class="popup_cont lps_pos_rltv">
                                             <div class="popup_body">
                                                 Follow request sent

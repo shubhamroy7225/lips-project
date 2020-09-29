@@ -9,14 +9,14 @@ import TextFeed from 'scenes/Feed/components/TextFeed';
 import FollowerItem from './components/FollowerItem';
 import NonRegisteredView from 'scenes/NonRegisteredView';
 import EditProfile from "./components/EditProfile";
-import { fetchUserFeeds } from 'redux/actions/feed/action';
-import { fetchOtherUserData, fetchOtherUserFeeds } from 'redux/actions';
+import * as actions from 'redux/actions';
 
 import * as commonService from "utility/utility";
 import { FeedType, routes } from 'utility/constants/constants';
 import ImageItem from 'scenes/Feed/components/ImageItem';
 import TextItem from 'scenes/Feed/components/TextItem';
 import ProfileHeader from './components/ProfileHeader';
+import { decode } from 'base64-arraybuffer';
 
 const LoadingType = {
     undefined: "undefined",
@@ -33,9 +33,7 @@ const Profile = (props) => {
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
     const [isEdit, setEdit] = useState(false)
     const [isOtherUser, setIsOtherUser] = useState(false)
-
     const [dataLoadedType, setDataLoadedType] = useState(LoadingType.undefined);
-
 
     const history = useHistory();
 
@@ -55,38 +53,46 @@ const Profile = (props) => {
     }, [])
 
     useEffect(() => {
-        const userID = props.match.params.id;
-        if (userID) {
+        let userName = props.match.params.id; // get user name from url - if searching directly for the profile
+        let tempIsOtherUser = isOtherUser; // for local scope
+
+        if (userName && (!user || user.user_name !== userName)) {
+            // if username is available, and not equal to currently signed in user assume it to be other user profile
             // other user's profile
             commonService.isLoading.onNext(true);
             setIsOtherUser(true);
-            fetchOtherUserData(userID)
-                .then(response => {
-                    commonService.isLoading.onNext(false);
-                    if (response.data.success === true) {
-                        setDataLoadedType(LoadingType.user);
-                        let showPost = response.data.user.show_post;
-                        debugger;
-                        if (showPost) {
-                            fetchOtherUserFeeds(userID)
+            tempIsOtherUser = true
+        } else {
+            userName = user.user_name; //for self user
+        }
+
+        //fetch user info by username
+        actions.fetchUserByUserName(userName)
+            .then(response => {
+                commonService.isLoading.onNext(false);
+                if (response.data.success === true) {
+                    let userID = response.data.user.id;
+                    setDataLoadedType(LoadingType.user);
+                    let showPost = tempIsOtherUser ? response.data.user.show_post : true; //if isotheruser then check for response else show post of signed in user
+                    if (showPost) {
+                        if (tempIsOtherUser) {
+                            actions.fetchOtherUserFeeds(userID)
                                 .then(res => {
                                     setDataLoadedType(LoadingType.feed);
                                 });
                         } else {
-                            setDataLoadedType(LoadingType.no_feed_access);
+                            actions.fetchUserFeeds()
+                                .then(res => {
+                                    setDataLoadedType(LoadingType.feed);
+                                });
                         }
                     } else {
-                        history.push(routes.ROOT)
+                        setDataLoadedType(LoadingType.no_feed_access);
                     }
-                })
-        } else {
-            //self user
-            setDataLoadedType(LoadingType.user);
-            fetchUserFeeds()
-                .then(res => {
-                    setDataLoadedType(LoadingType.feed);
-                })
-        }
+                } else {
+                    history.push(routes.ROOT)
+                }
+            });
     }, [])
 
     const toggleFeedLayoutMode = (feed) => {
@@ -97,6 +103,7 @@ const Profile = (props) => {
     let gridFeedContent = [];
     let listFeedContent = [];
     let feeds = [];
+
     if (isOtherUser) {
         feeds = otherUserFeeds;
     } else {
@@ -115,7 +122,6 @@ const Profile = (props) => {
                     listFeedContent.push(<TextFeed feed={feed} />)
                 }
             });
-
         }
 
         if (dataLoadedType !== LoadingType.undefined) {
@@ -174,7 +180,9 @@ const Profile = (props) => {
                 return (
                     <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
                         <div class="lps_container bg_grayCCC">
-                            <ProfileHeader setEdit={setEdit} user={userInfo} isUserProfile={!isOtherUser} />
+                            <ProfileHeader setEdit={setEdit}
+                                user={userInfo}
+                                isUserProfile={!isOtherUser} />
                             {/* <!-- Lips Tab --> */}
                             <section class="lips_tab tabs_grid_view_sec">
                                 <ul class="tabs_block_cst">
