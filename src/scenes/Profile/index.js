@@ -13,7 +13,7 @@ import { fetchUserFeeds } from 'redux/actions/feed/action';
 import { fetchOtherUserData, fetchOtherUserFeeds } from 'redux/actions';
 
 import * as commonService from "utility/utility";
-import { FeedType, routes } from 'utility/constants/constants';
+import { FeedType, routes, FollowStatus } from 'utility/constants/constants';
 import ImageItem from 'scenes/Feed/components/ImageItem';
 import TextItem from 'scenes/Feed/components/TextItem';
 import ProfileHeader from './components/ProfileHeader';
@@ -33,8 +33,8 @@ const Profile = (props) => {
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
     const [isEdit, setEdit] = useState(false)
     const [isOtherUser, setIsOtherUser] = useState(false)
-
     const [dataLoadedType, setDataLoadedType] = useState(LoadingType.undefined);
+    const [followStatus, setFollowStatus] = useState(FollowStatus.NotRequested)
 
 
     const history = useHistory();
@@ -66,7 +66,8 @@ const Profile = (props) => {
                     if (response.data.success === true) {
                         setDataLoadedType(LoadingType.user);
                         let showPost = response.data.user.show_post;
-                        debugger;
+                        const { follow_status } = response.data.user
+                        setFollowStatus(follow_status);
                         if (showPost) {
                             fetchOtherUserFeeds(userID)
                                 .then(res => {
@@ -115,7 +116,6 @@ const Profile = (props) => {
                     listFeedContent.push(<TextFeed feed={feed} />)
                 }
             });
-
         }
 
         if (dataLoadedType !== LoadingType.undefined) {
@@ -174,7 +174,10 @@ const Profile = (props) => {
                 return (
                     <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
                         <div class="lps_container bg_grayCCC">
-                            <ProfileHeader setEdit={setEdit} user={userInfo} isUserProfile={!isOtherUser} />
+                            <ProfileHeader setEdit={setEdit}
+                                user={userInfo}
+                                isUserProfile={!isOtherUser}
+                                followStatus={followStatus} />
                             {/* <!-- Lips Tab --> */}
                             <section class="lips_tab tabs_grid_view_sec">
                                 <ul class="tabs_block_cst">

@@ -87,7 +87,7 @@ const ImageFeed = (props) => {
                             <div class="lps_media_body">
                                 <p>
                                     <span class="text_primary">
-                                        <a onClick={() => { history.push(user ? routes.PROFILE : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
+                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.id}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                     </span>
                                     {description}
                                 </p>
