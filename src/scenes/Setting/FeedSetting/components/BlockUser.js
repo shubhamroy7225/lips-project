@@ -19,8 +19,8 @@ const blockUser = ({blockedUsers}) => {
                <img src={block_user.photo_urls.medium ? block_user.photo_urls.medium : require("assets/images/icons/user.jpg")} alt="User"/>
                </figure>
                <div className="lps_media_body">
-                  <Link to="/settings/feed-setting" onClick={e => unblockUser(block_user.id)} className="lps_link lps_flt_right ft_Weight_600">
-                  unblock</Link>
+                  <span onClick={e => unblockUser(block_user.id)} className="btn-transparent lps_link lps_flt_right ft_Weight_600">
+                  unblock</span>
               <p className="lps_md_title mb_0 ft_Weight_500">{block_user.user_name}</p>
                </div>
             </div>)}
