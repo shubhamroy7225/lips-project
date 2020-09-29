@@ -94,9 +94,7 @@ export const authReducer = createReducer({
      [actions.unblockUserSuccessful]: (state, payload) => {
          let {id} =  payload;
          let userList = [...state.blockedUsers];
-         debugger
          userList.splice(userList.findIndex(e => e.id === id), 1)
-        debugger
          return updateObject(state, {
              isloading: false,
               blockedUsers: userList
