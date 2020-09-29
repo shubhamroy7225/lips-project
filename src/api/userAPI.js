@@ -107,3 +107,12 @@ export const rejectRequest = (id) => {
         },
     });
 };
+
+export const fetchBlockUser = () => {
+    return axios.get(`${API_VERSION}/user/block`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};

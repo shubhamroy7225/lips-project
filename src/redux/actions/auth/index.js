@@ -26,3 +26,7 @@ export const getUserPending = createAction('get User pending');
 export const getUserSuccessful = createAction('get User successful');
 export const refreshTokenPending = createAction('get Refresh token pending');
 export const refreshTokenSuccessful = createAction('get Refresh token successful');
+export const getBlockUserPending = createAction('get Block User pending');
+export const getBlockUserSuccessful = createAction('get Block User successful');
+export const unblockUserPending = createAction('get Block User pending', (id) => (id));
+export const unblockUserSuccessful = createAction('get Block User successful', (id) => (id));
