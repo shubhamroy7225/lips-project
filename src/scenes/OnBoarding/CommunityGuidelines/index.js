@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-export default () => {
+export default ({isSetting}) => {
   return (
           <div id="wrap" className="mt_0">
             <div className="lps_container mt_0">
@@ -17,8 +17,8 @@ export default () => {
                     </h4>
                     </div>
                     <div className="onboarding_btm lps_flx_vm_jsbtwn">
-                      <Link to="/account-privacy" className="link_underline lps_link ft_Weight_500">Skip</Link>
-                      <Link to="/account-privacy" className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">Next</Link>
+                      <Link to={isSetting ? "/settings" : "/account-privacy"} className="link_underline lps_link ft_Weight_500">Skip</Link>
+                      <Link to={isSetting ? "/settings" : "/account-privacy"} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">Next</Link>
                     </div>
                   </div>
                 </div>

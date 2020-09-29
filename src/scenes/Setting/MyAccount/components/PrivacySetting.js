@@ -4,8 +4,8 @@ import * as actions from "redux/actions";
 export default ({user}) => {
   const [privacy_settings, setPrivacy] = useState(user.privacy_settings);
 
-  const changePrivacyPolicy = () => {
-    actions.changePrivacy({privacy_settings}).then(res => {
+  const changePrivacyPolicy = (type) => {
+    actions.changePrivacy({privacy_settings: type}).then(res => {
       return res
     });
   };
@@ -15,15 +15,15 @@ export default ({user}) => {
         <div className="lps_user_info">
           <p className="user_info_label lps_mb10">Account privacy</p>
           <label className="lps_cont_rdo">
-            <span class="ft_Weight_500">Public</span> <br/>
+            <span className="ft_Weight_500">Public</span> <br/>
             Anyone on the internet can see you posts
-            <input type="radio" value={privacy_settings} checked={privacy_settings === "public"} name="radio" onChange={changePrivacyPolicy} onClick={e=> setPrivacy("public")} />
+            <input type="radio" value={privacy_settings} checked={privacy_settings === "public"} name="radio" onClick={e=> [setPrivacy("public"),  changePrivacyPolicy("public")]} />
             <span className="lps_checkmark"></span>
           </label>
           <label className="lps_cont_rdo">
             <span className="ft_Weight_500">Private</span><br/>
             Only People who follow you can see your posts
-            <input type="radio" name="radio" value={privacy_settings} checked={privacy_settings === "private"} onChange={changePrivacyPolicy} onClick={e=> setPrivacy("private")}  />
+            <input type="radio" name="radio" value={privacy_settings} checked={privacy_settings === "private"} onClick={e=> [setPrivacy("private"), changePrivacyPolicy("private")]}  />
             <span className="lps_checkmark"></span>
           </label>
         </div>
