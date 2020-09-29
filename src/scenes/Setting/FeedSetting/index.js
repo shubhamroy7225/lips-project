@@ -9,22 +9,17 @@ import * as actions from "redux/actions";
 import store from 'redux/store/store.js';
 const FeedSetting = () => {
   const {showhashTags, hideHashtag} = useSelector(store => store.feedReducer);
-  const {users} = useSelector(store => store.authReducer);
+  const {blockedUsers} = useSelector(store => store.authReducer);
   const [loaded, setLoaded] = useState(false);
   const [editTag, setEditTag] = useState(null);
   useEffect(() => {
     if (!loaded) {
     setLoaded(true)
-    actions.getUserHashTags()
+    actions.getUserHashTags();
+      actions.fetchBlockUser()
     }
   }, [loaded]);
 
-  useEffect(() => {
-    if (!loaded) {
-    setLoaded(true)
-    actions.fetchBlockUser()
-    }
-  }, [loaded]);
   return (
     <>
     {
@@ -37,7 +32,7 @@ const FeedSetting = () => {
             <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
 
               <UserHashtag setEditTag={setEditTag} showhashTags={showhashTags} hideHashtag={hideHashtag}/>
-              <BlockUser users={users}/>
+              <BlockUser blockedUsers={blockedUsers}/>
             </ul>
           </div>
         </div>

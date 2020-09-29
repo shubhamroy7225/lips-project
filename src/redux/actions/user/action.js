@@ -121,11 +121,11 @@ export const deleteUser = () => {
 
 export const unblockUser = (id) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(unblockUserPending());
+    unblockUserPending();
     return UserAPI.unblockUser(id)
         .then(response => {
             commonService.isLoading.onNext(false);
-            store.dispatch(unblockUserSuccessful(response.data));
+            unblockUserSuccessful({id});
             return response.data
         })
         .catch(error => {
