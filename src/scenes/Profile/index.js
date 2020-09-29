@@ -17,6 +17,11 @@ import ImageItem from 'scenes/Feed/components/ImageItem';
 import TextItem from 'scenes/Feed/components/TextItem';
 import ProfileHeader from './components/ProfileHeader';
 import { decode } from 'base64-arraybuffer';
+import RepostModal from 'scenes/Feed/components/FeedModal/RepostModal';
+import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
+import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
+import SharedModal from 'scenes/Feed/components/FeedModal/SharedModal';
+import RemoveFeedModal from 'scenes/Feed/components/FeedModal/RemoveFeedModal';
 
 const LoadingType = {
     undefined: "undefined",
@@ -220,6 +225,9 @@ const Profile = (props) => {
                                 </div>
                             </div>
                         </div>
+                        <TaggedModal />
+                        <SharedModal />
+                        <RemoveFeedModal />
                     </div>
                 );
             }

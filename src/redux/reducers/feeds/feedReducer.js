@@ -76,11 +76,26 @@ export const feedReducer = createReducer({
     },
     [actions.deleteFeedUpdate]: (state, payload) => {
         let { feedId } = payload;
-        let feedIndex = state.feeds.findIndex(ele => ele.id === feedId);
-        let updatedFeeds = [...state.feeds]
-        updatedFeeds.splice(feedIndex, 1);
+        let feedIndex = null;
+        let feeds = [...state.feeds];
+        let likedFeeds = [...state.likedFeeds];
+        let userFeeds = [...state.userFeeds];
+        if (feeds.length > 0) {
+            feedIndex = feeds.findIndex(ele => ele.id === feedId);
+            feedIndex >= 0 && feeds.splice(feedIndex, 1);
+        }
+        if (likedFeeds.length > 0) {
+            feedIndex = likedFeeds.findIndex(ele => ele.id === feedId);
+            feedIndex >= 0 && likedFeeds.splice(feedIndex, 1);
+        }
+        if (userFeeds.length > 0) {
+            feedIndex = userFeeds.findIndex(ele => ele.id === feedId);
+            feedIndex >= 0 && userFeeds.splice(feedIndex, 1);
+        }
         return updateObject(state, {
-            feeds: updatedFeeds
+            feeds: feeds,
+            likedFeeds: likedFeeds,
+            userFeeds: userFeeds
         })
     },
     [actions.setSelectedFeed]: (state, payload) => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { deleteFeed } from 'redux/actions';
 import { setFeedModalType } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
 
@@ -22,6 +23,13 @@ const RemoveFeedModal = ({ feed }) => {
             style = { display: "block" };
         }
     }
+
+    const removeFeed = () => {
+        let feedId = selectedFeed.id;
+        deleteFeed(feedId)
+        closeModal();
+    }
+
     return (
         <div class="hover_bkgr_fricc" style={style}>
             <div class="modal-dialog-centered">
@@ -34,7 +42,7 @@ const RemoveFeedModal = ({ feed }) => {
                                 <a href="#" class="text_white">Remove post from this collection?</a>
                             </li>
                         </ul>
-                        <a href="#" class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Delete</a>
+                        <a onClick={removeFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Delete</a>
                     </div>
                 </div>
             </div>
