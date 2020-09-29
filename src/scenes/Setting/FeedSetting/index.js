@@ -6,16 +6,20 @@ import BlockUser from "./components/BlockUser.js";
 import FeedSettingModal from "./FeedSettingModal";
 
 import * as actions from "redux/actions";
+import store from 'redux/store/store.js';
 const FeedSetting = () => {
   const {showhashTags, hideHashtag} = useSelector(store => store.feedReducer);
+  const {blockedUsers} = useSelector(store => store.authReducer);
   const [loaded, setLoaded] = useState(false);
   const [editTag, setEditTag] = useState(null);
   useEffect(() => {
     if (!loaded) {
     setLoaded(true)
-    actions.getUserHashTags()
+    actions.getUserHashTags();
+      actions.fetchBlockUser()
     }
   }, [loaded]);
+
   return (
     <>
     {
@@ -28,7 +32,7 @@ const FeedSetting = () => {
             <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
 
               <UserHashtag setEditTag={setEditTag} showhashTags={showhashTags} hideHashtag={hideHashtag}/>
-              <BlockUser/>
+              <BlockUser blockedUsers={blockedUsers}/>
             </ul>
           </div>
         </div>
