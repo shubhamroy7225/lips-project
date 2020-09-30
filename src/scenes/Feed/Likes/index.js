@@ -8,6 +8,11 @@ import { FeedType } from 'utility/constants/constants';
 import ImageFeed from '../components/ImageFeed';
 import TextFeed from '../components/TextFeed';
 import * as commonService from "../../../utility/utility";
+import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
+import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
+import RepostModal from 'scenes/Feed/components/FeedModal/RepostModal';
+import SharedModal from '../components/FeedModal/SharedModal';
+import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 
 export default (props) => {
     const { likedFeeds } = useSelector((state) => state.feedReducer);
@@ -82,6 +87,13 @@ export default (props) => {
                 {feedContent}
                 <MenuOptionSlider />
             </div>
+            <>
+                <RepostModal />
+                <TaggedModal />
+                <ReportModal />
+                <SharedModal />
+                <RemoveFeedModal />
+            </>
         </div >
     )
 }

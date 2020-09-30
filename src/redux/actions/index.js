@@ -22,7 +22,10 @@ export {
     getUserHashTags,
     filterHashTags,
     fetchOtherUserFeeds,
-    fetchUserFeeds
+    fetchUserFeeds,
+    deleteFeed,
+    repostFeed,
+    searchFeeds
 } from './feed/action';
 
 export {
