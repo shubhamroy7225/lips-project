@@ -44,6 +44,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
+  isOnBoard: state.authReducer.isOnBoard
 });
 
 const mapStateToDispatch = (dispatch) => ({
