@@ -123,7 +123,7 @@ const Profile = (props) => {
                 } else if (feed.type === FeedType.repost) {
                     let parentFeed = feed.parent;
                     if (parentFeed.type === FeedType.image) {
-                        gridFeedContent.push(<ImageItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed.parent)} />);
+                        gridFeedContent.push(<ImageItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
                         listFeedContent.push(<ImageFeed feed={feed} isReposted={true} />)
                     } else {
                         gridFeedContent.push(<TextItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);

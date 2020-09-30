@@ -15,7 +15,6 @@ const ImageFeed = (props) => {
     const { attachments, description } = feed;
 
     const repostedByUser = isReposted ? feed.user : {};
-    debugger;
     const feed_user = isReposted ? feed.parent.user : feed.user;
     const user_name = feed_user.user_name;
     const feed_user_photo = feed_user.photo_urls;

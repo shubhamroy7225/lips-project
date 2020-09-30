@@ -57,6 +57,15 @@ const ExploreFeed = (props) => {
         if (feed.type === FeedType.image) {
             gridFeedContent.push(<ImageItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
             listFeedContent.push(<ImageFeed feed={feed} />)
+        } else if (feed.type === FeedType.repost) {
+            let parentFeed = feed.parent;
+            if (parentFeed.type === FeedType.image) {
+                gridFeedContent.push(<ImageItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<ImageFeed feed={feed} isReposted={true} />)
+            } else {
+                gridFeedContent.push(<TextItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<TextFeed feed={feed} isReposted={true} />)
+            }
         } else {
             gridFeedContent.push(<TextItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
             listFeedContent.push(<TextFeed feed={feed} />)
