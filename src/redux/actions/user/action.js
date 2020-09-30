@@ -8,7 +8,7 @@ import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import * as commonService from "../../../utility/utility";
 import store from '../../store/store';
-import { refreshTokenPending, refreshTokenSuccessful, loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful } from 'redux/actions/auth';
+import { refreshTokenPending, refreshTokenSuccessful, loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful, getBlockUserPending, getBlockUserSuccessful, unblockUserPending, unblockUserSuccessful } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
@@ -20,6 +20,7 @@ const setUserData = (data) => {
     storage.set('token', data.token);
     storage.set('refresh_token', data.refresh_token);
     storage.set('user', data.user);
+    storage.set('isOnBoard', true);
     axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 };
 
@@ -119,6 +120,21 @@ export const deleteUser = () => {
         })
 };
 
+export const unblockUser = (id) => {
+    commonService.isLoading.onNext(true);
+    unblockUserPending();
+    return UserAPI.unblockUser(id)
+        .then(response => {
+            commonService.isLoading.onNext(false);
+            unblockUserSuccessful({id});
+            return response.data
+        })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
+};
+
 export const fetchUser = () => {
     store.dispatch(getUserPending());
     return UserAPI.fetchUserData()
@@ -126,6 +142,21 @@ export const fetchUser = () => {
             commonService.isLoading.onNext(false);
             storage.set('user', response.data.user);
             store.dispatch(getUserSuccessful(response.data));
+            return response.data;
+        })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
+};
+
+export const fetchBlockUser = () => {
+    store.dispatch(getBlockUserPending());
+    return UserAPI.fetchBlockUser()
+        .then(response => {
+            commonService.isLoading.onNext(false);
+            storage.set('user', response.data.users);
+            store.dispatch(getBlockUserSuccessful(response.data));
             return response.data;
         })
         .catch(error => {

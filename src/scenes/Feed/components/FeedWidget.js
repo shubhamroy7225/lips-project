@@ -44,8 +44,11 @@ const FeedWidget = ({ user, showWidget, feed }) => {
     }, [])
 
     let isOwner = false
-    if (feed && parseInt(feed.user_id) === user.id) {
-        isOwner = true
+    if (user) {
+        debugger;
+        if (feed && parseInt(feed.user_id) === user.id) {
+            isOwner = true
+        }
     }
 
     let likeIconClasses = "lip_icon_wrp circle_image lps_flx_vm_jc icn_hover_chng ";
@@ -67,39 +70,63 @@ const FeedWidget = ({ user, showWidget, feed }) => {
         setFeedModalType({ modalType });
     }
 
+    let listContent = [];
+    let reportOption = (
+        < li className="listed_item">
+            <a onClick={() => feedSelectionHandler(FeedModalType.report)} className="circle_image lps_flx_vm_jc" id="trigger_hashtag_close">
+                <img src={require("assets/images/icons/icn_close_white.png")} className="inner_image" alt="Close Icon" />
+            </a>
+        </li>);
+    let deleteOption = (
+        <li class="listed_item">
+            <a onClick={() => feedSelectionHandler(FeedModalType.delete)} class="trash_icon_wrp circle_image lps_flx_vm_jc" id="trigger_delete">
+                <img src={require("assets/images/icons/icn_trash_white.png")} class="inner_image" alt="Close Icon" />
+            </a>
+        </li>);
+    let hashtagOptionn = (
+        <li className="listed_item lps_pos_rltv">
+            <a onClick={() => feedSelectionHandler(FeedModalType.tag)} className="circle_image lps_flx_vm_jc" id="trigger_hashtag">
+                <img src={require("assets/images/icons/icn_hashtag_white.png")} className="inner_image" alt="Hashtag Icon" />
+            </a>
+        </li>
+    );
+    let shareOption = (
+        <li className="listed_item">
+            <a onClick={() => feedSelectionHandler(FeedModalType.share)} className="circle_image lps_flx_vm_jc" id="trigger_share">
+                <img src={require("assets/images/icons/icn_share_white.png")} className="inner_image" alt="Share Icon" />
+            </a>
+        </li>
+    );
+    let repostOption = (
+        <li className="listed_item">
+            <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
+                <img src={require("assets/images/icons/icn_repeat_white.png")} className="inner_image" alt="Repeat Icon" />
+            </a>
+        </li>
+    );
+    let likeOption = (
+        <li class="listed_item">
+            <a onClick={() => toggleLike()} class={likeIconClasses}>
+                <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
+                <img src={require("assets/images/icons/icn_lips.png")} class="icn_hvrA" alt="User" />
+            </a>
+        </li>
+    );
+
+
+    if (user) {
+        if (isOwner) {
+            listContent = [deleteOption, hashtagOptionn, shareOption, likeOption];
+        } else {
+            listContent = [reportOption, hashtagOptionn, shareOption, repostOption, likeOption];
+        }
+    } else {
+        listContent = [hashtagOptionn, shareOption];
+    }
+
     return (
         <ul className={className} id="lps_widgets">
-            {isOwner && <li class="listed_item">
-                <a onClick={() => feedSelectionHandler(FeedModalType.delete)} class="trash_icon_wrp circle_image lps_flx_vm_jc" id="trigger_delete">
-                    <img src={require("assets/images/icons/icn_trash_white.png")} class="inner_image" alt="Close Icon" />
-                </a>
-            </li>}
-            {!isOwner && < li className="listed_item">
-                <a onClick={() => feedSelectionHandler(FeedModalType.report)} className="circle_image lps_flx_vm_jc" id="trigger_hashtag_close">
-                    <img src={require("assets/images/icons/icn_close_white.png")} className="inner_image" alt="Close Icon" />
-                </a>
-            </li>}
-            <li className="listed_item lps_pos_rltv">
-                <a onClick={() => feedSelectionHandler(FeedModalType.tag)} className="circle_image lps_flx_vm_jc" id="trigger_hashtag">
-                    <img src={require("assets/images/icons/icn_hashtag_white.png")} className="inner_image" alt="Hashtag Icon" />
-                </a>
-            </li>
-            <li className="listed_item">
-                <a onClick={() => feedSelectionHandler(FeedModalType.share)} className="circle_image lps_flx_vm_jc" id="trigger_share">
-                    <img src={require("assets/images/icons/icn_share_white.png")} className="inner_image" alt="Share Icon" />
-                </a>
-            </li>
-            {!isOwner && <li className="listed_item">
-                <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
-                    <img src={require("assets/images/icons/icn_repeat_white.png")} className="inner_image" alt="Repeat Icon" />
-                </a>
-            </li>}
-            <li class="listed_item">
-                <a onClick={() => toggleLike()} class={likeIconClasses}>
-                    <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
-                    <img src={require("assets/images/icons/icn_lips.png")} class="icn_hvrA" alt="User" />
-                </a>
-            </li>
+            {listContent}
         </ul >
     )
 }

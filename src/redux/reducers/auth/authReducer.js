@@ -20,7 +20,8 @@ export const initialState = {
     isloading: false,
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
-    otherUser: null
+    otherUser: null,
+    blockedUsers: []
 }
 
 export const authReducer = createReducer({
@@ -28,7 +29,7 @@ export const authReducer = createReducer({
         updateObject(state, { isloading: true }),
     [actions.loginSuccessful]: (state, payload) =>
         updateObject(state, {
-            isloading: false, user: payload ? payload.user : state.user,
+            isloading: false, user: payload ? payload.user : state.user,isOnBoard: true
         }),
     [actions.refreshTokenPending]: (state) =>
         updateObject(state, { isloading: true }),
@@ -79,6 +80,27 @@ export const authReducer = createReducer({
         })
     },
 
+    [actions.getBlockUserPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.getBlockUserSuccessful]: (state, payload) => {
+        return updateObject(state, {
+            isloading: false,
+            blockedUsers: payload.users
+        })
+    },
+
+     [actions.unblockUserPending]: (state) =>
+         updateObject(state, { isloading: true }),
+     [actions.unblockUserSuccessful]: (state, payload) => {
+         let {id} =  payload;
+         let userList = [...state.blockedUsers];
+         userList.splice(userList.findIndex(e => e.id === id), 1)
+         return updateObject(state, {
+             isloading: false,
+              blockedUsers: userList
+         })
+     },
+
     [actions.configPending]: (state) =>
         updateObject(state, { isloading: true }),
     [actions.configSuccessful]: (state, payload) => {
@@ -111,7 +133,6 @@ export const authReducer = createReducer({
     [actions.changePrivacySuccessful]: (state, payload) => {
         return updateObject(state,
             {
-                isOnBoard: true,
                 user: { ...user, privacy_settings: payload.privacy_settings }
             })
     },

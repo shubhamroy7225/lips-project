@@ -67,9 +67,17 @@ export const ApprovalStatus = {
     denied: "denied"
 }
 
+export const FollowStatus = {
+    NotRequested: "not_requested",
+    Requested: "requested",
+    Accepted: "accepted",
+    Denied: "denied",
+}
+
 export const FeedType = {
     image: "image",
-    text: "text"
+    text: "text",
+    repost: "repost"
 }
 
 export const MinImageResolution = {

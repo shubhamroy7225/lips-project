@@ -36,6 +36,15 @@ export const fetchOtherUserData = (userID) => {
     });
 };
 
+export const fetchUserByUserName = (userName) => {
+    return axios.get(`${API_VERSION}/user/username/${userName}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
+
 export const deleteUser = () => {
     return axios.delete(`${API_VERSION}/user`, {
         headers: {
@@ -110,6 +119,15 @@ export const acceptRequest = (id) => {
 
 export const rejectRequest = (id) => {
     return axios.put(`${API_VERSION}/user/follow/${id}/reject`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
+
+export const fetchBlockUser = () => {
+    return axios.get(`${API_VERSION}/user/block`, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
