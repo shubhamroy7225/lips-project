@@ -29,7 +29,7 @@ export const authReducer = createReducer({
         updateObject(state, { isloading: true }),
     [actions.loginSuccessful]: (state, payload) =>
         updateObject(state, {
-            isloading: false, user: payload ? payload.user : state.user,
+            isloading: false, user: payload ? payload.user : state.user,isOnBoard: true
         }),
     [actions.refreshTokenPending]: (state) =>
         updateObject(state, { isloading: true }),
@@ -133,7 +133,6 @@ export const authReducer = createReducer({
     [actions.changePrivacySuccessful]: (state, payload) => {
         return updateObject(state,
             {
-                isOnBoard: true,
                 user: { ...user, privacy_settings: payload.privacy_settings }
             })
     },
