@@ -85,7 +85,7 @@ const TextFeed = (props) => {
                         <article className="lps_art">
                             <a id="trigger_text_feed1" onClick={clickHandler}>
                                 <p style={descriptionViewStyle}>{description}</p>
-                                <a href="main_feed_full_text.html" className="lps_link" title="more">more</a>
+                                {/* <a href="main_feed  _full_text.html" className="lps_link" title="more">more</a> */}
                                 {
                                     reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
                                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>

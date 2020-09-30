@@ -24,7 +24,8 @@ export {
     fetchOtherUserFeeds,
     fetchUserFeeds,
     deleteFeed,
-    repostFeed
+    repostFeed,
+    searchFeeds
 } from './feed/action';
 
 export {
