@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FeedWidget from 'scenes/Feed/components/FeedWidget';
 import { isMobile } from 'react-device-detect';
 import RepostModal from './FeedModal/RepostModal';
@@ -11,11 +11,12 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const ImageFeed = (props) => {
-    const { user, feed } = props
-    const { attachments, description, hashtagPosts, likable, liked, parent_id } = feed;
-    const reposted = parent_id && true;
-    const repostedByUser = reposted ? feed.user : "";
-    const feed_user = reposted ? feed.owner : feed.user;
+    const { user, feed, isReposted } = props
+    const { attachments, description } = feed;
+
+    const repostedByUser = isReposted ? feed.user : {};
+    debugger;
+    const feed_user = isReposted ? feed.parent.user : feed.user;
     const user_name = feed_user.user_name;
     const feed_user_photo = feed_user.photo_urls;
     const { photo_urls } = attachments[0];
@@ -25,8 +26,8 @@ const ImageFeed = (props) => {
     //more or less description
     var showChar = 135;  // How many characters are shown by default
     var ellipsestext = "...";
-    let shortDesc = description.substr(0, showChar);
-    var pendingText = description.substr(showChar, description.length - showChar);
+    let shortDesc = description ? description.substr(0, showChar) : "";
+    var pendingText = description ? description.substr(showChar, description.length - showChar) : "";
     const [moreTextEnabled, setMoreTextEnabled] = useState(false)
 
 
@@ -44,15 +45,14 @@ const ImageFeed = (props) => {
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
                         {
-                            reposted &&
-                            <div class="lps_inner_wrp pd_b10 text_secondary">repost by
-                            <span class="text_primary">
-                                    <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
-                                </span>
+                            isReposted &&
+                            <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
+                                <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
+                            </span>
                             </div>
                         }
                     </a>
-                    <FeedWidget showWidget={showWidget} feed={feed} user={user} />
+                    <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
                 </div>
                 <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
                     <div className="lps_media">
@@ -112,7 +112,7 @@ const ImageFeed = (props) => {
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
                         {
-                            reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
+                            isReposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
                                 <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
                             </span></div>
                         }
@@ -123,7 +123,7 @@ const ImageFeed = (props) => {
                     <SharedModal feed={feed} />
                     <RemoveFeedModal feed={feed} />
                 </div>
-                <FeedWidget showWidget={showWidget} feed={feed} user={user} />
+                <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
             </div>
         );
     }

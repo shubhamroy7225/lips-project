@@ -24,7 +24,7 @@ const SearchInput = ({ submitHandler }) => {
                             <span className="input-group-addon" onClick={() => submitHandler(searchText)}><img src={require("assets/images/icons/search.svg")} alt="Search Icon" /></span>
                         </form>
                     </div>
-                    <div className="see_also">
+                    {/* <div className="see_also">
                         <div className="hashtag">
                             <a href="javascript:void(0);" className="hashtag_btn">#Hashtag</a>
                             <a href="javascript:void(0);" className="hashtag_btn">#Hashtag</a>
@@ -33,7 +33,7 @@ const SearchInput = ({ submitHandler }) => {
                             <a href="javascript:void(0);" className="hashtag_btn">#Hashtag</a>
                             <a href="javascript:void(0);" className="hashtag_btn">#Hashtag</a>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-const ImageItem = ({ feed, selectionHandler }) => {
-    const { attachments } = feed;
+const ImageItem = ({ feed, selectionHandler, isReposted }) => {
+    const { attachments } = isReposted ? feed.parent : feed;
     const { photo_urls } = attachments[0]
 
     return (

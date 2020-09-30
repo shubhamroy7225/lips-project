@@ -10,9 +10,12 @@ import TextItem from '../components/TextItem';
 import ImageFeed from '../components/ImageFeed';
 import TextFeed from '../components/TextFeed';
 import { FeedType } from 'utility/constants/constants';
+import * as commonService from "../../../utility/utility";
+
 const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
+    const [isDataFetched, setIsDataFetched] = useState(false);
 
     useEffect(() => {
         // Update the document title using the browser API
@@ -32,9 +35,10 @@ const ExploreFeed = (props) => {
 
     //fetch feeds from server
     const fetchFeedsFromServer = (searchText) => {
-        let pageQuery = `?title=${searchText}` //&limit=${props.pageSize}&page=${props.page}`;
+        commonService.isLoading.onNext(true);
+        let pageQuery = `?search=${searchText}` //&limit=${props.pageSize}&page=${props.page}`;
         actions.searchFeeds(pageQuery).then(res => {
-            debugger;
+            setIsDataFetched(true);
             if (res.data.success === true) {
                 if (res.data.posts.length > 0) {
                 } else {
@@ -62,7 +66,7 @@ const ExploreFeed = (props) => {
         <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div className="lps_container">
                 <SearchInput submitHandler={submitHandler} />
-                <div className="category_block browse_category">
+                <div className="browse_category">
                     {
                         gridlayoutMode ?
                             <div class="lps_product_grid">
@@ -75,7 +79,7 @@ const ExploreFeed = (props) => {
                                 </div>
                             </div>
                     }
-                    {<div class="main_feed_cont">
+                    {gridFeedContent.length === 0 && isDataFetched && <div class="main_feed_cont">
                         <div class="lps_tb_para">
                             <h4>No Results Found!</h4>
                         </div>

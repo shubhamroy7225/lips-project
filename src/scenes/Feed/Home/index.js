@@ -149,7 +149,6 @@ const MainFeed = (props) => {
                 <div id="wrap" >
                     <div class="lps_container main_feed_cont bg_grayCCC">
                         {feedContent}
-                        {/* <ImageFeed reposted={true} /> */}
                         {/* <RestrictedFeed /> */}
                         <PaginationLoader show={!isPaginationCompleted} />
                         {/* <!-- Menu bottom here --> */}

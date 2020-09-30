@@ -17,14 +17,14 @@ const TextFeed = (props) => {
         textAlign: "justify"
     }
 
-    const { user, feed } = props
-    const { description, parent_id } = feed;
-    const reposted = parent_id && true;
+    const { user, feed, isReposted, repostedUser } = props
+    const { description } = feed;
+    const reposted = isReposted;
+    const repostedByUser = repostedUser;
+    const feed_user = feed.user;
     const [showWidget, setShowWidget] = useState(false)
-    const feed_user = reposted ? feed.owner : feed.user;
     const user_name = feed_user.user_name;
     const feed_user_photo = feed_user.photo_urls;
-    const repostedByUser = reposted ? feed.user : "";
 
     const clickHandler = () => {
         setShowWidget(!showWidget)

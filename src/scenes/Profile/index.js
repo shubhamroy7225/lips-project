@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import MenuOptionSlider from 'scenes/Feed/components/MenuOptionSlider';
-import $ from 'jquery';
+import $, { trim } from 'jquery';
 import { isMobile } from 'react-device-detect';
 import ImageFeed from 'scenes/Feed/components/ImageFeed';
 import TextFeed from 'scenes/Feed/components/TextFeed';
@@ -16,10 +16,7 @@ import { FeedType, routes } from 'utility/constants/constants';
 import ImageItem from 'scenes/Feed/components/ImageItem';
 import TextItem from 'scenes/Feed/components/TextItem';
 import ProfileHeader from './components/ProfileHeader';
-import { decode } from 'base64-arraybuffer';
-import RepostModal from 'scenes/Feed/components/FeedModal/RepostModal';
 import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
-import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
 import SharedModal from 'scenes/Feed/components/FeedModal/SharedModal';
 import RemoveFeedModal from 'scenes/Feed/components/FeedModal/RemoveFeedModal';
 
@@ -71,6 +68,7 @@ const Profile = (props) => {
             userName = user.user_name; //for self user
         }
 
+        commonService.isLoading.onNext(true);
         //fetch user info by username
         actions.fetchUserByUserName(userName)
             .then(response => {
@@ -122,6 +120,15 @@ const Profile = (props) => {
                 if (feed.type === FeedType.image) {
                     gridFeedContent.push(<ImageItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
                     listFeedContent.push(<ImageFeed feed={feed} />)
+                } else if (feed.type === FeedType.repost) {
+                    let parentFeed = feed.parent;
+                    if (parentFeed.type === FeedType.image) {
+                        gridFeedContent.push(<ImageItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed.parent)} />);
+                        listFeedContent.push(<ImageFeed feed={feed} isReposted={true} />)
+                    } else {
+                        gridFeedContent.push(<TextItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                        listFeedContent.push(<TextFeed feed={feed} isReposted={true} />)
+                    }
                 } else {
                     gridFeedContent.push(<TextItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
                     listFeedContent.push(<TextFeed feed={feed} />)
