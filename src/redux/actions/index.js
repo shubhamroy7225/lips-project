@@ -12,6 +12,8 @@ export {
     updateUser,
     deleteUser,
     resetPassword,
+    fetchBlockUser,
+    unblockUser,
     fetchUser,
     config,
 } from './user/action';
@@ -22,7 +24,10 @@ export {
     getUserHashTags,
     filterHashTags,
     fetchOtherUserFeeds,
-    fetchUserFeeds
+    fetchUserFeeds,
+    deleteFeed,
+    repostFeed,
+    searchFeeds
 } from './feed/action';
 
 export {

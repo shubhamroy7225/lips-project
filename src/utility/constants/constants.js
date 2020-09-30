@@ -76,7 +76,8 @@ export const FollowStatus = {
 
 export const FeedType = {
     image: "image",
-    text: "text"
+    text: "text",
+    repost: "repost"
 }
 
 export const MinImageResolution = {

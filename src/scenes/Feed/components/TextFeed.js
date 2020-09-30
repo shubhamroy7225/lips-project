@@ -17,10 +17,12 @@ const TextFeed = (props) => {
         textAlign: "justify"
     }
 
-    const { reposted, user, feed } = props
-    const { description, hashtagPosts, likable, liked, parent_id } = feed;
-    const [showWidget, setShowWidget] = useState(false)
+    const { user, feed, isReposted, repostedUser } = props
+    const { description } = feed;
+    const reposted = isReposted;
+    const repostedByUser = repostedUser;
     const feed_user = feed.user;
+    const [showWidget, setShowWidget] = useState(false)
     const user_name = feed_user.user_name;
     const feed_user_photo = feed_user.photo_urls;
 
@@ -37,9 +39,11 @@ const TextFeed = (props) => {
                         <article className="lps_art">
                             <a id="trigger_text_feed1" onClick={clickHandler}>
                                 <p style={descriptionViewStyle}>{description}</p>
-                                <a href="main_feed_full_text.html" class="lps_link ft_Weight_600" title="more">more</a>
+                                {/* <a href="main_feed_full_text.html" class="lps_link ft_Weight_600" title="more">more</a> */}
                                 {
-                                    reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
+                                    reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
+                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
+                                    </span></div>
                                 }
                             </a>
                         </article>
@@ -53,7 +57,7 @@ const TextFeed = (props) => {
                         </figure>
                         <div className="lps_media_body">
                             <div className="lps_media_body">
-                                <p><span class="text_primary ft_Weight_600"><a onClick={() => { history.push(routes.PROFILE) }}>username</a> </span></p>
+                                <p><span class="text_primary ft_Weight_600"><a onClick={() => { history.push(routes.PROFILE) }}>{user_name}</a> </span></p>
                             </div>
                         </div>
                     </div>
@@ -81,9 +85,11 @@ const TextFeed = (props) => {
                         <article className="lps_art">
                             <a id="trigger_text_feed1" onClick={clickHandler}>
                                 <p style={descriptionViewStyle}>{description}</p>
-                                <a href="main_feed_full_text.html" className="lps_link" title="more">more</a>
+                                {/* <a href="main_feed  _full_text.html" className="lps_link" title="more">more</a> */}
                                 {
-                                    reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">username</span></div>
+                                    reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
+                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
+                                    </span></div>
                                 }
                             </a>
                         </article>
