@@ -44,7 +44,6 @@ import FeedSettingModal from 'scenes/Setting/FeedSetting/FeedSettingModal';
 const Router = (props) => {
     let routeList = null;
     let user = props.user;
-    debugger
     if (user) {
         routeList = (
             <Switch>
@@ -54,21 +53,7 @@ const Router = (props) => {
                 <Route exact path={routes.LIKES} component={Likes} />
                 <Route exact path={routes.PROFILE} component={Profile} />
                 <Route exact path={routes.OTHER_PROFILE} component={Profile} />
-
-
                 <Route exact path={routes.ROOT} component={MainFeed} />
-                { !props.isOnBoard &&
-                <>
-                <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
-                <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
-                <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
-                <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
-                <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
-                <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
-                </>
-                }
-
-
                 {/* Approval for posting */}
                 <Route exact path={routes.POST_APPROVAL} component={PostApproval} />
 
@@ -83,8 +68,17 @@ const Router = (props) => {
                 <Route exact path={routes.SETTING_COMMUNITY_GUIDELINES} component={SettingCommunityGuidelines} />
                 <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
                 <Route exact path={routes.CONTACT_USER} component={ContactUser} />
-
                 <Route exact path={routes.FEED_SETTING_MODAL} component={FeedSettingModal} />
+                { !props.isOnBoard &&
+                <>
+                <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
+                <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
+                <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
+                <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
+                <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
+                <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
+                </>
+                }
                 <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
             </Switch>
         )

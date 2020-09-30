@@ -131,9 +131,10 @@ export const authReducer = createReducer({
             })
     },
     [actions.changePrivacySuccessful]: (state, payload) => {
+        const currentUser = {...state.user};
         return updateObject(state,
             {
-                user: { ...user, privacy_settings: payload.privacy_settings }
+                user: { ...currentUser, privacy_settings: payload.privacy_settings }
             })
     },
     [actions.fetchOtherUserSuccessful]: (state, payload) => updateObject(state, { otherUser: payload.user })
