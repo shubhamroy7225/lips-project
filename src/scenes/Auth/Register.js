@@ -88,7 +88,7 @@ export default () => {
                   <input type={passwordShown ? "text" : "password"} className="input_modify" placeholder="Password" name="password" value={user.password}
                     onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} />
                   <span className="icn_passAbslt">
-                    {passwordShown ? <img onClick={togglePasswordVisibility(false)} src={require("assets/images/icons/icn_hide_white.png")} /> : <img onClick={togglePasswordVisibility(false)} src={require("assets/images/icons/icb_eye_white.png")} />}
+                    {passwordShown ? <img onClick={togglePasswordVisibility(false)} src={require("assets/images/icons/icb_eye_hide_black.png")} /> : <img onClick={togglePasswordVisibility(false)} src={require("assets/images/icons/icb_eye_black.png")} />}
                   </span>
                   {simpleValidator.current.message('password', user.password, 'required')}
                 </div>
@@ -97,7 +97,7 @@ export default () => {
                     onChange={handleChange} name="confirm_password" onBlur={() => simpleValidator.current.showMessageFor('confirm_password')} />
                   <span className="icn_passAbslt">
 
-                    {resetPasswordShown ? <img onClick={togglePasswordVisibility(true)} src={require("assets/images/icons/icn_hide_white.png")} /> : <img onClick={togglePasswordVisibility(true)} src={require("assets/images/icons/icb_eye_white.png")} />}
+                    {resetPasswordShown ? <img onClick={togglePasswordVisibility(true)} src={require("assets/images/icons/icb_eye_hide_black.png")} /> : <img onClick={togglePasswordVisibility(true)} src={require("assets/images/icons/icb_eye_black.png")} />}
                   </span>
                   {simpleValidator.current.message('confirm_password', user.confirm_password, `required|sameAs:${user.password}`)}
                 </div>

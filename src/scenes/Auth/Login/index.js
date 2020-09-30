@@ -65,7 +65,7 @@ let LoginForm = (props) => {
                   <span className="icn_passAbslt">
 
 
-                    {passwordShown ? <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icn_hide_white.png")} /> : <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_white.png")} />}
+                    {passwordShown ? <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_hide_black.png")} /> : <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_black.png")} />}
                   </span>
                   {simpleValidator.current.message('password', user.password, 'required')}
                 </div>
@@ -74,7 +74,7 @@ let LoginForm = (props) => {
                 </div>
                 <div className="form_group_modify">
                   <label className="lps_cont_check">Keep me signed in
-                          <input type="checkbox" checked />
+                          <input type="checkbox" />
                     <span className="lps_Checkmark"></span>
                   </label>
                 </div>
