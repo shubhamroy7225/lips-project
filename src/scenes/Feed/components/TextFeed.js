@@ -17,13 +17,13 @@ const TextFeed = (props) => {
         textAlign: "justify"
     }
 
-    const { user, feed, isReposted, repostedUser } = props
+    const { user, feed, isReposted } = props
     const { description } = feed;
     const reposted = isReposted;
-    const repostedByUser = repostedUser;
-    const feed_user = feed.user;
-    const [showWidget, setShowWidget] = useState(false)
+    const repostedByUser = isReposted ? feed.user : {};
+    const feed_user = isReposted ? feed.parent.user : feed.user;
     const user_name = feed_user.user_name;
+    const [showWidget, setShowWidget] = useState(false)
     const feed_user_photo = feed_user.photo_urls;
 
     const clickHandler = () => {
@@ -94,11 +94,15 @@ const TextFeed = (props) => {
                             </a>
                         </article>
                     </div>
-                    <RepostModal feed={feed} />
-                    <TaggedModal feed={feed} />
-                    <ReportModal feed={feed} />
-                    <SharedModal feed={feed} />
-                    <RemoveFeedModal feed={feed} />
+                    {!isMobile &&
+                        <>
+                            <RepostModal feed={feed} />
+                            <TaggedModal feed={feed} />
+                            <ReportModal feed={feed} />
+                            <SharedModal feed={feed} />
+                            <RemoveFeedModal feed={feed} />
+                        </>
+                    }
                 </div>
                 <FeedWidget showWidget={showWidget} feed={feed} user={user} />
             </div>
