@@ -5,20 +5,23 @@ import * as actions from "redux/actions";
 export default () => {
   const history = useHistory();
   const {hashTags, count} = useSelector(store => store.feedReducer);
-  const [filterParams] = useState({page: 1, limit: 10});
+  const [filterParams, setFilteredParama] = useState({page: 1, limit: 10});
   const [selectTags, setSelectTags] = useState([]);
   const [loaded, setLoaded] = useState(false);
   console.log(hashTags);
   useEffect(() => {
-    if (!loaded) {
+    if (!hashTags.length && !loaded) {
       setLoaded(true)
       actions.getAllHashTags({...filterParams});
     }
   }, []);
 
   const loadMore = () => {
-   actions.getAllHashTags();
- }
+    let tempSearch = {...filterParams};
+    tempSearch.page +=1;
+    setFilteredParama(tempSearch);
+   actions.getAllHashTags({...tempSearch});
+ };
 
   const toggleHashTag = (tag) => {
     if (selectTags.includes(tag.name)) {

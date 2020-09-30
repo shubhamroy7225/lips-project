@@ -20,6 +20,7 @@ const setUserData = (data) => {
     storage.set('token', data.token);
     storage.set('refresh_token', data.refresh_token);
     storage.set('user', data.user);
+    storage.set('isOnBoard', true);
     axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 };
 
