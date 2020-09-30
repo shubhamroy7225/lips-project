@@ -26,14 +26,14 @@ const setUserData = (data) => {
 
 export const login = (credentials) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(loginPending());
+    loginPending();
     return API.login(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
             const { user, token, refresh_token } = response.data
             setUserData(response.data);
-            store.dispatch(loginSuccessful(response.data.user));
-            store.dispatch(authorizeUser(user, token, refresh_token));
+            loginSuccessful(response.data.user);
+            authorizeUser(user, token, refresh_token);
             return true
         })
 };
@@ -46,33 +46,34 @@ export const signup = (credentials) => {
             commonService.isLoading.onNext(false);
             const { user, token, refresh_token } = response.data;
             setUserData(response.data);
-            store.dispatch(signupSuccessful(response.data.user));
-            return store.dispatch(authorizeUser(user, token, refresh_token));
+           signupSuccessful(response.data.user);
+            authorizeUser(user, token, refresh_token);
+            return true
         })
 };
 export const refreshToken = (credentials) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(refreshTokenPending());
+    refreshTokenPending();
     return API.refreshToken(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
             const { user, token, refresh_token } = response.data;
             setUserData(response.data);
-            store.dispatch(authorizeUser(user, token, refresh_token));
+            authorizeUser(user, token, refresh_token);
             return response.data
         })
 };
 
 export const changePrivacy = ({ privacy_settings }) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(changePrivacyPending());
+    changePrivacyPending();
     return API.changePrivacy({ privacy_settings })
         .then(res => {
             commonService.isLoading.onNext(false);
             let user = storage.get('user', null);
             storage.set('user', { ...user, privacy_settings });
-            store.dispatch(changePrivacySuccessful({ privacy_settings }));
+            changePrivacySuccessful({ privacy_settings });
             return res
         })
 };
@@ -87,7 +88,7 @@ export const verifyUsername = (user_name) => {
 
 export const forgotPassword = (credentials) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(forgotpasswordPending());
+    forgotpasswordPending();
     return API.forgotPassword(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
@@ -107,7 +108,7 @@ export const forgotPassword = (credentials) => {
 
 export const deleteUser = () => {
     commonService.isLoading.onNext(true);
-    store.dispatch(deleteuserPending());
+    deleteuserPending();
     return UserAPI.deleteUser()
         .then(response => {
             commonService.isLoading.onNext(false);
@@ -167,12 +168,12 @@ export const fetchBlockUser = () => {
 
 export const updateUser = (credentials) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(updateuserPending());
+    updateuserPending();
     return UserAPI.updateUser(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
             storage.set('user', response.data.user);
-            store.dispatch(updateuserSuccessful(response.data));
+            updateuserSuccessful(response.data);
             return response;
         })
         .catch(error => {
@@ -197,7 +198,7 @@ export const config = (credentials) => {
 //
 export const resetPassword = (credentials) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(resetpasswordPending());
+    resetpasswordPending();
     return API.resetPassword(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
@@ -215,6 +216,7 @@ export const signOut = () => {
     storage.remove('token');
     storage.remove('user');
     storage.remove('refresh_token');
+    storage.remove('isOnBoard');
     store.dispatch(logout());
     
 };
