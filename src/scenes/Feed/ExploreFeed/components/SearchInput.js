@@ -1,11 +1,10 @@
 
-import React, { useEffect, useState } from 'react';
-import { searchFeeds } from 'redux/actions';
+import React, { useState } from 'react';
 
 const SearchInput = ({ submitHandler }) => {
     const [searchText, setSearchText] = useState("");
     const inputChangeHandler = (e) => {
-        setSearchText(e.target.value);
+        setSearchText(e.target.value.toLowerCase());
     }
 
     return (

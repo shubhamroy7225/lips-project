@@ -94,13 +94,13 @@ export default (props) => {
                 {feedContent}
                 <MenuOptionSlider />
             </div>
-            <>
+            {isMobile && <>
                 <RepostModal />
                 <TaggedModal />
                 <ReportModal />
                 <SharedModal />
                 <RemoveFeedModal />
-            </>
+            </>}
         </div >
     )
 }

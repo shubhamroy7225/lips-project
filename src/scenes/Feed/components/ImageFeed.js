@@ -116,11 +116,14 @@ const ImageFeed = (props) => {
                             </span></div>
                         }
                     </a>
-                    <RepostModal feed={feed} />
-                    <TaggedModal feed={feed} />
-                    <ReportModal feed={feed} />
-                    <SharedModal feed={feed} />
-                    <RemoveFeedModal feed={feed} />
+                    {!isMobile &&
+                        <>
+                            <RepostModal feed={feed} />
+                            <TaggedModal feed={feed} />
+                            <ReportModal feed={feed} />
+                            <SharedModal feed={feed} />
+                            <RemoveFeedModal feed={feed} />
+                        </>}
                 </div>
                 <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
             </div>

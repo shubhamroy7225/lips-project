@@ -232,9 +232,13 @@ const Profile = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <TaggedModal />
-                        <SharedModal />
-                        <RemoveFeedModal />
+                        {isMobile &&
+                            <>
+                                <TaggedModal />
+                                <SharedModal />
+                                <RemoveFeedModal />
+                            </>
+                        }
                     </div>
                 );
             }
