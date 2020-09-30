@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { setFeedModalType } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
-
+import * as actions from 'redux/actions';
 
 const RepostModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
@@ -21,6 +21,13 @@ const RepostModal = ({ feed }) => {
             style = { display: "block" };
         }
     }
+
+    const repostFeed = () => {
+        let feedId = selectedFeed.id;
+        actions.repostFeed(feedId);
+        closeModal();
+    }
+
     return (<>
         <div class="hover_bkgr_fricc" style={style}>
             <div class="modal-dialog-centered">
@@ -35,7 +42,7 @@ const RepostModal = ({ feed }) => {
                                 <a href="#" class="text_white">Repost to your account?</a>
                             </li>
                         </ul>
-                        <a href="#" class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>
+                        <a onClick={repostFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>
                     </div>
                 </div>
             </div>

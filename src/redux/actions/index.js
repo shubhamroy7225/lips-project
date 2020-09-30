@@ -12,8 +12,10 @@ export {
     updateUser,
     deleteUser,
     resetPassword,
+    fetchBlockUser,
+    unblockUser,
     fetchUser,
-    config
+    config,
 } from './user/action';
 
 export {
@@ -21,10 +23,15 @@ export {
     setFavoriteAvoidTags,
     getUserHashTags,
     filterHashTags,
-    fetchOtherUserFeeds
+    fetchOtherUserFeeds,
+    fetchUserFeeds,
+    deleteFeed,
+    repostFeed,
+    searchFeeds
 } from './feed/action';
 
 export {
-    fetchOtherUserData
+    fetchOtherUserData,
+    fetchUserByUserName
 } from './auth/action';
 

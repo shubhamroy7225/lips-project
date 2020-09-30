@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
 import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
 import RepostModal from 'scenes/Feed/components/FeedModal/RepostModal';
+import SharedModal from '../components/FeedModal/SharedModal';
+import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 import ImageFeed from 'scenes/Feed/components/ImageFeed';
 import TextFeed from 'scenes/Feed/components/TextFeed';
 import RestrictedFeed from 'scenes/Feed/components/RestrictedFeed';
 import MenuOptionSlider from '../components/MenuOptionSlider';
 import { isMobile } from 'react-device-detect';
-import SharedModal from '../components/FeedModal/SharedModal';
-import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 import { fetchFeeds } from 'redux/actions/feed/action';
 import { FeedType } from 'utility/constants/constants';
 import { clearAllFeeds, setPage } from 'redux/actions/feed';
@@ -149,7 +149,6 @@ const MainFeed = (props) => {
                 <div id="wrap" >
                     <div class="lps_container main_feed_cont bg_grayCCC">
                         {feedContent}
-                        {/* <ImageFeed reposted={true} /> */}
                         {/* <RestrictedFeed /> */}
                         <PaginationLoader show={!isPaginationCompleted} />
                         {/* <!-- Menu bottom here --> */}

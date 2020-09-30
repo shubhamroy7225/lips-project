@@ -2,7 +2,7 @@
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully } from 'redux/actions/feed';
+import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully } from 'redux/actions/feed';
 import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
@@ -113,6 +113,7 @@ export const fetchLikedFeeds = () => {
   return API.fetchLikedFeeds()
     .then(response => {
       fetchedLikedFeedsSuccessfully({ feeds: response.data.posts });
+      commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
       return error;
@@ -134,6 +135,39 @@ export const fetchOtherUserFeeds = (userId) => {
   return API.fetchOtherUserFeeds(userId)
     .then(response => {
       fetchedOtherUserFeedsSuccessfully({ feeds: response.data.posts });
+      commonService.isLoading.onNext(false); // start loading
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
+
+export const deleteFeed = (feedId) => {
+  return API.deleteFeed(feedId)
+    .then(response => {
+      commonService.isLoading.onNext(false); // start loading
+      deleteFeedUpdate({ feedId })
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
+
+export const repostFeed = (feedId) => {
+  return API.repostFeed(feedId)
+    .then(response => {
+      updateRepostFeed({ feed: response.data.post });
+      commonService.isLoading.onNext(false); // start loading
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
+
+export const searchFeeds = (queryString) => {
+  return API.fetchFeeds(queryString)
+    .then(response => {
+      searchFeedsCompletedSuccessfully({ feeds: response.data.posts });
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
