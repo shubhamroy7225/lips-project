@@ -20,7 +20,8 @@ export const initialState = {
     isloading: false,
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
-    otherUser: null
+    otherUser: null,
+    blockedUsers: []
 }
 
 export const authReducer = createReducer({
@@ -78,6 +79,27 @@ export const authReducer = createReducer({
             user: payload.user
         })
     },
+
+    [actions.getBlockUserPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.getBlockUserSuccessful]: (state, payload) => {
+        return updateObject(state, {
+            isloading: false,
+            blockedUsers: payload.users
+        })
+    },
+
+     [actions.unblockUserPending]: (state) =>
+         updateObject(state, { isloading: true }),
+     [actions.unblockUserSuccessful]: (state, payload) => {
+         let {id} =  payload;
+         let userList = [...state.blockedUsers];
+         userList.splice(userList.findIndex(e => e.id === id), 1)
+         return updateObject(state, {
+             isloading: false,
+              blockedUsers: userList
+         })
+     },
 
     [actions.configPending]: (state) =>
         updateObject(state, { isloading: true }),
