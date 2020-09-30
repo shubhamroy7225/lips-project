@@ -2,8 +2,12 @@ import React from "react";
 import TermsAndCondition from "../OnBoarding/components/TermsAndConditions";
 import {Link} from "react-router-dom";
 export default () => (
-  <div id="wrap" className="mt_0">
-  <div className="top_text_wrp lps_bg_secondary">
+    <div id="wrap" className="mt_0">
+      <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
+        <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
+        <span className="lp_left_auto text_black">Terms And Conditions</span>
+      </Link>
+      <div className="top_text_wrp lps_bg_secondary">
     <p>
       Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incidi. Please reach out if ....
     </p>
@@ -12,7 +16,6 @@ export default () => (
     </div>
   </div>
   <div className="lps_container lps_terms_con_wrps bg_grayCCC">
-  <TermsAndCondition></TermsAndCondition>
- 
-  </div>
-</div>)
+      <TermsAndCondition></TermsAndCondition>
+      </div>
+    </div>)
