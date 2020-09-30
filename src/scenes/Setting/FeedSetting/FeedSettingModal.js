@@ -94,8 +94,7 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
                         
                       </div>
             <div class="post_links post_links_undr">
-              <a onClick={showFavoriteTags} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</a>
-              <a href="#" class="lps_link mt_15 btn_block" id="trigger_submit_tag">Can't find what you're looking for</a>
+              <button onClick={showFavoriteTags} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</button>
             </div>
           </div>
         </div>
