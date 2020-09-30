@@ -137,6 +137,13 @@ const MainFeed = (props) => {
         feedContent = props.feeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
                 return <ImageFeed feed={feed} />
+            } else if (feed.type === FeedType.repost) {
+                let parentFeed = feed.parent;
+                if (parentFeed.type === FeedType.image) {
+                    return <ImageFeed feed={feed} isReposted={true} />
+                } else {
+                    return <TextFeed feed={feed} isReposted={true} />
+                }
             } else {
                 return <TextFeed feed={feed} />
             }

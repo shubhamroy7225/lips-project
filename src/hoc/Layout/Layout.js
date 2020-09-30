@@ -90,6 +90,7 @@ const Footer = (props) => {
 }
 
 class Layout extends Component {
+
     render() {
         return (
             <Aux>
