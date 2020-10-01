@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
 import { getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
+import { acceptRequest, rejectRequest } from 'redux/actions/user/action';
 import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
@@ -136,7 +137,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
         page: 1, limit: 10
     });
     useEffect(() => {
-        if (!loaded) {
+        if (!loaded && !notifications.length) {
             setLoad(true)
             getAllNotification({...params});
             getUnreadCount();
@@ -160,6 +161,10 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
         }
     };
 
+    const handleRequest = (responeType) => {
+        //rejectRequest
+        //acceptRequest
+    };
     return (
         <>
         {
@@ -171,6 +176,13 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                             </figure>
                             <div className="lps_media_body">
                                 <h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5>
+                                {
+                                    notification.type === NOTIFICATION_TYPES.requested_follow ? <div className="btn_group">
+                                        <button onClick={e => handleRequest("accept")} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
+                                        <button onClick={e => handleRequest("deny")} role="button" className="theme_btn theme_outline_primary deny">deny</button>
+                                    </div> : ""
+                                }
+
                                 <span className="durations">1 minute ago</span>
                             </div>
                         </div>

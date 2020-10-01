@@ -8,7 +8,7 @@ import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import * as commonService from "../../../utility/utility";
 import store from '../../store/store';
-import { refreshTokenPending, refreshTokenSuccessful, loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful, getBlockUserPending, getBlockUserSuccessful, unblockUserPending, unblockUserSuccessful } from 'redux/actions/auth';
+import { rejectRequestSuccessful, rejectRequestPending, acceptRequestSuccessful, acceptRequestPending, refreshTokenPending, refreshTokenSuccessful, loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful, getBlockUserPending, getBlockUserSuccessful, unblockUserPending, unblockUserSuccessful } from 'redux/actions/auth';
 
 function getHistory() {
     const storeState = store.getState();
@@ -211,7 +211,36 @@ export const resetPassword = (credentials) => {
             return error;
         })
 };
-
+export const acceptRequest = (credentials) => {
+    commonService.isLoading.onNext(true);
+    updateuserPending();
+    return UserAPI.acceptRequest(credentials)
+        .then(response => {
+            commonService.isLoading.onNext(false);
+            storage.set('user', response.data.user);
+            updateuserSuccessful(response.data);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
+};
+export const rejectRequest = (credentials) => {
+    commonService.isLoading.onNext(true);
+    updateuserPending();
+    return UserAPI.rejectRequest(credentials)
+        .then(response => {
+            commonService.isLoading.onNext(false);
+            storage.set('user', response.data.user);
+            updateuserSuccessful(response.data);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
+};
 export const signOut = () => {
     storage.remove('token');
     storage.remove('user');

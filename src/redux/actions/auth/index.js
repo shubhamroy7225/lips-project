@@ -29,5 +29,10 @@ export const refreshTokenSuccessful = createAction('get Refresh token successful
 export const fetchOtherUserSuccessful = createAction('get User successful', (user) => (user));
 export const getBlockUserPending = createAction('get Block User pending');
 export const getBlockUserSuccessful = createAction('get Block User successful');
-export const unblockUserPending = createAction('get Block User pending', (id) => (id));
+export const unblockUserPending = createAction('get Block User pending');
 export const unblockUserSuccessful = createAction('get Block User successful', (id) => (id));
+
+export const acceptRequestPending = createAction('Accept user follow request pending');
+export const acceptRequestSuccessful = createAction('Accept user follow request successful', (id) => (id));
+export const rejectRequestPending = createAction('Reject user follow request pending');
+export const rejectRequestSuccessful = createAction('Reject user follow request successful', (id) => (id));
