@@ -35,3 +35,8 @@ export {
     fetchUserByUserName
 } from './auth/action';
 
+export {
+    getAllNotification,
+    getUnreadCount
+} from './notification/action';
+
