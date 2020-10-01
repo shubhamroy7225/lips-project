@@ -25,6 +25,7 @@ const EditProfile = ({setIsEdit, user}) => {
   };
 
   const handleChange = (e) => {
+    debugger
     setUserForm({...userForm, [e.target.name]: e.target.value});
   };
 
@@ -58,7 +59,7 @@ const EditProfile = ({setIsEdit, user}) => {
               <div className="lps_list">
                 <div className="lps_inner_wrp lps_pink_dashed">
                   <label htmlFor="file_input">
-                    <figure  className="lps_fig lps_fig90">
+                    <figure  className="lps_fig lps_fig90 add_image">
                       <input type="file" id="file_input" name="header_image" hidden onChange={handleFile}/>
                       {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" /> :
                           (userForm.header_images && userForm.header_images.medium ? <img src={userForm.header_images.original} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
@@ -96,7 +97,9 @@ const EditProfile = ({setIsEdit, user}) => {
                   </div>
                   <div className="mail_about_wrp">
                   </div>
-                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange} value={userForm.bio}>{userForm.bio}</textarea>
+                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange}
+                   value={userForm.bio  ? userForm.bio : ""}>{userForm.bio}</textarea>
+
                   <span className="textRange">0/50000</span>
                 </div>
               </div>
