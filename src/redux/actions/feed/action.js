@@ -2,7 +2,7 @@
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully } from 'redux/actions/feed';
+import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed } from 'redux/actions/feed';
 import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
@@ -65,7 +65,11 @@ export const createFeed = (request) => {
   commonService.isLoading.onNext(true); // start loading
   return API.createFeed(request)
     .then(response => {
+      debugger;
       commonService.isLoading.onNext(false); // start loading
+      if (response.data.success === true) {
+        addCreatedFeed({ feed: response.data.post })
+      }
       return response;
     }).catch(error => {
       commonService.isLoading.onNext(false); // start loading

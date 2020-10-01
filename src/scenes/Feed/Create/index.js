@@ -20,7 +20,6 @@ const Create = () => {
 
     const submitFeedRequest = (request) => {
         //API - create a post
-        debugger;
         feedsAction.createFeed(request)
             .then(res => {
                 toastMsg("Post created successfully!");

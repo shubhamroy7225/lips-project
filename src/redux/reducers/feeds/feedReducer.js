@@ -136,6 +136,26 @@ export const feedReducer = createReducer({
     [actions.searchFeedsCompletedSuccessfully]: (state, payload) => updateObject(state, {
         searchFeeds: payload.feeds,
     }),
+    [actions.addCreatedFeed]: (state, payload) => {
+        let { feed } = payload;
+        let feeds = [...state.feeds];
+        let userFeeds = [...state.userFeeds];
+        if (feeds.length > 0) {
+            feeds = [feed, ...feeds]
+        } else {
+            feeds = [feed];
+        }
+        if (userFeeds.length > 0) {
+            userFeeds = [feed, ...userFeeds];
+        } else {
+            userFeeds = [feed];
+        }
+
+        return updateObject(state, {
+            feeds: feeds,
+            userFeeds: userFeeds
+        })
+    },
 }, initialState); // <-- This is the default state
 
 

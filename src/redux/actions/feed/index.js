@@ -37,3 +37,5 @@ export const searchFeedsCompletedSuccessfully = createAction('search feeds compl
 export const fetchedOtherUserFeedsSuccessfully = createAction('fetch other user feeds with success', (feeds) => (feeds));
 
 export const updateRepostFeed = createAction('update repost feed', (feed) => (feed));
+
+export const addCreatedFeed = createAction('update repost feed', (feed) => (feed));
