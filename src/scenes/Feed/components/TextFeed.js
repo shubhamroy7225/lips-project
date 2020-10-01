@@ -57,7 +57,9 @@ const TextFeed = (props) => {
                         </figure>
                         <div className="lps_media_body">
                             <div className="lps_media_body">
-                                <p><span class="text_primary ft_Weight_600"><a onClick={() => { history.push(routes.PROFILE) }}>{user_name}</a> </span></p>
+                                <p><span class="text_primary ft_Weight_600">
+                                    <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
+                                </span></p>
                             </div>
                         </div>
                     </div>
@@ -74,7 +76,9 @@ const TextFeed = (props) => {
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
-                                <p><span class="text_primary"><a onClick={() => { history.push(routes.PROFILE) }}>{user_name}</a> </span></p>
+                                <p><span class="text_primary">
+                                    <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
+                                </span></p>
                             </div>
                         </div>
                     </div>
