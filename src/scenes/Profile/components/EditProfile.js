@@ -61,7 +61,7 @@ const EditProfile = ({setIsEdit, user}) => {
                     <figure  className="lps_fig lps_fig90">
                       <input type="file" id="file_input" name="header_image" hidden onChange={handleFile}/>
                       {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" /> :
-                          (userForm.header_images.medium ? <img src={userForm.header_images.original} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
+                          (userForm.header_images && userForm.header_images.medium ? <img src={userForm.header_images.original} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
                     </figure>
                   </label>
                 </div>
@@ -71,7 +71,7 @@ const EditProfile = ({setIsEdit, user}) => {
                     <figure className="profile-image-container lps_fig lps_fig_circle" style={{position: "relative"}}>
                       <input type="file" id="profile_file_input" name="photo_url" hidden onChange={handleFile}/>
                       {files.photo_url.src ?  <img src={files.photo_url.src} alt="Add Image" /> :
-                          (userForm.photo_urls.medium ? <img src={userForm.photo_urls.medium} alt="Add Image" /> : <img  src={require("assets/images/icons/icn_profile.svg")} alt="User"/>) }
+                          (userForm.photo_urls && userForm.photo_urls.medium ? <img src={userForm.photo_urls.medium} alt="Add Image" /> : <img  src={require("assets/images/icons/icn_profile.svg")} alt="User"/>) }
 
                       <i className="fa fa-pencil"></i>
                     </figure>

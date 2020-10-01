@@ -10,9 +10,15 @@
 .feed-setting .hashtag {
   text-align: left;
 }
-.theme_outline_light.active,.theme_outline_light:hover, {
+.theme_outline_light.active, .theme_outline_light.active:hover {
   color: #212529;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa !important;
+  border-color: #f8f9fa;
+}
+
+.theme_outline_light:hover{
+  color: #f8f9fa;
+  background: transparent none;
   border-color: #f8f9fa;
 }
 @media screen and (min-width: 1024px) {
@@ -55,4 +61,8 @@
     z-index: 9999;
     font-size: large;
   }
+}
+
+.hashtag{
+  text-align: left;
 }
