@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
 import { getAllNotification } from 'redux/actions/notification/action';
-
+import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
-import { routes, SETTINGS_PATH, PRIVATE_PATH } from 'utility/constants/constants';
+import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
 
 const Header = (props) => {
     const [modalShown, setModalShown] = useState(false);
@@ -144,18 +144,29 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
         tempParams.page +=1;
         setParams(tempParams);
         getAllNotification({...tempParams})
-    }
+    };
+
+    const NotificationContent= (notification) => {
+        if (notification.type === NOTIFICATION_TYPES.liked_post) {
+             return notification.content.replace("liked", `<img src=`+liked_post+` class="inline_img" alt="liked"/>`);
+        } else if (notification.type === NOTIFICATION_TYPES.shared_your_post) {
+            return notification.content.replace("shared", `<img src=`+require("assets/images/icons/icn_repeat.svg")+` class="inline_img" alt="liked"/>`);
+        }  else {
+            return notification.content
+        }
+    };
+
     return (
         <>
         {
-            notifications.map((notification, index) =>
+            notifications && notifications.map((notification, index) =>
                     <li key={`noti_${index}`} className="list-group-item">
                         <div className="lps_media">
                             <figure className="lps_fig lps_fig_circle">
                                 <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
                             </figure>
                             <div className="lps_media_body">
-                                <h5 onClick={modalToggle}>{notification.content}</h5>
+                                <h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5>
                                 <span className="durations">1 minute ago</span>
                             </div>
                         </div>
