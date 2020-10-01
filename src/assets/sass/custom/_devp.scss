@@ -68,7 +68,7 @@
 }
 header.main_header .lps_dropdown .lps_dropdown-menu.notification-dropdown {
   overflow-y: auto !important;
-  max-height: 500px;
+  max-height: calc(100vh - 100px);
 }
 .text-align-center {
   text-align: center;
