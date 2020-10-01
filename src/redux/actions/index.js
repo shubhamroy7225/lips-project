@@ -35,3 +35,7 @@ export {
     fetchUserByUserName
 } from './auth/action';
 
+export {
+    getAllNotification
+} from './notification/action';
+
