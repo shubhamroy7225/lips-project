@@ -12,7 +12,7 @@ import { routes, SETTINGS_PATH, PRIVATE_PATH } from 'utility/constants/constants
 const Header = (props) => {
     const [modalShown, setModalShown] = useState(false);
     const modalToggle = () => {
-        setModalShown(modalShown ? false : true);
+        setModalShown(!modalShown);
     }
     console.log(props);
     useEffect(() => {
@@ -54,14 +54,14 @@ const Header = (props) => {
                     <ul className="lp_nav">
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
-                                <li className="lps_dropdown">
+                                <li className={`lps_dropdown ${modalShown ? "open" : ""}`}>
                                     <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button" onClick={modalToggle}>
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
                                     </a>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
-                                        <NotificationSliderComponent modalShown={modalShown} /> </ul>
+                                        <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
                                 </li>
                             </ul>
                         </li>
@@ -127,7 +127,7 @@ const mapDispatchToProps = (dispatch) => {
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
 
 
-const NotificationSliderComponent = (modalShown) => {
+const NotificationSliderComponent = ({modalShown, modalToggle}) => {
     const {notifications, count} = useSelector(state => state.notificationReducer);
     const [loaded, setLoad] = useState(false);
     const [params, setParams] = useState({
@@ -155,7 +155,7 @@ const NotificationSliderComponent = (modalShown) => {
                                 <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
                             </figure>
                             <div className="lps_media_body">
-                                <h5>{notification.content}</h5>
+                                <h5 onClick={modalToggle}>{notification.content}</h5>
                                 <span className="durations">1 minute ago</span>
                             </div>
                         </div>
