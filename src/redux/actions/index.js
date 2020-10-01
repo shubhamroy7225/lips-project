@@ -36,6 +36,7 @@ export {
 } from './auth/action';
 
 export {
-    getAllNotification
+    getAllNotification,
+    getUnreadCount
 } from './notification/action';
 

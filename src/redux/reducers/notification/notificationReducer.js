@@ -14,7 +14,8 @@ const updateObject = (oldState, updatedProps) => {
 
 export const initialState = {
   notifications: [],
-  count: 0
+  count: 0,
+  notificationCount: 0
 }
 
 export const notificationReducer = createReducer({
@@ -22,6 +23,11 @@ export const notificationReducer = createReducer({
       updateObject(state, { isloading: true }),
   [actions.getAllNotificationSuccessful]: (state, payload) => updateObject(state, {
     isloading: false, notifications: [...state.notifications, ...payload.notifications], count: payload.count
+  }),
+  [actions.getUnreadCountPending]: (state) =>
+      updateObject(state, { isloading: true }),
+  [actions.getUnreadCountSuccessful]: (state, payload) => updateObject(state, {
+    isloading: false, notificationCount: payload.count
   })
 
 }, initialState); // <-- This is the default state

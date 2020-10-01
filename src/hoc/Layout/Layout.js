@@ -4,7 +4,7 @@ import Aux from '../Oux/Oux';
 import { withRouter } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
-import { getAllNotification } from 'redux/actions/notification/action';
+import { getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
 import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
@@ -59,6 +59,7 @@ const Header = (props) => {
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
+                                        <span class="count_badge">{props.notificationCount}</span>
                                     </a>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
@@ -114,7 +115,8 @@ const mapStateToProps = (state) => {
     return {
         user: state.authReducer.user,
         token: state.authReducer.token,
-        isOnBoard: state.authReducer.isOnBoard
+        isOnBoard: state.authReducer.isOnBoard,
+        notificationCount: state.notificationReducer.notificationCount
     }
 }
 
@@ -136,7 +138,9 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
     useEffect(() => {
         if (!loaded) {
             setLoad(true)
-            getAllNotification({...params})
+            getAllNotification({...params});
+            getUnreadCount();
+
         }
     }, [loaded]);
     const loadMore = () => {
