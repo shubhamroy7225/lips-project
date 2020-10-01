@@ -38,3 +38,4 @@ export const fetchedOtherUserFeedsSuccessfully = createAction('fetch other user 
 
 export const updateRepostFeed = createAction('update repost feed', (feed) => (feed));
 
+export const addCreatedFeed = createAction('update repost feed', (feed) => (feed));
