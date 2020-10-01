@@ -1,4 +1,4 @@
 import { createAction } from 'redux-act';
 
-export const getAllNotificationPending = createAction('Hash tag API started fetching');
-export const getAllNotificationSuccessful = createAction('Hash tag API started fetching', (notifications) => (notifications));
+export const getAllNotificationPending = createAction('Notification API started fetching');
+export const getAllNotificationSuccessful = createAction('Notification API fetched data successfully', (notifications) => (notifications));

@@ -2,8 +2,9 @@ import React, { Component, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Aux from '../Oux/Oux';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
+import { getAllNotification } from 'redux/actions/notification/action';
 
 import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH } from 'utility/constants/constants';
@@ -53,13 +54,13 @@ const Header = (props) => {
                     <ul className="lp_nav">
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
-                                <li className="lps_dropdown" onClick={modalToggle}>
-                                    <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button">
+                                <li className="lps_dropdown">
+                                    <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button" onClick={modalToggle}>
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
                                     </a>
-                                    <ul class={`lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
+                                    <ul class={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} /> </ul>
                                 </li>
                             </ul>
@@ -127,9 +128,42 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
 
 
 const NotificationSliderComponent = (modalShown) => {
+    const {notifications, count} = useSelector(state => state.notificationReducer);
+    const [loaded, setLoad] = useState(false);
+    const [params, setParams] = useState({
+        page: 1, limit: 10
+    });
+    useEffect(() => {
+        if (!loaded) {
+            setLoad(true)
+            getAllNotification({...params})
+        }
+    }, [loaded]);
+    const loadMore = () => {
+        let tempParams = {...params};
+        tempParams.page +=1;
+        setParams(tempParams);
+        getAllNotification({...tempParams})
+    }
     return (
         <>
-            <li class="list-group-item">
+        {
+            notifications.map((notification, index) =>
+                    <li class="list-group-item">
+                        <div class="lps_media">
+                            <figure class="lps_fig lps_fig_circle">
+                                <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                            </figure>
+                            <div class="lps_media_body">
+                                <h5>{notification.content}</h5>
+                                <span class="durations">1 minute ago</span>
+                            </div>
+                        </div>
+                    </li>
+            )
+        }
+        {notifications.length < count ? <li className="text-align-center text-primary list-group-item"><button className=" btn-transparent" onClick={loadMore}>load more...</button></li> : ""}
+        {/* <li class="list-group-item">
                 <div class="lps_media">
                     <figure class="lps_fig lps_fig_circle">
                         <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
@@ -195,7 +229,7 @@ const NotificationSliderComponent = (modalShown) => {
                         <span class="durations">1 month ago</span>
                     </div>
                 </div>
-            </li>
+            </li> */}
         </>
     )
 }

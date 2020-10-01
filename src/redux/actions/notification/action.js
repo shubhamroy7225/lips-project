@@ -2,15 +2,13 @@
 import * as API from 'api/notificationAPI';
 import * as commonService from "utility/utility";
 
-import * as notificationAction from 'redux/actions/notification';
+import  {getAllNotificationPending, getAllNotificationSuccessful} from 'redux/actions/notification';
 import * as actions from 'redux/actions';
 
-export const getAllNotification = (credentials) => {
-  commonService.isLoading.onNext(true);
+export const getAllNotification = (params) => {
   getAllNotificationPending();
-  return API.getAllNotification(credentials)
+  return API.getAllNotification(params)
       .then(response => {
-        commonService.isLoading.onNext(false);
         getAllNotificationSuccessful(response.data)
         return response
       })

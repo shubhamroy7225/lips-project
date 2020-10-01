@@ -6,6 +6,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 
 import * as actions from 'redux/actions/auth';
 import * as feedActions from 'redux/actions/feed';
+import * as notificationActions from 'redux/actions/notification';
 
 import reducers from '../reducers';
 import { assignAll } from 'redux-act';
@@ -25,6 +26,7 @@ const configureStore = () => {
     const store = createStore(reducers, composeEnhancers);
     assignAll(actions, store);
     assignAll(feedActions, store);
+    assignAll(notificationActions, store);
     return store;
 }
 

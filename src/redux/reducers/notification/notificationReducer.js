@@ -17,11 +17,11 @@ export const initialState = {
   count: 0
 }
 
-export const feedReducer = createReducer({
+export const notificationReducer = createReducer({
   [actions.getAllNotificationPending]: (state) =>
       updateObject(state, { isloading: true }),
   [actions.getAllNotificationSuccessful]: (state, payload) => updateObject(state, {
-    isloading: false, notifications: [...state.hashTags, ...payload.notifications], count: payload.count
+    isloading: false, notifications: [...state.notifications, ...payload.notifications], count: payload.count
   })
 
 }, initialState); // <-- This is the default state
