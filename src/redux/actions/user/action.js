@@ -9,6 +9,7 @@ import { routes } from '../../../utility/constants/constants';
 import * as commonService from "../../../utility/utility";
 import store from '../../store/store';
 import { rejectRequestSuccessful, rejectRequestPending, acceptRequestSuccessful, acceptRequestPending, refreshTokenPending, refreshTokenSuccessful, loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful, getBlockUserPending, getBlockUserSuccessful, unblockUserPending, unblockUserSuccessful } from 'redux/actions/auth';
+import  {clearNotifications} from 'redux/actions/notification';
 
 function getHistory() {
     const storeState = store.getState();
@@ -244,6 +245,7 @@ export const signOut = () => {
     storage.remove('user');
     storage.remove('refresh_token');
     storage.remove('isOnBoard');
+    clearNotifications();
     store.dispatch(logout());
     
 };

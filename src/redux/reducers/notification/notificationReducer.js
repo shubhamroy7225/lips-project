@@ -28,6 +28,9 @@ export const notificationReducer = createReducer({
       updateObject(state, { isloading: true }),
   [actions.getUnreadCountSuccessful]: (state, payload) => updateObject(state, {
     isloading: false, notificationCount: payload.count
+  }),
+  [actions.clearNotifications]: (state, payload) => updateObject(state, {
+    isloading: false, notificationCount: 0, notifications: [], count: 0
   })
 
 }, initialState); // <-- This is the default state

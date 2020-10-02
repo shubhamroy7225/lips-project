@@ -5,3 +5,4 @@ export const getAllNotificationSuccessful = createAction('Notification API fetch
 
 export const getUnreadCountPending = createAction('Notification unread API started fetching');
 export const getUnreadCountSuccessful = createAction('Notification unread API fetched data successfully', (count) => (count));
+export const clearNotifications = createAction('Notification clear successfully');
