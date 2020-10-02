@@ -161,9 +161,9 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
         }
     };
 
-    const handleRequest = (responeType) => {
-        //rejectRequest
-        //acceptRequest
+    const handleRequest = (responeType, notification) => {
+        if (responeType === "accept") acceptRequest(notification.follow.follower_id);
+        else rejectRequest(notification.follow.follower_id);
     };
     return (
         <>
@@ -178,8 +178,8 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                                 <h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5>
                                 {
                                     notification.type === NOTIFICATION_TYPES.requested_follow ? <div className="btn_group">
-                                        <button onClick={e => handleRequest("accept")} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
-                                        <button onClick={e => handleRequest("deny")} role="button" className="theme_btn theme_outline_primary deny">deny</button>
+                                        <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
+                                        <button onClick={e => handleRequest("deny", notification)} role="button" className="theme_btn theme_outline_primary deny">deny</button>
                                     </div> : ""
                                 }
 
@@ -190,73 +190,6 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
             )
         }
         {notifications.length < count ? <li className="text-align-center text-primary list-group-item"><button className=" btn-transparent" onClick={loadMore}>load more...</button></li> : ""}
-        {/* <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <h5>username wants to follow you</h5>
-                        <div className="btn_group">
-                            <a href="#" role="button" className="theme_btn theme_outline_primary accept active">accept</a>
-                            <a href="#" role="button" className="theme_btn theme_outline_primary deny">deny</a>
-                        </div>
-                        <span className="durations">1 minute ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <h5 className="lps_inline_img_wrp">username added your <span
-                            className="ft_Weight_600 ml_5">post</span> <img src={require("assets/images/icons/icn_folder.png")}
-                                className="inline_img" /></h5>
-                        <div className="btn_group">
-                            <a href="#" role="button"
-                                className="theme_btn theme_outline_primary text_sendry min_w_170">Remove</a>
-                        </div>
-                        <span className="durations">1 day ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <h5 className="lps_inline_img_wrp">username <img src={require("assets/images/icons/icn_repeat.png")}
-                            className="inline_img" /> your <span className="ft_Weight_600 ml_5">post</span></h5>
-                        <span className="durations">1 week ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <h5 className="lps_inline_img_wrp">username <img src={require("assets/images/icons/icn_mouth.png")}
-                            className="inline_img" /> your <span className="ft_Weight_600 ml_5"> post</span></h5>
-                        <span className="durations">1 week ago</span>
-                    </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="lps_media">
-                    <figure className="lps_fig lps_fig_circle lps_fig_circle_xs">
-                        <img src={require("assets/images/thumbnails/logo.svg")} alt="User" />
-                    </figure>
-                    <div className="lps_media_body">
-                        <h5>You've been approved <br /> <small>You can now post</small></h5>
-                        <span className="durations">1 month ago</span>
-                    </div>
-                </div>
-            </li> */}
         </>
     )
 }

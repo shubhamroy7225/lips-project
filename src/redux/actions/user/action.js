@@ -211,14 +211,13 @@ export const resetPassword = (credentials) => {
             return error;
         })
 };
-export const acceptRequest = (credentials) => {
+export const acceptRequest = (id) => {
     commonService.isLoading.onNext(true);
-    updateuserPending();
-    return UserAPI.acceptRequest(credentials)
+    acceptRequestPending();
+    return UserAPI.acceptRequest(id)
         .then(response => {
             commonService.isLoading.onNext(false);
-            storage.set('user', response.data.user);
-            updateuserSuccessful(response.data);
+            acceptRequestSuccessful(response.data);
             return response;
         })
         .catch(error => {
@@ -226,14 +225,13 @@ export const acceptRequest = (credentials) => {
             return error;
         })
 };
-export const rejectRequest = (credentials) => {
+export const rejectRequest = (id) => {
     commonService.isLoading.onNext(true);
-    updateuserPending();
-    return UserAPI.rejectRequest(credentials)
+    refreshTokenPending();
+    return UserAPI.rejectRequest(id)
         .then(response => {
             commonService.isLoading.onNext(false);
-            storage.set('user', response.data.user);
-            updateuserSuccessful(response.data);
+            rejectRequestSuccessful(response.data);
             return response;
         })
         .catch(error => {
