@@ -4,7 +4,7 @@ import Aux from '../Oux/Oux';
 import { withRouter } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
-import { getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
+import { markAsRead, getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
 import { acceptRequest, rejectRequest } from 'redux/actions/user/action';
 import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
@@ -162,8 +162,9 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
     };
 
     const handleRequest = (responeType, notification) => {
-        if (responeType === "accept") acceptRequest(notification.follow.follower_id);
-        else rejectRequest(notification.follow.follower_id);
+        if (responeType === "accept") acceptRequest(notification.follow.id);
+        else rejectRequest(notification.follow.id);
+        markAsRead(notification.id)
     };
     return (
         <>
@@ -177,7 +178,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                             <div className="lps_media_body">
                                 <h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5>
                                 {
-                                    notification.type === NOTIFICATION_TYPES.requested_follow ? <div className="btn_group">
+                                    (notification.type === NOTIFICATION_TYPES.requested_follow) ? <div className="btn_group">
                                         <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
                                         <button onClick={e => handleRequest("deny", notification)} role="button" className="theme_btn theme_outline_primary deny">deny</button>
                                     </div> : ""

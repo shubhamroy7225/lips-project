@@ -2,7 +2,7 @@
 import * as API from 'api/notificationAPI';
 import * as commonService from "utility/utility";
 
-import  {getAllNotificationPending, getAllNotificationSuccessful, getUnreadCountPending, getUnreadCountSuccessful} from 'redux/actions/notification';
+import  {markAsReadSuccessful, markAsReadPending, getAllNotificationPending, getAllNotificationSuccessful, getUnreadCountPending, getUnreadCountSuccessful} from 'redux/actions/notification';
 import * as actions from 'redux/actions';
 
 export const getAllNotification = (params) => {
@@ -18,6 +18,14 @@ export const getUnreadCount = (params) => {
   return API.getUnreadCount(params)
       .then(response => {
         getUnreadCountSuccessful(response.data)
+        return response
+      })
+}
+export const markAsRead = (id) => {
+  markAsReadPending();
+  return API.markAsRead(id)
+      .then(response => {
+        markAsReadSuccessful({id})
         return response
       })
 }

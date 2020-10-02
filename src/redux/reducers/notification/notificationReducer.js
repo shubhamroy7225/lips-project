@@ -29,6 +29,14 @@ export const notificationReducer = createReducer({
   [actions.getUnreadCountSuccessful]: (state, payload) => updateObject(state, {
     isloading: false, notificationCount: payload.count
   }),
+  [actions.markAsReadPending]: (state) =>
+      updateObject(state, { isloading: true }),
+  [actions.markAsReadSuccessful]: (state, payload) => {
+    let notifications = [...state.notifications];
+    notifications.splice(notifications.findIndex(e => e.id === payload.id), 1);
+    return updateObject(state, {
+      isloading: false, notifications
+    })},
   [actions.clearNotifications]: (state, payload) => updateObject(state, {
     isloading: false, notificationCount: 0, notifications: [], count: 0
   })
