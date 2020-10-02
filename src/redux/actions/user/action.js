@@ -9,6 +9,7 @@ import { routes } from '../../../utility/constants/constants';
 import * as commonService from "../../../utility/utility";
 import store from '../../store/store';
 import { rejectRequestSuccessful, rejectRequestPending, acceptRequestSuccessful, acceptRequestPending, refreshTokenPending, refreshTokenSuccessful, loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful, getBlockUserPending, getBlockUserSuccessful, unblockUserPending, unblockUserSuccessful } from 'redux/actions/auth';
+import  {clearNotifications} from 'redux/actions/notification';
 
 function getHistory() {
     const storeState = store.getState();
@@ -211,14 +212,13 @@ export const resetPassword = (credentials) => {
             return error;
         })
 };
-export const acceptRequest = (credentials) => {
+export const acceptRequest = (id) => {
     commonService.isLoading.onNext(true);
-    updateuserPending();
-    return UserAPI.acceptRequest(credentials)
+    acceptRequestPending();
+    return UserAPI.acceptRequest(id)
         .then(response => {
             commonService.isLoading.onNext(false);
-            storage.set('user', response.data.user);
-            updateuserSuccessful(response.data);
+            acceptRequestSuccessful(response.data);
             return response;
         })
         .catch(error => {
@@ -226,14 +226,13 @@ export const acceptRequest = (credentials) => {
             return error;
         })
 };
-export const rejectRequest = (credentials) => {
+export const rejectRequest = (id) => {
     commonService.isLoading.onNext(true);
-    updateuserPending();
-    return UserAPI.rejectRequest(credentials)
+    refreshTokenPending();
+    return UserAPI.rejectRequest(id)
         .then(response => {
             commonService.isLoading.onNext(false);
-            storage.set('user', response.data.user);
-            updateuserSuccessful(response.data);
+            rejectRequestSuccessful(response.data);
             return response;
         })
         .catch(error => {
@@ -246,6 +245,7 @@ export const signOut = () => {
     storage.remove('user');
     storage.remove('refresh_token');
     storage.remove('isOnBoard');
+    clearNotifications();
     store.dispatch(logout());
     
 };
