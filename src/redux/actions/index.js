@@ -16,6 +16,8 @@ export {
     unblockUser,
     fetchUser,
     config,
+    blockUser,
+    unfollowUser
 } from './user/action';
 
 export {
@@ -27,7 +29,9 @@ export {
     fetchUserFeeds,
     deleteFeed,
     repostFeed,
-    searchFeeds
+    searchFeeds,
+    hideAFeed,
+    reportAFeed
 } from './feed/action';
 
 export {

@@ -8,14 +8,16 @@ import { toastMsg } from '../../../utility/utility';
 import { routes } from '../../../utility/constants/constants';
 import * as commonService from "../../../utility/utility";
 import store from '../../store/store';
-import { rejectRequestSuccessful, rejectRequestPending, acceptRequestSuccessful, acceptRequestPending, refreshTokenPending, refreshTokenSuccessful, loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending, resetpasswordSuccessful, forgotpasswordPending, forgotpasswordSuccessful, authorizeUser, logout, completeOnBorading, changePrivacyPending, changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending, deleteuserSuccessful, configPending, configSuccessful, getUserPending, getUserSuccessful, getBlockUserPending, getBlockUserSuccessful, unblockUserPending, unblockUserSuccessful } from 'redux/actions/auth';
-import  {clearNotifications} from 'redux/actions/notification';
-
-function getHistory() {
-    const storeState = store.getState();
-    const history = storeState.historyReducer.history;
-    return history;
-}
+import {
+    rejectRequestSuccessful, acceptRequestSuccessful, acceptRequestPending, refreshTokenPending,
+    loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending,
+    forgotpasswordPending, authorizeUser, logout, completeOnBorading, changePrivacyPending,
+    changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending,
+    configPending, getUserPending, getUserSuccessful, getBlockUserPending, getBlockUserSuccessful,
+    unblockUserPending, unblockUserSuccessful
+} from 'redux/actions/auth';
+import { clearNotifications } from 'redux/actions/notification';
+import { hideFeedsOnBlockingUser, hideFeedsOnUnfollowingUser } from '../feed';
 
 const setUserData = (data) => {
     storage.set('token', data.token);
@@ -47,7 +49,7 @@ export const signup = (credentials) => {
             commonService.isLoading.onNext(false);
             const { user, token, refresh_token } = response.data;
             setUserData(response.data);
-           signupSuccessful(response.data.user);
+            signupSuccessful(response.data.user);
             authorizeUser(user, token, refresh_token);
             return true
         })
@@ -122,13 +124,26 @@ export const deleteUser = () => {
         })
 };
 
+export const blockUser = (user) => {
+    return UserAPI.blockUser(user.id)
+        .then(response => {
+            hideFeedsOnBlockingUser({ user })
+            commonService.isLoading.onNext(false);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
+};
+
 export const unblockUser = (id) => {
     commonService.isLoading.onNext(true);
     unblockUserPending();
     return UserAPI.unblockUser(id)
         .then(response => {
             commonService.isLoading.onNext(false);
-            unblockUserSuccessful({id});
+            unblockUserSuccessful({ id });
             return response.data
         })
         .catch(error => {
@@ -247,10 +262,23 @@ export const signOut = () => {
     storage.remove('isOnBoard');
     clearNotifications();
     store.dispatch(logout());
-    
+
 };
 
 export const completeOnBordingFlow = () => {
     storage.set('isOnBoard', true);
     return completeOnBorading();
 }
+
+export const unfollowUser = (user) => {
+    return UserAPI.unfollowUser(user.id)
+        .then(response => {
+            hideFeedsOnUnfollowingUser({ user });
+            commonService.isLoading.onNext(false);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
+};

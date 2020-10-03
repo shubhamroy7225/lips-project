@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, withRouter } from 'react-router'
 import { connect } from 'react-redux';
-import MenuOptionSlider from '../components/MenuOptionSlider';
 import CreateImageTab from './components/CreateImageTab';
 import CreateTextTab from './components/CreateTextTab';
 import AddTags from './components/AddTags';

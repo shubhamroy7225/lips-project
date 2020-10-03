@@ -39,3 +39,9 @@ export const fetchedOtherUserFeedsSuccessfully = createAction('fetch other user 
 export const updateRepostFeed = createAction('update repost feed', (feed) => (feed));
 
 export const addCreatedFeed = createAction('update repost feed', (feed) => (feed));
+
+export const hideFeed = createAction('hide feed', (feed) => (feed));
+
+export const hideFeedsOnBlockingUser = createAction('hide feed on blocking user', (user) => (user));
+
+export const hideFeedsOnUnfollowingUser = createAction('hide feed on unfollow user', (user) => (user));
