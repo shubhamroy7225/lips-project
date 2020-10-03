@@ -156,6 +156,41 @@ export const feedReducer = createReducer({
             userFeeds: userFeeds
         })
     },
+    [actions.hideFeed]: (state, payload) => {
+        debugger;
+        let { feed } = payload;
+        let feeds = [...state.feeds];
+        let feedIndex = feeds.findIndex(ele => ele.id === feed.id);
+
+        let likedFeeds = [...state.likedFeeds];
+        feedIndex = likedFeeds.findIndex(ele => ele.id === feed.id);
+        feedIndex >= 0 && likedFeeds.splice(feedIndex, 1);
+        return updateObject(state, {
+            feeds: feeds,
+            likedFeeds: likedFeeds
+        })
+    },
+    [actions.hideFeedsOnBlockingUser]: (state, payload) => {
+        let { user } = payload;
+
+        let feeds = [...state.feeds];
+        feeds = feeds.filter(feed => feed.user.id !== user.id);
+
+        let likedFeeds = [...state.likedFeeds];
+        likedFeeds = likedFeeds.filter(feed => feed.user.id !== user.id);
+        return updateObject(state, {
+            feeds: feeds,
+            likedFeeds: likedFeeds
+        })
+    },
+    [actions.hideFeedsOnUnfollowingUser]: (state, payload) => {
+        let { user } = payload;
+        let feeds = [...state.feeds];
+        feeds = feeds.filter(feed => feed.user.id !== user.id);
+        return updateObject(state, {
+            feeds: feeds
+        })
+    }
 }, initialState); // <-- This is the default state
 
 

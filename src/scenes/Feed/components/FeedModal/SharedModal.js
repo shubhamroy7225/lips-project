@@ -34,7 +34,7 @@ const SharedModal = ({ feed }) => {
 
                         <ul class="lps_btn_grps lps_ul lps_hash_ul">
                             <li>
-                                <a href="#" class="theme_btn theme_outline_light">www.website.com/hfejksalfpdaa</a>
+                                <a href="#" class="theme_btn theme_outline_light">{window.location.hostname}/{selectedFeed && selectedFeed.id}</a>
                             </li>
                         </ul>
                     </div>

@@ -2,16 +2,18 @@ import React, { Component, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Aux from '../Oux/Oux';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
-
+import { markAsRead, getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
+import { acceptRequest, rejectRequest } from 'redux/actions/user/action';
+import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
-import { routes, SETTINGS_PATH, PRIVATE_PATH } from 'utility/constants/constants';
+import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
 
 const Header = (props) => {
     const [modalShown, setModalShown] = useState(false);
     const modalToggle = () => {
-        setModalShown(modalShown ? false : true);
+        setModalShown(!modalShown);
     }
     console.log(props);
     useEffect(() => {
@@ -26,10 +28,10 @@ const Header = (props) => {
 
     if (props.history.location.pathname === routes.CREATE) {
         return (
-            <div class="post_page_header">
-                <nav class="theme_tabs">
-                    <ul class="tab-list">
-                        <li class="active"><a href="#imageTab">IMAGE</a></li>
+            <div className="post_page_header">
+                <nav className="theme_tabs">
+                    <ul className="tab-list">
+                        <li className="active"><a href="#imageTab">IMAGE</a></li>
                         <li><a href="#textTab">TEXT</a></li>
                     </ul>
                 </nav>
@@ -53,14 +55,15 @@ const Header = (props) => {
                     <ul className="lp_nav">
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
-                                <li className="lps_dropdown" onClick={modalToggle}>
-                                    <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button">
+                                <li className={`lps_dropdown ${modalShown ? "open" : ""}`}>
+                                    <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button" onClick={modalToggle}>
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
+                                        <span class="count_badge">{props.notificationCount}</span>
                                     </a>
-                                    <ul class={`lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
-                                        <NotificationSliderComponent modalShown={modalShown} /> </ul>
+                                    <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
+                                        <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
                                 </li>
                             </ul>
                         </li>
@@ -113,7 +116,8 @@ const mapStateToProps = (state) => {
     return {
         user: state.authReducer.user,
         token: state.authReducer.token,
-        isOnBoard: state.authReducer.isOnBoard
+        isOnBoard: state.authReducer.isOnBoard,
+        notificationCount: state.notificationReducer.notificationCount
     }
 }
 
@@ -126,76 +130,67 @@ const mapDispatchToProps = (dispatch) => {
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
 
 
-const NotificationSliderComponent = (modalShown) => {
+const NotificationSliderComponent = ({modalShown, modalToggle}) => {
+    const {notifications, count} = useSelector(state => state.notificationReducer);
+    const [loaded, setLoad] = useState(false);
+    const [params, setParams] = useState({
+        page: 1, limit: 10
+    });
+    useEffect(() => {
+        if (!loaded && !notifications.length) {
+            setLoad(true)
+            getAllNotification({...params});
+            getUnreadCount();
+
+        }
+    }, [loaded]);
+    const loadMore = () => {
+        let tempParams = {...params};
+        tempParams.page +=1;
+        setParams(tempParams);
+        getAllNotification({...tempParams})
+    };
+
+    const NotificationContent= (notification) => {
+        if (notification.type === NOTIFICATION_TYPES.liked_post) {
+             return notification.content.replace("liked", `<img src=`+liked_post+` class="inline_img" alt="liked"/>`);
+        } else if (notification.type === NOTIFICATION_TYPES.shared_your_post) {
+            return notification.content.replace("shared", `<img src=`+require("assets/images/icons/icn_repeat.svg")+` class="inline_img" alt="liked"/>`);
+        }  else {
+            return notification.content
+        }
+    };
+
+    const handleRequest = (responeType, notification) => {
+        if (responeType === "accept") acceptRequest(notification.follow.id);
+        else rejectRequest(notification.follow.id);
+        markAsRead(notification.id)
+    };
     return (
         <>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5>username wants to follow you</h5>
-                        <div class="btn_group">
-                            <a href="#" role="button" class="theme_btn theme_outline_primary accept active">accept</a>
-                            <a href="#" role="button" class="theme_btn theme_outline_primary deny">deny</a>
+        {
+            notifications && notifications.map((notification, index) =>
+                    <li key={`noti_${index}`} className="list-group-item">
+                        <div className="lps_media">
+                            <figure className="lps_fig lps_fig_circle">
+                                <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                            </figure>
+                            <div className="lps_media_body">
+                                <h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5>
+                                {
+                                    (notification.type === NOTIFICATION_TYPES.requested_follow) ? <div className="btn_group">
+                                        <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
+                                        <button onClick={e => handleRequest("deny", notification)} role="button" className="theme_btn theme_outline_primary deny">deny</button>
+                                    </div> : ""
+                                }
+
+                                <span className="durations">1 minute ago</span>
+                            </div>
                         </div>
-                        <span class="durations">1 minute ago</span>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5 class="lps_inline_img_wrp">username added your <span
-                            class="ft_Weight_600 ml_5">post</span> <img src={require("assets/images/icons/icn_folder.png")}
-                                class="inline_img" /></h5>
-                        <div class="btn_group">
-                            <a href="#" role="button"
-                                class="theme_btn theme_outline_primary text_sendry min_w_170">Remove</a>
-                        </div>
-                        <span class="durations">1 day ago</span>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5 class="lps_inline_img_wrp">username <img src={require("assets/images/icons/icn_repeat.png")}
-                            class="inline_img" /> your <span class="ft_Weight_600 ml_5">post</span></h5>
-                        <span class="durations">1 week ago</span>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle">
-                        <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5 class="lps_inline_img_wrp">username <img src={require("assets/images/icons/icn_mouth.png")}
-                            class="inline_img" /> your <span class="ft_Weight_600 ml_5"> post</span></h5>
-                        <span class="durations">1 week ago</span>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="lps_media">
-                    <figure class="lps_fig lps_fig_circle lps_fig_circle_xs">
-                        <img src={require("assets/images/thumbnails/logo.svg")} alt="User" />
-                    </figure>
-                    <div class="lps_media_body">
-                        <h5>You've been approved <br /> <small>You can now post</small></h5>
-                        <span class="durations">1 month ago</span>
-                    </div>
-                </div>
-            </li>
+                    </li>
+            )
+        }
+        {notifications.length < count ? <li className="text-align-center text-primary list-group-item"><button className=" btn-transparent" onClick={loadMore}>load more...</button></li> : ""}
         </>
     )
 }

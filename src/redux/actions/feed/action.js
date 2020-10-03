@@ -3,7 +3,7 @@ import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
 import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed } from 'redux/actions/feed';
-import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate } from 'redux/actions/feed';
+import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate, hideFeed } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
 export const getAllHashTags = (credentials) => {
@@ -172,6 +172,28 @@ export const searchFeeds = (queryString) => {
   return API.fetchFeeds(queryString)
     .then(response => {
       searchFeedsCompletedSuccessfully({ feeds: response.data.posts });
+      commonService.isLoading.onNext(false); // start loading
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
+
+
+export const hideAFeed = (feed) => {
+  return API.hideFeed(feed.id)
+    .then(response => {
+      hideFeed({ feed });
+      commonService.isLoading.onNext(false); // start loading
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
+
+export const reportAFeed = (feed) => {
+  return API.reportFeed(feed.id)
+    .then(response => {
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {

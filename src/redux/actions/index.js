@@ -16,6 +16,8 @@ export {
     unblockUser,
     fetchUser,
     config,
+    blockUser,
+    unfollowUser
 } from './user/action';
 
 export {
@@ -27,11 +29,18 @@ export {
     fetchUserFeeds,
     deleteFeed,
     repostFeed,
-    searchFeeds
+    searchFeeds,
+    hideAFeed,
+    reportAFeed
 } from './feed/action';
 
 export {
     fetchOtherUserData,
     fetchUserByUserName
 } from './auth/action';
+
+export {
+    getAllNotification,
+    getUnreadCount
+} from './notification/action';
 
