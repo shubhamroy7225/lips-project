@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import * as commonService from "utility/utility";
-import {Link, useHistory} from "react-router-dom";
+import React, {useState} from 'react';
+
+import {Link} from "react-router-dom";
 import * as ConfigAPI from 'api/configAPI';
 import * as AuthActions from "redux/actions";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {useDispatch} from "react-redux";
 
 const EditProfile = ({setIsEdit, user}) => {
   const [userForm, setUserForm] = useState({...user});

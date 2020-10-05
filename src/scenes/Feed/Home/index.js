@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
 import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
@@ -11,76 +11,15 @@ import RestrictedFeed from 'scenes/Feed/components/RestrictedFeed';
 import MenuOptionSlider from '../components/MenuOptionSlider';
 import { isMobile } from 'react-device-detect';
 import { fetchFeeds } from 'redux/actions/feed/action';
-import { FeedType } from 'utility/constants/constants';
+import { FeedType, PageSize } from 'utility/constants/constants';
 import { clearAllFeeds, setPage } from 'redux/actions/feed';
-
-const addBodyClass = className => document.body.classList.add(className);
-const removeBodyClass = className => document.body.classList.remove(className);
-
+import scroller from './scroller';
+import PaginationLoader from '../components/PaginationLoader';
 
 const MainFeed = (props) => {
-    const [lastScrollTop, setLastScrollTop] = useState(0);
-    const [bodyOffset, setBodyOffset] = useState(
-        document.body.getBoundingClientRect()
-    );
-    const [scrollY, setScrollY] = useState(bodyOffset.top);
-    const [, setScrollX] = useState(bodyOffset.left);
-    const [, setScrollDirection] = useState();
-
-    const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
+    const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     const selectedFeed = props.selectedFeed;
-    const [hideMenuOptionSlider, setHideMenuOptionSlider] = useState(false);
-
-    const validatePaginationCompletion = () => {
-        let feedsCount = props.feeds.length;
-        if (feedsCount % props.pageSize !== 0) {
-            setIsPaginationCompleted(true)
-        }
-    }
-
-    //scroll listener
-    //detecting bottom to initiate pagination
-    const listener = e => {
-        setBodyOffset(document.body.getBoundingClientRect());
-        setScrollY(-bodyOffset.top);
-        setScrollX(bodyOffset.left);
-        setScrollDirection(lastScrollTop > -bodyOffset.top ? "down" : "up");
-        // console.log(scrollDirection);
-        let scrollDirection = lastScrollTop > -bodyOffset.top ? "down" : "up"
-
-        if (scrollDirection === "up" && scrollY > 70) {
-            toggleHeader(false)
-        } else {
-            toggleHeader(true)
-        }
-        // debugger;
-        setLastScrollTop(-bodyOffset.top);
-
-        let bottom = document.body.scrollHeight - (-bodyOffset.top + bodyOffset.height);
-        if (bottom < 200 &&
-            !isFeedCallInProgress && //if feed call in progress don't fire again
-            !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
-            setIsFeedCallInProgress(true);
-            //make feed call for page
-            console.log("making pagination call");
-            fetchFeedsFromServer();
-            console.log("reached bottom initiate page call");
-        }
-        setHideMenuOptionSlider(!hideMenuOptionSlider)
-        console.log(hideMenuOptionSlider);
-    };
-
-    //for hiding/showing header
-    const toggleHeader = (enable) => {
-        if (enable) {
-            removeBodyClass("scroll-down")
-            addBodyClass("scroll-up")
-        } else {
-            addBodyClass("scroll-down")
-            removeBodyClass("scroll-up")
-        }
-    }
 
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
@@ -88,14 +27,52 @@ const MainFeed = (props) => {
             clearAllFeeds();
             fetchFeedsFromServer();
         }
-        return () => {
-            toggleHeader(true)
-        }
     }, [])
+
+    // called from HOC Scroller on reaching bottom 
+    const validatePaginationCompletion = () => {
+        let feedsCount = props.feeds.length;
+        if (feedsCount % PageSize !== 0) {
+            setIsPaginationCompleted(true)
+        }
+    }
+
+    //scroll listener
+    useEffect(() => {
+        window.addEventListener("scroll", props.listener);
+        return () => {
+            window.removeEventListener("scroll", props.listener);
+        };
+    });
+
+    //listen for feed changes
+    useEffect(() => {
+        console.log(props.feeds);
+        //keep validating on every update of feeds
+        validatePaginationCompletion();
+    }, [props.feeds]);
+
+    useEffect(() => {
+        if (props.bottomOffset &&
+            props.bottomOffset < 200 &&
+            !isFeedCallInProgress && //if feed call in progress don't fire again
+            !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
+            onReachingBottom();
+        }
+    }, [props.bottomOffset])
+
+    // called from HOC Scroller on reaching bottom 
+    const onReachingBottom = () => {
+        setIsFeedCallInProgress(true);
+        //make feed call for page
+        console.log("making pagination call");
+        fetchFeedsFromServer();
+        console.log("reached bottom initiate page call");
+    }
 
     //fetch feeds from server
     const fetchFeedsFromServer = () => {
-        let pageQuery = `?limit=${props.pageSize}&page=${props.page}`;
+        let pageQuery = `?limit=${PageSize}&page=${props.page}`;
         fetchFeeds(pageQuery).then(res => {
             if (res.data.success === true) {
                 if (res.data.posts.length > 0) {
@@ -111,26 +88,6 @@ const MainFeed = (props) => {
             setIsFeedCallInProgress(false);
         })
     }
-
-    //scroll listener
-    useEffect(() => {
-        window.addEventListener("scroll", listener);
-        return () => {
-            window.removeEventListener("scroll", listener);
-        };
-    });
-
-    //listen for feed changes
-    useEffect(() => {
-        console.log(props.feeds);
-        //keep validating on every update of feeds
-        validatePaginationCompletion();
-    }, [props.feeds]);
-
-    const onFeedSelectionHandler = feed => {
-        console.log(feed.id);
-    }
-
 
     let feedContent = [];
     if (props.feeds) {
@@ -159,7 +116,7 @@ const MainFeed = (props) => {
                         {/* <RestrictedFeed /> */}
                         <PaginationLoader show={!isPaginationCompleted} />
                         {/* <!-- Menu bottom here --> */}
-                        <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={hideMenuOptionSlider} />
+                        <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
                         {/* <!-- //end Menu bottom here --> */}
                     </div>
                 </div>
@@ -184,7 +141,7 @@ const MainFeed = (props) => {
                     {feedContent}
                 </div>
                 <PaginationLoader show={!isPaginationCompleted} />
-                <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={hideMenuOptionSlider} />
+                <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
             </div>
         );
     }
@@ -193,7 +150,6 @@ const MainFeed = (props) => {
 const mapStateToProps = (state) => ({
     user: state.authReducer.user,
     feeds: state.feedReducer.feeds,
-    pageSize: state.feedReducer.pageSize,
     page: state.feedReducer.page,
     selectedFeed: state.feedReducer.selectedFeed
 });
@@ -201,13 +157,4 @@ const mapStateToProps = (state) => ({
 const mapStateToDispatch = (dispatch) => ({
 });
 
-export default connect(mapStateToProps, mapStateToDispatch)(MainFeed);
-
-
-const PaginationLoader = ({ show }) => {
-    return (
-        <div class="lps_loader_wrp" style={{ display: show ? "block" : "none" }}>
-            <img src={require("assets/images/icons/icn_refresh.svg")} alt="Loader" />
-        </div>
-    )
-}
+export default connect(mapStateToProps, mapStateToDispatch)(scroller(MainFeed));

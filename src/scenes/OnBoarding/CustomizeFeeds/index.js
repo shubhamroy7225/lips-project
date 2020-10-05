@@ -1,14 +1,12 @@
 import React from "react";
-import {useDispatch} from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
 import * as AuthActions from "redux/actions";
 
 export default () => {
    const history = useHistory();
-   const disptach = useDispatch();
    const completeOnBoard = () => {
-      disptach(AuthActions.completeOnBordingFlow());
+      AuthActions.completeOnBordingFlow();
       history.push("/main-feeds");
    };
   return (
