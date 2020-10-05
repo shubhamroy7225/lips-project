@@ -32,7 +32,6 @@ export const fetchedLikedFeedsSuccessfully = createAction('fetch most liked feed
 
 export const fetchedUserFeedsSuccessfully = createAction('fetch user feeds with success', (feeds) => (feeds));
 
-export const searchFeedsCompletedSuccessfully = createAction('search feeds completed with success', (feeds) => (feeds));
 
 export const fetchedOtherUserFeedsSuccessfully = createAction('fetch other user feeds with success', (feeds) => (feeds));
 
@@ -45,3 +44,9 @@ export const hideFeed = createAction('hide feed', (feed) => (feed));
 export const hideFeedsOnBlockingUser = createAction('hide feed on blocking user', (user) => (user));
 
 export const hideFeedsOnUnfollowingUser = createAction('hide feed on unfollow user', (user) => (user));
+
+export const searchFeedsCompletedSuccessfully = createAction('search feeds completed with success', (feeds) => (feeds));
+
+export const setSearchPage = createAction('set search page for feed pagination', (page) => (page));
+
+export const nextPageSearchFeeds = createAction('fetch search feeds for next page completed with success', (feeds) => (feeds));
