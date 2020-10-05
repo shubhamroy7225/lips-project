@@ -8,3 +8,9 @@ export const getUnreadCountSuccessful = createAction('Notification unread API fe
 export const clearNotifications = createAction('Notification clear successfully');
 export const markAsReadPending = createAction('Notification clear successfully');
 export const markAsReadSuccessful = createAction('Notification clear successfully', (res) => res);
+
+
+export const acceptRequestPending = createAction('Accept user follow request pending');
+export const acceptRequestSuccessful = createAction('Accept user follow request successful', (id) => (id));
+export const rejectRequestPending = createAction('Reject user follow request pending');
+export const rejectRequestSuccessful = createAction('Reject user follow request successful', (id) => (id));

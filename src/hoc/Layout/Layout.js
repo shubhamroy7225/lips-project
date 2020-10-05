@@ -5,15 +5,20 @@ import { withRouter } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
 import { markAsRead, getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
-import { acceptRequest, rejectRequest } from 'redux/actions/user/action';
+import { acceptRequest, rejectRequest } from 'redux/actions/notification/action';
 import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
 
 const Header = (props) => {
     const [modalShown, setModalShown] = useState(false);
+    const [marked, setMarked] = useState(false);
     const modalToggle = () => {
         setModalShown(!modalShown);
+        if (!marked && props.notifications.length) {
+            setMarked(true);
+            markAsRead(props.notifications[0].id);
+        }
     }
     console.log(props);
     useEffect(() => {
@@ -60,7 +65,7 @@ const Header = (props) => {
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
-                                        <span class="count_badge">{props.notificationCount}</span>
+                                        {props.notificationCount && <span class="count_badge">{props.notificationCount}</span>}
                                     </a>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
@@ -117,7 +122,8 @@ const mapStateToProps = (state) => {
         user: state.authReducer.user,
         token: state.authReducer.token,
         isOnBoard: state.authReducer.isOnBoard,
-        notificationCount: state.notificationReducer.notificationCount
+        notificationCount: state.notificationReducer.notificationCount,
+        notifications: state.notificationReducer.notifications
     }
 }
 
@@ -163,8 +169,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
 
     const handleRequest = (responeType, notification) => {
         if (responeType === "accept") acceptRequest(notification.follow.id);
-        else rejectRequest(notification.follow.id);
-        markAsRead(notification.id)
+        else rejectRequest(notification.follow.id);    
     };
     return (
         <>
@@ -178,7 +183,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                             <div className="lps_media_body">
                                 <h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5>
                                 {
-                                    (notification.type === NOTIFICATION_TYPES.requested_follow) ? <div className="btn_group">
+                                    (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested" ) ? <div className="btn_group">
                                         <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
                                         <button onClick={e => handleRequest("deny", notification)} role="button" className="theme_btn theme_outline_primary deny">deny</button>
                                     </div> : ""

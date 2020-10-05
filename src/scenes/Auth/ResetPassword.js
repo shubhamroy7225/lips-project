@@ -1,11 +1,9 @@
 import React, {useState,  useRef} from "react";
 import {Link, useHistory} from "react-router-dom";
 import SimpleReactValidator from 'simple-react-validator';
-import {useDispatch} from "react-redux";
 // import * as AuthActions from "redux/actions";
 import * as commonService from "utility/utility.js";
 export default () => {
-  const dispatch = useDispatch();
   const [user, setUser] = useState({
     password: "",
     password_confirmation: ""
