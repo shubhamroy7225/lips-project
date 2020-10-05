@@ -212,34 +212,7 @@ export const resetPassword = (credentials) => {
             return error;
         })
 };
-export const acceptRequest = (id) => {
-    commonService.isLoading.onNext(true);
-    acceptRequestPending();
-    return UserAPI.acceptRequest(id)
-        .then(response => {
-            commonService.isLoading.onNext(false);
-            acceptRequestSuccessful(response.data);
-            return response;
-        })
-        .catch(error => {
-            console.log(error);
-            return error;
-        })
-};
-export const rejectRequest = (id) => {
-    commonService.isLoading.onNext(true);
-    refreshTokenPending();
-    return UserAPI.rejectRequest(id)
-        .then(response => {
-            commonService.isLoading.onNext(false);
-            rejectRequestSuccessful(response.data);
-            return response;
-        })
-        .catch(error => {
-            console.log(error);
-            return error;
-        })
-};
+
 export const signOut = () => {
     storage.remove('token');
     storage.remove('user');
