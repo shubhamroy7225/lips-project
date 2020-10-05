@@ -25,7 +25,6 @@ const EditProfile = ({setIsEdit, user}) => {
   };
 
   const handleChange = (e) => {
-    debugger
     setUserForm({...userForm, [e.target.name]: e.target.value});
   };
 
@@ -97,8 +96,8 @@ const EditProfile = ({setIsEdit, user}) => {
                   </div>
                   <div className="mail_about_wrp">
                   </div>
-                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange}
-                   value={userForm.bio  ? userForm.bio : ""}>{userForm.bio}</textarea>
+                  <textarea className="input_modify txtarea_modify border_0 brds_0" defaultValue="foo" name="bio" rows="5" onChange={handleChange}
+                   value={userForm.bio || ""} />
 
                   <span className="textRange">0/50000</span>
                 </div>
