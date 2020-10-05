@@ -169,7 +169,7 @@ export const repostFeed = (feedId) => {
 }
 
 export const searchFeeds = (queryString) => {
-  return API.fetchFeeds(queryString)
+  return API.searchFeeds(queryString)
     .then(response => {
       searchFeedsCompletedSuccessfully({ feeds: response.data.posts });
       commonService.isLoading.onNext(false); // start loading

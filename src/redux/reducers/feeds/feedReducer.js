@@ -11,7 +11,6 @@ const updateObject = (oldState, updatedProps) => {
     }
 }
 
-
 export const initialState = {
     hashTags: [],
     showhashTags: [],
@@ -20,12 +19,12 @@ export const initialState = {
     userFeeds: [],
     count: 0,
     selectedFeed: null,
-    pageSize: 2,
     page: 1,
     modalType: FeedModalType.undefined,
     likedFeeds: [],
     otherUserFeeds: [],
     searchFeeds: [],
+    searchPage: 1,
 }
 
 export const feedReducer = createReducer({
@@ -56,6 +55,9 @@ export const feedReducer = createReducer({
     }),
     [actions.setPage]: (state, payload) => updateObject(state, {
         page: payload.page,
+    }),
+    [actions.setSearchPage]: (state, payload) => updateObject(state, {
+        searchPage: payload.page,
     }),
     [actions.likeFeedUpdate]: (state, payload) => {
         let { feedId } = payload;
@@ -161,6 +163,7 @@ export const feedReducer = createReducer({
         let { feed } = payload;
         let feeds = [...state.feeds];
         let feedIndex = feeds.findIndex(ele => ele.id === feed.id);
+        feedIndex >= 0 && feeds.splice(feedIndex, 1);
 
         let likedFeeds = [...state.likedFeeds];
         feedIndex = likedFeeds.findIndex(ele => ele.id === feed.id);

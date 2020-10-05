@@ -9,13 +9,17 @@ import * as actions from 'redux/actions';
 import TextItem from '../components/TextItem';
 import ImageFeed from '../components/ImageFeed';
 import TextFeed from '../components/TextFeed';
-import { FeedType } from 'utility/constants/constants';
+import { FeedType, PageSize } from 'utility/constants/constants';
 import * as commonService from "../../../utility/utility";
+import { setSearchPage } from 'redux/actions/feed';
+import PaginationLoader from '../components/PaginationLoader';
 
 const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
     const [isDataFetched, setIsDataFetched] = useState(false);
+    const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
+    const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
 
     useEffect(() => {
         // Update the document title using the browser API
@@ -29,22 +33,63 @@ const ExploreFeed = (props) => {
         }
     }, [])
 
+    //listen for feed changes
+    useEffect(() => {
+        console.log(props.feeds);
+        //keep validating on every update of feeds
+        validatePaginationCompletion();
+    }, [searchFeeds]);
+
+    const validatePaginationCompletion = () => {
+        let feedsCount = searchFeeds.length;
+        if (feedsCount % PageSize !== 0) {
+            setIsPaginationCompleted(true)
+        }
+    }
+
+    const onReachingBottom = () => {
+        setIsFeedCallInProgress(true);
+        //make feed call for page
+        console.log("making pagination call");
+        fetchFeedsFromServer();
+        console.log("reached bottom initiate page call");
+    }
+
     const toggleFeedLayoutMode = (feed) => {
         setGridLayoutMode(false)
     }
 
     //fetch feeds from server
     const fetchFeedsFromServer = (searchText) => {
-        commonService.isLoading.onNext(true);
-        let pageQuery = `?search=${searchText}` //&limit=${props.pageSize}&page=${props.page}`;
+        let pageQuery = "";
+        if (searchText.length > 0) {
+            pageQuery = `?search=${searchText}` //&limit=${props.pageSize}&page=${props.page}`;
+            pageQuery = pageQuery + `&limit=${PageSize}&page=${props.searchPage}`
+        } else {
+            pageQuery = `?limit=${PageSize}&page=${props.searchPage}`
+        }
+
         actions.searchFeeds(pageQuery).then(res => {
             setIsDataFetched(true);
             if (res.data.success === true) {
-                if (res.data.posts.length > 0) {
-                } else {
-                    //empty post means we have fetched all the posts
+                if (res.data.success === true) {
+                    if (res.data.posts.length > 0) {
+                        let updatedPage = props.searchPage + 1;
+                        setSearchPage({ page: updatedPage });
+                    } else {
+                        //empty post means we have fetched all the posts
+                        setIsPaginationCompleted(true);
+                    }
                 }
+                setIsFeedCallInProgress(false);
+            } else {
+                //error
+                setIsPaginationCompleted(true);
             }
+            // validatePaginationCompletion();
+        }).catch(error => {
+            setIsPaginationCompleted(true);
+            setIsFeedCallInProgress(false);
         })
     }
 
@@ -95,7 +140,7 @@ const ExploreFeed = (props) => {
                     </div>}
                 </div>
 
-
+                <PaginationLoader show={!isPaginationCompleted} />
                 <MenuOptionSlider />
             </div>
         </div>
@@ -104,6 +149,7 @@ const ExploreFeed = (props) => {
 
 const mapStateToProps = (state) => ({
     user: state.authReducer.user,
+    searchPage: state.feedReducer.searchPage,
 });
 
 const mapStateToDispatch = (dispatch) => ({

@@ -18,6 +18,8 @@ export const nextPageFeeds = createAction('fetch feeds for next page completed w
 
 export const setPage = createAction('set page for feed pagination', (page) => (page));
 
+export const setSearchPage = createAction('set search page for feed pagination', (page) => (page));
+
 export const likeFeedUpdate = createAction('update the feed response on successful like', (feedId) => (feedId));
 
 export const unlikeFeedUpdate = createAction('update the feed response on successful unlike', (feedId) => (feedId));
