@@ -12,8 +12,13 @@ import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility
 
 const Header = (props) => {
     const [modalShown, setModalShown] = useState(false);
+    const [marked, setMarked] = useState(false);
     const modalToggle = () => {
         setModalShown(!modalShown);
+        if (!marked && props.notifications.length) {
+            setMarked(true);
+            markAsRead(props.notifications[0].id);
+        }
     }
     console.log(props);
     useEffect(() => {
@@ -60,7 +65,7 @@ const Header = (props) => {
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
-                                        <span class="count_badge">{props.notificationCount}</span>
+                                        {props.notificationCount && <span class="count_badge">{props.notificationCount}</span>}
                                     </a>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
@@ -117,7 +122,8 @@ const mapStateToProps = (state) => {
         user: state.authReducer.user,
         token: state.authReducer.token,
         isOnBoard: state.authReducer.isOnBoard,
-        notificationCount: state.notificationReducer.notificationCount
+        notificationCount: state.notificationReducer.notificationCount,
+        notifications: state.notificationReducer.notifications
     }
 }
 
@@ -163,8 +169,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
 
     const handleRequest = (responeType, notification) => {
         if (responeType === "accept") acceptRequest(notification.follow.id);
-        else rejectRequest(notification.follow.id);
-        markAsRead(notification.id)
+        else rejectRequest(notification.follow.id);    
     };
     return (
         <>
