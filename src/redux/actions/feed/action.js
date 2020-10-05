@@ -2,7 +2,7 @@
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed } from 'redux/actions/feed';
+import { filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
 import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate, hideFeed } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
@@ -168,10 +168,14 @@ export const repostFeed = (feedId) => {
     })
 }
 
-export const searchFeeds = (queryString) => {
+export const searchFeeds = (queryString, isNextPage = false) => {
   return API.searchFeeds(queryString)
     .then(response => {
-      searchFeedsCompletedSuccessfully({ feeds: response.data.posts });
+      if (!isNextPage) {
+        searchFeedsCompletedSuccessfully({ feeds: response.data.posts });
+      } else {
+        nextPageSearchFeeds({ feeds: response.data.posts });
+      }
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {

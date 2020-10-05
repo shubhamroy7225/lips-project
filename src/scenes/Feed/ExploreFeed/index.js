@@ -13,6 +13,7 @@ import { FeedType, PageSize } from 'utility/constants/constants';
 import * as commonService from "../../../utility/utility";
 import { setSearchPage } from 'redux/actions/feed';
 import PaginationLoader from '../components/PaginationLoader';
+import scroller from '../Home/scroller';
 
 const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
@@ -20,16 +21,12 @@ const ExploreFeed = (props) => {
     const [isDataFetched, setIsDataFetched] = useState(false);
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
-
-    useEffect(() => {
-        // Update the document title using the browser API
-        console.log(props);
-    });
+    let searchText = null;
 
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
         if (searchFeeds.length === 0) {
-            fetchFeedsFromServer("");
+            fetchFeedsFromServer("", props.searchPage);
         }
     }, [])
 
@@ -47,11 +44,36 @@ const ExploreFeed = (props) => {
         }
     }
 
+    //listen for feed changes
+    useEffect(() => {
+        console.log(props.feeds);
+        //keep validating on every update of feeds
+        validatePaginationCompletion();
+    }, [props.feeds]);
+
+    useEffect(() => {
+        if (props.bottomOffset &&
+            props.bottomOffset < 200 &&
+            !isFeedCallInProgress && //if feed call in progress don't fire again
+            !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
+            onReachingBottom();
+        }
+    }, [props.bottomOffset])
+
+    //scroll listener
+    useEffect(() => {
+        window.addEventListener("scroll", props.listener);
+        return () => {
+            window.removeEventListener("scroll", props.listener);
+        };
+    });
+
+    // called on reaching bottom 
     const onReachingBottom = () => {
         setIsFeedCallInProgress(true);
         //make feed call for page
         console.log("making pagination call");
-        fetchFeedsFromServer();
+        fetchFeedsFromServer(searchText, props.searchPage);
         console.log("reached bottom initiate page call");
     }
 
@@ -60,16 +82,21 @@ const ExploreFeed = (props) => {
     }
 
     //fetch feeds from server
-    const fetchFeedsFromServer = (searchText) => {
+    const fetchFeedsFromServer = (searchText, page) => {
         let pageQuery = "";
-        if (searchText.length > 0) {
+        let isNextPage = page > 1 ? true : false
+        if (searchText && searchText.length > 0) {
             pageQuery = `?search=${searchText}` //&limit=${props.pageSize}&page=${props.page}`;
-            pageQuery = pageQuery + `&limit=${PageSize}&page=${props.searchPage}`
+            pageQuery = pageQuery + `&limit=${PageSize}&page=${page}`
         } else {
-            pageQuery = `?limit=${PageSize}&page=${props.searchPage}`
+            pageQuery = `?limit=${PageSize}&page=${page}`
         }
 
-        actions.searchFeeds(pageQuery).then(res => {
+        if (page === 1) { //when doing page 1 call - reset the pagination flag 
+            setIsPaginationCompleted(false);
+        }
+
+        actions.searchFeeds(pageQuery, isNextPage).then(res => {
             setIsDataFetched(true);
             if (res.data.success === true) {
                 if (res.data.success === true) {
@@ -82,6 +109,7 @@ const ExploreFeed = (props) => {
                     }
                 }
                 setIsFeedCallInProgress(false);
+
             } else {
                 //error
                 setIsPaginationCompleted(true);
@@ -93,9 +121,12 @@ const ExploreFeed = (props) => {
         })
     }
 
-    const submitHandler = (searchText) => {
-        fetchFeedsFromServer(searchText);
+    const submitHandler = (searchTxt) => {
+        searchText = searchTxt
+        setSearchPage({ page: 1 })
+        fetchFeedsFromServer(searchText, 1);
     }
+
     let gridFeedContent = [];
     let listFeedContent = [];
     searchFeeds.forEach(feed => {
@@ -155,4 +186,4 @@ const mapStateToProps = (state) => ({
 const mapStateToDispatch = (dispatch) => ({
 });
 
-export default connect(mapStateToProps, mapStateToDispatch)(withRouter(ExploreFeed));
+export default connect(mapStateToProps, mapStateToDispatch)(scroller(ExploreFeed));

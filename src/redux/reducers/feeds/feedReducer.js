@@ -138,6 +138,12 @@ export const feedReducer = createReducer({
     [actions.searchFeedsCompletedSuccessfully]: (state, payload) => updateObject(state, {
         searchFeeds: payload.feeds,
     }),
+    [actions.nextPageSearchFeeds]: (state, payload) => {
+        let updatedFeeds = [...state.searchFeeds, ...payload.feeds];
+        return updateObject(state, {
+            searchFeeds: updatedFeeds,
+        })
+    },
     [actions.addCreatedFeed]: (state, payload) => {
         let { feed } = payload;
         let feeds = [...state.feeds];

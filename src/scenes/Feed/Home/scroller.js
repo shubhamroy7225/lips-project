@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useRef, useState } from 'react';
+import React, { Component, createRef, useEffect, useRef, useState } from 'react';
 
 
 const addBodyClass = className => document.body.classList.add(className);
@@ -14,9 +14,7 @@ const scroller = (WrappedComponent) => {
         const [, setScrollX] = useState(bodyOffset.left);
         const [, setScrollDirection] = useState();
         const [hideMenuOptionSlider, setHideMenuOptionSlider] = useState(false);
-
-        const ref = useRef(null);
-
+        const [bottomOffset, setBottomOffset] = useState(null);
 
         //scroll listener
         //detecting bottom to initiate pagination
@@ -38,11 +36,7 @@ const scroller = (WrappedComponent) => {
 
             let bottom = document.body.scrollHeight - (-bodyOffset.top + bodyOffset.height);
             console.log(bottom);
-            if (bottom < 200 &&
-                !ref.isFeedCallInProgress && //if feed call in progress don't fire again
-                !ref.isPaginationCompleted) { //check if all the feeds are fetched - don't fire
-                ref.onReachingBottom();
-            }
+            setBottomOffset(bottom);
             setHideMenuOptionSlider(!hideMenuOptionSlider)
         };
 
@@ -57,11 +51,7 @@ const scroller = (WrappedComponent) => {
             }
         }
 
-        const refHandler = (compRef) => {
-            ref = compRef;
-        }
-
-        return <WrappedComponent ref={refHandler} {...props} toggleHeader={toggleHeader} listener={listener} />;
+        return <WrappedComponent {...props} bottomOffset={bottomOffset} toggleHeader={toggleHeader} listener={listener} />;
     }
 }
 

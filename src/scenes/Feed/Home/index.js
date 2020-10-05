@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
 import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
@@ -16,21 +16,9 @@ import { clearAllFeeds, setPage } from 'redux/actions/feed';
 import scroller from './scroller';
 import PaginationLoader from '../components/PaginationLoader';
 
-const addBodyClass = className => document.body.classList.add(className);
-const removeBodyClass = className => document.body.classList.remove(className);
-
-
 const MainFeed = (props) => {
-    const [lastScrollTop, setLastScrollTop] = useState(0);
-    const [bodyOffset, setBodyOffset] = useState(
-        document.body.getBoundingClientRect()
-    );
-    const [scrollY, setScrollY] = useState(bodyOffset.top);
-    const [, setScrollX] = useState(bodyOffset.left);
-    const [, setScrollDirection] = useState();
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
-
     const selectedFeed = props.selectedFeed;
 
     //will mount and unmount - on unmount show the header if it's hidden
@@ -64,6 +52,15 @@ const MainFeed = (props) => {
         validatePaginationCompletion();
     }, [props.feeds]);
 
+    useEffect(() => {
+        if (props.bottomOffset &&
+            props.bottomOffset < 200 &&
+            !isFeedCallInProgress && //if feed call in progress don't fire again
+            !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
+            onReachingBottom();
+        }
+    }, [props.bottomOffset])
+
     // called from HOC Scroller on reaching bottom 
     const onReachingBottom = () => {
         setIsFeedCallInProgress(true);
@@ -72,7 +69,6 @@ const MainFeed = (props) => {
         fetchFeedsFromServer();
         console.log("reached bottom initiate page call");
     }
-
 
     //fetch feeds from server
     const fetchFeedsFromServer = () => {
