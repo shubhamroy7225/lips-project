@@ -10,6 +10,7 @@ import {useDispatch} from "react-redux";
 const EditProfile = ({setIsEdit, user}) => {
   const [userForm, setUserForm] = useState({...user});
   const [files, setFile] = useState({header_image: {}, photo_url: {}});
+  const [userBio, setUserBio] = useState({bio: ""})
 
   const handleFile = (e) => {
     let file = e.target.files[0];
@@ -25,12 +26,16 @@ const EditProfile = ({setIsEdit, user}) => {
   };
 
   const handleChange = (e) => {
+    setUserBio({...userBio, [e.target.name]: e.target.value })
     setUserForm({...userForm, [e.target.name]: e.target.value});
   };
 
   const updateUserProfile = (e) => {
-    const {bio, show_following, show_followers, header_image, photo_url} = userForm;
+    let bio = userBio.bio;
+    const {show_following, show_followers, header_image, photo_url} = userForm;
+    setUserForm({...userForm, ['bio']: userForm.bio});
     AuthActions.updateUser({user: {bio, show_following, show_followers, header_image, photo_url}}).then(res => {
+      debugger
       setIsEdit(false)
     });
   };
@@ -58,10 +63,10 @@ const EditProfile = ({setIsEdit, user}) => {
               <div className="lps_list">
                 <div className="lps_inner_wrp lps_pink_dashed">
                   <label htmlFor="file_input">
-                    <figure  className="lps_fig lps_fig90 add_image">
+                    <figure  className="lps_fig lps_fig90">
                       <input type="file" id="file_input" name="header_image" hidden onChange={handleFile}/>
                       {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" /> :
-                          (userForm.header_images && userForm.header_images.medium ? <img src={userForm.header_images.original} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
+                          (userForm.header_images && userForm.header_images.medium ? <img src={userForm.header_images.original} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" className="lps_img_fixed" />) }
                     </figure>
                   </label>
                 </div>
@@ -96,8 +101,8 @@ const EditProfile = ({setIsEdit, user}) => {
                   </div>
                   <div className="mail_about_wrp">
                   </div>
-                  <textarea className="input_modify txtarea_modify border_0 brds_0" defaultValue="foo" name="bio" rows="5" onChange={handleChange}
-                   value={userForm.bio || ""} />
+                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange}
+                   value={userForm.bio} />
 
                   <span className="textRange">0/50000</span>
                 </div>
