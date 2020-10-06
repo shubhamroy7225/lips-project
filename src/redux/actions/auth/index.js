@@ -36,3 +36,5 @@ export const acceptRequestPending = createAction('Accept user follow request pen
 export const acceptRequestSuccessful = createAction('Accept user follow request successful', (id) => (id));
 export const rejectRequestPending = createAction('Reject user follow request pending');
 export const rejectRequestSuccessful = createAction('Reject user follow request successful', (id) => (id));
+
+export const openLandingModel = createAction('One Time Model Open');

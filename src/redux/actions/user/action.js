@@ -14,7 +14,7 @@ import {
     forgotpasswordPending, authorizeUser, logout, completeOnBorading, changePrivacyPending,
     changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending,
     configPending, getUserPending, getUserSuccessful, getBlockUserPending, getBlockUserSuccessful,
-    unblockUserPending, unblockUserSuccessful
+    unblockUserPending, unblockUserSuccessful, openLandingModel
 } from 'redux/actions/auth';
 import { clearNotifications } from 'redux/actions/notification';
 import { hideFeedsOnBlockingUser, hideFeedsOnUnfollowingUser } from '../feed';
@@ -40,6 +40,11 @@ export const login = (credentials) => {
             return true
         })
 };
+
+export const openPageLandingModel = () => {
+    storage.set('isLandingModalOpen', true);
+    openLandingModel();
+}
 
 export const signup = (credentials) => {
     commonService.isLoading.onNext(true);

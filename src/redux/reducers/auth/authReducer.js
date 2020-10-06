@@ -5,6 +5,7 @@ const token = storage.get("token", null);
 const refresh_token = storage.get("refresh_token", null);
 const user = storage.get("user", null);
 const isOnBoard = storage.get("isOnBoard", null);
+const isLandingModalOpen = storage.get("isLandingModalOpen", null);
 
 const updateObject = (oldState, updatedProps) => {
     return {
@@ -17,6 +18,7 @@ export const initialState = {
     token: token,
     refresh_token: refresh_token,
     user: user,
+    isLandingModalOpen,
     isloading: false,
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
@@ -137,6 +139,7 @@ export const authReducer = createReducer({
                 user: { ...currentUser, privacy_settings: payload.privacy_settings }
             })
     },
-    [actions.fetchOtherUserSuccessful]: (state, payload) => updateObject(state, { otherUser: payload.user })
+    [actions.fetchOtherUserSuccessful]: (state, payload) => updateObject(state, { otherUser: payload.user }),
+    [actions.openLandingModel]: (state, payload) => updateObject(state, { isLandingModalOpen: true })
 
-}, initialState); // <-- This is the default state
+}, initialState); // <-- This is the default state 
