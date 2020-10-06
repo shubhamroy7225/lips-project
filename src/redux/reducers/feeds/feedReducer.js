@@ -19,6 +19,7 @@ export const initialState = {
     userFeeds: [],
     count: 0,
     selectedFeed: null,
+    pageSize: 20,
     page: 1,
     modalType: FeedModalType.undefined,
     likedFeeds: [],
