@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { setFeedModalType } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
 import * as actions from 'redux/actions';
+import { toastMsg } from 'utility/utility';
 
 const RepostModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
@@ -24,7 +25,11 @@ const RepostModal = ({ feed }) => {
 
     const repostFeed = () => {
         let feedId = selectedFeed.id;
-        actions.repostFeed(feedId);
+        actions.repostFeed(feedId).then(
+            res => {
+                toastMsg("resposted sucessfully!");
+            }
+        )
         closeModal();
     }
 

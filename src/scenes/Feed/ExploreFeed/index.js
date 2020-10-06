@@ -14,6 +14,11 @@ import * as commonService from "../../../utility/utility";
 import { setSearchPage } from 'redux/actions/feed';
 import PaginationLoader from '../components/PaginationLoader';
 import scroller from '../Home/scroller';
+import RepostModal from '../components/FeedModal/RepostModal';
+import TaggedModal from '../components/FeedModal/TaggedModal';
+import ReportModal from '../components/FeedModal/ReportModal';
+import SharedModal from '../components/FeedModal/SharedModal';
+import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 
 const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
@@ -28,6 +33,11 @@ const ExploreFeed = (props) => {
         if (searchFeeds.length === 0) {
             fetchFeedsFromServer("", props.searchPage);
         }
+
+        // on unmount ennsure the header is visible
+        return () => {
+            props.toggleHeader(true);
+        };
     }, [])
 
     //listen for feed changes
@@ -174,6 +184,15 @@ const ExploreFeed = (props) => {
                 <PaginationLoader show={!isPaginationCompleted} />
                 <MenuOptionSlider />
             </div>
+            {isMobile &&
+                <>
+                    <RepostModal />
+                    <TaggedModal />
+                    <ReportModal />
+                    <SharedModal />
+                    <RemoveFeedModal />
+                </>
+            }
         </div>
     );
 }
