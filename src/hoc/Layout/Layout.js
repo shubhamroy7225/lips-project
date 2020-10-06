@@ -9,6 +9,7 @@ import { acceptRequest, rejectRequest } from 'redux/actions/notification/action'
 import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
+import moment from "moment";
 
 const Header = (props) => {
     const [modalShown, setModalShown] = useState(false);
@@ -150,6 +151,19 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
 
         }
     }, [loaded]);
+
+    const getCreateAt = (notification) => {        
+        let time = moment(notification.created_at);
+        if (moment().diff(time, "hours") < 12) { 
+            let date = moment(notification.created_at, "YYYY-MM-DDTHH:mm:ss.SSSSZ")
+            var fromNow = date.fromNow();
+            return   `${fromNow} , at ${time.format("hh:mm A")}`;
+        }else{
+            let date = moment(notification.created_at, "YYYY-MM-DDTHH:mm:ss.SSSSZ")
+            return   `${date.format("MM-DD-YYYY")} , at ${time.format("hh:mm A")}`;
+        }
+    }
+    
     const loadMore = () => {
         let tempParams = {...params};
         tempParams.page +=1;
@@ -189,7 +203,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                                     </div> : ""
                                 }
 
-                                <span className="durations">1 minute ago</span>
+                                <span className="durations">{getCreateAt(notification)}</span>
                             </div>
                         </div>
                     </li>
