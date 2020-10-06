@@ -18,7 +18,8 @@ export {
     fetchUser,
     config,
     blockUser,
-    unfollowUser
+    unfollowUser,
+    openPageLandingModel
 } from './user/action';
 
 export {
