@@ -165,18 +165,22 @@ export const feedReducer = createReducer({
         })
     },
     [actions.hideFeed]: (state, payload) => {
-        debugger;
         let { feed } = payload;
         let feeds = [...state.feeds];
         let feedIndex = feeds.findIndex(ele => ele.id === feed.id);
         feedIndex >= 0 && feeds.splice(feedIndex, 1);
+
+        let searchFeeds = [...state.searchFeeds];
+        feedIndex = searchFeeds.findIndex(ele => ele.id === feed.id);
+        feedIndex >= 0 && searchFeeds.splice(feedIndex, 1);
 
         let likedFeeds = [...state.likedFeeds];
         feedIndex = likedFeeds.findIndex(ele => ele.id === feed.id);
         feedIndex >= 0 && likedFeeds.splice(feedIndex, 1);
         return updateObject(state, {
             feeds: feeds,
-            likedFeeds: likedFeeds
+            likedFeeds: likedFeeds,
+            searchFeeds: searchFeeds
         })
     },
     [actions.hideFeedsOnBlockingUser]: (state, payload) => {
