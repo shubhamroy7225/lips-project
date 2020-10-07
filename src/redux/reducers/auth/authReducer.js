@@ -63,7 +63,7 @@ export const authReducer = createReducer({
         updateObject(state, { isloading: true }),
     [actions.resetpasswordSuccessful]: (state, payload) => {
         return updateObject(state, {
-            isloading: false
+            isloading: false, payload
         })
     },
     [actions.deleteuserPending]: (state) =>
