@@ -28,8 +28,9 @@ const EditProfile = ({setIsEdit, user}) => {
   };
 
   const updateUserProfile = (e) => {
-    if (!userForm.bio) userForm.bio = "";
-    const {bio, show_following, show_followers, header_image, photo_url} = userForm;
+    let tempUser = {...userForm}
+    if (!tempUser.bio) delete tempUser.bio;
+    const {bio, show_following, show_followers, header_image, photo_url} = tempUser;
     AuthActions.updateUser({user: {bio, show_following, show_followers, header_image, photo_url}}).then(res => {
       setIsEdit(false)
     });
