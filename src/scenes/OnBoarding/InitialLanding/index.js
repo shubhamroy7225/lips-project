@@ -1,12 +1,9 @@
 import React from "react";
 import { isMobile } from "react-device-detect";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
 import AddToHome from "scenes/components/AddToHome";
 
 export default () => {
-   const {isModel, count} = useSelector(state => state.authReducer);
-   
    return (
       <>
          <div id="wrap" className="mt_0">
