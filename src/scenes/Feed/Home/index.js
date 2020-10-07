@@ -45,6 +45,13 @@ const MainFeed = (props) => {
         };
     });
 
+    // on unmount ennsure the header is visible
+    useEffect(() => {
+        return () => {
+            props.toggleHeader(true);
+        };
+    }, []);
+
     //listen for feed changes
     useEffect(() => {
         console.log(props.feeds);
