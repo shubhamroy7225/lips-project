@@ -219,13 +219,18 @@ export const config = (credentials) => {
 //
 export const resetPassword = (credentials) => {
     commonService.isLoading.onNext(true);
-    resetpasswordPending();
+    store.dispatch(resetpasswordPending());
     return API.resetPassword(credentials)
-        .then(response => {
-            commonService.isLoading.onNext(false);
-            return true;
+    .then(response => {
+        commonService.isLoading.onNext(false);
+        if (response.data.error) {
+            toastMsg(response.data);
+        } else {
+            toastMsg("Your Password has been reset successfully")
+        }
 
-        })
+        return response.data;
+    })
         .catch(error => {
             console.log(error);
             // errorHandler(error);
