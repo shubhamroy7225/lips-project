@@ -3,7 +3,9 @@ import { isMobile } from "react-device-detect";
 import { Link } from "react-router-dom";
 import AddToHome from "scenes/components/AddToHome";
 
+import { useSelector } from "react-redux";
 export default () => {
+   const { user} = useSelector(state => state.authReducer);
    return (
       <>
          <div id="wrap" className="mt_0">
@@ -63,8 +65,8 @@ export default () => {
                         <div className="pos_wrp">
                            <Link to="/login" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase lps_mb10 W-50P">
                               Sign in</Link>
-                           <Link to="/customize-tags" className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">
-                              Just Browse</Link>
+                           <Link to={user ? "/customize-tags" : "/main-feeds"} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">
+                              Just Browse</Link> 
                            <p className="btm_links mt_25 text_white">
                               You must be 18 or older to use Lips
                             </p>

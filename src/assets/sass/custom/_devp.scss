@@ -66,6 +66,7 @@
 .hashtag{
   text-align: left;
 }
+
 header.main_header .lps_dropdown .lps_dropdown-menu.notification-dropdown {
   overflow-y: auto !important;
   max-height: calc(100vh - 100px);
@@ -80,4 +81,7 @@ header.main_header .lps_dropdown .lps_dropdown-menu.notification-dropdown {
   img.img_cover {
     object-fit: cover;
   }
+}
+.heightAuto {
+  height: auto !important;
 }

@@ -18,9 +18,9 @@ const Header = (props) => {
         setModalShown(!modalShown);
         if (!marked && props.notifications.length) {
             setMarked(true);
-            markAsRead(props.notifications[0].id);
+            markAsRead(props.notifications[props.notifications.length - 1].id);
         }
-    }
+    };
     console.log(props);
     useEffect(() => {
         if (window.$) {
@@ -66,9 +66,9 @@ const Header = (props) => {
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
-                                        {props.notificationCount && <span class="count_badge">{props.notificationCount}</span>}
+                                        {parseInt(props.notificationCount) ? <span class="count_badge">{props.notificationCount}</span> : ""}
                                     </a>
-                                    <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
+                                    <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list heightAuto ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
                                 </li>
                             </ul>
@@ -188,7 +188,8 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
     return (
         <>
         {
-            notifications && notifications.map((notification, index) =>
+            !notifications.length ?  <li className="list-group-item"><span className="durations text-align-center">There are no notifications!</span></li> :
+            notifications.map((notification, index) =>
                     <li key={`noti_${index}`} className="list-group-item">
                         <div className="lps_media">
                             <figure className="lps_fig lps_fig_circle">
