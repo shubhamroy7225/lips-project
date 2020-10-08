@@ -60,7 +60,7 @@ export const routes = {
 
 };
 
-export const PageSize = 20
+export const PageSize = 15
 
 export const ApprovalStatus = {
     not_submitted: "not_submitted",

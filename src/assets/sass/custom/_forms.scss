@@ -1,5 +1,7 @@
-*, *::before, *::after {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 .form_group_modify {
   margin-bottom: 15px;
@@ -8,63 +10,76 @@
   }
 }
 .input_modify {
-    font-weight: 400;
-    width: 100%;
-    height: 52px;
-    border-radius: 5px;
-    padding: 10px 16px;
-    font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  height: 52px;
+  border-radius: 5px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: $regular;
+  letter-spacing: 0.16px;
+  line-height: 1.33;
+  display: block;
+  background-color: $white;
+  color: $brand-secondary;
+  border: 1px solid $input-border;
+  background-clip: padding-box;
+  -webkit-transition: border-color 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  &:focus,
+  &:active {
+    border-color: $brand-primary !important;
+  }
+  &::placeholder {
+    color: $gray-900;
     font-weight: $regular;
-    letter-spacing: 0.16px;
-    line-height: 1.33;
-    display: block;
-    background-color: $white;
-    color: $brand-secondary;
-    border: 1px solid $input-border;
-    background-clip: padding-box;
-    -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    &:focus, &:active {
-        border-color: $brand-primary !important;
+  }
+  &::-webkit-input-placeholder {
+    color: $gray-900;
+    font-weight: $regular;
+  }
+  &::-moz-placeholder {
+    color: $gray-900;
+    font-weight: $regular;
+  }
+  &.txtarea_modify {
+    height: auto;
+    overflow: auto;
+    resize: vertical;
+  }
+  &.input_border_btm {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+    height: 45px;
+  }
+  &.focus-visible {
+    &:focus,
+    &:active {
+      border-bottom-color: $brand-primary !important;
     }
-    &::placeholder {
-      color: $gray-900;
-      font-weight: $regular;
+  }
+  &.input_brdrBtnmP {
+    border: 0;
+    border-bottom: 1px solid $brand-primary;
+    background-color: transparent;
+    padding-left: 0;
+    &:focus,
+    &:active {
+      border-bottom-color: $white;
     }
-    &::-webkit-input-placeholder {
-      color: $gray-900;
-      font-weight: $regular;
-    }
-    &::-moz-placeholder {
-      color: $gray-900;
-      font-weight: $regular;
-    }
-    &.txtarea_modify {
-      height: auto;
-      overflow: auto;
-      resize: vertical;
-    }
-    &.input_border_btm {
-      border-top: 0;
-      border-left: 0;
-      border-right: 0;
-      border-radius: 0;
-      padding-left: 0;
-      padding-bottom: 0;
-      height: 45px;
-    }
-    &.focus-visible {
-      &:focus, &:active {
-        border-bottom-color: $brand-primary !important;
-      }
-    }
+  }
 }
 .select_modify {
   min-height: 30px;
   border-radius: 0;
   appearance: none;
-  background-image: image_url('sort-down.svg');
+  background-image: image_url("sort-down.svg");
   background-repeat: no-repeat;
   background-size: 15px;
   background-position: 93% center;
@@ -84,13 +99,13 @@
   }
   &.select_clrs {
     border-color: $brand-primary;
-    background-image: image_url('down-arrow-pink.png');
+    background-image: image_url("down-arrow-pink.png");
     min-width: 160px;
     height: 48px;
   }
-  &.select_xs{
-      width: 50px;
-      height: 40px;
+  &.select_xs {
+    width: 50px;
+    height: 40px;
   }
 }
 .label_modify {
@@ -103,56 +118,56 @@
 }
 /**** Radio css here ****/
 .lps_cont_rdo {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  input {
+    position: absolute;
+    opacity: 0;
     cursor: pointer;
-    font-size: 15px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-      }
-  } 
-  .lps_checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: $white;
-    border-radius: 50%;
-    border: 1px solid $bg_grayCCC;
+  }
 }
-  .lps_cont_rdo:hover input ~ .lps_checkmark {
-    background-color: #ccc;
-  }
-  .lps_cont_rdo input:checked ~ .lps_checkmark {
-    background-color: $white;
+.lps_checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: $white;
+  border-radius: 50%;
+  border: 1px solid $bg_grayCCC;
 }
-  .lps_checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  .lps_cont_rdo input:checked ~ .lps_checkmark:after {
-    display: block;
-  }
-  .lps_cont_rdo .lps_checkmark:after {
-    top: 3.3px;
-    left: 3.3px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: $brand-secondary;
-  }
-  /**** // Radio css here ****/
-  /**** Input Checkbox css here ****/
+.lps_cont_rdo:hover input ~ .lps_checkmark {
+  background-color: #ccc;
+}
+.lps_cont_rdo input:checked ~ .lps_checkmark {
+  background-color: $white;
+}
+.lps_checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.lps_cont_rdo input:checked ~ .lps_checkmark:after {
+  display: block;
+}
+.lps_cont_rdo .lps_checkmark:after {
+  top: 3.3px;
+  left: 3.3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: $brand-secondary;
+}
+/**** // Radio css here ****/
+/**** Input Checkbox css here ****/
 .lps_cont_check {
   display: block;
   position: relative;
@@ -184,7 +199,7 @@
   background-color: #ccc;
 }
 .lps_cont_check input:checked ~ .lps_Checkmark {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 .lps_Checkmark:after {
   content: "";
@@ -205,30 +220,30 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-  /**** // Input checkbox css here ****/
-  /**** Toggle switch css here ****/
-  .lps_switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  .lps_switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  .lps_int_slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: transparent;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border: 1px solid $brand-primary;
+/**** // Input checkbox css here ****/
+/**** Toggle switch css here ****/
+.lps_switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.lps_switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.lps_int_slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border: 1px solid $brand-primary;
 }
 .lps_int_slider:before {
   position: absolute;
@@ -237,76 +252,77 @@
   width: 26px;
   left: 4px;
   bottom: 3px;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   background-color: transparent;
   border: 1px solid $brand-primary;
 }
-  input:checked + .lps_int_slider {
-    background-color: $brand-primary;
-  }
-  input:focus + .lps_int_slider {
-    box-shadow: 0 0 1px $brand-primary;
-  }
-  input:checked + .lps_int_slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-    background-color: $white;
-  }
-  .lps_int_slider.round {
-    border-radius: 34px;
-  }
-  .lps_int_slider.round:before {
-    border-radius: 50%;
-  }
-  /**** // Toggle switch css here ****/
-  .lps_form_wrp {
-    width: 100%;
-    .input_modify {
-      background-color: transparent;
-      border-bottom-color: $brand-secondary;
-      border-radius: 0;
-      border-top: 0;
-      border-left: 0;
-      border-right: 0;
-      padding-left: 0;
+input:checked + .lps_int_slider {
+  background-color: $brand-primary;
+}
+input:focus + .lps_int_slider {
+  box-shadow: 0 0 1px $brand-primary;
+}
+input:checked + .lps_int_slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background-color: $white;
+}
+.lps_int_slider.round {
+  border-radius: 34px;
+}
+.lps_int_slider.round:before {
+  border-radius: 50%;
+}
+/**** // Toggle switch css here ****/
+.lps_form_wrp {
+  width: 100%;
+  .input_modify {
+    background-color: transparent;
+    border-bottom-color: $brand-secondary;
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-left: 0;
+    font-weight: 300;
+    font-size: 15px;
+    &::placeholder {
       font-weight: 300;
-      font-size: 15px;
-      &::placeholder {
-        font-weight: 300;
-      }
-      &::-webkit-input-placeholder {
-        font-weight: 300;
-      }
-      &::-moz-placeholder{
-        font-weight: 300;
-      }
-      &:focus, &:active {
-        border-bottom-color: $brand-primary !important;
-      }
     }
-    .pos_wrp {
-      text-align: center;
-      display: block;
-      margin-top: 120px;
-      .pos_link {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    &::-webkit-input-placeholder {
+      font-weight: 300;
+    }
+    &::-moz-placeholder {
+      font-weight: 300;
+    }
+    &:focus,
+    &:active {
+      border-bottom-color: $brand-primary !important;
     }
   }
-  .pos_link {
-    width: 75px;
-    height: 75px;
-    line-height: 75px;
+  .pos_wrp {
     text-align: center;
-    display: inline-block;
-    border: 1px solid $brand-primary;
-    border-radius: 50%;
-    color: $brand-primary;
-    margin-bottom: 15px;
+    display: block;
+    margin-top: 120px;
+    .pos_link {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+.pos_link {
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid $brand-primary;
+  border-radius: 50%;
+  color: $brand-primary;
+  margin-bottom: 15px;
 }
 .lps_bg_txt_white {
   height: 100%;
@@ -322,7 +338,8 @@
     padding-right: 10px;
     color: $white;
     height: 38px;
-    &:focus, &:active {
+    &:focus,
+    &:active {
       border-bottom-color: $brand-secondary !important;
     }
     &::placeholder {
@@ -333,7 +350,7 @@
       font-weight: 300;
       color: $white;
     }
-    &::-moz-placeholder{
+    &::-moz-placeholder {
       font-weight: 300;
       color: $white;
     }
@@ -349,7 +366,8 @@
   .lps_form_wrp {
     .input_modify {
       border-bottom-color: $brand-primary;
-      &:focus, &:active {
+      &:focus,
+      &:active {
         border-bottom-color: $white !important;
       }
     }
@@ -366,13 +384,13 @@
     border: 1px solid $brand-primary;
     border-radius: 3px;
     transition: 0.3s ease-in-out;
- }
- .lps_cont_check:hover input ~ .lps_Checkmark {
-  background-color: transparent;
   }
- .lps_cont_check input:checked ~ .lps_Checkmark {
-  background-color: $brand-primary;
-  transition: 0.3s ease-in-out;
+  .lps_cont_check:hover input ~ .lps_Checkmark {
+    background-color: transparent;
+  }
+  .lps_cont_check input:checked ~ .lps_Checkmark {
+    background-color: $brand-primary;
+    transition: 0.3s ease-in-out;
   }
   .lps_cont_check input:checked ~ .lps_Checkmark:after {
     border-color: $brand-secondary;
@@ -409,7 +427,7 @@
     .lps_fig {
       width: 140px;
     }
-    &.owl-theme{
+    &.owl-theme {
       .owl-dots {
         .owl-dot {
           span {
@@ -423,7 +441,8 @@
               border-color: $brand-primary;
             }
           }
-          &:hover,&:focus {
+          &:hover,
+          &:focus {
             span {
               background-color: $brand-primary;
               border-color: $brand-primary;
@@ -460,11 +479,11 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   padding: 35px 0;
 }
 .lps_search {

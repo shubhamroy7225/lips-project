@@ -1,4 +1,4 @@
-import React, { Component, createRef, useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 
 const addBodyClass = className => document.body.classList.add(className);
@@ -19,6 +19,7 @@ const scroller = (WrappedComponent) => {
         //scroll listener
         //detecting bottom to initiate pagination
         const listener = e => {
+
             setBodyOffset(document.body.getBoundingClientRect());
             setScrollY(-bodyOffset.top);
             setScrollX(bodyOffset.left);

@@ -23,7 +23,10 @@ export const initialState = {
     resetPasswordToken: null,
     isOnBoard: isOnBoard,
     otherUser: null,
-    blockedUsers: []
+    blockedUsers: [],
+    followers: [],
+    following: [],
+    isOpeningFollowers: false
 }
 
 export const authReducer = createReducer({
@@ -31,7 +34,7 @@ export const authReducer = createReducer({
         updateObject(state, { isloading: true }),
     [actions.loginSuccessful]: (state, payload) =>
         updateObject(state, {
-            isloading: false, user: payload ? payload.user : state.user,isOnBoard: true
+            isloading: false, user: payload ? payload.user : state.user, isOnBoard: true
         }),
     [actions.refreshTokenPending]: (state) =>
         updateObject(state, { isloading: true }),
@@ -91,17 +94,17 @@ export const authReducer = createReducer({
         })
     },
 
-     [actions.unblockUserPending]: (state) =>
-         updateObject(state, { isloading: true }),
-     [actions.unblockUserSuccessful]: (state, payload) => {
-         let {id} =  payload;
-         let userList = [...state.blockedUsers];
-         userList.splice(userList.findIndex(e => e.id === id), 1)
-         return updateObject(state, {
-             isloading: false,
-              blockedUsers: userList
-         })
-     },
+    [actions.unblockUserPending]: (state) =>
+        updateObject(state, { isloading: true }),
+    [actions.unblockUserSuccessful]: (state, payload) => {
+        let { id } = payload;
+        let userList = [...state.blockedUsers];
+        userList.splice(userList.findIndex(e => e.id === id), 1)
+        return updateObject(state, {
+            isloading: false,
+            blockedUsers: userList
+        })
+    },
 
     [actions.configPending]: (state) =>
         updateObject(state, { isloading: true }),
@@ -133,13 +136,56 @@ export const authReducer = createReducer({
             })
     },
     [actions.changePrivacySuccessful]: (state, payload) => {
-        const currentUser = {...state.user};
+        const currentUser = { ...state.user };
         return updateObject(state,
             {
                 user: { ...currentUser, privacy_settings: payload.privacy_settings }
             })
     },
     [actions.fetchOtherUserSuccessful]: (state, payload) => updateObject(state, { otherUser: payload.user }),
-    [actions.openLandingModel]: (state, payload) => updateObject(state, { isLandingModalOpen: true })
-
+    [actions.openLandingModel]: (state, payload) => updateObject(state, { isLandingModalOpen: true }),
+    [actions.addFollowers]: (state, payload) => {
+        const users = payload.users
+        return updateObject(state,
+            {
+                followers: users
+            })
+    },
+    [actions.addFollowingUsers]: (state, payload) => {
+        const users = payload.users
+        return updateObject(state,
+            {
+                following: users
+            })
+    },
+    [actions.appendFollowers]: (state, payload) => {
+        const users = payload.users
+        let updatedUsers = [...state.followers, ...users];
+        return updateObject(state,
+            {
+                followers: updatedUsers
+            })
+    },
+    [actions.appendFollowingUsers]: (state, payload) => {
+        const users = payload.users
+        let updatedUsers = [...state.following, ...users];
+        return updateObject(state,
+            {
+                following: updatedUsers
+            })
+    },
+    [actions.toggleFollowers]: (state, payload) => {
+        const enable = payload.enable
+        return updateObject(state,
+            {
+                isOpeningFollowers: enable
+            })
+    },
+    [actions.resetFollowersList]: (state, payload) => {
+        return updateObject(state,
+            {
+                followers: [],
+                following: []
+            })
+    },
 }, initialState); // <-- This is the default state 
