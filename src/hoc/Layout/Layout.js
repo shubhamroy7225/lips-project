@@ -18,7 +18,7 @@ const Header = (props) => {
         setModalShown(!modalShown);
         if (!marked && props.notifications.length) {
             setMarked(true);
-            markAsRead(props.notifications[0].id);
+            markAsRead(props.notifications[props.notifications.length - 1].id);
         }
     };
     console.log(props);
