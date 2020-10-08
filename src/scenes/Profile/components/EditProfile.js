@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 const EditProfile = ({setIsEdit, user}) => {
   const [userForm, setUserForm] = useState({...user});
   const [files, setFile] = useState({header_image: {}, photo_url: {}});
+  const [userBio, setUserBio] = useState({bio: ""})
 
   const handleFile = (e) => {
     let file = e.target.files[0];
@@ -24,6 +25,7 @@ const EditProfile = ({setIsEdit, user}) => {
   };
 
   const handleChange = (e) => {
+    setUserBio({...userBio, [e.target.name]: e.target.value })
     setUserForm({...userForm, [e.target.name]: e.target.value});
   };
 
@@ -32,6 +34,7 @@ const EditProfile = ({setIsEdit, user}) => {
     if (!tempUser.bio) delete tempUser.bio;
     const {bio, show_following, show_followers, header_image, photo_url} = tempUser;
     AuthActions.updateUser({user: {bio, show_following, show_followers, header_image, photo_url}}).then(res => {
+      debugger
       setIsEdit(false)
     });
   };
@@ -97,7 +100,9 @@ const EditProfile = ({setIsEdit, user}) => {
                   </div>
                   <div className="mail_about_wrp">
                   </div>
-                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange} value={userForm.bio}>{userForm.bio}</textarea>
+                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange}
+                   value={userForm.bio} />
+
                   <span className="textRange">0/50000</span>
                 </div>
               </div>
