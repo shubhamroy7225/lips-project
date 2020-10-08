@@ -19,7 +19,8 @@ export {
     config,
     blockUser,
     unfollowUser,
-    openPageLandingModel
+    openPageLandingModel,
+    sendApprovalCode
 } from './user/action';
 
 export {
