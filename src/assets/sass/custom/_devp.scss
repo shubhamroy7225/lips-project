@@ -73,3 +73,11 @@ header.main_header .lps_dropdown .lps_dropdown-menu.notification-dropdown {
 .text-align-center {
   text-align: center;
 }
+.lps_fig {
+  img.img_contain {
+    object-fit: contain;
+  }
+  img.img_cover {
+    object-fit: cover;
+  }
+}

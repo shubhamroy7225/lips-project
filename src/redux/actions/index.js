@@ -18,7 +18,9 @@ export {
     fetchUser,
     config,
     blockUser,
-    unfollowUser
+    unfollowUser,
+    openPageLandingModel,
+    sendApprovalCode
 } from './user/action';
 
 export {

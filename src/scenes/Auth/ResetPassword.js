@@ -1,7 +1,7 @@
 import React, {useState,  useRef} from "react";
 import {Link, useHistory} from "react-router-dom";
 import SimpleReactValidator from 'simple-react-validator';
-// import * as AuthActions from "redux/actions";
+import * as AuthActions from "redux/actions";
 import * as commonService from "utility/utility.js";
 export default () => {
   const [user, setUser] = useState({
@@ -22,23 +22,28 @@ export default () => {
     }}
   }));
   const [, forceUpdate] = useState();
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   let reset_password_token = commonService.getSearchParams(history, 'reset_password_token');
-  //   debugger
-  //   if (simpleValidator.current.allValid()) {
-  //     AuthActions.resetPassword({...user, reset_password_token}).then(res =>{
-  //       debugger
-  //       history.push("/");
-  //     });
-
-  //   } //check validations
-  //   else {
-  //     simpleValidator.current.showMessages(); //show validation messages
-  //     forceUpdate(1)
-  //   }
-  // };
+  
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (simpleValidator.current.allValid()) {
+    let reset_password_token = commonService.getSearchParams(history, 'reset_password_token');
+    
+    if (user.password === user.password_confirmation) {
+      var updatedUser = { ...user, reset_password_token }
+      AuthActions.resetPassword({user: updatedUser}).then(res => {
+        if (res.success === true) {
+          setUser({});
+          history.push("/login");
+        }
+      });
+    }
+  }
+  else {
+    simpleValidator.current.showMessages(); //show validation messages
+    forceUpdate(1)
+  }
+   
+  };
 
   
   const handleChange= (e) => {
@@ -51,7 +56,7 @@ export default () => {
             <div className="lps_container mt_0">
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
                 <div className="lps_form_wrp">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <article className="text_center lps_logo_center">
                       <a className="logo mb_0" href="#">
                         <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />

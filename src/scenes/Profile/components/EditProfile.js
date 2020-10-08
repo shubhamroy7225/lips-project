@@ -28,7 +28,9 @@ const EditProfile = ({setIsEdit, user}) => {
   };
 
   const updateUserProfile = (e) => {
-    const {bio, show_following, show_followers, header_image, photo_url} = userForm;
+    let tempUser = {...userForm}
+    if (!tempUser.bio) delete tempUser.bio;
+    const {bio, show_following, show_followers, header_image, photo_url} = tempUser;
     AuthActions.updateUser({user: {bio, show_following, show_followers, header_image, photo_url}}).then(res => {
       setIsEdit(false)
     });
@@ -59,8 +61,8 @@ const EditProfile = ({setIsEdit, user}) => {
                   <label htmlFor="file_input">
                     <figure  className="lps_fig lps_fig90">
                       <input type="file" id="file_input" name="header_image" hidden onChange={handleFile}/>
-                      {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" /> :
-                          (userForm.header_images && userForm.header_images.medium ? <img src={userForm.header_images.original} alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />) }
+                      {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" className="img_cover"/> :
+                          (userForm.header_images && userForm.header_images.medium ? <img src={userForm.header_images.original} className="img_cover" alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} className="img_contain" alt="Add Image" />) }
                     </figure>
                   </label>
                 </div>
