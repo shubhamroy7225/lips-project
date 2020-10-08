@@ -66,10 +66,22 @@
 .hashtag{
   text-align: left;
 }
+
 header.main_header .lps_dropdown .lps_dropdown-menu.notification-dropdown {
   overflow-y: auto !important;
   max-height: calc(100vh - 100px);
 }
 .text-align-center {
   text-align: center;
+}
+.lps_fig {
+  img.img_contain {
+    object-fit: contain;
+  }
+  img.img_cover {
+    object-fit: cover;
+  }
+}
+.heightAuto {
+  height: auto !important;
 }

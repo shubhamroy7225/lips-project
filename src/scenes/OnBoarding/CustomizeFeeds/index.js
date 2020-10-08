@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import * as AuthActions from "redux/actions";
-import { useSelector } from "react-redux";
 
 export default () => {
    const history = useHistory();
@@ -10,8 +9,6 @@ export default () => {
       AuthActions.completeOnBordingFlow();
       history.push("/main-feeds");
    };
-
-   const { token, userToken } = useSelector(state => state.authReducer);
 
   return (
     <div id="wrap" className="mt_0">
@@ -28,9 +25,7 @@ export default () => {
                     </h5>
                   </article>
                   <div className="pos_wrp onboarding_btm">
-                    {token ? 
                     <Link to="/favorite-tags" className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10 W-50P">Customize feed</Link>
-                    : null }
                     <button onClick={completeOnBoard} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">Auto-Generate</button>
                   </div>
               </div>

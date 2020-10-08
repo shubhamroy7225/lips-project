@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { routes } from 'utility/constants/constants';
 import { allowedToPost } from 'redux/actions/auth';
@@ -29,8 +29,13 @@ const PostApproval = (props) => {
                 history.push(routes.ROOT)
             }
         }
-
     }
+
+    useEffect(() => {
+        if (props.user.approval_status === ApprovalStatus.accepted) {
+            history.push(routes.CREATE);
+        }
+    }, props.user)
 
     const dismissApprovalForm = () => {
         history.push(routes.ROOT)

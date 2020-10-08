@@ -48,7 +48,7 @@ export const openPageLandingModel = () => {
 
 export const signup = (credentials) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(signupPending());
+    signupPending()
     return API.signup(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
@@ -158,12 +158,12 @@ export const unblockUser = (id) => {
 };
 
 export const fetchUser = () => {
-    store.dispatch(getUserPending());
+    getUserPending()
     return UserAPI.fetchUserData()
         .then(response => {
             commonService.isLoading.onNext(false);
             storage.set('user', response.data.user);
-            store.dispatch(getUserSuccessful(response.data));
+            getUserSuccessful(response.data)
             return response.data;
         })
         .catch(error => {
@@ -173,12 +173,12 @@ export const fetchUser = () => {
 };
 
 export const fetchBlockUser = () => {
-    store.dispatch(getBlockUserPending());
+    getBlockUserPending()
     return UserAPI.fetchBlockUser()
         .then(response => {
             commonService.isLoading.onNext(false);
             storage.set('user', response.data.users);
-            store.dispatch(getBlockUserSuccessful(response.data));
+            getBlockUserSuccessful(response.data)
             return response.data;
         })
         .catch(error => {
@@ -205,7 +205,7 @@ export const updateUser = (credentials) => {
 
 export const config = (credentials) => {
     commonService.isLoading.onNext(true);
-    store.dispatch(configPending());
+    configPending()
     return UserAPI.config(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
@@ -219,12 +219,17 @@ export const config = (credentials) => {
 //
 export const resetPassword = (credentials) => {
     commonService.isLoading.onNext(true);
-    resetpasswordPending();
+    resetpasswordPending()
     return API.resetPassword(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
-            return true;
+            if (response.data.error) {
+                toastMsg(response.data);
+            } else {
+                toastMsg("Your Password has been reset successfully")
+            }
 
+            return response.data;
         })
         .catch(error => {
             console.log(error);
@@ -239,7 +244,7 @@ export const signOut = () => {
     storage.remove('refresh_token');
     storage.remove('isOnBoard');
     clearNotifications();
-    store.dispatch(logout());
+    logout()
 
 };
 
@@ -253,6 +258,17 @@ export const unfollowUser = (user) => {
         .then(response => {
             hideFeedsOnUnfollowingUser({ user });
             commonService.isLoading.onNext(false);
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+            return error;
+        })
+};
+
+export const sendApprovalCode = (code) => {
+    return UserAPI.sendApprovalCode({ code: code })
+        .then(response => {
             return response;
         })
         .catch(error => {
