@@ -31,9 +31,8 @@ const ExploreFeed = (props) => {
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
         if (searchFeeds.length === 0) {
-            fetchFeedsFromServer("", props.searchPage);
+            fetchFeedsFromServer("", true);
         }
-
         // on unmount ennsure the header is visible
         return () => {
             props.toggleHeader(true);
@@ -83,7 +82,7 @@ const ExploreFeed = (props) => {
         setIsFeedCallInProgress(true);
         //make feed call for page
         console.log("making pagination call");
-        fetchFeedsFromServer(searchText, props.searchPage);
+        fetchFeedsFromServer(searchText, false);
         console.log("reached bottom initiate page call");
     }
 
@@ -92,14 +91,19 @@ const ExploreFeed = (props) => {
     }
 
     //fetch feeds from server
-    const fetchFeedsFromServer = (searchText, page) => {
+    const fetchFeedsFromServer = (searchText, isInitialFetch) => {
         let pageQuery = "";
-        let isNextPage = page > 1 ? true : false
-        if (searchText && searchText.length > 0) {
-            pageQuery = `?search=${searchText}` //&limit=${props.pageSize}&page=${props.page}`;
-            pageQuery = pageQuery + `&limit=${PageSize}&page=${page}`
+        let page = isInitialFetch ? 1 : props.searchPage
+        let isNextPage = page === 1 ? false : true
+        if (isInitialFetch) {
+            if (searchText && searchText.length > 0) {
+                pageQuery = `?search=${searchText}` //&limit=${props.pageSize}&page=${props.page}`;
+                pageQuery = pageQuery + `&limit=${PageSize}&page=${1}`
+            } else {
+                pageQuery = `?limit=${PageSize}&page=${1}`
+            }
         } else {
-            pageQuery = `?limit=${PageSize}&page=${page}`
+            pageQuery = `?${props.searchPage}`
         }
 
         if (page === 1) { //when doing page 1 call - reset the pagination flag 
@@ -111,15 +115,19 @@ const ExploreFeed = (props) => {
             if (res.data.success === true) {
                 if (res.data.success === true) {
                     if (res.data.posts.length > 0) {
-                        let updatedPage = props.searchPage + 1;
-                        setSearchPage({ page: updatedPage });
+                        let nextPage = res.data.nextPage; //next page url
+                        if (nextPage) {
+                            nextPage = nextPage.split("?")[1]; //only parse query string 
+                            setSearchPage({ page: nextPage }); //and store it in reducer
+                        } else {
+                            setIsPaginationCompleted(true); // if no next page then pagination is complete
+                        }
                     } else {
                         //empty post means we have fetched all the posts
-                        setIsPaginationCompleted(true);
+                        setIsPaginationCompleted(true);  // if post is empty then pagination is complete
                     }
                 }
                 setIsFeedCallInProgress(false);
-
             } else {
                 //error
                 setIsPaginationCompleted(true);
@@ -134,7 +142,7 @@ const ExploreFeed = (props) => {
     const submitHandler = (searchTxt) => {
         searchText = searchTxt
         setSearchPage({ page: 1 })
-        fetchFeedsFromServer(searchText, 1);
+        fetchFeedsFromServer(searchText, true);
     }
 
     let gridFeedContent = [];
