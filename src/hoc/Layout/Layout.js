@@ -68,7 +68,7 @@ const Header = (props) => {
                                         </span>
                                         {props.notificationCount && <span class="count_badge">{props.notificationCount}</span>}
                                     </a>
-                                    <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list ${modalShown ? "animated fadeInDown" : ""}`}>
+                                    <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list heightAuto ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
                                 </li>
                             </ul>
