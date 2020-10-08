@@ -38,3 +38,11 @@ export const rejectRequestPending = createAction('Reject user follow request pen
 export const rejectRequestSuccessful = createAction('Reject user follow request successful', (id) => (id));
 
 export const openLandingModel = createAction('One Time Model Open');
+
+export const addFollowers = createAction('addFollowers', (users) => (users));
+export const appendFollowers = createAction('adappend Followers', (users) => (users));
+export const addFollowingUsers = createAction('addFollowingUsers', (users) => (users));
+export const appendFollowingUsers = createAction('append following users', (users) => (users));
+
+export const toggleFollowers = createAction('toggle followers pop up flag to toggle pop up', (enable) => (enable));
+export const resetFollowersList = createAction('resetFollowersList');

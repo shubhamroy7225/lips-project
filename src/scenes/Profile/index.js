@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import MenuOptionSlider from 'scenes/Feed/components/MenuOptionSlider';
-import $, { trim } from 'jquery';
 import { isMobile } from 'react-device-detect';
+import MenuOptionSlider from 'scenes/Feed/components/MenuOptionSlider';
 import ImageFeed from 'scenes/Feed/components/ImageFeed';
 import TextFeed from 'scenes/Feed/components/TextFeed';
-import FollowerItem from './components/FollowerItem';
 import NonRegisteredView from 'scenes/NonRegisteredView';
 import EditProfile from "./components/EditProfile";
 import * as actions from 'redux/actions';
-
 import * as commonService from "utility/utility";
-import { FeedType, routes } from 'utility/constants/constants';
+import { FeedType, PageSize, routes } from 'utility/constants/constants';
 import ImageItem from 'scenes/Feed/components/ImageItem';
 import TextItem from 'scenes/Feed/components/TextItem';
 import ProfileHeader from './components/ProfileHeader';
 import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
 import SharedModal from 'scenes/Feed/components/FeedModal/SharedModal';
 import RemoveFeedModal from 'scenes/Feed/components/FeedModal/RemoveFeedModal';
+import UserListPopUp from './components/UserlistPopup';
+import { resetFollowersList } from "redux/actions/auth";
 
 const LoadingType = {
     undefined: "undefined",
@@ -30,31 +29,28 @@ const LoadingType = {
 const Profile = (props) => {
     const { userFeeds } = useSelector((state) => state.feedReducer)
     const { otherUserFeeds } = useSelector((state) => state.feedReducer)
-    const { user } = useSelector((state) => state.authReducer)
+    const { user, followers, following, isOpeningFollowers } = useSelector((state) => state.authReducer)
     const { otherUser } = useSelector((state) => state.authReducer)
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
     const [isEdit, setEdit] = useState(false)
     const [isOtherUser, setIsOtherUser] = useState(false)
     const [dataLoadedType, setDataLoadedType] = useState(LoadingType.undefined);
-
     const history = useHistory();
 
-    useEffect(() => {
-        $('.close_follow').on("click", function () {
-            $('.followers_wrp').addClass('close');
-            $('.followers_wrp').removeClass('open');
-            $('.followers_wrp_inner').toggleClass('animated fadeInUp');
-        });
-
-        $('.followers_trigger').on("click", function () {
-            $('.followers_wrp').removeClass('close');
-            $('.followers_wrp').addClass('open');
-            $('.followers_wrp_inner').toggleClass('animated fadeInUp');
-        });
-
-    }, [])
+    const [isFollowersPaginationCompleted, setIsFollowersPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
+    const [isFollowingPaginationCompleted, setIsFollowingPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
+    let followersPage = useRef(1)
+    let followingsPage = useRef(1)
 
     useEffect(() => {
+        followingsPage.current = 1;
+        followersPage.current = 1;
+
+        resetFollowersList(); //reset previous list if there is any
+
+        setIsFollowersPaginationCompleted(false)
+        setIsFollowingPaginationCompleted(false)
+
         let userName = props.match.params.id; // get user name from url - if searching directly for the profile
         let tempIsOtherUser = isOtherUser; // for local scope
 
@@ -77,6 +73,7 @@ const Profile = (props) => {
                     let userID = response.data.user.id;
                     setDataLoadedType(LoadingType.user);
                     let showPost = tempIsOtherUser ? response.data.user.show_post : true; //if isotheruser then check for response else show post of signed in user
+                    fetchAssociatedUsersDetails(tempIsOtherUser ? response.data.user : user)
                     if (showPost) {
                         if (tempIsOtherUser) {
                             actions.fetchOtherUserFeeds(userID)
@@ -96,7 +93,53 @@ const Profile = (props) => {
                     history.push(routes.ROOT)
                 }
             });
+    }, [props.match.params.id])
+
+    useEffect(() => {
+
     }, [])
+
+    const fetchAssociatedUsersDetails = (user) => {
+        // fetch followers and following users here
+        actions.fetchFollowers(user.id, followersPage.current, PageSize)
+            .then(response => {
+                if (response.data && response.data.followers.length < PageSize) {
+                    setIsFollowersPaginationCompleted(true)
+                }
+            })
+        actions.fetchFollowingUsers(user.id, followingsPage.current, PageSize)
+            .then(response => {
+                if (response.data && response.data.following.length < PageSize) {
+                    setIsFollowingPaginationCompleted(true)
+                }
+            })
+    }
+
+    //for pagination
+    const fetchNextFollowers = () => {
+        debugger;
+        let updatedUser = isOtherUser ? otherUser : user;
+        followersPage.current = followersPage.current + 1
+        actions.fetchFollowers(updatedUser.id, followersPage.current, PageSize)
+            .then(response => {
+                if (response.data && response.data.followers.length < PageSize) {
+                    setIsFollowersPaginationCompleted(true)
+                }
+            })
+    }
+
+    //for pagination
+    const fetchNextFollowingUsers = () => {
+        let updatedUser = isOtherUser ? otherUser : user;
+        followingsPage.current = followingsPage.current + 1
+        actions.fetchFollowingUsers(updatedUser.id, followingsPage.current, PageSize)
+            .then(response => {
+                if (response.data && response.data.following.length < PageSize) {
+                    setIsFollowingPaginationCompleted(true)
+                }
+            })
+    }
+
 
     const toggleFeedLayoutMode = (feed) => {
         setGridLayoutMode(false)
@@ -215,20 +258,19 @@ const Profile = (props) => {
                             <div class="bg_grayCCC lps_h_100 followers_wrp close">
                                 <div class="lps_inner_wrp lps_inner_content lps_h_100 bg_grayCCC followers_wrp_inner">
                                     <div class="lps_title_wrp text_center lps_pos_rltv">
-                                        <a class="lps_arrow_left close_follow" href="#">
+                                        <a class="lps_arrow_left close_follow">
                                             <img src={require("assets/images/icons/icn_close.png")} alt="Icon Arrow" class="lps_header_img" />
                                         </a>
                                         <div class="lps_txtFollow_center">
-                                            <span class="lps_sm_folow">Followers</span>
+                                            <span class="lps_sm_folow">{isOpeningFollowers ? "Followers" : "Following"}</span>
                                         </div>
                                     </div>
-                                    <div class="follow_overflow">
-                                        <FollowerItem />
-                                        <FollowerItem />
-                                        <FollowerItem />
-                                        <FollowerItem />
-                                        <FollowerItem />
-                                    </div>
+                                    <UserListPopUp followers={followers}
+                                        following={following}
+                                        fetchNextFollowers={fetchNextFollowers}
+                                        fetchNextFollowingUsers={fetchNextFollowingUsers}
+                                        isFollowersPaginationCompleted={isFollowersPaginationCompleted}
+                                        isFollowingPaginationCompleted={isFollowingPaginationCompleted} />
                                 </div>
                             </div>
                         </div>

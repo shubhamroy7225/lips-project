@@ -53,7 +53,7 @@ const StartApproval = ({ moveToNextStep }) => {
                     <div className="form_group_modify">
                         <input type="text"
                             name="accessCode"
-                            className="input_modify"
+                            className="input_modify input_brdrBtnmP"
                             placeholder="access code"
                             value={accessCode}
                             onBlur={() => simpleValidator.current.showMessageFor('accessCode')}
