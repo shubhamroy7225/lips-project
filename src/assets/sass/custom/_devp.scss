@@ -85,3 +85,10 @@ header.main_header .lps_dropdown .lps_dropdown-menu.notification-dropdown {
 .heightAuto {
   height: auto !important;
 }
+.lps_list_group span, .lps_list_group button {
+  font-size: 14px;
+  font-family: "Dosis", sans-serif !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}

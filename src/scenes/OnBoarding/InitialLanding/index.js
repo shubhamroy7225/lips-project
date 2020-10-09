@@ -27,7 +27,7 @@ export default () => {
                                           {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
                                        </figure>
                                     </div>
-                                    <h5>Discover Open & Honest Content</h5>
+                                    <h5>Discover Open &amp; Honest Content</h5>
                                  </div>
                               </div>
                               <div className="item">

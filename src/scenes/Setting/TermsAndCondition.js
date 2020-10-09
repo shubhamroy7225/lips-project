@@ -5,7 +5,7 @@ export default () => (
     <div id="wrap" className="mt_0">
       <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
         <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
-        <span className="lp_left_auto text_black">Terms And Conditions</span>
+        <span className="lp_left_auto text_black ft_Weight_500">Terms &amp; Conditions</span>
       </Link>
       <div className="top_text_wrp lps_bg_secondary">
     <p>
