@@ -1,11 +1,39 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link, useHistory } from "react-router-dom";
 import * as AuthActions from "redux/actions";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 const Setting = () => {
    const history = useHistory();
+   const [ModalOpen, setModalOpen] = useState(false);
    const logout = () => {
        AuthActions.signOut();
    };
+
+   const handleClose = ()=>{
+      setModalOpen(false)
+    }
+
+   const logoutConfirm = () => {
+      return (
+      confirmAlert({
+        message: 'Are you sure you want to Logout?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: logout,
+            className: "custom-ui"
+          },
+          {
+            label: 'No',
+            onClick: handleClose,
+            className: "close-custom-ui"
+          }
+        ]
+      })
+      
+      );
+    };
    return (
       <div id="wrap" className="mt_0">
          <div className="lps_container mt_0">
@@ -24,7 +52,7 @@ const Setting = () => {
                   <Link to="/settings/notification">Notifications</Link>
                </li>
                <li className="list-group-item">
-                  <Link to="#">Invite someone to lips</Link>
+                  <a href="emailto://" target="_blank">Invite someone to lips</a>
                </li>
                <li className="list-group-item lps_hrSep">
                   <Link to="/settings/community-guidelines">Community guidelines</Link>
@@ -36,7 +64,7 @@ const Setting = () => {
                   <Link to="/settings/privacy-policy">Privacy policy</Link>
                </li>
                <li className="list-group-item lps_hrSep">
-                  <Link to="/settings" onClick={logout}>Log out</Link>
+                  <Link to="/settings" onClick={logoutConfirm}>Log out</Link>
                </li>
                <li className="list-group-item">
                   <Link to="#">Need Help?</Link>

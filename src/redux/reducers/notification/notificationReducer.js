@@ -39,28 +39,24 @@ export const notificationReducer = createReducer({
     isloading: false, notificationCount: 0, notifications: [], count: 0
   }),
 
-  [actions.acceptRequestPending]: (state, payload) => updateObject(state, {
-    isloading: true
-  }),
+  [actions.acceptRequestPending]: (state, payload) => updateObject(state, {isloading: true}),
   [actions.acceptRequestSuccessful]: (state, payload) => {
-    notifications = [...state.notifications];  
-    index = notifications.findIndex(e => e.follow && (e.follow.id === payload.notification_id));
-    notifications[index].follow.status = "accepted";
+    updateNotifications(state, payload);
     return updateObject(state, {
-    isloading: false, notifications
+    isloading: false, notifications, count: state.count-1
   })},
-  [actions.rejectRequestPending]: (state, payload) => updateObject(state, {
-    isloading: false, notificationCount: 0, notifications: [], count: 0
-  }),
+  [actions.rejectRequestPending]: (state, payload) => updateObject(state, {}),
   [actions.rejectRequestSuccessful]: (state, payload) => {
-    notifications = [...state.notifications];  
-    index = notifications.findIndex(e => e.follow && (e.follow.id === payload.notification_id));
-    notifications[index].follow.status = "rejected";
+    updateNotifications(state, payload);
     return updateObject(state, {
-    isloading: false, notifications
+    isloading: false, notifications, count: state.count-1
   })},
 
 
 }, initialState); // <-- This is the default state
 
 
+const updateNotifications = (state, payload) => {
+  notifications = [...state.notifications];  
+    notifications.splice(notifications.findIndex(e => e.follow && (e.follow.id === payload.notification_id)), 1);
+}
