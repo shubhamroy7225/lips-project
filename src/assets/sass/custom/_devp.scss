@@ -95,3 +95,30 @@ header.main_header .lps_dropdown .lps_dropdown-menu.notification-dropdown {
 button{
   font-family: "Dosis", sans-serif !important;
 }
+
+.custom-ui {
+  justify-content: center !important;
+  background: #fd3398 !important ;
+  box-shadow: 0 20px 75px rgba(0, 0, 0, 0.23) !important;
+  color: #fff !important;
+  font-size: 15px !important;
+}
+
+.close-custom-ui {
+  justify-content: center !important;
+  box-shadow: 0 20px 75px rgba(0, 0, 0, 0.23) !important;
+  color: #fff !important;
+  font-size: 15px !important;
+}
+
+.react-confirm-alert-button-group {
+  justify-content: center !important;
+}
+
+.react-confirm-alert-body{
+  text-align: center !important;
+}
+
+.react-confirm-alert-overlay{
+  background:  rgba(0, 0, 0, 0.5) !important;
+}
