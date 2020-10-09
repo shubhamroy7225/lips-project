@@ -191,7 +191,7 @@ const Profile = (props) => {
             } else {
                 return (
                     <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
-                        <div class="lps_container bg_grayCCC">
+                        <div class="lps_container bg_grayCCC mt_0">
                             <ProfileHeader setEdit={setEdit}
                                 user={userInfo}
                                 isUserProfile={!isOtherUser} />
