@@ -27,6 +27,7 @@ export {
     setFavoriteAvoidTags,
     getUserHashTags,
     filterHashTags,
+    addSuggestedHashTag,
     fetchOtherUserFeeds,
     fetchUserFeeds,
     deleteFeed,
