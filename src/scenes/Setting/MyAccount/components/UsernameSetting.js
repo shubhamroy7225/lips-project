@@ -26,9 +26,9 @@ export default ({user}) => {
       <li className="list-group-item">
         <div className="lps_user_info">
           <p className="user_info_label">Username
-            <buttton className={`ml_5 lps_link ft_Weight_600 `}
-                     onClick={inputVisible}> {inputShown ? " Cancel" : " Change"}
-            </buttton> </p>
+            <span className={`ml_5 lps_link ft_Weight_600 ml_5`}
+                     onClick={inputVisible}> {inputShown ? " cancel" : " change"}
+            </span> </p>
           <div className="user_info_field">
             {inputShown ? <div>
               <input type="text" name="user_name" className="user_field" value={userForm.user_name || ""} onChange={handleChange} />

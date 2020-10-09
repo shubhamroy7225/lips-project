@@ -30,8 +30,8 @@ export default () => {
     e.preventDefault();
     if (simpleValidator.current.allValid()) {
       AuthActions.verifyUsername(user.user_name).then(res => {
-        delete user.confirm_password;
         var updatedUser = { ...user, session_info: { platform: 'web' } }
+        delete updatedUser.confirm_password;
         AuthActions.signup({ user: updatedUser }).then(res => {
           history.push("/terms-and-condition");
         });

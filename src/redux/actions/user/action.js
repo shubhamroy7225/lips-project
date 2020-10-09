@@ -241,7 +241,9 @@ export const signOut = () => {
     storage.remove('refresh_token');
     storage.remove('isOnBoard');
     clearNotifications();
-    logout()
+    if (logout()){
+        toastMsg("Logged out successfully")
+    }
 
 };
 
