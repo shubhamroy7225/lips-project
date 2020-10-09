@@ -39,7 +39,9 @@ export {
 
 export {
     fetchOtherUserData,
-    fetchUserByUserName
+    fetchUserByUserName,
+    fetchFollowers,
+    fetchFollowingUsers
 } from './auth/action';
 
 export {

@@ -1,15 +1,12 @@
 //import { AuthActionTypes } from './actionType';
 import axios from 'config';
-import errorHandler from "utility/errorHandler/errorHandler"
 import * as API from '../../../api/authAPI';
 import * as UserAPI from '../../../api/userAPI';
 import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
-import { routes } from '../../../utility/constants/constants';
 import * as commonService from "../../../utility/utility";
-import store from '../../store/store';
 import {
-    rejectRequestSuccessful, acceptRequestSuccessful, acceptRequestPending, refreshTokenPending,
+    refreshTokenPending,
     loginPending, loginSuccessful, signupPending, signupSuccessful, resetpasswordPending,
     forgotpasswordPending, authorizeUser, logout, completeOnBorading, changePrivacyPending,
     changePrivacySuccessful, updateuserPending, updateuserSuccessful, deleteuserPending,
