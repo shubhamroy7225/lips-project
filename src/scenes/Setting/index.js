@@ -13,8 +13,8 @@ const Setting = () => {
             <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
             <span className="lp_left_auto">Settings</span>
           </Link>
-            <ul className="lps_list_group lps_listN">
-               <li className="list-group-item">
+            <ul className="lps_list_group lps_listN mt_25">
+               <li className="list-group-item lps_hrSep">
                   <Link to="/settings/my-account">My account</Link>
                </li>
                <li className="list-group-item">
@@ -26,7 +26,7 @@ const Setting = () => {
                <li className="list-group-item">
                   <Link to="#">Invite someone to lips</Link>
                </li>
-               <li className="list-group-item">
+               <li className="list-group-item lps_hrSep">
                   <Link to="/settings/community-guidelines">Community guidelines</Link>
                </li>
                <li className="list-group-item">
@@ -35,7 +35,7 @@ const Setting = () => {
                <li className="list-group-item">
                   <Link to="/settings/privacy-policy">Privacy policy</Link>
                </li>
-               <li className="list-group-item" >
+               <li className="list-group-item lps_hrSep">
                   <Link to="/settings" onClick={logout}>Log out</Link>
                </li>
                <li className="list-group-item">
