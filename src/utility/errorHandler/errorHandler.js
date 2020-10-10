@@ -46,7 +46,7 @@ export default function errorHandler(error) {
             toastMsg(message, true);
             break;
         default:
-            toastMsg(message ? message : 'something went wrong', true);
+            toastMsg(message ? message : 'Something went wrong', true);
             break;
     }
     return Promise.reject(error.response);
