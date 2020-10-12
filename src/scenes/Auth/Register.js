@@ -28,9 +28,11 @@ export default () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let userData = {...user, user_name: user.user_name.toLowerCase()}
+
     if (simpleValidator.current.allValid()) {
-      AuthActions.verifyUsername(user.user_name).then(res => {
-        var updatedUser = { ...user, session_info: { platform: 'web' } }
+      AuthActions.verifyUsername(userData.user_name).then(res => {
+        var updatedUser = { ...userData, session_info: { platform: 'web' } }
         delete updatedUser.confirm_password;
         AuthActions.signup({ user: updatedUser }).then(res => {
           history.push("/terms-and-condition");

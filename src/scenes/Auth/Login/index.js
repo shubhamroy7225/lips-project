@@ -18,8 +18,10 @@ let LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let userData = {...user, user: user.user.toLowerCase()}
+
     if (simpleValidator.current.allValid()) {
-      var updatedUser = { ...user, session_info: { platform: 'web' } }
+      var updatedUser = { ...userData, session_info: { platform: 'web' } }
       AuthActions.login({ user: updatedUser }).then(res => {
         if (res) history.push("/");
       });
