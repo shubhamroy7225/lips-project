@@ -11,14 +11,14 @@ import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
 import moment from "moment";
 
-const Header = (props) => {
+const Header = ({notificationCount, notifications, count,  ...props}) => {
     const [modalShown, setModalShown] = useState(false);
     const [marked, setMarked] = useState(false);
     const modalToggle = () => {
         setModalShown(!modalShown);
-        if (!marked && props.notifications.length) {
+        if (!marked && notifications.length && notifications[count - 1]) {
             setMarked(true);
-            markAsRead(props.notifications[props.notifications.length - 1].id);
+            markAsRead(notifications[count-1].id);
         }
     };
     console.log(props);
@@ -66,7 +66,7 @@ const Header = (props) => {
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
-                                        {parseInt(props.notificationCount) ? <span class="count_badge">{props.notificationCount}</span> : ""}
+                                        {parseInt(notificationCount) ? <span class="count_badge">{notificationCount}</span> : ""}
                                     </a>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list heightAuto ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
@@ -124,7 +124,8 @@ const mapStateToProps = (state) => {
         token: state.authReducer.token,
         isOnBoard: state.authReducer.isOnBoard,
         notificationCount: state.notificationReducer.notificationCount,
-        notifications: state.notificationReducer.notifications
+        notifications: state.notificationReducer.notifications,
+        count: state.notificationReducer.count
     }
 }
 

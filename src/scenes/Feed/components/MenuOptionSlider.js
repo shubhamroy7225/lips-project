@@ -13,15 +13,15 @@ const MenuOptionSlider = (props) => {
     }, [hideMenuOptionSlider])
 
     const toggle = () => {
-        if (window.$) {
+        if (isMobile && window.$) {
             window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
             window.$(".footer-menu-list").addClass("active");
         }
     }
 
     const rightWidgetClickHandler = () => {
-        if (window.$) {
-            if (window.$(".footer-menu-list").hasClass('active')) {
+        if (isMobile) {
+            if (window.$ && window.$(".footer-menu-list").hasClass('active')) {
                 window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
                 window.$(".footer-menu-list").removeClass("active");
             }

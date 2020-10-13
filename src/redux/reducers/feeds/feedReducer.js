@@ -204,7 +204,8 @@ export const feedReducer = createReducer({
         return updateObject(state, {
             feeds: feeds
         })
-    }
+    },
+    [actions.addSuggestedHashTagSuccessful]: (state, payload) => updateObject(state, {})
 }, initialState); // <-- This is the default state
 
 

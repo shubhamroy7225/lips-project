@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 const EditProfile = ({setIsEdit, user}) => {
   const [userForm, setUserForm] = useState({...user});
   const [files, setFile] = useState({header_image: {}, photo_url: {}});
-  const [userBio, setUserBio] = useState({bio: ""})
+  const [textAreaCount, setTextAreaCount] = useState(0);
 
   const handleFile = (e) => {
     let file = e.target.files[0];
@@ -24,17 +24,21 @@ const EditProfile = ({setIsEdit, user}) => {
     setFile(newFiles);
   };
 
+  const calculateTextareaLength = e => {
+    setTextAreaCount(e.target.value.length);
+    setUserForm({...userForm, [e.target.name]: e.target.value});
+  };
+
   const handleChange = (e) => {
-    setUserBio({...userBio, [e.target.name]: e.target.value })
     setUserForm({...userForm, [e.target.name]: e.target.value});
   };
 
   const updateUserProfile = (e) => {
     let tempUser = {...userForm}
     if (!tempUser.bio) delete tempUser.bio;
+    if (!tempUser.photo_url) delete tempUser.photo_url;
     const {bio, show_following, show_followers, header_image, photo_url} = tempUser;
     AuthActions.updateUser({user: {bio, show_following, show_followers, header_image, photo_url}}).then(res => {
-      debugger
       setIsEdit(false)
     });
   };
@@ -100,10 +104,10 @@ const EditProfile = ({setIsEdit, user}) => {
                   </div>
                   <div className="mail_about_wrp">
                   </div>
-                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={handleChange}
-                   value={userForm.bio} />
+                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={calculateTextareaLength}
+                   value={userForm.bio} maxLength="5000" />
 
-                  <span className="textRange">0/50000</span>
+                  <span className="textRange">{textAreaCount}/50000</span>
                 </div>
               </div>
               <ul className="lps_list_group my_acctn_list my_acctn_list1">
@@ -118,7 +122,7 @@ const EditProfile = ({setIsEdit, user}) => {
                 </li>
                 <li className="list-group-item">
                   <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                    <p className="mb_0">Show Following</p>
+                    <p className="mb_0">Show Followings</p>
                     <label className="lps_switch">
                       <input type="checkbox" checked={userForm.show_following} onChange={e => handleChange({target: {name: "show_following", value: e.target.checked}})}/>
                       <span className="lps_int_slider round"></span>

@@ -28,10 +28,12 @@ export default () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let userData = {...user, user_name: user.user_name.toLowerCase()}
+
     if (simpleValidator.current.allValid()) {
-      AuthActions.verifyUsername(user.user_name).then(res => {
-        delete user.confirm_password;
-        var updatedUser = { ...user, session_info: { platform: 'web' } }
+      AuthActions.verifyUsername(userData.user_name).then(res => {
+        var updatedUser = { ...userData, session_info: { platform: 'web' } }
+        delete updatedUser.confirm_password;
         AuthActions.signup({ user: updatedUser }).then(res => {
           history.push("/terms-and-condition");
         });
@@ -102,13 +104,13 @@ export default () => {
                 <div className="mt_25">
                   <div className="form_group_modify mb_25">
                     <label className="lps_cont_check">I am 18 years or older
-                            <input type="checkbox" checked />
+                      <input type="checkbox" defaultChecked/>
                       <span className="lps_Checkmark"></span>
                     </label>
                   </div>
                   <div className="form_group_modify">
                     <label className="lps_cont_check">Keep me signed in
-                            <input type="checkbox" checked />
+                      <input type="checkbox" defaultChecked />
                       <span className="lps_Checkmark"></span>
                     </label>
                   </div>
@@ -116,7 +118,7 @@ export default () => {
               </div>
               <div className="pos_wrp onboarding_btm">
                 <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P">Review
-                        Terms & Conditions</button>
+                        Terms &amp; Conditions</button>
                 <p className="btm_links mt_25 text_white">Have an account? <Link to="/login"
                   className="link_underline lps_link">Sign in</Link></p>
               </div>
