@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const ImageFeed = (props) => {
-    const { user, feed, isReposted } = props
+    const { user, feed, isReposted, refHandler } = props
     const { attachments, description } = feed;
 
     const repostedByUser = isReposted ? feed.user : {};
@@ -33,10 +33,9 @@ const ImageFeed = (props) => {
     const clickHandler = () => {
         setShowWidget(!showWidget)
     }
-
     if (isMobile) {
         return (
-            <div className="lps_list">
+            <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_sm_shape"></div>
                 <div class="post_img_block lps_widgets_wrp bg_gray_feed">
                     <a href="javascript:void(0);" onClick={clickHandler} id="trigger_main_feed">
@@ -83,7 +82,7 @@ const ImageFeed = (props) => {
         )
     } else {
         return (
-            <div class="lps_list lps_dsk_list">
+            <div class="lps_list lps_dsk_list" ref={(r) => refHandler && refHandler(r)}>
                 <div class="lps_inner_wrp_media">
                     <div class="lps_media">
                         <figure class="lps_fig lps_fig_circle">
