@@ -41,6 +41,7 @@ const Profile = (props) => {
     const [isFollowingPaginationCompleted, setIsFollowingPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     let followersPage = useRef(1)
     let followingsPage = useRef(1)
+    var selectedFeedOnToggle = useRef(null);
 
     useEffect(() => {
         followingsPage.current = 1;
@@ -128,6 +129,14 @@ const Profile = (props) => {
             })
     }
 
+    // scroll to specifc post
+    const scrollRefHandler = (ref) => {
+        if (ref) {
+            window.scrollTo(0, ref.offsetTop)
+            selectedFeedOnToggle.current = null;
+        }
+    }
+
     //for pagination
     const fetchNextFollowingUsers = () => {
         let updatedUser = isOtherUser ? otherUser : user;
@@ -142,6 +151,7 @@ const Profile = (props) => {
 
 
     const toggleFeedLayoutMode = (feed) => {
+        selectedFeedOnToggle.current = feed
         setGridLayoutMode(false)
     }
 
@@ -162,19 +172,19 @@ const Profile = (props) => {
             feeds.forEach(feed => {
                 if (feed.type === FeedType.image) {
                     gridFeedContent.push(<ImageItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                    listFeedContent.push(<ImageFeed feed={feed} />)
+                    listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} feed={feed} />)
                 } else if (feed.type === FeedType.repost) {
                     let parentFeed = feed.parent;
                     if (parentFeed.type === FeedType.image) {
                         gridFeedContent.push(<ImageItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                        listFeedContent.push(<ImageFeed feed={feed} isReposted={true} />)
+                        listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} feed={feed} isReposted={true} />)
                     } else {
                         gridFeedContent.push(<TextItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                        listFeedContent.push(<TextFeed feed={feed} isReposted={true} />)
+                        listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} feed={feed} isReposted={true} />)
                     }
                 } else {
                     gridFeedContent.push(<TextItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                    listFeedContent.push(<TextFeed feed={feed} />)
+                    listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} feed={feed} />)
                 }
             });
         }

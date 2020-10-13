@@ -17,7 +17,8 @@ const TextFeed = (props) => {
         textAlign: "justify"
     }
 
-    const { user, feed, isReposted } = props
+    //ref handler is sent by search and profile page - this is to scroll to specific post on toggling between grid and list view
+    const { user, feed, isReposted, refHandler } = props
     const { description } = feed;
     const reposted = isReposted;
     const repostedByUser = isReposted ? feed.user : {};
@@ -32,7 +33,7 @@ const TextFeed = (props) => {
 
     if (isMobile) {
         return (
-            <div className="lps_list">
+            <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_sm_shape lps_sm_shape1"></div>
                 <div class="lps_inner_wrp bg_gray_feed lps_mt_50">
                     <div className="lps_inner_cont lps_pos_rltv">
@@ -68,7 +69,7 @@ const TextFeed = (props) => {
         );
     } else {
         return (
-            <div class="lps_list lps_dsk_list">
+            <div class="lps_list lps_dsk_list" ref={(r) => refHandler && refHandler(r)}>
                 <div class="lps_inner_wrp_media">
                     <div class="lps_media">
                         <figure class="lps_fig lps_fig_circle">

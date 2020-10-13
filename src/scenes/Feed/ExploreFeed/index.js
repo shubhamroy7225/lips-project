@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { withRouter } from 'react-router'
+import React, { useEffect, useRef, useState } from 'react';
 import { connect, useSelector } from 'react-redux';
 import SearchInput from './components/SearchInput';
 import MenuOptionSlider from '../components/MenuOptionSlider';
@@ -10,7 +9,6 @@ import TextItem from '../components/TextItem';
 import ImageFeed from '../components/ImageFeed';
 import TextFeed from '../components/TextFeed';
 import { FeedType, PageSize } from 'utility/constants/constants';
-import * as commonService from "../../../utility/utility";
 import { setSearchPage } from 'redux/actions/feed';
 import PaginationLoader from '../components/PaginationLoader';
 import scroller from '../Home/scroller';
@@ -27,6 +25,7 @@ const ExploreFeed = (props) => {
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     let searchText = null;
+    var selectedFeedOnToggle = useRef(null);
 
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
@@ -87,7 +86,16 @@ const ExploreFeed = (props) => {
     }
 
     const toggleFeedLayoutMode = (feed) => {
+        selectedFeedOnToggle.current = feed
         setGridLayoutMode(false)
+    }
+
+    // scroll to specifc post 
+    const scrollRefHandler = (ref) => {
+        if (ref) {
+            window.scrollTo(0, ref.offsetTop)
+            selectedFeedOnToggle.current = null;
+        }
     }
 
     //fetch feeds from server
@@ -147,22 +155,25 @@ const ExploreFeed = (props) => {
 
     let gridFeedContent = [];
     let listFeedContent = [];
-    searchFeeds.forEach(feed => {
+    searchFeeds.forEach((feed, index) => {
         if (feed.type === FeedType.image) {
-            gridFeedContent.push(<ImageItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-            listFeedContent.push(<ImageFeed feed={feed} />)
+            gridFeedContent.push(<ImageItem index={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+            listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                index={feed.id} feed={feed} />)
         } else if (feed.type === FeedType.repost) {
             let parentFeed = feed.parent;
             if (parentFeed.type === FeedType.image) {
-                gridFeedContent.push(<ImageItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<ImageFeed feed={feed} isReposted={true} />)
+                gridFeedContent.push(<ImageItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
             } else {
-                gridFeedContent.push(<TextItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<TextFeed feed={feed} isReposted={true} />)
+                gridFeedContent.push(<TextItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
             }
         } else {
-            gridFeedContent.push(<TextItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-            listFeedContent.push(<TextFeed feed={feed} />)
+            gridFeedContent.push(<TextItem index={feed} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+            listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                index={feed}
+                feed={feed} />)
         }
     });
     return (
