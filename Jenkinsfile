@@ -46,7 +46,7 @@ pipeline {
         }
       }
     }
-    stage("Deliver for temp-staging") { 
+    stage("Deliver for master") { 
         when {
                 branch 'master'
             }
@@ -54,10 +54,6 @@ pipeline {
         script {
           //enable remote triggers
           properties([pipelineTriggers([pollSCM('* * * * *')])])
-          sh 'npm install'
-          sh 'npm run build:staging'
-          sh '/usr/local/bin/aws s3 sync ./build/ s3://lips-stage.bitcotapps.com --profile ss'
-          sh '/usr/local/bin/aws cloudfront create-invalidation --distribution-id E9B4HBHEK26IL --paths "/*" --profile ss'
         }
       }
     }
