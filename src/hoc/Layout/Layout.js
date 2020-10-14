@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Aux from '../Oux/Oux';
-import { withRouter } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
 import { markAsRead, getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
@@ -21,7 +20,6 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
             markAsRead(notifications[count-1].id);
         }
     };
-    console.log(props);
     useEffect(() => {
         if (window.$) {
             window.$('.tab-list a').on('click', function (e) {
@@ -197,7 +195,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                                 <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
                             </figure>
                             <div className="lps_media_body">
-                                <h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5>
+                                <Link to={`/profile/${notification.content.split(" ")[0]}`}><h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5></Link>
                                 {
                                     (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested" ) ? <div className="btn_group">
                                         <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
