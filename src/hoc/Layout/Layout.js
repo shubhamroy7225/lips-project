@@ -60,12 +60,12 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
                                 <li className={`lps_dropdown ${modalShown ? "open" : ""}`}>
-                                    <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button" onClick={modalToggle}>
+                                    <span className="dropdown-toggle nav-link user_menu_dropdown not_line cursor-pointer" role="button" onClick={modalToggle}>
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
                                         {parseInt(notificationCount) ? <span class="count_badge">{notificationCount}</span> : ""}
-                                    </a>
+                                    </span>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list heightAuto ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
                                 </li>
