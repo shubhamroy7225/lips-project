@@ -125,3 +125,6 @@ button{
 input.input_modify {
   color: #fff;
 }
+.lps_text_white .lps_cont_rdo .lps_checkmark:after, .lps_cont_rdo .lps_checkmark:after {
+  background: $brand-primary;
+}
