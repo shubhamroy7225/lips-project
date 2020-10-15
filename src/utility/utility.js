@@ -6,6 +6,8 @@ var moment = require('moment-timezone');
 // for global loader service
 export const isLoading = new BehaviorSubject(false);
 
+export const isDialogOpen = new BehaviorSubject(false);
+
 export const toFloatWithDecimal = (number) => {
     return parseFloat(number).toFixed(2);
 }
