@@ -52,7 +52,7 @@ const Setting = () => {
                   <Link to="/settings/notification">Notifications</Link>
                </li>
                <li className="list-group-item">
-                  <a href="emailto://" target="_blank">Invite someone to lips</a>
+                  <a href="mailto://" target="_blank">Invite someone to lips</a>
                </li>
                <li className="list-group-item lps_hrSep">
                   <Link to="/settings/community-guidelines">Community guidelines</Link>
