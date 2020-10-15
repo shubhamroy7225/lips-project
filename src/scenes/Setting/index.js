@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Link, useHistory } from "react-router-dom";
 import * as AuthActions from "redux/actions";
 import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 const Setting = () => {
    const history = useHistory();
    const [ModalOpen, setModalOpen] = useState(false);
@@ -35,6 +35,7 @@ const Setting = () => {
       );
     };
    return (
+      <>
       <div id="wrap" className="mt_0">
          <div className="lps_container mt_0">
          <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="main_feed.html">
@@ -72,6 +73,7 @@ const Setting = () => {
             </ul>
          </div>
       </div>
+      </>
    );
 }
 export default Setting

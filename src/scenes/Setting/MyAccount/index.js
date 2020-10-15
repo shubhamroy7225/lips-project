@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import {useSelector} from "react-redux";
 import * as actions from "redux/actions";
 
+import * as commonService from "utility/utility";
+
 import PrivacySetting from "./components/PrivacySetting.js";
 import UsernameSetting from "./components/UsernameSetting.js";
 
@@ -11,12 +13,26 @@ export default ()  => {
   const {user} = useSelector(store => store.authReducer);
   const history = useHistory();
 
-  const deleteUser = () =>{
-    actions.deleteUser().then(res => {
-      history.push("/");
+  
+  const deleteUser =() => {
+      commonService.isLoading.onNext(true);
+      actions.deleteUser().then(res => {
+        history.push("/");
+      });
+    commonService.isDialogOpen.onNext(false);
+  };
+  const handleDelete = () => {
+    commonService.isDialogOpen.onNext({
+      open: true,
+      data: {
+        title: "Delete this account?",
+        message: "All content on this account will be lost forever."
+      },
+      confirmText: "DELETE ACCOUNT",
+      onConfirm: () => deleteUser(),
+      onCancel: () => commonService.isDialogOpen.onNext(false)
     });
   };
-
   return (
       <>
       <div id="wrap" className="mt_0">
@@ -38,7 +54,7 @@ export default ()  => {
             <PrivacySetting user={user}/>
             <li className="list-group-item">
               <div className="lps_user_info lps_accnt_links">
-                <p className="user_info_label" onClick={deleteUser}>
+                <p className="user_info_label" onClick={handleDelete}>
                   <Link to="/settings/my-account" classname="ft_Weight_500">Delete Account</Link>
                 </p>
               </div>

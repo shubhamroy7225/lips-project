@@ -1,0 +1,43 @@
+.confirmModel {
+    background: #000;
+    width: 380px;
+    border: 1px solid #f53398;
+    .modelHeader {
+        text-align: right;
+        padding: 10px 15px 4px;
+        border-bottom: 1px solid #f53398;
+        button {
+            padding: 0;
+            background: none;
+            border: 0;
+            color: #f53398;
+            font-size: 50px;
+            height: 20px;
+            line-height: 20px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    }
+    .modelBody {
+        text-align: center;
+        padding: 62px 22px 70px;
+        h3{
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 0 46px;
+        }
+        p{
+            color: #fff;
+            margin: 0 0 143px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
+@media screen and (max-width: 767px){
+    .confirmModel {
+        width: 300px;
+    }
+}

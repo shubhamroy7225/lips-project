@@ -3,6 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import Aux from '../Oux/Oux';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
+import ConfirmDialog from "scenes/shared/common-dialog";
 import { markAsRead, getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
 import { acceptRequest, rejectRequest } from 'redux/actions/notification/action';
 import * as liked_post from "assets/images/icons/liked_post.png";
@@ -103,8 +104,9 @@ class Layout extends Component {
             <Aux>
                 <div className="limiter">
                     <div className="container-login100">
-                        <Header {...this.props} />
+                        <Header {...this.props} />                        
                         <Loader />
+                        <ConfirmDialog />
                         <div className="clearfix"></div>
                         {this.props.children}
                         <div className="clearfix"></div>
