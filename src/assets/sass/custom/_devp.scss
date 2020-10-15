@@ -128,3 +128,10 @@ input.input_modify {
 .lps_text_white .lps_cont_rdo .lps_checkmark:after, .lps_cont_rdo .lps_checkmark:after {
   background: $brand-primary;
 }
+.lps_fig.lps_fig_circle {
+  width: 60px;
+  height: 60px;
+}
+.lps_f_center {
+  align-items: center;
+}
