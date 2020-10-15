@@ -192,7 +192,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                     <li key={`noti_${index}`} className="list-group-item">
                         <div className="lps_media">
                             <figure className="lps_fig lps_fig_circle">
-                                <img src={notification.post ? require("assets/images/icons/icn_profile.svg") : notification.post} alt="User" />
+                                <img src={notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                             </figure>
                             <div className="lps_media_body">
                                 <Link to={`/profile/${notification.content.split(" ")[0]}`}><h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5></Link>
