@@ -140,7 +140,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
     const {notifications, count} = useSelector(state => state.notificationReducer);
     const [loaded, setLoad] = useState(false);
     const [params, setParams] = useState({
-        page: 1, limit: 10
+        page: 1, limit: 10, order_by: "desc"
     });
     useEffect(() => {
         if (!loaded && !notifications.length) {
@@ -192,7 +192,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                     <li key={`noti_${index}`} className="list-group-item">
                         <div className="lps_media">
                             <figure className="lps_fig lps_fig_circle">
-                                <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                                <img src={notification.post ? require("assets/images/icons/icn_profile.svg") : notification.post} alt="User" />
                             </figure>
                             <div className="lps_media_body">
                                 <Link to={`/profile/${notification.content.split(" ")[0]}`}><h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5></Link>
