@@ -78,7 +78,7 @@ export default (props) => {
     } else {
         feedContent = (
             <div class="lps_tb_para">
-                <h4>All the posts you like will appear here</h4>
+                <h4>All the posts you  <img src={require("assets/images/thumbnails/logo.svg")} alt="BitCot Logo" className="header__logo like_logo" />   will appear here</h4>
             </div>
         )
     }
