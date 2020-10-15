@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Aux from '../Oux/Oux';
-import { withRouter } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
 import { markAsRead, getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
@@ -20,8 +19,7 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
             setMarked(true);
             markAsRead(notifications[count-1].id);
         }
-    }
-    console.log(props);
+    };
     useEffect(() => {
         if (window.$) {
             window.$('.tab-list a').on('click', function (e) {
@@ -62,12 +60,12 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
                                 <li className={`lps_dropdown ${modalShown ? "open" : ""}`}>
-                                    <a href="#" className="dropdown-toggle nav-link user_menu_dropdown not_line" role="button" onClick={modalToggle}>
+                                    <span className="dropdown-toggle nav-link user_menu_dropdown not_line cursor-pointer" role="button" onClick={modalToggle}>
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
                                         {parseInt(notificationCount) ? <span class="count_badge">{notificationCount}</span> : ""}
-                                    </a>
+                                    </span>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list heightAuto ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
                                 </li>
@@ -142,7 +140,7 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
     const {notifications, count} = useSelector(state => state.notificationReducer);
     const [loaded, setLoad] = useState(false);
     const [params, setParams] = useState({
-        page: 1, limit: 10
+        page: 1, limit: 10, order_by: "desc"
     });
     useEffect(() => {
         if (!loaded && !notifications.length) {
@@ -194,10 +192,10 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
                     <li key={`noti_${index}`} className="list-group-item">
                         <div className="lps_media">
                             <figure className="lps_fig lps_fig_circle">
-                                <img src={require("assets/images/icons/icn_profile.svg")} alt="User" />
+                                <img src={notification.post ? require("assets/images/icons/icn_profile.svg") : notification.post} alt="User" />
                             </figure>
                             <div className="lps_media_body">
-                                <h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5>
+                                <Link to={`/profile/${notification.content.split(" ")[0]}`}><h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5></Link>
                                 {
                                     (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested" ) ? <div className="btn_group">
                                         <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>

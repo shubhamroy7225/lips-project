@@ -13,7 +13,7 @@ const MenuOptionSlider = (props) => {
     }, [hideMenuOptionSlider])
 
     const toggle = () => {
-        if (isMobile) {
+        if (isMobile && window.$) {
             window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
             window.$(".footer-menu-list").addClass("active");
         }
@@ -21,7 +21,7 @@ const MenuOptionSlider = (props) => {
 
     const rightWidgetClickHandler = () => {
         if (isMobile) {
-            if (window.$(".footer-menu-list").hasClass('active')) {
+            if (window.$ && window.$(".footer-menu-list").hasClass('active')) {
                 window.$(".collapsible").toggle("slide", { direction: "right" }, 500);
                 window.$(".footer-menu-list").removeClass("active");
             }

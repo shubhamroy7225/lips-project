@@ -1699,7 +1699,7 @@ p.more {
     }
   }
   li {
-    display: inline-block;
+    //display: inline-block;
     list-style: none;
     margin: 0px;
     position: relative;
@@ -3810,8 +3810,6 @@ p.more {
     color: $brand-secondary;
   }
 }
-.tabs_grid_view_sec {
-}
 .lps_product_grid {
   display: -ms-grid;
   display: grid;
@@ -4325,4 +4323,15 @@ figure.feed_fig310 {
     object-position: center;
     object-fit: cover;
   }
+}
+.lps_img_fixed.lps_fig90 {
+  padding: 15px 0;
+  text-align: center;
+  width: 160px;
+  margin: 0 auto;
+  height: 150px;
+}
+.follow_overflow {
+  height: 490px;
+  overflow-y: auto;
 }

@@ -19,7 +19,8 @@ export {
     config,
     blockUser,
     unfollowUser,
-    openPageLandingModel
+    openPageLandingModel,
+    sendApprovalCode
 } from './user/action';
 
 export {
@@ -39,7 +40,9 @@ export {
 
 export {
     fetchOtherUserData,
-    fetchUserByUserName
+    fetchUserByUserName,
+    fetchFollowers,
+    fetchFollowingUsers
 } from './auth/action';
 
 export {

@@ -25,17 +25,9 @@ const MainFeed = (props) => {
     useEffect(() => {
         if (props.feeds.length === 0) {
             clearAllFeeds();
-            fetchFeedsFromServer();
+            fetchFeedsFromServer(true);
         }
     }, [])
-
-    // called from HOC Scroller on reaching bottom 
-    const validatePaginationCompletion = () => {
-        let feedsCount = props.feeds.length;
-        if (feedsCount % PageSize !== 0) {
-            setIsPaginationCompleted(true)
-        }
-    }
 
     //scroll listener
     useEffect(() => {
@@ -52,12 +44,6 @@ const MainFeed = (props) => {
         };
     }, []);
 
-    //listen for feed changes
-    useEffect(() => {
-        console.log(props.feeds);
-        //keep validating on every update of feeds
-        validatePaginationCompletion();
-    }, [props.feeds]);
 
     useEffect(() => {
         if (props.bottomOffset &&
@@ -73,18 +59,25 @@ const MainFeed = (props) => {
         setIsFeedCallInProgress(true);
         //make feed call for page
         console.log("making pagination call");
-        fetchFeedsFromServer();
+        fetchFeedsFromServer(false);
         console.log("reached bottom initiate page call");
     }
 
-    //fetch feeds from server
-    const fetchFeedsFromServer = () => {
-        let pageQuery = `?limit=${PageSize}&page=${props.page}`;
+    //fetch feeds from server 
+    const fetchFeedsFromServer = (isInitialFetch) => {
+        // if initial fetch then pass page 1 
+        // for next page pass props.page that contains next page url
+        let pageQuery = isInitialFetch ? `?limit=${PageSize}&page=${1}` : `?${props.page}`;
         fetchFeeds(pageQuery).then(res => {
             if (res.data.success === true) {
                 if (res.data.posts.length > 0) {
-                    let updatedPage = props.page + 1;
-                    setPage({ page: updatedPage });
+                    let nextPage = res.data.nextPage;
+                    if (nextPage) {
+                        nextPage = nextPage.split("?")[1];
+                        setPage({ page: nextPage });
+                    } else {
+                        setIsPaginationCompleted(true);
+                    }
                 } else {
                     //empty post means we have fetched all the posts
                     setIsPaginationCompleted(true);

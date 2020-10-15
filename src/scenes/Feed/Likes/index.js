@@ -60,7 +60,7 @@ export default (props) => {
     }, [likedFeeds])
 
     let feedContent = [];
-    if (likedFeeds) {
+    if (likedFeeds && likedFeeds.length > 0) {
         feedContent = likedFeeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
                 return <ImageFeed feed={feed} />
@@ -75,12 +75,18 @@ export default (props) => {
                 return <TextFeed feed={feed} />
             }
         })
+    } else {
+        feedContent = (
+            <div class="lps_tb_para">
+                <h4>All the posts you like will appear here</h4>
+            </div>
+        )
     }
 
     return (
         <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div class={isMobile ? "lps_container main_feed_cont bg_grayCCC" : "lps_container main_feed_cont"}>
-                <div class="lps_inner_wrp">
+                {likedFeeds.length > 0 && <div class="lps_inner_wrp">
                     <div class="see_also">
                         <h5 class="h5_title lps_flx_vm tags_lip_inline mb_15">
                             MOST
@@ -90,7 +96,7 @@ export default (props) => {
                             {topHashtags.map((tag, index) => <a key={index} class="theme_btn theme_secondary">{tag}</a>)}
                         </div>
                     </div>
-                </div>
+                </div>}
                 {feedContent}
                 <MenuOptionSlider />
             </div>

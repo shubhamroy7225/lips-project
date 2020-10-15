@@ -134,3 +134,32 @@ export const fetchBlockUser = () => {
         },
     });
 };
+
+
+export const sendApprovalCode = (request) => {
+    return axios.post(`${API_VERSION}/user/approval/code`, request, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
+
+export const fetchFollowers = (userID, pagequery) => {
+    return axios.get(`${API_VERSION}/user/${userID}/followers${pagequery}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
+
+
+export const fetchFollowingUsers = (userID, pagequery) => {
+    return axios.get(`${API_VERSION}/user/${userID}/following${pagequery}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
