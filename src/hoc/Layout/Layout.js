@@ -56,7 +56,7 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
                     <Link className="logo" to="/">
                         <img src={require("assets/images/thumbnails/logo.svg")} alt="BitCot Logo" className="header__logo" />
                     </Link>
-                    <ul className="lp_nav">
+                    {props.user && <ul className="lp_nav">
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
                                 <li className={`lps_dropdown ${modalShown ? "open" : ""}`}>
@@ -71,14 +71,14 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
                                 </li>
                             </ul>
                         </li>
-                        {props.user && <li className="nav-item">
+                         <li className="nav-item">
                             <Link to="/settings" className="nav-link not_line">
                                 <span className="avatar_circle">
                                     <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
                                 </span>
                             </Link>
-                        </li>}
-                    </ul>
+                        </li>
+                    </ul>}
                 </nav>
             </header >
         );
