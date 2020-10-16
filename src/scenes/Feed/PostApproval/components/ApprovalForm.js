@@ -12,7 +12,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     };
 
 
-    const [approvalForm, setApprovalForm] = useState({ link: null, description: "", ownContent: true })
+    const [approvalForm, setApprovalForm] = useState({ link: null, description: "" }) // ownContent: true
     const simpleValidator = useRef(new SimpleReactValidator());
     const simpleValidator2 = useRef(new SimpleReactValidator(
         {
@@ -66,20 +66,19 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
         forceUpdate(1)
     };
 
-    const handleCheckBoxChange = (e) => {
-        if (e.target.value === "true") {
-            setApprovalForm({ ...approvalForm, [e.target.name]: false });
-        } else {
-            setApprovalForm({ ...approvalForm, [e.target.name]: true });
-        }
-    }
+    // const handleCheckBoxChange = (e) => {
+    //     if (e.target.value === "true") {
+    //         setApprovalForm({ ...approvalForm, [e.target.name]: false });
+    //     } else {
+    //         setApprovalForm({ ...approvalForm, [e.target.name]: true });
+    //     }
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (simpleValidator.current.allValid() && ((image1.base64 && image2.base64 && image3.base64) || approvalForm.link)) {
             
             let images = [image1, image2, image3];
-            debugger;
             images = images.filter(ele => ele.base64);
             //upload all images
             if (images.length > 0){
@@ -96,7 +95,6 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
 
     const postDataToServer = async (urls = []) =>{
         //update data to server
-        debugger;
         let photoPaths = urls.map(ele => {
             return ele.photo_path
         });
@@ -105,7 +103,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
             approval:{
                 link:approvalForm.link,
                 about:approvalForm.description,
-                own_content: approvalForm.ownContent,
+                //own_content: approvalForm.ownContent,
                 photo_paths:photoPaths
             }
         }
@@ -172,7 +170,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                 </article>
                 <form onSubmit={handleSubmit}>
                     <div class="form_group_modify">
-                        <label class="label_modify">3 post example <br />(Images example of visuals or text that you'd post)</label>
+                        <label class="label_modify">3 post example <br />(Images example of visuals or text that you'd post) *</label>
                         <div class="add_product_grid">
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector1)}>
                                 <img style={!image1.base64 ? withoutImageStyle : null} src={image1.base64 ? image1.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
@@ -184,13 +182,13 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                                 <img style={!image3.base64 ? withoutImageStyle : null} src={image3.base64 ? image3.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
                             </div>
                         </div>
-                        <input type="file" id="file" name="portfolio1" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
+                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio1" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
                         {!approvalForm.link && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio1', image1.base64, 'required')}</span>}
                         
-                        <input type="file" id="file" name="portfolio2" ref={fileSelector2} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector2)} />
+                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio2" ref={fileSelector2} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector2)} />
                        {!approvalForm.link && image1.base64 && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio2', image2.base64, 'required')}</span>}
 
-                        <input type="file" id="file" name="portfolio3" ref={fileSelector3} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
+                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio3" ref={fileSelector3} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
                         {!approvalForm.link && image2.base64 && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio3', image3.base64, 'required')}</span>}
 
                     </div>
@@ -206,7 +204,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
 
                     </div>
                     <div class="form_group_modify">
-                        <label class="label_modify">Why do you want to post on Lips?</label>
+                        <label class="label_modify">Why do you want to post on Lips? *</label>
                         <textarea class="input_modify txtarea_modify"
                             rows="5"
                             name="description"
@@ -215,7 +213,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                         <span style={{ color: "red" }}>{simpleValidator.current.message('description', approvalForm.description, 'required')}</span>
 
                     </div>
-                    <div class="form_group_modify">
+                    {/* <div class="form_group_modify">
                         <label class="lps_cont_check">This Is My Own Original Content
                         
                             <input type="checkbox"
@@ -225,7 +223,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                                 onChange={handleCheckBoxChange} />
                             <span class="lps_Checkmark"></span>
                         </label>
-                    </div>
+                    </div> */}
                     <div class="post_block mb20 mt_15">
                         <button type="submit" class="circle">Submit</button>
                         <a onClick={() => cancel()} class="cancel_post link_underline">Cancel</a>

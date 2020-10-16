@@ -60,9 +60,10 @@ const StartApproval = ({ moveToNextStep }) => {
                             onChange={handleChange} />
                     </div>
                 </div>
-                <div class="plans_wrp mt45 text_center">
+                <div class="plans_wrp text_center">
                     <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P">Get Approved</a>
                 </div>
+                <p className="mt45">If you have an access code to skip the approval process, enter your code here</p>
             </div>
         </div>
     );
