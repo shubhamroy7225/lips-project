@@ -44,6 +44,7 @@ const Profile = (props) => {
     var selectedFeedOnToggle = useRef(null);
 
     useEffect(() => {
+        debugger;
         followingsPage.current = 1;
         followersPage.current = 1;
 
@@ -58,11 +59,12 @@ const Profile = (props) => {
         if (userName && (!user || user.user_name !== userName)) {
             // if username is available, and not equal to currently signed in user assume it to be other user profile
             // other user's profile
-            commonService.isLoading.onNext(true);
             setIsOtherUser(true);
             tempIsOtherUser = true
         } else {
             userName = user.user_name; //for self user
+            setIsOtherUser(false);
+            tempIsOtherUser = false
         }
 
         commonService.isLoading.onNext(true);

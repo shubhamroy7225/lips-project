@@ -4,7 +4,7 @@ import { setFeedModalType } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 import { FeedModalType } from 'utility/constants/constants';
 import { toastMsg } from 'utility/utility';
-
+import * as commonService from "utility/utility";
 
 const ReportModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
@@ -26,11 +26,22 @@ const ReportModal = ({ feed }) => {
     }
 
     const hideFeed = () => {
-        actions.hideAFeed(selectedFeed)
-            .then(res => {
+        commonService.isDialogOpen.onNext({
+            open: true,
+            data: {
+                title: "Confirm",
+                message: "Do you want to hide the post"
+            },
+            confirmText: "Hide Post",
+            onConfirm: () => {
+                actions.hideAFeed(selectedFeed);
+                closeModal();
+                commonService.isDialogOpen.onNext(false);
+            },
+            onCancel: () => commonService.isDialogOpen.onNext(false)
+        });
 
-            })
-        closeModal();
+
     }
 
     const reportFeed = () => {
