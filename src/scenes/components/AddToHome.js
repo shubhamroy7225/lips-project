@@ -26,10 +26,10 @@ const AddToHome = (props) => {
                     <div class="popup_body">
                         <div class="popupCloseButton" id="popupCloseButton"><a onClick={() => { setHidden(true) }}><img src={require("assets/images/icons/icn_close.png")} /></a></div>
                         <figure class="lps_fig lps_top_imgs">
-                            <img src={require("assets/images/thumbnails/logo.svg")} alt="Image Placeholder" />
+                            <img src={require("assets/images/icons/add_to_home_logo.svg")} alt="Image Placeholder" />
                         </figure>
-                        <h2>Lips</h2>
-                        <h4 class="Opcty5">Add this app to your home screen for easy access and a better experience.</h4>
+                        <h2>Did you know Lips is an app?</h2>
+                        <p>Add Lips to your home screen for a better experience.</p>
                         <h4>Tap <a href="#" class="inline_WText"><img src={require("assets/images/icons/icn_upload.png")} alt="Upload" /></a> then 'Add to Home Screen'</h4>
                     </div>
                 </div>
