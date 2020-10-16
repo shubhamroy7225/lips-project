@@ -52,3 +52,5 @@ export const setSearchPage = createAction('set search page for feed pagination',
 export const nextPageSearchFeeds = createAction('fetch search feeds for next page completed with success', (feeds) => (feeds));
 
 export const addSuggestedHashTagSuccessful = createAction('Add tag in suggested hash tag list', (tags) => (tags));
+
+export const setHashTagJustBrowseSuccessful = createAction('Set tag in storage for just browse', (tags) => (tags));

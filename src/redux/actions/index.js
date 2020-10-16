@@ -35,7 +35,8 @@ export {
     repostFeed,
     searchFeeds,
     hideAFeed,
-    reportAFeed
+    reportAFeed,
+    setFavoriteAvoidTagsJustBrowse
 } from './feed/action';
 
 export {
