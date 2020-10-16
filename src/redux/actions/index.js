@@ -35,7 +35,8 @@ export {
     repostFeed,
     searchFeeds,
     hideAFeed,
-    reportAFeed
+    reportAFeed,
+    getPostSearchHashTag
 } from './feed/action';
 
 export {

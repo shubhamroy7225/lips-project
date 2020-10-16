@@ -52,3 +52,7 @@ export const setSearchPage = createAction('set search page for feed pagination',
 export const nextPageSearchFeeds = createAction('fetch search feeds for next page completed with success', (feeds) => (feeds));
 
 export const addSuggestedHashTagSuccessful = createAction('Add tag in suggested hash tag list', (tags) => (tags));
+
+export const getHashTagSuggestionListPending = createAction('get tag in for search post list pending', (tags) => (tags));
+
+export const getHashTagSuggestionListSuccessful = createAction('get tag in for search post list success', (tags) => (tags));
