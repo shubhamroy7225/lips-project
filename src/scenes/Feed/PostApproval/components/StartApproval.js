@@ -4,7 +4,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import { toastMsg } from 'utility/utility';
 import * as commonService from "utility/utility";
 import { routes } from 'utility/constants/constants';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const StartApproval = ({ moveToNextStep }) => {
     const simpleValidator = useRef(new SimpleReactValidator());
@@ -43,7 +43,7 @@ const StartApproval = ({ moveToNextStep }) => {
                 <article class="lps_art mt45">
                     <h3>Want to post your original work?</h3>
                     <p class="mt45">
-                        In order to keep everyone in the Lips Community safe, we just ask that you tell us-yes, we are real human - a little bit about yourself & read through our <a href="#" class="lps_link link_underline">Community guidelines</a>.
+                        In order to keep everyone in the Lips Community safe, we just ask that you tell us-yes, we are real human - a little bit about yourself & read through our <Link to={routes.SETTING_COMMUNITY_GUIDELINES} class="lps_link link_underline">Community guidelines</Link>.
               </p>
                     <p>
                         Once apporved, you can post anything from cat pics to high art - we're not here to judge. as long as it's your original content.

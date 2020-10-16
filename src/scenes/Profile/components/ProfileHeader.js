@@ -73,39 +73,36 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
             </div>}
 
             <div class="lps_inner_wrp lps_inner_wrp_media">
-                <div class="lps_media lps_pos_rltv lps_f_end">
+                <div class="lps_media lps_pos_rltv lps_f_center">
                     <figure class="lps_fig lps_fig_circle">
                         <img src={profilePhoto} alt="User" />
                     </figure>
                     <div class="lps_media_body">
-                        <div class="lps_media_body">
-                            <div class="user_wrp_mail">
-                                <span class="text_primary">{user.user_name}</span>
-                            </div>
-                            {isUserProfile ?
-                                <figure class="lps_fig lps_fig_cont lps_fig_circle lps_float_right">
-                                    <Link to="/profile" onClick={e => setEdit(true)}><img src={require("assets/images/icons/icn_paint_active.svg")} alt="User" /></Link>
-                                </figure>
-                                :
-                                <>
-                                    <figure class="lps_fig lps_fig_circle lps_float_right">
-                                        <a onClick={toggleFollowRequest} class={!allowRequest ? "icn_hover_chng active" : "icn_hover_chng"} id="heart_notify">
-                                            <img src={require("assets/images/icons/icn_outline_follow.svg")} class="icn_dfltD" alt="User" />
-                                            <img src={require("assets/images/icons/icn_fill_follow.svg")} class="icn_hvrA" alt="User" />
-                                        </a>
-                                    </figure>
-                                    <div class="hover_bkgr_fricc heart_notify_box notify_box_hide_3S" style={{ display: followRequest ? "block" : "none" }} id="trigger_heart_popup">
-                                        <div class="popup_cont lps_pos_rltv">
-                                            <div class="popup_body">
-                                                Follow request sent
-                                            </div>
-                                            <span class="bottm_shape"></span>
-                                        </div>
-                                    </div>
-                                </>
-                            }
+                        <div class="user_wrp_mail pull-left">
+                            <span class="text_primary">{user.user_name}</span>
                         </div>
-
+                        {isUserProfile ?
+                            <figure class="lps_fig lps_fig_cont lps_fig_circle lps_float_right">
+                                <Link to="/profile" onClick={e => setEdit(true)}><img src={require("assets/images/icons/icn_paint_active.svg")} alt="User" /></Link>
+                            </figure>
+                            :
+                            <>
+                                <figure class="lps_fig lps_fig_circle lps_float_right">
+                                    <a onClick={toggleFollowRequest} class={!allowRequest ? "icn_hover_chng active" : "icn_hover_chng"} id="heart_notify">
+                                        <img src={require("assets/images/icons/icn_outline_follow.svg")} class="icn_dfltD" alt="User" />
+                                        <img src={require("assets/images/icons/icn_fill_follow.svg")} class="icn_hvrA" alt="User" />
+                                    </a>
+                                </figure>
+                                <div class="hover_bkgr_fricc heart_notify_box notify_box_hide_3S" style={{ display: followRequest ? "block" : "none" }} id="trigger_heart_popup">
+                                    <div class="popup_cont lps_pos_rltv">
+                                        <div class="popup_body">
+                                            Follow request sent
+                                        </div>
+                                        <span class="bottm_shape"></span>
+                                    </div>
+                                </div>
+                            </>
+                        }
                     </div>
                 </div>
                 <p class="mt_15 mb_5">

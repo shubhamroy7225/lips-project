@@ -123,6 +123,19 @@ button{
   background:  rgba(0, 0, 0, 0.5) !important;
 }
 
-.like_logo{
+.like_logo {
   vertical-align: middle;
+}
+input.input_modify {
+  color: #fff;
+}
+.lps_text_white .lps_cont_rdo .lps_checkmark:after, .lps_cont_rdo .lps_checkmark:after {
+  background: $brand-primary;
+}
+.lps_fig.lps_fig_circle {
+  width: 60px;
+  height: 60px;
+}
+.lps_f_center {
+  align-items: center;
 }
