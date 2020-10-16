@@ -110,7 +110,10 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
                     {/* <a href="#" class="link_underline text_secondary">www.website.com </a> lorem ipsum
                   <a href="#" class="link_underline text_secondary"> www.anotherwebsite.com</a>lorem ipsum dolor */}
                 </p>
+                {
+                    !user.show_followers === false && !user.show_following === false ?
                 <a class="dots_link" id="trigger_followers_block" onClick={() => { setIsFollowerHeaderHidden(!isFollowerHeaderHidden) }}><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                : "" }
                 <div
                     class="followers_block followers_block_none"
                     style={{ display: isFollowerHeaderHidden ? "none" : "block" }}
