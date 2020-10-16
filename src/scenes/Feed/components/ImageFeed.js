@@ -124,7 +124,7 @@ const ImageFeed = (props) => {
                             <RemoveFeedModal feed={feed} />
                         </>}
                 </div>
-                <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
+                <FeedWidget showWidget={true} feed={feed} user={user} isReposted={isReposted} />
             </div>
         );
     }
