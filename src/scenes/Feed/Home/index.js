@@ -15,6 +15,7 @@ import { FeedType, PageSize } from 'utility/constants/constants';
 import { clearAllFeeds, setPage } from 'redux/actions/feed';
 import scroller from './scroller';
 import PaginationLoader from '../components/PaginationLoader';
+import * as commonService from "utility/utility";
 
 const MainFeed = (props) => {
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
@@ -23,8 +24,10 @@ const MainFeed = (props) => {
 
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
+        debugger;
         if (props.feeds.length === 0) {
             clearAllFeeds();
+            commonService.isLoading.onNext(true); // start loading
             fetchFeedsFromServer(true);
         }
     }, [])

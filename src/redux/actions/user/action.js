@@ -14,18 +14,18 @@ import {
     unblockUserPending, unblockUserSuccessful, openLandingModel
 } from 'redux/actions/auth';
 import { clearNotifications } from 'redux/actions/notification';
-import { hideFeedsOnBlockingUser, hideFeedsOnUnfollowingUser } from '../feed';
+import { clearAllFeeds, hideFeedsOnBlockingUser, hideFeedsOnUnfollowingUser } from '../feed';
 
 const setUserData = (data) => {
     storage.set('token', data.token);
     storage.set('refresh_token', data.refresh_token);
     storage.set('user', data.user);
     storage.set('isOnBoard', true);
-    axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 };
 
 export const login = (credentials) => {
     commonService.isLoading.onNext(true);
+    clearAllFeeds();
     loginPending();
     return API.login(credentials)
         .then(response => {
@@ -45,6 +45,7 @@ export const openPageLandingModel = () => {
 
 export const signup = (credentials) => {
     commonService.isLoading.onNext(true);
+    clearAllFeeds();
     signupPending()
     return API.signup(credentials)
         .then(response => {
@@ -56,13 +57,13 @@ export const signup = (credentials) => {
             return true
         })
 };
+
 export const refreshToken = (credentials) => {
     commonService.isLoading.onNext(true);
     refreshTokenPending();
     return API.refreshToken(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
-            axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
             const { user, token, refresh_token } = response.data;
             setUserData(response.data);
             authorizeUser(user, token, refresh_token);
@@ -241,7 +242,8 @@ export const signOut = () => {
     storage.remove('refresh_token');
     storage.remove('isOnBoard');
     clearNotifications();
-    if (logout()){
+    clearAllFeeds();
+    if (logout()) {
         toastMsg("Logged out successfully")
     }
 
