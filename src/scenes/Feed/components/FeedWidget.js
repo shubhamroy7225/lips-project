@@ -99,7 +99,7 @@ const FeedWidget = ({ user, showWidget, feed }) => {
     let repostOption = (
         <li className="listed_item">
             <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
-                <img src={require("assets/images/icons/icn_repeat_white.png")} className="inner_image" alt="Repeat Icon" />
+                <img src={require("assets/images/icons/icn_repeat_white.svg")} className="inner_image" alt="Repeat Icon" />
             </a>
         </li>
     );

@@ -100,7 +100,7 @@ const ImageFeed = (props) => {
                         </div>
                     </div>
                 </div>
-                <div class="post_img_block lps_pink_bg lps_widgets_wrp">
+                <div class="post_img_block lps_pink_bg lps_widgets_wrp model_border">
                     <div class="lps_sm_shape"></div>
                     {/* <figure class="feed_galary lps_flx_vm_jc lps_f_vm">
                         <img src={require("assets/images/icons/landscape-image.png")} alt="Add Image" />
