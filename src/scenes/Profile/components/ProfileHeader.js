@@ -66,7 +66,7 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
     return (
         <div class="lps_list">
             {/* cover image */}
-            {!isUserProfile && headerImage && <div class="bg_gray_feed">
+            {headerImage && <div class="bg_gray_feed">
                 <figure class="lps_fig feed_fig310">
                     <img src={headerImage} alt="thumbnail1" />
                 </figure>
