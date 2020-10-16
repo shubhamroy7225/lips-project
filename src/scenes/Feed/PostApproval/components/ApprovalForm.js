@@ -170,7 +170,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                 </article>
                 <form onSubmit={handleSubmit}>
                     <div class="form_group_modify">
-                        <label class="label_modify">3 post example <br />(Images example of visuals or text that you'd post)</label>
+                        <label class="label_modify">3 post example <br />(Images example of visuals or text that you'd post) *</label>
                         <div class="add_product_grid">
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector1)}>
                                 <img style={!image1.base64 ? withoutImageStyle : null} src={image1.base64 ? image1.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
@@ -204,7 +204,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
 
                     </div>
                     <div class="form_group_modify">
-                        <label class="label_modify">Why do you want to post on Lips?</label>
+                        <label class="label_modify">Why do you want to post on Lips? *</label>
                         <textarea class="input_modify txtarea_modify"
                             rows="5"
                             name="description"
