@@ -26,7 +26,7 @@ const MainFeed = (props) => {
     useEffect(() => {
         if (props.feeds.length === 0) {
             clearAllFeeds();
-            commonService.isLoading.onNext(true); // start loading
+            // commonService.isLoading.onNext(true); // start loading
             fetchFeedsFromServer(true);
         }
     }, [])
