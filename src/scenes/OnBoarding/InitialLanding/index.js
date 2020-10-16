@@ -1,7 +1,7 @@
 import React from "react";
-import { isMobile } from "react-device-detect";
+
 import { Link } from "react-router-dom";
-import AddToHome from "scenes/components/AddToHome";
+
 
 import { useSelector } from "react-redux";
 export default () => {
@@ -76,7 +76,7 @@ export default () => {
                </div>
             </div>
          </div>
-         {isMobile && <AddToHome />}
+
       </>
    )
 }
