@@ -79,8 +79,8 @@ const EditProfile = ({setIsEdit, user}) => {
                     <label htmlFor="profile_file_input">
                     <figure className="profile-image-container lps_fig lps_fig_circle over_none" style={{position: "relative"}}>
                       <input type="file" id="profile_file_input" name="photo_url" hidden onChange={handleFile}/>
-                      {files.photo_url.src ?  <img src={files.photo_url.src} alt="Add Image" /> :
-                          (userForm.photo_urls && userForm.photo_urls.medium ? <img src={userForm.photo_urls.medium} alt="Add Image" /> : <img  src={require("assets/images/icons/icn_profile.svg")} alt="User"/>) }
+                      {files.photo_url.src ?  <img src={files.photo_url.src} className="user_photo_url" alt="Add Image" /> :
+                          (userForm.photo_urls && userForm.photo_urls.medium ? <img src={userForm.photo_urls.medium} alt="Add Image" className="user_photo_url" /> : <img  src={require("assets/images/icons/icn_profile.svg")} className="user_photo_url" alt="User"/>) }
 
                       <i className="fa fa-pencil"></i>
                     </figure>
