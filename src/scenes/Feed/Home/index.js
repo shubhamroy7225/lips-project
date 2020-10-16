@@ -24,7 +24,6 @@ const MainFeed = (props) => {
 
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
-        debugger;
         if (props.feeds.length === 0) {
             clearAllFeeds();
             commonService.isLoading.onNext(true); // start loading
