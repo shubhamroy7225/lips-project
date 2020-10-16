@@ -109,7 +109,7 @@ const TextFeed = (props) => {
                         </>
                     }
                 </div>
-                <FeedWidget showWidget={showWidget} feed={feed} user={user} />
+                <FeedWidget showWidget={true} feed={feed} user={user} />
             </div>
         );
     }

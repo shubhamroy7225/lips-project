@@ -10,13 +10,14 @@
 .feed-setting .hashtag {
   text-align: left;
 }
-.theme_outline_light.active, .theme_outline_light.active:hover {
+.theme_outline_light.active,
+.theme_outline_light.active:hover {
   color: #212529;
   background-color: #f8f9fa !important;
   border-color: #f8f9fa;
 }
 
-.theme_outline_light:hover{
+.theme_outline_light:hover {
   color: #f8f9fa;
   background: transparent none;
   border-color: #f8f9fa;
@@ -28,18 +29,18 @@
   }
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
-.span-hidden{
+.span-hidden {
   display: none !important;
 }
 .user_field {
   padding: 5px;
   border: solid 1px #eee;
 }
-.btn-transparent  {
+.btn-transparent {
   background: none;
   border: none;
   cursor: pointer;
@@ -63,7 +64,7 @@
   }
 }
 
-.hashtag{
+.hashtag {
   text-align: left;
 }
 
@@ -85,14 +86,15 @@ header.main_header .lps_dropdown .lps_dropdown-menu.notification-dropdown {
 .heightAuto {
   height: auto !important;
 }
-.lps_list_group span, .lps_list_group button {
+.lps_list_group span,
+.lps_list_group button {
   font-size: 14px;
   font-family: "Dosis", sans-serif !important;
 }
 .cursor-pointer {
   cursor: pointer;
 }
-button{
+button {
   font-family: "Dosis", sans-serif !important;
 }
 
@@ -115,17 +117,18 @@ button{
   justify-content: center !important;
 }
 
-.react-confirm-alert-body{
+.react-confirm-alert-body {
   text-align: center !important;
 }
 
-.react-confirm-alert-overlay{
-  background:  rgba(0, 0, 0, 0.5) !important;
+.react-confirm-alert-overlay {
+  background: rgba(0, 0, 0, 0.5) !important;
 }
 input.input_modify {
   color: #fff;
 }
-.lps_text_white .lps_cont_rdo .lps_checkmark:after, .lps_cont_rdo .lps_checkmark:after {
+.lps_text_white .lps_cont_rdo .lps_checkmark:after,
+.lps_cont_rdo .lps_checkmark:after {
   background: $brand-primary;
 }
 .lps_fig.lps_fig_circle {
@@ -191,4 +194,7 @@ input.input_modify {
 }
 .onTimeModel .hover_bkgr_fricc.hover_alternate_W .popup_cont {
   border-radius: 0;
+}
+.model_border .hover_bkgr_fricc .modal-dialog-centered .popup_cont {
+  border: 1px solid #fd3398;
 }

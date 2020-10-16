@@ -34,7 +34,7 @@ const SharedModal = ({ feed }) => {
 
                         <ul class="lps_btn_grps lps_ul lps_hash_ul">
                             <li>
-                                <span onClick={() =>  navigator.clipboard.writeText(`${window.location.hostname}/${selectedFeed && selectedFeed.id}`)} className="theme_btn theme_outline_light">{window.location.hostname}/{selectedFeed && selectedFeed.id}</span>
+                                <span onClick={() =>  navigator.clipboard.writeText(`${window.location.origin}/${selectedFeed && selectedFeed.id}`)} className="theme_btn theme_outline_light">{window.location.origin}/{selectedFeed && selectedFeed.id}</span>
                                 <p className="copyPara">Click to copy</p>
                             </li>
                         </ul>

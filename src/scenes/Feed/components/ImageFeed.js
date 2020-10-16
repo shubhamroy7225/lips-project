@@ -23,7 +23,9 @@ const ImageFeed = (props) => {
     let history = useHistory()
 
     //more or less description
-    var showChar = 135;  // How many characters are shown by default
+    var showCharMobileView = 135;  // How many characters are shown by default
+    var showCharDesktop = 450;  // How many characters are shown by default
+    let showChar = isMobile ? showCharMobileView : showCharDesktop;
     var ellipsestext = "...";
     let shortDesc = description ? description.substr(0, showChar) : "";
     var pendingText = description ? description.substr(showChar, description.length - showChar) : "";
@@ -90,17 +92,28 @@ const ImageFeed = (props) => {
                         </figure>
                         <div class="lps_media_body">
                             <div class="lps_media_body">
-                                <p>
+                                <p class="moreDesktop">
                                     <span class="text_primary">
                                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                     </span>
-                                    {description}
+                                    {shortDesc}
+                                    {pendingText.length > 0 &&
+                                        <>
+                                            <span class="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
+                                            <span class="morecontent">
+                                                <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
+                                                </span>&nbsp;&nbsp;
+                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} class={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
+                                            </span>
+                                        </>
+                                    }
                                 </p>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="post_img_block lps_pink_bg lps_widgets_wrp">
+                <div class="post_img_block lps_pink_bg lps_widgets_wrp model_border">
                     <div class="lps_sm_shape"></div>
                     {/* <figure class="feed_galary lps_flx_vm_jc lps_f_vm">
                         <img src={require("assets/images/icons/landscape-image.png")} alt="Add Image" />
@@ -124,7 +137,7 @@ const ImageFeed = (props) => {
                             <RemoveFeedModal feed={feed} />
                         </>}
                 </div>
-                <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
+                <FeedWidget showWidget={true} feed={feed} user={user} isReposted={isReposted} />
             </div>
         );
     }
