@@ -42,7 +42,7 @@ const Setting = () => {
                   <Link to="/settings/notification">Notifications</Link>
                </li>
                <li className="list-group-item">
-                  <a href="mailto://" target="_blank">Invite someone to lips</a>
+                  <a href="mailto://?subject=Invitation from Lips&body=Hello,%0DJoin Today https://stage.lips.social" target="_blank">Invite someone to lips</a>
                </li>
                <li className="list-group-item lps_hrSep">
                   <Link to="/settings/community-guidelines">Community guidelines</Link>
