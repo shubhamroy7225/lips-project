@@ -135,3 +135,15 @@ input.input_modify {
 .lps_f_center {
   align-items: center;
 }
+.profile-image-container i {
+  font-size: 14px;
+  background: #fff;
+  border-radius: 50px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  line-height: 20px;
+}
+.over_none {
+  overflow: initial !important;
+}
