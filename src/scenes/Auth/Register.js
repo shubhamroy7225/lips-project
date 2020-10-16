@@ -201,7 +201,7 @@ export default () => {
                       <div className="form_group_modify mb_25">
                         <label className="lps_cont_check">
                           I am 18 years or older
-                          <input type="checkbox" defaultChecked />
+                          <input type="checkbox" checked={true} />
                           <span className="lps_Checkmark"></span>
                         </label>
                       </div>
