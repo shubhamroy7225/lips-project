@@ -1,8 +1,9 @@
-//import { AuthActionTypes } from './actionType';
+import storage from '../../../utility/storage';
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
+import { setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
+
 import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate, hideFeed } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
@@ -45,6 +46,15 @@ export const setFavoriteAvoidTags = (credentials) => {
       commonService.isLoading.onNext(false);
       return response;
     })
+}
+
+export const setFavoriteAvoidTagsJustBrowse = async (data) => {
+  commonService.isLoading.onNext(true);
+  let justBrowseTags = storage.get("justBrowseTags", {})
+  storage.set('justBrowseTags', {...justBrowseTags, ...data.hashtags});
+  let res = await setHashTagJustBrowseSuccessful(data);
+  commonService.isLoading.onNext(false);
+  return res
 }
 
 export const getUserHashTags = (credentials) => {

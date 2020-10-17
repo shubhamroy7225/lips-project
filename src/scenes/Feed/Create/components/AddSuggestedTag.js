@@ -2,7 +2,7 @@ import React from "react";
 import  {addSuggestedHashTag} from 'redux/actions/feed/action';
 
 export default ({setSuggestedTagModel}) => {
-  const [suggestedTag, setSuggested] = React.useState("");
+  const [suggestedTag, setSuggested] = React.useState("#");
   const [tagSubmitted, setSubmitted] = React.useState(false);
   const handleSubmit = () => {
     addSuggestedHashTag({hashtag:{name: suggestedTag}}).then(e => {
@@ -11,6 +11,7 @@ export default ({setSuggestedTagModel}) => {
   };
 
   const handleChange = (e) => {
+    if (e.target.value[0] !== "#") e.target.value =`#${e.target.value}`;
     setSuggested(e.target.value);
   };
 

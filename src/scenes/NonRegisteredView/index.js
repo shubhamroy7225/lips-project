@@ -33,7 +33,7 @@ const NonRegisteredView = (props) => {
         <div id="wrap" class="mt_0">
             <div class="lps_containe lps_bg_secondary lps_text_white">
                 <div class="top_sub_header">
-                    <a onClick={() => history.push(routes.ROOT)} class="close_link">
+                    <a onClick={() => history.push(routes.MAIN_FEED)} class="close_link">
                         <img src={require("assets/images/icons/icn_close_white.png")} alt="Close Icon" />
                     </a>
                 </div>

@@ -51,10 +51,25 @@ const UserListPopUp = ({ followers,
             return <FollowerItem data={user} user={user.follower} />
         })
     }
+    else {
+        followersContent = (
+            <div class="lps_tb_para">
+                <h4>No followers yet</h4>
+            </div>
+        )
+    }
+
     if (following.length > 0) {
         followingContent = following.map(user => {
             return <FollowerItem data={user} user={user.followee} />
         })
+    }
+    else {
+        followingContent = (
+            <div class="lps_tb_para">
+                <h4>You haven't started following anyone yet</h4>
+            </div>
+        )
     }
 
     return (

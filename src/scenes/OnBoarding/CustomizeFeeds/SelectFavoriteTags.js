@@ -3,40 +3,17 @@ import {useSelector} from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as actions from "redux/actions";
 
+import HashTags from "../components/hashTags";
+
 export default () => {
   const history = useHistory();
-
-  const {hashTags, count} = useSelector(store => store.feedReducer);
-  const [filterParams, setFilteredParama] = useState({page: 1, limit: 10});
-  
+  const {user} = useSelector(store => store.authReducer);
   const [selectTags, setSelectTags] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-
-  const loadMore = () => {
-    let tempSearch = {...filterParams};
-    tempSearch.page +=1;
-    setFilteredParama(tempSearch);
-    actions.getAllHashTags({...tempSearch});
-  };
-
-  useEffect(() => {
-    if (!hashTags.length && !loaded) {
-      setLoaded(true)
-      actions.getAllHashTags({...filterParams})
-    }
-  }, []);
- 
-
-  const toggleHashTag = (tag) => {
-    if (selectTags.includes(tag.name)) {
-      selectTags.splice(selectTags.findIndex(e => e === tag.name), 1);
-      setSelectTags([...selectTags]);
-    }
-    else setSelectTags([...selectTags, tag.name]);
-  };
-
   const addFavoriteTags = () => {
-    actions.setFavoriteAvoidTags({hashtags: {show: selectTags}}).then(res => {
+    if (user) actions.setFavoriteAvoidTags({hashtags: {show: selectTags}}).then(res => {
+      if(res) history.push("/avoid-tags")
+    });
+    else actions.setFavoriteAvoidTagsJustBrowse({hashtags: {show: selectTags}}).then(res => {
       if(res) history.push("/avoid-tags")
     });
   };
@@ -53,23 +30,7 @@ export default () => {
                             Begin by choosing a few things you'd like to see more of.
                          </h5>
                       </article>
-                      <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
-                        <li>
-                        {hashTags.map((tag, index) =>
-                                  <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
-                        )}
-                        </li>
-                        
-                          <li class="mt_15">
-                            {
-                              count > hashTags.length ?
-                                <button onClick={loadMore} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase" id="trigger_addMore">View more</button> 
-                              : ""
-                            }
-                         
-                        </li> 
-                        
-                      </ul>
+                     <HashTags setSelectTags={setSelectTags} selectTags={selectTags}/>
                       <div className="pos_wrp onboarding_btm">
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">
                          Continue</button>

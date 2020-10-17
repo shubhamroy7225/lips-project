@@ -4,6 +4,8 @@ import * as actions from 'redux/actions/feed';
 import store from 'redux/store/store';
 import { FeedModalType } from 'utility/constants/constants';
 
+let justBrowseTags = storage.get("justBrowseTags", {})
+
 const updateObject = (oldState, updatedProps) => {
     return {
         ...oldState,
@@ -26,6 +28,7 @@ export const initialState = {
     otherUserFeeds: [],
     searchFeeds: [],
     searchPage: 1,
+    justBrowseTags,
     hashTagSuggestionList: []
 }
 
@@ -207,6 +210,7 @@ export const feedReducer = createReducer({
         })
     },
     [actions.addSuggestedHashTagSuccessful]: (state, payload) => updateObject(state, {}),
+    [actions.setHashTagJustBrowseSuccessful]: (state, payload) => updateObject(state, {justBrowseTags: {...state.justBrowseTags, ...payload.hashtags}}),
     [actions.getHashTagSuggestionListSuccessful]: (state, payload) => updateObject(state, {hashTagSuggestionList: payload.hashtags})
 }, initialState); // <-- This is the default state
 

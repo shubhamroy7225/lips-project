@@ -53,6 +53,10 @@ export const nextPageSearchFeeds = createAction('fetch search feeds for next pag
 
 export const addSuggestedHashTagSuccessful = createAction('Add tag in suggested hash tag list', (tags) => (tags));
 
+
+export const setHashTagJustBrowseSuccessful = createAction('Set tag in storage for just browse', (tags) => (tags));
+
 export const getHashTagSuggestionListPending = createAction('get tag in for search post list pending', (tags) => (tags));
 
 export const getHashTagSuggestionListSuccessful = createAction('get tag in for search post list success', (tags) => (tags));
+

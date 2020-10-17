@@ -36,6 +36,7 @@ export {
     searchFeeds,
     hideAFeed,
     reportAFeed,
+    setFavoriteAvoidTagsJustBrowse,
     getPostSearchHashTag
 } from './feed/action';
 
