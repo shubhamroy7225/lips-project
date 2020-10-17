@@ -8,13 +8,15 @@ import { toggleFollowers } from "redux/actions/auth";
 
 
 const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
+    debugger;
     const [isFollowerHeaderHidden, setIsFollowerHeaderHidden] = useState(true)
     const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user_outline.png");
     const headerImage = user.header_images && user.header_images.medium ? user.header_images.medium : null;
-    const { followers_count, following_count } = user
-    const { follow_status } = user;
+    const { follow_status, followers_count, following_count, privacy_settings, user_name } = user
     const [followStatus, setFollowStatus] = useState(follow_status);
     const [followRequest, setFollowRequest] = useState(false);
+    debugger;
+    const isPublic = privacy_settings === "public";
 
     // updating follow status on didupdate props - on did update props initial value on usestate doesn't work
     useEffect(() => {
@@ -96,7 +98,7 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
                                 <div class="hover_bkgr_fricc heart_notify_box notify_box_hide_3S" style={{ display: followRequest ? "block" : "none" }} id="trigger_heart_popup">
                                     <div class="popup_cont lps_pos_rltv">
                                         <div class="popup_body">
-                                            Follow request sent
+                                            {isPublic ? `You have started following ${user_name}` : "Follow request sent"}
                                         </div>
                                         <span class="bottm_shape"></span>
                                     </div>

@@ -1,9 +1,11 @@
 import React, { Component, useState, useEffect } from 'react';
+import { isMobile } from "react-device-detect";
 import { withRouter, Link } from "react-router-dom";
 import Aux from '../Oux/Oux';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
 import ConfirmDialog from "scenes/shared/common-dialog";
+import AddToHome from "scenes/components/AddToHome";
 import { markAsRead, getAllNotification, getUnreadCount } from 'redux/actions/notification/action';
 import { acceptRequest, rejectRequest } from 'redux/actions/notification/action';
 import * as liked_post from "assets/images/icons/liked_post.png";
@@ -11,14 +13,14 @@ import "assets/sass/style.scss";
 import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
 import moment from "moment";
 
-const Header = ({notificationCount, notifications, count,  ...props}) => {
+const Header = ({ notificationCount, notifications, count, ...props }) => {
     const [modalShown, setModalShown] = useState(false);
     const [marked, setMarked] = useState(false);
     const modalToggle = () => {
         setModalShown(!modalShown);
         if (!marked && notifications.length && notifications[count - 1]) {
             setMarked(true);
-            markAsRead(notifications[count-1].id);
+            markAsRead(notifications[count - 1].id);
         }
     };
     useEffect(() => {
@@ -30,7 +32,6 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
             })
         }
     })
-
     if (props.history.location.pathname === routes.CREATE) {
         return (
             <div className="post_page_header">
@@ -43,9 +44,9 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
             </div>
         )
     } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) ||
-        (props.history.location.pathname === routes.ROOT &&
-            (props.user || props.history.location.pathname === routes.MAIN_FEED))
-        || props.history.location.pathname.includes(routes.PROFILE)) {
+        (props.history.location.pathname === routes.ROOT && props.user) ||
+        props.history.location.pathname === routes.MAIN_FEED ||
+        props.user) {
         //default when user is not logged in
         let headerClassName = "main_header";
         if (props.history.location.pathname === routes.ROOT) {
@@ -72,7 +73,7 @@ const Header = ({notificationCount, notifications, count,  ...props}) => {
                                 </li>
                             </ul>
                         </li>
-                         <li className="nav-item">
+                        <li className="nav-item">
                             <Link to="/settings" className="nav-link not_line">
                                 <span className="avatar_circle">
                                     <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
@@ -104,7 +105,8 @@ class Layout extends Component {
             <Aux>
                 <div className="limiter">
                     <div className="container-login100">
-                        <Header {...this.props} />                        
+                        {isMobile && <AddToHome />}
+                        <Header {...this.props} />
                         <Loader />
                         <ConfirmDialog />
                         <div className="clearfix"></div>
@@ -138,8 +140,8 @@ const mapDispatchToProps = (dispatch) => {
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
 
 
-const NotificationSliderComponent = ({modalShown, modalToggle}) => {
-    const {notifications, count} = useSelector(state => state.notificationReducer);
+const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
+    const { notifications, count } = useSelector(state => state.notificationReducer);
     const [loaded, setLoad] = useState(false);
     const [params, setParams] = useState({
         page: 1, limit: 10, order_by: "desc"
@@ -147,71 +149,71 @@ const NotificationSliderComponent = ({modalShown, modalToggle}) => {
     useEffect(() => {
         if (!loaded && !notifications.length) {
             setLoad(true)
-            getAllNotification({...params});
+            getAllNotification({ ...params });
             getUnreadCount();
 
         }
     }, [loaded]);
 
-    const getCreateAt = (notification) => {        
+    const getCreateAt = (notification) => {
         let time = moment(notification.created_at);
-        if (moment().diff(time, "hours") < 12) { 
+        if (moment().diff(time, "hours") < 12) {
             let date = moment(notification.created_at, "YYYY-MM-DDTHH:mm:ss.SSSSZ")
             var fromNow = date.fromNow();
-            return   `${fromNow} , at ${time.format("hh:mm A")}`;
-        }else{
+            return `${fromNow} , at ${time.format("hh:mm A")}`;
+        } else {
             let date = moment(notification.created_at, "YYYY-MM-DDTHH:mm:ss.SSSSZ")
-            return   `${date.format("MM-DD-YYYY")} , at ${time.format("hh:mm A")}`;
+            return `${date.format("MM-DD-YYYY")} , at ${time.format("hh:mm A")}`;
         }
     }
-    
+
     const loadMore = () => {
-        let tempParams = {...params};
-        tempParams.page +=1;
+        let tempParams = { ...params };
+        tempParams.page += 1;
         setParams(tempParams);
-        getAllNotification({...tempParams})
+        getAllNotification({ ...tempParams })
     };
 
-    const NotificationContent= (notification) => {
+    const NotificationContent = (notification) => {
         if (notification.type === NOTIFICATION_TYPES.liked_post) {
-             return notification.content.replace("liked", `<img src=`+liked_post+` class="inline_img" alt="liked"/>`);
+            return notification.content.replace("liked", `<img src=` + liked_post + ` class="inline_img" alt="liked"/>`);
         } else if (notification.type === NOTIFICATION_TYPES.shared_your_post) {
-            return notification.content.replace("shared", `<img src=`+require("assets/images/icons/icn_repeat.svg")+` class="inline_img" alt="liked"/>`);
-        }  else {
+            return notification.content.replace("shared", `<img src=` + require("assets/images/icons/icn_repeat.svg") + ` class="inline_img" alt="liked"/>`);
+        } else {
             return notification.content
         }
     };
 
     const handleRequest = (responeType, notification) => {
         if (responeType === "accept") acceptRequest(notification.follow.id);
-        else rejectRequest(notification.follow.id);    
+        else rejectRequest(notification.follow.id);
     };
     return (
         <>
-        {
-            !notifications.length ?  <li className="list-group-item"><span className="durations text-align-center">There are no notifications!</span></li> :
-            notifications.map((notification, index) =>
-                    <li key={`noti_${index}`} className="list-group-item">
-                        <div className="lps_media">
-                            <figure className="lps_fig lps_fig_circle">
-                                <img src={notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
-                            </figure>
-                            <div className="lps_media_body">
-                                <Link to={`/profile/${notification.content.split(" ")[0]}`}><h5 onClick={modalToggle} dangerouslySetInnerHTML={{__html: NotificationContent(notification)}}></h5></Link>
-                                {
-                                    (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested" ) ? <div className="btn_group">
-                                        <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
-                                        <button onClick={e => handleRequest("deny", notification)} role="button" className="theme_btn theme_outline_primary deny">deny</button>
-                                    </div> : ""
-                                }
+            {
+                !notifications.length ? <li className="list-group-item"><span className="durations text-align-center">There are no notifications!</span></li> :
+                    notifications.map((notification, index) =>
+                        <li key={`noti_${index}`} className="list-group-item">
+                            <div className="lps_media">
+                                <figure className="lps_fig lps_fig_circle">
+                                    <img src={notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
+                                </figure>
+                                <div className="lps_media_body">
+                                    <Link to={`/profile/${notification.content.split(" ")[0]}`}><h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5></Link>
+                                    {
+                                        (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested") ? <div className="btn_group">
+                                            <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
+                                            <button onClick={e => handleRequest("deny", notification)} role="button" className="theme_btn theme_outline_primary deny">deny</button>
+                                        </div> : ""
+                                    }
 
-                                <span className="durations">{getCreateAt(notification)}</span>
+                                    <span className="durations">{getCreateAt(notification)}</span>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-            )
-        }
-        {notifications.length < count ? <li className="text-align-center text-primary list-group-item"><button className=" btn-transparent" onClick={loadMore}>load more...</button></li> : ""}
+                        </li>
+                    )
+            }
+            {notifications.length < count ? <li className="text-align-center text-primary list-group-item"><button className=" btn-transparent" onClick={loadMore}>load more...</button></li> : ""}
         </>
     )
 }

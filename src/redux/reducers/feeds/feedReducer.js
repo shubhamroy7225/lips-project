@@ -28,7 +28,8 @@ export const initialState = {
     otherUserFeeds: [],
     searchFeeds: [],
     searchPage: 1,
-    justBrowseTags
+    justBrowseTags,
+    hashTagSuggestionList: []
 }
 
 export const feedReducer = createReducer({
@@ -210,6 +211,7 @@ export const feedReducer = createReducer({
     },
     [actions.addSuggestedHashTagSuccessful]: (state, payload) => updateObject(state, {}),
     [actions.setHashTagJustBrowseSuccessful]: (state, payload) => updateObject(state, {justBrowseTags: {...state.justBrowseTags, ...payload.hashtags}}),
+    [actions.getHashTagSuggestionListSuccessful]: (state, payload) => updateObject(state, {hashTagSuggestionList: payload.hashtags})
 }, initialState); // <-- This is the default state
 
 

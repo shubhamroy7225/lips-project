@@ -2,20 +2,31 @@ import storage from '../../../utility/storage';
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { setHashTagJustBrowseSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
+import { setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
+
 import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate, hideFeed } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 
-export const getAllHashTags = (credentials) => {
+export const getAllHashTags = (params) => {
   commonService.isLoading.onNext(true);
   hashTagPending();
-  return API.getAllHashTags(credentials)
+  return API.getAllHashTags(params)
     .then(response => {
       commonService.isLoading.onNext(false);
       hashTagSuccessful(response.data)
       return response
     })
 }
+
+export const getPostSearchHashTag = (params) => {
+  getHashTagSuggestionListPending();
+  return API.getAllHashTags(params)
+    .then(response => {
+      getHashTagSuggestionListSuccessful(response.data)
+      return response
+    })
+}
+
 export const filterHashTags = (credentials) => {
   commonService.isLoading.onNext(true);
   hashTagPending();
