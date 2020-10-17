@@ -71,7 +71,9 @@ export default () => {
                 </div>
               </form>
             </div>
-         </div>
+          </div>
+        </div>
+      </div>
       </>
   )
 }
