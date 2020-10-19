@@ -217,6 +217,7 @@ input.input_modify {
 }
 .moreLess a.morelink {
   position: initial;
+}
 .ifAccess .form_group_modify {
   display: inline-block;
   margin-left: 14px;
@@ -232,8 +233,8 @@ input.input_modify {
 }
 @media screen and (max-width:767px){
   .ifAccess .form_group_modify {
-    display: block;
-    margin-left: 0;
-    width: 100%;
-}
+      display: block;
+      margin-left: 0;
+      width: 100%;
+  }
 }
