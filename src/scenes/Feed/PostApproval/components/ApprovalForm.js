@@ -161,7 +161,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     }
 
     return (
-        <div class="lps_container lps_bg_secondary lps_text_white lps_inner_cont ">
+        <div class="lps_container lps_bg_secondary lps_text_white lps_inner_cont pt-75">
             <div class="lps_approval add_product_con ">
                 <article class="text_center lps_logo_center">
                     <a class="logo mb_0" href="#">
@@ -169,7 +169,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                     </a>
                 </article>
                 <form onSubmit={handleSubmit}>
-                    <div class="form_group_modify">
+                    <div class="form_group_modify postApproval">
                         <label class="label_modify">3 post example <br />(Images example of visuals or text that you'd post) *</label>
                         <div class="add_product_grid">
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector1)}>
@@ -193,7 +193,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
 
                     </div>
                     <div class="form_group_modify">
-                        <label class="label_modify">Alternativelly link to your website / portfolio</label>
+                        <label class="label_modify">Alternatively link to your website / portfolio</label>
                         <input class="input_modify"
                             type="text"
                             name="link"
