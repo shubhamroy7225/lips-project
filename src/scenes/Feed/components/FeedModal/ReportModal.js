@@ -80,25 +80,25 @@ const ReportModal = ({ feed }) => {
                 <span className="helper"></span>
                 <div className="popup_cont">
                     <div className="popup_body">
-                        <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_white.png")} /></div>
+                        <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
                         <ul class="lps_btn_grps lps_ul">
                             <li class="lps_title">
                                 Don't want to see this?
                         </li>
                             <li>
-                                <a onClick={hideFeed} class="theme_btn theme_outline_light theme_btn_rds25 text_uppercase btn_block">Hide This Post</a>
+                                <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase btn_block text_white">Hide This Post</a>
                             </li>
                             <li>
-                                <a onClick={hideFeed} class="theme_btn theme_outline_light theme_btn_rds25 text_uppercase btn_block">Don't Show Me Anything Like This</a>
+                                <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase btn_block text_white">Don't Show Me Anything Like This</a>
                             </li>
                             <li>
-                                <a onClick={reportFeed} class="theme_btn theme_outline_light theme_btn_rds25 text_uppercase btn_block">Report</a>
+                                <a onClick={reportFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase btn_block text_white">Report</a>
                             </li>
                             <li>
-                                <a onClick={unfollowAUser} class="theme_btn theme_outline_light theme_btn_rds25 text_uppercase btn_block">Unfollow User</a>
+                                <a onClick={unfollowAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase btn_block text_white">Unfollow User</a>
                             </li>
                             <li>
-                                <a onClick={blockAUser} class="theme_btn theme_outline_light theme_btn_rds25 text_uppercase btn_block">Block User</a>
+                                <a onClick={blockAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase btn_block text_white">Block User</a>
                             </li>
                         </ul>
                     </div>
