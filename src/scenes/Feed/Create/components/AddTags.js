@@ -67,7 +67,7 @@ const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTag
                                             <button class="btn_search" type="button">
                                                 <img src={require("assets/images/icons/icn_search_white.svg")} alt="Search" />
                                             </button>
-                                            <input class="input_modify" type="text" value={searchText} onChange={handInputChange} />
+                                            <input class="input_modify tagInput" type="text" value={searchText} onChange={handInputChange} />
                                         </div>
                                     </div>
                                 </div>
