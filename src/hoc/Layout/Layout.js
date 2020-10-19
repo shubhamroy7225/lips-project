@@ -46,7 +46,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
     } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) ||
         (props.history.location.pathname === routes.ROOT && props.user) ||
         props.history.location.pathname === routes.MAIN_FEED ||
-        props.user) {
+        (props.user && !Object.values(SETTINGS_PATH).includes(props.history.location.pathname))) {
         //default when user is not logged in
         let headerClassName = "main_header";
         if (props.history.location.pathname === routes.ROOT) {

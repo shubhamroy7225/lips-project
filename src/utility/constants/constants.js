@@ -11,6 +11,7 @@ export const URL = new RegExp('^(https?:\\/\\/)?' + // protocol
 export const PhNoPattern = /^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/;
 export const NOTIFICATION_TYPES = { liked_post: 'liked_post', requested_follow: 'requested_follow', accepted_follow: 'accepted_follow', shared_your_post: 'shared_your_post' };
 export const SETTINGS_PATH = {
+    SETTING: '/settings',
     MY_ACCOUNT: '/settings/my-account',
     SWITCH_ACCOUNT: '/settings/switch-account',
     MANAGE_DATA: '/settings/manage-data',
@@ -52,7 +53,6 @@ export const routes = {
     LANDING: '/landing',
     COMMUNITY_GUIDELINES: '/community-guidelines',
     ACCOUNT_PRIVACY: '/account-privacy',
-    SETTING: '/settings',
     CONTACT_USER: '/contact_user',
     ...PRIVATE_PATH,
     ...SETTINGS_PATH,
