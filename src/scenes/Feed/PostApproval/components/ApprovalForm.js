@@ -99,16 +99,15 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
             return ele.photo_path
         });
 
-        let request = {
-            approval:{
+        let approval = {
                 link:approvalForm.link,
                 about:approvalForm.description,
                 //own_content: approvalForm.ownContent,
                 photo_paths:photoPaths
             }
-        }
+        if (!approval.link) delete approval.link;
 
-        feedsAction.submitCreateFeedApprovalData(request)
+        feedsAction.submitCreateFeedApprovalData({approval})
         .then(response => {
             //success
             if (response.data.success){
