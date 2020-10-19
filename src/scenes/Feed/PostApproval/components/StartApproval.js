@@ -49,7 +49,11 @@ const StartApproval = ({ moveToNextStep }) => {
                         Once apporved, you can post anything from cat pics to high art - we're not here to judge. as long as it's your original content.
               </p>
                 </article>
-                <div className="lps_fields">
+                <div class="plans_wrp text_center">
+                    <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P">Get Approved</a>
+                </div>
+                <div className="lps_fields ifAccess">
+                    <p className="mt45">If you have an access code to skip the approval process, enter your code here</p>
                     <div className="form_group_modify">
                         <input type="text"
                             name="accessCode"
@@ -60,10 +64,8 @@ const StartApproval = ({ moveToNextStep }) => {
                             onChange={handleChange} />
                     </div>
                 </div>
-                <div class="plans_wrp text_center">
-                    <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P">Get Approved</a>
-                </div>
-                <p className="mt45">If you have an access code to skip the approval process, enter your code here</p>
+                
+                
             </div>
         </div>
     );

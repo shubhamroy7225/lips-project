@@ -215,3 +215,23 @@ input.input_modify {
 .inner_form .input_field .input_modify.tagInput:focus {
   border-bottom: 1px solid #f2f2f2 !important;
 }
+.ifAccess .form_group_modify {
+  display: inline-block;
+  margin-left: 14px;
+  width: 105px;
+}
+.ifAccess p {
+  display: inline-block;
+}
+.ifAccess .form_group_modify input.input_modify.input_brdrBtnmP {
+  border-radius: 0;
+  height: 30px;
+  padding: 0 0 0 7px;
+}
+@media screen and (max-width:767px){
+  .ifAccess .form_group_modify {
+    display: block;
+    margin-left: 0;
+    width: 100%;
+}
+}
