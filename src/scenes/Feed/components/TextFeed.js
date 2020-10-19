@@ -35,7 +35,7 @@ const TextFeed = (props) => {
         return (
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_sm_shape lps_sm_shape1"></div>
-                <div class="lps_inner_wrp bg_gray_feed lps_mt_50">
+                <div class="lps_inner_wrp bg_gray_feed lps_mt_50 textContent">
                     <div className="lps_inner_cont lps_pos_rltv">
                         <article className="lps_art">
                             <a id="trigger_text_feed1" onClick={clickHandler}>
