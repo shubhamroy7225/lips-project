@@ -39,14 +39,14 @@ const ImageFeed = (props) => {
         return (
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_sm_shape"></div>
-                <div class="post_img_block lps_widgets_wrp bg_gray_feed">
+                <div className="post_img_block lps_widgets_wrp bg_gray_feed">
                     <a href="javascript:void(0);" onClick={clickHandler} id="trigger_main_feed">
-                        <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
+                        <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
                         {
                             isReposted &&
-                            <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
+                            <div className="lps_inner_wrp pd_b10 text_secondary">repost by <span className="text_primary">
                                 <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
                             </span>
                             </div>
@@ -59,19 +59,19 @@ const ImageFeed = (props) => {
                         <figure className="lps_fig lps_fig_circle">
                             <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                         </figure>
-                        <div class="lps_media_body">
-                            <div class="lps_media_body">
-                                <p class="mb_5 more">
-                                    <span class="text_primary ft_Weight_500">
+                        <div className="lps_media_body">
+                            <div className="lps_media_body">
+                                <p className="mb_5 more">
+                                    <span className="text_primary ft_Weight_500">
                                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                     </span> {shortDesc}
                                     {pendingText.length > 0 &&
                                         <>
-                                            <span class="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
-                                            <span class="morecontent">
+                                            <span className="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
+                                            <span className="morecontent moreLess">
                                                 <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
                                                 </span>&nbsp;&nbsp;
-                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} class={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
+                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} className={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
                                             </span>
                                         </>
                                     }
@@ -84,26 +84,26 @@ const ImageFeed = (props) => {
         )
     } else {
         return (
-            <div class="lps_list lps_dsk_list" ref={(r) => refHandler && refHandler(r)}>
-                <div class="lps_inner_wrp_media">
-                    <div class="lps_media">
-                        <figure class="lps_fig lps_fig_circle">
+            <div className="lps_list lps_dsk_list" ref={(r) => refHandler && refHandler(r)}>
+                <div className="lps_inner_wrp_media">
+                    <div className="lps_media">
+                        <figure className="lps_fig lps_fig_circle">
                             <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                         </figure>
-                        <div class="lps_media_body">
-                            <div class="lps_media_body">
-                                <p class="moreDesktop">
-                                    <span class="text_primary">
+                        <div className="lps_media_body">
+                            <div className="lps_media_body">
+                                <p className="moreDesktop">
+                                    <span className="text_primary">
                                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                     </span>
                                     {shortDesc}
                                     {pendingText.length > 0 &&
                                         <>
-                                            <span class="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
-                                            <span class="morecontent">
+                                            <span className="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
+                                            <span className="morecontent">
                                                 <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
                                                 </span>&nbsp;&nbsp;
-                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} class={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
+                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} className={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
                                             </span>
                                         </>
                                     }
@@ -113,17 +113,17 @@ const ImageFeed = (props) => {
                         </div>
                     </div>
                 </div>
-                <div class="post_img_block lps_pink_bg lps_widgets_wrp model_border">
-                    <div class="lps_sm_shape"></div>
-                    {/* <figure class="feed_galary lps_flx_vm_jc lps_f_vm">
+                <div className="post_img_block lps_pink_bg lps_widgets_wrp model_border">
+                    <div className="lps_sm_shape"></div>
+                    {/* <figure className="feed_galary lps_flx_vm_jc lps_f_vm">
                         <img src={require("assets/images/icons/landscape-image.png")} alt="Add Image" />
                     </figure> */}
                     <a href="javascript:void(0);" onClick={clickHandler}>
-                        <figure class="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
+                        <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
                         {
-                            isReposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
+                            isReposted && <div className="lps_inner_wrp pd_b10 text_secondary">repost by <span className="text_primary">
                                 <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
                             </span></div>
                         }
