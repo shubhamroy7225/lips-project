@@ -38,9 +38,9 @@ const Setting = () => {
                   <li className="list-group-item">
                      <Link to="/settings/feed-setting">Feed settings</Link>
                   </li>
-                  <li className="list-group-item">
+                  {/* <li className="list-group-item">
                      <Link to="/settings/notification">Notifications</Link>
-                  </li>
+                  </li> */}
                   <li className="list-group-item">
                      <a href="mailto://?subject=Invitation from Lips&body=Hello,%0DJoin Today https://stage.lips.social" target="_blank">Invite someone to lips</a>
                   </li>
