@@ -87,13 +87,10 @@ const Router = (props) => {
             <Switch>
                 <Route exact path={routes.ROOT} component={Landing} />
                 <Route exact path={routes.MAIN_FEED} component={MainFeed} />
-                <Route exact path={routes.EXPLORE} component={ExploreFeed} />
-                <Route exact path={routes.LIKES} component={Likes} />
                 <Route exact path={routes.LOGIN} component={Login} />
                 <Route exact path={routes.REGISTER} component={Register} />
                 <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
                 <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
-                <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
                 <Route exact path={routes.FORGOT_PASSWORD} component={ForgotPassword} />
                 <Route exact path={routes.RESET_PASSWORD} component={ResetPassword} />
                 <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
