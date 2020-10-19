@@ -54,6 +54,8 @@ export default () => {
     delete updatedUser.confirm_password;
     AuthActions.signup({ user: updatedUser }).then((res) => {
       history.push("/community-guidelines");
+    }).catch(err => {
+      setTermsAndConditionPageActive(false);
     });
   };
 
