@@ -103,7 +103,7 @@ const ImageFeed = (props) => {
                                             <span className="morecontent">
                                                 <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
                                                 </span>&nbsp;&nbsp;
-                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} className={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
+                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} className={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "Show less" : "Show more"}</a>
                                             </span>
                                         </>
                                     }
