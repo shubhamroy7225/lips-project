@@ -4,11 +4,12 @@ import * as feedActions from 'redux/actions/feed/action';
 
 import AddSuggestedTag from "./AddSuggestedTag";
 
-const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTags }) => {
+const AddTags = ({ count, show, dismiss, selectedHashTags, setSelectedHashTags, hashTags }) => {
     const style = show ? { display: "block" } : { display: "none" };
     const [openSuggestedTagModel, setSuggestedTagModel] = useState(false);
     const [filteredHashtags, setFilteredHashtags] = useState(hashTags);
     const [searchText, setSearchText] = useState('');
+    const [filterParams, setFilteredParams] = useState({page: 1, limit: 10});
 
     useEffect(() => {
         validateHashtags();
@@ -51,6 +52,13 @@ const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTag
         }
     }
 
+    const loadMore = () => {
+        let tempSearch = {...filterParams};
+        tempSearch.page +=1;
+        setFilteredParams(tempSearch);
+        feedActions.getAllHashTags({...tempSearch});
+    };
+
     return (
         <>{
             openSuggestedTagModel ? <AddSuggestedTag setSuggestedTagModel={setSuggestedTagModel}/> :
@@ -88,6 +96,13 @@ const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTag
                                             })
                                         }
                                     </div>
+                                    <li className="mt_15">
+                                        {
+                                            count > hashTags.length ?
+                                                <button onClick={loadMore} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
+                                                    View more</button> : ""
+                                        }
+                                    </li>
                                 </div>
                                 <div class="post_links post_links_undr">
                                     <a onClick={() => dismiss()} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</a>
@@ -103,7 +118,8 @@ const AddTags = ({ show, dismiss, selectedHashTags, setSelectedHashTags, hashTag
 
 const mapStateToProps = (state) => ({
     user: state.authReducer.user,
-    hashTags: state.feedReducer.hashTags
+    hashTags: state.feedReducer.hashTags,
+    count: parseInt(state.feedReducer.count)
 });
 
 export default connect(mapStateToProps, null)(AddTags);
