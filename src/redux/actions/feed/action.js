@@ -227,6 +227,7 @@ export const reportAFeed = (feed) => {
 
 export const addSuggestedHashTag = (body) => {
   commonService.isLoading.onNext(true); // start loading
+  getHashTagSuggestionListPending();
   return API.addSuggestedHashTag(body)
     .then(response => {
       commonService.isLoading.onNext(false); // start loading
