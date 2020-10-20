@@ -5,7 +5,7 @@ import { setFeedModalType, setSelectedFeed } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
 
 const FeedWidget = ({ user, showWidget, feed }) => {
-    const { likable } = feed;
+    const { likable, is_reposted } = feed;
     const [like, setLike] = useState(feed.liked);
 
     let className = !showWidget ? "lps_widgets lps_widgets_none" : "lps_widgets";
@@ -56,7 +56,7 @@ const FeedWidget = ({ user, showWidget, feed }) => {
     }
 
     let repostIconClasses = "repeat_icon_wrp circle_image lps_flx_vm_jc icn_hover_chng";
-    if (like) {
+    if (is_reposted) {
         repostIconClasses = repostIconClasses + " active";
     }
 
@@ -106,7 +106,7 @@ const FeedWidget = ({ user, showWidget, feed }) => {
             {/* <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
                 <img src={require("assets/images/icons/icn_repeat_white.svg")} className="inner_image" alt="Repeat Icon" />
             </a> */}
-            <a onClick={() => feedSelectionHandler(FeedModalType.repost)}
+            <a onClick={() => is_reposted ? () => { } : feedSelectionHandler(FeedModalType.repost)}
                 className={repostIconClasses}
                 id="trigger_popup_fricc1">
                 <img src={require("assets/images/icons/icn_repeat_white.svg")} class="inner_image icn_dfltD" alt="Repeat Icon" />
