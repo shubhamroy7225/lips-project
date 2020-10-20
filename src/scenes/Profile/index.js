@@ -167,7 +167,9 @@ const Profile = (props) => {
     } else {
         feeds = userFeeds
     }
-    if (user) {
+    //if self user coming to profile then ask for login if not logged in
+    let showView = props.match.params.id || user
+    if (showView) {
         if (dataLoadedType === LoadingType.user) {
             gridFeedContent = <AsyncUILoader show={true} />
         } else {
