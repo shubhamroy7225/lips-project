@@ -22,7 +22,7 @@ const TextFeed = (props) => {
     const { description } = feed;
     const reposted = isReposted;
     const repostedByUser = isReposted ? feed.user : {};
-    const feed_user = isReposted ? feed.parent.user : feed.user;
+    const feed_user = isReposted && feed.parent ? feed.parent.user : feed.user;
     const user_name = feed_user.user_name;
     const [showWidget, setShowWidget] = useState(false)
     const feed_user_photo = feed_user.photo_urls;

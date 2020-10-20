@@ -23,7 +23,6 @@ export const SETTINGS_PATH = {
     FEED_SETTING_MODAL: '/settings/feed-setting-modal'
 };
 export const PRIVATE_PATH = {
-    FEEDS: '/feeds',
     LOGOUT: '/logout',
     EXPLORE: '/explore',
     CREATE: '/create',
@@ -46,6 +45,7 @@ export const ON_BOARD_PATH = {
     COMMUNITY_GUIDELINES: '/community-guidelines',
     ACCOUNT_PRIVACY: '/account-privacy',
 }
+
 export const NO_HEADER_ROUTES = {
     ROOT: '/',
     NO_NETWORK: "/network_error",
@@ -53,13 +53,12 @@ export const NO_HEADER_ROUTES = {
     LOGIN_TO_PROCEED: '/create-account',
     ...SETTINGS_PATH,
     ...ON_BOARD_PATH
-
 };
 
 export const routes = {
     ROOT: '/',
-    MAIN_FEED: '/main-feeds',
-
+    MAIN_FEED: '/posts',
+    POST_DETAIL: '/post/:id',
     CONTACT_USER: '/contact_user',
     ...ON_BOARD_PATH,
     ...PRIVATE_PATH,
