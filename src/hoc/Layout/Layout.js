@@ -55,7 +55,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
         return (
             <header className={headerClassName}>
                 <nav className="theme_navigation">
-                    <Link className="logo" to="/">
+                    <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
                         <img src={require("assets/images/thumbnails/logo.svg")} alt="BitCot Logo" className="header__logo" />
                     </Link>
                     {props.user && <ul className="lp_nav">
