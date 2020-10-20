@@ -70,14 +70,14 @@ const Router = (props) => {
                 <Route exact path={routes.CONTACT_USER} component={ContactUser} />
                 <Route exact path={routes.FEED_SETTING_MODAL} component={FeedSettingModal} />
                 { !props.isOnBoard &&
-                <>
-                <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
-                <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
-                <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
-                <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
-                <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
-                <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
-                </>
+                    <>
+                        <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
+                        <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
+                        <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
+                        <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
+                        <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
+                        <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
+                    </>
                 }
                 <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
             </Switch>
@@ -97,6 +97,8 @@ const Router = (props) => {
                 <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
                 <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
                 <Route exact path={routes.LOGIN_TO_PROCEED} component={NonRegisteredView} />
+                <Route exact path={routes.PROFILE} component={Profile} />
+                <Route exact path={routes.OTHER_PROFILE} component={Profile} />
                 <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
                 <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
             </Switch>

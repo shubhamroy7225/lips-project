@@ -5,7 +5,7 @@ import { setFeedModalType, setSelectedFeed } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
 
 const FeedWidget = ({ user, showWidget, feed }) => {
-
+    const { likable } = feed;
     const [like, setLike] = useState(feed.liked);
 
     let className = !showWidget ? "lps_widgets lps_widgets_none" : "lps_widgets";
@@ -50,9 +50,14 @@ const FeedWidget = ({ user, showWidget, feed }) => {
         }
     }
 
-    let likeIconClasses = "lip_icon_wrp circle_image lps_flx_vm_jc icn_hover_chng ";
+    let likeIconClasses = "lip_icon_wrp circle_image lps_flx_vm_jc icn_hover_chng";
     if (like) {
-        likeIconClasses = likeIconClasses + "active";
+        likeIconClasses = likeIconClasses + " active";
+    }
+
+    let repostIconClasses = "repeat_icon_wrp circle_image lps_flx_vm_jc icn_hover_chng";
+    if (like) {
+        repostIconClasses = repostIconClasses + " active";
     }
 
     const toggleLike = () => {
@@ -98,8 +103,14 @@ const FeedWidget = ({ user, showWidget, feed }) => {
     );
     let repostOption = (
         <li className="listed_item">
-            <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
+            {/* <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
                 <img src={require("assets/images/icons/icn_repeat_white.svg")} className="inner_image" alt="Repeat Icon" />
+            </a> */}
+            <a onClick={() => feedSelectionHandler(FeedModalType.repost)}
+                className={repostIconClasses}
+                id="trigger_popup_fricc1">
+                <img src={require("assets/images/icons/icn_repeat_white.svg")} class="inner_image icn_dfltD" alt="Repeat Icon" />
+                <img src={require("assets/images/icons/icn_repeat.svg")} class="inner_image icn_hvrA" alt="Repeat Icon" />
             </a>
         </li>
     );
@@ -115,9 +126,17 @@ const FeedWidget = ({ user, showWidget, feed }) => {
 
     if (user) {
         if (isOwner) {
-            listContent = [deleteOption, hashtagOptionn, shareOption, likeOption];
+            if (likable) {
+                listContent = [deleteOption, hashtagOptionn, shareOption, likeOption];
+            } else {
+                listContent = [deleteOption, hashtagOptionn, shareOption];
+            }
         } else {
-            listContent = [reportOption, hashtagOptionn, shareOption, repostOption, likeOption];
+            if (likable) {
+                listContent = [reportOption, hashtagOptionn, shareOption, repostOption, likeOption];
+            } else {
+                listContent = [reportOption, hashtagOptionn, shareOption, repostOption];
+            }
         }
     } else {
         listContent = [hashtagOptionn, shareOption];
