@@ -12,9 +12,9 @@ const SearchInput = ({ submitHandler }) => {
 
     const inputChangeHandler = (e) => {
         setSearchText(e.target.value.toLowerCase());
-        if (e.target.value) getPostSearchHashTag({name: e.target.value.toLowerCase(), page:1 , limit: 10});
+        if (e.target.value && e.target.value.trim().length > 2) getPostSearchHashTag({name: e.target.value.toLowerCase(), page:1 , limit: 10});
         else setShowSuggestions(false);
-        if (!showSuggestions) setShowSuggestions(true)
+        if (!showSuggestions &&  e.target.value.trim().length > 2) setShowSuggestions(true)
     }
 
     return (
