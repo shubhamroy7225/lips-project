@@ -223,6 +223,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                             <span class="lps_Checkmark"></span>
                         </label>
                     </div> */}
+                    <p>If you plan to share the work of others on your profile that is fine! However, we ask that you give full credit to any artists/creators involved. Lips loves our creators, so intentional plagiarism and copyright infringement is a one-way ticket to outta here town for sure.</p>
                     <div class="post_block mb20 mt_15">
                         <button type="submit" class="circle">Submit</button>
                         <a onClick={() => cancel()} class="cancel_post link_underline">Cancel</a>
