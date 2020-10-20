@@ -43,7 +43,7 @@ export const authReducer = createReducer({
             isloading: false, user: payload ? payload.user : state.user,
         }),
     [actions.signupPending]: (state) =>
-        updateObject(state, { isloading: true }),
+        updateObject(state, { isloading: true, isOnBoard: false }),
     [actions.signupSuccessful]: (state, payload) =>
         updateObject(state, {
             isloading: false, user: payload ? payload.user : state.user,
