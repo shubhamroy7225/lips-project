@@ -8,16 +8,13 @@ import { toggleFollowers } from "redux/actions/auth";
 
 
 const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
-    debugger;
     const [isFollowerHeaderHidden, setIsFollowerHeaderHidden] = useState(true)
     const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user_outline.png");
     const headerImage = user.header_images && user.header_images.medium ? user.header_images.medium : null;
     const { follow_status, followers_count, following_count, privacy_settings, user_name } = user
     const [followStatus, setFollowStatus] = useState(follow_status);
     const [followRequest, setFollowRequest] = useState(false);
-    debugger;
-    const isPublic = privacy_settings === "public";
-
+    const isPublic = privacy_settings === "public"; 
     // updating follow status on didupdate props - on did update props initial value on usestate doesn't work
     useEffect(() => {
         setFollowStatus(follow_status)
@@ -46,7 +43,6 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true }) => {
     }
 
     const openFollowing = () => {
-        debugger;
         toggleFollowers({ enable: false });
     }
 

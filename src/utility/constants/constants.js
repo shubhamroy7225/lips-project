@@ -33,15 +33,7 @@ export const PRIVATE_PATH = {
     OTHER_PROFILE: '/profile/:id',
 };
 
-export const NO_HEADER_ROUTES = {
-    NO_NETWORK: "/network_error",
-    POST_APPROVAL: '/post-approval',
-    LOGIN_TO_PROCEED: '/create-account'
-};
-
-export const routes = {
-    ROOT: '/',
-    MAIN_FEED: '/main-feeds',
+export const ON_BOARD_PATH = {
     CUSTOMIZE_FEEDS: '/customize-tags',
     LOGIN: '/login',
     REGISTER: '/register',
@@ -53,7 +45,23 @@ export const routes = {
     LANDING: '/landing',
     COMMUNITY_GUIDELINES: '/community-guidelines',
     ACCOUNT_PRIVACY: '/account-privacy',
+}
+export const NO_HEADER_ROUTES = {
+    ROOT: '/',
+    NO_NETWORK: "/network_error",
+    POST_APPROVAL: '/post-approval',
+    LOGIN_TO_PROCEED: '/create-account',
+    ...SETTINGS_PATH,
+    ...ON_BOARD_PATH
+
+};
+
+export const routes = {
+    ROOT: '/',
+    MAIN_FEED: '/main-feeds',
+
     CONTACT_USER: '/contact_user',
+    ...ON_BOARD_PATH,
     ...PRIVATE_PATH,
     ...SETTINGS_PATH,
     ...NO_HEADER_ROUTES

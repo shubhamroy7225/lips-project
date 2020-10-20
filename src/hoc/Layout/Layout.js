@@ -10,10 +10,11 @@ import { markAsRead, getAllNotification, getUnreadCount } from 'redux/actions/no
 import { acceptRequest, rejectRequest } from 'redux/actions/notification/action';
 import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
-import { routes, SETTINGS_PATH, PRIVATE_PATH, NOTIFICATION_TYPES } from 'utility/constants/constants';
+import { routes, NO_HEADER_ROUTES, NOTIFICATION_TYPES } from 'utility/constants/constants';
 import moment from "moment";
 
 const Header = ({ notificationCount, notifications, count, ...props }) => {
+
     const [modalShown, setModalShown] = useState(false);
     const [marked, setMarked] = useState(false);
     const modalToggle = () => {
@@ -32,6 +33,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
             })
         }
     })
+    
     if (props.history.location.pathname === routes.CREATE) {
         return (
             <div className="post_page_header">
@@ -43,9 +45,8 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                 </nav>
             </div>
         )
-    } else if (Object.values(PRIVATE_PATH).includes(props.history.location.pathname) ||
-        (props.history.location.pathname === routes.ROOT && props.user) ||
-        props.history.location.pathname === routes.MAIN_FEED ) {
+    } else if ((props.history.location.pathname === "/" && props.user) || !Object.values(NO_HEADER_ROUTES).includes(props.history.location.pathname)) {
+            
         //default when user is not logged in
         let headerClassName = "main_header";
         if (props.history.location.pathname === routes.ROOT) {

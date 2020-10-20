@@ -24,7 +24,7 @@ export default () => {
                 <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
                    <div className="lps_form_wrp on_boarding_wrp_spwn border_0">
                       <article className="lps_art lps_art_white">
-                         <h3 className="mb30">Some things are not for everybody</h3>
+                         <h3 className="mb30">Some things are not for everybody - and that’s ok!   </h3>
                          <h5 className="ft_Weight_400">
                             Mark the ones you don't want to see and we will do our best to provide tag-based warnings.
                          </h5>
