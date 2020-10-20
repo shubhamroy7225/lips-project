@@ -25,7 +25,7 @@ export default () => {
                             {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
                           </figure>
                         </div>
-                        <h5>Discover Open &amp; Honest Content</h5>
+                        <h5>A creative space for women-identified &amp; LGBTQIA+ creators</h5>
                       </div>
                     </div>
                     <div className="item">
@@ -35,7 +35,7 @@ export default () => {
                             {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
                           </figure>
                         </div>
-                        <h5>Show Lips love</h5>
+                        <h5>Share your work and explore content by the creators you love</h5>
                       </div>
                     </div>
                     <div className="item">
@@ -45,17 +45,7 @@ export default () => {
                             {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
                           </figure>
                         </div>
-                        <h5>Create your collections</h5>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="product_item_wrp">
-                        <div className="product_item">
-                          <figure className="lps_fig">
-                            {/* <img src={require("assets/images/thumbnails/thumbnail1.png")} alt="thumbnail1" /> */}
-                          </figure>
-                        </div>
-                        <h5>Express youself</h5>
+                        <h5>Express yourself without biased censorship or online harassment</h5>
                       </div>
                     </div>
                   </div>
