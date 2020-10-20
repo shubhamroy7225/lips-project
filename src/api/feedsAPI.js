@@ -32,4 +32,7 @@ export const hideFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/hid
 
 export const reportFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/report`);
 
-export const searchFeeds = (queryString = "") => axios.get(`${API_VERSION}/post/search${queryString}`)
+export const searchFeeds = (queryString = "") => {
+    // debugger;
+    return axios.get(`${API_VERSION}/post/search${queryString}`)
+}

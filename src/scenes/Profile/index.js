@@ -168,6 +168,7 @@ const Profile = (props) => {
         feeds = userFeeds
     }
     //if self user coming to profile then ask for login if not logged in
+    //routes with username are allowed to check the profile even if not logged in
     let showView = props.match.params.id || user
     if (showView) {
         if (dataLoadedType === LoadingType.user) {

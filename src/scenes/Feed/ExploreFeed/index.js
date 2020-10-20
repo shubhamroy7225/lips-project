@@ -24,7 +24,7 @@ const ExploreFeed = (props) => {
     const [isDataFetched, setIsDataFetched] = useState(false);
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
-    let searchText = null;
+    const searchText = useRef(null);
     var selectedFeedOnToggle = useRef(null);
 
     //will mount and unmount - on unmount show the header if it's hidden
@@ -81,7 +81,7 @@ const ExploreFeed = (props) => {
         setIsFeedCallInProgress(true);
         //make feed call for page
         console.log("making pagination call");
-        fetchFeedsFromServer(searchText, false);
+        fetchFeedsFromServer(searchText.current, false);
         console.log("reached bottom initiate page call");
     }
 
@@ -148,9 +148,10 @@ const ExploreFeed = (props) => {
     }
 
     const submitHandler = (searchTxt) => {
-        searchText = searchTxt
+        searchText.current = searchTxt.replace("#", "");
+        debugger;
         setSearchPage({ page: 1 })
-        fetchFeedsFromServer(searchText, true);
+        fetchFeedsFromServer(searchText.current, true);
     }
 
     let gridFeedContent = [];
