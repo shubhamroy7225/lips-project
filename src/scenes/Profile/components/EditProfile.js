@@ -6,6 +6,8 @@ import * as AuthActions from "redux/actions";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import * as commonService from "../../../utility/utility";
+
 const EditProfile = ({setIsEdit, user}) => {
   const [userForm, setUserForm] = useState({...user});
   const [files, setFile] = useState({header_image: {}, photo_url: {}});
@@ -16,12 +18,14 @@ const EditProfile = ({setIsEdit, user}) => {
     let url = URL.createObjectURL(file);
     let fileName= e.target.name;
     let newFiles = {...files, [e.target.name]: {src: url, file}};
+    setFile(newFiles);
     AuthActions.config({ext: ['.png']}).then(res=> {
       let header_image = res.urls[0].photo_path;
       setUserForm({...userForm, [fileName]: header_image})
-      ConfigAPI.uploadImageToS3(res.urls[0].presigned_url, file)
+      commonService.isLoading.onNext(true);
+      ConfigAPI.uploadImageToS3(res.urls[0].presigned_url, file).then(res =>  commonService.isLoading.onNext(false))
     });
-    setFile(newFiles);
+
   };
 
   const calculateTextareaLength = e => {
