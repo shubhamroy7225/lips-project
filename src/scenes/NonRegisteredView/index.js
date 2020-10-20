@@ -4,12 +4,12 @@ import { routes } from 'utility/constants/constants';
 
 const Options = {
     create: {
-        title: "Want to post?",
-        desc: "Registered and approved users can easily manage or text posts (from cat pics to high art. Lips is the place for it as long as it's original content)."
+        title: "Express yourself!",
+        desc: "Registered and approved users can easily create image or text posts to share with the Lips universe. From selfies and memes, to doodles and high art - you can post & repost (almost) ANYTHING on Lips."
     },
     likes: {
-        title: "Want to spread the love ?",
-        desc: "Registered users can send Lips Love and create collections of their favorite content."
+        title: "Spread the love!",
+        desc: "Registered users can send Lips Love, and share the content they’ve loved with others."
     },
     explore: {
         title: "Want to explore the feeds ?",
