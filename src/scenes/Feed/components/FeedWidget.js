@@ -5,6 +5,7 @@ import { setFeedModalType, setSelectedFeed } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
 
 const FeedWidget = ({ user, showWidget, feed }) => {
+    const { likable } = feed;
     const [like, setLike] = useState(feed.liked);
 
     let className = !showWidget ? "lps_widgets lps_widgets_none" : "lps_widgets";
@@ -125,9 +126,17 @@ const FeedWidget = ({ user, showWidget, feed }) => {
 
     if (user) {
         if (isOwner) {
-            listContent = [deleteOption, hashtagOptionn, shareOption, likeOption];
+            if (likable) {
+                listContent = [deleteOption, hashtagOptionn, shareOption, likeOption];
+            } else {
+                listContent = [deleteOption, hashtagOptionn, shareOption];
+            }
         } else {
-            listContent = [reportOption, hashtagOptionn, shareOption, repostOption, likeOption];
+            if (likable) {
+                listContent = [reportOption, hashtagOptionn, shareOption, repostOption, likeOption];
+            } else {
+                listContent = [reportOption, hashtagOptionn, shareOption, repostOption];
+            }
         }
     } else {
         listContent = [hashtagOptionn, shareOption];
