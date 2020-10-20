@@ -33,7 +33,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
             })
         }
     })
-    
+
     if (props.history.location.pathname === routes.CREATE) {
         return (
             <div className="post_page_header">
@@ -46,7 +46,6 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
             </div>
         )
     } else if ((props.history.location.pathname === "/" && props.user) || !Object.values(NO_HEADER_ROUTES).includes(props.history.location.pathname)) {
-            
         //default when user is not logged in
         let headerClassName = "main_header";
         if (props.history.location.pathname === routes.ROOT) {
