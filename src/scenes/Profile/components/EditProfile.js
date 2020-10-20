@@ -15,16 +15,18 @@ const EditProfile = ({setIsEdit, user}) => {
 
   const handleFile = (e) => {
     let file = e.target.files[0];
-    let url = URL.createObjectURL(file);
-    let fileName= e.target.name;
-    let newFiles = {...files, [e.target.name]: {src: url, file}};
-    setFile(newFiles);
-    AuthActions.config({ext: ['.png']}).then(res=> {
-      let header_image = res.urls[0].photo_path;
-      setUserForm({...userForm, [fileName]: header_image})
-      commonService.isLoading.onNext(true);
-      ConfigAPI.uploadImageToS3(res.urls[0].presigned_url, file).then(res =>  commonService.isLoading.onNext(false))
-    });
+    if (file) {
+      let url = URL.createObjectURL(file);
+      let fileName = e.target.name;
+      let newFiles = {...files, [e.target.name]: {src: url, file}};
+      setFile(newFiles);
+      AuthActions.config({ext: ['.png']}).then(res=> {
+        let header_image = res.urls[0].photo_path;
+        setUserForm({...userForm, [fileName]: header_image})
+        commonService.isLoading.onNext(true);
+        ConfigAPI.uploadImageToS3(res.urls[0].presigned_url, file).then(res =>  commonService.isLoading.onNext(false))
+      });
+    }
 
   };
 
