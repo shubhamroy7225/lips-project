@@ -15,9 +15,9 @@ const Setting = () => {
          open: true,
          data: {
             title: "",
-            message: "Are you sure you want to Sign Out?"
+            message: "Are you sure you want to Sign out?"
          },
-         confirmText: "Sign Out",
+         confirmText: "Sign out",
          onConfirm: () => logout(),
          onCancel: () => commonService.isDialogOpen.onNext(false)
       });
@@ -54,7 +54,7 @@ const Setting = () => {
                      <Link to="/settings/privacy-policy">Privacy policy</Link>
                   </li>
                   <li className="list-group-item lps_hrSep">
-                     <Link to="/settings" onClick={logoutConfirm}>Sign Out</Link>
+                     <Link to="/settings" onClick={logoutConfirm}>Sign out</Link>
                   </li>
                   <li className="list-group-item">
                      <Link to="#">FAQ</Link>
