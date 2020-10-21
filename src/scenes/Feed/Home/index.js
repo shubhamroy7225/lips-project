@@ -10,12 +10,13 @@ import TextFeed from 'scenes/Feed/components/TextFeed';
 import RestrictedFeed from 'scenes/Feed/components/RestrictedFeed';
 import MenuOptionSlider from '../components/MenuOptionSlider';
 import { isMobile } from 'react-device-detect';
-import { fetchFeeds } from 'redux/actions/feed/action';
+import { fetchFeeds, fetchFeedsForNonRegUser } from 'redux/actions';
 import { FeedType, PageSize } from 'utility/constants/constants';
 import { clearAllFeeds, setPage } from 'redux/actions/feed';
 import scroller from './scroller';
 import PaginationLoader from '../components/PaginationLoader';
 import * as commonService from "utility/utility";
+import storage from 'utility/storage';
 
 const MainFeed = (props) => {
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
@@ -70,25 +71,51 @@ const MainFeed = (props) => {
         // if initial fetch then pass page 1 
         // for next page pass props.page that contains next page url
         let pageQuery = isInitialFetch ? `?limit=${PageSize}&page=${1}` : `?${props.page}`;
-        fetchFeeds(pageQuery).then(res => {
-            if (res.data.success === true) {
-                if (res.data.posts.length > 0) {
-                    let nextPage = res.data.nextPage;
-                    if (nextPage) {
-                        nextPage = nextPage.split("?")[1];
-                        setPage({ page: nextPage });
+        if (props.user) {
+            fetchFeeds(pageQuery).then(res => {
+                if (res.data.success === true) {
+                    if (res.data.posts.length > 0) {
+                        let nextPage = res.data.nextPage;
+                        if (nextPage) {
+                            nextPage = nextPage.split("?")[1];
+                            setPage({ page: nextPage });
+                        } else {
+                            setIsPaginationCompleted(true);
+                        }
                     } else {
+                        //empty post means we have fetched all the posts
                         setIsPaginationCompleted(true);
                     }
-                } else {
-                    //empty post means we have fetched all the posts
-                    setIsPaginationCompleted(true);
                 }
-            }
-            setIsFeedCallInProgress(false);
-        }).catch(error => {
-            setIsFeedCallInProgress(false);
-        })
+                setIsFeedCallInProgress(false);
+            }).catch(error => {
+                setIsFeedCallInProgress(false);
+            })
+        } else {
+            // if user is not there, get the selected hashtags stored in storage and fetch the feeds
+            let selectedHashtags = storage.get("justBrowseTags");
+            let request = { hashtags: selectedHashtags }
+            fetchFeedsForNonRegUser(request, isInitialFetch, pageQuery).then(res => {
+                if (res.data.success === true) {
+                    if (res.data.posts.length > 0) {
+                        let nextPage = res.data.nextPage;
+                        if (nextPage) {
+                            nextPage = nextPage.split("?")[1];
+                            setPage({ page: nextPage });
+                        } else {
+                            setIsPaginationCompleted(true);
+                        }
+                    } else {
+                        //empty post means we have fetched all the posts
+                        setIsPaginationCompleted(true);
+                    }
+                }
+                setIsFeedCallInProgress(false);
+            }).catch(error => {
+                setIsFeedCallInProgress(false);
+            })
+        }
+
     }
 
     let feedContent = [];

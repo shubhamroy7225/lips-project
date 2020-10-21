@@ -51,7 +51,7 @@ export const setFavoriteAvoidTags = (credentials) => {
 export const setFavoriteAvoidTagsJustBrowse = async (data) => {
   commonService.isLoading.onNext(true);
   let justBrowseTags = storage.get("justBrowseTags", {})
-  storage.set('justBrowseTags', {...justBrowseTags, ...data.hashtags});
+  storage.set('justBrowseTags', { ...justBrowseTags, ...data.hashtags });
   let res = await setHashTagJustBrowseSuccessful(data);
   commonService.isLoading.onNext(false);
   return res
@@ -96,11 +96,27 @@ export const createFeed = (request) => {
     })
 }
 
-export const fetchFeeds = (queryString = "?limit=20&page=1") => {
+export const fetchFeeds = (queryString, isFirstPage) => {
   return API.fetchFeeds(queryString)
     .then(response => {
       commonService.isLoading.onNext(false); // start loading
-      if (queryString.length === 0) {
+      if (isFirstPage) {
+        fetchedFeedSuccessfully({ feeds: response.data.posts });
+      } else {
+        nextPageFeeds({ feeds: response.data.posts });
+      }
+      return response;
+    }).catch(error => {
+      commonService.isLoading.onNext(false); // start loading
+      return error;
+    })
+}
+
+export const fetchFeedsForNonRegUser = (request, isFirstPage, queryString) => {
+  return API.fetchFeedsForNonRegUser(request, queryString)
+    .then(response => {
+      commonService.isLoading.onNext(false); // start loading
+      if (isFirstPage) {
         fetchedFeedSuccessfully({ feeds: response.data.posts });
       } else {
         nextPageFeeds({ feeds: response.data.posts });
@@ -230,7 +246,7 @@ export const addSuggestedHashTag = (body) => {
   return API.addSuggestedHashTag(body)
     .then(response => {
       commonService.isLoading.onNext(false); // start loading
-        addSuggestedHashTagSuccessful(response.data);
+      addSuggestedHashTagSuccessful(response.data);
       return response;
     }).catch(error => {
       return error;

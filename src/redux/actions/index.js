@@ -37,7 +37,9 @@ export {
     hideAFeed,
     reportAFeed,
     setFavoriteAvoidTagsJustBrowse,
-    getPostSearchHashTag
+    getPostSearchHashTag,
+    fetchFeedsForNonRegUser,
+    fetchFeeds
 } from './feed/action';
 
 export {

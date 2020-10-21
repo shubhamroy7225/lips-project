@@ -654,6 +654,8 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
       .theme_btn {
         margin-bottom: 10px;
         font-weight: $ft_Weight_MD;
+        word-break: break-all;
+        white-space: break-spaces;
       }
       .lps_hash_ul {
         padding-bottom: 60px;

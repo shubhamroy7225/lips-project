@@ -206,6 +206,10 @@ input.input_modify {
   display: block;
   min-height: 268px;
 }
+article.lps_art a {
+  display: block;
+  min-height: 268px;
+}
 .postApproval label.label_modify {
   margin-right: 23px;
 }
@@ -234,6 +238,7 @@ input.input_modify {
 .newButton a {
   width: 335px;
 }
+
 .lps_hrSep {
   border-top: 5px solid #fff !important;
 }
@@ -242,19 +247,19 @@ input.input_modify {
     width: 335px !important;
   }
 }
-@media screen and (max-width:991px){
+@media screen and (max-width: 991px) {
   .newButton a {
-      width: 100%;
-      display: block;
+    width: 100%;
+    display: block;
   }
   .W-100P {
     width: 100%;
   }
 }
-@media screen and (max-width:767px){
+@media screen and (max-width: 767px) {
   .ifAccess .form_group_modify {
-      display: block;
-      margin-left: 0;
-      width: 100%;
+    display: block;
+    margin-left: 0;
+    width: 100%;
   }
 }
