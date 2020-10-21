@@ -15,7 +15,7 @@ const Setting = () => {
          open: true,
          data: {
             title: "",
-            message: "Are you sure you want to Logout?"
+            message: "Are you sure you want to Sign Out?"
          },
          confirmText: "LOGOUT",
          onConfirm: () => logout(),
@@ -54,10 +54,10 @@ const Setting = () => {
                      <Link to="/settings/privacy-policy">Privacy policy</Link>
                   </li>
                   <li className="list-group-item lps_hrSep">
-                     <Link to="/settings" onClick={logoutConfirm}>Log out</Link>
+                     <Link to="/settings" onClick={logoutConfirm}>Sign Out</Link>
                   </li>
                   <li className="list-group-item">
-                     <Link to="#">Need Help?</Link>
+                     <Link to="#">FAQ</Link>
                   </li>
                </ul>
             </div>
