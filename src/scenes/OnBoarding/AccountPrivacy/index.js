@@ -39,7 +39,7 @@ export default () => {
                             </li>
                           </ul>
                             <div className="btn_block">
-                              <button onClick={changePrivacyPolicy} className="theme_btn theme_primary btn_r25 text_uppercase W-50P">Continue</button>
+                              <button onClick={changePrivacyPolicy} className="theme_btn theme_primary btn_r25 text_uppercase W-50P desktopVersio">Continue</button>
                             </div>
                           </div>
                         </div>
