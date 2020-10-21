@@ -47,8 +47,8 @@ const StartApproval = ({ moveToNextStep }) => {
                     <p>Our only ask is that you read and adhere to our <Link to={routes.SETTING_COMMUNITY_GUIDELINES} class="lps_link link_underline">Community guidelines</Link>, which have been carefully crafted BY THE COMMUNITY. These guidelines ensure an open & honest environment, where everyone has the chance to safely speak their truth without fear of harassment. </p>
                     <p>TL/DR - Hate-speech get outta here. </p>
                 </article>
-                <div class="plans_wrp text_center">
-                    <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P">Get Approved</a>
+                <div class="plans_wrp text_center mt45">
+                    <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Get Approved</a>
                 </div>
                 <div className="lps_fields ifAccess">
                     <p className="mt45">If you have an access code to skip the approval process, enter your code here</p>
