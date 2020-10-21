@@ -119,7 +119,7 @@ const MainFeed = (props) => {
     }
 
     let feedContent = [];
-    if (props.feeds) {
+    if (props.feeds && props.feeds.length > 0) {
         feedContent = props.feeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
                 return <ImageFeed feed={feed} />
@@ -134,6 +134,12 @@ const MainFeed = (props) => {
                 return <TextFeed feed={feed} />
             }
         })
+    } else {
+        feedContent = (
+            <div class="lps_tb_para">
+                <h4>Posts from users you follow will appear here</h4>
+            </div>
+        )
     }
 
     if (isMobile) {
