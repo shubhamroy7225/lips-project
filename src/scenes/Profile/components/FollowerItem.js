@@ -5,7 +5,6 @@ import $ from 'jquery';
 import scroller from 'scenes/Feed/Home/scroller';
 
 const FollowerItem = ({ data, user }) => {
-    // debugger;
     let history = useHistory()
     const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user.jpg");
 
