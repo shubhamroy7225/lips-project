@@ -54,7 +54,7 @@ const Setting = () => {
                      <Link to="/settings/privacy-policy">Privacy policy</Link>
                   </li>
                   <li className="list-group-item lps_hrSep">
-                     <Link to="/settings" onClick={logoutConfirm}>Sign Out</Link>
+                     <Link to="/settings" onClick={logoutConfirm}>Sign out</Link>
                   </li>
                   <li className="list-group-item">
                      <Link to="#">FAQ</Link>
