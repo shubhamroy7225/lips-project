@@ -43,7 +43,9 @@ const ConfirmDialog = () => {
         <div className="modelBody">
            {data.title && <h3>{data.title}</h3>}
             <p>{data.message}</p>
-            <button onClick={() => handleConfirm(true)} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase">{confirmText}</button>
+            <div className="comonWdth">
+              <button onClick={() => handleConfirm(true)} className="theme_btn theme_outline_primary text_white theme_btn_rds25 text_uppercase">{confirmText}</button>
+            </div>
         </div>
     </div>
     </div> }</>

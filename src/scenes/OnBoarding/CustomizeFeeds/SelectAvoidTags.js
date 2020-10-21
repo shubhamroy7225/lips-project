@@ -31,7 +31,7 @@ export default () => {
                       </article>
                      <HashTags setSelectTags={setSelectTags} selectTags={selectTags}/>
                       <div className="pos_wrp onboarding_btm">
-                         <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">Browse</button>
+                         <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">Browse</button>
                       </div>
                    </div>
                 </div>

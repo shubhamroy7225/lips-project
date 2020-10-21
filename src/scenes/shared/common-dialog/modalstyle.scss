@@ -16,6 +16,7 @@
     opacity: 0;
     animation: react-confirm-alert-fadeIn 0.5s 0.2s forwards;
 }
+
 @-webkit-keyframes react-confirm-alert-fadeIn {
     from {
       opacity: 0;
@@ -86,11 +87,23 @@
             font-size: 18px;
             font-weight: 500;
         }
+        .comonWdth {
+          button{
+            display: inline-block;
+            padding: 7px 34px;
+          }
+        }
     }
 }
 
 @media screen and (max-width: 767px){
     .confirmModel {
         width: 300px;
+    }
+    .comonWdth {
+      button{
+        display: block;
+        width: 100%;
+      }
     }
 }
