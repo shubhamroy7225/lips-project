@@ -17,7 +17,7 @@ const Setting = () => {
             title: "",
             message: "Are you sure you want to Sign Out?"
          },
-         confirmText: "LOGOUT",
+         confirmText: "Sign Out",
          onConfirm: () => logout(),
          onCancel: () => commonService.isDialogOpen.onNext(false)
       });
