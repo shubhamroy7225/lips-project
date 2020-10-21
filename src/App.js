@@ -16,7 +16,7 @@ const App = (props) => {
   const detectedNetworkChange = (isOnline) => {
     console.log(isOnline);
     if (isOnline) {
-      props.history.push(routes.ROOT)
+      props.history.goBack();
     } else {
       props.history.push(routes.NO_NETWORK)
     }
