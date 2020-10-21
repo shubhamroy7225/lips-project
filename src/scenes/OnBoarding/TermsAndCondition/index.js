@@ -33,12 +33,12 @@ export default ({
       <div id="wrap" className="mt_0">
         <div className="lps_container lps_terms_con_wrps bg_grayCCC">
           <TermsAndCondition></TermsAndCondition>
-          <div className="lps_fixed_btm lps_bg_secondary">
+          <div className="lps_fixed_btm lps_bg_secondary text-align-center">
             <button
               onClick={handleSubmit}
-              className="theme_btn theme_outline_primary text_white btn_r25 btn_block text_uppercase"
+              className="theme_btn theme_outline_primary text_white btn_r25 W-100P text_uppercase desktopVersio"
             >
-              Agree & Continue
+              Agree &amp; Continue
             </button>
           </div>
         </div>

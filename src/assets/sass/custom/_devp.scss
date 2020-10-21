@@ -231,6 +231,23 @@ input.input_modify {
   height: 30px;
   padding: 0 0 0 7px;
 }
+.newButton a {
+  width: 335px;
+}
+@media screen and (min-width:991px){
+  .desktopVersio{
+    width: 335px !important;
+  }
+}
+@media screen and (max-width:991px){
+  .newButton a {
+      width: 100%;
+      display: block;
+  }
+  .W-100P {
+    width: 100%;
+  }
+}
 @media screen and (max-width:767px){
   .ifAccess .form_group_modify {
       display: block;

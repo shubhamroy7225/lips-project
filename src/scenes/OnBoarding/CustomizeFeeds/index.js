@@ -24,14 +24,14 @@ export default () => {
               <h5 className="ft_Weight_400">
                 Can't decide now? You can always adjust your Feed settings later.
                     </h5>
-            </article>
-            <div className="pos_wrp onboarding_btm">
-              <Link to="/favorite-tags" className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10 W-50P">Customize feed</Link>
-              <button onClick={completeOnBoard} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">Auto-Generate</button>
-            </div>
+                  </article>
+                  <div className="pos_wrp onboarding_btm">
+                    <Link to="/favorite-tags" className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10 W-50P desktopVersio">Customize feed</Link>
+                    <button onClick={completeOnBoard} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">Auto-Generate</button>
+                  </div>
+              </div>
           </div>
         </div>
       </div>
-    </div>
   )
 }
