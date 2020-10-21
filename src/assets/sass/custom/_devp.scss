@@ -238,8 +238,12 @@ article.lps_art a {
 .newButton a {
   width: 335px;
 }
-@media screen and (min-width: 991px) {
-  .desktopVersio {
+
+.lps_hrSep {
+  border-top: 5px solid #fff !important;
+}
+@media screen and (min-width:991px){
+  .desktopVersio{
     width: 335px !important;
   }
 }
