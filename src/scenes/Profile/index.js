@@ -44,7 +44,6 @@ const Profile = (props) => {
     var selectedFeedOnToggle = useRef(null);
 
     useEffect(() => {
-        debugger;
         followingsPage.current = 1;
         followersPage.current = 1;
 
@@ -120,7 +119,7 @@ const Profile = (props) => {
 
     //for pagination
     const fetchNextFollowers = () => {
-        debugger;
+        ;
         let updatedUser = isOtherUser ? otherUser : user;
         followersPage.current = followersPage.current + 1
         actions.fetchFollowers(updatedUser.id, followersPage.current, PageSize)

@@ -32,7 +32,6 @@ const scroller = (WrappedComponent) => {
             } else {
                 toggleHeader(true)
             }
-            // debugger;
             setLastScrollTop(-bodyOffset.top);
 
             let bottom = document.body.scrollHeight - (-bodyOffset.top + bodyOffset.height);
