@@ -51,7 +51,7 @@ const StartApproval = ({ moveToNextStep }) => {
                     <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Get Approved</a>
                 </div>
                 <div className="lps_fields ifAccess">
-                    <p className="mt45">If you have an access code to skip the approval process, enter your code here</p>
+                    <p className="mt45">Access codes were sent via email to selected creators who we have worked with in the past. Is this you? Enter below to skip the approved user process, cuz you’re already in babe!</p>
                     <div className="form_group_modify">
                         <input type="text"
                             name="accessCode"
