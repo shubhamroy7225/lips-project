@@ -15,9 +15,9 @@ const Setting = () => {
          open: true,
          data: {
             title: "",
-            message: "Are you sure you want to Sign Out?"
+            message: "Are you sure you want to Sign out?"
          },
-         confirmText: "Sign Out",
+         confirmText: "Sign out",
          onConfirm: () => logout(),
          onCancel: () => commonService.isDialogOpen.onNext(false)
       });
