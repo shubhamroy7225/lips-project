@@ -57,7 +57,7 @@ const Setting = () => {
                      <Link to="/settings" onClick={logoutConfirm}>Log out</Link>
                   </li>
                   <li className="list-group-item">
-                     <Link to="#">Need Help?</Link>
+                     <Link to="#">FAQ</Link>
                   </li>
                </ul>
             </div>
