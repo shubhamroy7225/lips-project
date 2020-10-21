@@ -85,7 +85,6 @@ export const createFeed = (request) => {
   commonService.isLoading.onNext(true); // start loading
   return API.createFeed(request)
     .then(response => {
-      debugger;
       commonService.isLoading.onNext(false); // start loading
       if (response.data.success === true) {
         addCreatedFeed({ feed: response.data.post })
