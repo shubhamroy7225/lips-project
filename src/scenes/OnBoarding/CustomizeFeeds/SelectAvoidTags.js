@@ -29,14 +29,14 @@ export default () => {
                      <h5 className="ft_Weight_400">
                         Mark the ones you don't want to see and we will do our best to provide tag-based warnings.
                          </h5>
-                  </article>
-                  <HashTags setSelectTags={setSelectTags} selectTags={selectTags} />
-                  <div className="pos_wrp onboarding_btm">
-                     <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">Browse</button>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   )
+                      </article>
+                     <HashTags setSelectTags={setSelectTags} selectTags={selectTags}/>
+                      <div className="pos_wrp onboarding_btm">
+                         <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">Browse</button>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+  )
 }
