@@ -6,6 +6,7 @@ import * as commonService from "utility/utility";
 import { useHistory } from 'react-router-dom';
 import { FeedType, routes } from 'utility/constants/constants';
 import TextFeed from '../components/TextFeed';
+import { isMobile } from 'react-device-detect';
 
 const FeedDetail = (props) => {
     const [feed, setFeed] = useState(null)
@@ -46,7 +47,7 @@ const FeedDetail = (props) => {
     }
 
     return (
-        <div id="wrap">
+        <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div class="lps_container main_feed_cont bg_grayCCC">
                 {content}
             </div>
