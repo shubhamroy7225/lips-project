@@ -244,7 +244,7 @@ export const signOut = () => {
     clearNotifications();
     clearAllFeeds();
     if (logout()) {
-        toastMsg("Logged out successfully")
+        toastMsg("Sign Out successfully")
     }
 
 };
