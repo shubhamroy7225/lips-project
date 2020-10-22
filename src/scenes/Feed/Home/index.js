@@ -71,8 +71,11 @@ const MainFeed = (props) => {
         // if initial fetch then pass page 1 
         // for next page pass props.page that contains next page url
         let pageQuery = isInitialFetch ? `?limit=${PageSize}&page=${1}` : `?${props.page}`;
-        if (props.user) {
-            fetchFeeds(pageQuery).then(res => {
+        let selectedHashtags = storage.get("justBrowseTags");
+        if (!props.user && selectedHashtags) {
+            // if user is not there, get the selected hashtags stored in storage and fetch the feeds
+            let request = { hashtags: selectedHashtags }
+            fetchFeedsForNonRegUser(request, isInitialFetch, pageQuery).then(res => {
                 if (res.data.success === true) {
                     if (res.data.posts.length > 0) {
                         let nextPage = res.data.nextPage;
@@ -92,10 +95,7 @@ const MainFeed = (props) => {
                 setIsFeedCallInProgress(false);
             })
         } else {
-            // if user is not there, get the selected hashtags stored in storage and fetch the feeds
-            let selectedHashtags = storage.get("justBrowseTags");
-            let request = { hashtags: selectedHashtags }
-            fetchFeedsForNonRegUser(request, isInitialFetch, pageQuery).then(res => {
+            fetchFeeds(pageQuery).then(res => {
                 if (res.data.success === true) {
                     if (res.data.posts.length > 0) {
                         let nextPage = res.data.nextPage;
@@ -135,11 +135,20 @@ const MainFeed = (props) => {
             }
         })
     } else {
-        feedContent = (
-            <div class="lps_tb_para">
-                <h4>Posts from users you follow will appear here</h4>
-            </div>
-        )
+        if (props.user) {
+            feedContent = (
+                <div class="lps_tb_para">
+                    <h4>Posts from users you follow will appear here</h4>
+                </div>
+            )
+        } else {
+            feedContent = (
+                <div class="lps_tb_para">
+                    <h4></h4>
+                </div>
+            )
+        }
+
     }
 
     if (isMobile) {

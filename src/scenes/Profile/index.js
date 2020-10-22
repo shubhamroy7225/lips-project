@@ -18,6 +18,8 @@ import SharedModal from 'scenes/Feed/components/FeedModal/SharedModal';
 import RemoveFeedModal from 'scenes/Feed/components/FeedModal/RemoveFeedModal';
 import UserListPopUp from './components/UserlistPopup';
 import { resetFollowersList } from "redux/actions/auth";
+import RepostModal from 'scenes/Feed/components/FeedModal/RepostModal';
+import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
 
 const LoadingType = {
     undefined: "undefined",
@@ -75,7 +77,10 @@ const Profile = (props) => {
                     let userID = response.data.user.id;
                     setDataLoadedType(LoadingType.user);
                     let showPost = tempIsOtherUser ? response.data.user.show_post : true; //if isotheruser then check for response else show post of signed in user
-                    fetchAssociatedUsersDetails(tempIsOtherUser ? response.data.user : user)
+                    if (user) {
+                        // get only if user is logged in - for non logged in user don't show followers and following users
+                        fetchAssociatedUsersDetails(tempIsOtherUser ? response.data.user : user)
+                    }
                     if (showPost) {
                         if (tempIsOtherUser) {
                             actions.fetchOtherUserFeeds(userID)
@@ -152,8 +157,12 @@ const Profile = (props) => {
 
 
     const toggleFeedLayoutMode = (feed) => {
-        selectedFeedOnToggle.current = feed
-        setGridLayoutMode(false)
+        if (user) {
+            selectedFeedOnToggle.current = feed
+            setGridLayoutMode(false)
+        } else {
+            history.push(routes.LOGIN_TO_PROCEED)
+        }
     }
 
     let userInfo = isOtherUser ? otherUser : user
@@ -251,7 +260,8 @@ const Profile = (props) => {
                         <div class="lps_container bg_grayCCC mt_0">
                             <ProfileHeader setEdit={setEdit}
                                 user={userInfo}
-                                isUserProfile={!isOtherUser} />
+                                isUserProfile={!isOtherUser}
+                                isLoggedIn={user} />
                             {/* <!-- Lips Tab --> */}
                             <section class="lips_tab tabs_grid_view_sec">
                                 <ul class="tabs_block_cst">
@@ -293,6 +303,8 @@ const Profile = (props) => {
                                 <TaggedModal />
                                 <SharedModal />
                                 <RemoveFeedModal />
+                                <RepostModal />
+                                <ReportModal />
                             </>
                         }
                     </div>

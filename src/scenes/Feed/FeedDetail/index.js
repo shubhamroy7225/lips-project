@@ -7,6 +7,11 @@ import { useHistory } from 'react-router-dom';
 import { FeedType, routes } from 'utility/constants/constants';
 import TextFeed from '../components/TextFeed';
 import { isMobile } from 'react-device-detect';
+import RepostModal from '../components/FeedModal/RepostModal';
+import TaggedModal from '../components/FeedModal/TaggedModal';
+import ReportModal from '../components/FeedModal/ReportModal';
+import SharedModal from '../components/FeedModal/SharedModal';
+import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 
 const FeedDetail = (props) => {
     const [feed, setFeed] = useState(null)
@@ -51,7 +56,17 @@ const FeedDetail = (props) => {
             <div class="lps_container main_feed_cont bg_grayCCC">
                 {content}
             </div>
+            { isMobile &&
+                <>
+                    <RepostModal />
+                    <TaggedModal />
+                    <ReportModal />
+                    <SharedModal />
+                    <RemoveFeedModal />
+                </>
+            }
         </div>
+
     )
 }
 

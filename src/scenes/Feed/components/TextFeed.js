@@ -84,7 +84,7 @@ const TextFeed = (props) => {
                         </div>
                     </div>
                 </div>
-                <div class="lps_inner_wrp lps_pink_border lps_widgets_wrp lps_mt_50">
+                <div class="lps_inner_wrp lps_pink_border lps_widgets_wrp lps_mt_50 textContent">
                     <div class="lps_sm_shape lps_sm_shape1"></div>
                     <div class="lps_inner_cont lps_pos_rltv">
                         <article className="lps_art">
