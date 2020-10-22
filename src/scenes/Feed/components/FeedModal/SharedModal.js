@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { setFeedModalType } from 'redux/actions/feed';
 import { FeedModalType, routes } from 'utility/constants/constants';
@@ -6,7 +6,7 @@ import { FeedModalType, routes } from 'utility/constants/constants';
 
 const SharedModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
-    const  linkVar = useState("Click to copy");
+    const linkVar = useState("Click to copy");
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
     }
@@ -14,9 +14,9 @@ const SharedModal = ({ feed }) => {
     const [linkCopy, setLinkCopy] = useState(false);
 
     const copyLink = () => {
-        navigator.clipboard.writeText(`${window.location.origin}/${selectedFeed && selectedFeed.id}`)
+        navigator.clipboard.writeText(`${window.location.origin}/post/${selectedFeed && selectedFeed.id}`)
         setLinkCopy(true);
-        setInterval(function(){setLinkCopy(false)}, 3000);
+        setInterval(function () { setLinkCopy(false) }, 3000);
     }
 
     let style = { display: "none" }
@@ -43,9 +43,9 @@ const SharedModal = ({ feed }) => {
 
                         <ul class="lps_btn_grps lps_ul lps_hash_ul">
                             <li>
-                                <span onClick={copyLink} 
-                                className="theme_btn theme_outline_light">{window.location.origin}/{selectedFeed && selectedFeed.id}</span>
-                                <p className="copyPara">{linkCopy ? "link copied" :linkVar}</p>
+                                <span onClick={copyLink}
+                                    className="theme_btn theme_outline_light">{window.location.origin}/post/{selectedFeed && selectedFeed.id}</span>
+                                <p className="copyPara">{linkCopy ? "link copied" : linkVar}</p>
                             </li>
                         </ul>
                     </div>
