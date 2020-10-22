@@ -30,12 +30,13 @@ export default ({setSuggestedTagModel}) => {
                   </div>
                   <div className="para_list_mb">
                     <div className="form_group_modify">
-                      <input type="text" className="input_modify" placeholder="enter your tag here" name="suggestedTag" value={suggestedTag} onChange={handleChange}/>
+                      <input type="text" className="input_modify input-color" placeholder="enter your tag here" name="suggestedTag" value={suggestedTag} onChange={handleChange} required/>
                       </div>
                     </div>
+                    {suggestedTag &&
                     <div className="lps_btns para_list_mb">
                       <button onClick={handleSubmit} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170 mb_0">Submit</button>
-                    </div>
+                    </div>}
                    {tagSubmitted &&<p>Our team personally looks at each suggested tag, but try our best to notify you within 24 hours - so keep an eye on your email notifications!</p>}
                   </article>
                 </div>
