@@ -43,16 +43,9 @@ const SharedModal = ({ feed }) => {
 
                         <ul class="lps_btn_grps lps_ul lps_hash_ul">
                             <li>
-<<<<<<< HEAD
                                 <span onClick={copyLink} 
                                 className="theme_btn theme_outline_light">{window.location.origin}/{selectedFeed && selectedFeed.id}</span>
                                 <p className="copyPara">{linkCopy ? "link copied" :linkVar}</p>
-=======
-                                <span onClick={() => navigator.clipboard.writeText(`${window.location.origin}/post/${selectedFeed && selectedFeed.id}`)} className="theme_btn theme_outline_light">
-                                    {window.location.origin}/post/{selectedFeed && selectedFeed.id}
-                                </span>
-                                <p className="copyPara">Click to copy</p>
->>>>>>> 39c59c2fddca64c6ad84bdc2682ba8dd57c3d558
                             </li>
                         </ul>
                     </div>
