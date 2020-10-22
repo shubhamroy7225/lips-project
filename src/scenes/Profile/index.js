@@ -18,6 +18,8 @@ import SharedModal from 'scenes/Feed/components/FeedModal/SharedModal';
 import RemoveFeedModal from 'scenes/Feed/components/FeedModal/RemoveFeedModal';
 import UserListPopUp from './components/UserlistPopup';
 import { resetFollowersList } from "redux/actions/auth";
+import RepostModal from 'scenes/Feed/components/FeedModal/RepostModal';
+import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
 
 const LoadingType = {
     undefined: "undefined",
@@ -301,6 +303,8 @@ const Profile = (props) => {
                                 <TaggedModal />
                                 <SharedModal />
                                 <RemoveFeedModal />
+                                <RepostModal />
+                                <ReportModal />
                             </>
                         }
                     </div>
