@@ -219,7 +219,7 @@ export default () => {
                   <div className="pos_wrp onboarding_btm">
                     <button
                       type="submit"
-                      className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P"
+                      className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio"
                     >
                       Review Terms &amp; Conditions
                     </button>

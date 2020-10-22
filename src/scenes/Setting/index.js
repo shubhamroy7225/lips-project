@@ -15,9 +15,9 @@ const Setting = () => {
          open: true,
          data: {
             title: "",
-            message: "Are you sure you want to Logout?"
+            message: "Are you sure you want to Sign out?"
          },
-         confirmText: "LOGOUT",
+         confirmText: "Sign out",
          onConfirm: () => logout(),
          onCancel: () => commonService.isDialogOpen.onNext(false)
       });
@@ -27,7 +27,7 @@ const Setting = () => {
       <>
          <div id="wrap" className="mt_0">
             <div className="lps_container mt_0">
-               <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="main_feed.html">
+               <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="/">
                   <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
                   <span className="lp_left_auto">Settings</span>
                </Link>
@@ -54,10 +54,10 @@ const Setting = () => {
                      <Link to="/settings/privacy-policy">Privacy policy</Link>
                   </li>
                   <li className="list-group-item lps_hrSep">
-                     <Link to="/settings" onClick={logoutConfirm}>Log out</Link>
+                     <Link to="/settings" onClick={logoutConfirm}>Sign out</Link>
                   </li>
                   <li className="list-group-item">
-                     <Link to="#">Need Help?</Link>
+                     <Link to="#">FAQ</Link>
                   </li>
                </ul>
             </div>

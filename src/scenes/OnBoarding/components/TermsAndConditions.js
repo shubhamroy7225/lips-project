@@ -3,7 +3,11 @@ import React from "react";
 export default () => {
   return (
       <>
-        
+        <div className="top_text_wrp lps_bg_secondary">
+          <p className="mb_0">
+          We built Lips for YOU! So, if you have a question or comment about our T&C don’t hesitate to reach out. We’ll get back to you as soon as we can! 
+          </p>
+        </div>
         <div className="lps_inner_wrp">
           <div className="lps_terms_cont">
             <div className="lps_terms_list">

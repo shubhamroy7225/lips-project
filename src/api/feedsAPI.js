@@ -28,6 +28,8 @@ export const fetchOtherUserFeeds = (userID) => axios.get(`${API_VERSION}/post/us
 
 export const fetchFeeds = (queryString = "") => axios.get(`${API_VERSION}/post${queryString}`)
 
+export const fetchFeedsForNonRegUser = (request, queryString) => axios.put(`${API_VERSION}/post/hashtag${queryString}`, request)
+
 export const hideFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/hide`);
 
 export const reportFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/report`);

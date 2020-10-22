@@ -51,7 +51,7 @@ let ForgotPasswordForm = (props) => {
                       </div>
                     </div>
                    <div className="pos_wrp onboarding_btm">
-                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P">Submit</button>
+                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">Submit</button>
                       <p className="btm_links mt_25 text_white">New to Lips? <Link to="/login" className="link_underline lps_link">Sign In</Link></p>
                     </div>
                   </form>

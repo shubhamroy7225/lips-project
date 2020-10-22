@@ -51,9 +51,9 @@ export default () => {
                   </div>
                 </div>
                 <div className="pos_wrp">
-                  <Link to="/login" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase lps_mb10 W-50P">
+                  <Link to="/login" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase lps_mb10 W-50P desktopVersio">
                     Sign in</Link>
-                  <Link to={ "/customize-tags"} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P">
+                  <Link to={ "/customize-tags"} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">
                     Just Browse</Link>
                   <p className="btm_links mt_25 text_white">
                     You must be 18 or older to use Lips
