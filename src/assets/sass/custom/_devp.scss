@@ -234,9 +234,18 @@ input.input_modify {
 .newButton a {
   width: 335px;
 }
-
 .lps_hrSep {
   border-top: 5px solid #fff !important;
+}
+.notification-item {
+  background: #2f2f2f;
+  border-left: 8px solid $brand-primary;
+  .notification-title, .notification-message{
+    color: $brand-primary;
+  }
+  .notification-close {
+    background-color: $brand-primary;
+  }
 }
 @media screen and (min-width:991px){
   .desktopVersio{
