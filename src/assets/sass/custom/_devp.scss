@@ -259,3 +259,8 @@ input.input_modify {
     width: 100%;
   }
 }
+@media screen and (min-width: 991px){
+  .destkVersion .product_card {
+      height: 380px;
+  }
+}

@@ -184,7 +184,7 @@ const ExploreFeed = (props) => {
                 <div className="browse_category">
                     {
                         gridlayoutMode ?
-                            <div class="lps_product_grid">
+                            <div class="lps_product_grid destkVersion">
                                 {gridFeedContent}
                             </div>
                             :
