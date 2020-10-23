@@ -237,7 +237,7 @@ const Profile = (props) => {
                         <div id="tab-1" class="tab-content_cst current pt_0">
                             {
                                 gridlayoutMode ?
-                                    <div class="lps_product_grid destkVersion">
+                                    <div class="lps_product_grid destkVersion mt_5">
                                         {gridFeedContent}
                                     </div>
                                     :
