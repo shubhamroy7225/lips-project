@@ -147,10 +147,9 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
     });
     useEffect(() => {
         if (!loaded && !notifications.length) {
-            setLoad(true)
             getAllNotification({ ...params });
+            setLoad(true)
             getUnreadCount();
-
         }
     }, [loaded]);
 
@@ -190,7 +189,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
     return (
         <>
             {
-                !notifications.length ? <li className="list-group-item"><span className="durations text-align-center">There are no notifications!</span></li> :
+                !notifications.length && !loaded ? <li className="list-group-item"><span className="durations text-align-center">There are no notifications!</span></li> :
                     notifications.map((notification, index) =>
                         <li key={`noti_${index}`} className="list-group-item">
                             <div className="lps_media">
