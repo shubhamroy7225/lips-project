@@ -25,7 +25,7 @@ export default () => {
                       <div className="lps_user_info">
                         <label className="lps_cont_rdo">
                           <span className="ft_Weight_500 radio_title">Public</span> <br/>
-                          Anyone on the internet can see you posts
+                          Anyone on the internet can see your posts
                           <input type="radio" checked="checked" name="radio" value={privacy_settings} checked={privacy_settings === "public"} onClick={e=> setPrivacy("public")} />
                             <span className="lps_checkmark"></span>
                           </label>
