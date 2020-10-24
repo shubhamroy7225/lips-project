@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import { isMobile } from "react-device-detect";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, useHistory } from "react-router-dom";
 import Aux from '../Oux/Oux';
 import { connect, useSelector } from 'react-redux';
 import Loader from "scenes/shared/loader";
@@ -14,9 +14,16 @@ import { routes, NO_HEADER_ROUTES, NOTIFICATION_TYPES } from 'utility/constants/
 import moment from "moment";
 
 const Header = ({ notificationCount, notifications, count, ...props }) => {
-
+    const history = useHistory();
     const [modalShown, setModalShown] = useState(false);
     const [marked, setMarked] = useState(false);
+
+    if(modalShown){
+        history.listen(() => {
+            setModalShown(false)
+        })
+    }
+
     const modalToggle = () => {
         setModalShown(!modalShown);
         if (!marked && notifications.length && notifications[count - 1]) {
@@ -147,9 +154,10 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
     });
     useEffect(() => {
         if (!loaded && !notifications.length) {
-            getAllNotification({ ...params });
             setLoad(true)
+            getAllNotification({ ...params });
             getUnreadCount();
+
         }
     }, [loaded]);
 
@@ -189,7 +197,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
     return (
         <>
             {
-                !notifications.length && !loaded ? <li className="list-group-item"><span className="durations text-align-center">There are no notifications!</span></li> :
+                !notifications.length ? <li className="list-group-item"><span className="durations text-align-center">There are no notifications!</span></li> :
                     notifications.map((notification, index) =>
                         <li key={`noti_${index}`} className="list-group-item">
                             <div className="lps_media">
