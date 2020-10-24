@@ -242,14 +242,21 @@ input.input_modify {
   border-left: 8px solid $brand-primary;
   .notification-title, .notification-message{
     color: $brand-primary;
+    font-size: 15px !important;
   }
   .notification-close {
     background-color: $brand-primary;
+  }
+  .notification-message {
+      font-weight: 600;
   }
 }
 @media screen and (min-width:991px){
   .desktopVersio{
     width: 335px !important;
+  }
+  .destkVersion .product_card {
+    height: 380px;
   }
 }
 @media screen and (max-width: 991px) {
@@ -266,11 +273,6 @@ input.input_modify {
     display: block;
     margin-left: 0;
     width: 100%;
-  }
-}
-@media screen and (min-width: 991px){
-  .destkVersion .product_card {
-      height: 380px;
   }
 }
 .placeholder-color::placeholder{
