@@ -45,7 +45,18 @@ import FeedDetail from 'scenes/Feed/FeedDetail';
 const Router = (props) => {
     let routeList = null;
     let user = props.user;
-    if (user) {
+        if (!props.isOnBoard && user){
+        routeList = (  <Switch>
+        <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
+        <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
+        <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
+        <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
+        <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
+        <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
+        <Route path='*' render={(props) => <Redirect to={routes[props.isOnBoard ? "ROOT" : "COMMUNITY_GUIDELINES"]} />} />
+        </Switch>)
+    }
+    else if (user) {
         routeList = (
             <Switch>
                 <Route exact path={routes.ROOT} component={MainFeed} />
@@ -70,16 +81,6 @@ const Router = (props) => {
                 <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
                 <Route exact path={routes.CONTACT_USER} component={ContactUser} />
                 <Route exact path={routes.FEED_SETTING_MODAL} component={FeedSettingModal} />
-                { !props.isOnBoard &&
-                    <>
-                        <Route exact path={routes.SELECT_FAVORITE_TAGS} component={SelectFavoriteTags} />
-                        <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
-                        <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
-                        <Route exact path={routes.TERMS_AND_CONDITION} component={TermsAndCondition} />
-                        <Route exact path={routes.COMMUNITY_GUIDELINES} component={CommunityGuidelines} />
-                        <Route exact path={routes.ACCOUNT_PRIVACY} component={AccountPrivacy} />
-                    </>
-                }
                 <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
             </Switch>
         )

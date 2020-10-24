@@ -20,7 +20,6 @@ const setUserData = (data) => {
     storage.set('token', data.token);
     storage.set('refresh_token', data.refresh_token);
     storage.set('user', data.user);
-    storage.set('isOnBoard', true);
 };
 
 export const login = (credentials) => {
@@ -30,7 +29,8 @@ export const login = (credentials) => {
     return API.login(credentials)
         .then(response => {
             commonService.isLoading.onNext(false);
-            const { user, token, refresh_token } = response.data
+            const { user, token, refresh_token } = response.data;
+            storage.set('isOnBoard', true);
             setUserData(response.data);
             loginSuccessful(response.data.user);
             authorizeUser(user, token, refresh_token);
