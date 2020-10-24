@@ -198,7 +198,11 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                                     <img src={notification.user && notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                                 </figure>
                                 <div className="lps_media_body">
-                                    <Link to={`/profile/${notification.content.split(" ")[0]}`}><h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5></Link>
+                                    {notification.user ? 
+                                    <Link to={`/profile/${notification.user.user_name}`}>
+                                        <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5>
+                                    </Link>
+                                    : <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5>}
                                     {
                                         (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested") ? <div className="btn_group">
                                             <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
