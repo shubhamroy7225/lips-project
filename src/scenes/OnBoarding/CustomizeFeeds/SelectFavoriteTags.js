@@ -10,7 +10,7 @@ export default () => {
   const {user} = useSelector(store => store.authReducer);
   const [selectTags, setSelectTags] = useState([]);
   const addFavoriteTags = () => {
-    if (user) actions.setFavoriteAvoidTags({hashtags: {show: selectTags}}).then(res => {
+    if (user) actions.setFavoriteTags({hashtags: {show: selectTags}}).then(res => {
       if(res) history.push("/avoid-tags")
     });
     else actions.setFavoriteAvoidTagsJustBrowse({hashtags: {show: selectTags}}).then(res => {

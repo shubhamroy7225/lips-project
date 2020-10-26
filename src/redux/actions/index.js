@@ -25,6 +25,8 @@ export {
 
 export {
     getAllHashTags,
+    setFavoriteTags,
+    setAvoidTags,
     setFavoriteAvoidTags,
     getUserHashTags,
     filterHashTags,

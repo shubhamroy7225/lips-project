@@ -5,6 +5,8 @@ import * as commonService from "../../../utility/utility";
 import { setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
 
 import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate, hideFeed } from 'redux/actions/feed';
+import {completeOnBorading} from "redux/actions/auth";
+
 import * as actions from 'redux/actions';
 
 export const getAllHashTags = (params) => {
@@ -37,6 +39,28 @@ export const filterHashTags = (credentials) => {
       return response
     })
 }
+
+export const setAvoidTags = (credentials) => {
+  commonService.isLoading.onNext(true);
+  hashTagPending();
+  return API.setFavoriteAvoidTags(credentials)
+    .then(response => {
+      commonService.isLoading.onNext(false);
+        storage.set('isOnBoard', true);
+        completeOnBorading();
+      return response;
+    })
+};
+
+export const setFavoriteTags = (credentials) => {
+  commonService.isLoading.onNext(true);
+  hashTagPending();
+  return API.setFavoriteAvoidTags(credentials)
+    .then(response => {
+      commonService.isLoading.onNext(false);
+      return response;
+    })
+};
 
 export const setFavoriteAvoidTags = (credentials) => {
   commonService.isLoading.onNext(true);

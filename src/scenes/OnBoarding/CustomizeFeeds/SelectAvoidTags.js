@@ -14,7 +14,7 @@ export default () => {
   const addFavoriteTags = () => {
     if (user)
       actions
-        .setFavoriteAvoidTags({ hashtags: { hide: selectTags } })
+        .setAvoidTags({ hashtags: { hide: selectTags } })
         .then((res) => {
           if (res) history.push("/");
         });
