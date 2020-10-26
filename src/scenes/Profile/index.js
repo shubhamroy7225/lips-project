@@ -46,6 +46,7 @@ const Profile = (props) => {
     var selectedFeedOnToggle = useRef(null);
 
     useEffect(() => {
+        setGridLayoutMode(true)
         followingsPage.current = 1;
         followersPage.current = 1;
 
