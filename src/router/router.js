@@ -99,8 +99,6 @@ const Router = (props) => {
                 <Route exact path={routes.SELECT_AVOID_TAGS} component={SelectAvoidTags} />
                 <Route exact path={routes.CUSTOMIZE_FEEDS} component={CustomizeFeeds} />
                 <Route exact path={routes.LOGIN_TO_PROCEED} component={NonRegisteredView} />
-                <Route exact path={routes.PROFILE} component={Profile} />
-                <Route exact path={routes.OTHER_PROFILE} component={Profile} />
                 <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
                 <Route exact path={routes.POST_DETAIL} component={FeedDetail} />
                 <Route path='*' render={(props) => <Redirect to={routes.ROOT} />} />
