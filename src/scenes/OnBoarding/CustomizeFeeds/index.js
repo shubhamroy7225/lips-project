@@ -15,7 +15,7 @@ export default () => {
       <div id="wrap" className="mt_0">
         <div className="lps_container mt_0">
           <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
-            <div className="lps_form_wrp on_boarding_wrp_spwn border_0">
+            <div className="lps_form_wrp on_boarding_wrp_spwn border_0 startScratch">
               <article className="lps_art lps_art_white">
                 <h3 className="mb30">Start from scratch or let us fill your feed.</h3>
                 <h5 className="mb30 ft_Weight_400">
