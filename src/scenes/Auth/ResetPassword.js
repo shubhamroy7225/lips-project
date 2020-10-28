@@ -52,7 +52,7 @@ export default () => {
   };
 
   return (
-          <div id="wrap" className="mt_0">
+          <div id="wrap" className="mt_0 lps_bg_secondary">
             <div className="lps_container mt_0">
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
                 <div className="lps_form_wrp">
@@ -63,8 +63,7 @@ export default () => {
                         <h5 className="text_uppercase text_white">Reset Password</h5>
                       </a>
                     </article>
-                    <div className="lps_fields">
-                      
+                    <div className="lps_fields lipsFields">
                       <div className="form_group_modify lps_pos_rltv">
                         <input type="password" className="input_modify" placeholder="Password" name="password"  value={user.password}
                                onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} />
@@ -78,9 +77,9 @@ export default () => {
                       </div>
                     </div>
                     <div className="pos_wrp onboarding_btm">
-                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P">
+                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">
                         Submit</button>
-                      <Link to="/login" className="link_underline lps_link">Sign in</Link>
+                      <Link to="/login" className="link_underline lps_link mt_10">Sign in</Link>
                     </div>
                   </form>
                 </div>

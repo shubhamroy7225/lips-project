@@ -30,10 +30,10 @@ let ForgotPasswordForm = (props) => {
     forceUpdate(1)
   };
   return (
-          <div id="wrap" className="mt_0">
+          <div id="wrap" className="mt_0 lps_bg_secondary">
             <div className="lps_container mt_0">
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
-                <div className="lps_form_wrp">
+                <div className="lps_form_wrp lipsFields">
                   <form onSubmit={handleSubmit}>
                     <article className="text_center lps_logo_center">
                       <a className="logo mb_0" href="#">

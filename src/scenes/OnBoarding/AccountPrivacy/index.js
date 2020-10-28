@@ -13,7 +13,7 @@ export default () => {
     });
   };
   return (
-          <div id="wrap" className="mt_0">
+          <div id="wrap" className="mt_0 lps_bg_secondary">
             <div className="lps_container lps_bg_secondary lps_text_white mt_0">
               <div className="acctn_privacy on_boarding_wrp_spwn border_0">
                 <article className="lps_art lps_px15">

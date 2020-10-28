@@ -12,7 +12,7 @@ export default () => {
   };
 
   return (
-      <div id="wrap" className="mt_0">
+      <div id="wrap" className="mt_0 lps_bg_secondary">
         <div className="lps_container mt_0">
           <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
             <div className="lps_form_wrp on_boarding_wrp_spwn border_0 startScratch">

@@ -37,7 +37,7 @@ let LoginForm = (props) => {
     forceUpdate(1)
   };
   return (
-    <div id="wrap" className="mt_0">
+    <div id="wrap" className="mt_0 lps_bg_secondary">
       <div className="lps_container mt_0">
         <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
           <div className="lps_form_wrp">
@@ -49,7 +49,7 @@ let LoginForm = (props) => {
                   <h5 className="text_uppercase text_white">Sign In</h5>
                 </Link>
               </article>
-              <div className="lps_fields">
+              <div className="lps_fields lipsFields">
                 <div className="form_group_modify">
                   <input type="text" name="user" className="input_modify"
                     placeholder="User Name" value={user.user}

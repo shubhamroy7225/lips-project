@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 export default ({isSetting}) => {
   return (
-      <div id="wrap" class="mt_0">
+      <div id="wrap" class="mt_0 lps_bg_secondary">
         <div class="lps_container">
           <div class="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary lps_text_white on_boarding_wrp">
             <div class="lps_form_wrp on_boarding_wrp_spwn border_0">

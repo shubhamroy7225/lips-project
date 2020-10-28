@@ -293,14 +293,17 @@ input.input_modify {
     padding: 0;
   }
   h5 {
-    margin: 0 !important;
+      margin: 0 !important;
+      font-size: 20px;
+      color: #fd3398 !important;
+      font-weight: 400;
   }
   .owl-carousel {
-      margin: 128px 0 12px;
+      margin: 45px 0 12px;
       padding: 0 0 5px;
   }
   .owl-dots{
-      margin-top: 18px !important;
+      margin-top: 80px !important;
   }
   .owl-dots .owl-dot span {
       border: 1px solid #fd3398;
@@ -313,4 +316,14 @@ input.input_modify {
   .owl-dots .owl-dot.active span, .owl-dots .owl-dot:hover span {
       background: #fd3398;
   }
+}
+.landingContainer {
+  max-width: 100%;
+}
+.text_gary {
+  color: #e1e1e1;
+}
+.lipsFields {
+  margin: 50px auto 25px;
+  max-width: 460px;
 }

@@ -44,7 +44,7 @@ const NonRegisteredView = (props) => {
                             {option.desc}
                         </p>
                     </article>
-                    <div class="plans_wrp mt45">
+                    <div class="plans_wrp mt45 text_center">
                         <a onClick={() => { history.push(routes.REGISTER) }} class="theme_btn theme_outline_primary text_white btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Register</a>
                         <p>Already have an account? <a onClick={() => { history.push(routes.LOGIN) }} class="link_underline lps_link">Sign in</a></p>
                     </div>
