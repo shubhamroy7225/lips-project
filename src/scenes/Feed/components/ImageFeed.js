@@ -40,17 +40,18 @@ const ImageFeed = (props) => {
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_sm_shape"></div>
                 <div className="post_img_block lps_widgets_wrp bg_gray_feed">
+
+                    {isReposted && <div class="reposted_wrps">
+                        <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
+                        <div class="rwposted_txt">by &nbsp;
+                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{repostedByUser.user_name}</a>
+                        </div>
+                    </div>}
+
                     <a href="javascript:void(0);" onClick={clickHandler} id="trigger_main_feed">
                         <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
-                        {
-                            isReposted &&
-                            <div className="lps_inner_wrp pd_b10 text_secondary">repost by <span className="text_primary">
-                                <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
-                            </span>
-                            </div>
-                        }
                     </a>
                     <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
                 </div>
@@ -115,18 +116,16 @@ const ImageFeed = (props) => {
                 </div>
                 <div className="post_img_block lps_pink_bg lps_widgets_wrp model_border">
                     <div className="lps_sm_shape"></div>
-                    {/* <figure className="feed_galary lps_flx_vm_jc lps_f_vm">
-                        <img src={require("assets/images/icons/landscape-image.png")} alt="Add Image" />
-                    </figure> */}
+                    {isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
+                        <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
+                        <div class="rwposted_txt">by &nbsp;
+                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{repostedByUser.user_name}</a>
+                        </div>
+                    </div>}
                     <a href="javascript:void(0);" onClick={clickHandler}>
                         <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
-                        {
-                            isReposted && <div className="lps_inner_wrp pd_b10 text_secondary">repost by <span className="text_primary">
-                                <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
-                            </span></div>
-                        }
                     </a>
                     {!isMobile &&
                         <>

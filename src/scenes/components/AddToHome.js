@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { isMobile } from "react-device-detect";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 import * as AuthActions from "redux/actions";
 
 const AddToHome = (props) => {
-    const {isLandingModalOpen} = useSelector(state => state.authReducer);
+    const { isLandingModalOpen } = useSelector(state => state.authReducer);
     const [hidden, setHidden] = useState(false);
     const [loaded, setLoaded] = useState(false);
-    
+
     useEffect(() => {
         if (!loaded && !isLandingModalOpen) {
             setLoaded(true);
-            setTimeout(() => AuthActions.openPageLandingModel(), 20000);  
+            setTimeout(() => AuthActions.openPageLandingModel(), 20000);
         }
     }, [loaded]);
 
@@ -21,7 +21,7 @@ const AddToHome = (props) => {
     }
     return (
         <div className="onTimeModel">
-            <div className="hover_bkgr_fricc hover_alternate_W modal-backdrop" id="trigger_HomeScreen_popup" style={{ display: checkModalOpen()}}>
+            <div className="hover_bkgr_fricc hover_alternate_W modal-backdrop" id="trigger_HomeScreen_popup" style={{ display: checkModalOpen() }}>
                 <div className="modal-dialog-centered">
                     <div className="popup_cont">
                         <div className="popup_body">
