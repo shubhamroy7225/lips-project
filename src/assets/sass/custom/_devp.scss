@@ -204,7 +204,7 @@ input.input_modify {
 }
 .textContent article.lps_art a {
   display: block;
-  min-height: 268px;
+  min-height: 365px;
 }
 .postApproval label.label_modify {
   margin-right: 23px;
@@ -343,4 +343,24 @@ input.input_modify {
 }
 .footIndex {
   z-index: 999;
+}
+.textContent {
+  .modal-dialog-centered {
+    min-height: 100% !important;
+    align-items: initial;
+    .popup_cont {
+      min-height: auto !important;
+    }
+  }
+  .hover_bkgr_fricc {
+    min-height: 100% !important;
+    left: 0;
+  }
+  .popup_body {
+    align-items: center;
+    display: flex;
+  }
+  .popup_body ul.lps_btn_grps {
+    width: 100%;
+  }
 }
