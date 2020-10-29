@@ -31,7 +31,7 @@ export default  ({selectTags, setSelectTags}) => {
     actions.getAllHashTags({...tempSearch});
   };
 
-  return (<ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
+  return (<ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags weightAnchor">
     <li>
       {hashTags.map((tag, index) =>
               <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>

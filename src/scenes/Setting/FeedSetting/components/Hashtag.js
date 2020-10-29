@@ -11,7 +11,7 @@ const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
             <p className="lps_md_para">Click to unselect or browse for more tags to add</p>
          </div>
          <div className="lps_hash_tags_wrp hash_tag_block hash_tag_links lps_user_info">
-            <div className="hashtag">
+            <div className="hashtag weightAnchor">
                <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                   <li>
                      {showhashTags.map((tag, index) =>
@@ -32,7 +32,7 @@ const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
             <p className="lps_md_para">Click to unselect or browse for more tags to add</p>
          </div>
          <div className="lps_hash_tags_wrp hash_tag_block hash_tag_links lps_user_info">
-            <div className="hashtag">
+            <div className="hashtag weightAnchor">
                <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                   <li>
                      {hideHashtag.map((tag, index) =>

@@ -6,7 +6,6 @@ import BlockUser from "./components/BlockUser.js";
 import FeedSettingModal from "./FeedSettingModal";
 
 import * as actions from "redux/actions";
-import store from 'redux/store/store.js';
 const FeedSetting = () => {
   const {showhashTags, hideHashtag} = useSelector(store => store.feedReducer);
   const {blockedUsers} = useSelector(store => store.authReducer);

@@ -80,7 +80,7 @@ const AddTags = ({ count, show, dismiss, selectedHashTags, setSelectedHashTags, 
                                     </div>
                                 </div>
                                 <div class="hash_tag_block mt_30">
-                                    <div class="hashtags">
+                                    <div class="hashtags weightAnchor">
                                         {
                                             filteredHashtags.map((ele, index) => {
                                                 if (selectedHashTags.includes(ele)) {
