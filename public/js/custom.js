@@ -1,31 +1,31 @@
-$(document).ready(function () {
-  function setHeight() {
-    windowHeight = $(window).innerHeight();
-    $('.video-marque').css('min-height', windowHeight);
-  };
+// $(document).ready(function () {
+//   function setHeight() {
+//     windowHeight = $(window).innerHeight();
+//     $('.video-marque').css('min-height', windowHeight);
+//   };
 
-  $(".navigation-toggler").click(function () {
-    $(".-closed").toggleClass("-open");
-    $("body").toggleClass("body_overflow");
-  });
+//   $(".navigation-toggler").click(function () {
+//     $(".-closed").toggleClass("-open");
+//     $("body").toggleClass("body_overflow");
+//   });
 
-});
+// });
 
-jQuery(function ($) {
+// jQuery(function ($) {
 
-  // $('.element').responsiveEqualHeightGrid();
+//   // $('.element').responsiveEqualHeightGrid();
 
-  var wow = new WOW(
-    {
-      boxClass: 'wow',      // default
-      animateClass: 'animated', // default
-      offset: 0,          // default
-      mobile: true,       // default
-      live: true        // default
-    }
-  )
-  wow.init();
-});
+//   var wow = new WOW(
+//     {
+//       boxClass: 'wow',      // default
+//       animateClass: 'animated', // default
+//       offset: 0,          // default
+//       mobile: true,       // default
+//       live: true        // default
+//     }
+//   )
+//   wow.init();
+// });
 
 //   $(window).scroll(function() {
 //   if ($(this).scrollTop() > 1){  
