@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 jQuery(function ($) {
 
-  $('.element').responsiveEqualHeightGrid();
+  // $('.element').responsiveEqualHeightGrid();
 
   var wow = new WOW(
     {
@@ -37,87 +37,87 @@ jQuery(function ($) {
 // });
 $(document).ready(function () {
 
-  $('#thumbnail_slider1').owlCarousel({
-    animateOut: 'slideOutDown',
-    animateIn: 'flipInX',
-    loop: true,
-    smartSpeed: 500,
-    autoplay: true,
-    responsiveClass: true,
-    dots: false,
-    nav: true,
-    navText: ["<span class='left_arrow'>&#10148;</span>", "<span class='right_arrow'>&#10148;</span>"],
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 1
-      },
-      1000: {
-        items: 1,
-        nav: true,
-        loop: false
-      }
-    }
-  });
-  $('#thumbnail_slider2').owlCarousel({
-    animateOut: 'slideOutDown',
-    animateIn: 'flipInX',
-    loop: true,
-    smartSpeed: 500,
-    autoplay: true,
-    responsiveClass: true,
-    dots: false,
-    nav: true,
-    navText: ["<span class='left_arrow'>&#10148;</span>", "<span class='right_arrow'>&#10148;</span>"],
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 1
-      },
-      1000: {
-        items: 1,
-        nav: true,
-        loop: false
-      }
-    }
-  });
-  $('#product_slider1').owlCarousel({
-    animateOut: 'slideOutDown',
-    animateIn: 'flipInX',
-    stagePadding: 50,
-    margin: 20,
-    loop: true,
-    smartSpeed: 500,
-    autoplay: true,
-    responsiveClass: true,
-    dots: false,
-    nav: false,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 1
-      },
-      1000: {
-        items: 2,
-        loop: false
-      }
-    }
-  });
-  $('#product_slider2').owlCarousel({
-    animateOut: 'fadeOut',
-    items: 1,
-    loop: true,
-    smartSpeed: 500,
-    autoplay: true,
-    dots: true,
-    nav: false,
-  });
+  // $('#thumbnail_slider1').owlCarousel({
+  //   animateOut: 'slideOutDown',
+  //   animateIn: 'flipInX',
+  //   loop: true,
+  //   smartSpeed: 500,
+  //   autoplay: true,
+  //   responsiveClass: true,
+  //   dots: false,
+  //   nav: true,
+  //   navText: ["<span class='left_arrow'>&#10148;</span>", "<span class='right_arrow'>&#10148;</span>"],
+  //   responsive: {
+  //     0: {
+  //       items: 1
+  //     },
+  //     600: {
+  //       items: 1
+  //     },
+  //     1000: {
+  //       items: 1,
+  //       nav: true,
+  //       loop: false
+  //     }
+  //   }
+  // });
+  // $('#thumbnail_slider2').owlCarousel({
+  //   animateOut: 'slideOutDown',
+  //   animateIn: 'flipInX',
+  //   loop: true,
+  //   smartSpeed: 500,
+  //   autoplay: true,
+  //   responsiveClass: true,
+  //   dots: false,
+  //   nav: true,
+  //   navText: ["<span class='left_arrow'>&#10148;</span>", "<span class='right_arrow'>&#10148;</span>"],
+  //   responsive: {
+  //     0: {
+  //       items: 1
+  //     },
+  //     600: {
+  //       items: 1
+  //     },
+  //     1000: {
+  //       items: 1,
+  //       nav: true,
+  //       loop: false
+  //     }
+  //   }
+  // });
+  // $('#product_slider1').owlCarousel({
+  //   animateOut: 'slideOutDown',
+  //   animateIn: 'flipInX',
+  //   stagePadding: 50,
+  //   margin: 20,
+  //   loop: true,
+  //   smartSpeed: 500,
+  //   autoplay: true,
+  //   responsiveClass: true,
+  //   dots: false,
+  //   nav: false,
+  //   responsive: {
+  //     0: {
+  //       items: 1
+  //     },
+  //     600: {
+  //       items: 1
+  //     },
+  //     1000: {
+  //       items: 2,
+  //       loop: false
+  //     }
+  //   }
+  // });
+  // $('#product_slider2').owlCarousel({
+  //   animateOut: 'fadeOut',
+  //   items: 1,
+  //   loop: true,
+  //   smartSpeed: 500,
+  //   autoplay: true,
+  //   dots: true,
+  //   nav: false,
+  // });
   // popup jquery here
   $("#trigger_popup_fricc").click(function () {
     $('#trigger_popup').show();

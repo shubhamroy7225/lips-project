@@ -327,3 +327,20 @@ input.input_modify {
   margin: 50px auto 25px;
   max-width: 460px;
 }
+.weightAnchor {
+  a, button {
+    font-weight: 400 !important;
+  }
+}
+.close_follow {
+  margin-top: 27px;
+}
+.startScratch .pos_wrp.onboarding_btm {
+  margin-bottom: 75px;
+}
+.justifyCenter {
+  justify-content: center !important;
+}
+.footIndex {
+  z-index: 999;
+}

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import * as actions from "redux/actions";
 
-const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) => {
+const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, existingHideTags}) => {
    const {hashTags, count} = useSelector(store => store.feedReducer);
    const [loaded, setLoaded] = useState(false);
    const [selectTags, setSelectTags] = useState([]);
@@ -61,40 +61,40 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags}) 
 
   return (
     <>
-        <div class="hover_bkgr_fricc full_Hvh" id="trigger_add_popup" style={{display: "block"}}>
-      <div class="modal-dialog-centered">
-        <div class="popup_cont">
-          <div class="popup_body post_poup lps_bg_secondary lps_text_white">
-            <div class="popupCloseButton">
+        <div className="hover_bkgr_fricc full_Hvh" id="trigger_add_popup" style={{display: "block"}}>
+      <div className="modal-dialog-centered">
+        <div className="popup_cont">
+          <div className="popup_body post_poup lps_bg_secondary lps_text_white">
+            <div className="popupCloseButton">
             <Link to="/settings/feed-setting" onClick={e => setEditTag(null)} className="nav-link not_line">
-              <img src={require("assets/images/icons/icn_close_white.png")}/></Link></div>
-            <div class="lps_search">
-              <div class="inner_form">
-                <div class="input_field">
-                  <button class="btn_search" type="button" onClick={e => handleChange(e)}>
+            <img src={require("assets/images/icons/icn_close_white.png")}/></Link></div>
+            <div className="lps_search">
+              <div className="inner_form">
+                <div className="input_field">
+                  <button className="btn_search" type="button" onClick={e => handleChange(e)}>
                     <img src={require("assets/images/icons/icn_search_white.svg")} alt="Search"/>
                   </button>
-                  <input class="input_modify" type="text" value={search.name} onChange={e => setSearch({...search, name: e.target.value})}/>
+                  <input className="input_modify" type="text" value={search.name} onChange={e => setSearch({...search, name: e.target.value})}/>
                 </div>
               </div>
             </div>
-            <div class="hash_tag_block mt_30">
-              <div class="hashtags">
+            <div className="hash_tag_block mt_30">
+              <div className="hashtags">
               {hashTags.map((tag, index) =>
-                            <button key={index} className={`theme_btn theme_outline_light ${(!removedTags.includes(tag.name) && existingTags.includes(tag.name)) || selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
-                           )}
+                existingHideTags.includes(tag.name) ? null :
+                <button key={index} className={`theme_btn theme_outline_light ${(!removedTags.includes(tag.name) && existingTags.includes(tag.name)) || selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
+                )}
               </div>
             </div>
-            <div class="hashtag">
-                        {
-                          count > hashTags.length ?
-                          <button onClick={e => loadMore()} class="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">View more</button>
-                          : ""
-                        }
-                        
-                      </div>
-            <div class="post_links post_links_undr">
-              <button onClick={showFavoriteTags} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</button>
+            <div className="hashtag">
+              {
+                count > hashTags.length ?
+                <button onClick={e => loadMore()} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">View more</button>
+                : ""
+              }
+            </div>
+            <div className="post_links post_links_undr">
+              <button onClick={showFavoriteTags} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</button>
             </div>
           </div>
         </div>

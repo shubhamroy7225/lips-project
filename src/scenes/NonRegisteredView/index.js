@@ -37,7 +37,7 @@ const NonRegisteredView = (props) => {
                         <img src={require("assets/images/icons/icn_close_white.png")} alt="Close Icon" />
                     </a>
                 </div>
-                <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn border_0">
+                <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn border_0 justifyCenter">
                     <article class="lps_art text_center">
                         <h4 class="text_center mb45">{option.title}</h4>
                         <p class="mb45">
