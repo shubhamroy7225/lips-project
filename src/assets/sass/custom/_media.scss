@@ -261,7 +261,6 @@
   .hover_bkgr_fricc .popup_cont .popup_body .lps_hash_ul .theme_btn {
     padding: 6px 8px;
     word-break: break-all;
-
     white-space: break-spaces;
   }
 
@@ -290,11 +289,13 @@
   .theme_tab_cont .add_img_block.add_img_blockP0 {
     padding: 0;
   }
-  .scroll-down .footer-menu-list {
+  .scroll-down .footer-menu-list,
+  .scroll-down .footer-menu-list1 {
     -webkit-transform: translate3d(90px, 0, 0);
     transform: translate3d(90px, 0, 0);
   }
-  .footer-menu-list {
+  .footer-menu-list,
+  .footer-menu-list1 {
     -webkit-transition: -webkit-transform 0.4s;
     transition: -webkit-transform 0.4s;
     -o-transition: transform 0.4s;

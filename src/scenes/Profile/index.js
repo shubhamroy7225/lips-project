@@ -20,6 +20,7 @@ import UserListPopUp from './components/UserlistPopup';
 import { resetFollowersList } from "redux/actions/auth";
 import RepostModal from 'scenes/Feed/components/FeedModal/RepostModal';
 import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
+import ToggleListWidget from 'scenes/Feed/components/ToggleListWidget';
 
 const LoadingType = {
     undefined: "undefined",
@@ -156,14 +157,17 @@ const Profile = (props) => {
             })
     }
 
-
-    const toggleFeedLayoutMode = (feed) => {
+    const feedSelectionHandler = (feed) => {
         if (user) {
             selectedFeedOnToggle.current = feed
             setGridLayoutMode(false)
         } else {
             history.push(routes.LOGIN_TO_PROCEED)
         }
+    }
+
+    const toggleFeedLayoutMode = () => {
+        setGridLayoutMode(!gridlayoutMode)
     }
 
     let userInfo = isOtherUser ? otherUser : user
@@ -185,19 +189,19 @@ const Profile = (props) => {
         } else {
             feeds.forEach(feed => {
                 if (feed.type === FeedType.image) {
-                    gridFeedContent.push(<ImageItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                    gridFeedContent.push(<ImageItem feed={feed} selectionHandler={() => feedSelectionHandler(feed)} />);
                     listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} feed={feed} />)
                 } else if (feed.type === FeedType.repost) {
                     let parentFeed = feed.parent;
                     if (parentFeed.type === FeedType.image) {
-                        gridFeedContent.push(<ImageItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                        gridFeedContent.push(<ImageItem feed={feed} isReposted={true} selectionHandler={() => feedSelectionHandler(feed)} />);
                         listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} feed={feed} isReposted={true} />)
                     } else {
-                        gridFeedContent.push(<TextItem feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                        gridFeedContent.push(<TextItem feed={feed} isReposted={true} selectionHandler={() => feedSelectionHandler(feed)} />);
                         listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} feed={feed} isReposted={true} />)
                     }
                 } else {
-                    gridFeedContent.push(<TextItem feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                    gridFeedContent.push(<TextItem feed={feed} selectionHandler={() => feedSelectionHandler(feed)} />);
                     listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} feed={feed} />)
                 }
             });
@@ -276,6 +280,7 @@ const Profile = (props) => {
                             </section>
 
                             {/* <!-- Menu bottom here --> */}
+                            <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
                             <MenuOptionSlider />
                             {/* <!-- // Menu bottom here --> */}
 

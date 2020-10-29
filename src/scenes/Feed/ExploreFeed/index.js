@@ -17,6 +17,7 @@ import TaggedModal from '../components/FeedModal/TaggedModal';
 import ReportModal from '../components/FeedModal/ReportModal';
 import SharedModal from '../components/FeedModal/SharedModal';
 import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
+import ToggleListWidget from '../components/ToggleListWidget';
 
 const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
@@ -202,6 +203,7 @@ const ExploreFeed = (props) => {
                 </div>
 
                 <PaginationLoader show={!isPaginationCompleted} />
+                <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
                 <MenuOptionSlider />
             </div>
             {isMobile &&
