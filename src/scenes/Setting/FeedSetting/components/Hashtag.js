@@ -21,7 +21,7 @@ const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
                </ul>
             </div>
             <div className="hashtag my_10">
-               <button onClick={e => setEditTag("show")} class="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170" id="trigger_addMore">
+               <button onClick={e => setEditTag("show")} className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170" id="trigger_addMore">
                Add more</button>
             </div>
          </div>

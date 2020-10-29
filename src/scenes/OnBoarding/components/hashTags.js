@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 
 import * as actions from "redux/actions";
 
-export default  ({selectTags, setSelectTags}) => {
+export default  ({selectTags, setSelectTags, showhashTags}) => {
 
   const [loaded, setLoaded] = useState(false);
   const {hashTags, count} = useSelector(store => store.feedReducer);
@@ -34,7 +34,8 @@ export default  ({selectTags, setSelectTags}) => {
   return (<ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags weightAnchor">
     <li>
       {hashTags.map((tag, index) =>
-              <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
+        showhashTags.includes(tag.name) ? null :
+        <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
       )}
     </li>
 

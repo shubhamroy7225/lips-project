@@ -22,7 +22,7 @@ const FeedSetting = () => {
   return (
     <>
     {
-        editTag ? <FeedSettingModal setParentLoaded={setLoaded} setEditTag={setEditTag} editTag={editTag} existingTags={editTag === "hide" ? hideHashtag : showhashTags} /> :  <div id="wrap" className="mt_0 feed-setting">
+        editTag ? <FeedSettingModal setParentLoaded={setLoaded} setEditTag={setEditTag} editTag={editTag} existingTags={editTag === "hide" ? hideHashtag : showhashTags} existingHideTags={editTag === "show" ? hideHashtag : showhashTags} /> :  <div id="wrap" className="mt_0 feed-setting">
           <div className="lps_container mt_0">
             <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
               <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
