@@ -4367,3 +4367,23 @@ figure.feed_fig310 {
     }
   }
 }
+.reposted_wrps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $bg_grayCCC;
+  padding: 10px 15px;
+  width: auto;
+  position: absolute;
+  right: 0;
+  border-radius: 0 0 0 5px;
+  img {
+    margin-right: 7px;
+    width: 24px;
+  }
+  .rwposted_txt {
+    font-size: 16px;
+    font-weight: 500;
+    color: $brand-secondary;
+  }
+}

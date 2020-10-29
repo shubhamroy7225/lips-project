@@ -35,17 +35,19 @@ const TextFeed = (props) => {
         return (
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_sm_shape lps_sm_shape1"></div>
+                {
+                    isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
+                        <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
+                        <div class="rwposted_txt">by &nbsp;
+                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{repostedByUser.user_name}</a>
+                        </div>
+                    </div>
+                }
                 <div class="lps_inner_wrp bg_gray_feed lps_mt_50 textContent">
                     <div className="lps_inner_cont lps_pos_rltv">
                         <article className="lps_art">
                             <a id="trigger_text_feed1" onClick={clickHandler}>
                                 <p style={descriptionViewStyle}>{description}</p>
-                                {/* <a href="main_feed_full_text.html" class="lps_link ft_Weight_600" title="more">more</a> */}
-                                {
-                                    reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
-                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
-                                    </span></div>
-                                }
                             </a>
                         </article>
                         <FeedWidget showWidget={showWidget} feed={feed} user={user} />
@@ -86,16 +88,18 @@ const TextFeed = (props) => {
                 </div>
                 <div class="lps_inner_wrp lps_pink_border lps_widgets_wrp lps_mt_50 textContent">
                     <div class="lps_sm_shape lps_sm_shape1"></div>
+                    {
+                        isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
+                            <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
+                            <div class="rwposted_txt">by &nbsp;
+                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{repostedByUser.user_name}</a>
+                            </div>
+                        </div>
+                    }
                     <div class="lps_inner_cont lps_pos_rltv">
                         <article className="lps_art">
                             <a id="trigger_text_feed1" onClick={clickHandler}>
                                 <p style={descriptionViewStyle}>{description}</p>
-                                {/* <a href="main_feed  _full_text.html" className="lps_link" title="more">more</a> */}
-                                {
-                                    reposted && <div class="lps_inner_wrp pd_b10 text_secondary">repost by <span class="text_primary">
-                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }}>{repostedByUser.user_name}</a>
-                                    </span></div>
-                                }
                             </a>
                         </article>
                     </div>
