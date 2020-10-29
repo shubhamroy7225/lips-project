@@ -34,7 +34,7 @@ const RemoveFeedModal = ({ feed }) => {
         <div class="hover_bkgr_fricc" style={style}>
             <div class="modal-dialog-centered">
                 <div class="popup_cont">
-                    <div class="popup_body">
+                    <div class="popup_body removeData">
                         <div class="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
 
                         <ul class="lps_btn_grps lps_ul mb100">
