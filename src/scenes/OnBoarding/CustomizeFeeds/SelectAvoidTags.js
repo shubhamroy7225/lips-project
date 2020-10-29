@@ -8,8 +8,11 @@ import { routes } from "utility/constants/constants";
 
 export default () => {
   const history = useHistory();
+  const {showhashTags} = useSelector(store => store.feedReducer);
   const { user } = useSelector((store) => store.authReducer);
   const [selectTags, setSelectTags] = useState([]);
+
+  const [loaded, setLoaded] = useState(false)
 
   const addFavoriteTags = () => {
     if (user)
@@ -25,6 +28,12 @@ export default () => {
           if (res) history.push(routes.MAIN_FEED);
         });
   };
+  useEffect(() => {
+    if (!loaded) {
+      setLoaded(true)
+      actions.getUserHashTags();
+    }
+  }, [loaded]);
   return (
     <div id="wrap" className="mt_0 lps_bg_secondary">
       <div className="lps_container mt_0">
@@ -39,7 +48,7 @@ export default () => {
                 provide tag-based warnings.
               </h5>
             </article>
-            <HashTags setSelectTags={setSelectTags} selectTags={selectTags} />
+            <HashTags setSelectTags={setSelectTags} selectTags={selectTags} showhashTags={showhashTags} />
             <div className="pos_wrp onboarding_btm">
               <button
                 onClick={addFavoriteTags}

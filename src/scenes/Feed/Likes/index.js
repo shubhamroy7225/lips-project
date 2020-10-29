@@ -92,7 +92,7 @@ export default (props) => {
                             MOST
                   <img src={require("assets/images/icons/icn_mouth.png")} alt="Image" class="lip_icn" />TAGS
                 </h5>
-                        <div class="hashtag hashtag_seondary">
+                        <div class="hashtag hashtag_seondary weightAnchor">
                             {topHashtags.map((tag, index) => <a key={index} class="theme_btn theme_secondary">{tag}</a>)}
                         </div>
                     </div>

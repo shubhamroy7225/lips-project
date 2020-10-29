@@ -9,6 +9,7 @@ export default () => {
   const history = useHistory();
   const {user} = useSelector(store => store.authReducer);
   const [selectTags, setSelectTags] = useState([]);
+  const showhashTags = [];
   const addFavoriteTags = () => {
     if (user) actions.setFavoriteTags({hashtags: {show: selectTags}}).then(res => {
       if(res) history.push("/avoid-tags")
@@ -30,7 +31,7 @@ export default () => {
                             Begin by choosing a few things you'd like to see more of.
                          </h5>
                       </article>
-                     <HashTags setSelectTags={setSelectTags} selectTags={selectTags}/>
+                     <HashTags setSelectTags={setSelectTags} selectTags={selectTags} showhashTags={showhashTags}/>
                       <div className="pos_wrp onboarding_btm">
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">
                          Continue</button>

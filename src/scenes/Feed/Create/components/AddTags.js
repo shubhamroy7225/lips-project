@@ -80,7 +80,7 @@ const AddTags = ({ count, show, dismiss, selectedHashTags, setSelectedHashTags, 
                                     </div>
                                 </div>
                                 <div class="hash_tag_block mt_30">
-                                    <div class="hashtags">
+                                    <div class="hashtags weightAnchor">
                                         {
                                             filteredHashtags.map((ele, index) => {
                                                 if (selectedHashTags.includes(ele)) {
@@ -106,7 +106,7 @@ const AddTags = ({ count, show, dismiss, selectedHashTags, setSelectedHashTags, 
                                 </div>
                                 <div class="post_links post_links_undr">
                                     <a onClick={() => dismiss()} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</a>
-                                    <span onClick={() => setSuggestedTagModel(true)} class="lps_link mt_15 btn_block textDecor" id="trigger_submit_tag">Can't find what you're looking for?</span>
+                                    <span onClick={() => setSuggestedTagModel(true)} class="lps_link mt_15 btn_block textDecor" id="trigger_submit_tag">Can't find what you're looking for ?</span>
                                 </div>
                             </div>
                         </div>

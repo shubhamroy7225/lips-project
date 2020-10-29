@@ -18,7 +18,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
     const [modalShown, setModalShown] = useState(false);
     const [marked, setMarked] = useState(false);
 
-    if(modalShown){
+    if (modalShown) {
         history.listen(() => {
             setModalShown(false)
         })
@@ -54,16 +54,38 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
         )
     } else if ((props.history.location.pathname === "/" && props.user) || !Object.values(NO_HEADER_ROUTES).includes(props.history.location.pathname)) {
         //default when user is not logged in
+        let pathName = props.history.location.pathname;
         let headerClassName = "main_header";
+        let navClassName = "theme_navigation"
+
         if (props.history.location.pathname === routes.ROOT) {
             headerClassName = "main_header page-header"
         }
+        let logoContent = (
+            <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
+                <img src={require("assets/images/thumbnails/logo.svg")} alt="BitCot Logo" className="header__logo" />
+            </Link>
+        );
+        if (pathName.includes(routes.PROFILE)) {
+            if (pathName !== routes.PROFILE) {
+                //other profile - then show back button 
+                navClassName = "theme_navigation theme_navigationCenterLogo"
+                logoContent = (
+                    <>
+                        <a onClick={() => { props.history.goBack() }} className="lps_arrow_left">
+                            <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" class="lps_header_img" />
+                        </a>
+                        <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
+                            <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
+                        </Link>
+                    </>
+                );
+            }
+        }
         return (
             <header className={headerClassName}>
-                <nav className="theme_navigation">
-                    <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
-                        <img src={require("assets/images/thumbnails/logo.svg")} alt="BitCot Logo" className="header__logo" />
-                    </Link>
+                <nav className={navClassName}>
+                    {logoContent}
                     {props.user && <ul className="lp_nav">
                         <li className="nav-item">
                             <ul className="profile_dropdown avatar_dropdown">
@@ -205,11 +227,11 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                                     <img src={notification.user && notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                                 </figure>
                                 <div className="lps_media_body">
-                                    {notification.user ? 
-                                    <Link to={`/profile/${notification.user.user_name}`}>
-                                        <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5>
-                                    </Link>
-                                    : <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5>}
+                                    {notification.user ?
+                                        <Link to={`/profile/${notification.user.user_name}`}>
+                                            <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5>
+                                        </Link>
+                                        : <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5>}
                                     {
                                         (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested") ? <div className="btn_group">
                                             <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>

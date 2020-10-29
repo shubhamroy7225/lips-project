@@ -839,7 +839,7 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
   .lps_bg_txt_white {
     .input_modify {
       background-color: transparent;
-      border-bottom-color: #fd3398 !important;
+      border-bottom-color: #fd3398;
       border-radius: 0;
       border-top: 0;
       border-left: 0;
@@ -4339,4 +4339,31 @@ figure.feed_fig310 {
 }
 .text_inherit {
   text-transform: inherit !important;
+}
+
+.footer-menu-list1 {
+  position: fixed;
+  right: 0;
+  bottom: 75px;
+  z-index: 1;
+  .horizantal_coll1 {
+    float: right;
+    width: 45px;
+    height: 45px;
+    line-height: 48px;
+    cursor: pointer;
+    background: #1a1a1a;
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(253, 51, 152, 0.75);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(253, 51, 152, 0.75);
+    box-shadow: 0px 3px 6px 0px rgba(253, 51, 152, 0.75);
+    border-radius: 50%;
+    position: relative;
+    right: 43px;
+    bottom: 0px;
+    overflow: hidden;
+    text-align: center;
+    img {
+      width: 18px;
+    }
+  }
 }
