@@ -5,6 +5,7 @@ import { followUser, unfollowUser } from "api/userAPI";
 import { FollowStatus, routes } from 'utility/constants/constants';
 import $ from 'jquery';
 import { toggleFollowers } from "redux/actions/auth";
+import Linkify from 'react-linkify';
 
 
 const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
@@ -115,7 +116,9 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
                     </div>
                 </div>
                 <p class="mt_15 mb_5">
-                    {user.bio}
+                <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
+                     <a target="blank" href={decoratedHref} key={key} class="link_underline text_secondary">{decoratedText}</a>
+                     )}>{user.bio}</Linkify>
                     {/* <a href="#" class="link_underline text_secondary">www.website.com </a> lorem ipsum
                   <a href="#" class="link_underline text_secondary"> www.anotherwebsite.com</a>lorem ipsum dolor */}
                 </p>
