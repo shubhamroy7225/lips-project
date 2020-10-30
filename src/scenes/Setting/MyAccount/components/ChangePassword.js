@@ -34,24 +34,24 @@ export default () => {
           <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
           <span className="lp_left_auto text_black">Change Password</span>
         </Link>
-        <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
+        <div className="lps_list_group my_acctn_list my_acctn_list_pl0 changePassword lipsFields">
           <form onSubmit={handleSubmit}>
-            <div className="lps_fields lipsFields">
+            <div className="lps_fields">
               <div className="form_group_modify">
                 <label for="current_password">Current Password</label>
-                <input type="password" className="input_modify" name="current_password" onChange={handleChange}/>
+                <input type="password" className="input_modify" name="current_password" onChange={handleChange} placeholder="Current Password"/>
               </div>
             </div>
-            <div className="lps_fields lipsFields">
+            <div className="lps_fields">
               <div className="form_group_modify">
                 <label for="current_password">Password</label>
-                <input type="password" className="input_modify" name="password" onChange={handleChange}/>
+                <input type="password" className="input_modify" name="password" onChange={handleChange} placeholder="Password"/>
               </div>
             </div>
-            <div className="lps_fields lipsFields">
+            <div className="lps_fields">
               <div className="form_group_modify">
                 <label for="current_password">Confirm Password</label>
-                <input type="password" className="input_modify" name="password_confirmation" onChange={handleChange}/>
+                <input type="password" className="input_modify" name="password_confirmation" onChange={handleChange} placeholder="Confirm Password"/>
               </div>
             </div>
             <div className="pos_wrp onboarding_btm">
@@ -63,7 +63,7 @@ export default () => {
               </button>
               </div>
           </form>
-        </ul>
+        </div>
       </div>
   )
 }

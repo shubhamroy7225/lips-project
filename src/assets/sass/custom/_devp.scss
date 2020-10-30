@@ -367,3 +367,25 @@ input.input_modify {
     flex-direction: column;
   }
 }
+.changePassword {
+  margin-top: 122px !important;
+  .input_modify {
+    color: #000;
+    border-radius: 0;
+    border: 0;
+    height: 44px;
+    padding: 8px;
+  }
+  .lps_fields {
+    margin: 0 0 20px;
+    .form_group_modify {
+      label{
+        margin-bottom: 4px;
+        display: block;
+      }
+    }
+  }
+  .pos_wrp.onboarding_btm {
+    margin-top: 36px !important;
+  }
+}
