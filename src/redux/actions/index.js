@@ -20,7 +20,8 @@ export {
     blockUser,
     unfollowUser,
     openPageLandingModel,
-    sendApprovalCode
+    sendApprovalCode,
+    changePassword
 } from './user/action';
 
 export {

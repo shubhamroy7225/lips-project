@@ -277,3 +277,14 @@ export const sendApprovalCode = (code) => {
             return error;
         })
 };
+
+export const changePassword = (body) => {
+    return API.changePassword(body)
+        .then(response => {
+            return response;
+        })
+        .catch(error => {
+            console.log(error);
+            return error;
+        });
+};
