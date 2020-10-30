@@ -49,7 +49,7 @@ export default () => {
                   <Link to={"/customize-tags"} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">
                     Just Browse</Link>
                   <p className="btm_links mt_25 text_gary">
-                    You must be 18 or older to use Lips
+                    You must be 17 or older to use Lips
                   </p>
                 </div>
               </form>
