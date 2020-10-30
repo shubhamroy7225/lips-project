@@ -24,6 +24,7 @@ import CustomizeFeeds from 'scenes/OnBoarding/CustomizeFeeds';
 
 import Setting from 'scenes/Setting';
 import MyAccount from 'scenes/Setting/MyAccount';
+import ChangePassword from 'scenes/Setting/MyAccount/components/ChangePassword';
 import SwitchAccount from 'scenes/Setting/SwitchAccount';
 import ManageData from 'scenes/Setting/ManageData';
 import FeedSetting from 'scenes/Setting/FeedSetting/index';
@@ -71,6 +72,7 @@ const Router = (props) => {
                 <Route exact path={routes.POST_DETAIL} component={FeedDetail} />
                 <Route exact path={routes.SETTING} component={Setting} />
                 <Route exact path={routes.MY_ACCOUNT} component={MyAccount} />
+                <Route exact path={routes.CHANGE_PASSWORD} component={ChangePassword} />
                 <Route exact path={routes.SWITCH_ACCOUNT} component={SwitchAccount} />
                 <Route exact path={routes.MANAGE_DATA} component={ManageData} />
                 <Route exact path={routes.FEED_SETTING} component={FeedSetting} />

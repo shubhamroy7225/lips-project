@@ -54,6 +54,14 @@ export default ()  => {
             <PrivacySetting user={user}/>
             <li className="list-group-item">
               <div className="lps_user_info lps_accnt_links">
+                <p className="user_info_label" >
+              <Link className="ft_Weight_500" to="/settings/my-account/change-password">Change Password</Link>
+                  </p>
+                </div>
+
+            </li>
+            <li className="list-group-item">
+              <div className="lps_user_info lps_accnt_links">
                 <p className="user_info_label" onClick={handleDelete}>
                   <Link to="/settings/my-account" classname="ft_Weight_500">Delete Account</Link>
                 </p>

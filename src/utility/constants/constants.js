@@ -13,6 +13,7 @@ export const NOTIFICATION_TYPES = { liked_post: 'liked_post', requested_follow: 
 export const SETTINGS_PATH = {
     SETTING: '/settings',
     MY_ACCOUNT: '/settings/my-account',
+    CHANGE_PASSWORD: '/settings/my-account/change-password',
     SWITCH_ACCOUNT: '/settings/switch-account',
     MANAGE_DATA: '/settings/manage-data',
     FEED_SETTING: '/settings/feed-setting',
