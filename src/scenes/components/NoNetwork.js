@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {Link} from "react-router-dom";
 const NoNetwork = (props) => {
     return (
         <div id="wrap" class="mt_0">
@@ -14,7 +15,7 @@ const NoNetwork = (props) => {
                             <p>
                                 Something went wrong. Please check your connection and try again.
                 </p>
-                            <a href="#" class="theme_btn theme_outline_primary text_secondary text_uppercase btnr_25 min_w_170">Try again</a>
+                            <button onClick={() => console.log("no network")} class="theme_btn theme_outline_primary text_secondary text_uppercase btnr_25 min_w_170">Try again</button>
                         </article>
                     </div>
                 </div>

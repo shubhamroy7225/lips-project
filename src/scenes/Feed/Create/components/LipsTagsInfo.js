@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import AddSuggestedTag from "./AddSuggestedTag";
 
-const LipsTagsInfo = ({ show, dismiss }) => {
+const LipsTagsInfo = ({setShowLipsInfo, show, dismiss }) => {
     let style = show ? { display: "block" } : { display: "none" };
   const [openSuggestedTagModel, setSuggestedTagModel] = useState(false);
     return (
         <>{
-          openSuggestedTagModel ? <AddSuggestedTag setSuggestedTagModel={setSuggestedTagModel}/> :
+          openSuggestedTagModel ? <AddSuggestedTag dismiss={dismiss} setShowLipsInfo={setShowLipsInfo} setSuggestedTagModel={setSuggestedTagModel}/> :
               <div className="hover_bkgr_fricc full_Hvh" id="trigger_lips_tag_popup" style={style}>
                 <div className="modal-dialog-centered">
                   <div className="popup_cont">

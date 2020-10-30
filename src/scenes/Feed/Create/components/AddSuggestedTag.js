@@ -1,7 +1,7 @@
 import React from "react";
 import  {addSuggestedHashTag} from 'redux/actions/feed/action';
 
-export default ({setSuggestedTagModel}) => {
+export default ({dismiss, setShowLipsInfo, setSuggestedTagModel}) => {
   const [suggestedTag, setSuggested] = React.useState("#");
   const [tagSubmitted, setSubmitted] = React.useState(false);
   const handleSubmit = (e) => {
@@ -28,7 +28,7 @@ export default ({setSuggestedTagModel}) => {
                   <div className="para_list_mb">
                     <h4 className="text_white">Can’t Find What You’re Looking For?</h4>
                     <p className="text_white lh26">
-                      Suggest a tag below and we’ll look into including it as a tag for the Lips community. Keep in mind, it’s best to suggest a tag that a lot of people will want to use - so keep it broad if possible. Read more about how tags work on Lips <a href="#" className="lps_link">here</a>.
+                      Suggest a tag below and we’ll look into including it as a tag for the Lips community. Keep in mind, it’s best to suggest a tag that a lot of people will want to use - so keep it broad if possible. Read more about how tags work on Lips <a href="#" onClick={e => [dismiss(), setSuggestedTagModel(false), setShowLipsInfo(true)]} className="lps_link">here</a>.
                     </p>
                   </div>
                   <div className="para_list_mb">
