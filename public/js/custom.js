@@ -247,6 +247,7 @@ $(document).ready(function () {
     $(this).parents('li').addClass('active').siblings().removeClass('active');
     var active_tab = $(this).attr('href');
     $(active_tab).addClass('active').siblings().removeClass('active');
+    return false;
   });
   // selected add remove classes
   $(".link_selected").click(function () {
