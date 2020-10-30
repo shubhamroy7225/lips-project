@@ -2,7 +2,6 @@ import React from 'react';
 
 import {Link} from "react-router-dom";
 const NoNetwork = (props) => {
-    debugger
     return (
         <div id="wrap" class="mt_0">
             <div class="lps_container no_netwrok lps_bg_secondary ">
