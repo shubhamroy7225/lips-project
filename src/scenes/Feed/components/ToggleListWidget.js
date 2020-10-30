@@ -11,7 +11,6 @@ const ToggleListWidget = ({ gridlayoutMode, setGridLayoutMode }) => {
     }
 
     let className = "horizantal_coll1 icn_hover_chng"
-    debugger;
     if (!gridlayoutMode) {
         className = "horizantal_coll1 icn_hover_chng active"
     }
