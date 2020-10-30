@@ -1,6 +1,6 @@
-import React from "react";
+import React,{useState, useRef} from "react";
 import { Link, useHistory } from "react-router-dom";
-
+import SimpleReactValidator from "simple-react-validator";
 import { toastMsg } from 'utility/utility';
 import { changePassword } from "redux/actions/user/action";
 
@@ -12,20 +12,47 @@ export default () => {
     password_confirmation: "",
   }
   const [passwordForm, setPasswordForm] = React.useState(defaultForm);
+  const [isSubmitted, setSubmitted] = useState(false);
+  const [currentPasswordShown, setCurrentPasswordShown] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
+  const simpleValidator = useRef(
+    new SimpleReactValidator({
+      validators: {
+        sameAs: {
+          // name the rule
+          message: "The password and :attribute are not matched.",
+          rule: (val, params, validator) => {
+            return val === params[0]; //validator.helpers.testRegex(val,/^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/) && params.indexOf(val) === -1
+          },
+
+          required: true, // optional
+        },
+      },
+    })
+);
+const [, forceUpdate] = useState();
 
   const handleChange = (e) => {
     setPasswordForm({...passwordForm, [e.target.name]: e.target.value});
+    forceUpdate(1);
   };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (simpleValidator.current.allValid()) {
     changePassword({user: passwordForm}).then(res => {
       if (res.data && res.data.success) {
         toastMsg("Password changed successfully!");
         history.push("/settings/my-account");
       }
-    });
+    })}
+    else {
+      setSubmitted(true);
+      simpleValidator.current.showMessages(); //show validation messages
+      forceUpdate(1);
+    };
   };
 
   return (
@@ -39,19 +66,49 @@ export default () => {
             <div className="lps_fields">
               <div className="form_group_modify">
                 <label for="current_password">Current Password</label>
-                <input type="password" className="input_modify" name="current_password" onChange={handleChange} placeholder="Current Password"/>
+                <input type={currentPasswordShown ? "text" : "password"} className="input_modify" name="current_password" onBlur={(e) =>
+                         isSubmitted ?  simpleValidator.current.showMessageFor("current_password") : true
+                        }
+                 onChange={handleChange} placeholder="Current Password"/>
+                <span className="icn_passAbslt_password">
+                          <img
+                              onClick={() => setCurrentPasswordShown(!currentPasswordShown)}
+                              src={require(`assets/images/icons/${currentPasswordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
+                              />
+                        </span> 
+                 { simpleValidator.current.message("current_password",passwordForm.current_password,"required")}
               </div>
             </div>
             <div className="lps_fields">
               <div className="form_group_modify">
                 <label for="current_password">Password</label>
-                <input type="password" className="input_modify" name="password" onChange={handleChange} placeholder="Password"/>
+                <input type={passwordShown ? "text" : "password"} className="input_modify" name="password" onBlur={(e) =>
+                         isSubmitted ?  simpleValidator.current.showMessageFor("password") : true
+                        }
+                onChange={handleChange} placeholder="Password"/>
+                <span className="icn_passAbslt_password">
+                          <img
+                              onClick={() => setPasswordShown(!passwordShown)}
+                              src={require(`assets/images/icons/${passwordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
+                              />
+                        </span>
+                { simpleValidator.current.message("password", passwordForm.password ,"required")}
               </div>
             </div>
             <div className="lps_fields">
               <div className="form_group_modify">
                 <label for="current_password">Confirm Password</label>
-                <input type="password" className="input_modify" name="password_confirmation" onChange={handleChange} placeholder="Confirm Password"/>
+                <input type={confirmPasswordShown ? "text" : "password"} className="input_modify" name="password_confirmation"  onBlur={(e) =>
+                        isSubmitted ?   simpleValidator.current.showMessageFor("password_confirmation") :true
+                        }
+                 onChange={handleChange} placeholder="Confirm Password"/>
+                 <span className="icn_passAbslt_password">
+                          <img
+                              onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}
+                              src={require(`assets/images/icons/${confirmPasswordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
+                              />
+                        </span> 
+                 { simpleValidator.current.message("password_confirmation",passwordForm.password_confirmation,`required|sameAs:${passwordForm.password_confirmation}`)}
               </div>
             </div>
             <div className="pos_wrp onboarding_btm">
