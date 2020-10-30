@@ -16,8 +16,8 @@ export default ({user}) => {
 
   const updateUser = (e) => {
     const {user_name} = userForm;
-    actions.verifyUsername(user_name).then(res => {
-      actions.updateUser({user: {user_name}}).then(res => {
+    actions.verifyUsername(user_name.toLowerCase()).then(res => {
+      actions.updateUser({user: {user_name: user_name.toLowerCase()}}).then(res => {
         inputVisible()
       });
     });
