@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, useCallback } from 'react';
 import { isMobile } from "react-device-detect";
 import { withRouter, Link, useHistory } from "react-router-dom";
 import Aux from '../Oux/Oux';
@@ -26,9 +26,9 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
 
     const modalToggle = () => {
         setModalShown(!modalShown);
-        if (!marked && notifications.length && notifications[count - 1]) {
+        if (!marked && notifications.length) {
             setMarked(true);
-            markAsRead(notifications[count - 1].id);
+            markAsRead(notifications[0].id);
         }
     };
     useEffect(() => {
@@ -37,9 +37,18 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                 window.$(this).parents('li').addClass('active').siblings().removeClass('active');
                 var active_tab = window.$(this).attr('href');
                 window.$(active_tab).addClass('active').siblings().removeClass('active');
-            })
+            });
         }
-    })
+    });
+    //hide notification dropdown on scroll haeder
+    const handleNotificationModel = useCallback(() => {
+        if (modalShown && window.$("body").hasClass("scroll-down")) setModalShown(false);
+    },[modalShown, setModalShown]);
+
+    useEffect(() => {
+        if (modalShown) document.addEventListener("scroll", () => handleNotificationModel());
+        return () => document.addEventListener("scroll", () => handleNotificationModel())
+    }, [modalShown, handleNotificationModel]);
 
     if (props.history.location.pathname === routes.CREATE) {
         return (
