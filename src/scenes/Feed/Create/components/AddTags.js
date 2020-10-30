@@ -4,7 +4,7 @@ import * as feedActions from 'redux/actions/feed/action';
 
 import AddSuggestedTag from "./AddSuggestedTag";
 
-const AddTags = ({ count, show, dismiss, selectedHashTags, setSelectedHashTags, hashTags }) => {
+const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setSelectedHashTags, hashTags }) => {
     const style = show ? { display: "block" } : { display: "none" };
     const [openSuggestedTagModel, setSuggestedTagModel] = useState(false);
     const [filteredHashtags, setFilteredHashtags] = useState(hashTags);
@@ -61,7 +61,7 @@ const AddTags = ({ count, show, dismiss, selectedHashTags, setSelectedHashTags, 
 
     return (
         <>{
-            openSuggestedTagModel ? <AddSuggestedTag setSuggestedTagModel={setSuggestedTagModel}/> :
+            openSuggestedTagModel ? <AddSuggestedTag dismiss={dismiss} setShowLipsInfo={setShowLipsInfo} setSuggestedTagModel={setSuggestedTagModel}/> :
                 <div class="hover_bkgr_fricc full_Hvh" id="trigger_submit_tag_popup" style={style}>
                     <div class="modal-dialog-centered">
                         <div class="popup_cont">

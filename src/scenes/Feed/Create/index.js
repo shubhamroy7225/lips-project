@@ -44,14 +44,14 @@ const Create = () => {
                     </div>
                 </div>
             </div>
-            <AddTags show={showAddTags} dismiss={() => {
+            <AddTags show={showAddTags} setShowLipsInfo={setShowLipsInfo} dismiss={() => {
                 setShowAddTags(false)
                 setShowLipsInfo(false)
             }}
                 selectedHashTags={selectedHashTags}
                 setSelectedHashTags={setSelectedHashTags}
             />
-            <LipsTagsInfo show={showLipsInfo} dismiss={() => {
+            <LipsTagsInfo show={showLipsInfo} setShowLipsInfo={setShowLipsInfo} dismiss={() => {
                 setShowAddTags(false)
                 setShowLipsInfo(false)
             }} />
