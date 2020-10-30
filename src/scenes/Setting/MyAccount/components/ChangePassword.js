@@ -99,7 +99,7 @@ const [, forceUpdate] = useState();
               <div className="form_group_modify">
                 <label for="current_password">Confirm Password</label>
                 <input type={confirmPasswordShown ? "text" : "password"} className="input_modify" name="password_confirmation"  onBlur={(e) =>
-                        isSubmitted ?   simpleValidator.current.showMessageFor("password_confirmation") :true
+                        isSubmitted ?   simpleValidator.current.showMessageFor("password_confirmation") : true
                         }
                  onChange={handleChange} placeholder="Confirm Password"/>
                  <span className="icn_passAbslt_password">
@@ -108,7 +108,7 @@ const [, forceUpdate] = useState();
                               src={require(`assets/images/icons/${confirmPasswordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
                               />
                         </span> 
-                 { simpleValidator.current.message("password_confirmation",passwordForm.password_confirmation,`required|sameAs:${passwordForm.password_confirmation}`)}
+                 { simpleValidator.current.message("password_confirmation",passwordForm.password_confirmation,`required|sameAs:${passwordForm.password}`)}
               </div>
             </div>
             <div className="pos_wrp onboarding_btm">
