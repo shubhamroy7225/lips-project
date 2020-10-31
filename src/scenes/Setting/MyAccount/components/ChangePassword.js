@@ -81,11 +81,11 @@ const [, forceUpdate] = useState();
             </div>
             <div className="lps_fields">
               <div className="form_group_modify">
-                <label for="current_password">Password</label>
+                <label for="current_password">New Password</label>
                 <input type={passwordShown ? "text" : "password"} className="input_modify" name="password" onBlur={(e) =>
                          isSubmitted ?  simpleValidator.current.showMessageFor("password") : true
                         }
-                onChange={handleChange} placeholder="Password"/>
+                onChange={handleChange} placeholder="New Password"/>
                 <span className="icn_passAbslt_password">
                           <img
                               onClick={() => setPasswordShown(!passwordShown)}
