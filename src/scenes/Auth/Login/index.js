@@ -67,7 +67,7 @@ let LoginForm = (props) => {
                   <span className="icn_passAbslt">
 
 
-                    {passwordShown ? <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_hide_black.png")} /> : <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_black.png")} />}
+                    {passwordShown ? <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_hide_black.png")} /> : <img onClick={togglePasswordVisiblity} src={require("assets/images/icons/icb_eye_pink.png")} />}
                   </span>
                   {simpleValidator.current.message('password', user.password, 'required')}
                 </div>

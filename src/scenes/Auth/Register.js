@@ -145,7 +145,7 @@ export default () => {
                         <span className="icn_passAbslt">
                           <img
                               onClick={() => setPasswordShown(!passwordShown)}
-                              src={require(`assets/images/icons/${passwordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
+                              src={require(`assets/images/icons/${passwordShown? "icb_eye_hide_black" : "icb_eye_pink"}.png`)}
                               />
                         </span>
                         { simpleValidator.current.message(
@@ -171,7 +171,7 @@ export default () => {
                         <span className="icn_passAbslt">
                           <img
                               onClick={(e) => setResetPasswordShown(!resetPasswordShown)}
-                              src={require(`assets/images/icons/${resetPasswordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
+                              src={require(`assets/images/icons/${resetPasswordShown? "icb_eye_hide_black" : "icb_eye_pink"}.png`)}
                               />
                         </span>
                         { simpleValidator.current.message(
