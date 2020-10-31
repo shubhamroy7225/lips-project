@@ -52,7 +52,7 @@ let LoginForm = (props) => {
               <div className="lps_fields lipsFields">
                 <div className="form_group_modify">
                   <input type="text" name="user" className="input_modify"
-                    placeholder="User Name" value={user.user}
+                    placeholder="Username or Email" value={user.user}
                     onBlur={() => simpleValidator.current.showMessageFor('user')}
                     onChange={handleChange} />
                   {simpleValidator.current.message('user', user.user, 'required')}
