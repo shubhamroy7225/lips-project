@@ -31,7 +31,7 @@ export default () => {
   useEffect(() => {
     if (!loaded) {
       setLoaded(true)
-      actions.getUserHashTags();
+      if (user) actions.getUserHashTags();
     }
   }, [loaded]);
   return (

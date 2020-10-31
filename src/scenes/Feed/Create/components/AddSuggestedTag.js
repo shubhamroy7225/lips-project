@@ -33,7 +33,7 @@ export default ({dismiss, setShowLipsInfo, setSuggestedTagModel}) => {
                   </div>
                   <div className="para_list_mb">
                     <div className="form_group_modify">
-                      <input type="text" className="input_modify placeholder-color" placeholder="enter your tag here" name="suggestedTag" value={suggestedTag} onChange={handleChange} />
+                      <input type="text" className="input_modify placeholder-color botderBot" placeholder="enter your tag here" name="suggestedTag" value={suggestedTag} onChange={handleChange} />
                       </div>
                     </div>
                     {suggestedTag &&
