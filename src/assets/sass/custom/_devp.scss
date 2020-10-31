@@ -393,8 +393,10 @@ input.input_modify {
       margin: 0 10px 0 0;
   }
 }
-
 .icn_passAbslt_password{
   float: right;
   margin-top: -34px;
+}
+.removePointer {
+  cursor: initial !important;
 }
