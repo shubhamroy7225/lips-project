@@ -73,7 +73,7 @@ const [, forceUpdate] = useState();
                 <span className="icn_passAbslt_password">
                           <img
                               onClick={() => setCurrentPasswordShown(!currentPasswordShown)}
-                              src={require(`assets/images/icons/${currentPasswordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
+                              src={require(`assets/images/icons/${currentPasswordShown? "icb_eye_hide_black" : "icb_eye_pink"}.png`)}
                               />
                         </span> 
                  { simpleValidator.current.message("current_password",passwordForm.current_password,"required")}
@@ -89,7 +89,7 @@ const [, forceUpdate] = useState();
                 <span className="icn_passAbslt_password">
                           <img
                               onClick={() => setPasswordShown(!passwordShown)}
-                              src={require(`assets/images/icons/${passwordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
+                              src={require(`assets/images/icons/${passwordShown? "icb_eye_hide_black" : "icb_eye_pink"}.png`)}
                               />
                         </span>
                 { simpleValidator.current.message("password", passwordForm.password ,"required")}
@@ -105,7 +105,7 @@ const [, forceUpdate] = useState();
                  <span className="icn_passAbslt_password">
                           <img
                               onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}
-                              src={require(`assets/images/icons/${confirmPasswordShown? "icb_eye_hide_black" : "icb_eye_black"}.png`)}
+                              src={require(`assets/images/icons/${confirmPasswordShown? "icb_eye_hide_black" : "icb_eye_pink"}.png`)}
                               />
                         </span> 
                  { simpleValidator.current.message("password_confirmation",passwordForm.password_confirmation,`required|sameAs:${passwordForm.password}`)}
