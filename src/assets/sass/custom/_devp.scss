@@ -400,3 +400,6 @@ input.input_modify {
 .removePointer {
   cursor: initial !important;
 }
+.reposted_wrps + .textContent {
+  padding-top: 20px;
+}
