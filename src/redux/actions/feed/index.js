@@ -63,4 +63,3 @@ export const getHashTagSuggestionListSuccessful = createAction('get tag in for s
 export const setMainFeedPaginationCompleted = createAction('setIsMainFeedPaginationCompleted');
 export const setSearchFeedPaginationCompleted = createAction('setSearchFeedPaginationCompleted');
 export const resetSearchFeedPagination = createAction('resetSearchFeedPagination');
-export const setInitialStepIconDone = createAction('setInitialStepIconDone');

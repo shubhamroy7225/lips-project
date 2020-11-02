@@ -4,8 +4,7 @@ import * as actions from 'redux/actions/feed';
 import store from 'redux/store/store';
 import { FeedModalType } from 'utility/constants/constants';
 
-let justBrowseTags = storage.get("justBrowseTags", {});
-let isNotLoadedFirst = storage.get("isNotLoadedFirst", null);
+let justBrowseTags = storage.get("justBrowseTags", {})
 
 const updateObject = (oldState, updatedProps) => {
     return {
@@ -37,9 +36,7 @@ export const initialState = {
 
 
     justBrowseTags,
-    hashTagSuggestionList: [],
-
-    isNotLoadedFirst
+    hashTagSuggestionList: []
 }
 
 export const feedReducer = createReducer({
@@ -227,9 +224,7 @@ export const feedReducer = createReducer({
     [actions.setMainFeedPaginationCompleted]: (state, payload) => updateObject(state, { mainFeedIsPaginationCompleted: true })
     ,
     [actions.setSearchFeedPaginationCompleted]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: true }),
-    [actions.resetSearchFeedPagination]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: false }),
-    
-    [actions.setInitialStepIconDone]: (state, payload) => updateObject(state, { isNotLoadedFirst: true })
+    [actions.resetSearchFeedPagination]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: false })
 
 }, initialState); // <-- This is the default state
 
