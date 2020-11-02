@@ -138,8 +138,9 @@ const MainFeed = (props) => {
     } else {
         if (props.user) {
             feedContent = (
-                <div class="lps_tb_para">
-                    <h4>Posts from users you follow will appear here</h4>
+                <div class="lps_tb_para wlcome">
+                    <h3>Welcome to your feed</h3>
+                    <h4>Posts from account you follow will appear here.</h4>
                 </div>
             )
         } else {
