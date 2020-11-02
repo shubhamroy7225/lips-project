@@ -6,7 +6,7 @@ import { routes } from '../../utility/constants/constants'
 
 
 const Faq = () => {
-    const {SETTING_FAQ, SETTING} = routes;
+    const {CONTACT_USER, SETTING} = routes;
     let data = [{
         title: "How do I ipsune dolor sit met, consecketur?", 
         content: " Sed ut perspnatis unde natus error sit volu totem accusantium doloremque laudantium. totem re aperrarn. eaque ipsequae abillu inventors veritato et quasi architect° beatee vitae dicta suet explicabo."
@@ -50,7 +50,7 @@ const Faq = () => {
                     <p>
                     Sed ut perspiclatis unde orrinisiste natus error sit volu tatern accusantium doloTemque laudantium. totem re aperrarn eaque ipsequae 
                     </p>
-                    <Link to={SETTING_FAQ} className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">CONTACT US</Link>
+                    <Link to={CONTACT_USER} className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">CONTACT US</Link>
                 </div>
             </div>
         </div>
