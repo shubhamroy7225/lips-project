@@ -103,7 +103,7 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submi
     }
 
     return (
-        <div class="content active" id="imageTab">
+        <div class={`content ${history.location.hash !== "#textTab" ? "active" : ""}`} id="imageTab0">
             <div class="tab_inn_con">
                 <div class="add_img_block add_img_blockP0">
                     <figure class={imgClassNames.join(" ")} onClick={() => handleFileSelect()}>
