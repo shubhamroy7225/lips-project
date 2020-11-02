@@ -58,7 +58,7 @@ const Setting = () => {
                      <Link to={routes.SETTING} onClick={logoutConfirm}>Sign out</Link>
                   </li>
                   <li className="list-group-item">
-                     <Link to="#">FAQ</Link>
+                     <Link to={routes.SETTING_FAQ}>FAQ</Link>
                   </li>
                </ul>
             </div>
