@@ -64,6 +64,20 @@ export const feedReducer = createReducer({
     },
     [actions.clearAllFeeds]: (state, payload) => updateObject(state, {
         feeds: [],
+        page: 1, // for main feed initial page
+        mainFeedIsPaginationCompleted: false,
+        selectedFeed: null,
+
+        userFeeds: [],
+        count: 0,
+        modalType: FeedModalType.undefined,
+
+        likedFeeds: [],
+        otherUserFeeds: [],
+
+        searchFeeds: [],
+        searchPage: 1, // for search feed initial page
+        searchFeedIsPaginationCompleted: false,
     }),
     [actions.setPage]: (state, payload) => updateObject(state, {
         page: payload.page,
