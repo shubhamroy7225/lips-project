@@ -36,7 +36,7 @@ const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
                <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                   <li>
                      {hideHashtag.map((tag, index) =>
-                     <button key={index} className="theme_btn theme_outline_light btn-color">{tag}</button>
+                     <button key={index} className="theme_btn theme_secondary text_white">{tag}</button>
                      )}
                   </li>
                </ul>

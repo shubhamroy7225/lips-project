@@ -9,6 +9,7 @@ import RemoveFeedModal from './FeedModal/RemoveFeedModal';
 import { routes } from 'utility/constants/constants';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import placeholder from 'assets/images/thumbnails/thumb_placeholder.png';
 
 const ImageFeed = (props) => {
     const { user, feed, isReposted, refHandler } = props
@@ -18,7 +19,7 @@ const ImageFeed = (props) => {
     const feed_user = isReposted ? feed.parent.user : feed.user;
     const user_name = feed_user.user_name;
     const feed_user_photo = feed_user.photo_urls;
-    const { photo_urls } = attachments[0];
+    const { photo_urls } = attachments.length > 0 ? attachments[0] : { photo_urls: { medium: placeholder } }; //else part is to handle the crash in case there is no image for feed type = "image"
     const [showWidget, setShowWidget] = useState(false)
     let history = useHistory()
 

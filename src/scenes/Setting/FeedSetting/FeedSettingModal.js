@@ -8,6 +8,7 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, e
    const [loaded, setLoaded] = useState(false);
    const [selectTags, setSelectTags] = useState([]);
    const [removedTags, setRemovedTags] = useState([]);
+   const [filteredHashtags, setFilteredHashtags] = useState(hashTags);
    const [search, setSearch] = useState({
       page: 1, limit: 10,
      name: ""
@@ -34,7 +35,8 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, e
       setLoaded(true);
       actions.getAllHashTags(search);
     }
-  }, [loaded]);
+    setFilteredHashtags(hashTags);
+  }, [loaded, hashTags]);
 
   const showFavoriteTags = () => {
     actions.setFavoriteAvoidTags({hashtags: {
@@ -59,6 +61,19 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, e
     actions.getAllHashTags(tempSearch)
   };
 
+
+  const handInputChange = (e) => {
+    let searchText = e.target.value;
+    setSearch({...search, name: e.target.value})
+      if (searchText.length > 0) {
+          let filteredHashtags = hashTags.filter(ele => {
+              return ele.name.toLowerCase().includes(searchText)
+          })
+          setFilteredHashtags(filteredHashtags);
+      } else {
+          setFilteredHashtags(hashTags)
+      }
+  }
   return (
     <>
         <div className="hover_bkgr_fricc full_Hvh" id="trigger_add_popup" style={{display: "block"}}>
@@ -74,13 +89,13 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, e
                   <button className="btn_search" type="button" onClick={e => handleChange(e)}>
                     <img src={require("assets/images/icons/icn_search_white.svg")} alt="Search"/>
                   </button>
-                  <input className="input_modify" type="text" value={search.name} onChange={e => setSearch({...search, name: e.target.value})}/>
+                  <input className="input_modify" type="text" value={search.name} onChange={handInputChange}/>
                 </div>
               </div>
             </div>
             <div className="hash_tag_block mt_30">
               <div className="hashtags">
-              {hashTags.map((tag, index) =>
+              {filteredHashtags.map((tag, index) =>
                 existingHideTags.includes(tag.name) ? null :
                 <button key={index} className={`theme_btn theme_outline_light ${(!removedTags.includes(tag.name) && existingTags.includes(tag.name)) || selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
                 )}
