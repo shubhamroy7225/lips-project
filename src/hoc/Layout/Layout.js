@@ -55,8 +55,8 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
             <div className="post_page_header">
                 <nav className="theme_tabs">
                     <ul className="tab-list">
-                        <li className="active"><a href="#imageTab">IMAGE</a></li>
-                        <li><a href="#textTab">TEXT</a></li>
+                        <li className={history.location.hash  !== "#textTab" ? "active" : ""} ><a href="#imageTab">IMAGE</a></li>
+                        <li className={history.location.hash  === "#textTab" ? "active" : ""} ><a href="#textTab">TEXT</a></li>
                     </ul>
                 </nav>
             </div>

@@ -48,7 +48,7 @@ const Faq = () => {
                 <div className="lps_terms_list lps_px15 pb25">
                     <h3>Still confused?</h3>
                     <p>
-                    Sed ut perspiclatis unde orrinisiste natus error sit volu tatern accusantium doloTemque laudantium. totem re aperrarn eaque ipsequae 
+                        Sed ut perspiclatis unde orrinisiste natus error sit volu tatern accusantium doloTemque laudantium. totem re aperrarn eaque ipsequae 
                     </p>
                     <Link to={CONTACT_USER} className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">CONTACT US</Link>
                 </div>

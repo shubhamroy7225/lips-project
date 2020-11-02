@@ -464,3 +464,38 @@ input.input_modify {
 .pb25 {
   padding-bottom: 25px;
 }
+.up_arrow_wrp .tags_lip_inline img {
+  width: 40px;
+  opacity: 0.75;
+}
+.up_arrow_wrp > img {
+  width: 28px;
+  opacity: 0.75;
+  margin-left: 15px;
+}
+.appearHere{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0 15px;
+  min-height: calc(100vh - 70px);
+  .lps_tb_para.wlcome {
+    padding: 0 15px;
+  }
+}
+.down_arrow_wrp {
+  padding-bottom: 63px;
+  text-align: right;
+  .inline_img1 .lip_icn {
+      width: 20px;
+      margin: 0 5px;
+      vertical-align: middle;
+      opacity: 0.75;
+  }
+  .lip_icn {
+      margin-right: 35px;
+      margin-top: 25px;
+      width: 28px;
+      opacity: 0.75;
+  }
+}

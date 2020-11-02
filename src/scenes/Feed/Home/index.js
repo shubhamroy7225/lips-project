@@ -12,7 +12,7 @@ import MenuOptionSlider from '../components/MenuOptionSlider';
 import { isMobile } from 'react-device-detect';
 import { fetchFeeds, fetchFeedsForNonRegUser } from 'redux/actions';
 import { FeedType, PageSize } from 'utility/constants/constants';
-import { clearAllFeeds, setPage } from 'redux/actions/feed';
+import { setPage } from 'redux/actions/feed';
 import scroller from './scroller';
 import PaginationLoader from '../components/PaginationLoader';
 import * as commonService from "utility/utility";
@@ -27,8 +27,6 @@ const MainFeed = (props) => {
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
         if (props.feeds.length === 0) {
-            clearAllFeeds();
-            // commonService.isLoading.onNext(true); // start loading
             fetchFeedsFromServer(true);
         }
     }, [])
@@ -120,7 +118,9 @@ const MainFeed = (props) => {
     }
 
     let feedContent = [];
+    let lps_container = "";
     if (props.feeds && props.feeds.length > 0) {
+        lps_container = "lps_container"
         feedContent = props.feeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
                 return <ImageFeed feed={feed} />
@@ -138,9 +138,22 @@ const MainFeed = (props) => {
     } else {
         if (props.user) {
             feedContent = (
-                <div class="lps_tb_para wlcome">
-                    <h3>Welcome to your feed</h3>
-                    <h4>Posts from account you follow will appear here.</h4>
+                <div className="appearHere">
+                    <div className="up_arrow_wrp mt_10">
+                        <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" className="lip_icn" />
+                        <h5 className="h5_title lps_flx_vm tags_lip_inline text_inherit">to come back here click <img src={require("assets/images/thumbnails/logo.png")} alt="Image" className="lip_icn" /> </h5>
+                    </div>
+                    <div className="lps_tb_para wlcome">
+                        <h3>Welcome to your feed</h3>
+                        <h4>Posts from account you follow will appear here.</h4>
+                    </div>
+                    <div className="up_arrow_wrp down_arrow_wrp">
+                        {isMobile ? 
+                        <>
+                        <div className="h5_title1 inline_img1">Open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" className="lip_icn" /> to discover accounts to follow.</div>
+                        <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" className="lip_icn" />
+                        </>  : null }
+                    </div>
                 </div>
             )
         } else {
@@ -153,44 +166,97 @@ const MainFeed = (props) => {
 
     }
 
-    if (isMobile) {
-        return (
-            <>
-                <div id="wrap" >
-                    <div class="lps_container main_feed_cont bg_grayCCC">
+    if (props.feeds && props.feeds.length > 0) {
+        if (isMobile) {
+            return (
+                <>
+                    <div id="wrap" >
+                        <div class="lps_container main_feed_cont bg_grayCCC">
+                            {feedContent}
+                            {/* <RestrictedFeed /> */}
+                            <PaginationLoader show={!props.mainFeedIsPaginationCompleted} />
+                            {/* <!-- Menu bottom here --> */}
+                            <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
+                            {/* <!-- //end Menu bottom here --> */}
+                        </div>
+                    </div>
+
+                    {/*   popup */}
+                    {
+                        selectedFeed &&
+                        <>
+                            <RepostModal />
+                            <TaggedModal />
+                            <ReportModal />
+                            <SharedModal />
+                            <RemoveFeedModal />
+                        </>
+                    }
+                </>
+            )
+        } else {
+            return (
+                <div id="wrap" className="lps_xl_view">
+                    <div className="lps_container main_feed_cont">
                         {feedContent}
-                        {/* <RestrictedFeed /> */}
-                        <PaginationLoader show={!props.mainFeedIsPaginationCompleted} />
-                        {/* <!-- Menu bottom here --> */}
+                    </div>
+                    <PaginationLoader show={!props.mainFeedIsPaginationCompleted} />
+                    <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
+                </div>
+            );
+        }
+    } else {
+        if (isMobile) {
+            return (
+                <div id="wrap">
+                    <div class="lps_container empty_feed_bg_wrp empty_feed_bg_wrp_spc">
+                        <div class="up_arrow_wrp">
+                            <a href="#" class="lips_arrow">
+                                <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" />
+                            </a>
+                            <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit">to come back here click <img src={require("assets/images/thumbnails/logo.png")} alt="Image" class="lip_icn" /> </h5>
+                        </div>
+                        <div class="mdl_arrow_wrp">
+                            <h5 class="h5_title text_inherit">Welcome to your feed.</h5>
+                            <h5 class="h5_title text_inherit">Posts from account you follow will appear here.</h5>
+                        </div>
+                        <div class="up_arrow_wrp down_arrow_wrp">
+                            <div class="h5_title1 inline_img1">Open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
+                            <a href="#" class="lips_arrow">
+                                <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" class="lip_icn" />
+                            </a>
+                        </div>
                         <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
-                        {/* <!-- //end Menu bottom here --> */}
                     </div>
                 </div>
-
-                {/*   popup */}
-                {
-                    selectedFeed &&
-                    <>
-                        <RepostModal />
-                        <TaggedModal />
-                        <ReportModal />
-                        <SharedModal />
-                        <RemoveFeedModal />
-                    </>
-                }
-            </>
-        )
-    } else {
-        return (
-            <div id="wrap" className="lps_xl_view">
-                <div className="lps_container main_feed_cont">
-                    {feedContent}
+            );
+        } else {
+            return (
+                <div id="wrap" className="lps_xl_view">
+                    <div class="lps_container empty_feed_bg_wrp empty_feed_bg_wrp_spc">
+                        <div class="up_arrow_wrp">
+                            <a href="#" class="lips_arrow">
+                                <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" />
+                            </a>
+                            <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit">to come back here click <img src={require("assets/images/thumbnails/logo.png")} alt="Image" class="lip_icn" /> </h5>
+                        </div>
+                        <div class="mdl_arrow_wrp">
+                            <h5 class="h5_title text_inherit">Welcome to your feed.</h5>
+                            <h5 class="h5_title text_inherit">Posts from account you follow will appear here.</h5>
+                        </div>
+                        <div class="up_arrow_wrp down_arrow_wrp">
+                            <div class="h5_title1 inline_img1">Click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
+                            {/* <a href="#" class="lips_arrow">
+                                <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" class="lip_icn" />
+                            </a> */}
+                        </div>
+                        <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
+                    </div>
                 </div>
-                <PaginationLoader show={!props.mainFeedIsPaginationCompleted} />
-                <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
-            </div>
-        );
+            );
+        }
     }
+
 }
 
 const mapStateToProps = (state) => ({

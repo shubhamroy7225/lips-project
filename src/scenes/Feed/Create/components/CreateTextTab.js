@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import {useHistory} from "react-router-dom";
 import { FeedType } from 'utility/constants/constants';
 import * as commonService from "utility/utility";
 
 const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submitFeedRequest }) => {
+    const history = useHistory();
     const [likable, setLikable] = useState(true);
     const [caption, setCaption] = useState("");
     const captionCharCount = 10000;
@@ -42,7 +44,7 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submit
     }
 
     return (
-        <div class="content" id="textTab">
+        <div class={`content ${history.location.hash  === "#textTab" ? "active" : ""}`} id="textTab1">
             <div class="tab_inn_con">
                 <div class="about_gallery">
                     <div class="textRange_wrp">
