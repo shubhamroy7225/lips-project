@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import * as commonService from "../../../utility/utility";
+import { routes } from 'utility/constants/constants';
 
 const EditProfile = ({setIsEdit, user}) => {
   const [userForm, setUserForm] = useState({...user});
@@ -58,12 +59,12 @@ const EditProfile = ({setIsEdit, user}) => {
             <div className="post_page_header top__sm_header">
               <ul className="lp_nav lp_nav_customize lps_flx_vm_jsbtwn lps_f_vm">
                 <li className="nav-item">
-                  <Link to="/profile" className="nav-link not_line" onClick={e => setIsEdit(false)}>
+                  <Link to={routes.PROFILE} className="nav-link not_line" onClick={e => setIsEdit(false)}>
                     <img src={require("assets/images/icons/icn_close_white.svg")} alt="Close Icon" />
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/profile" className="nav-link not_line check_link" onClick={updateUserProfile}>
+                  <Link to={routes.PROFILE} className="nav-link not_line check_link" onClick={updateUserProfile}>
                     <img src={require("assets/images/icons/icn_checkWhite.png")} alt="Check Icon" />
                   </Link>
                 </li>

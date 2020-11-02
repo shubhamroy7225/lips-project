@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
 import { toastMsg } from 'utility/utility';
 import { changePassword } from "redux/actions/user/action";
+import { routes } from "utility/constants/constants";
 
 export default () => {
   const history = useHistory();
@@ -45,7 +46,7 @@ const [, forceUpdate] = useState();
     changePassword({user: passwordForm}).then(res => {
       if (res.data && res.data.success) {
         toastMsg("Password changed successfully!");
-        history.push("/settings/my-account");
+        history.push(routes.MY_ACCOUNT);
       }
     })}
     else {
@@ -57,7 +58,7 @@ const [, forceUpdate] = useState();
 
   return (
       <div className="lps_container mt_0">
-        <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings/my-account">
+        <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.MY_ACCOUNT}>
           <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
           <span className="lp_left_auto text_black">Change Password</span>
         </Link>

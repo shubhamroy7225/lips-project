@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as actions from "redux/actions";
+import { routes } from "utility/constants/constants";
 export default () => {
   const history = useHistory();
   const {user} = useSelector(store => store.authReducer);
@@ -9,9 +10,10 @@ export default () => {
 
   const changePrivacyPolicy = () => {
     actions.changePrivacy({privacy_settings}).then(res => {
-      history.push("/customize-tags");
+      history.push(routes.CUSTOMIZE_FEEDS);
     });
   };
+
   return (
           <div id="wrap" className="mt_0 lps_bg_secondary">
             <div className="lps_container lps_bg_secondary lps_text_white mt_0">

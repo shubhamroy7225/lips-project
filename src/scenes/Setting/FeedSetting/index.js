@@ -6,6 +6,7 @@ import BlockUser from "./components/BlockUser.js";
 import FeedSettingModal from "./FeedSettingModal";
 
 import * as actions from "redux/actions";
+import { routes } from 'utility/constants/constants.js';
 const FeedSetting = () => {
   const {showhashTags, hideHashtag} = useSelector(store => store.feedReducer);
   const {blockedUsers} = useSelector(store => store.authReducer);
@@ -24,7 +25,7 @@ const FeedSetting = () => {
     {
         editTag ? <FeedSettingModal setParentLoaded={setLoaded} setEditTag={setEditTag} editTag={editTag} existingTags={editTag === "hide" ? hideHashtag : showhashTags} existingHideTags={editTag === "show" ? hideHashtag : showhashTags} /> :  <div id="wrap" className="mt_0 feed-setting">
           <div className="lps_container mt_0">
-            <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
+            <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
               <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
               <span className="lp_left_auto text_black">Feed Settings</span>
             </Link>
