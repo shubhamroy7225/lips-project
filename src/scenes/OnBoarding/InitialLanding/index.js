@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 import OwlCarousel from 'react-owl-carousel2';
+import { routes } from "utility/constants/constants";
 
 export default () => {
   const ref = useRef();
@@ -44,9 +45,9 @@ export default () => {
                   </OwlCarousel>
                 </div>
                 <div className="pos_wrp">
-                  <Link to="/login" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase lps_mb10 W-50P desktopVersio">
+                  <Link to={routes.LOGIN} className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase lps_mb10 W-50P desktopVersio">
                     Sign in</Link>
-                  <Link to={"/customize-tags"} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">
+                  <Link to={routes.CUSTOMIZE_FEEDS} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">
                     Just Browse</Link>
                   <p className="btm_links mt_25 text_gary">
                     You must be 17 or older to use Lips

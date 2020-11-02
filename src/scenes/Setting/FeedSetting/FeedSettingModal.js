@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import * as actions from "redux/actions";
+import { routes } from 'utility/constants/constants';
 
 const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, existingHideTags}) => {
    const {hashTags, count} = useSelector(store => store.feedReducer);
@@ -81,7 +82,7 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, e
         <div className="popup_cont">
           <div className="popup_body post_poup lps_bg_secondary lps_text_white">
             <div className="popupCloseButton">
-            <Link to="/settings/feed-setting" onClick={e => setEditTag(null)} className="nav-link not_line">
+            <Link to={routes.FEED_SETTING} onClick={e => setEditTag(null)} className="nav-link not_line">
             <img src={require("assets/images/icons/icn_close_white.png")}/></Link></div>
             <div className="lps_search">
               <div className="inner_form">

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as actions from "redux/actions";
+import { routes } from "utility/constants/constants";
 
 import HashTags from "../components/hashTags";
 
@@ -12,10 +13,10 @@ export default () => {
   const showhashTags = [];
   const addFavoriteTags = () => {
     if (user) actions.setFavoriteTags({hashtags: {show: selectTags}}).then(res => {
-      if(res) history.push("/avoid-tags")
+      if(res) history.push(routes.SELECT_AVOID_TAGS)
     });
     else actions.setFavoriteAvoidTagsJustBrowse({hashtags: {show: selectTags}}).then(res => {
-      if(res) history.push("/avoid-tags")
+      if(res) history.push(routes.SELECT_AVOID_TAGS)
     });
   };
 

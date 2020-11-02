@@ -19,7 +19,7 @@ export default () => {
       actions
         .setAvoidTags({ hashtags: { hide: selectTags } })
         .then((res) => {
-          if (res) history.push("/");
+          if (res) history.push(routes.ROOT);
         });
     else
       actions

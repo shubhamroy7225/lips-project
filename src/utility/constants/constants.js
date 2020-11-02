@@ -21,7 +21,8 @@ export const SETTINGS_PATH = {
     PRIVACY_POLICY: '/settings/privacy-policy',
     SETTING_TERMS_AND_CONDITIONS: '/settings/terms-and-condition',
     SETTING_COMMUNITY_GUIDELINES: '/settings/community-guidelines',
-    FEED_SETTING_MODAL: '/settings/feed-setting-modal'
+    FEED_SETTING_MODAL: '/settings/feed-setting-modal',
+    SETTING_FAQ: '/settings/faq'
 };
 export const PRIVATE_PATH = {
     LOGOUT: '/logout',

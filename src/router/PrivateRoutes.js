@@ -18,6 +18,7 @@ import Notification from "scenes/Setting/Notifications";
 import PrivacyPolicy from "scenes/Setting/PrivacyPolicy";
 import SettingTermsAndCondition from "scenes/Setting/TermsAndCondition";
 import SettingCommunityGuidelines from "scenes/Setting/CommunityGuidelines";
+import Faq from "scenes/Setting/Faq";
 
 import ContactUser from "scenes/ContactUser";
 import PostApproval from "scenes/Feed/PostApproval";
@@ -62,6 +63,7 @@ export default () => (
       path={routes.FEED_SETTING_MODAL}
       component={FeedSettingModal}
     />
+    <Route exact path={routes.SETTING_FAQ} component={Faq} />
     <Route path="*" render={() => <Redirect to={routes.ROOT} />} />
   </Switch>
 );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import * as AuthActions from "redux/actions";
+import { routes } from 'utility/constants/constants';
 import * as commonService from "utility/utility";
 const Setting = () => {
    const history = useHistory();
@@ -27,16 +28,16 @@ const Setting = () => {
       <>
          <div id="wrap" className="mt_0">
             <div className="lps_container mt_0">
-               <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to="/">
+               <Link className="lps_header_link lps_flx_vm text_uppercase lps_px15" to={routes.ROOT}>
                   <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
                   <span className="lp_left_auto">Settings</span>
                </Link>
                <ul className="lps_list_group lps_listN mt_25">
                   <li className="list-group-item lps_hrSep">
-                     <Link to="/settings/my-account">My account</Link>
+                     <Link to={routes.MY_ACCOUNT}>My account</Link>
                   </li>
                   <li className="list-group-item">
-                     <Link to="/settings/feed-setting">Feed settings</Link>
+                     <Link to={routes.FEED_SETTING}>Feed settings</Link>
                   </li>
                   {/* <li className="list-group-item">
                      <Link to="/settings/notification">Notifications</Link>
@@ -45,19 +46,19 @@ const Setting = () => {
                      <a href="mailto://?subject=Invitation from Lips&body=Hello,%0DJoin Today https://stage.lips.social" target="_blank">Invite someone to lips</a>
                   </li>
                   <li className="list-group-item lps_hrSep">
-                     <Link to="/settings/community-guidelines">Community guidelines</Link>
+                     <Link to={routes.SETTING_COMMUNITY_GUIDELINES}>Community guidelines</Link>
                   </li>
                   <li className="list-group-item">
-                     <Link to="/settings/terms-and-condition">Terms and conditions</Link>
+                     <Link to={routes.SETTING_TERMS_AND_CONDITIONS}>Terms and conditions</Link>
                   </li>
                   <li className="list-group-item">
-                     <Link to="/settings/privacy-policy">Privacy policy</Link>
+                     <Link to={routes.PRIVACY_POLICY}>Privacy policy</Link>
                   </li>
                   <li className="list-group-item lps_hrSep">
-                     <Link to="/settings" onClick={logoutConfirm}>Sign out</Link>
+                     <Link to={routes.SETTING} onClick={logoutConfirm}>Sign out</Link>
                   </li>
                   <li className="list-group-item">
-                     <Link to="#">FAQ</Link>
+                     <Link to={routes.SETTING_FAQ}>FAQ</Link>
                   </li>
                </ul>
             </div>

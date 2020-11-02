@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { routes } from "utility/constants/constants";
 export default ({setGuidelineState}) => {
   return (
       <div id="wrap" className="mt_0 lps_bg_secondary">
@@ -20,7 +21,7 @@ export default ({setGuidelineState}) => {
                 </h4>
               </div> */}
               <div className="onboarding_btm lps_flx_vm_jsbtwn">
-                <Link to="/community-guidelines" onClick={() => setGuidelineState(0)} className="link_underline lps_link ft_Weight_500">Back</Link>
+                <Link to={routes.COMMUNITY_GUIDELINES} onClick={() => setGuidelineState(0)} className="link_underline lps_link ft_Weight_500">Back</Link>
                 <button onClick={() => setGuidelineState(2)} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">Next</button>
               </div>
             </div>
