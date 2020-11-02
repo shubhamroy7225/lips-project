@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { routes } from "utility/constants/constants";
 
 import TermsAndCondition from "../components/TermsAndConditions";
 
@@ -12,7 +13,7 @@ export default ({
 
   const handleClick = () => {
     if (isRegister) setTermsAndConditionPageActive(false);
-    else history.push("/settings");
+    else history.push(routes.SETTING);
   };
 
   return (

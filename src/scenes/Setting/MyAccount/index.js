@@ -8,6 +8,7 @@ import * as commonService from "utility/utility";
 
 import PrivacySetting from "./components/PrivacySetting.js";
 import UsernameSetting from "./components/UsernameSetting.js";
+import { routes } from 'utility/constants/constants.js';
 
 export default ()  => {
   const {user} = useSelector(store => store.authReducer);
@@ -17,7 +18,7 @@ export default ()  => {
   const deleteUser =() => {
       commonService.isLoading.onNext(true);
       actions.deleteUser().then(res => {
-        history.push("/");
+        history.push(routes.ROOT);
       });
     commonService.isDialogOpen.onNext(false);
   };
@@ -37,7 +38,7 @@ export default ()  => {
       <>
       <div id="wrap" className="mt_0">
         <div className="lps_container mt_0">
-          <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to="/settings">
+          <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
             <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
             <span className="lp_left_auto text_black">My Account</span>
           </Link>
@@ -55,7 +56,7 @@ export default ()  => {
             <li className="list-group-item">
               <div className="lps_user_info lps_accnt_links">
                 <p className="user_info_label" >
-              <Link className="ft_Weight_500" to="/settings/my-account/change-password">Change Password</Link>
+              <Link className="ft_Weight_500" to={routes.CHANGE_PASSWORD}>Change Password</Link>
                   </p>
                 </div>
 
@@ -63,7 +64,7 @@ export default ()  => {
             <li className="list-group-item">
               <div className="lps_user_info lps_accnt_links">
                 <p className="user_info_label" onClick={handleDelete}>
-                  <Link to="/settings/my-account" classname="ft_Weight_500">Delete Account</Link>
+                  <Link to={routes.MY_ACCOUNT} classname="ft_Weight_500">Delete Account</Link>
                 </p>
               </div>
             </li>
