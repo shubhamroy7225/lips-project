@@ -18,10 +18,10 @@ import PaginationLoader from '../components/PaginationLoader';
 import * as commonService from "utility/utility";
 import storage from 'utility/storage';
 import ToggleListWidget from '../components/ToggleListWidget';
+import { setMainFeedPaginationCompleted } from 'redux/actions/feed';
 
 const MainFeed = (props) => {
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
-    const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     const selectedFeed = props.selectedFeed;
 
     //will mount and unmount - on unmount show the header if it's hidden
@@ -53,10 +53,10 @@ const MainFeed = (props) => {
         if (props.bottomOffset &&
             props.bottomOffset < 200 &&
             !isFeedCallInProgress && //if feed call in progress don't fire again
-            !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
+            !props.mainFeedIsPaginationCompleted) { //check if all the feeds are fetched - don't fire
             onReachingBottom();
         }
-    }, [props.bottomOffset])
+    }, [props.bottomOffset, props.mainFeedIsPaginationCompleted])
 
     // called from HOC Scroller on reaching bottom 
     const onReachingBottom = () => {
@@ -84,11 +84,11 @@ const MainFeed = (props) => {
                             nextPage = nextPage.split("?")[1];
                             setPage({ page: nextPage });
                         } else {
-                            setIsPaginationCompleted(true);
+                            setMainFeedPaginationCompleted();
                         }
                     } else {
                         //empty post means we have fetched all the posts
-                        setIsPaginationCompleted(true);
+                        setMainFeedPaginationCompleted();
                     }
                 }
                 setIsFeedCallInProgress(false);
@@ -104,11 +104,11 @@ const MainFeed = (props) => {
                             nextPage = nextPage.split("?")[1];
                             setPage({ page: nextPage });
                         } else {
-                            setIsPaginationCompleted(true);
+                            setMainFeedPaginationCompleted();
                         }
                     } else {
                         //empty post means we have fetched all the posts
-                        setIsPaginationCompleted(true);
+                        setMainFeedPaginationCompleted();
                     }
                 }
                 setIsFeedCallInProgress(false);
@@ -160,7 +160,7 @@ const MainFeed = (props) => {
                     <div class="lps_container main_feed_cont bg_grayCCC">
                         {feedContent}
                         {/* <RestrictedFeed /> */}
-                        <PaginationLoader show={!isPaginationCompleted} />
+                        <PaginationLoader show={!props.mainFeedIsPaginationCompleted} />
                         {/* <!-- Menu bottom here --> */}
                         <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
                         {/* <!-- //end Menu bottom here --> */}
@@ -186,7 +186,7 @@ const MainFeed = (props) => {
                 <div className="lps_container main_feed_cont">
                     {feedContent}
                 </div>
-                <PaginationLoader show={!isPaginationCompleted} />
+                <PaginationLoader show={!props.mainFeedIsPaginationCompleted} />
                 <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
             </div>
         );
@@ -197,10 +197,8 @@ const mapStateToProps = (state) => ({
     user: state.authReducer.user,
     feeds: state.feedReducer.feeds,
     page: state.feedReducer.page,
-    selectedFeed: state.feedReducer.selectedFeed
+    selectedFeed: state.feedReducer.selectedFeed,
+    mainFeedIsPaginationCompleted: state.feedReducer.mainFeedIsPaginationCompleted
 });
 
-const mapStateToDispatch = (dispatch) => ({
-});
-
-export default connect(mapStateToProps, mapStateToDispatch)(scroller(MainFeed));
+export default connect(mapStateToProps, null)(scroller(MainFeed));

@@ -9,7 +9,7 @@ import TextItem from '../components/TextItem';
 import ImageFeed from '../components/ImageFeed';
 import TextFeed from '../components/TextFeed';
 import { FeedType, PageSize } from 'utility/constants/constants';
-import { setSearchPage } from 'redux/actions/feed';
+import { resetSearchFeedPagination, setSearchPage } from 'redux/actions/feed';
 import PaginationLoader from '../components/PaginationLoader';
 import scroller from '../Home/scroller';
 import RepostModal from '../components/FeedModal/RepostModal';
@@ -18,13 +18,14 @@ import ReportModal from '../components/FeedModal/ReportModal';
 import SharedModal from '../components/FeedModal/SharedModal';
 import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 import ToggleListWidget from '../components/ToggleListWidget';
+import { setSearchFeedPaginationCompleted } from 'redux/actions/feed';
 
 const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
     const [isDataFetched, setIsDataFetched] = useState(false);
     const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
-    const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
+    // const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     const searchText = useRef(null);
     var selectedFeedOnToggle = useRef(null);
 
@@ -39,32 +40,11 @@ const ExploreFeed = (props) => {
         };
     }, [])
 
-    //listen for feed changes
-    useEffect(() => {
-        console.log(props.feeds);
-        //keep validating on every update of feeds
-        validatePaginationCompletion();
-    }, [searchFeeds]);
-
-    const validatePaginationCompletion = () => {
-        let feedsCount = searchFeeds.length;
-        if (feedsCount % PageSize !== 0) {
-            setIsPaginationCompleted(true)
-        }
-    }
-
-    //listen for feed changes
-    useEffect(() => {
-        console.log(props.feeds);
-        //keep validating on every update of feeds
-        validatePaginationCompletion();
-    }, [props.feeds]);
-
     useEffect(() => {
         if (props.bottomOffset &&
             props.bottomOffset < 200 &&
             !isFeedCallInProgress && //if feed call in progress don't fire again
-            !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
+            !props.isPaginationCompleted) { //check if all the feeds are fetched - don't fire
             onReachingBottom();
         }
     }, [props.bottomOffset])
@@ -115,8 +95,8 @@ const ExploreFeed = (props) => {
             pageQuery = `?${props.searchPage}`
         }
 
-        if (page === 1) { //when doing page 1 call - reset the pagination flag 
-            setIsPaginationCompleted(false);
+        if (page === 1) {
+            resetSearchFeedPagination()
         }
 
         actions.searchFeeds(pageQuery, isNextPage).then(res => {
@@ -129,21 +109,20 @@ const ExploreFeed = (props) => {
                             nextPage = nextPage.split("?")[1]; //only parse query string 
                             setSearchPage({ page: nextPage }); //and store it in reducer
                         } else {
-                            setIsPaginationCompleted(true); // if no next page then pagination is complete
+                            setSearchFeedPaginationCompleted(); // if no next page then pagination is complete
                         }
                     } else {
                         //empty post means we have fetched all the posts
-                        setIsPaginationCompleted(true);  // if post is empty then pagination is complete
+                        setSearchFeedPaginationCompleted();  // if post is empty then pagination is complete
                     }
                 }
                 setIsFeedCallInProgress(false);
             } else {
                 //error
-                setIsPaginationCompleted(true);
+                setSearchFeedPaginationCompleted()
             }
-            // validatePaginationCompletion();
         }).catch(error => {
-            setIsPaginationCompleted(true);
+            setSearchFeedPaginationCompleted()
             setIsFeedCallInProgress(false);
         })
     }
@@ -202,7 +181,7 @@ const ExploreFeed = (props) => {
                     </div>}
                 </div>
 
-                <PaginationLoader show={!isPaginationCompleted} />
+                <PaginationLoader show={!props.isPaginationCompleted} />
                 <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
                 <MenuOptionSlider />
             </div>
@@ -222,6 +201,7 @@ const ExploreFeed = (props) => {
 const mapStateToProps = (state) => ({
     user: state.authReducer.user,
     searchPage: state.feedReducer.searchPage,
+    isPaginationCompleted: state.feedReducer.searchFeedIsPaginationCompleted
 });
 
 const mapStateToDispatch = (dispatch) => ({

@@ -60,3 +60,6 @@ export const getHashTagSuggestionListPending = createAction('get tag in for sear
 
 export const getHashTagSuggestionListSuccessful = createAction('get tag in for search post list success', (tags) => (tags));
 
+export const setMainFeedPaginationCompleted = createAction('setIsMainFeedPaginationCompleted');
+export const setSearchFeedPaginationCompleted = createAction('setSearchFeedPaginationCompleted');
+export const resetSearchFeedPagination = createAction('resetSearchFeedPagination');
