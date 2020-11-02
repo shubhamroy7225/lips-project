@@ -28,20 +28,20 @@ const TaggedModal = ({ feed }) => {
     }
 
 
-    let hashTagsContent = hashtags.map(ele => <a href="#" class="theme_btn theme_light text_secondary">{ele.hashtag_name}</a>)
+    let hashTagsContent = hashtags.map(ele => <button className="theme_btn theme_light text_secondary">{ele.hashtag_name}</button>)
     return (
-        <div class="hover_bkgr_fricc" style={style}>
-            <div class="modal-dialog-centered">
-                <span class="helper"></span>
-                <div class="popup_cont">
-                    <div class="popup_body">
-                        <div class="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
-                        <ul class="lps_btn_grps lps_ul lps_hash_ul">
+        <div className="hover_bkgr_fricc" style={style}>
+            <div className="modal-dialog-centered">
+                <span className="helper"></span>
+                <div className="popup_cont">
+                    <div className="popup_body">
+                        <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
+                        <ul className="lps_btn_grps lps_ul lps_hash_ul">
                             <li>
                                 {hashTagsContent.length ? hashTagsContent : <p className="text_white">No hashtag added</p>}
                             </li>
                         </ul>
-                        {/* <a href="#" class="theme_btn theme_outline_primary text_white text_uppercase min_w_170 btnr_25">Wrong tags?</a> */}
+                        {/* <a href="#" className="theme_btn theme_outline_primary text_white text_uppercase min_w_170 btnr_25">Wrong tags?</a> */}
                     </div>
                 </div>
             </div>
