@@ -4,7 +4,7 @@ import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
 import { setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
 
-import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate, hideFeed } from 'redux/actions/feed';
+import { setInitialStepIconDone, fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate, hideFeed } from 'redux/actions/feed';
 import {completeOnBorading} from "redux/actions/auth";
 
 import * as actions from 'redux/actions';
@@ -124,6 +124,7 @@ export const fetchFeeds = (queryString, isFirstPage) => {
   return API.fetchFeeds(queryString)
     .then(response => {
       commonService.isLoading.onNext(false); // start loading
+      setInitialStepIcon();
       if (isFirstPage) {
         fetchedFeedSuccessfully({ feeds: response.data.posts });
       } else {
@@ -275,4 +276,12 @@ export const addSuggestedHashTag = (body) => {
     }).catch(error => {
       return error;
     })
+}
+
+const setInitialStepIcon = () => {
+    let isNotLoadedFirst = storage.get("isNotLoadedFirst", null);
+      if (!isNotLoadedFirst){
+        storage.set("isNotLoadedFirst", true);
+        setInitialStepIconDone()
+      } 
 }
