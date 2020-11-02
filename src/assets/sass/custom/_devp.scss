@@ -251,6 +251,18 @@ input.input_modify {
       font-weight: 600;
   }
 }
+.wlcome h3 {
+  margin-bottom: 6px;
+  font-weight: 300;
+}
+.comuNitiInner a {
+  text-decoration: none;
+  line-height: 36px;
+  padding: 0em;
+}
+.lps_bg_gray {
+  background-color: #e1e1e1;
+}
 @media screen and (min-width:991px){
   .footer-menu-list1 .horizantal_coll1 {
     right: 18px !important;
@@ -272,6 +284,14 @@ input.input_modify {
   }
 }
 @media screen and (max-width: 767px) {
+  .wlcome{
+    h3 {
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 16px;
+    }
+  }
   .ifAccess .form_group_modify {
     display: block;
     margin-left: 0;
@@ -284,6 +304,28 @@ input.input_modify {
       padding: 20px 0;
       height: 100vh !important;
   }
+  .comuNitiInner {
+    justify-content: initial;
+    .onboarding_btm {
+      margin-top: 30px;
+    }
+  }
+  .comuNiti {
+      justify-content: initial;
+      .onboarding_btm {
+          margin-top: 30px;
+          flex-direction: column;
+          align-items: center;
+          button {
+            width: 100%;
+            margin-bottom: 10px;
+          }
+      }
+  }
+}
+.textBack {
+  text-decoration: none;
+  line-height: 36px;
 }
 .placeholder-color::placeholder{
   color: #828282 !important;

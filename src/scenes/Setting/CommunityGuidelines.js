@@ -33,15 +33,22 @@ export default () => {
             <div className="lps_terms_list" id="Introduction">
               <h5 className="community-data-heading">Create</h5>
               <p>
-              Lips originated as a print zine for “open and honest expression,” and this remains our calling. Share your original art, poetry, selfies, or anything at all, and feel free to use the reblog feature to share other’s work. Please don’t plagiarize or call another’s work  your own. We welcome your experimental, unconfined, weirdest creations, and invite you to explore with curiosity and vivid imagination.
-
+                Lips originated as a print zine for “open and honest expression,” and this remains our calling.
+              </p>
+              <p> Share your original art, poetry, selfies, or anything at all, and feel free to use the reblog feature to share other’s work. Please don’t plagiarize or call another’s work  your own. 
+              </p> 
+              <p> 
+                We welcome your experimental, unconfined, weirdest creations, and invite you to explore with curiosity and vivid imagination.
               </p>
               
             </div>
             <div className="lps_terms_list" id="intellectual">
               <h5 className="community-data-heading">Grow</h5>
               <p>
-              We know Lips can be a place for us all to develop in body, mind, and spirit. To foster that, we must be a judgment-free zone. We have a zero-tolerance policy for hate speech, harassment, abuse, or discrimination. Only if we accept each other at our truest and most vulnerable will we be able to grow into our highest selves.
+               We know Lips can be a place for us all to develop in body, mind, and spirit. To foster that, we must be a judgment-free zone.
+              </p>
+              <p>
+               We have a zero-tolerance policy for hate speech, harassment, abuse, or discrimination. Only if we accept each other at our truest and most vulnerable will we be able to grow into our highest selves.
               </p>
               <p>
                 You are granted limited license only for purpose of viewing the material contained on this Website
@@ -50,14 +57,17 @@ export default () => {
             <div className="lps_terms_list" id="Restrictions">
               <h5 className="community-data-heading">Find Your Purpose</h5>
               <p>
-              Use Lips as a space to figure out what it is you are meant to do and who it is you are meant to be. Today, creators are fortunate that we can make a living doing what we love. Lips encourages you to clarify, articulate, and act on that with our support along the way
+                Use Lips as a space to figure out what it is you are meant to do and who it is you are meant to be. Today, creators are fortunate that we can make a living doing what we love. Lips encourages you to clarify, articulate, and act on that with our support along the way
               </p>
               
             </div>
             <div className="lps_terms_list" id="YourContent">
               <h5 className="community-data-heading">Respect</h5>
               <p>
-              Treat everyone with dignity and kindness. If someone (yourself/another) has said something hurtful, use it as a learning and teaching experience. Respect people’s boundaries by using the Lips hashtag system to thoroughly label your content so that everyone has control over what they see.
+              Treat everyone with dignity and kindness. If someone (yourself/another) has said something hurtful, use it as a learning and teaching experience.
+              </p>
+              <p>
+              Respect people’s boundaries by using the Lips hashtag system to thoroughly label your content so that everyone has control over what they see.
               </p>
               
             </div>
@@ -70,13 +80,14 @@ export default () => {
             <div className="lps_terms_list" id="Governing_Law">
               <h5 className="community-data-heading">Pursue Your Vision for a Better World</h5>
               <p>
-              We have built Lips to elevate, support, and raise the voices of marginalized creators but the rest is up to YOU: the beautiful humans on this app. Use this platform to fight injustice, to foster diversity, to create more beauty, and to manifest the future you believe in.
-
+              We have built Lips to elevate, support, and raise the voices of marginalized creators but the rest is up to YOU: the beautiful humans on this app.
               </p>
               <p>
-                With so much Lips Love,
-                Annie, Val, Julija, Primo, & Perla
-
+              Use this platform to fight injustice, to foster diversity, to create more beauty, and to manifest the future you believe in.
+              </p>
+              <p>
+                With so much Lips Love,<br/>
+                Annie, Val, Julija, Primo, &amp; Perla
               </p>
             </div>
           </div>

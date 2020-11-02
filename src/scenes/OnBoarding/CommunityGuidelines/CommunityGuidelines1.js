@@ -1,11 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
-export default ({isSetting, setGuidelineState}) => {
+export default ({setGuidelineState}) => {
   return (
       <div id="wrap" className="mt_0 lps_bg_secondary">
         <div className="lps_container mt_0">
           <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary lps_text_white on_boarding_wrp">
-            <div className="lps_form_wrp on_boarding_wrp_spwn border_0">
+            <div className="lps_form_wrp on_boarding_wrp_spwn border_0 comuNitiInner">
               <article className="lps_art">
                 <p className="text_primary">1/6</p>
                 <h3 className="text_white mb45"> Create </h3>
@@ -20,7 +20,7 @@ export default ({isSetting, setGuidelineState}) => {
                 </h4>
               </div> */}
               <div className="onboarding_btm lps_flx_vm_jsbtwn">
-                <Link to={isSetting ? "/settings" : "/account-privacy"} className="link_underline lps_link ft_Weight_500">Back</Link>
+                <Link to="/community-guidelines" onClick={() => setGuidelineState(0)} className="link_underline lps_link ft_Weight_500">Back</Link>
                 <button onClick={() => setGuidelineState(2)} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">Next</button>
               </div>
             </div>
