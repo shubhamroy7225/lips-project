@@ -271,7 +271,12 @@ input.input_modify {
     width: 100%;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
+  .scroll-down .footer-menu-list,
+  .scroll-down .footer-menu-list1 {
+    -webkit-transform: translate3d(300px, 0, 0);
+    transform: translate3d(300px, 0, 0);
+  }
   .ifAccess .form_group_modify {
     display: block;
     margin-left: 0;
