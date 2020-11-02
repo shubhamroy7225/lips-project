@@ -9,7 +9,7 @@ import TextItem from '../components/TextItem';
 import ImageFeed from '../components/ImageFeed';
 import TextFeed from '../components/TextFeed';
 import { FeedType, PageSize } from 'utility/constants/constants';
-import { setSearchPage } from 'redux/actions/feed';
+import { resetSearchFeedPagination, setSearchPage } from 'redux/actions/feed';
 import PaginationLoader from '../components/PaginationLoader';
 import scroller from '../Home/scroller';
 import RepostModal from '../components/FeedModal/RepostModal';
@@ -93,6 +93,10 @@ const ExploreFeed = (props) => {
             }
         } else {
             pageQuery = `?${props.searchPage}`
+        }
+
+        if (page === 1) {
+            resetSearchFeedPagination()
         }
 
         actions.searchFeeds(pageQuery, isNextPage).then(res => {

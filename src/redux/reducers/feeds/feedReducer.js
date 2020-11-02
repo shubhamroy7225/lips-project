@@ -223,7 +223,8 @@ export const feedReducer = createReducer({
 
     [actions.setMainFeedPaginationCompleted]: (state, payload) => updateObject(state, { mainFeedIsPaginationCompleted: true })
     ,
-    [actions.setSearchFeedPaginationCompleted]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: true })
+    [actions.setSearchFeedPaginationCompleted]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: true }),
+    [actions.resetSearchFeedPagination]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: false })
 
 }, initialState); // <-- This is the default state
 
