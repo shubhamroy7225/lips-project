@@ -41,6 +41,7 @@ import NonRegisteredView from 'scenes/NonRegisteredView';
 
 import FeedSettingModal from 'scenes/Setting/FeedSetting/FeedSettingModal';
 import FeedDetail from 'scenes/Feed/FeedDetail';
+import Faq from 'scenes/Setting/Faq';
 
 
 const Router = (props) => {
@@ -80,6 +81,7 @@ const Router = (props) => {
                 <Route exact path={routes.PRIVACY_POLICY} component={PrivacyPolicy} />
                 <Route exact path={routes.SETTING_TERMS_AND_CONDITIONS} component={SettingTermsAndCondition} />
                 <Route exact path={routes.SETTING_COMMUNITY_GUIDELINES} component={SettingCommunityGuidelines} />
+                <Route exact path={routes.SETTING_FAQ} component={Faq} />
                 <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
                 <Route exact path={routes.CONTACT_USER} component={ContactUser} />
                 <Route exact path={routes.FEED_SETTING_MODAL} component={FeedSettingModal} />
