@@ -23,6 +23,11 @@
     height: 150px;
   }
 }
+@media screen and (min-width: 1200px) {
+  .lps_container.empty_feed_bg_wrp.empty_feed_bg_wrp_spc {
+    max-width: 100%;
+  }
+}
 @media screen and (min-width: 992px) {
   .lps_container {
     max-width: 960px;
