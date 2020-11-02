@@ -17,17 +17,24 @@ export const initialState = {
     hashTags: [],
     showhashTags: [],
     hideHashtag: [],
+
     feeds: [],
+    page: 1, // for main feed initial page
+    mainFeedIsPaginationCompleted: false,
+    selectedFeed: null,
+
     userFeeds: [],
     count: 0,
-    selectedFeed: null,
-    pageSize: 20,
-    page: 1,
     modalType: FeedModalType.undefined,
+
     likedFeeds: [],
     otherUserFeeds: [],
+
     searchFeeds: [],
-    searchPage: 1,
+    searchPage: 1, // for search feed initial page
+    searchFeedIsPaginationCompleted: false,
+
+
     justBrowseTags,
     hashTagSuggestionList: []
 }
@@ -210,9 +217,14 @@ export const feedReducer = createReducer({
         })
     },
     [actions.addSuggestedHashTagSuccessful]: (state, payload) => updateObject(state, {}),
-    [actions.setHashTagJustBrowseSuccessful]: (state, payload) => updateObject(state, {justBrowseTags: {...state.justBrowseTags, ...payload.hashtags}}),
-    [actions.getHashTagSuggestionListPending]: (state, payload) => updateObject(state, {hashTagSuggestionList: []}),
-    [actions.getHashTagSuggestionListSuccessful]: (state, payload) => updateObject(state, {hashTagSuggestionList: payload.hashtags})
+    [actions.setHashTagJustBrowseSuccessful]: (state, payload) => updateObject(state, { justBrowseTags: { ...state.justBrowseTags, ...payload.hashtags } }),
+    [actions.getHashTagSuggestionListPending]: (state, payload) => updateObject(state, { hashTagSuggestionList: [] }),
+    [actions.getHashTagSuggestionListSuccessful]: (state, payload) => updateObject(state, { hashTagSuggestionList: payload.hashtags }),
+
+    [actions.setMainFeedPaginationCompleted]: (state, payload) => updateObject(state, { mainFeedIsPaginationCompleted: true })
+    ,
+    [actions.setSearchFeedPaginationCompleted]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: true })
+
 }, initialState); // <-- This is the default state
 
 
