@@ -9,6 +9,7 @@ export default ({dismiss, setShowLipsInfo, setSuggestedTagModel}) => {
       addSuggestedHashTag({hashtag:{name: suggestedTag}}).then(e => {
         if (e.data.success)  return [setSuggested(""),setSubmitted(true)];
         else return false;       
+
       })
     }
     return true;
