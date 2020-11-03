@@ -20,6 +20,7 @@ import CustomizeFeeds from "scenes/OnBoarding/CustomizeFeeds";
 import NoNetwork from "scenes/components/NoNetwork";
 import NonRegisteredView from "scenes/NonRegisteredView";
 import FeedDetail from "scenes/Feed/FeedDetail";
+import Profile from "scenes/Profile";
 
 const PrivateRoute = lazy(() => import("./PrivateRoutes"));
 const PrivateRouteOnBoard = lazy(() => import("./PrivateOnBoardRoutes"));
@@ -46,6 +47,7 @@ const Router = (props) => {
         <Route exact path={routes.MAIN_FEED} component={MainFeed} />
         <Route exact path={routes.LOGIN} component={Login} />
         <Route exact path={routes.REGISTER} component={Register} />
+
         <Route
           exact
           path={routes.TERMS_AND_CONDITION}
@@ -74,6 +76,7 @@ const Router = (props) => {
           path={routes.LOGIN_TO_PROCEED}
           component={NonRegisteredView}
         />
+        <Route exact path={routes.OTHER_PROFILE} component={Profile} />
         <Route exact path={routes.NO_NETWORK} component={NoNetwork} />
         <Route exact path={routes.POST_DETAIL} component={FeedDetail} />
         <Route path="*" render={() => <Redirect to={routes.ROOT} />} />

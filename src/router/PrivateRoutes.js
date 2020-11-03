@@ -34,7 +34,6 @@ export default () => (
     <Route exact path={routes.LIKES} component={Likes} />
     <Route exact path={routes.PROFILE} component={Profile} />
     <Route exact path={routes.OTHER_PROFILE} component={Profile} />
-    <Route exact path={routes.ROOT} component={MainFeed} />
     {/* Approval for posting */}
     <Route exact path={routes.POST_APPROVAL} component={PostApproval} />
     <Route exact path={routes.POST_DETAIL} component={FeedDetail} />

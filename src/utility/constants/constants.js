@@ -31,7 +31,6 @@ export const PRIVATE_PATH = {
     LIKES: '/likes',
     PROFILE: '/profile',
     EDIT_PROFILE: '/edit-profile',
-    OTHER_PROFILE: '/profile/:id',
 };
 
 export const ON_BOARD_PATH = {
@@ -62,6 +61,7 @@ export const routes = {
     MAIN_FEED: '/posts',
     POST_DETAIL: '/post/:id',
     CONTACT_USER: '/contact_user',
+    OTHER_PROFILE: '/profile/:id',
     ...ON_BOARD_PATH,
     ...PRIVATE_PATH,
     ...SETTINGS_PATH,
