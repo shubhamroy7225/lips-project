@@ -110,7 +110,7 @@ const Likes = (props) => {
         setGridLayoutMode(false)
     }
 
-    let feedContent = [];
+    let emptyPostData = [];
     let gridFeedContent = [];
     let listFeedContent = [];
     if (likedFeeds && likedFeeds.length > 0) {
@@ -136,9 +136,11 @@ const Likes = (props) => {
             }
         })
     } else {
-        feedContent = (
-            <div class="lps_tb_para">
-                <h4>All the posts you  <img src={require("assets/images/icons/liked_post.png")} alt="BitCot Logo" className="header__logo like_logo" />   will appear here</h4>
+        emptyPostData = (
+            <div class="main_feed_cont">
+                <div class="lps_tb_para">
+                    <h4>All the posts you  <img src={require("assets/images/icons/liked_post.png")} alt="BitCot Logo" className="header__logo like_logo" />  will appear here</h4>
+                </div>
             </div>
         )
     }
@@ -156,7 +158,7 @@ const Likes = (props) => {
                         </div>
                     </div>
                 }
-                {feedContent}
+
                 {
                     gridlayoutMode ?
                         <div class="lps_product_grid destkVersion">
@@ -169,11 +171,7 @@ const Likes = (props) => {
                             </div>
                         </div>
                 }
-                {gridFeedContent.length === 0 && likedFeeds.length === 0 && <div class="main_feed_cont">
-                        <div class="lps_tb_para">
-                        <h4>All the posts you  <img src={require("assets/images/icons/liked_post.png")} alt="BitCot Logo" className="header__logo like_logo" />  will appear here</h4> 
-                        </div>
-                    </div>}
+                {emptyPostData}
                 <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
                 <MenuOptionSlider />
             </div>

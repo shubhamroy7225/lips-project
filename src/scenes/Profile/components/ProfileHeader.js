@@ -72,66 +72,66 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
 
     let allowRequest = followStatus === FollowStatus.NotRequested || FollowStatus.Denied === followStatus
     return (
-        <div class="lps_list">
+        <div className="lps_list">
             {/* cover image */}
-            {headerImage && <div class="bg_gray_feed">
-                <figure class="lps_fig feed_fig310">
+            {headerImage && <div className="bg_gray_feed">
+                <figure className="lps_fig feed_fig310">
                     <img src={headerImage} alt="thumbnail1" />
                 </figure>
             </div>}
 
-            <div class="lps_inner_wrp lps_inner_wrp_media">
-                <div class="lps_media lps_pos_rltv lps_f_center">
-                    <figure class="lps_fig lps_fig_circle">
+            <div className="lps_inner_wrp lps_inner_wrp_media">
+                <div className="lps_media lps_pos_rltv lps_f_center">
+                    <figure className="lps_fig lps_fig_circle">
                         <img src={profilePhoto} alt="User" />
                     </figure>
-                    <div class="lps_media_body">
-                        <div class="user_wrp_mail pull-left">
-                            <span class="text_primary">{user.user_name}</span>
+                    <div className="lps_media_body">
+                        <div className="user_wrp_mail pull-left">
+                            <span className="text_primary">{user.user_name}</span>
                         </div>
                         {isUserProfile ?
-                            <figure class="lps_fig lps_fig_cont lps_fig_circle lps_float_right">
+                            <figure className="lps_fig lps_fig_cont lps_fig_circle lps_float_right">
                                 <Link to="/profile" onClick={e => setEdit(true)}><img src={require("assets/images/icons/icn_paint_active.svg")} alt="User" /></Link>
                             </figure>
                             :
                             <>
                                 { //only if user is logged show the option to send follow request
-                                    isLoggedIn && <figure class="lps_fig lps_fig_circle lps_float_right">
-                                        <a onClick={toggleFollowRequest} class={!allowRequest ? "icn_hover_chng active" : "icn_hover_chng"} id="heart_notify">
-                                            <img src={require("assets/images/icons/icn_outline_follow.svg")} class="icn_dfltD" alt="User" />
-                                            <img src={require("assets/images/icons/icn_fill_follow.svg")} class="icn_hvrA" alt="User" />
+                                    isLoggedIn && <figure className="lps_fig lps_fig_circle lps_float_right">
+                                        <a onClick={toggleFollowRequest} className={!allowRequest ? "icn_hover_chng active" : "icn_hover_chng"} id="heart_notify">
+                                            <img src={require("assets/images/icons/icn_outline_follow.svg")} className="icn_dfltD" alt="User" />
+                                            <img src={require("assets/images/icons/icn_fill_follow.svg")} className="icn_hvrA" alt="User" />
                                         </a>
                                     </figure>
                                 }
-                                <div class="hover_bkgr_fricc heart_notify_box notify_box_hide_3S" style={{ display: followRequest ? "block" : "none" }} id="trigger_heart_popup">
-                                    <div class="popup_cont lps_pos_rltv">
-                                        <div class="popup_body">
+                                <div className="hover_bkgr_fricc heart_notify_box notify_box_hide_3S" style={{ display: followRequest ? "block" : "none" }} id="trigger_heart_popup">
+                                    <div className="popup_cont lps_pos_rltv">
+                                        <div className="popup_body">
                                             {isPublic ? `You have started following ${user_name}` : "Follow request sent"}
                                         </div>
-                                        <span class="bottm_shape"></span>
+                                        <span className="bottm_shape"></span>
                                     </div>
                                 </div>
                             </>
                         }
                     </div>
                 </div>
-                <p class="mt_15 mb_5">
-                <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
-                     <a target="blank" href={decoratedHref} key={key} class="link_underline text_secondary">{decoratedText}</a>
-                     )}>{user.bio}</Linkify>
-                    {/* <a href="#" class="link_underline text_secondary">www.website.com </a> lorem ipsum
-                  <a href="#" class="link_underline text_secondary"> www.anotherwebsite.com</a>lorem ipsum dolor */}
+                <p className="mt_15 mb_5">
+                    <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
+                        <a target="blank" href={decoratedHref} key={key} className="link_underline text_secondary">{decoratedText}</a>
+                    )}>{user.bio}</Linkify>
+                    {/* <a href="#" className="link_underline text_secondary">www.website.com </a> lorem ipsum
+                  <a href="#" className="link_underline text_secondary"> www.anotherwebsite.com</a>lorem ipsum dolor */}
                 </p>
                 {
                     user.show_followers || user.show_following ?
-                        <a class="dots_link" id="trigger_followers_block" onClick={() => { setIsFollowerHeaderHidden(!isFollowerHeaderHidden) }}><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                        <a className="dots_link" id="trigger_followers_block" onClick={() => { setIsFollowerHeaderHidden(!isFollowerHeaderHidden) }}><i className="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                         : ""}
                 <div
-                    class="followers_block followers_block_none"
+                    className="followers_block followers_block_none"
                     style={{ display: isFollowerHeaderHidden ? "none" : "block" }}
                     id="followers_block">
-                    {user.show_followers && <a class="followers_trigger" onClick={openFollowers}> {followers_count} <br /> Followers</a>}
-                    {user.show_following && <a class="followers_trigger" onClick={openFollowing}> {following_count} <br />Following</a>}
+                    {user.show_followers && <a className="followers_trigger" onClick={openFollowers}> {followers_count} <br /> Followers</a>}
+                    {user.show_following && <a className="followers_trigger" onClick={openFollowing}> {following_count} <br />Following</a>}
                 </div>
             </div>
         </div>

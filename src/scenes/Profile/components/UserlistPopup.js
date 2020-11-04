@@ -55,8 +55,8 @@ const UserListPopUp = ({ followers,
     }
 
     if (following.length > 0) {
-        followingContent = following.map(user => {
-            return <FollowerItem data={user} user={user.followee} />
+        followingContent = following.map((user, index) => {
+            return <FollowerItem key={index} data={user} user={user.followee} />
         })
     }
     else {
