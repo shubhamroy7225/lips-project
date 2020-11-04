@@ -76,33 +76,33 @@ const FeedWidget = ({ user, showWidget, feed }) => {
 
     let listContent = [];
     let reportOption = (
-        < li className="listed_item">
+        < li key={1} className="listed_item">
             <a onClick={() => feedSelectionHandler(FeedModalType.report)} className="circle_image lps_flx_vm_jc" id="trigger_hashtag_close">
                 <img src={require("assets/images/icons/icn_close_white.png")} className="inner_image" alt="Close Icon" />
             </a>
         </li>);
     let deleteOption = (
-        <li class="listed_item">
+        <li key={2} class="listed_item">
             <a onClick={() => feedSelectionHandler(FeedModalType.delete)} class="trash_icon_wrp circle_image lps_flx_vm_jc" id="trigger_delete">
                 <img src={require("assets/images/icons/icn_trash_white.png")} class="inner_image" alt="Close Icon" />
             </a>
         </li>);
     let hashtagOptionn = (
-        <li className="listed_item lps_pos_rltv">
+        <li key={3} className="listed_item lps_pos_rltv">
             <a onClick={() => feedSelectionHandler(FeedModalType.tag)} className="circle_image lps_flx_vm_jc" id="trigger_hashtag">
                 <img src={require("assets/images/icons/icn_hashtag_white.png")} className="inner_image" alt="Hashtag Icon" />
             </a>
         </li>
     );
     let shareOption = (
-        <li className="listed_item">
+        <li key={4} className="listed_item">
             <a onClick={() => feedSelectionHandler(FeedModalType.share)} className="circle_image lps_flx_vm_jc" id="trigger_share">
                 <img src={require("assets/images/icons/icn_share_white.png")} className="inner_image" alt="Share Icon" />
             </a>
         </li>
     );
     let repostOption = (
-        <li className="listed_item">
+        <li key={5} className="listed_item">
             {/* <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
                 <img src={require("assets/images/icons/icn_repeat_white.svg")} className="inner_image" alt="Repeat Icon" />
             </a> */}
@@ -115,7 +115,7 @@ const FeedWidget = ({ user, showWidget, feed }) => {
         </li>
     );
     let likeOption = (
-        <li class="listed_item">
+        <li key={6} class="listed_item">
             <a onClick={() => toggleLike()} class={likeIconClasses}>
                 <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
                 <img src={require("assets/images/icons/icn_lips.png")} class="icn_hvrA" alt="User" />

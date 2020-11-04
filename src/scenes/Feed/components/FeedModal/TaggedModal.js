@@ -28,7 +28,7 @@ const TaggedModal = ({ feed }) => {
     }
 
 
-    let hashTagsContent = hashtags.map(ele => <button className="theme_btn theme_light text_secondary">{ele.hashtag_name}</button>)
+    let hashTagsContent = hashtags.map((ele, index) => <button key={index} className="theme_btn theme_light text_secondary">{ele.hashtag_name}</button>)
     return (
         <div className="hover_bkgr_fricc" style={style}>
             <div className="modal-dialog-centered">

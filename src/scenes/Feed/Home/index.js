@@ -37,7 +37,7 @@ const MainFeed = (props) => {
         return () => {
             window.removeEventListener("scroll", props.listener);
         };
-    });
+    }, [props.bottomOffset]);
 
     // on unmount ennsure the header is visible
     useEffect(() => {
@@ -121,16 +121,16 @@ const MainFeed = (props) => {
     if (props.feeds && props.feeds.length > 0) {
         feedContent = props.feeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
-                return <ImageFeed feed={feed} />
+                return <ImageFeed key={feed.id} feed={feed} />
             } else if (feed.type === FeedType.repost) {
                 let parentFeed = feed.parent;
                 if (parentFeed.type === FeedType.image) {
-                    return <ImageFeed feed={feed} isReposted={true} />
+                    return <ImageFeed key={feed.id} feed={feed} isReposted={true} />
                 } else {
-                    return <TextFeed feed={feed} isReposted={true} />
+                    return <TextFeed key={feed.id} feed={feed} isReposted={true} />
                 }
             } else {
-                return <TextFeed feed={feed} />
+                return <TextFeed key={feed.id} feed={feed} />
             }
         })
     } else {
