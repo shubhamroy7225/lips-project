@@ -109,7 +109,7 @@ const CreateImageTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submi
                     <figure class={imgClassNames.join(" ")} onClick={() => handleFileSelect()}>
                         <img src={imageData.base64 ? imageData.base64 : require("assets/images/icons/image_icon_dashed.svg")} alt="Add Image" />
                     </figure>
-                    <input type="file" id="file" ref={fileSelector} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e)} />
+                    <input type="file" id="file" accept=".png, .jpg, .jpeg" ref={fileSelector} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e)} />
                 </div>
                 <div class="about_gallery">
                     <textarea onChange={handleInputChange} value={caption} class="textarea_modifier" rows="8" placeholder="Say something about this..."></textarea>

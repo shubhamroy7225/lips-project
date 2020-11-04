@@ -182,6 +182,11 @@ const Likes = (props) => {
                             </div>
                         </div>
                 }
+                {gridFeedContent.length === 0 && likedFeeds.length === 0 && <div class="main_feed_cont">
+                        <div class="lps_tb_para">
+                        <h4>All the posts you  <img src={require("assets/images/icons/liked_post.png")} alt="BitCot Logo" className="header__logo like_logo" />  will appear here</h4> 
+                        </div>
+                    </div>}
                 <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
                 <MenuOptionSlider />
             </div>
