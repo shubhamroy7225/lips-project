@@ -118,9 +118,7 @@ const MainFeed = (props) => {
     }
 
     let feedContent = [];
-    let lps_container = "";
     if (props.feeds && props.feeds.length > 0) {
-        lps_container = "lps_container"
         feedContent = props.feeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
                 return <ImageFeed feed={feed} />
@@ -138,22 +136,9 @@ const MainFeed = (props) => {
     } else {
         if (props.user) {
             feedContent = (
-                <div className="appearHere">
-                    <div className="up_arrow_wrp mt_10">
-                        <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" className="lip_icn" />
-                        <h5 className="h5_title lps_flx_vm tags_lip_inline text_inherit">to come back here click <img src={require("assets/images/thumbnails/logo.png")} alt="Image" className="lip_icn" /> </h5>
-                    </div>
-                    <div className="lps_tb_para wlcome">
-                        <h3>Welcome to your feed</h3>
-                        <h4>Posts from account you follow will appear here.</h4>
-                    </div>
-                    <div className="up_arrow_wrp down_arrow_wrp">
-                        {isMobile ? 
-                        <>
-                        <div className="h5_title1 inline_img1">Open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" className="lip_icn" /> to discover accounts to follow.</div>
-                        <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" className="lip_icn" />
-                        </>  : null }
-                    </div>
+                <div class="lps_tb_para wlcome">
+                    <h3>Welcome to your feed</h3>
+                    <h4>Posts from account you follow will appear here.</h4>
                 </div>
             )
         } else {
