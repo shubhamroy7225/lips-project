@@ -184,12 +184,12 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
         page: 1, limit: 10, order_by: "desc"
     });
     useEffect(() => {
-        if (!loaded && !notifications.length) {
-            setLoad(true)
+        //if (!loaded && !notifications.length) {
+        //    setLoad(true)
             getAllNotification({ ...params });
             getUnreadCount();
 
-        }
+        //}
     }, [loaded]);
 
     const getCreateAt = (notification) => {
