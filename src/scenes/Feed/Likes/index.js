@@ -22,7 +22,7 @@ const Likes = (props) => {
     const { likedFeeds } = useSelector((state) => state.feedReducer);
     const [topHashtags, setTopHashtags] = useState([]);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
-    const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
+    let isFeedCallInProgress = useRef(false)   // if feed call in progress don't trigger multiple
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     var selectedFeedOnToggle = useRef(null);
 
@@ -47,7 +47,7 @@ const Likes = (props) => {
     useEffect(() => {
         if (props.bottomOffset &&
             props.bottomOffset < 200 &&
-            !isFeedCallInProgress && //if feed call in progress don't fire again
+            !isFeedCallInProgress.current && //if feed call in progress don't fire again
             !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
             onReachingBottom();
         }
@@ -60,7 +60,7 @@ const Likes = (props) => {
         return () => {
             window.removeEventListener("scroll", props.listener);
         };
-    });
+    }, [props.bottomOffset]);
 
 
     const getTopHashTags = () => {
@@ -134,19 +134,6 @@ const Likes = (props) => {
                     index={feed}
                     feed={feed} />)
             }
-
-            // if (feed.type === FeedType.image) {
-            //     return <ImageFeed feed={feed} />
-            // } else if (feed.type === FeedType.repost) {
-            //     let parentFeed = feed.parent;
-            //     if (parentFeed.type === FeedType.image) {
-            //         return <ImageFeed feed={feed} isReposted={true} />
-            //     } else {
-            //         return <TextFeed feed={feed} isReposted={true} />
-            //     }
-            // } else {
-            //     return <TextFeed feed={feed} />
-            // }
         })
     } else {
         feedContent = (
@@ -169,7 +156,7 @@ const Likes = (props) => {
                         </div>
                     </div>
                 }
-                {/* {feedContent} */}
+                {feedContent}
                 {
                     gridlayoutMode ?
                         <div class="lps_product_grid destkVersion">

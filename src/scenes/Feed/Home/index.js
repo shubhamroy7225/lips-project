@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import ReportModal from 'scenes/Feed/components/FeedModal/ReportModal';
 import TaggedModal from 'scenes/Feed/components/FeedModal/TaggedModal';
@@ -21,7 +21,7 @@ import ToggleListWidget from '../components/ToggleListWidget';
 import { setMainFeedPaginationCompleted } from 'redux/actions/feed';
 
 const MainFeed = (props) => {
-    const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
+    let isFeedCallInProgress = useRef(false)   // if feed call in progress don't trigger multiple
     const selectedFeed = props.selectedFeed;
 
     //will mount and unmount - on unmount show the header if it's hidden
@@ -50,7 +50,7 @@ const MainFeed = (props) => {
     useEffect(() => {
         if (props.bottomOffset &&
             props.bottomOffset < 200 &&
-            !isFeedCallInProgress && //if feed call in progress don't fire again
+            !isFeedCallInProgress.current && //if feed call in progress don't fire again
             !props.mainFeedIsPaginationCompleted) { //check if all the feeds are fetched - don't fire
             onReachingBottom();
         }
@@ -58,7 +58,7 @@ const MainFeed = (props) => {
 
     // called from HOC Scroller on reaching bottom 
     const onReachingBottom = () => {
-        setIsFeedCallInProgress(true);
+        isFeedCallInProgress.current = true;
         //make feed call for page
         console.log("making pagination call");
         fetchFeedsFromServer(false);
@@ -67,6 +67,7 @@ const MainFeed = (props) => {
 
     //fetch feeds from server 
     const fetchFeedsFromServer = (isInitialFetch) => {
+        isFeedCallInProgress.current = true;
         // if initial fetch then pass page 1 
         // for next page pass props.page that contains next page url
         let pageQuery = isInitialFetch ? `?limit=${PageSize}&page=${1}` : `?${props.page}`;
@@ -89,9 +90,9 @@ const MainFeed = (props) => {
                         setMainFeedPaginationCompleted();
                     }
                 }
-                setIsFeedCallInProgress(false);
+                isFeedCallInProgress.current = false;
             }).catch(error => {
-                setIsFeedCallInProgress(false);
+                isFeedCallInProgress.current = false;
             })
         } else {
             fetchFeeds(pageQuery).then(res => {
@@ -109,9 +110,9 @@ const MainFeed = (props) => {
                         setMainFeedPaginationCompleted();
                     }
                 }
-                setIsFeedCallInProgress(false);
+                isFeedCallInProgress.current = false;
             }).catch(error => {
-                setIsFeedCallInProgress(false);
+                isFeedCallInProgress.current = false;
             })
         }
 
