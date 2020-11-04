@@ -22,7 +22,7 @@ const Likes = (props) => {
     const { likedFeeds } = useSelector((state) => state.feedReducer);
     const [topHashtags, setTopHashtags] = useState([]);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
-    const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
+    let isFeedCallInProgress = useRef(false)   // if feed call in progress don't trigger multiple
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     var selectedFeedOnToggle = useRef(null);
 
@@ -47,7 +47,7 @@ const Likes = (props) => {
     useEffect(() => {
         if (props.bottomOffset &&
             props.bottomOffset < 200 &&
-            !isFeedCallInProgress && //if feed call in progress don't fire again
+            !isFeedCallInProgress.current && //if feed call in progress don't fire again
             !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
             onReachingBottom();
         }
@@ -60,7 +60,7 @@ const Likes = (props) => {
         return () => {
             window.removeEventListener("scroll", props.listener);
         };
-    });
+    }, [props.bottomOffset]);
 
 
     const getTopHashTags = () => {
@@ -116,37 +116,24 @@ const Likes = (props) => {
     if (likedFeeds && likedFeeds.length > 0) {
         likedFeeds.forEach((feed, index) => {
             if (feed.type === FeedType.image) {
-                gridFeedContent.push(<ImageItem index={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
-                    index={feed.id} feed={feed} />)
+                gridFeedContent.push(<ImageItem key={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<ImageFeed key={feed.id} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                    feed={feed} />)
             } else if (feed.type === FeedType.repost) {
                 let parentFeed = feed.parent;
                 if (parentFeed.type === FeedType.image) {
-                    gridFeedContent.push(<ImageItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                    listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                    gridFeedContent.push(<ImageItem key={feed.id} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                    listFeedContent.push(<ImageFeed key={feed.id} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
                 } else {
-                    gridFeedContent.push(<TextItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                    listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                    gridFeedContent.push(<TextItem key={feed.id} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                    listFeedContent.push(<TextFeed key={feed.id} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
                 }
             } else {
-                gridFeedContent.push(<TextItem index={feed} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                gridFeedContent.push(<TextItem key={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<TextFeed key={feed.id} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
                     index={feed}
                     feed={feed} />)
             }
-
-            // if (feed.type === FeedType.image) {
-            //     return <ImageFeed feed={feed} />
-            // } else if (feed.type === FeedType.repost) {
-            //     let parentFeed = feed.parent;
-            //     if (parentFeed.type === FeedType.image) {
-            //         return <ImageFeed feed={feed} isReposted={true} />
-            //     } else {
-            //         return <TextFeed feed={feed} isReposted={true} />
-            //     }
-            // } else {
-            //     return <TextFeed feed={feed} />
-            // }
         })
     } else {
         feedContent = (
@@ -169,7 +156,7 @@ const Likes = (props) => {
                         </div>
                     </div>
                 }
-                {/* {feedContent} */}
+                {feedContent}
                 {
                     gridlayoutMode ?
                         <div class="lps_product_grid destkVersion">
