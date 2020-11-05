@@ -503,8 +503,13 @@ input.input_modify {
 .send-button{
   background-color: #E1E1E1;
 }
-.contactForm input {
-  color: #1a1a1a;
+.contactForm {
+  input {
+    color: #1a1a1a;
+  }
+  h5 {
+    margin: 0;
+  }
 }
 .calcelBtn {
   background: none;
