@@ -35,7 +35,7 @@ const PostApproval = (props) => {
         if (props.user.approval_status === ApprovalStatus.accepted) {
             history.push(routes.CREATE);
         }
-    }, props.user)
+    }, [props.user])
 
     const dismissApprovalForm = () => {
         history.push(routes.ROOT)
