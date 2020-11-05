@@ -26,14 +26,18 @@ export const initialState = {
     userFeeds: [],
     count: 0,
     modalType: FeedModalType.undefined,
+    userFeedPage: 1,
+    profileFeedIsPaginationCompleted: false,
+
+    otherUserFeeds: [],
+    otherUserFeedPage: 1,
+    otherUserProfileFeedsIsPaginationCompleted: false,
 
     likedFeeds: [],
-    otherUserFeeds: [],
 
     searchFeeds: [],
     searchPage: 1, // for search feed initial page
     searchFeedIsPaginationCompleted: false,
-
 
     justBrowseTags,
     hashTagSuggestionList: []
@@ -63,21 +67,31 @@ export const feedReducer = createReducer({
         })
     },
     [actions.clearAllFeeds]: (state, payload) => updateObject(state, {
+        hashTags: [],
+        showhashTags: [],
+        hideHashtag: [],
+
         feeds: [],
         page: 1, // for main feed initial page
         mainFeedIsPaginationCompleted: false,
         selectedFeed: null,
 
         userFeeds: [],
-        count: 0,
+        userFeedPage: 1,
+        profileFeedIsPaginationCompleted: false,
         modalType: FeedModalType.undefined,
 
         likedFeeds: [],
         otherUserFeeds: [],
 
+
         searchFeeds: [],
         searchPage: 1, // for search feed initial page
         searchFeedIsPaginationCompleted: false,
+
+        justBrowseTags,
+        hashTagSuggestionList: [],
+        count: 0,
     }),
     [actions.setPage]: (state, payload) => updateObject(state, {
         page: payload.page,
@@ -140,12 +154,24 @@ export const feedReducer = createReducer({
     [actions.fetchedLikedFeedsSuccessfully]: (state, payload) => updateObject(state, {
         likedFeeds: payload.feeds,
     }),
-    [actions.fetchedUserFeedsSuccessfully]: (state, payload) => updateObject(state, {
-        userFeeds: payload.feeds,
-    }),
-    [actions.fetchedOtherUserFeedsSuccessfully]: (state, payload) => updateObject(state, {
-        otherUserFeeds: payload.feeds,
-    }),
+    [actions.fetchedUserFeedsSuccessfully]: (state, payload) => {
+        return updateObject(state, {
+            userFeeds: payload.feeds,
+        })
+    },
+    [actions.fetchedUserFeedsNextPageSuccessfully]: (state, payload) => {
+        let feeds = [...state.userFeeds, ...payload.feeds]
+        return updateObject(state, {
+            userFeeds: feeds,
+        })
+    },
+    [actions.fetchedOtherUserFeedsSuccessfully]: (state, payload) => {
+        return updateObject(state, { otherUserFeeds: payload.feeds })
+    },
+    [actions.fetchedOtherUserFeedsNextSuccessfully]: (state, payload) => {
+        let feeds = [...state.otherUserFeeds, ...payload.feeds]
+        return updateObject(state, { otherUserFeeds: feeds })
+    },
     [actions.updateRepostFeed]: (state, payload) => {
         let { feed } = payload;
         let feeds = [...state.feeds];
@@ -238,8 +264,20 @@ export const feedReducer = createReducer({
     [actions.setMainFeedPaginationCompleted]: (state, payload) => updateObject(state, { mainFeedIsPaginationCompleted: true })
     ,
     [actions.setSearchFeedPaginationCompleted]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: true }),
-    [actions.resetSearchFeedPagination]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: false })
+    [actions.resetSearchFeedPagination]: (state, payload) => updateObject(state, { searchFeedIsPaginationCompleted: false }),
 
+    [actions.setProfileFeedPaginationCompleted]: (state, payload) => updateObject(state, { profileFeedIsPaginationCompleted: true }),
+    [actions.resetProfileFeedPaginationCompleted]: (state, payload) => updateObject(state, { profileFeedIsPaginationCompleted: false }),
+    [actions.setUserFeedPage]: (state, payload) => updateObject(state, {
+        userFeedPage: payload.page,
+    }),
+
+    [actions.setOtherProfileFeedPaginationCompleted]: (state, payload) => updateObject(state, { otherUserProfileFeedsIsPaginationCompleted: true }),
+    [actions.resetOtherProfileFeedPaginationCompleted]: (state, payload) => updateObject(state, { otherUserProfileFeedsIsPaginationCompleted: false }),
+
+    [actions.setOtherUserFeedPage]: (state, payload) => updateObject(state, {
+        otherUserFeedPage: payload.page,
+    }),
 }, initialState); // <-- This is the default state
 
 

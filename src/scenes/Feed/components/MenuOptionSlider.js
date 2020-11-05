@@ -81,7 +81,7 @@ const MenuOptionSlider = (props) => {
                 </Link>
             </li>
             {isMobile && <li className="listed_item">
-                <a href="javascript: void(0);" className="right_widget" onClick={rightWidgetClickHandler}>
+                <a className="right_widget" onClick={rightWidgetClickHandler}>
                     <i className="fa fa-angle-right wr_icon" aria-hidden="true"></i>
                 </a>
             </li>}
