@@ -145,10 +145,8 @@ const Profile = (props) => {
             pageQuery = isInitialFetch ? `?limit=${PageSize}&page=${1}` : `?${props.page}`;
         }
         if (isOtherUser) {
-            debugger;
             actions.fetchOtherUserFeeds(otherUserID.current, pageQuery, isInitialFetch)
                 .then(res => {
-                    debugger;
                     if (res.data.success === true) {
                         if (res.data.posts.length > 0) {
                             let nextPage = res.data.nextPage;

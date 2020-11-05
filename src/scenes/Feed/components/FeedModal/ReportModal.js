@@ -74,6 +74,7 @@ const ReportModal = ({ feed }) => {
         closeModal();
     }
 
+    let isFollowing = selectedFeed && selectedFeed.user.is_following;
     return (
         <div className="hover_bkgr_fricc" style={style}>
             <div className="modal-dialog-centered">
@@ -94,9 +95,12 @@ const ReportModal = ({ feed }) => {
                             <li>
                                 <a onClick={reportFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Report</a>
                             </li>
-                            <li>
-                                <a onClick={unfollowAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Unfollow User</a>
-                            </li>
+                            {
+                                isFollowing &&
+                                <li>
+                                    <a onClick={unfollowAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Unfollow User</a>
+                                </li>
+                            }
                             <li>
                                 <a onClick={blockAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
                             </li>
