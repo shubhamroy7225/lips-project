@@ -73,9 +73,12 @@ const Profile = (props) => {
     useEffect(() => {
         if (props.bottomOffset &&
             props.bottomOffset < 200 &&
-            !isFeedCallInProgress.current && //if feed call in progress don't fire again
-            !props.isPaginationCompleted) { //check if all the feeds are fetched - don't fire
-            onReachingBottom();
+            !isFeedCallInProgress.current) { //if feed call in progress don't fire again
+            if (isOtherUser) {
+                !props.isOtherProfilePaginationCompleted && onReachingBottom();             //check if all the feeds are fetched - don't fire
+            } else {
+                !props.isPaginationCompleted && onReachingBottom();             //check if all the feeds are fetched - don't fire
+            }
         }
     }, [props.bottomOffset])
 
@@ -142,8 +145,10 @@ const Profile = (props) => {
             pageQuery = isInitialFetch ? `?limit=${PageSize}&page=${1}` : `?${props.page}`;
         }
         if (isOtherUser) {
+            debugger;
             actions.fetchOtherUserFeeds(otherUserID.current, pageQuery, isInitialFetch)
                 .then(res => {
+                    debugger;
                     if (res.data.success === true) {
                         if (res.data.posts.length > 0) {
                             let nextPage = res.data.nextPage;
@@ -344,6 +349,7 @@ const Profile = (props) => {
                 }
             }
 
+            let isPaginationCompleted = isOtherUser ? props.isOtherProfilePaginationCompleted : props.isPaginationCompleted
             if (isEdit) {
                 return <EditProfile setIsEdit={setEdit} />
             } else {
@@ -368,7 +374,7 @@ const Profile = (props) => {
 
                             {/* <!-- Menu bottom here --> */}
                             <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
-                            <PaginationLoader show={feeds.length > 0 && !props.isPaginationCompleted} />
+                            <PaginationLoader show={feeds.length > 0 && !isPaginationCompleted} />
                             <MenuOptionSlider />
                             {/* <!-- // Menu bottom here --> */}
 
