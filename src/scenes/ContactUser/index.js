@@ -39,7 +39,7 @@ export default () => {
                   <div className="lps_form_wrp">
                      <form onSubmit={handleSubmit} className="contactForm">
                         <article>
-                           <h5>Contact Jon Snow</h5>
+                           <h5 className="contact-title">Contact Jon Snow</h5>
                         </article>
                         <div className="form_group_modify">
                            <input type="text" className="input_modify" placeholder="Your Name *" value={user.name} name="name"

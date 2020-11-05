@@ -5,7 +5,7 @@ import { FeedModalType } from "utility/constants/constants";
 
 const SharedModal = ({ feed }) => {
   const { modalType, selectedFeed } = useSelector((state) => state.feedReducer);
-  const linkVar = useState("Click to copy");
+  const linkVar = "Click to copy"
   const closeModal = () => {
     setFeedModalType({ modalType: FeedModalType.undefined });
   };

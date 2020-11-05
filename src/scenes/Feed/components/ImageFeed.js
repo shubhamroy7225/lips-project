@@ -49,7 +49,7 @@ const ImageFeed = (props) => {
                         </div>
                     </div>}
 
-                    <a href="javascript:void(0);" onClick={clickHandler} id="trigger_main_feed">
+                    <a onClick={clickHandler} id="trigger_main_feed">
                         <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>
@@ -82,7 +82,7 @@ const ImageFeed = (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     } else {
         return (
@@ -123,7 +123,7 @@ const ImageFeed = (props) => {
                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{repostedByUser.user_name}</a>
                         </div>
                     </div>}
-                    <a href="javascript:void(0);" onClick={clickHandler}>
+                    <a onClick={clickHandler}>
                         <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
                             <img src={photo_urls.medium} alt="Add Image" />
                         </figure>

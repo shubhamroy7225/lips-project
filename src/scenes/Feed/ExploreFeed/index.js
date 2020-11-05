@@ -24,10 +24,10 @@ const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
     const [isDataFetched, setIsDataFetched] = useState(false);
-    const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
-    // const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
+
     const searchText = useRef(null);
-    var selectedFeedOnToggle = useRef(null);
+    const selectedFeedOnToggle = useRef(null);
+    let isFeedCallInProgress = useRef(false)   // if feed call in progress don't trigger multiple
 
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
@@ -43,7 +43,7 @@ const ExploreFeed = (props) => {
     useEffect(() => {
         if (props.bottomOffset &&
             props.bottomOffset < 200 &&
-            !isFeedCallInProgress && //if feed call in progress don't fire again
+            !isFeedCallInProgress.current && //if feed call in progress don't fire again
             !props.isPaginationCompleted) { //check if all the feeds are fetched - don't fire
             onReachingBottom();
         }
@@ -51,15 +51,17 @@ const ExploreFeed = (props) => {
 
     //scroll listener
     useEffect(() => {
+        // console.log("scroll listen")
         window.addEventListener("scroll", props.listener);
         return () => {
+            // console.log("release")
             window.removeEventListener("scroll", props.listener);
         };
-    });
+    }, [props.bottomOffset]);
 
     // called on reaching bottom 
     const onReachingBottom = () => {
-        setIsFeedCallInProgress(true);
+        isFeedCallInProgress.current = true
         //make feed call for page
         console.log("making pagination call");
         fetchFeedsFromServer(searchText.current, false);
@@ -81,6 +83,8 @@ const ExploreFeed = (props) => {
 
     //fetch feeds from server
     const fetchFeedsFromServer = (searchText, isInitialFetch) => {
+        debugger;
+        isFeedCallInProgress.current = true
         let pageQuery = "";
         let page = isInitialFetch ? 1 : props.searchPage
         let isNextPage = page === 1 ? false : true
@@ -116,14 +120,14 @@ const ExploreFeed = (props) => {
                         setSearchFeedPaginationCompleted();  // if post is empty then pagination is complete
                     }
                 }
-                setIsFeedCallInProgress(false);
+                isFeedCallInProgress.current = false;
             } else {
                 //error
                 setSearchFeedPaginationCompleted()
             }
         }).catch(error => {
             setSearchFeedPaginationCompleted()
-            setIsFeedCallInProgress(false);
+            isFeedCallInProgress.current = false;
         })
     }
 
@@ -136,27 +140,40 @@ const ExploreFeed = (props) => {
 
     let gridFeedContent = [];
     let listFeedContent = [];
+    console.log("rendering")
     searchFeeds.forEach((feed, index) => {
-        if (feed.type === FeedType.image) {
-            gridFeedContent.push(<ImageItem index={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-            listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
-                index={feed.id} feed={feed} />)
-        } else if (feed.type === FeedType.repost) {
-            let parentFeed = feed.parent;
-            if (parentFeed.type === FeedType.image) {
-                gridFeedContent.push(<ImageItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+        if (gridlayoutMode == true) {
+            if (feed.type === FeedType.image) {
+                gridFeedContent.push(<ImageItem key={index} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+            } else if (feed.type === FeedType.repost) {
+                let parentFeed = feed.parent;
+                if (parentFeed.type === FeedType.image) {
+                    gridFeedContent.push(<ImageItem key={index} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                } else {
+                    gridFeedContent.push(<TextItem key={index} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                }
             } else {
-                gridFeedContent.push(<TextItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                gridFeedContent.push(<TextItem key={index} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
             }
         } else {
-            gridFeedContent.push(<TextItem index={feed} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-            listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
-                index={feed}
-                feed={feed} />)
+            if (feed.type === FeedType.image) {
+                listFeedContent.push(<ImageFeed key={index} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                    index={feed.id} feed={feed} />)
+            } else if (feed.type === FeedType.repost) {
+                let parentFeed = feed.parent;
+                if (parentFeed.type === FeedType.image) {
+                    listFeedContent.push(<ImageFeed key={index} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                } else {
+                    listFeedContent.push(<TextFeed key={index} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                }
+            } else {
+                listFeedContent.push(<TextFeed key={index} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                    index={feed}
+                    feed={feed} />)
+            }
         }
     });
+
     return (
         <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div className="lps_container">

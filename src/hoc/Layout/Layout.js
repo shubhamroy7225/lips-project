@@ -82,7 +82,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                 logoContent = (
                     <>
                         <a onClick={() => { props.history.goBack() }} className="lps_arrow_left">
-                            <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" class="lps_header_img" />
+                            <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
                         </a>
                         <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
                             <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
@@ -103,7 +103,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
-                                        {parseInt(notificationCount) ? <span class="count_badge">{notificationCount}</span> : ""}
+                                        {parseInt(notificationCount) ? <span className="count_badge">{notificationCount}</span> : ""}
                                     </span>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list heightAuto ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
@@ -184,12 +184,12 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
         page: 1, limit: 10, order_by: "desc"
     });
     useEffect(() => {
-        if (!loaded && !notifications.length) {
-            setLoad(true)
-            getAllNotification({ ...params });
-            getUnreadCount();
+        //if (!loaded && !notifications.length) {
+        //    setLoad(true)
+        getAllNotification({ ...params });
+        getUnreadCount();
 
-        }
+        //}
     }, [loaded]);
 
     const getCreateAt = (notification) => {

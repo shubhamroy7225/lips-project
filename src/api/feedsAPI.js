@@ -22,9 +22,9 @@ export const unlikeFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/u
 
 export const fetchLikedFeeds = () => axios.get(`${API_VERSION}/post/liked`);
 
-export const fetchUserFeeds = () => axios.get(`${API_VERSION}/post/self`);
+export const fetchUserFeeds = (queryString) => axios.get(`${API_VERSION}/post/self${queryString}`);
 
-export const fetchOtherUserFeeds = (userID) => axios.get(`${API_VERSION}/post/user/${userID}`);
+export const fetchOtherUserFeeds = (userID, queryString) => axios.get(`${API_VERSION}/post/user/${userID}${queryString}`);
 
 export const fetchFeeds = (queryString = "") => axios.get(`${API_VERSION}/post${queryString}`)
 
