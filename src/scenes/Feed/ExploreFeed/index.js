@@ -19,6 +19,7 @@ import SharedModal from '../components/FeedModal/SharedModal';
 import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 import ToggleListWidget from '../components/ToggleListWidget';
 import { setSearchFeedPaginationCompleted } from 'redux/actions/feed';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
@@ -27,46 +28,20 @@ const ExploreFeed = (props) => {
 
     const searchText = useRef(null);
     const selectedFeedOnToggle = useRef(null);
-    let isFeedCallInProgress = useRef(false)   // if feed call in progress don't trigger multiple
 
     //will mount and unmount - on unmount show the header if it's hidden
+    //scroll listener
     useEffect(() => {
+        console.log("scroll listen")
         if (searchFeeds.length === 0) {
             fetchFeedsFromServer("", true);
         }
-        // on unmount ennsure the header is visible
-        return () => {
-            props.toggleHeader(true);
-        };
-    }, [])
-
-    useEffect(() => {
-        if (props.bottomOffset &&
-            props.bottomOffset < 200 &&
-            !isFeedCallInProgress.current && //if feed call in progress don't fire again
-            !props.isPaginationCompleted) { //check if all the feeds are fetched - don't fire
-            onReachingBottom();
-        }
-    }, [props.bottomOffset])
-
-    //scroll listener
-    useEffect(() => {
-        // console.log("scroll listen")
         window.addEventListener("scroll", props.listener);
         return () => {
-            // console.log("release")
+            props.toggleHeader(true);         // on unmount ensure the header is visible
             window.removeEventListener("scroll", props.listener);
         };
-    }, [props.bottomOffset]);
-
-    // called on reaching bottom 
-    const onReachingBottom = () => {
-        isFeedCallInProgress.current = true
-        //make feed call for page
-        console.log("making pagination call");
-        fetchFeedsFromServer(searchText.current, false);
-        console.log("reached bottom initiate page call");
-    }
+    }, []);
 
     const toggleFeedLayoutMode = (feed) => {
         selectedFeedOnToggle.current = feed
@@ -83,8 +58,6 @@ const ExploreFeed = (props) => {
 
     //fetch feeds from server
     const fetchFeedsFromServer = (searchText, isInitialFetch) => {
-        debugger;
-        isFeedCallInProgress.current = true
         let pageQuery = "";
         let page = isInitialFetch ? 1 : props.searchPage
         let isNextPage = page === 1 ? false : true
@@ -120,27 +93,28 @@ const ExploreFeed = (props) => {
                         setSearchFeedPaginationCompleted();  // if post is empty then pagination is complete
                     }
                 }
-                isFeedCallInProgress.current = false;
             } else {
                 //error
                 setSearchFeedPaginationCompleted()
             }
         }).catch(error => {
             setSearchFeedPaginationCompleted()
-            isFeedCallInProgress.current = false;
         })
     }
 
     const submitHandler = (searchTxt) => {
         searchText.current = searchTxt.replace("#", "");
-        debugger;
         setSearchPage({ page: 1 })
         fetchFeedsFromServer(searchText.current, true);
     }
 
+
+    const getMoreData = () => {
+        fetchFeedsFromServer(searchText.current, false);
+    }
+
     let gridFeedContent = [];
     let listFeedContent = [];
-    console.log("rendering")
     searchFeeds.forEach((feed, index) => {
         if (gridlayoutMode == true) {
             if (feed.type === FeedType.image) {
@@ -181,14 +155,29 @@ const ExploreFeed = (props) => {
                 <div className="browse_category">
                     {
                         gridlayoutMode ?
-                            <div class="lps_product_grid destkVersion">
-                                {gridFeedContent}
-                            </div>
+                            <InfiniteScroll
+                                dataLength={searchFeeds.length}
+                                next={getMoreData}
+                                hasMore={!props.isPaginationCompleted}
+                                loader={<PaginationLoader show={true} />}
+                            >
+                                <div class="lps_product_grid destkVersion">
+                                    {gridFeedContent}
+                                </div>
+                            </InfiniteScroll>
+
                             :
                             <div class="main_feed_cont">
                                 <div class="list_view">
-                                    {listFeedContent}
+                                    <InfiniteScroll
+                                        dataLength={searchFeeds.length}
+                                        next={getMoreData}
+                                        hasMore={!props.isPaginationCompleted}
+                                        loader={<PaginationLoader show={true} />}>
+                                        {listFeedContent}
+                                    </InfiniteScroll>
                                 </div>
+
                             </div>
                     }
                     {gridFeedContent.length === 0 && isDataFetched && <div class="main_feed_cont">
@@ -198,7 +187,6 @@ const ExploreFeed = (props) => {
                     </div>}
                 </div>
 
-                <PaginationLoader show={!props.isPaginationCompleted} />
                 <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
                 <MenuOptionSlider />
             </div>

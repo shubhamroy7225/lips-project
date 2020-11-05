@@ -31,6 +31,7 @@ import {
     setOtherUserFeedPage
 } from 'redux/actions/feed';
 import PaginationLoader from 'scenes/Feed/components/PaginationLoader';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const LoadingType = {
     undefined: "undefined",
@@ -57,8 +58,6 @@ const Profile = (props) => {
     let followersPage = useRef(1)
     let followingsPage = useRef(1)
     let selectedFeedOnToggle = useRef(null);
-    let isFeedCallInProgress = useRef(false)   // if feed call in progress don't trigger multiple
-
 
     //scroll listener
     useEffect(() => {
@@ -68,19 +67,7 @@ const Profile = (props) => {
             // console.log("release")
             window.removeEventListener("scroll", props.listener);
         };
-    }, [props.bottomOffset]);
-
-    useEffect(() => {
-        if (props.bottomOffset &&
-            props.bottomOffset < 200 &&
-            !isFeedCallInProgress.current) { //if feed call in progress don't fire again
-            if (isOtherUser) {
-                !props.isOtherProfilePaginationCompleted && onReachingBottom();             //check if all the feeds are fetched - don't fire
-            } else {
-                !props.isPaginationCompleted && onReachingBottom();             //check if all the feeds are fetched - don't fire
-            }
-        }
-    }, [props.bottomOffset])
+    }, []);
 
     useEffect(() => {
         resetProfileFeedPaginationCompleted()
@@ -111,7 +98,6 @@ const Profile = (props) => {
 
         tempIsOtherUser && commonService.isLoading.onNext(true); //only for other user
         //fetch user info by username
-        isFeedCallInProgress.current = true;
         actions.fetchUserByUserName(userName)
             .then(response => {
                 commonService.isLoading.onNext(false);
@@ -135,7 +121,6 @@ const Profile = (props) => {
     }, [props.match.params.id])
 
     const fetchFeeds = (isInitialFetch, isOtherUser) => {
-        isFeedCallInProgress.current = true;
         // if initial fetch then pass page 1 
         // for next page pass props.page that contains next page url
         let pageQuery = '';
@@ -162,7 +147,6 @@ const Profile = (props) => {
                         }
                     }
                     setDataLoadedType(LoadingType.feed);
-                    isFeedCallInProgress.current = false;
                 });
         } else {
             actions.fetchUserFeeds(pageQuery, isInitialFetch)
@@ -183,18 +167,8 @@ const Profile = (props) => {
                         }
                     }
                     setDataLoadedType(LoadingType.feed);
-                    isFeedCallInProgress.current = false;
                 });
         }
-    }
-
-    // called on reaching bottom 
-    const onReachingBottom = () => {
-        isFeedCallInProgress.current = true
-        //make feed call for page
-        console.log("making pagination call");
-        fetchFeeds(false, isOtherUser);
-        console.log("reached bottom initiate page call");
     }
 
     const fetchAssociatedUsersDetails = (user) => {
@@ -296,6 +270,7 @@ const Profile = (props) => {
                 }
             });
         }
+        let isPaginationCompleted = isOtherUser ? props.isOtherProfilePaginationCompleted : props.isPaginationCompleted
 
         if (dataLoadedType !== LoadingType.undefined) {
             let feedContent = null;
@@ -332,13 +307,27 @@ const Profile = (props) => {
                         <div id="tab-1" className="tab-content_cst current pt_0">
                             {
                                 gridlayoutMode ?
-                                    <div className="lps_product_grid destkVersion mt_5">
-                                        {gridFeedContent}
-                                    </div>
+                                    <InfiniteScroll
+                                        dataLength={feeds.length}
+                                        next={() => fetchFeeds(false, isOtherUser)}
+                                        hasMore={!isPaginationCompleted}
+                                        loader={<PaginationLoader show={true} />}>
+                                        <div className="lps_product_grid destkVersion mt_5">
+                                            {gridFeedContent}
+                                        </div>
+
+                                    </InfiniteScroll>
                                     :
                                     <div className="main_feed_cont">
                                         <div className="list_view">
-                                            {listFeedContent}
+                                            <InfiniteScroll
+                                                dataLength={feeds.length}
+                                                next={() => fetchFeeds(false, isOtherUser)}
+                                                hasMore={!isPaginationCompleted}
+                                                loader={<PaginationLoader show={true} />}
+                                            >
+                                                {listFeedContent}
+                                            </InfiniteScroll>
                                         </div>
                                     </div>
                             }
@@ -347,7 +336,6 @@ const Profile = (props) => {
                 }
             }
 
-            let isPaginationCompleted = isOtherUser ? props.isOtherProfilePaginationCompleted : props.isPaginationCompleted
             if (isEdit) {
                 return <EditProfile setIsEdit={setEdit} />
             } else {
@@ -372,7 +360,6 @@ const Profile = (props) => {
 
                             {/* <!-- Menu bottom here --> */}
                             <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
-                            <PaginationLoader show={feeds.length > 0 && !isPaginationCompleted} />
                             <MenuOptionSlider />
                             {/* <!-- // Menu bottom here --> */}
 

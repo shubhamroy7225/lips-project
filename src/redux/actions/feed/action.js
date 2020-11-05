@@ -180,8 +180,8 @@ export const unlikeAFeed = (feedId) => {
     })
 }
 
-export const fetchLikedFeeds = () => {
-  return API.fetchLikedFeeds()
+export const fetchLikedFeeds = (queryString, isFirstPage = true) => {
+  return API.fetchLikedFeeds(queryString)
     .then(response => {
       fetchedLikedFeedsSuccessfully({ feeds: response.data.posts });
       commonService.isLoading.onNext(false); // start loading

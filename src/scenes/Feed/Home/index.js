@@ -19,9 +19,9 @@ import * as commonService from "utility/utility";
 import storage from 'utility/storage';
 import ToggleListWidget from '../components/ToggleListWidget';
 import { setMainFeedPaginationCompleted } from 'redux/actions/feed';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const MainFeed = (props) => {
-    let isFeedCallInProgress = useRef(false)   // if feed call in progress don't trigger multiple
     const selectedFeed = props.selectedFeed;
 
     //will mount and unmount - on unmount show the header if it's hidden
@@ -33,41 +33,17 @@ const MainFeed = (props) => {
 
     //scroll listener
     useEffect(() => {
+        console.log("addEventListener");
         window.addEventListener("scroll", props.listener);
         return () => {
+            props.toggleHeader(true);     // on unmount ensure the header is visible
             window.removeEventListener("scroll", props.listener);
-        };
-    }, [props.bottomOffset]);
-
-    // on unmount ennsure the header is visible
-    useEffect(() => {
-        return () => {
-            props.toggleHeader(true);
         };
     }, []);
 
 
-    useEffect(() => {
-        if (props.bottomOffset &&
-            props.bottomOffset < 200 &&
-            !isFeedCallInProgress.current && //if feed call in progress don't fire again
-            !props.mainFeedIsPaginationCompleted) { //check if all the feeds are fetched - don't fire
-            onReachingBottom();
-        }
-    }, [props.bottomOffset, props.mainFeedIsPaginationCompleted])
-
-    // called from HOC Scroller on reaching bottom 
-    const onReachingBottom = () => {
-        isFeedCallInProgress.current = true;
-        //make feed call for page
-        console.log("making pagination call");
-        fetchFeedsFromServer(false);
-        console.log("reached bottom initiate page call");
-    }
-
     //fetch feeds from server 
     const fetchFeedsFromServer = (isInitialFetch) => {
-        isFeedCallInProgress.current = true;
         // if initial fetch then pass page 1 
         // for next page pass props.page that contains next page url
         let pageQuery = isInitialFetch ? `?limit=${PageSize}&page=${1}` : `?${props.page}`;
@@ -90,9 +66,7 @@ const MainFeed = (props) => {
                         setMainFeedPaginationCompleted();
                     }
                 }
-                isFeedCallInProgress.current = false;
             }).catch(error => {
-                isFeedCallInProgress.current = false;
             })
         } else {
             fetchFeeds(pageQuery).then(res => {
@@ -110,15 +84,17 @@ const MainFeed = (props) => {
                         setMainFeedPaginationCompleted();
                     }
                 }
-                isFeedCallInProgress.current = false;
             }).catch(error => {
-                isFeedCallInProgress.current = false;
             })
         }
+    }
 
+    const getMoreData = () => {
+        fetchFeedsFromServer(false);
     }
 
     let feedContent = [];
+    let emptyFeedContent = null;
     if (props.feeds && props.feeds.length > 0) {
         feedContent = props.feeds.map((feed, index) => {
             if (feed.type === FeedType.image) {
@@ -136,14 +112,14 @@ const MainFeed = (props) => {
         })
     } else {
         if (props.user) {
-            feedContent = (
+            emptyFeedContent = (
                 <div class="lps_tb_para wlcome">
                     <h3>Welcome to your feed</h3>
                     <h4>Posts from account you follow will appear here.</h4>
                 </div>
             )
         } else {
-            feedContent = (
+            emptyFeedContent = (
                 <div class="lps_tb_para">
                     <h4></h4>
                 </div>
@@ -158,9 +134,16 @@ const MainFeed = (props) => {
                 <>
                     <div id="wrap" >
                         <div class="lps_container main_feed_cont bg_grayCCC">
-                            {feedContent}
+                            <InfiniteScroll
+                                dataLength={props.feeds.length}
+                                next={getMoreData}
+                                hasMore={!props.mainFeedIsPaginationCompleted}
+                                loader={<PaginationLoader show={true} />}
+                            >
+                                {feedContent}
+                            </InfiniteScroll>
+                            {emptyFeedContent}
                             {/* <RestrictedFeed /> */}
-                            <PaginationLoader show={!props.mainFeedIsPaginationCompleted} />
                             {/* <!-- Menu bottom here --> */}
                             <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
                             {/* <!-- //end Menu bottom here --> */}
@@ -184,9 +167,16 @@ const MainFeed = (props) => {
             return (
                 <div id="wrap" className="lps_xl_view">
                     <div className="lps_container main_feed_cont">
-                        {feedContent}
+                        <InfiniteScroll
+                            dataLength={props.feeds.length}
+                            next={getMoreData}
+                            hasMore={!props.mainFeedIsPaginationCompleted}
+                            loader={<PaginationLoader show={true} />}
+                        >
+                            {feedContent}
+                        </InfiniteScroll>
+                        {emptyFeedContent}
                     </div>
-                    <PaginationLoader show={!props.mainFeedIsPaginationCompleted} />
                     <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
                 </div>
             );
