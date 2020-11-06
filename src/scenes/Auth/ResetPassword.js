@@ -10,6 +10,8 @@ export default () => {
   });
 
   const history = useHistory();
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
   //initialize validations
   const simpleValidator = useRef(new SimpleReactValidator({validators: {
     sameAs: {  // name the rule
@@ -65,14 +67,26 @@ export default () => {
                     </article>
                     <div className="lps_fields lipsFields">
                       <div className="form_group_modify lps_pos_rltv">
-                        <input type="password" className="input_modify" placeholder="Password" name="password"  value={user.password}
+                        <input type={passwordShown ? "text" : "password"} className="input_modify" placeholder="Password" name="password"  value={user.password}
                                onChange={handleChange} onBlur={() => simpleValidator.current.showMessageFor('password')} />
                         
+                        <span className="icn_passAbslt">
+                          <img
+                              onClick={() => setPasswordShown(!passwordShown)}
+                              src={require(`assets/images/icons/${passwordShown? "icb_eye_hide_black" : "icb_eye_pink"}.png`)}
+                              />
+                        </span>
                           {simpleValidator.current.message('password', user.password, 'required')}
                       </div>
                       <div className="form_group_modify lps_pos_rltv">
-                        <input  type="password" className="input_modify" placeholder="Password Confirmation"  value={user.password_confirmation}
+                        <input  type={confirmPasswordShown ? "text" : "password"} className="input_modify" placeholder="Password Confirmation"  value={user.password_confirmation}
                                onChange={handleChange} name="password_confirmation" onBlur={() => simpleValidator.current.showMessageFor('password_confirmation')} />
+                          <span className="icn_passAbslt">
+                          <img
+                              onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}
+                              src={require(`assets/images/icons/${confirmPasswordShown? "icb_eye_hide_black" : "icb_eye_pink"}.png`)}
+                              />
+                        </span>
                           {simpleValidator.current.message('password_confirmation', user.password_confirmation, `required|sameAs:${user.password}`)}
                       </div>
                     </div>

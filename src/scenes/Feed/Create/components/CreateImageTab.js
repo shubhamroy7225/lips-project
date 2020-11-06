@@ -20,7 +20,7 @@ const CreateImageTab = ({
   const [likable, setLikable] = useState(true);
   const [caption, setCaption] = useState("");
   const captionCharCount = 5000;
-  const [inputCount, setInputCount] = useState(captionCharCount);
+  const [inputCount, setInputCount] = useState(0);
 
   const fileSelector = useRef(null);
   const postImg = useRef(null);
@@ -43,7 +43,7 @@ const CreateImageTab = ({
 
   const handleInputChange = (e) => {
     let value = e.target.value;
-    setInputCount(captionCharCount - value.length);
+    setInputCount(value.length);
     setCaption(e.target.value);
   };
 
@@ -56,6 +56,10 @@ const CreateImageTab = ({
   };
 
   const createPost = () => {
+    if (inputCount > captionCharCount) {
+      commonService.toastInfo("You have exceeded the maximum character limit!")
+      return
+    }
     //1. Upload Image
     if (imageData.base64) {
       //1. presign url
@@ -120,6 +124,15 @@ const CreateImageTab = ({
     imgClassNames.push("add_image");
   }
 
+  let charCountStyle = {
+  }
+
+  if (inputCount > captionCharCount) {
+    charCountStyle = {
+      color: "red"
+    }
+  }
+
   return (
     <div
       class={`content ${history.location.hash !== "#textTab" ? "active" : ""}`}
@@ -158,7 +171,7 @@ const CreateImageTab = ({
             rows="8"
             placeholder="Say something about this..."
           ></textarea>
-          <span class="textRange">0/{inputCount}</span>
+          <span class="textRange"><span style={charCountStyle}>{inputCount}</span>/{captionCharCount}</span>
           <p class="mb_0 mt_5">
             What's going on in this post? Be sure to @credit others.
           </p>

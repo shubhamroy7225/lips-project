@@ -55,7 +55,7 @@ let LoginForm = (props) => {
                     placeholder="Username or Email" value={user.user}
                     onBlur={() => simpleValidator.current.showMessageFor('user')}
                     onChange={handleChange} />
-                  {simpleValidator.current.message('user', user.user, 'required')}
+                  {simpleValidator.current.message('user', user.user, 'required|alpha_num')}
                 </div>
                 <div className="form_group_modify lps_pos_rltv">
                   <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="Password"

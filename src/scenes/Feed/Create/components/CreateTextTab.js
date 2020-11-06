@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FeedType } from 'utility/constants/constants';
 import * as commonService from "utility/utility";
 
@@ -8,11 +8,11 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submit
     const [likable, setLikable] = useState(true);
     const [caption, setCaption] = useState("");
     const captionCharCount = 10000;
-    const [inputCount, setInputCount] = useState(captionCharCount)
+    const [inputCount, setInputCount] = useState(0)
 
     const handleInputChange = (e) => {
         let value = e.target.value;
-        setInputCount(captionCharCount - value.length)
+        setInputCount(value.length)
         setCaption(e.target.value)
     }
 
@@ -25,7 +25,7 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submit
     }
 
     const createPost = () => {
-        if (caption.length > 0) {
+        if (caption.length > 0 && caption.length <= captionCharCount) {
             // create a request to post it to server 
             var request = {}
             var postRequest = {}
@@ -39,17 +39,31 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submit
             //send it to parent
             submitFeedRequest(request)
         } else {
-            commonService.toastInfo("Please add the text to proceed!")
+            if (caption.length > captionCharCount) {
+                commonService.toastInfo("You have exceeded the maximum character limit!")
+            } else {
+                commonService.toastInfo("Please add the text to proceed!")
+            }
+
+        }
+    }
+
+    let charCountStyle = {
+    }
+
+    if (inputCount > captionCharCount) {
+        charCountStyle = {
+            color: "red"
         }
     }
 
     return (
-        <div class={`content ${history.location.hash  === "#textTab" ? "active" : ""}`} id="textTab1">
+        <div class={`content ${history.location.hash === "#textTab" ? "active" : ""}`} id="textTab1">
             <div class="tab_inn_con">
                 <div class="about_gallery">
                     <div class="textRange_wrp">
                         <textarea onChange={handleInputChange} value={caption} class="textarea_modifier" rows="18"></textarea>
-                        <span class="textRange">0/{inputCount}</span>
+                        <span class="textRange"><span style={charCountStyle}>{inputCount}</span>/{captionCharCount}</span>
                     </div>
                     <p class="mb_0 mt_15">What's going on in this post? Be sure to @credit others.</p>
                 </div>

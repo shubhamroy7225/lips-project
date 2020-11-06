@@ -4,8 +4,16 @@ import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
 import { setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
 
-import { fetchedLikedFeedsSuccessfully, fetchedUserFeedsSuccessfully, likeFeedUpdate, unlikeFeedUpdate, hideFeed } from 'redux/actions/feed';
-import {completeOnBorading} from "redux/actions/auth";
+import {
+  fetchedLikedFeedsSuccessfully,
+  fetchedUserFeedsSuccessfully,
+  fetchedUserFeedsNextPageSuccessfully,
+  likeFeedUpdate,
+  unlikeFeedUpdate,
+  hideFeed,
+  fetchedOtherUserFeedsNextSuccessfully
+} from 'redux/actions/feed';
+import { completeOnBorading } from "redux/actions/auth";
 
 import * as actions from 'redux/actions';
 
@@ -46,8 +54,8 @@ export const setAvoidTags = (credentials) => {
   return API.setFavoriteAvoidTags(credentials)
     .then(response => {
       commonService.isLoading.onNext(false);
-        storage.set('isOnBoard', true);
-        completeOnBorading();
+      storage.set('isOnBoard', true);
+      completeOnBorading();
       return response;
     })
 };
@@ -172,8 +180,8 @@ export const unlikeAFeed = (feedId) => {
     })
 }
 
-export const fetchLikedFeeds = () => {
-  return API.fetchLikedFeeds()
+export const fetchLikedFeeds = (queryString, isFirstPage = true) => {
+  return API.fetchLikedFeeds(queryString)
     .then(response => {
       fetchedLikedFeedsSuccessfully({ feeds: response.data.posts });
       commonService.isLoading.onNext(false); // start loading
@@ -183,10 +191,14 @@ export const fetchLikedFeeds = () => {
     })
 }
 
-export const fetchUserFeeds = () => {
-  return API.fetchUserFeeds()
+export const fetchUserFeeds = (queryString, isFirstPage = true) => {
+  return API.fetchUserFeeds(queryString)
     .then(response => {
-      fetchedUserFeedsSuccessfully({ feeds: response.data.posts });
+      if (isFirstPage) {
+        fetchedUserFeedsSuccessfully({ feeds: response.data.posts });
+      } else {
+        fetchedUserFeedsNextPageSuccessfully({ feeds: response.data.posts });
+      }
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
@@ -194,10 +206,14 @@ export const fetchUserFeeds = () => {
     })
 }
 
-export const fetchOtherUserFeeds = (userId) => {
-  return API.fetchOtherUserFeeds(userId)
+export const fetchOtherUserFeeds = (userId, queryString, isFirstPage = true) => {
+  return API.fetchOtherUserFeeds(userId, queryString)
     .then(response => {
-      fetchedOtherUserFeedsSuccessfully({ feeds: response.data.posts });
+      if (isFirstPage) {
+        fetchedOtherUserFeedsSuccessfully({ feeds: response.data.posts });
+      } else {
+        fetchedOtherUserFeedsNextSuccessfully({ feeds: response.data.posts });
+      }
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {

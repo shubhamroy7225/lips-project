@@ -4,12 +4,11 @@ export const BASE_URL = () => {
   let url;
   if (process.env.REACT_APP_ENV === 'development') {
     url = "https://stage-api.lips.social";
-  }
-  if (process.env.REACT_APP_ENV === 'staging') {
+  } else if (process.env.REACT_APP_ENV === 'staging') {
     url = "https://stage-api.lips.social";
-  }
-  if (process.env.REACT_APP_ENV === 'production') {
-    console.log("production if");
+  } else if (process.env.REACT_APP_ENV === 'production') {
+    url = "https://api.lips.social";
+  } else {
     url = "https://stage-api.lips.social";
   }
   return url;

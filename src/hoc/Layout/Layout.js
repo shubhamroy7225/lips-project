@@ -43,7 +43,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
     //hide notification dropdown on scroll haeder
     const handleNotificationModel = useCallback(() => {
         if (modalShown && window.$("body").hasClass("scroll-down")) setModalShown(false);
-    },[modalShown, setModalShown]);
+    }, [modalShown, setModalShown]);
 
     useEffect(() => {
         if (modalShown) document.addEventListener("scroll", () => handleNotificationModel());
@@ -55,8 +55,8 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
             <div className="post_page_header">
                 <nav className="theme_tabs">
                     <ul className="tab-list">
-                        <li className={history.location.hash  !== "#textTab" ? "active" : ""} ><a href="#imageTab">IMAGE</a></li>
-                        <li className={history.location.hash  === "#textTab" ? "active" : ""} ><a href="#textTab">TEXT</a></li>
+                        <li className={history.location.hash !== "#textTab" ? "active" : ""} ><a href="#imageTab">IMAGE</a></li>
+                        <li className={history.location.hash === "#textTab" ? "active" : ""} ><a href="#textTab">TEXT</a></li>
                     </ul>
                 </nav>
             </div>
@@ -76,13 +76,13 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
             </Link>
         );
         if (pathName.includes(routes.PROFILE)) {
-            if (pathName !== routes.PROFILE) {
+            if (pathName !== routes.PROFILE && props.user) { //if logged out and accessing other's profile no need of back button - need back button only if user is logged in - that indicates user is navigating
                 //other profile - then show back button 
                 navClassName = "theme_navigation theme_navigationCenterLogo"
                 logoContent = (
                     <>
                         <a onClick={() => { props.history.goBack() }} className="lps_arrow_left">
-                            <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" class="lps_header_img" />
+                            <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
                         </a>
                         <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
                             <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
@@ -103,7 +103,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                                         <span className="avatar_circle">
                                             <img src={require("assets/images/icons/icn_heart.png")} alt="heart Icon" />
                                         </span>
-                                        {parseInt(notificationCount) ? <span class="count_badge">{notificationCount}</span> : ""}
+                                        {parseInt(notificationCount) ? <span className="count_badge">{notificationCount}</span> : ""}
                                     </span>
                                     <ul className={`notification-dropdown lps_dropdown-menu lps_dropdown-menu-right lps_list_group lps_chatBox_list heightAuto ${modalShown ? "animated fadeInDown" : ""}`}>
                                         <NotificationSliderComponent modalShown={modalShown} modalToggle={modalToggle} /> </ul>
@@ -186,8 +186,8 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
     useEffect(() => {
         //if (!loaded && !notifications.length) {
         //    setLoad(true)
-            getAllNotification({ ...params });
-            getUnreadCount();
+        getAllNotification({ ...params });
+        getUnreadCount();
 
         //}
     }, [loaded]);

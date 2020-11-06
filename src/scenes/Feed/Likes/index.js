@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import MenuOptionSlider from '../components/MenuOptionSlider';
 import { isMobile } from 'react-device-detect';
 import { fetchLikedFeeds } from 'redux/actions/feed/action';
-import { FeedType } from 'utility/constants/constants';
+import { FeedType, PageSize } from 'utility/constants/constants';
 import ImageFeed from '../components/ImageFeed';
 import TextFeed from '../components/TextFeed';
 import * as commonService from "../../../utility/utility";
@@ -17,51 +17,54 @@ import ImageItem from '../components/ImageItem';
 import TextItem from '../components/TextItem';
 import scroller from '../Home/scroller';
 import ToggleListWidget from '../components/ToggleListWidget';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchFeeds } from 'api/feedsAPI';
+import PaginationLoader from 'scenes/Feed/components/PaginationLoader';
 
 const Likes = (props) => {
     const { likedFeeds } = useSelector((state) => state.feedReducer);
     const [topHashtags, setTopHashtags] = useState([]);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
-    const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
     const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     var selectedFeedOnToggle = useRef(null);
 
     //will mount and unmount - on unmount show the header if it's hidden
+    //scroll listener
     useEffect(() => {
         if (likedFeeds.length === 0) {
-            commonService.isLoading.onNext(true); // start loading
-            fetchLikedFeeds();
-        } else {
-            fetchLikedFeeds();
+            fetchFeeds(true);
         }
+        window.addEventListener("scroll", props.listener);
         return () => {
             props.toggleHeader(true);
+            window.removeEventListener("scroll", props.listener);
         };
-    }, [])
+    }, []);
 
     useEffect(() => {
         getTopHashTags();
     }, [likedFeeds])
 
 
-    useEffect(() => {
-        if (props.bottomOffset &&
-            props.bottomOffset < 200 &&
-            !isFeedCallInProgress && //if feed call in progress don't fire again
-            !isPaginationCompleted) { //check if all the feeds are fetched - don't fire
-            onReachingBottom();
-        }
-    }, [props.bottomOffset])
-
-    //scroll listener
-    useEffect(() => {
-        debugger;
-        window.addEventListener("scroll", props.listener);
-        return () => {
-            window.removeEventListener("scroll", props.listener);
-        };
-    });
-
+    const fetchFeeds = (isInitialPage) => {
+        let pageQuery = isInitialPage ? `?limit=${PageSize}&page=${1}` : `?limit=${PageSize}&page=${1}`;
+        fetchLikedFeeds(pageQuery, isInitialPage).then(res => {
+            if (res.data.success === true) {
+                if (res.data.posts.length > 0) {
+                    let nextPage = res.data.nextPage;
+                    if (nextPage) {
+                        nextPage = nextPage.split("?")[1];
+                        //set next page in reducer
+                    } else {
+                        setIsPaginationCompleted(true)
+                    }
+                } else {
+                    //empty post means we have fetched all the posts
+                    setIsPaginationCompleted(true)
+                }
+            }
+        })
+    }
 
     const getTopHashTags = () => {
         let feeds = likedFeeds;
@@ -90,13 +93,6 @@ const Likes = (props) => {
         setTopHashtags(sortable.map(ele => ele[0]));
     }
 
-    // called on reaching bottom 
-    const onReachingBottom = () => {
-        //make feed call for page
-        console.log("making pagination call");
-        console.log("reached bottom initiate page call");
-    }
-
     // scroll to specifc post 
     const scrollRefHandler = (ref) => {
         if (ref) {
@@ -110,48 +106,37 @@ const Likes = (props) => {
         setGridLayoutMode(false)
     }
 
-    let feedContent = [];
+    let emptyPostData = [];
     let gridFeedContent = [];
     let listFeedContent = [];
     if (likedFeeds && likedFeeds.length > 0) {
         likedFeeds.forEach((feed, index) => {
             if (feed.type === FeedType.image) {
-                gridFeedContent.push(<ImageItem index={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
-                    index={feed.id} feed={feed} />)
+                gridFeedContent.push(<ImageItem key={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<ImageFeed key={feed.id} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                    feed={feed} />)
             } else if (feed.type === FeedType.repost) {
                 let parentFeed = feed.parent;
                 if (parentFeed.type === FeedType.image) {
-                    gridFeedContent.push(<ImageItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                    listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                    gridFeedContent.push(<ImageItem key={feed.id} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                    listFeedContent.push(<ImageFeed key={feed.id} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
                 } else {
-                    gridFeedContent.push(<TextItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                    listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                    gridFeedContent.push(<TextItem key={feed.id} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                    listFeedContent.push(<TextFeed key={feed.id} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
                 }
             } else {
-                gridFeedContent.push(<TextItem index={feed} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                gridFeedContent.push(<TextItem key={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                listFeedContent.push(<TextFeed key={feed.id} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
                     index={feed}
                     feed={feed} />)
             }
-
-            // if (feed.type === FeedType.image) {
-            //     return <ImageFeed feed={feed} />
-            // } else if (feed.type === FeedType.repost) {
-            //     let parentFeed = feed.parent;
-            //     if (parentFeed.type === FeedType.image) {
-            //         return <ImageFeed feed={feed} isReposted={true} />
-            //     } else {
-            //         return <TextFeed feed={feed} isReposted={true} />
-            //     }
-            // } else {
-            //     return <TextFeed feed={feed} />
-            // }
         })
     } else {
-        feedContent = (
-            <div class="lps_tb_para">
-                <h4>All the posts you  <img src={require("assets/images/icons/liked_post.png")} alt="BitCot Logo" className="header__logo like_logo" />   will appear here</h4>
+        emptyPostData = (
+            <div class="main_feed_cont">
+                <div class="lps_tb_para">
+                    <h4>All the posts you  <img src={require("assets/images/icons/liked_post.png")} alt="BitCot Logo" className="header__logo like_logo" />  will appear here</h4>
+                </div>
             </div>
         )
     }
@@ -169,16 +154,29 @@ const Likes = (props) => {
                         </div>
                     </div>
                 }
-                {/* {feedContent} */}
+                {emptyPostData}
+
                 {
                     gridlayoutMode ?
-                        <div class="lps_product_grid destkVersion">
-                            {gridFeedContent}
-                        </div>
+                        <InfiniteScroll
+                            dataLength={likedFeeds.length}
+                            next={() => fetchFeeds(false)}
+                            hasMore={!isPaginationCompleted}
+                            loader={<PaginationLoader show={true} />}>
+                            <div class="lps_product_grid destkVersion">
+                                {gridFeedContent}
+                            </div>
+                        </InfiniteScroll>
                         :
                         <div class="main_feed_cont">
                             <div class="list_view">
-                                {listFeedContent}
+                                <InfiniteScroll
+                                    dataLength={likedFeeds.length}
+                                    next={() => fetchFeeds(false)}
+                                    hasMore={!isPaginationCompleted}
+                                    loader={<PaginationLoader show={true} />}>
+                                    {listFeedContent}
+                                </InfiniteScroll>
                             </div>
                         </div>
                 }

@@ -31,9 +31,10 @@ export const setFeedModalType = createAction('set modal type to open from feed w
 export const fetchedLikedFeedsSuccessfully = createAction('fetch most liked feeds with success', (feeds) => (feeds));
 
 export const fetchedUserFeedsSuccessfully = createAction('fetch user feeds with success', (feeds) => (feeds));
-
+export const fetchedUserFeedsNextPageSuccessfully = createAction('fetch User Feeds Next Page Successfully', (feeds) => (feeds));
 
 export const fetchedOtherUserFeedsSuccessfully = createAction('fetch other user feeds with success', (feeds) => (feeds));
+export const fetchedOtherUserFeedsNextSuccessfully = createAction('fetch other user feeds next success', (feeds) => (feeds));
 
 export const updateRepostFeed = createAction('update repost feed', (feed) => (feed));
 
@@ -63,3 +64,11 @@ export const getHashTagSuggestionListSuccessful = createAction('get tag in for s
 export const setMainFeedPaginationCompleted = createAction('setIsMainFeedPaginationCompleted');
 export const setSearchFeedPaginationCompleted = createAction('setSearchFeedPaginationCompleted');
 export const resetSearchFeedPagination = createAction('resetSearchFeedPagination');
+
+export const setProfileFeedPaginationCompleted = createAction('setProfileFeedPaginationCompleted');
+export const resetProfileFeedPaginationCompleted = createAction('resetProfileFeedPaginationCompleted');
+export const setUserFeedPage = createAction('setUserFeedPage', (page) => (page));
+
+export const setOtherProfileFeedPaginationCompleted = createAction('setOtherProfileFeedPaginationCompleted');
+export const resetOtherProfileFeedPaginationCompleted = createAction('resetOtherProfileFeedPaginationCompleted');
+export const setOtherUserFeedPage = createAction('setOtherUserFeedPage', (page) => (page));

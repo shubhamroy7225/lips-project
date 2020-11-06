@@ -33,7 +33,7 @@ pipeline {
  
     stage("Deliver for staging") { 
         when {
-                branch 'master'
+                branch 'staging'
             }
       steps {
         script {
@@ -54,6 +54,10 @@ pipeline {
         script {
           //enable remote triggers
           properties([pipelineTriggers([pollSCM('* * * * *')])])
+          sh 'npm install'
+          sh 'npm run build'
+          sh '/usr/local/bin/aws s3 sync ./build/ s3://app.lips.social --profile lips'
+          sh '/usr/local/bin/aws cloudfront create-invalidation --distribution-id E12WGSM44UZ7OI --paths "/*" --profile lips' 
         }
       }
     }

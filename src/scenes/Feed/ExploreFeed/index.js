@@ -19,52 +19,29 @@ import SharedModal from '../components/FeedModal/SharedModal';
 import RemoveFeedModal from '../components/FeedModal/RemoveFeedModal';
 import ToggleListWidget from '../components/ToggleListWidget';
 import { setSearchFeedPaginationCompleted } from 'redux/actions/feed';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ExploreFeed = (props) => {
     const { searchFeeds } = useSelector(state => state.feedReducer);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
     const [isDataFetched, setIsDataFetched] = useState(false);
-    const [isFeedCallInProgress, setIsFeedCallInProgress] = useState(false); // if feed call in progress don't trigger multiple
-    // const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
+
     const searchText = useRef(null);
-    var selectedFeedOnToggle = useRef(null);
+    const selectedFeedOnToggle = useRef(null);
 
     //will mount and unmount - on unmount show the header if it's hidden
+    //scroll listener
     useEffect(() => {
+        console.log("scroll listen")
         if (searchFeeds.length === 0) {
             fetchFeedsFromServer("", true);
         }
-        // on unmount ennsure the header is visible
-        return () => {
-            props.toggleHeader(true);
-        };
-    }, [])
-
-    useEffect(() => {
-        if (props.bottomOffset &&
-            props.bottomOffset < 200 &&
-            !isFeedCallInProgress && //if feed call in progress don't fire again
-            !props.isPaginationCompleted) { //check if all the feeds are fetched - don't fire
-            onReachingBottom();
-        }
-    }, [props.bottomOffset])
-
-    //scroll listener
-    useEffect(() => {
         window.addEventListener("scroll", props.listener);
         return () => {
+            props.toggleHeader(true);         // on unmount ensure the header is visible
             window.removeEventListener("scroll", props.listener);
         };
-    });
-
-    // called on reaching bottom 
-    const onReachingBottom = () => {
-        setIsFeedCallInProgress(true);
-        //make feed call for page
-        console.log("making pagination call");
-        fetchFeedsFromServer(searchText.current, false);
-        console.log("reached bottom initiate page call");
-    }
+    }, []);
 
     const toggleFeedLayoutMode = (feed) => {
         selectedFeedOnToggle.current = feed
@@ -116,47 +93,61 @@ const ExploreFeed = (props) => {
                         setSearchFeedPaginationCompleted();  // if post is empty then pagination is complete
                     }
                 }
-                setIsFeedCallInProgress(false);
             } else {
                 //error
                 setSearchFeedPaginationCompleted()
             }
         }).catch(error => {
             setSearchFeedPaginationCompleted()
-            setIsFeedCallInProgress(false);
         })
     }
 
     const submitHandler = (searchTxt) => {
         searchText.current = searchTxt.replace("#", "");
-        debugger;
         setSearchPage({ page: 1 })
         fetchFeedsFromServer(searchText.current, true);
+    }
+
+
+    const getMoreData = () => {
+        fetchFeedsFromServer(searchText.current, false);
     }
 
     let gridFeedContent = [];
     let listFeedContent = [];
     searchFeeds.forEach((feed, index) => {
-        if (feed.type === FeedType.image) {
-            gridFeedContent.push(<ImageItem index={feed.id} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-            listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
-                index={feed.id} feed={feed} />)
-        } else if (feed.type === FeedType.repost) {
-            let parentFeed = feed.parent;
-            if (parentFeed.type === FeedType.image) {
-                gridFeedContent.push(<ImageItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<ImageFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+        if (gridlayoutMode == true) {
+            if (feed.type === FeedType.image) {
+                gridFeedContent.push(<ImageItem key={index} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+            } else if (feed.type === FeedType.repost) {
+                let parentFeed = feed.parent;
+                if (parentFeed.type === FeedType.image) {
+                    gridFeedContent.push(<ImageItem key={index} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                } else {
+                    gridFeedContent.push(<TextItem key={index} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
+                }
             } else {
-                gridFeedContent.push(<TextItem index={feed} feed={feed} isReposted={true} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-                listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                gridFeedContent.push(<TextItem key={index} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
             }
         } else {
-            gridFeedContent.push(<TextItem index={feed} feed={feed} selectionHandler={() => toggleFeedLayoutMode(feed)} />);
-            listFeedContent.push(<TextFeed refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
-                index={feed}
-                feed={feed} />)
+            if (feed.type === FeedType.image) {
+                listFeedContent.push(<ImageFeed key={index} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                    index={feed.id} feed={feed} />)
+            } else if (feed.type === FeedType.repost) {
+                let parentFeed = feed.parent;
+                if (parentFeed.type === FeedType.image) {
+                    listFeedContent.push(<ImageFeed key={index} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                } else {
+                    listFeedContent.push(<TextFeed key={index} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }} index={feed.id} feed={feed} isReposted={true} />)
+                }
+            } else {
+                listFeedContent.push(<TextFeed key={index} refHandler={selectedFeedOnToggle.current && feed.id === selectedFeedOnToggle.current.id ? scrollRefHandler : () => { }}
+                    index={feed}
+                    feed={feed} />)
+            }
         }
     });
+
     return (
         <div id="wrap" className={!isMobile ? "lps_xl_view" : ""}>
             <div className="lps_container">
@@ -164,14 +155,29 @@ const ExploreFeed = (props) => {
                 <div className="browse_category">
                     {
                         gridlayoutMode ?
-                            <div class="lps_product_grid destkVersion">
-                                {gridFeedContent}
-                            </div>
+                            <InfiniteScroll
+                                dataLength={searchFeeds.length}
+                                next={getMoreData}
+                                hasMore={!props.isPaginationCompleted}
+                                loader={<PaginationLoader show={true} />}
+                            >
+                                <div class="lps_product_grid destkVersion">
+                                    {gridFeedContent}
+                                </div>
+                            </InfiniteScroll>
+
                             :
                             <div class="main_feed_cont">
                                 <div class="list_view">
-                                    {listFeedContent}
+                                    <InfiniteScroll
+                                        dataLength={searchFeeds.length}
+                                        next={getMoreData}
+                                        hasMore={!props.isPaginationCompleted}
+                                        loader={<PaginationLoader show={true} />}>
+                                        {listFeedContent}
+                                    </InfiniteScroll>
                                 </div>
+
                             </div>
                     }
                     {gridFeedContent.length === 0 && isDataFetched && <div class="main_feed_cont">
@@ -181,7 +187,6 @@ const ExploreFeed = (props) => {
                     </div>}
                 </div>
 
-                <PaginationLoader show={!props.isPaginationCompleted} />
                 <ToggleListWidget gridlayoutMode={gridlayoutMode} setGridLayoutMode={setGridLayoutMode} />
                 <MenuOptionSlider />
             </div>
