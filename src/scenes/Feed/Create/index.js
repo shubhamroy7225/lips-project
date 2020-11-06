@@ -21,9 +21,10 @@ const Create = () => {
         //API - create a post
         feedsAction.createFeed(request)
             .then(res => {
-                toastMsg("Post created successfully!");
-                history.push(routes.ROOT);
-            })
+                if (res.data.success === true) {
+                    history.push(routes.PROFILE);
+                }
+            });
     }
 
     return (
