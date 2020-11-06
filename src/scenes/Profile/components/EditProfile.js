@@ -25,8 +25,9 @@ const EditProfile = ({setIsEdit, user}) => {
       
       setFile(newFiles);
       AuthActions.config({ext: ['.png']}).then(res=> {
-        let header_image = res.urls[0].photo_path;
-        setUserForm({...userForm, [fileName]: header_image})
+        let header_image = res.urls[0].photo_path;   
+        let targetEl = fileName === "header_image" ? headerImgRef : profileImgRef; 
+        setUserForm({...userForm, [fileName]: {url: header_image, height: targetEl.current.naturalHeight.toString(), width: targetEl.current.naturalWidth.toString()}})
         commonService.isLoading.onNext(true);
         ConfigAPI.uploadImageToS3(res.urls[0].presigned_url, file).then(res =>  commonService.isLoading.onNext(false))
       });
