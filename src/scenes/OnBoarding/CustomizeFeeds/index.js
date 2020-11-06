@@ -3,9 +3,19 @@ import { Link, useHistory } from "react-router-dom";
 
 import * as AuthActions from "redux/actions";
 import { routes } from "utility/constants/constants";
+import * as commonService from "utility/utility";
 
 export default () => {
   const history = useHistory();
+
+  const loading = () => {
+    commonService.isLoading.onNext(true)
+    const timer = setTimeout(() => {
+      commonService.isLoading.onNext(false)
+      completeOnBoard()
+    }, 3000);
+    return () => clearTimeout(timer);
+  }
   const completeOnBoard = () => {
     AuthActions.completeOnBordingFlow();
     history.push(routes.MAIN_FEED);
@@ -27,7 +37,7 @@ export default () => {
               </article>
               <div className="pos_wrp onboarding_btm">
                 <Link to={routes.SELECT_FAVORITE_TAGS} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10 desktopVersio">Customize feed</Link>
-                <button onClick={completeOnBoard} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio">Auto-Generate</button>
+                <button onClick={loading} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio">Auto-Generate</button>
               </div>
             </div>
           </div>
