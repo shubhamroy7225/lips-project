@@ -520,7 +520,6 @@ input.input_modify {
       opacity: 0.75;
   }
 }
-
 .commonWidth {
     max-width: 335px;
     margin: 0 auto;
@@ -547,4 +546,18 @@ input.input_modify {
 }
 .contact-title{
   margin-bottom: 2px;
+}
+.fellowersIcon {
+    margin-bottom: 26px;
+    figure {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    a {
+        text-transform: initial !important;
+        font-size: 16px;
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+    }
 }

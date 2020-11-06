@@ -16,7 +16,7 @@ const FollowerItem = ({ data, user }) => {
     }
 
     return (
-        <div class="lps_media lps_f_vm lps_follow_media">
+        <div class="lps_media lps_f_vm lps_follow_media fellowersIcon">
             <figure class="lps_fig lps_fig_circle">
                 <img src={profilePhoto} alt="User" />
             </figure>
