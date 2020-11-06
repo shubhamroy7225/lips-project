@@ -62,7 +62,7 @@ const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setS
     return (
         <>{
             openSuggestedTagModel ? <AddSuggestedTag dismiss={dismiss} setShowLipsInfo={setShowLipsInfo} setSuggestedTagModel={setSuggestedTagModel}/> :
-                <div className="hover_bkgr_fricc full_Hvh removePointer" id="trigger_submit_tag_popup" style={style}>
+                <div className="hover_bkgr_fricc full_Hvh removePointer removeScroll" id="trigger_submit_tag_popup" style={style}>
                     <div className="modal-dialog-centered">
                         <div className="popup_cont">
                             <div className="popup_body post_poup lps_bg_secondary lps_text_white lps_bg_txt_white">
