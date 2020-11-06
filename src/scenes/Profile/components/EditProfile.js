@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 
 import {Link} from "react-router-dom";
 import * as ConfigAPI from 'api/configAPI';
@@ -10,6 +10,8 @@ import * as commonService from "../../../utility/utility";
 import { routes } from 'utility/constants/constants';
 
 const EditProfile = ({setIsEdit, user}) => {
+  const headerImgRef = useRef();
+  const profileImgRef = useRef();
   const [userForm, setUserForm] = useState({...user});
   const [files, setFile] = useState({header_image: {}, photo_url: {}});
   const [textAreaCount, setTextAreaCount] = useState(0);
@@ -20,6 +22,7 @@ const EditProfile = ({setIsEdit, user}) => {
       let url = URL.createObjectURL(file);
       let fileName = e.target.name;
       let newFiles = {...files, [e.target.name]: {src: url, file}};
+      
       setFile(newFiles);
       AuthActions.config({ext: ['.png']}).then(res=> {
         let header_image = res.urls[0].photo_path;
@@ -75,8 +78,8 @@ const EditProfile = ({setIsEdit, user}) => {
                 <div className="lps_inner_wrp lps_pink_dashed">
                   <label htmlFor="file_input">
                     <figure  className="lps_fig lps_fig90">
-                      <input type="file" id="file_input" name="header_image" hidden onChange={handleFile}/>
-                      {files.header_image.src ?  <img src={files.header_image.src} alt="Add Image" className="img_cover"/> :
+                      <input type="file" id="file_input" name="header_image"  hidden onChange={handleFile}/>
+                      {files.header_image.src ?  <img src={files.header_image.src} ref={headerImgRef} alt="Add Image" className="img_cover"/> :
                           (userForm.header_images && userForm.header_images.medium ? <img src={userForm.header_images.original} className="img_cover" alt="Add Image" /> : <img src={require("assets/images/icons/image_icon_dashed.svg")} className="img_contain" alt="Add Image" />) }
                     </figure>
                   </label>
@@ -86,7 +89,7 @@ const EditProfile = ({setIsEdit, user}) => {
                     <label htmlFor="profile_file_input">
                     <figure className="profile-image-container lps_fig lps_fig_circle over_none" style={{position: "relative"}}>
                       <input type="file" id="profile_file_input" name="photo_url" hidden onChange={handleFile}/>
-                      {files.photo_url.src ?  <img src={files.photo_url.src} className="user_photo_url" alt="Add Image" /> :
+                      {files.photo_url.src ?  <img src={files.photo_url.src}  ref={profileImgRef} className="user_photo_url" alt="Add Image" /> :
                           (userForm.photo_urls && userForm.photo_urls.medium ? <img src={userForm.photo_urls.medium} alt="Add Image" className="user_photo_url" /> : <img  src={require("assets/images/icons/icn_profile.svg")} className="user_photo_url" alt="User"/>) }
 
                       <i className="fa fa-pencil"></i>
