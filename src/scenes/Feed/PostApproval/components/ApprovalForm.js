@@ -6,6 +6,10 @@ import * as feedsAction from 'redux/actions/feed/action';
 import { decode } from 'base64-arraybuffer';
 
 const ApprovalForm = ({ moveToNextStep, cancel }) => {
+    const postImgFirst = useRef(null);
+    const postImgSecond = useRef(null);
+    const postImgThird = useRef(null);
+
     const withoutImageStyle = {
         width: "50%",
         height: "48%",
@@ -92,13 +96,17 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
             forceUpdate(1)
         }
     }
-
+    const postImg =  {
+        0: postImgFirst,
+        1: postImgSecond,
+        2: postImgThird,
+    }
     const postDataToServer = async (urls = []) =>{
         //update data to server
-        let photoPaths = urls.map(ele => {
-            return ele.photo_path
+        let photoPaths = urls.map((ele, index) => {
+            return {url: ele.photo_path, height: postImg[index].current.naturalHeight.toString(),
+                width: postImg[index].current.naturalWidth.toString()}
         });
-
         let approval = {
                 link:approvalForm.link,
                 about:approvalForm.description,
@@ -172,13 +180,13 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                         <label class="label_modify">3 post example <br />(Images example of visuals or text that you'd post) *</label>
                         <div class="add_product_grid">
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector1)}>
-                                <img style={!image1.base64 ? withoutImageStyle : null} src={image1.base64 ? image1.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
+                                <img style={!image1.base64 ? withoutImageStyle : null} src={image1.base64 ? image1.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgFirst} alt="Image" class="add_img" />
                             </div>
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector2)}>
-                                <img style={!image2.base64 ? withoutImageStyle : null} src={image2.base64 ? image2.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
+                                <img style={!image2.base64 ? withoutImageStyle : null} src={image2.base64 ? image2.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgSecond} alt="Image" class="add_img" />
                             </div>
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector3)}>
-                                <img style={!image3.base64 ? withoutImageStyle : null} src={image3.base64 ? image3.base64 : require("assets/images/icons/icn_add_img_pink.png")} alt="Image" class="add_img" />
+                                <img style={!image3.base64 ? withoutImageStyle : null} src={image3.base64 ? image3.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgThird} alt="Image" class="add_img" />
                             </div>
                         </div>
                         <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio1" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
