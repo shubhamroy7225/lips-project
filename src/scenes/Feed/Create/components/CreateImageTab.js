@@ -4,6 +4,7 @@ import * as commonService from "utility/utility";
 import { FeedType, routes } from "utility/constants/constants";
 import { useHistory } from "react-router-dom";
 import { decode, encode } from "base64-arraybuffer";
+import imageCompression from 'browser-image-compression';
 
 const CreateImageTab = ({
   toggleAddTags,
@@ -25,12 +26,14 @@ const CreateImageTab = ({
   const fileSelector = useRef(null);
   const postImg = useRef(null);
 
+
+
   const handleFileSelect = () => {
     fileSelector.current.click();
   };
 
-  const onFileSelectionHandler = (e) => {
-    let file = e.target.files[0];
+  const onFileSelectionHandler = async (e) => {
+    let file = await commonService.compressImage(e.target.files[0], {});
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
@@ -132,6 +135,8 @@ const CreateImageTab = ({
       color: "red"
     }
   }
+
+  
 
   return (
     <div

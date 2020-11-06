@@ -2,11 +2,17 @@ import { store } from 'react-notifications-component';
 import storage from '../utility/storage';
 import { BehaviorSubject } from "rx";
 import { useEffect } from 'react';
+import imageCompression from 'browser-image-compression';
+
 var moment = require('moment-timezone');
 // for global loader service
 export const isLoading = new BehaviorSubject(false);
 
 export const isDialogOpen = new BehaviorSubject(false);
+
+export const compressImage = async (file, options) => {
+    return await imageCompression(file,options)
+}
 
 export const toFloatWithDecimal = (number) => {
     return parseFloat(number).toFixed(2);
