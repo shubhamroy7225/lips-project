@@ -283,7 +283,9 @@ input.input_modify {
     width: 100%;
   }
 }
-
+.mb45 {
+    margin-bottom: 45px !important;
+}
 @media screen and (max-width: 768px) {
   .scroll-down .footer-menu-list,
   .scroll-down .footer-menu-list1 {
@@ -502,4 +504,7 @@ input.input_modify {
 .commonWidth {
     max-width: 335px;
     margin: 0 auto;
+}
+.lh30 {
+    line-height: 30px !important    ;
 }

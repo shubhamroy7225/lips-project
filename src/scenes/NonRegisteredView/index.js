@@ -38,15 +38,17 @@ const NonRegisteredView = (props) => {
                     </a>
                 </div>
                 <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn border_0 justifyCenter">
-                    <article class="lps_art text_center">
-                        <h4 class="text_center mb45">{option.title}</h4>
-                        <p class="mb45">
-                            {option.desc}
-                        </p>
-                    </article>
-                    <div class="plans_wrp mt45 text_center">
-                        <a onClick={() => { history.push(routes.REGISTER) }} class="theme_btn theme_outline_primary text_white btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Register</a>
-                        <p>Already have an account? <a onClick={() => { history.push(routes.LOGIN) }} class="link_underline lps_link">Sign in</a></p>
+                    <div className="commonWidth">
+                        <article class="lps_art text_center">
+                            <h4 class="text_center mb45">{option.title}</h4>
+                            <p class="mb45 lh30">
+                                {option.desc}
+                            </p>
+                        </article>
+                        <div class="plans_wrp mt45 text_center">
+                            <a onClick={() => { history.push(routes.REGISTER) }} class="theme_btn theme_outline_primary text_white btn_block btn_r25 text_uppercase lps_mb15 desktopVersio">Register</a>
+                            <p>Already have an account? <a onClick={() => { history.push(routes.LOGIN) }} class="link_underline lps_link">Sign in</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
