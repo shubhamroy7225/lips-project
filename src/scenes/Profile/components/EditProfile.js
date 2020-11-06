@@ -25,9 +25,14 @@ const EditProfile = ({setIsEdit, user}) => {
       
       setFile(newFiles);
       AuthActions.config({ext: ['.png']}).then(res=> {
-        let header_image = res.urls[0].photo_path;   
-        let targetEl = fileName === "header_image" ? headerImgRef : profileImgRef; 
-        setUserForm({...userForm, [fileName]: {url: header_image, height: targetEl.current.naturalHeight.toString(), width: targetEl.current.naturalWidth.toString()}})
+        let header_image = res.urls[0].photo_path;
+        let sizeParams: {};
+        if (fileName === "header_image") {
+          sizeParams =  {header_height: headerImgRef.current.naturalHeight.toString(), header_width: headerImgRef.current.naturalWidth.toString()}
+        } else {
+          sizeParams = { height: profileImgRef.current.naturalHeight.toString(), width: profileImgRef.current.naturalWidth.toString()};
+        };
+        setUserForm({...userForm, ...sizeParams, [fileName]: header_image});
         commonService.isLoading.onNext(true);
         ConfigAPI.uploadImageToS3(res.urls[0].presigned_url, file).then(res =>  commonService.isLoading.onNext(false))
       });
@@ -45,12 +50,16 @@ const EditProfile = ({setIsEdit, user}) => {
   };
 
   const updateUserProfile = (e) => {
-    let tempUser = {...userForm}
-    if (!tempUser.bio) delete tempUser.bio;
-    if (!tempUser.photo_url) delete tempUser.photo_url;
-    if (!tempUser.header_image) delete tempUser.header_image;
-    const {bio, show_following, show_followers, header_image, photo_url} = tempUser;
-    AuthActions.updateUser({user: {bio, show_following, show_followers, header_image, photo_url}}).then(res => {
+    let tempUser = {...userForm};
+    if (!files.header_image.file) tempUser.header_image = null;
+    if (!files.photo_url.file) tempUser.photo_url = null;
+    const {bio, show_following, show_followers, header_image, photo_url,  header_width, header_height, width, height} = tempUser;
+    let user = {bio, show_following, show_followers, header_image, photo_url,  header_width, header_height, width, height}
+    Object.keys(user).map(e => {
+      if (!tempUser[e]) delete user[e];
+      return true;
+    });
+    AuthActions.updateUser({user}).then(res => {
       setIsEdit(false)
     });
   };
