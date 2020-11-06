@@ -109,7 +109,7 @@ export default () => {
                         { simpleValidator.current.message(
                             "user_name",
                             user.user_name,
-                            "required|alpha"
+                            "required|alpha_num"
                         )}
                       </div>
                       <div className="form_group_modify">
