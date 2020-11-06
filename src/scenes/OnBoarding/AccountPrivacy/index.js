@@ -22,7 +22,7 @@ export default () => {
                   <h3>How private do you want your <br/>account?</h3>
                     <p>You can always change this in your Account settings </p>
                   </article>
-                  <ul className="lps_list_group my_acctn_list">
+                  <ul className="lps_list_group my_acctn_list removeWhiteLine">
                     <li className="list-group-item">
                       <div className="lps_user_info">
                         <label className="lps_cont_rdo">
