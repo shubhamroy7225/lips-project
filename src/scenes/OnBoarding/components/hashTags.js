@@ -31,7 +31,7 @@ export default  ({selectTags, setSelectTags, showhashTags}) => {
     actions.getAllHashTags({...tempSearch});
   };
 
-  return (<ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags weightAnchor">
+  return (<ul className="lps_btn_grps lps_ul lps_hash_ul weightAnchor">
     <li>
       {hashTags.map((tag, index) =>
         showhashTags.includes(tag.name) ? null :
