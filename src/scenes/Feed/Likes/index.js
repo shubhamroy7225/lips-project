@@ -20,20 +20,22 @@ import ToggleListWidget from '../components/ToggleListWidget';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchFeeds } from 'api/feedsAPI';
 import PaginationLoader from 'scenes/Feed/components/PaginationLoader';
+import { resetLikedFeedPagination, setLikedFeedPage, setLikedFeedPaginationCompleted } from 'redux/actions/feed';
 
 const Likes = (props) => {
+    const { likedFeedPage, likedFeedsIsPaginationCompleted } = useSelector((state) => state.feedReducer);
     const { likedFeeds } = useSelector((state) => state.feedReducer);
     const [topHashtags, setTopHashtags] = useState([]);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
-    const [isPaginationCompleted, setIsPaginationCompleted] = useState(false); // indicate if all the feeds are fetched
     var selectedFeedOnToggle = useRef(null);
 
     //will mount and unmount - on unmount show the header if it's hidden
     //scroll listener
     useEffect(() => {
-        if (likedFeeds.length === 0) {
-            fetchFeeds(true);
-        }
+        // if (likedFeeds.length === 0) {
+        resetLikedFeedPagination()
+        fetchFeeds(true);
+        // }
         window.addEventListener("scroll", props.listener);
         return () => {
             props.toggleHeader(true);
@@ -47,7 +49,8 @@ const Likes = (props) => {
 
 
     const fetchFeeds = (isInitialPage) => {
-        let pageQuery = isInitialPage ? `?limit=${PageSize}&page=${1}` : `?limit=${PageSize}&page=${1}`;
+        let pageQuery = isInitialPage ? `?limit=${PageSize}&page=${1}` : `?${likedFeedPage}`;
+        debugger;
         fetchLikedFeeds(pageQuery, isInitialPage).then(res => {
             if (res.data.success === true) {
                 if (res.data.posts.length > 0) {
@@ -55,12 +58,13 @@ const Likes = (props) => {
                     if (nextPage) {
                         nextPage = nextPage.split("?")[1];
                         //set next page in reducer
+                        setLikedFeedPage({ page: nextPage });
                     } else {
-                        setIsPaginationCompleted(true)
+                        setLikedFeedPaginationCompleted(true);
                     }
                 } else {
                     //empty post means we have fetched all the posts
-                    setIsPaginationCompleted(true)
+                    setLikedFeedPaginationCompleted(true);
                 }
             }
         })
@@ -161,7 +165,7 @@ const Likes = (props) => {
                         <InfiniteScroll
                             dataLength={likedFeeds.length}
                             next={() => fetchFeeds(false)}
-                            hasMore={!isPaginationCompleted}
+                            hasMore={!likedFeedsIsPaginationCompleted}
                             loader={<PaginationLoader show={true} />}>
                             <div class="lps_product_grid destkVersion">
                                 {gridFeedContent}
@@ -173,7 +177,7 @@ const Likes = (props) => {
                                 <InfiniteScroll
                                     dataLength={likedFeeds.length}
                                     next={() => fetchFeeds(false)}
-                                    hasMore={!isPaginationCompleted}
+                                    hasMore={!likedFeedsIsPaginationCompleted}
                                     loader={<PaginationLoader show={true} />}>
                                     {listFeedContent}
                                 </InfiniteScroll>

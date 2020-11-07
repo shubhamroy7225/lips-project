@@ -151,7 +151,6 @@ const Profile = (props) => {
         } else {
             actions.fetchUserFeeds(pageQuery, isInitialFetch)
                 .then(res => {
-                    debugger;
                     if (res.data.success === true) {
                         if (res.data.posts.length > 0) {
                             let nextPage = res.data.nextPage;

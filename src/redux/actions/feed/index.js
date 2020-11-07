@@ -29,6 +29,7 @@ export const setSelectedFeed = createAction('set selected feed - in case of feed
 export const setFeedModalType = createAction('set modal type to open from feed widget', (modalType) => (modalType));
 
 export const fetchedLikedFeedsSuccessfully = createAction('fetch most liked feeds with success', (feeds) => (feeds));
+export const fetchedNextPageLikedFeedsSuccessfully = createAction('fetch next page liked feeds with success', (feeds) => (feeds));
 
 export const fetchedUserFeedsSuccessfully = createAction('fetch user feeds with success', (feeds) => (feeds));
 export const fetchedUserFeedsNextPageSuccessfully = createAction('fetch User Feeds Next Page Successfully', (feeds) => (feeds));
@@ -72,3 +73,7 @@ export const setUserFeedPage = createAction('setUserFeedPage', (page) => (page))
 export const setOtherProfileFeedPaginationCompleted = createAction('setOtherProfileFeedPaginationCompleted');
 export const resetOtherProfileFeedPaginationCompleted = createAction('resetOtherProfileFeedPaginationCompleted');
 export const setOtherUserFeedPage = createAction('setOtherUserFeedPage', (page) => (page));
+
+export const setLikedFeedPaginationCompleted = createAction('setLikedFeedPaginationCompleted');
+export const resetLikedFeedPagination = createAction('resetLikedFeedPagination');
+export const setLikedFeedPage = createAction('setLikedFeedPage', (page) => (page));
