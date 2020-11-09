@@ -568,6 +568,8 @@ input.input_modify {
 .lps_xl_view .footer-menu-list {
   right: 20px;
   bottom: initial;
+  top: 50%;
+  transform: translateY(-50%);
   .ul_list.custom_ul {
     padding: 0;
   }
