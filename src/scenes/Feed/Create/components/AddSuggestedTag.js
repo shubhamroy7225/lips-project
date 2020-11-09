@@ -27,7 +27,6 @@ export default ({dismiss, setShowLipsInfo, setSuggestedTagModel}) => {
             <div className="popup_body post_poup lps_bg_secondary lps_text_white lps_bg_txt_white">
               <div className="popupCloseButton popupCloseButtonLeft" onClick={() => setSuggestedTagModel(false)}><img src={require("assets/images/icons/icn_left_arrow.png")} /></div>
                 <article className="lps_art mt45 text_left">
-                {suggestedTag &&
                   <div>
                     <div className="para_list_mb">
                       <h4 className="text_white">Can’t find what you’re looking for?</h4>
@@ -44,7 +43,7 @@ export default ({dismiss, setShowLipsInfo, setSuggestedTagModel}) => {
                     <div className="lps_btns para_list_mb">
                       <button onClick={handleSubmit} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170 mb_0">Submit</button>
                     </div>
-                  </div>}
+                  </div>
                    {tagSubmitted &&<p>Our team personally looks at each suggested tag, but try our best to notify you within 24 hours - so keep an eye on your email notifications!</p>}
                   </article>
                 </div>
