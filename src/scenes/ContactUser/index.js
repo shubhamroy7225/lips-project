@@ -2,12 +2,13 @@ import React, {useState, useRef} from "react";
 import {useHistory} from "react-router-dom";
 import SimpleReactValidator from 'simple-react-validator';
 import * as commonService from "utility/utility";
+import * as action from "../../redux/actions"
 
 export default () => {
    const simpleValidator = useRef(new SimpleReactValidator());
    const history = useHistory();
    const [, forceUpdate] = useState();
-   const [user, setUser] = useState({ name: "", email: "", message: "" });
+   const [user, setUser] = useState({ name: "", email: "", description: "" });
    const handleChange = (e) => {
       setUser({ ...user, [e.target.name]: e.target.value });
       forceUpdate(1)
@@ -15,14 +16,11 @@ export default () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-   
-  
       if (simpleValidator.current.allValid()) {
-        var contactUser = { ...user}
-        if(contactUser){
-            commonService.toastMsg('Message sent!')
-            history.goBack()
-        }
+         var contactUser = { ...user}
+         action.contact(contactUser).then(res => {
+            if (res) history.goBack()
+         })
         
       } //check validations
       else {
@@ -54,8 +52,8 @@ export default () => {
                         </div>
                         <div className="form_group_modify">
                            <textarea type="text" className="input_modify txtarea_modify" rows="5" placeholder="Type your message here *" 
-                           value={user.message} onChange={handleChange} name="message" onBlur={() => simpleValidator.current.showMessageFor('message')}/>
-                           {simpleValidator.current.message('message', user.message, 'required')}
+                           value={user.description} onChange={handleChange} name="description" onBlur={() => simpleValidator.current.showMessageFor('description')}/>
+                           {simpleValidator.current.message('message', user.description, 'required')}
                         </div>
                         <div className="pos_wrp">
                            <button type="submit" className="pos_link send-button">Send</button>

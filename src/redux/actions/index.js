@@ -21,7 +21,8 @@ export {
     unfollowUser,
     openPageLandingModel,
     sendApprovalCode,
-    changePassword
+    changePassword,
+    contact
 } from './user/action';
 
 export {

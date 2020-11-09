@@ -23,3 +23,5 @@ export const fetchUploadUrl = (request) => {
 export const uploadImageToS3 = (url, arrayBuffer) => {
     return pureAxios.put(url, arrayBuffer);
 }
+
+export const contact = (body) => {return axios.post(`${API_VERSION}/config/contactus`, body)}

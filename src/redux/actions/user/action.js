@@ -2,6 +2,7 @@
 import axios from 'config';
 import * as API from '../../../api/authAPI';
 import * as UserAPI from '../../../api/userAPI';
+import * as configAPI from '../../../api/configAPI';
 import storage from '../../../utility/storage';
 import { toastMsg } from '../../../utility/utility';
 import * as commonService from "../../../utility/utility";
@@ -15,6 +16,8 @@ import {
 } from 'redux/actions/auth';
 import { clearNotifications } from 'redux/actions/notification';
 import { clearAllFeeds, hideFeedsOnBlockingUser, hideFeedsOnUnfollowingUser } from '../feed';
+
+
 
 const setUserData = (data) => {
     storage.set('token', data.token);
@@ -288,3 +291,17 @@ export const changePassword = (body) => {
             return error;
         });
 };
+
+export const contact = (body) => {
+    commonService.isLoading.onNext(true);
+    return configAPI.contact(body)
+    .then(res => {
+        commonService.isLoading.onNext(false);
+        if(res) toastMsg('Message sent!')
+        return res
+    })
+    .catch(error => {
+        commonService.isLoading.onNext(false);
+        return error
+    })
+}
