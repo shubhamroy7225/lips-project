@@ -2,7 +2,7 @@ import storage from '../../../utility/storage';
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
+import { fetchedNextPageLikedFeedsSuccessfully, setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
 
 import {
   fetchedLikedFeedsSuccessfully,
@@ -183,7 +183,11 @@ export const unlikeAFeed = (feedId) => {
 export const fetchLikedFeeds = (queryString, isFirstPage = true) => {
   return API.fetchLikedFeeds(queryString)
     .then(response => {
-      fetchedLikedFeedsSuccessfully({ feeds: response.data.posts });
+      if (isFirstPage) {
+        fetchedLikedFeedsSuccessfully({ feeds: response.data.posts });
+      } else {
+        fetchedNextPageLikedFeedsSuccessfully({ feeds: response.data.posts });
+      }
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {

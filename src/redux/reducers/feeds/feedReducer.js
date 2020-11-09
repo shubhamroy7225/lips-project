@@ -34,6 +34,8 @@ export const initialState = {
     otherUserProfileFeedsIsPaginationCompleted: false,
 
     likedFeeds: [],
+    likedFeedsIsPaginationCompleted: false,
+    likedFeedPage: 1, // for Liked feed page
 
     searchFeeds: [],
     searchPage: 1, // for search feed initial page
@@ -154,6 +156,13 @@ export const feedReducer = createReducer({
     [actions.fetchedLikedFeedsSuccessfully]: (state, payload) => updateObject(state, {
         likedFeeds: payload.feeds,
     }),
+    [actions.fetchedNextPageLikedFeedsSuccessfully]: (state, payload) => {
+        let feeds = [...state.likedFeeds, ...payload.feeds]
+        return updateObject(state, {
+            likedFeeds: feeds,
+        })
+    },
+
     [actions.fetchedUserFeedsSuccessfully]: (state, payload) => {
         return updateObject(state, {
             userFeeds: payload.feeds,
@@ -274,10 +283,15 @@ export const feedReducer = createReducer({
 
     [actions.setOtherProfileFeedPaginationCompleted]: (state, payload) => updateObject(state, { otherUserProfileFeedsIsPaginationCompleted: true }),
     [actions.resetOtherProfileFeedPaginationCompleted]: (state, payload) => updateObject(state, { otherUserProfileFeedsIsPaginationCompleted: false }),
-
     [actions.setOtherUserFeedPage]: (state, payload) => updateObject(state, {
         otherUserFeedPage: payload.page,
     }),
+    [actions.setLikedFeedPaginationCompleted]: (state, payload) => updateObject(state, { likedFeedsIsPaginationCompleted: true }),
+    [actions.resetLikedFeedPagination]: (state, payload) => updateObject(state, { likedFeedsIsPaginationCompleted: false }),
+    [actions.setLikedFeedPage]: (state, payload) => updateObject(state, {
+        likedFeedPage: payload.page,
+    }),
+
 }, initialState); // <-- This is the default state
 
 
