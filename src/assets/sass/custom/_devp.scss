@@ -418,6 +418,10 @@ input.input_modify {
 }
 .textContent {
   padding-top: 10px;
+  .popup_body.textBody {
+    flex-direction: column;
+    justify-content: center;
+  }
   .reposted_wrps {
     top: 0;
   }

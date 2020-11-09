@@ -40,7 +40,7 @@ const RepostModal = ({ feed }) => {
                     {/* <div class="popup_close_header">
                         <div class="popupCloseButton"><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
                     </div> */}
-                    <div class="popup_body">
+                    <div class="popup_body textBody">
                         <div class="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
                         <ul class="lps_btn_grps lps_ul mb100">
                             <li>
