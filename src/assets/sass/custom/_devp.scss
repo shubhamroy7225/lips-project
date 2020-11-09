@@ -561,3 +561,10 @@ input.input_modify {
         line-height: 30px;
     }
 }
+.lps_xl_view .footer-menu-list {
+  right: 20px;
+  bottom: initial;
+  .ul_list.custom_ul {
+    padding: 0;
+  }
+}
