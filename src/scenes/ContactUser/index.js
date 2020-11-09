@@ -1,9 +1,9 @@
 import React, {useState, useRef} from "react";
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import SimpleReactValidator from 'simple-react-validator';
-import { routes } from "utility/constants/constants";
+import * as commonService from "utility/utility";
+
 export default () => {
-   const {SETTING_FAQ} = routes;
    const simpleValidator = useRef(new SimpleReactValidator());
    const history = useHistory();
    const [, forceUpdate] = useState();
@@ -20,7 +20,8 @@ export default () => {
       if (simpleValidator.current.allValid()) {
         var contactUser = { ...user}
         if(contactUser){
-           history.goBack()
+            commonService.toastMsg('Message sent!')
+            history.goBack()
         }
         
       } //check validations
