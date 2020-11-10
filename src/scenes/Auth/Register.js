@@ -50,7 +50,7 @@ export default () => {
   };
 
   const handleSubmit = (e) => {   
-    let userData = { ...user, user_name: user.user_name.toLowerCase() };
+    let userData = { ...user, user_name: user.user_name.toLowerCase().trim(), email: user.email.toLowerCase().trim() };
 
     var updatedUser = { ...userData, session_info: { platform: "web" } };
     delete updatedUser.confirm_password;
