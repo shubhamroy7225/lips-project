@@ -125,8 +125,8 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     }
 
     const uploadImages = async (images) => {
+        commonService.isLoading.onNext(true); // start loading
         let fileExtensions = [];
-
         for (var obj in images){
             if (images[obj].file.type === "image/png"){
                 fileExtensions.push(".png")
@@ -139,7 +139,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
          if (response.data.success){
              let urls = response.data.urls;
              //2. upload all the images
-             commonService.isLoading.onNext(true); // start loading
+             
              var imagesUploadedCount = 0
              images.forEach((element, index) => {
                 let base64ToBeUploaded = element.base64.split(",")[1]
