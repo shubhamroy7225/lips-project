@@ -19,7 +19,7 @@ const ToggleListWidget = ({ gridlayoutMode, setGridLayoutMode }) => {
         <div class="footer-menu-list1 footIndex">
             <a onClick={toggleState} class={className} id="trigger_popup_fricc1">
                 <img src={require("assets/images/icons/list.svg")} class="inner_image icn_hvrA" alt="Repeat Icon" />
-                <img src={require("assets/images/icons/grid.svg")} class="inner_image icn_dfltD" alt="Repeat Icon" />
+                <img src={require("assets/images/icons/grid.png")} class="inner_image icn_dfltD boxIcon" alt="Repeat Icon" />
             </a>
         </div>
     )
