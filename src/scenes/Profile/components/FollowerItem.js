@@ -6,7 +6,7 @@ import scroller from 'scenes/Feed/Home/scroller';
 
 const FollowerItem = ({ data, user }) => {
     let history = useHistory()
-    const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user.jpg");
+    const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user_outline.png");
 
     const moveToProfile = () => {
         $('.followers_wrp').addClass('close');
