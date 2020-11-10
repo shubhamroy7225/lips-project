@@ -18,7 +18,7 @@ let LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let userData = {...user, user: user.user.toLowerCase()}
+    let userData = {...user, user: user.user.toLowerCase().trim()}
 
     if (simpleValidator.current.allValid()) {
       var updatedUser = { ...userData, session_info: { platform: 'web' } }
