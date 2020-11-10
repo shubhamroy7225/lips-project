@@ -3,8 +3,7 @@ import * as ConfigAPI from "api/configAPI";
 import * as commonService from "utility/utility";
 import { FeedType, routes } from "utility/constants/constants";
 import { useHistory } from "react-router-dom";
-import { decode, encode } from "base64-arraybuffer";
-import imageCompression from 'browser-image-compression';
+import { decode } from "base64-arraybuffer";
 
 const CreateImageTab = ({
   toggleAddTags,
