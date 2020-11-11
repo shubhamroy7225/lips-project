@@ -31,6 +31,10 @@ const TextFeed = (props) => {
         setShowWidget(!showWidget)
     }
 
+    const  capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     if (isMobile) {
         return (
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
@@ -80,7 +84,7 @@ const TextFeed = (props) => {
                         <div class="lps_media_body">
                             <div class="lps_media_body">
                                 <p><span class="text_primary">
-                                    <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
+                                    <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{capitalizeFirstLetter(user_name)} </a>
                                 </span></p>
                             </div>
                         </div>
