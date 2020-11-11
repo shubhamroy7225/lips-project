@@ -21,7 +21,7 @@ export default function errorHandler(error) {
         return Promise.reject(error);
     }
     if (error.message === "Network Error") {
-        toastMsg('Error connecting server. Please check your internet connection.', true);
+        toastMsg('Error connecting server. please check your internet connection.', true);
         return Promise.reject(error.message);
     }
     const message = error.response && error.response.data.message ? error.response.data.message : 'Seems like something went wrong!';

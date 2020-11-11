@@ -18,7 +18,7 @@ let LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let userData = {...user, user: user.user.toLowerCase()}
+    let userData = {...user, user: user.user.toLowerCase().trim()}
 
     if (simpleValidator.current.allValid()) {
       var updatedUser = { ...userData, session_info: { platform: 'web' } }
@@ -33,6 +33,7 @@ let LoginForm = (props) => {
   };
 
   const handleChange = (e) => {
+    debugger
     setUser({ ...user, [e.target.name]: e.target.value });
     forceUpdate(1)
   };
@@ -54,7 +55,7 @@ let LoginForm = (props) => {
                   <input type="text" name="user" className="input_modify"
                     placeholder="Username or Email" value={user.user}
                     onBlur={() => simpleValidator.current.showMessageFor('user')}
-                    onChange={handleChange} />
+                    onChange={(e) => handleChange({target: {name: e.target.name, value: e.target.value.trim()}})} />
                   {simpleValidator.current.message('user', user.user, 'required')}
                 </div>
                 <div className="form_group_modify lps_pos_rltv">

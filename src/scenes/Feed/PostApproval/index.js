@@ -51,7 +51,7 @@ const PostApproval = (props) => {
         content = <ApprovalCompleted moveToNextStep={moveToNextStep} />
     }
     return (
-        <div id="wrap" class="mt_0">
+        <div id="wrap" class="mt_0 lps_bg_secondary">
             {content}
         </div>
     );
