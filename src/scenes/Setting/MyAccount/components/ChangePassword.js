@@ -45,7 +45,7 @@ const [, forceUpdate] = useState();
     if (simpleValidator.current.allValid()) {
     changePassword({user: passwordForm}).then(res => {
       if (res.data && res.data.success) {
-        toastMsg("Password changed successfully!");
+        toastMsg("PASSWORD CHANGED SUCCESSFULLY!");
         history.push(routes.MY_ACCOUNT);
       }
     })}
