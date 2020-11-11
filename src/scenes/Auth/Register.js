@@ -65,6 +65,7 @@ export default () => {
   const [resetPasswordShown, setResetPasswordShown] = useState(false);
 
   const handleChange = (e) => {
+    debugger
     setUser({ ...user, [e.target.name]: e.target.value });
     forceUpdate(1);
   };
@@ -101,7 +102,7 @@ export default () => {
                             placeholder="Username"
                             name="user_name"
                             value={user.user_name}
-                            onChange={handleChange}
+                            onChange={e => handleChange({target: {name: e.target.name, value: e.target.value.trim()}})}
                             onBlur={() =>
                           isSubmitted ?  simpleValidator.current.showMessageFor("user_name") : true
                         }
@@ -119,10 +120,10 @@ export default () => {
                             placeholder="Email"
                             name="email"
                             value={user.email}
+                            onChange={e => handleChange({target: {name: e.target.name, value: e.target.value.trim()}})}
                             onBlur={() =>
                            isSubmitted ? simpleValidator.current.showMessageFor("email") : true
-                        }
-                            onChange={handleChange}
+                        }                        
                             />
                         {simpleValidator.current.message(
                             "email",
