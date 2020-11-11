@@ -49,6 +49,10 @@ const EditProfile = ({setIsEdit, user}) => {
     setUserForm({...userForm, [e.target.name]: e.target.value});
   };
 
+  const  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   const updateUserProfile = (e) => {
     let tempUser = {...userForm};
     if (!files.header_image.file) tempUser.header_image = null;
@@ -115,7 +119,7 @@ const EditProfile = ({setIsEdit, user}) => {
                       <div className="lps_media_body">
                         <div className="inline_wrp">
                           <span className="">
-                            <span className="text_primary ft_Weight_500">{userForm.user_name} </span>
+                            <span className="text_primary ft_Weight_500">{capitalizeFirstLetter(userForm.user_name)} </span>
                           </span>
 
                         </div>
