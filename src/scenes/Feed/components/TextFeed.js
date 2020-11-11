@@ -43,7 +43,7 @@ const TextFeed = (props) => {
                     isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
                         <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                         <div class="rwposted_txt">by &nbsp;
-                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{repostedByUser.user_name}</a>
+                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                         </div>
                     </div>
                 }
@@ -96,7 +96,7 @@ const TextFeed = (props) => {
                         isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
                             <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                             <div class="rwposted_txt">by &nbsp;
-                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{repostedByUser.user_name}</a>
+                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                             </div>
                         </div>
                     }
