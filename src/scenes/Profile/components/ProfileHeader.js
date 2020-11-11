@@ -6,6 +6,7 @@ import { FollowStatus, routes } from 'utility/constants/constants';
 import $ from 'jquery';
 import { toggleFollowers } from "redux/actions/auth";
 import Linkify from 'react-linkify';
+import { capitalizeFirstLetter } from 'utility/utility';
 
 
 const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
@@ -54,10 +55,6 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
         } else {
             history.push(routes.LOGIN)
         }
-    }
-
-    const  capitalizeFirstLetter = (string) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     const toggleFollowRequest = () => {

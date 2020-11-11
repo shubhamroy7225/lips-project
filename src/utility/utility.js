@@ -36,6 +36,10 @@ export const replaceAMPM = (time) => {
     }
 }
 
+export const  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export const getSearchParams = (history, key) => {
   const queryParamsString = history.location.search.substring(1), // remove the "?" at the start
       searchParams = new URLSearchParams( queryParamsString );

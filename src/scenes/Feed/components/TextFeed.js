@@ -9,6 +9,7 @@ import TaggedModal from './FeedModal/TaggedModal';
 import ReportModal from './FeedModal/ReportModal';
 import SharedModal from './FeedModal/SharedModal';
 import RemoveFeedModal from './FeedModal/RemoveFeedModal';
+import { capitalizeFirstLetter } from 'utility/utility';
 
 const TextFeed = (props) => {
     let history = useHistory();
@@ -29,10 +30,6 @@ const TextFeed = (props) => {
 
     const clickHandler = () => {
         setShowWidget(!showWidget)
-    }
-
-    const  capitalizeFirstLetter = (string) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     if (isMobile) {

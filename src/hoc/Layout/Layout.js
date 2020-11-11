@@ -12,6 +12,7 @@ import * as liked_post from "assets/images/icons/liked_post.png";
 import "assets/sass/style.scss";
 import { routes, NO_HEADER_ROUTES, NOTIFICATION_TYPES } from 'utility/constants/constants';
 import moment from "moment";
+import { capitalizeFirstLetter } from 'utility/utility';
 
 const Header = ({ notificationCount, notifications, count, ...props }) => {
     const history = useHistory();
@@ -220,10 +221,6 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
             return notification.content
         }
     };
-
-    const  capitalizeFirstLetter = (string) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     const handleRequest = (responeType, notification) => {
         if (responeType === "accept") acceptRequest(notification.follow.id);

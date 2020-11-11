@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { routes } from 'utility/constants/constants';
 import $ from 'jquery';
 import scroller from 'scenes/Feed/Home/scroller';
+import { capitalizeFirstLetter } from 'utility/utility';
 
 const FollowerItem = ({ data, user }) => {
     let history = useHistory()
@@ -13,10 +14,6 @@ const FollowerItem = ({ data, user }) => {
         $('.followers_wrp').removeClass('open');
         $('.followers_wrp_inner').toggleClass('animated fadeInUp');
         history.push(`${routes.PROFILE}/${user.user_name}`)
-    }
-
-    const  capitalizeFirstLetter = (string) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     return (
