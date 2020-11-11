@@ -27,7 +27,7 @@ const RepostModal = ({ feed }) => {
         let feedId = selectedFeed.id;
         actions.repostFeed(feedId).then(
             res => {
-                toastMsg("REPOSTED SUCCESSFULLY!");
+                toastMsg("Reposted successfully!");
             }
         )
         closeModal();

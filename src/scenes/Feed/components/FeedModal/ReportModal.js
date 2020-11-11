@@ -48,7 +48,7 @@ const ReportModal = ({ feed }) => {
         actions.reportAFeed(selectedFeed)
             .then(res => {
                 if (res && res.data.success === true) {
-                    toastMsg("REPORTED SUCESSFULLY!");
+                    toastMsg("Reported successfully!");
                 }
             })
         closeModal();
@@ -58,7 +58,7 @@ const ReportModal = ({ feed }) => {
         actions.blockUser(selectedFeed.user)
             .then(res => {
                 if (res && res.data.success === true) {
-                    toastMsg("USER BLOCKED SUCCESSFULLY!");
+                    toastMsg("User blocked successfully!");
                 }
             })
         closeModal();
@@ -68,7 +68,7 @@ const ReportModal = ({ feed }) => {
         actions.unfollowUser(selectedFeed.user)
             .then(res => {
                 if (res && res.data.success === true) {
-                    toastMsg("USER UNFOLLOWED!");
+                    toastMsg("User unfollowed!");
                 }
             })
         closeModal();

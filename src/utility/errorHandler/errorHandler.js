@@ -21,17 +21,17 @@ export default function errorHandler(error) {
         return Promise.reject(error);
     }
     if (error.message === "Network Error") {
-        toastMsg('ERROR CONNECTING SERVER. PLEASE CHECK YOUR INTERNET CONNECTION.', true);
+        toastMsg('Error connecting server. please check your internet connection.', true);
         return Promise.reject(error.message);
     }
-    const message = error.response && error.response.data.message ? error.response.data.message : 'SEEMS LIKE SOMETHING WENT WRONG!';
+    const message = error.response && error.response.data.message ? error.response.data.message : 'Seems like something went wrong!';
     switch (error.response.status) {
         case 400:
-            if (message === "JWT EXPIRED") handleAuthentication(error);
+            if (message === "Jwt expired") handleAuthentication(error);
             else toastMsg(message, true);
             break;
         case 401:
-            if (message === "JWT EXPIRED") {
+            if (message === "Jwt expired") {
                 return handleAuthentication(error);
             } else toastMsg(message, true);
             console.log('unauthorized, logging out ...');
@@ -40,13 +40,13 @@ export default function errorHandler(error) {
             toastMsg(message, true);
             break;
         case 504:
-            toastMsg('SORRY, COULD NOT ACCESS THE EXTERNAL RESOURCE TO REFINE THE DATA FOR YOUR REQUEST, PLAESE TRY AGAIN LATER!', true);
+            toastMsg('Sorry, could not access the external resource to refine the data for your request, please try again later!', true);
             break;
         case 700:
             toastMsg(message, true);
             break;
         default:
-            toastMsg(message ? message : 'SOMETHING WENT WRONG', true);
+            toastMsg(message ? message : 'Something went wrong', true);
             break;
     }
     return Promise.reject(error.response);

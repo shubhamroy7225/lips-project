@@ -104,7 +104,7 @@ export const forgotPassword = (credentials) => {
             if (response.data.error) {
                 toastMsg(response.data);
             } else {
-                toastMsg("PLEASE CHECK YOUR EMAIL TO RESET YOUR PASSWORD!")
+                toastMsg("Please check your email to reset your password!")
             }
 
             return response.data;
@@ -227,7 +227,7 @@ export const resetPassword = (credentials) => {
             if (response.data.error) {
                 toastMsg(response.data);
             } else {
-                toastMsg("YOUR PAASWORD HAS BEEN RESET SUCCESSFULLY")
+                toastMsg("Your password has been reset successfully")
             }
 
             return response.data;
@@ -297,7 +297,7 @@ export const contact = (body) => {
     return configAPI.contact(body)
     .then(res => {
         commonService.isLoading.onNext(false);
-        if(res) toastMsg('MESSAGE SENT!')
+        if(res) toastMsg('Message sent!')
         return res
     })
     .catch(error => {
