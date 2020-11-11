@@ -221,6 +221,10 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
         }
     };
 
+    const  capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     const handleRequest = (responeType, notification) => {
         if (responeType === "accept") acceptRequest(notification.follow.id);
         else rejectRequest(notification.follow.id);
@@ -238,9 +242,9 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                                 <div className="lps_media_body">
                                     {notification.user ?
                                         <Link to={`/profile/${notification.user.user_name}`}>
-                                            <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5>
+                                            <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: capitalizeFirstLetter(NotificationContent(notification)) }}></h5>
                                         </Link>
-                                        : <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: NotificationContent(notification) }}></h5>}
+                                        : <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: capitalizeFirstLetter(NotificationContent(notification)) }}></h5>}
                                     {
                                         (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested") ? <div className="btn_group">
                                             <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
