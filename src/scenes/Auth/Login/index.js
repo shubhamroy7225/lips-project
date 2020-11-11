@@ -33,7 +33,6 @@ let LoginForm = (props) => {
   };
 
   const handleChange = (e) => {
-    debugger
     setUser({ ...user, [e.target.name]: e.target.value });
     forceUpdate(1)
   };
