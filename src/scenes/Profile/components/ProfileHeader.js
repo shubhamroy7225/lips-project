@@ -56,6 +56,10 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
         }
     }
 
+    const  capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     const toggleFollowRequest = () => {
         if (followStatus === FollowStatus.NotRequested || FollowStatus.Denied === followStatus) {
             followUser(user.id);
@@ -87,7 +91,7 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
                     </figure>
                     <div className="lps_media_body">
                         <div className="user_wrp_mail pull-left">
-                            <span className="text_primary">{user.user_name}</span>
+                            <span className="text_primary">{capitalizeFirstLetter(user.user_name)}</span>
                         </div>
                         {isUserProfile ?
                             <figure className="lps_fig lps_fig_cont lps_fig_circle lps_float_right">

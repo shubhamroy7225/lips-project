@@ -36,6 +36,11 @@ const ImageFeed = (props) => {
     const clickHandler = () => {
         setShowWidget(!showWidget)
     }
+
+    const  capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     if (isMobile) {
         return (
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
@@ -96,7 +101,7 @@ const ImageFeed = (props) => {
                             <div className="lps_media_body">
                                 <p className="moreDesktop">
                                     <span className="text_primary">
-                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
+                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{capitalizeFirstLetter(user_name)} </a>
                                     </span>
                                     {shortDesc}
                                     {pendingText.length > 0 &&
