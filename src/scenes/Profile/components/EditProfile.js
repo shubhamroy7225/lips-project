@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import * as commonService from "../../../utility/utility";
 import { routes } from 'utility/constants/constants';
+import { capitalizeFirstLetter } from 'utility/utility';
 
 const EditProfile = ({setIsEdit, user}) => {
   const headerImgRef = useRef();
@@ -48,10 +49,6 @@ const EditProfile = ({setIsEdit, user}) => {
   const handleChange = (e) => {
     setUserForm({...userForm, [e.target.name]: e.target.value});
   };
-
-  const  capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   const updateUserProfile = (e) => {
     let tempUser = {...userForm};

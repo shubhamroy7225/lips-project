@@ -10,6 +10,7 @@ import { routes } from 'utility/constants/constants';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import placeholder from 'assets/images/thumbnails/thumb_placeholder.png';
+import { capitalizeFirstLetter } from 'utility/utility';
 
 const ImageFeed = (props) => {
     const { user, feed, isReposted, refHandler } = props
@@ -35,10 +36,6 @@ const ImageFeed = (props) => {
 
     const clickHandler = () => {
         setShowWidget(!showWidget)
-    }
-
-    const  capitalizeFirstLetter = (string) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     if (isMobile) {
