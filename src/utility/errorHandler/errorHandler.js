@@ -27,11 +27,11 @@ export default function errorHandler(error) {
     const message = error.response && error.response.data.message ? error.response.data.message : 'Seems like something went wrong!';
     switch (error.response.status) {
         case 400:
-            if (message === "Jwt expired") handleAuthentication(error);
+            if (message === "jwt expired") handleAuthentication(error);
             else toastMsg(message, true);
             break;
         case 401:
-            if (message === "Jwt expired") {
+            if (message === "jwt expired") {
                 return handleAuthentication(error);
             } else toastMsg(message, true);
             console.log('unauthorized, logging out ...');
