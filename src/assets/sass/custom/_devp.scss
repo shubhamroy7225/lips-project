@@ -449,6 +449,10 @@ input.input_modify {
 }
 .changePassword {
   margin-top: 122px !important;
+  @media screen and (max-width: 991px){
+    margin-top: 30px !important;
+    padding: 0 15px;
+  }
   .input_modify {
     color: #000;
     border-radius: 0;
