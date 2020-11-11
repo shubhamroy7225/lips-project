@@ -17,9 +17,10 @@ const SharedModal = ({ feed }) => {
       `${window.location.origin}/post/${selectedFeed && selectedFeed.id}`
     );
     setLinkCopy(true);
-    setInterval(function () {
+    const timer = setTimeout(function () {
       setLinkCopy(false);
     }, 3000);
+    return () => clearTimeout(timer);
   };
 
   let style = { display: "none" };
