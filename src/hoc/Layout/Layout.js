@@ -225,7 +225,14 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
     const handleRequest = (responeType, notification) => {
         if (responeType === "accept") acceptRequest(notification.follow.id);
         else rejectRequest(notification.follow.id);
-    };
+    }
+    const handleLink = (notification) => {
+        if (notification.type === NOTIFICATION_TYPES.shared_your_post || notification.type === NOTIFICATION_TYPES.liked_post) {
+            return `/post/${notification.post.id}`
+        } else {
+            return `/profile/${notification.user.user_name}`
+        }
+    }
     return (
         <>
             {
@@ -238,7 +245,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                                 </figure>
                                 <div className="lps_media_body">
                                     {notification.user ?
-                                        <Link to={`/profile/${notification.user.user_name}`}>
+                                        <Link to={() => handleLink(notification)}>
                                             <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: capitalizeFirstLetter(NotificationContent(notification)) }}></h5>
                                         </Link>
                                         : <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: capitalizeFirstLetter(NotificationContent(notification)) }}></h5>}
