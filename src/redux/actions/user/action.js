@@ -227,7 +227,7 @@ export const resetPassword = (credentials) => {
             if (response.data.error) {
                 toastMsg(response.data);
             } else {
-                toastMsg("Your Password has been reset successfully")
+                toastMsg("Your password has been reset successfully")
             }
 
             return response.data;

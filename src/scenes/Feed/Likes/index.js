@@ -28,6 +28,7 @@ const Likes = (props) => {
     const [topHashtags, setTopHashtags] = useState([]);
     const [gridlayoutMode, setGridLayoutMode] = useState(true);
     var selectedFeedOnToggle = useRef(null);
+    var isFetchInProgress = useRef(false);
 
     //will mount and unmount - on unmount show the header if it's hidden
     //scroll listener
@@ -49,6 +50,11 @@ const Likes = (props) => {
 
 
     const fetchFeeds = (isInitialPage) => {
+        if (isFetchInProgress.current) {
+            return
+        } else {
+            isFetchInProgress.current = true
+        }
         let pageQuery = isInitialPage ? `?limit=${PageSize}&page=${1}` : `?${likedFeedPage}`;
         debugger;
         fetchLikedFeeds(pageQuery, isInitialPage).then(res => {
@@ -67,6 +73,7 @@ const Likes = (props) => {
                     setLikedFeedPaginationCompleted(true);
                 }
             }
+            isFetchInProgress.current = false
         })
     }
 

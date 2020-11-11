@@ -15,6 +15,10 @@ const FollowerItem = ({ data, user }) => {
         history.push(`${routes.PROFILE}/${user.user_name}`)
     }
 
+    const  capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
         <div class="lps_media lps_f_vm lps_follow_media fellowersIcon">
             <figure class="lps_fig lps_fig_circle">
@@ -23,7 +27,7 @@ const FollowerItem = ({ data, user }) => {
             <div class="lps_media_body">
                 <div class="lps_media_body">
                     <div class="lps_flx_vm_jsbtwn">
-                        <span class="lps_sm_folow"><a onClick={() => { moveToProfile() }}>{user.user_name}</a></span>
+                        <span class="lps_sm_folow"><a onClick={() => { moveToProfile() }}>{capitalizeFirstLetter(user.user_name)}</a></span>
                     </div>
                 </div>
             </div>
