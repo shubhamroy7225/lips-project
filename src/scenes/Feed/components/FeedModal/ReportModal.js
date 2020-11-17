@@ -90,7 +90,7 @@ const ReportModal = ({ feed }) => {
                                 <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide This Post</a>
                             </li>
                             <li>
-                                <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Don't Show Me Anything Like This</a>
+                                <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
                             </li>
                             <li>
                                 <a onClick={reportFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Report</a>
