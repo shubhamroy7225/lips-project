@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { FeedType } from 'utility/constants/constants';
 import * as commonService from "utility/utility";
 
-const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submitFeedRequest }) => {
+const CreateTextTab = ({ handleToggleTags, toggleAddTags, toggleLipsInfo, selectedHashTags, submitFeedRequest }) => {
     const history = useHistory();
     const [likable, setLikable] = useState(true);
     const [caption, setCaption] = useState("");
@@ -71,7 +71,7 @@ const CreateTextTab = ({ toggleAddTags, toggleLipsInfo, selectedHashTags, submit
                     <div class="hashtags">
                         {
                             selectedHashTags.map((ele, index) => {
-                                return <a class="theme_btn theme_secondary">{ele.name}</a>
+                                return <a class="theme_btn theme_secondary" onClick={e => handleToggleTags(ele)}>{ele.name}</a>
                             })
                         }
                     </div>
