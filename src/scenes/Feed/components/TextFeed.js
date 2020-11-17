@@ -72,7 +72,7 @@ const TextFeed = (props) => {
         );
     } else {
         return (
-            <div class="lps_list lps_dsk_list" ref={(r) => refHandler && refHandler(r)}>
+            <div class="lps_list lps_dsk_list postBox" ref={(r) => refHandler && refHandler(r)}>
                 <div class="lps_inner_wrp_media">
                     <div class="lps_media">
                         <figure class="lps_fig lps_fig_circle">
