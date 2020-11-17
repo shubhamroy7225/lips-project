@@ -214,7 +214,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
 
     const NotificationContent = (notification) => {
         if (notification.type === NOTIFICATION_TYPES.liked_post) {
-            return notification.content.replace("liked", `<img src=` + liked_post + ` class="inline_img" alt="liked"/>`);
+            return notification.content.replace("liked", `<img src=` + require("assets/images/icons/liked_post.svg") + ` class="inline_img" alt="liked"/>`);
         } else if (notification.type === NOTIFICATION_TYPES.shared_your_post) {
             return notification.content.replace("shared", `<img src=` + require("assets/images/icons/icn_repeat.svg") + ` class="inline_img" alt="liked"/>`);
         } else {

@@ -215,7 +215,7 @@ const CreateImageTab = ({
               <h6 class="sm_title">
                 Others Can{" "}
                 <img
-                  src={require("assets/images/icons/icn_mouth.png")}
+                  src={require("assets/images/icons/liked_post.svg")}
                   alt="kiss"
                 />{" "}
               </h6>

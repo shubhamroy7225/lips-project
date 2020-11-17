@@ -146,7 +146,7 @@ const Likes = (props) => {
         emptyPostData = (
             <div class="main_feed_cont">
                 <div class="lps_tb_para">
-                    <h4>All the posts you  <img src={require("assets/images/icons/liked_post.png")} alt="BitCot Logo" className="header__logo like_logo" />  will appear here</h4>
+                    <h4>All the posts you  <img src={require("assets/images/icons/liked_post.svg")} width="40" alt="BitCot Logo" className="header__logo like_logo" />  will appear here</h4>
                 </div>
             </div>
         )
@@ -158,7 +158,7 @@ const Likes = (props) => {
                 {
                     likedFeeds.length > 0 && <div class="lps_inner_wrp">
                         <div class="see_also">
-                            <h5 class="h5_title lps_flx_vm tags_lip_inline mb_15">MOST <img src={require("assets/images/icons/icn_mouth.png")} alt="Image" class="lip_icn" />TAGS</h5>
+                            <h5 class="h5_title lps_flx_vm tags_lip_inline mb_15">MOST <img src={require("assets/images/icons/liked_post.svg")} alt="Image" class="lip_icn" />TAGS</h5>
                             <div class="hashtag hashtag_seondary weightAnchor">
                                 {topHashtags.map((tag, index) => <a key={index} class="theme_btn theme_secondary">{tag}</a>)}
                             </div>

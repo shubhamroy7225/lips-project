@@ -87,7 +87,7 @@ const CreateTextTab = ({ handleToggleTags, toggleAddTags, toggleLipsInfo, select
                 <div class="tag_product_con border_white_box">
                     <div class="d_inline mb_0">
                         <div class="grid_left lps_flx_vm_jsbtwn lps_flx_vm others_wrp">
-                            <h6 class="sm_title">Others Can <img src={require("assets/images/icons/icn_mouth.png")} alt="kiss" /> </h6>
+                            <h6 class="sm_title">Others Can <img src={require("assets/images/icons/liked_post.svg")} alt="kiss" /> </h6>
                             <label class="lps_switch">
                                 <input type="checkbox"
                                     name="ownContent"
