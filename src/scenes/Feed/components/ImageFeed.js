@@ -88,7 +88,7 @@ const ImageFeed = (props) => {
         )
     } else {
         return (
-            <div className="lps_list lps_dsk_list" ref={(r) => refHandler && refHandler(r)}>
+            <div className="lps_list lps_dsk_list postBox" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_inner_wrp_media">
                     <div className="lps_media">
                         <figure className="lps_fig lps_fig_circle">
@@ -117,7 +117,7 @@ const ImageFeed = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="post_img_block lps_pink_bg lps_widgets_wrp model_border">
+                <div className="post_img_block lps_pink_bg lps_widgets_wrp model_border textContent hightAuto">
                     <div className="lps_sm_shape"></div>
                     {isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
                         <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
