@@ -2,7 +2,17 @@ import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import * as actions from "redux/actions";
-const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
+
+const Hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
+
+   const {hashTags, count} = useSelector(store => store.feedReducer);
+   const showFavoriteTags = (tag) => {
+      actions.setFavoriteAvoidTags({hashtags: {
+         remove: [tag]
+      }}).then(res => {
+         return actions.getUserHashTags();
+      })
+   };
   return (
     <>
       <li className="list-group-item">
@@ -15,7 +25,7 @@ const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
                <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                   <li>
                      {showhashTags.map((tag, index) =>
-                     <button key={index} className="theme_btn theme_secondary text_white">{tag}</button>
+                     <button onClick={e => showFavoriteTags(tag)} key={index} className="theme_btn theme_secondary text_white">{tag}</button>
                      )}
                   </li>
                </ul>
@@ -36,7 +46,7 @@ const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
                <ul className="lps_btn_grps lps_ul lps_hash_ul lips-hash-tags">
                   <li>
                      {hideHashtag.map((tag, index) =>
-                     <button key={index} className="theme_btn theme_secondary text_white">{tag}</button>
+                     <button onClick={e => showFavoriteTags(tag)} key={index} className="theme_btn theme_secondary text_white">{tag}</button>
                      )}
                   </li>
                </ul>
@@ -50,4 +60,4 @@ const hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
     </>
   );
 }
-export default hashtag
+export default Hashtag
