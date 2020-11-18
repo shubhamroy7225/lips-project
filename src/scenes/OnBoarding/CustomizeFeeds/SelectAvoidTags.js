@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import * as actions from "redux/actions";
-
+import * as AuthActions from "redux/actions";
 import HashTags from "../components/hashTags";
 import { routes } from "utility/constants/constants";
 
@@ -28,7 +28,10 @@ export default () => {
         .then((res) => {
           if (res) history.push(routes.MAIN_FEED);
         })}
-    return true    
+    else{
+      AuthActions.completeOnBordingFlow();
+      history.push(routes.MAIN_FEED);
+    }    
   };
   useEffect(() => {
     if (!loaded) {
