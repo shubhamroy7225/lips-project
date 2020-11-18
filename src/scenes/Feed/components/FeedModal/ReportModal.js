@@ -76,7 +76,7 @@ const ReportModal = ({ feed }) => {
 
     let isFollowing = selectedFeed && selectedFeed.user.is_following;
     return (
-        <div className="hover_bkgr_fricc" style={style}>
+        <div className="hover_bkgr_fricc mobileModal" style={style}>
             <div className="modal-dialog-centered">
                 <span className="helper"></span>
                 <div className="popup_cont popup-custom-header">
@@ -87,7 +87,7 @@ const ReportModal = ({ feed }) => {
                         <ul class="lps_btn_grps lps_ul newButton">
                             <li class="lps_title">
                                 Don't want to see this?
-                        </li>
+                            </li>
                             <li>
                                 <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide This Post</a>
                             </li>

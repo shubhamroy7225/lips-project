@@ -589,26 +589,48 @@ input.input_modify {
     margin-top: 14px !important;
 }
 .postBox {
-  min-height: 268px;
-  .hightAuto {
-    height: auto !important;
-    min-height: auto !important;
-    padding: 0;
-  }
-  a figure.feed_galary {
-      height: auto !important;
-      min-height: auto !important;
-      background: none !important;
-  }
-  .newButton {
-      padding: 0 15px !important;
-  }
+  	min-height: 268px;
+	.hightAuto {
+		height: auto !important;
+		min-height: auto !important;
+		padding: 0;
+	}
+	a figure.feed_galary {
+		height: auto !important;
+		min-height: auto !important;
+		background: none !important;
+	}
+	.newButton {
+		padding: 0 15px !important;
+	}
+	.lps_widgets {
+		bottom: 5px !important;
+	}
 }
 .popup-custom-header {
     display: flex;
     flex-direction: column;
-  .popup_close_header {
-  width: 100%;
+    .popup_close_header {
+      width: 100%;
+    }
 }
-
+.mobileShare {
+    white-space: inherit !important;
+}
+@media screen and (max-width: 991px){
+	.post_shape {
+		min-height: 400px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		.post_img_block {
+			margin-top: 0 !important;
+		}
+	}
+	.newButton {
+		padding-top: 0 !important;
+	}
+	.mobileModal .popup_cont {
+		min-height: 410px;
+	}
 }

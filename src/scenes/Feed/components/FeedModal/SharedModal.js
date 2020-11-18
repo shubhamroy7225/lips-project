@@ -36,7 +36,7 @@ const SharedModal = ({ feed }) => {
     }
   }
   return (
-    <div class="hover_bkgr_fricc" style={style}>
+    <div class="hover_bkgr_fricc mobileModal" style={style}>
       <div class="modal-dialog-centered">
         <div class="popup_cont popup-custom-header">
           <div className="popup_close_header">
@@ -48,7 +48,7 @@ const SharedModal = ({ feed }) => {
               <li>
                 <span
                   onClick={copyLink}
-                  className="theme_btn theme_outline_light"
+                  className="theme_btn theme_outline_light mobileShare"
                 >
                   {window.location.origin}/post/
                   {selectedFeed && selectedFeed.id}

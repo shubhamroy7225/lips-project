@@ -34,7 +34,7 @@ const RepostModal = ({ feed }) => {
     }
 
     return (<>
-        <div class="hover_bkgr_fricc" style={style}>
+        <div class="hover_bkgr_fricc mobileModal" style={style}>
             <div class="modal-dialog-centered">
                 <div class="popup_cont popup-custom-header">
                     <div className="popup_close_header">
