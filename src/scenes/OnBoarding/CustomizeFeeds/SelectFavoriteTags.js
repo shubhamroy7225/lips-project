@@ -18,8 +18,10 @@ export default () => {
     });
     else actions.setFavoriteAvoidTagsJustBrowse({hashtags: {show: selectTags}}).then(res => {
       if(res) history.push(routes.SELECT_AVOID_TAGS)
-    })};
-    return true
+    })}
+  else{
+    history.push(routes.SELECT_AVOID_TAGS)
+  }    
   };
 
   return (
