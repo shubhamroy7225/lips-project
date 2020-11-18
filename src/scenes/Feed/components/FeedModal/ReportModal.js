@@ -79,9 +79,11 @@ const ReportModal = ({ feed }) => {
         <div className="hover_bkgr_fricc" style={style}>
             <div className="modal-dialog-centered">
                 <span className="helper"></span>
-                <div className="popup_cont">
-                    <div className="popup_body">
+                <div className="popup_cont popup-custom-header">
+                    <div className="popup_close_header">
                         <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
+                    </div>
+                    <div className="popup_body">
                         <ul class="lps_btn_grps lps_ul newButton">
                             <li class="lps_title">
                                 Don't want to see this?

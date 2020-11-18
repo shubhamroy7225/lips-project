@@ -604,3 +604,11 @@ input.input_modify {
       padding: 0 15px !important;
   }
 }
+.popup-custom-header {
+    display: flex;
+    flex-direction: column;
+  .popup_close_header {
+  width: 100%;
+}
+
+}
