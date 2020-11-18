@@ -1,13 +1,29 @@
 import React from 'react';
 import {Link} from "react-router-dom";
  import * as actions from "redux/actions";
+ import * as commonService from "utility/utility";
 const blockUser = ({blockedUsers}) => {
     const unblockUser = (id) =>{
        actions.unblockUser(id).then(res => {
-          return res
+         commonService.isDialogOpen.onNext(false);
+         return res
         
        });
      };
+
+     const blockUserConfirm = (blockedUsers) => {
+      commonService.isDialogOpen.onNext({
+         open: true,
+         data: {
+            title: "",
+            message: "Are you sure to unblock?"
+         },
+         confirmText: "Yes",
+         cancelText: "No",
+         onConfirm: () => unblockUser(blockedUsers),
+         onCancel: () => commonService.isDialogOpen.onNext(false)
+      });
+   };
   return (
     <>
       <li className="list-group-item">
@@ -19,7 +35,7 @@ const blockUser = ({blockedUsers}) => {
                <img src={block_user.photo_urls.medium ? block_user.photo_urls.medium : require("assets/images/icons/user.jpg")} alt="User"/>
                </figure>
                <div className="lps_media_body">
-                  <span onClick={e => unblockUser(block_user.id)} className="btn-transparent lps_link lps_flt_right ft_Weight_600">
+                  <span onClick={e => blockUserConfirm(block_user.id)} className="btn-transparent lps_link lps_flt_right ft_Weight_600">
                   Unblock</span>
               <p className="lps_md_title mb_0 ft_Weight_500">{block_user.user_name}</p>
                </div>
