@@ -68,7 +68,7 @@ const MenuOptionSlider = (props) => {
                         type: routes.LIKES
                     }
                 }} className="collapse_links lip_link_wrp">
-                    <img src={require("assets/images/icons/white_kiss.svg")} className="ci_image" alt="mouth" />
+                    <img src={require("assets/images/icons/icn_lip_white.svg")} className="ci_image" alt="mouth" />
                 </Link>
             </li>
             <li className="listed_item">

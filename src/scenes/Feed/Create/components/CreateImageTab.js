@@ -8,6 +8,7 @@ import { decode } from "base64-arraybuffer";
 const CreateImageTab = ({
   toggleAddTags,
   toggleLipsInfo,
+    handleToggleTags,
   selectedHashTags,
   submitFeedRequest,
 }) => {
@@ -135,7 +136,6 @@ const CreateImageTab = ({
     }
   }
 
-  
 
   return (
     <div
@@ -184,7 +184,7 @@ const CreateImageTab = ({
         <div class="hash_tag_block">
           <div class="hashtags">
             {selectedHashTags.map((ele, index) => {
-              return <a class="theme_btn theme_secondary">{ele.name}</a>;
+              return <a class="theme_btn theme_secondary" onClick={e => handleToggleTags(ele)}>{ele.name}</a>;
             })}
           </div>
           <div class="hashtag mt_15">
@@ -215,7 +215,7 @@ const CreateImageTab = ({
               <h6 class="sm_title">
                 Others Can{" "}
                 <img
-                  src={require("assets/images/icons/icn_mouth.png")}
+                  src={require("assets/images/icons/liked_post.svg")}
                   alt="kiss"
                 />{" "}
               </h6>

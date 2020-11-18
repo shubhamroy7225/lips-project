@@ -38,7 +38,7 @@ const ConfirmDialog = () => {
       open && <div className="react-confirm-alert-overlay commonModel">
     <div className="confirmModel">
         <div className="modelHeader">
-            <button onClick={() => handleClose(false)}>&times;</button>
+            <button onClick={() => handleClose(false)}><img src={require("assets/images/icons/icn_close_pink.png")} alt="close_icon" /></button>
         </div>
         <div className="modelBody">
            {data.title && <h3>{data.title}</h3>}

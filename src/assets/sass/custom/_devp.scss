@@ -588,3 +588,27 @@ input.input_modify {
 .boxIcon {
     margin-top: 14px !important;
 }
+.postBox {
+  min-height: 268px;
+  .hightAuto {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 0;
+  }
+  a figure.feed_galary {
+      height: auto !important;
+      min-height: auto !important;
+      background: none !important;
+  }
+  .newButton {
+      padding: 0 15px !important;
+  }
+}
+.popup-custom-header {
+    display: flex;
+    flex-direction: column;
+  .popup_close_header {
+  width: 100%;
+}
+
+}

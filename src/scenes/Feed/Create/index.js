@@ -25,7 +25,13 @@ const Create = () => {
                     history.push(routes.PROFILE);
                 }
             });
-    }
+    };
+
+    const handleToggleTags = (ele) => {
+        let tags = [...selectedHashTags];
+        tags.splice(tags.findIndex(e => e.name === ele.name), 1);
+        setSelectedHashTags(tags);
+    };
 
     return (
         <>
@@ -33,11 +39,13 @@ const Create = () => {
                 <div className="lps_container">
                     <div class="theme_tab_cont">
                         <CreateImageTab
+                            handleToggleTags={handleToggleTags}
                             selectedHashTags={selectedHashTags}
                             toggleAddTags={() => setShowAddTags(!showAddTags)}
                             toggleLipsInfo={() => setShowLipsInfo(!showLipsInfo)}
                             submitFeedRequest={submitFeedRequest} />
                         <CreateTextTab
+                            handleToggleTags={handleToggleTags}
                             selectedHashTags={selectedHashTags}
                             toggleAddTags={() => setShowAddTags(!showAddTags)}
                             toggleLipsInfo={() => setShowLipsInfo(!showLipsInfo)}

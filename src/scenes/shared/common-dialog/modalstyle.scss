@@ -78,14 +78,14 @@
         h3{
             color: #fff;
             font-size: 20px;
-            font-weight: 500;
+            font-weight: 400;
             margin: 0 0 46px;
         }
         p{
             color: #fff;
             margin: 0 0 143px;
             font-size: 18px;
-            font-weight: 500;
+            font-weight: 400;
         }
         .comonWdth {
           button{
@@ -98,7 +98,7 @@
 
 @media screen and (max-width: 767px){
     .confirmModel {
-        width: 300px;
+        width: 100%;
     }
     .comonWdth {
       button{

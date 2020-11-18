@@ -33,12 +33,14 @@ const TaggedModal = ({ feed }) => {
         <div className="hover_bkgr_fricc" style={style}>
             <div className="modal-dialog-centered">
                 <span className="helper"></span>
-                <div className="popup_cont">
-                    <div className="popup_body">
+                <div className="popup_cont popup-custom-header">
+                    <div className="popup_close_header">
                         <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
+                    </div>
+                    <div className="popup_body">
                         <ul className="lps_btn_grps lps_ul lps_hash_ul">
                             <li>
-                                {hashTagsContent.length ? hashTagsContent : <p className="text_white">No hashtag added</p>}
+                                {hashTagsContent.length ? hashTagsContent : <p className="text_white">No hashtag's added</p>}
                             </li>
                         </ul>
                         {/* <a href="#" className="theme_btn theme_outline_primary text_white text_uppercase min_w_170 btnr_25">Wrong tags?</a> */}
