@@ -30,7 +30,7 @@ const TaggedModal = ({ feed }) => {
 
     let hashTagsContent = hashtags.map((ele, index) => <button key={index} className="theme_btn theme_light text_secondary">{ele.hashtag_name}</button>)
     return (
-        <div className="hover_bkgr_fricc" style={style}>
+        <div className="hover_bkgr_fricc mobileModal" style={style}>
             <div className="modal-dialog-centered">
                 <span className="helper"></span>
                 <div className="popup_cont popup-custom-header">

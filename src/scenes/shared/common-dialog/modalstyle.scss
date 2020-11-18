@@ -70,6 +70,12 @@
             line-height: 20px;
             display: inline-block;
             cursor: pointer;
+            img {
+              width: 18px;
+              vertical-align: top;
+              margin: 5px 0 0;
+              display: inline-block;
+            }
         }
     }
     .modelBody {
