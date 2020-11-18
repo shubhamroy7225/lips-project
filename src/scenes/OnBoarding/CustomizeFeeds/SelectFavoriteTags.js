@@ -12,12 +12,14 @@ export default () => {
   const [selectTags, setSelectTags] = useState([]);
   const showhashTags = [];
   const addFavoriteTags = () => {
+   if(selectTags.length){
     if (user) actions.setFavoriteTags({hashtags: {show: selectTags}}).then(res => {
       if(res) history.push(routes.SELECT_AVOID_TAGS)
     });
     else actions.setFavoriteAvoidTagsJustBrowse({hashtags: {show: selectTags}}).then(res => {
       if(res) history.push(routes.SELECT_AVOID_TAGS)
-    });
+    })};
+    return true
   };
 
   return (

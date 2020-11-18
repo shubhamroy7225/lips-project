@@ -15,6 +15,7 @@ export default () => {
   const [loaded, setLoaded] = useState(false)
 
   const addFavoriteTags = () => {
+  if(selectTags.length){  
     if (user)
       actions
         .setAvoidTags({ hashtags: { hide: selectTags } })
@@ -26,7 +27,8 @@ export default () => {
         .setFavoriteAvoidTagsJustBrowse({ hashtags: { hide: selectTags } })
         .then((res) => {
           if (res) history.push(routes.MAIN_FEED);
-        });
+        })}
+    return true    
   };
   useEffect(() => {
     if (!loaded) {
