@@ -30,6 +30,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
     const [image1, setImage1] = useState({file:null, base64:null})
     const [image2, setImage2] = useState({file:null, base64:null})
     const [image3, setImage3] = useState({file:null, base64:null})
+    const [isSubmitted, setSubmitted] = useState(false);
 
     const fileSelector1 = useRef(null)
     const fileSelector2 = useRef(null)
@@ -91,6 +92,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                 postDataToServer();
             }
         } else {
+            setSubmitted(true);
             simpleValidator.current.showMessages(); //show validation messages
             simpleValidator2.current.showMessages();
             forceUpdate(1)
@@ -189,13 +191,16 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                                 <img style={!image3.base64 ? withoutImageStyle : null} src={image3.base64 ? image3.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgThird} alt="Image" class="add_img" />
                             </div>
                         </div>
-                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio1" ref={fileSelector1} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
+                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio1" ref={fileSelector1} style={{ display: "none" }} 
+                        onBlur={() => isSubmitted ? simpleValidator.current.showMessageFor('portfolio1') : true} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
                         {!approvalForm.link && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio1', image1.base64, 'required')}</span>}
                         
-                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio2" ref={fileSelector2} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector2)} />
+                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio2" ref={fileSelector2} style={{ display: "none" }} 
+                        onBlur={() => isSubmitted ? simpleValidator.current.showMessageFor('portfolio2') : true} onChange={(e) => onFileSelectionHandler(e, fileSelector2)} />
                        {!approvalForm.link && image1.base64 && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio2', image2.base64, 'required')}</span>}
 
-                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio3" ref={fileSelector3} style={{ display: "none" }} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
+                        <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio3" ref={fileSelector3} style={{ display: "none" }} 
+                        onBlur={ isSubmitted ? () => simpleValidator.current.showMessageFor('portfolio3') : true} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
                         {!approvalForm.link && image2.base64 && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio3', image3.base64, 'required')}</span>}
 
                     </div>
@@ -233,7 +238,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                     </div> */}
                     <p>If you plan to share the work of others on your profile that is fine! However, we ask that you give full credit to any artists/creators involved. Lips loves our creators, so intentional plagiarism and copyright infringement is a one-way ticket to outta here town for sure.</p>
                     <div class="post_block mb20 mt_15">
-                        <button type="submit" class="circle">Submit</button>
+                        <button type="submit" class="circle submit-cursor">Submit</button>
                         <a onClick={() => cancel()} class="cancel_post link_underline">Cancel</a>
                     </div>
                 </form>
