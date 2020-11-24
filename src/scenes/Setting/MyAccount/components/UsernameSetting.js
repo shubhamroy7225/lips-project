@@ -26,7 +26,7 @@ export default ({user}) => {
       <li className="list-group-item">
         <div className="lps_user_info">
           <p className="user_info_label">Username
-            <span className={`ml_5 lps_link ft_Weight_600 ml_5`}
+            <span className={`ml_5 lps_link ft_Weight_600 ml_5 submit-cursor`}
                      onClick={inputVisible}> {inputShown ? " cancel" : " change"}
             </span> </p>
           <div className="user_info_field">

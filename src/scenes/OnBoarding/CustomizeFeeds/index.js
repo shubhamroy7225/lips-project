@@ -32,7 +32,7 @@ export default () => {
                   An auto-populated feed may include content that's not for everyone such as nudity or profanity.
                 </h5>
                 <h5 className="ft_Weight_400">
-                  Can't decide now? You can always adjust your Feed settings later.
+                  Can't decide now? You can always adjust your feed settings later.
                 </h5>
               </article>
               <div className="pos_wrp onboarding_btm">
