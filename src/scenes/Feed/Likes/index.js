@@ -56,7 +56,6 @@ const Likes = (props) => {
             isFetchInProgress.current = true
         }
         let pageQuery = isInitialPage ? `?limit=${PageSize}&page=${1}` : `?${likedFeedPage}`;
-        debugger;
         fetchLikedFeeds(pageQuery, isInitialPage).then(res => {
             if (res.data.success === true) {
                 if (res.data.posts.length > 0) {

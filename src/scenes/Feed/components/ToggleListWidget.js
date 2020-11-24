@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import $ from 'jquery';
-import { likeAFeed, unlikeAFeed } from 'redux/actions/feed/action';
-import { setFeedModalType, setSelectedFeed } from 'redux/actions/feed';
-import { FeedModalType } from 'utility/constants/constants';
 
 const ToggleListWidget = ({ gridlayoutMode, setGridLayoutMode }) => {
 

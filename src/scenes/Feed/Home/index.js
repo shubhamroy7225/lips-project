@@ -11,8 +11,8 @@ import RestrictedFeed from 'scenes/Feed/components/RestrictedFeed';
 import MenuOptionSlider from '../components/MenuOptionSlider';
 import { isMobile } from 'react-device-detect';
 import { fetchFeeds, fetchFeedsForNonRegUser } from 'redux/actions';
-import { FeedType, PageSize } from 'utility/constants/constants';
-import { setPage } from 'redux/actions/feed';
+import { FeedModalType, FeedType, PageSize } from 'utility/constants/constants';
+import { setFeedModalType, setPage } from 'redux/actions/feed';
 import scroller from './scroller';
 import PaginationLoader from '../components/PaginationLoader';
 import * as commonService from "utility/utility";
@@ -26,6 +26,7 @@ const MainFeed = (props) => {
 
     //will mount and unmount - on unmount show the header if it's hidden
     useEffect(() => {
+        setFeedModalType({ modalType: FeedModalType.undefined });
         if (props.feeds.length === 0) {
             fetchFeedsFromServer(true);
         }
