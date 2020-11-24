@@ -28,8 +28,10 @@ export default function errorHandler(error) {
     switch (error.response.status) {
         case 400:
             if (message === "jwt expired") handleAuthentication(error);
-            else {
+            else if (message && message.toLowerCase() === "unauthorized") {
                 AuthActions.signOut();
+                toastMsg(message, true);
+            } else {
                 toastMsg(message, true);
             }
             break;
