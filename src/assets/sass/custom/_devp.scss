@@ -637,6 +637,10 @@ input.input_modify {
 .mProfile p {
   margin-top: 16px !important;
 }
+.exploreSearch input, .exploreSearch span.input-group-addon {
+  background: none !important;
+  border-color: #fff !important;
+}
 
 .submit-cursor{
   cursor: pointer;

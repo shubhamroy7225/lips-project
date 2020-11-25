@@ -22,7 +22,7 @@ const SearchInput = ({ submitHandler }) => {
             <div className="lps_inner_cont">
                 <div className="search_category">
                     <div className="input-group theme_input_group relative_pos">
-                        <form>
+                        <form className="exploreSearch">
                             <input id="email"
                                 type="text"
                                 value={searchText}
@@ -31,7 +31,7 @@ const SearchInput = ({ submitHandler }) => {
                                 name="email"
                                 placeholder=""
                                 onChange={inputChangeHandler} />
-                            <span className="input-group-addon" onClick={() => submitHandler(searchText)}><img src={require("assets/images/icons/search.svg")} alt="Search Icon" /></span>
+                            <span className="input-group-addon" onClick={() => submitHandler(searchText)}><img src={require("assets/images/icons/icn_search.png")} alt="Search Icon" /></span>
                         </form>
                         <SearchSuggestions  showSuggestions={showSuggestions} setSearchText={setSearchText} setShowSuggestions={setShowSuggestions}/>
                     </div>
