@@ -36,7 +36,7 @@ const TextFeed = (props) => {
         return (
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_sm_shape lps_sm_shape1"></div>
-                <div className={isReposted ? "lps_list_repost_text lps_dsk_list" : ""}>
+                <div className={isReposted ? "lps_list_repost_text" : ""}>
                 {
                     isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
                         <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
