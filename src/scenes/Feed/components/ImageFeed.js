@@ -42,8 +42,8 @@ const ImageFeed = (props) => {
         return (
             <div className="post_shape">
                 <div className="lps_list postBox" ref={(r) => refHandler && refHandler(r)}>
+                <div className={isReposted ? "lps_list_repost" : ""}>
                     <div className="lps_sm_shape"></div>
-                    <div className={isReposted ? "lps_list_repost" : ""}>
                     <div className="post_img_block lps_widgets_wrp bg_gray_feed">
                         {isReposted && <div class="reposted_wrps">
                             <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
@@ -62,29 +62,29 @@ const ImageFeed = (props) => {
                         <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
                     
                     </div>
-                    </div>
-                <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
-                    <div className="lps_media">
-                        <figure className="lps_fig lps_fig_circle">
-                            <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
-                        </figure>
-                        <div className="lps_media_body">
+                    <div className="lps_inner_wrp lps_inner_wrp_media post_mediaText">
+                        <div className="lps_media">
+                            <figure className="lps_fig lps_fig_circle">
+                                <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
+                            </figure>
                             <div className="lps_media_body">
-                                <p className="mb_5 more">
-                                    <span className="text_primary ft_Weight_500">
-                                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
-                                    </span> {shortDesc}
-                                    {pendingText.length > 0 &&
-                                        <>
-                                            <span className="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
-                                            <span className="morecontent moreLess">
-                                                <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
-                                                </span>&nbsp;&nbsp;
-                                                <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} className={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
-                                            </span>
-                                        </>
-                                    }
-                                </p>
+                                <div className="lps_media_body">
+                                    <p className="mb_5 more">
+                                        <span className="text_primary ft_Weight_500">
+                                            <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
+                                        </span> {shortDesc}
+                                        {pendingText.length > 0 &&
+                                            <>
+                                                <span className="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
+                                                <span className="morecontent moreLess">
+                                                    <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
+                                                    </span>&nbsp;&nbsp;
+                                                    <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} className={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
+                                                </span>
+                                            </>
+                                        }
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ const ImageFeed = (props) => {
     } else {
         return (
             <div className="lps_list lps_dsk_list postBox" ref={(r) => refHandler && refHandler(r)}>
-                <div className="lps_inner_wrp_media">
+                <div class={`lps_inner_wrp_media ${isReposted ? "lps_text_reposted" : ""}`}>
                     <div className="lps_media">
                         <figure className="lps_fig lps_fig_circle">
                             <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />

@@ -35,17 +35,18 @@ const TextFeed = (props) => {
     if (isMobile) {
         return (
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
-                <div className="lps_sm_shape lps_sm_shape1"></div>
                 <div className={isReposted ? "lps_list_repost_text" : ""}>
+                <div className="lps_sm_shape lps_sm_shape1"></div>
+                
                 {
                     isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
                         <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
-                        <div class="rwposted_txt">by &nbsp;
+                        <div class="rwposted_txt">
                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                         </div>
                     </div>
                 }
-                <div class="lps_inner_wrp bg_gray_feed lps_mt_50 textContent">
+                <div class="lps_inner_wrp bg_gray_feed textContent post_text_block">
                     <div className="lps_inner_cont lps_pos_rltv">
                         <article className="lps_art">
                             <a id="trigger_text_feed1" onClick={clickHandler}>
@@ -55,8 +56,7 @@ const TextFeed = (props) => {
                         <FeedWidget showWidget={showWidget} feed={feed} user={user} />
                     </div>
                 </div>
-                </div>
-                <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
+                <div className="lps_inner_wrp post_mediaText lps_inner_wrp_media">
                     <div className="lps_media">
                         <figure className="lps_fig lps_fig_circle">
                             <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
@@ -71,11 +71,12 @@ const TextFeed = (props) => {
                     </div>
                 </div>
             </div>
+            </div>
         );
     } else {
         return (
             <div class="lps_list lps_dsk_list postBox" ref={(r) => refHandler && refHandler(r)}>
-                <div class="lps_inner_wrp_media">
+                <div class={`lps_inner_wrp_media ${isReposted ? "lps_text_reposted" : ""}`}>
                     <div class="lps_media">
                         <figure class="lps_fig lps_fig_circle">
                             <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
