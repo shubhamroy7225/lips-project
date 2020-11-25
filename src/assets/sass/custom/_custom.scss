@@ -4471,3 +4471,29 @@ figure.feed_fig310 {
     }
   }
 }
+
+.lps_list_repost_text {
+  .post_img_block  {
+    border: 1px dashed $brand-primary;
+    border-bottom: 0;
+  }
+  
+  .reposted_wrps {
+    margin: -1px -1px 0 0px;
+    border-left: 1px dashed $brand-primary;
+    border-bottom: 1px dashed $brand-primary;
+    img {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .lps_mobile{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+  }
+  
+}

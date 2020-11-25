@@ -36,6 +36,7 @@ const TextFeed = (props) => {
         return (
             <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                 <div className="lps_sm_shape lps_sm_shape1"></div>
+                <div className={isReposted ? "lps_list_repost_text lps_dsk_list" : ""}>
                 {
                     isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
                         <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
@@ -53,6 +54,7 @@ const TextFeed = (props) => {
                         </article>
                         <FeedWidget showWidget={showWidget} feed={feed} user={user} />
                     </div>
+                </div>
                 </div>
                 <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
                     <div className="lps_media">
@@ -87,12 +89,13 @@ const TextFeed = (props) => {
                         </div>
                     </div>
                 </div>
-                <div class="lps_inner_wrp lps_pink_border lps_widgets_wrp lps_mt_50 textContent">
+                <div className={isReposted ? "lps_list_repost_text lps_mobile" : ""}>
+                <div class="lps_inner_wrp post_img_block lps_pink_border lps_widgets_wrp lps_mt_50 textContent">
                     <div class="lps_sm_shape lps_sm_shape1"></div>
                     {
                         isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
                             <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
-                            <div class="rwposted_txt">by &nbsp;
+                            <div class="rwposted_txt">
                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                             </div>
                         </div>
@@ -113,6 +116,7 @@ const TextFeed = (props) => {
                             <RemoveFeedModal feed={feed} />
                         </>
                     }
+                </div>
                 </div>
                 <FeedWidget showWidget={true} feed={feed} user={user} />
             </div>
