@@ -57,7 +57,7 @@ const TextFeed = (props) => {
                     </div>
                 </div>
                 <div className="lps_inner_wrp post_mediaText lps_inner_wrp_media">
-                    <div className="lps_media">
+                    <div className="lps_media mProfile">
                         <figure className="lps_fig lps_fig_circle">
                             <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                         </figure>
@@ -77,7 +77,7 @@ const TextFeed = (props) => {
         return (
             <div class="lps_list lps_dsk_list postBox" ref={(r) => refHandler && refHandler(r)}>
                 <div class={`lps_inner_wrp_media ${isReposted ? "lps_text_reposted" : ""}`}>
-                    <div class="lps_media">
+                    <div class="lps_media mProfile">
                         <figure class="lps_fig lps_fig_circle">
                             <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                         </figure>
