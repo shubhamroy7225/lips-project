@@ -43,11 +43,11 @@ const ImageFeed = (props) => {
             <div className="post_shape">
                 <div className="lps_list postBox" ref={(r) => refHandler && refHandler(r)}>
                     <div className="lps_sm_shape"></div>
+                    <div className={isReposted ? "lps_list_repost" : ""}>
                     <div className="post_img_block lps_widgets_wrp bg_gray_feed">
-
                         {isReposted && <div class="reposted_wrps">
                             <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
-                            <div class="rwposted_txt">by &nbsp;
+                            <div class="rwposted_txt">
                             <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                             </div>
                         </div>}
@@ -57,8 +57,11 @@ const ImageFeed = (props) => {
                                 <img src={photo_urls.medium} alt="Add Image" />
                             </figure>
                         </a>
+                        
+
                         <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
                     
+                    </div>
                     </div>
                 <div className="lps_inner_wrp lps_inner_wrp_media pd_b0">
                     <div className="lps_media">
@@ -120,11 +123,12 @@ const ImageFeed = (props) => {
                         </div>
                     </div>
                 </div>
+                <div className={isReposted ? "lps_list_repost" : ""}>
                 <div className="post_img_block lps_pink_bg lps_widgets_wrp model_border textContent hightAuto">
                     <div className="lps_sm_shape"></div>
                     {isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
                         <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
-                        <div class="rwposted_txt">by &nbsp;
+                        <div class="rwposted_txt">
                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                         </div>
                     </div>}
@@ -141,6 +145,7 @@ const ImageFeed = (props) => {
                             <SharedModal feed={feed} />
                             <RemoveFeedModal feed={feed} />
                         </>}
+                </div>
                 </div>
                 <FeedWidget showWidget={true} feed={feed} user={user} isReposted={isReposted} />
             </div>
