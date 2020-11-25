@@ -20,7 +20,7 @@ export default () => {
               <div className="acctn_privacy on_boarding_wrp_spwn border_0">
                 <article className="lps_art lps_px15">
                   <h3>How private do you want your <br/>account?</h3>
-                    <p>You can always change this in your Account settings </p>
+                    <p>You can always change this in your account settings </p>
                   </article>
                   <ul className="lps_list_group my_acctn_list removeWhiteLine">
                     <li className="list-group-item">
