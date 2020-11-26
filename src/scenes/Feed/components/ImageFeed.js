@@ -46,10 +46,10 @@ const ImageFeed = (props) => {
                     <div className="lps_sm_shape"></div>
                     <div className="post_img_block lps_widgets_wrp bg_gray_feed">
                         {isReposted && <div class="reposted_wrps">
-                            <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                             <div class="rwposted_txt">
                             <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                             </div>
+                            <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                         </div>}
 
                         <a onClick={clickHandler} id="trigger_main_feed">
@@ -69,7 +69,7 @@ const ImageFeed = (props) => {
                             </figure>
                             <div className="lps_media_body">
                                 <div className="lps_media_body">
-                                    <p className="mb_5 more">
+                                    <p className="mb_5 more desc-break">
                                         <span className="text_primary ft_Weight_500">
                                             <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                         </span> {shortDesc}
@@ -102,7 +102,7 @@ const ImageFeed = (props) => {
                         </figure>
                         <div className="lps_media_body">
                             <div className="lps_media_body">
-                                <p className="moreDesktop">
+                                <p className="moreDesktop desc-break">
                                     <span className="text_primary">
                                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{capitalizeFirstLetter(user_name)} </a>
                                     </span>
@@ -127,10 +127,10 @@ const ImageFeed = (props) => {
                 <div className="post_img_block lps_pink_bg lps_widgets_wrp model_border textContent hightAuto">
                     <div className="lps_sm_shape"></div>
                     {isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
-                        <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                         <div class="rwposted_txt">
                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                         </div>
+                        <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                     </div>}
                     <a onClick={clickHandler}>
                         <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
