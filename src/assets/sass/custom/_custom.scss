@@ -4536,6 +4536,12 @@ figure.feed_fig310 {
   
 }
 
+@media only screen and (max-width:375px){
+  .lps_list_repost .reposted_wrps {
+    margin: -2px -1px 0 0;
+  }
+}
+
 .desc-break{
   word-break: break-word;
 }
