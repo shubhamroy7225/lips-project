@@ -69,7 +69,7 @@ const ImageFeed = (props) => {
                             </figure>
                             <div className="lps_media_body">
                                 <div className="lps_media_body">
-                                    <p className="mb_5 more">
+                                    <p className="mb_5 more desc-break">
                                         <span className="text_primary ft_Weight_500">
                                             <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
                                         </span> {shortDesc}
@@ -102,7 +102,7 @@ const ImageFeed = (props) => {
                         </figure>
                         <div className="lps_media_body">
                             <div className="lps_media_body">
-                                <p className="moreDesktop">
+                                <p className="moreDesktop desc-break">
                                     <span className="text_primary">
                                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{capitalizeFirstLetter(user_name)} </a>
                                     </span>
