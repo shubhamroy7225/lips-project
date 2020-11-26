@@ -179,7 +179,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                 </article>
                 <form onSubmit={handleSubmit}>
                     <div class="form_group_modify postApproval">
-                        <label class="label_modify">3 post examples of visuals or text that you'd post</label>
+                        <label class="label_modify">3 post examples of visuals or text that you'd post*</label>
                         <div class="add_product_grid">
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector1)}>
                                 <img style={!image1.base64 ? withoutImageStyle : null} src={image1.base64 ? image1.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgFirst} alt="Image" class="add_img" />
