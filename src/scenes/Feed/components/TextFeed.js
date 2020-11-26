@@ -40,10 +40,10 @@ const TextFeed = (props) => {
                 
                 {
                     isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
-                        <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                         <div class="rwposted_txt">
                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                         </div>
+                        <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                     </div>
                 }
                 <div class="lps_inner_wrp bg_gray_feed textContent post_text_block">
@@ -95,10 +95,10 @@ const TextFeed = (props) => {
                     <div class="lps_sm_shape lps_sm_shape1"></div>
                     {
                         isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
-                            <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                             <div class="rwposted_txt">
                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                             </div>
+                            <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
                         </div>
                     }
                     <div class="lps_inner_cont lps_pos_rltv">
