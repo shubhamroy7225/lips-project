@@ -52,14 +52,15 @@ const EditProfile = ({setIsEdit, user}) => {
 
   const updateUserProfile = (e) => {
     let tempUser = {...userForm};
+    
     if (!files.header_image.file) tempUser.header_image = null;
     if (!files.photo_url.file) tempUser.photo_url = null;
     const {bio, show_following, show_followers, header_image, photo_url,  header_width, header_height, width, height} = tempUser;
     let user = {bio, show_following, show_followers, header_image, photo_url,  header_width, header_height, width, height}
     Object.keys(user).map(e => {
-      if (!tempUser[e]) delete user[e];
+      if (!tempUser[e] && !["show_followers" , "show_following"].includes(e)) delete user[e];
       return true;
-    });
+    });  
     AuthActions.updateUser({user}).then(res => {
       setIsEdit(false)
     });
