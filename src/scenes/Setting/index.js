@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { isMobile } from "react-device-detect";
 import { Link, useHistory } from "react-router-dom";
 import * as AuthActions from "redux/actions";
 import { routes } from 'utility/constants/constants';
 import * as commonService from "utility/utility";
+import AddToHome from "scenes/components/AddToHome";
+
 const Setting = () => {
    const history = useHistory();
    const [ModalOpen, setModalOpen] = useState(false);
+   const toggleModal = (value) =>{
+      setModalOpen(value);
+   }
 
    const logout = () => {
       AuthActions.signOut();
@@ -54,6 +60,11 @@ const Setting = () => {
                   <li className="list-group-item">
                      <Link to={routes.PRIVACY_POLICY}>Privacy policy</Link>
                   </li>
+                  {isMobile ? 
+                  <li className="list-group-item">
+                     <Link onClick={()=> toggleModal(true)}>Add Lips to home screen</Link>
+                     <AddToHome toggleModal={toggleModal} modalStatus={ModalOpen} />
+                  </li> : ""}
                   <li className="list-group-item lps_hrSep">
                      <Link to={routes.SETTING} onClick={logoutConfirm}>Sign out</Link>
                   </li>
