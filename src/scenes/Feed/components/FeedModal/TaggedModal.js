@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import { setFeedModalType } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
-
+import {useHistory} from 'react-router-dom';
 
 const TaggedModal = ({ feed }) => {
+    const history =useHistory();
     const { modalType, selectedFeed } = useSelector(state => {
         return state.feedReducer
     });
@@ -13,6 +14,14 @@ const TaggedModal = ({ feed }) => {
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
     }
+
+    useEffect(() => {
+        if (modalType === FeedModalType.tag) {
+            history.listen(() => {
+                setFeedModalType(false)
+            })
+        }
+    })
 
     let style = { display: "none" }
     if (modalType === FeedModalType.tag) {
