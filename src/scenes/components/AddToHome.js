@@ -38,7 +38,7 @@ const AddToHome = (props) => {
                             </figure>
                             <h2>Did you know Lips is an app?</h2>
                             <p>Add Lips to your home screen for a better experience.</p>
-                            <h4>Tap <a href="#" className="inline_WText" onClick={() => { setHidden(true) }}><img src={require("assets/images/icons/icn_upload.png")} alt="Upload" /></a> then 'Add to Home Screen'</h4>
+                            <h4>Tap <a href="#" className="inline_WText" onClick={() => { hideModal() }}><img src={require("assets/images/icons/icn_upload.png")} alt="Upload" /></a> then 'Add to Home Screen'</h4>
                         </div>
                     </div>
                 </div>
