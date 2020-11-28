@@ -15,6 +15,11 @@ const handleAuthentication = async (error) => {
     });
 };
 
+const resetLoginData = () => {
+    localStorage.clear();
+    window.location.reload();
+}
+
 export default function errorHandler(error) {
     commonService.isLoading.onNext(false);
     if (axios.isCancel(error)) {
@@ -29,7 +34,7 @@ export default function errorHandler(error) {
         case 400:
             if (message === "jwt expired") handleAuthentication(error);
             else if (message && message.toLowerCase() === "unauthorized") {
-                AuthActions.signOut();
+                resetLoginData();
                 toastMsg(message, true);
             } else {
                 toastMsg(message, true);
