@@ -7,7 +7,7 @@ import { capitalizeFirstLetter } from 'utility/utility';
 
 const FollowerItem = ({ data, user }) => {
     let history = useHistory()
-    const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user_outline.png");
+    const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/icn_profile.svg");
 
     const moveToProfile = () => {
         $('.followers_wrp').addClass('close');

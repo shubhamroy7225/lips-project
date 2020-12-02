@@ -32,7 +32,7 @@ const blockUser = ({blockedUsers}) => {
             {blockedUsers.map((block_user, index) =>
             <div className="lps_media lps_flx_vm my_acctn_pt10" key={index}>
                <figure className="lps_fig lps_fig_circle">
-               <img src={block_user.photo_urls.medium ? block_user.photo_urls.medium : require("assets/images/icons/user.jpg")} alt="User"/>
+               <img src={block_user.photo_urls.medium ? block_user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User"/>
                </figure>
                <div className="lps_media_body">
                   <span onClick={e => blockUserConfirm(block_user.id)} className="btn-transparent lps_link lps_flt_right ft_Weight_600">

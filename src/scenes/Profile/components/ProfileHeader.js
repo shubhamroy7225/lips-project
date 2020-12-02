@@ -12,7 +12,7 @@ import { capitalizeFirstLetter } from 'utility/utility';
 const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
     let history = useHistory();
     const [isFollowerHeaderHidden, setIsFollowerHeaderHidden] = useState(true)
-    const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/user_outline.png");
+    const profilePhoto = user.photo_urls && user.photo_urls.medium ? user.photo_urls.medium : require("assets/images/icons/icn_profile.svg");
     const headerImage = user.header_images && user.header_images.medium ? user.header_images.medium : null;
     const { follow_status, followers_count, following_count, privacy_settings, user_name } = user
     const [followStatus, setFollowStatus] = useState(follow_status);
