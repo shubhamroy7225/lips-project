@@ -678,3 +678,9 @@ input.input_modify {
   font-size: 17px;
 }
 
+@media screen and (max-width: 375px){
+  .footer-menu-mobile{
+    top: -10px;
+  }
+}
+

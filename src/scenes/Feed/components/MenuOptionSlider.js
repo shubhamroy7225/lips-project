@@ -90,7 +90,7 @@ const MenuOptionSlider = (props) => {
     if (isMobile) {
         return (
             <div className="footer-menu-list footIndex" >
-                <div className="horizantal_coll" onClick={() => toggle()}>
+                <div className="horizantal_coll footer-menu-mobile" onClick={() => toggle()}>
                     <i class="fa fa-angle-top wr_icon_top" aria-hidden="true"></i>
                     {/* <i className="fa fa-angle-right wr_icon" aria-hidden="true"></i> */}
                 </div>

@@ -7,9 +7,9 @@ const ToggleListWidget = ({ gridlayoutMode, setGridLayoutMode }) => {
         setGridLayoutMode(!gridlayoutMode)
     }
 
-    let className = "horizantal_coll1 icn_hover_chng active"
+    let className = "horizantal_coll1 icn_hover_chng active footer-menu-mobile"
     if (!gridlayoutMode) {
-        className = "horizantal_coll1 icn_hover_chng"
+        className = "horizantal_coll1 icn_hover_chng footer-menu-mobile"
     }
 
     return (
