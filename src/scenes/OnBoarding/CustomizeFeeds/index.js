@@ -25,7 +25,10 @@ export default () => {
       <div id="wrap" className="mt_0 lps_bg_secondary">
         <div className="lps_container mt_0">
           <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
-            <div className="lps_form_wrp on_boarding_wrp_spwn border_0 startScratch commonWidth">
+          <button  onClick={()=> history.goBack()}  className="theme_btn theme_primary theme_btn_rds25 back-button">
+            Go Back
+          </button>
+            <div className="lps_form_wrp on_boarding_wrp_spwn border_0 startScratch commonWidth on_boarding_top">
               <article className="lps_art lps_art_white">
                 <h3 className="mb30">Start from scratch or let us fill your feed.</h3>
                 <h5 className="mb30 ft_Weight_400">

@@ -28,7 +28,10 @@ export default () => {
           <div id="wrap" className="mt_0 lps_bg_secondary">
              <div className="lps_container mt_0">
                 <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
-                   <div className="lps_form_wrp on_boarding_wrp_spwn border_0 commonWidth">
+                <button  onClick={()=> history.goBack()}  className="theme_btn theme_primary theme_btn_rds25 back-button">
+                  Go Back
+                </button>
+                   <div className="lps_form_wrp on_boarding_wrp_spwn border_0 commonWidth on_boarding_top">
                       <article className="lps_art lps_art_white">
                          <h3>We think you (not an algorithm) should have control of what you see in the Lips app. </h3>
                          {/* <h4 className="mb30">(not the algorithm)</h4> */}

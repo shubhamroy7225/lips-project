@@ -40,6 +40,9 @@ let LoginForm = (props) => {
     <div id="wrap" className="mt_0 lps_bg_secondary">
       <div className="lps_container mt_0">
         <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
+          <button  onClick={()=> history.goBack()}  className="theme_btn theme_primary theme_btn_rds25 back-button">
+            Go Back
+          </button>
           <div className="lps_form_wrp">
             <form
               onSubmit={handleSubmit}>
