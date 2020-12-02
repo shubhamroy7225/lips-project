@@ -62,7 +62,7 @@ const CreateTextTab = ({ handleToggleTags, toggleAddTags, toggleLipsInfo, select
             <div class="tab_inn_con">
                 <div class="about_gallery">
                     <div class="textRange_wrp">
-                        <textarea onChange={handleInputChange} value={caption} class="textarea_modifier" rows="18"></textarea>
+                        <textarea onChange={handleInputChange} value={caption} class="textarea_modifier textarea-font-family" rows="18"></textarea>
                         <span class="textRange"><span style={charCountStyle}>{inputCount}</span>/{captionCharCount}</span>
                     </div>
                     <p class="mb_0 mt_15">What's going on in this post? Be sure to @credit others.</p>

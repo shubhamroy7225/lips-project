@@ -171,7 +171,7 @@ const CreateImageTab = ({
           <textarea
             onChange={handleInputChange}
             value={caption}
-            class="textarea_modifier"
+            class="textarea_modifier textarea-font-family"
             rows="8"
             placeholder="Say something about this..."
           ></textarea>
