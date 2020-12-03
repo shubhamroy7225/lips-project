@@ -118,7 +118,7 @@ const ProfileHeader = ({ setEdit, user, isUserProfile = true, isLoggedIn }) => {
                 </div>
                 <p className="mt_15 mb_5">
                     <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
-                        <a target="blank" href={decoratedHref} key={key} className="link_underline text_secondary">{decoratedText}</a>
+                        <a target="blank" href={decoratedHref} key={key} className="link_underline text_secondary about_link">{decoratedText}</a>
                     )}>{user.bio}</Linkify>
                     {/* <a href="#" className="link_underline text_secondary">www.website.com </a> lorem ipsum
                   <a href="#" className="link_underline text_secondary"> www.anotherwebsite.com</a>lorem ipsum dolor */}
