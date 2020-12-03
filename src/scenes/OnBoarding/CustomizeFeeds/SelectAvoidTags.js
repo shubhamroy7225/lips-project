@@ -61,6 +61,7 @@ export default () => {
               >
                 Browse
               </button>
+              <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button">Go Back</Link>
             </div>
           </div>
         </div>
