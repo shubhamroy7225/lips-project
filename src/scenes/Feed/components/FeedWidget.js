@@ -7,6 +7,11 @@ import { FeedModalType } from 'utility/constants/constants';
 const FeedWidget = ({ user, showWidget, feed }) => {
     const { likable, is_reposted } = feed;
     const [like, setLike] = useState(feed.liked);
+    const [likeCount, setLikeCount] = useState(false);
+
+    const likeCountShown = () => {
+        setLikeCount(likeCount ? false : true);
+    }
 
     let className = !showWidget ? "lps_widgets lps_widgets_none" : "lps_widgets";
     useEffect(() => {
@@ -117,8 +122,8 @@ const FeedWidget = ({ user, showWidget, feed }) => {
     let likeOption = (
         <li key={6} class="listed_item">
             {parseInt(feed.user_id) === user.id ? 
-            <div><span className="countBadge">{feed.likes_count}</span>
-            <a class={likeIconClasses}>
+            <div>{likeCount ? <span className="countBadge">{feed.likes_count}</span> : ""}
+            <a class={likeIconClasses} onClick={likeCountShown}>
                 <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
                 <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" />
             </a>
