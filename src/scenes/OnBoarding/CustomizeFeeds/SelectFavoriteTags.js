@@ -28,9 +28,6 @@ export default () => {
           <div id="wrap" className="mt_0 lps_bg_secondary">
              <div className="lps_container mt_0">
                 <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
-                <button  onClick={()=> history.goBack()}  className="theme_btn theme_primary theme_btn_rds25 back-button">
-                  Go Back
-                </button>
                    <div className="lps_form_wrp on_boarding_wrp_spwn border_0 commonWidth on_boarding_top">
                       <article className="lps_art lps_art_white">
                          <h3>We think you (not an algorithm) should have control of what you see in the Lips app. </h3>
@@ -43,6 +40,7 @@ export default () => {
                       <div className="pos_wrp onboarding_btm">
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio">
                          Continue</button>
+                         <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button">Go Back</Link>
                       </div>
                    </div>
                 </div>
