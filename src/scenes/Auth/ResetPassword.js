@@ -61,7 +61,7 @@ export default () => {
                   <form onSubmit={handleSubmit}>
                     <article className="text_center lps_logo_center">
                       <a className="logo mb_0" href="#">
-                        <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
+                        <img src={require("assets/images/thumbnails/new_logo.svg")} alt="Lips Logo" className="header__logo" />
                         <h5 className="text_uppercase text_white">Reset Password</h5>
                       </a>
                     </article>

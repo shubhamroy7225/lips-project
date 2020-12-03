@@ -45,7 +45,7 @@ let LoginForm = (props) => {
               onSubmit={handleSubmit}>
               <article className="text_center lps_logo_center">
                 <Link className="logo mb_0" to="#">
-                  <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
+                  <img src={require("assets/images/thumbnails/new_logo.svg")} alt="Lips Logo" className="header__logo" />
                   <h5 className="text_uppercase text_white">Sign In</h5>
                 </Link>
               </article>

@@ -73,7 +73,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
         }
         let logoContent = (
             <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
-                <img src={require("assets/images/thumbnails/logo.svg")} alt="BitCot Logo" className="header__logo" />
+                <img src={require("assets/images/thumbnails/new_logo.svg")} alt="BitCot Logo" className="header__logo" />
             </Link>
         );
         if (pathName.includes(routes.PROFILE)) {
@@ -86,7 +86,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                             <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
                         </a>
                         <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
-                            <img src={require("assets/images/thumbnails/logo.svg")} alt="Lips Logo" className="header__logo" />
+                            <img src={require("assets/images/thumbnails/new_logo.svg")} alt="Lips Logo" className="header__logo" />
                         </Link>
                     </>
                 );
