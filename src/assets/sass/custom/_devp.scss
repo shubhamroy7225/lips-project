@@ -725,9 +725,14 @@ span.countBadge {
 }
 
 .notfication_lips_logo{
-  .notifcation_logo{
-    background: #1a1a1a;
-    padding: 6px;
-  }
+  background: #1a1a1a;
+  padding: 0px;
+  text-align: center;
+  line-height: 66px;
+}
+
+.notfication_lips_logo img{
+  width: auto;
+  height: auto;
 }
 
