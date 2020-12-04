@@ -242,8 +242,11 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                     notifications.map((notification, index) =>
                         <li key={`noti_${index}`} className="list-group-item">
                             <div className="lps_media">
-                                <figure className="lps_fig lps_fig_circle">
-                                    <img src={notification.user && notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
+                                <figure className="lps_fig lps_fig_circle notfication_lips_logo">
+                                    {notification.content === "You've been approved. You can post now" ? 
+                                        <img src={require("assets/images/thumbnails/new_logo.svg")} alt="Lips Logo" className="header__logo notifcation_logo" /> :
+                                        <img src={notification.user && notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
+                                    }
                                 </figure>
                                 <div className="lps_media_body">
                                     {notification.user ?
