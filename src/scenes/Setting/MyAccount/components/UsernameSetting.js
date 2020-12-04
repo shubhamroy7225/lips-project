@@ -27,12 +27,12 @@ export default ({user}) => {
         <div className="lps_user_info">
           <p className="user_info_label">Username
             <span className={`ml_5 lps_link ft_Weight_600 ml_5 submit-cursor`}
-                     onClick={inputVisible}> {inputShown ? " cancel" : " change"}
+                     onClick={inputVisible}> {inputShown ? " Cancel" : " Change"}
             </span> </p>
           <div className="user_info_field">
             {inputShown ? <div>
               <input type="text" name="user_name" className="user_field" value={userForm.user_name || ""} onChange={handleChange} />
-              <button type="button" className="btn-transparent ml_5 lps_link" onClick={updateUser}>Save</button>
+              <button type="button" className="btn-transparent ml_5 lps_link btn_bold" onClick={updateUser}>Save</button>
             </div>:  <span className={`input_modify `}>{user.user_name}</span>}
           </div>
         </div>

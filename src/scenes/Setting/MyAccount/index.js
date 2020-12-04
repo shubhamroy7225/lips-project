@@ -64,7 +64,7 @@ export default ()  => {
             <li className="list-group-item">
               <div className="lps_user_info lps_accnt_links">
                 <p className="user_info_label" onClick={handleDelete}>
-                  <Link to={routes.MY_ACCOUNT} classname="ft_Weight_500">Delete Account</Link>
+                  <Link to={routes.MY_ACCOUNT} classname="ft_Weight_500" style={{fontWeight: "500"}}>Delete Account</Link>
                 </p>
               </div>
             </li>

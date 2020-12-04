@@ -54,7 +54,7 @@ const SharedModal = ({ feed }) => {
                   {selectedFeed && selectedFeed.id}
                 </span>
                 <p onClick={copyLink} className="copyPara">
-                  {linkCopy ? "link copied" : linkVar}
+                  {linkCopy ? "Link Copied" : linkVar}
                 </p>
               </li>
             </ul>
