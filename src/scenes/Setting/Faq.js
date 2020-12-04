@@ -22,18 +22,16 @@ const Faq = () => {
     return(
         <div id="wrap" className="mt_0">
             <div className="lps_container lps_terms_con_wrps bg_grayCCC">
-                <div className="lps_header_link lps_flx_vm lps_px15 mb25">
-                    <Link className="lps_header_link lps_flx_vm mb25" to={SETTING}>
+            <Link className="lps_header_link lps_flx_vm mb25" to={SETTING}>
                         <img
                         src={require("assets/images/icons/icn_left_arrow.png")}
                         alt="Icon Arrow"
                         className="lps_header_img"
                         />
+                        <span className="lp_left_auto text_black ft_Weight_500">
+                            FAQ
+                        </span>
                     </Link>
-                    <span className="lp_left_auto text_black ft_Weight_500">
-                        FAQ
-                    </span>
-                </div>
 
                 <div className="lps_terms_list lps_px15 mb25">
                     <h3>We're Here To Help You</h3>

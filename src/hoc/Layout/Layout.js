@@ -76,9 +76,11 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                 <img src={require("assets/images/thumbnails/new_logo.svg")} alt="BitCot Logo" className="header__logo" />
             </Link>
         );
+        
         if (pathName.includes(routes.PROFILE)) {
-            if (pathName !== routes.PROFILE && props.user) { //if logged out and accessing other's profile no need of back button - need back button only if user is logged in - that indicates user is navigating
-                //other profile - then show back button 
+            if (pathName !== routes.PROFILE || props.user) { //if logged out and accessing other's profile no need of back button - need back button only if user is logged in - that indicates user is navigating
+                //other profile - then show back button
+
                 navClassName = "theme_navigation theme_navigationCenterLogo"
                 logoContent = (
                     <>

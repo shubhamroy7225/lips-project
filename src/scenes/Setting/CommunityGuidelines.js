@@ -4,22 +4,19 @@ import { routes } from "utility/constants/constants";
 export default () => {
   return (
     <div id="wrap" className="mt_0">
-    <div className="lps_header_link lps_flx_vm lps_px15 mb25">
-    <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
+     
+    <div id="wrap" className="mt_0">
+      <div className="lps_container lps_terms_con_wrps bg_grayCCC">
+      <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
         <img
           src={require("assets/images/icons/icn_left_arrow.png")}
           alt="Icon Arrow"
           className="lps_header_img"
         />
+        <span className="lp_left_auto text_black ft_Weight_500">
+          Community Guidelines
+        </span>
       </Link>
-      <span className="lp_left_auto text_black ft_Weight_500">
-        Community Guidelines
-      </span>
-    </div>
-
-    <div id="wrap" className="mt_0">
-      <div className="lps_container lps_terms_con_wrps bg_grayCCC">
-      
         <div className="lps_inner_wrp">
           <div className="lps_terms_cont">
             <div className="lps_terms_list">

@@ -125,7 +125,7 @@ const FeedWidget = ({ user, showWidget, feed }) => {
             <div>{likeCount ? <span className="countBadge">{feed.likes_count}</span> : ""}
             <a class={likeIconClasses} onClick={likeCountShown}>
                 <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
-                <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" />
+                {/* <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" /> */}
             </a>
             </div>
             :

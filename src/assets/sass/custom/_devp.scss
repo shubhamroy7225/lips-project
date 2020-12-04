@@ -657,6 +657,15 @@ input.input_modify {
 .back-button {
   margin-top: 20px;
 }
+.lps_header_link {
+  position: relative;
+  width: 100%;
+   .lps_header_img {
+    position: absolute;
+    left: 15px;
+  }
+}
+
 
 @media screen and (max-width: 767px){
   .back-button {
