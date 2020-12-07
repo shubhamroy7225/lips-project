@@ -103,7 +103,7 @@ export const feedReducer = createReducer({
     }),
     [actions.likeFeedUpdate]: (state, payload) => {
         let { feedId } = payload;
-        let feedsCopy = [...state.feeds];
+        let feedsCopy = [...state.feeds, ...state.searchFeeds];
         let feedIndex = feedsCopy.findIndex(ele => ele.id === feedId);
         feedsCopy[feedIndex].liked = true;
         return updateObject(state, {
