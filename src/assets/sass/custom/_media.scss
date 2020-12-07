@@ -307,6 +307,12 @@
     transition: transform 0.4s;
     transition: transform 0.4s, -webkit-transform 0.4s;
   }
+  nav.theme_navigationCenterLogo {
+    position: relative;
+  }
+  nav.theme_navigationCenterLogo .logo {
+    margin-left: 18px;
+  }
 }
 @media screen and (max-width: 450px) {
   header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
