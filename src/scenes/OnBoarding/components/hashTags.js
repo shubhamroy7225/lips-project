@@ -35,7 +35,7 @@ export default  ({selectTags, setSelectTags, showhashTags}) => {
     <li>
       {hashTags.map((tag, index) =>
         showhashTags.includes(tag.name) ? null :
-        <button key={index} className={`theme_btn theme_outline_light ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
+        <button key={index} className={`themeOutlineLight ${selectTags.includes(tag.name) ? "active" : ""}`} onClick={() => toggleHashTag(tag)}>{tag.name}</button>
       )}
     </li>
 
