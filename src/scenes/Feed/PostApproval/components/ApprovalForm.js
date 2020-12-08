@@ -5,7 +5,7 @@ import * as commonService from "utility/utility";
 import * as feedsAction from 'redux/actions/feed/action';
 import { decode } from 'base64-arraybuffer';
 
-const ApprovalForm = ({ moveToNextStep, cancel }) => {
+const ApprovalForm = ({ moveToNextStep, ...props }) => {
     const postImgFirst = useRef(null);
     const postImgSecond = useRef(null);
     const postImgThird = useRef(null);
@@ -239,7 +239,7 @@ const ApprovalForm = ({ moveToNextStep, cancel }) => {
                     <p>If you plan to share the work of others on your profile that is fine! However, we ask that you give full credit to any artists/creators involved. Lips loves our creators, so intentional plagiarism and copyright infringement is a one-way ticket to outta here town for sure.</p>
                     <div class="post_block mb20 mt_15">
                         <button type="submit" class="circle submit-cursor">Submit</button>
-                        <a onClick={() => cancel()} class="cancel_post link_underline">Cancel</a>
+                        <a onClick={() => props.setStep(props.steps.StartApproval)} class="cancel_post link_underline">Cancel</a>
                     </div>
                 </form>
 

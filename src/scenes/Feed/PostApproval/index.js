@@ -46,7 +46,7 @@ const PostApproval = (props) => {
     if (step === steps.StartApproval && props.user.approval_status === ApprovalStatus.not_submitted) {
         content = <StartApproval moveToNextStep={moveToNextStep} />
     } else if (step === steps.CompleteApproval && props.user.approval_status === ApprovalStatus.not_submitted) {
-        content = <ApprovalForm moveToNextStep={moveToNextStep} cancel={dismissApprovalForm} />
+        content = <ApprovalForm moveToNextStep={moveToNextStep} cancel={dismissApprovalForm} setStep={setStep} steps={steps}/>
     } else {
         content = <ApprovalCompleted moveToNextStep={moveToNextStep} />
     }
