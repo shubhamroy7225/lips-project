@@ -761,3 +761,18 @@ span.countBadge {
       border-color: #f8f9fa;
     }
 }
+
+.access_button{
+  min-width: 130px !important;
+}
+
+.lps_bg_txt_white{
+  .access_input:focus{
+    border-bottom-color: #fd3398 !important;
+  }
+}
+@media screen and (min-width: 768px){
+  .accessCodeForm .access-field input{
+    width: auto;
+  }
+}

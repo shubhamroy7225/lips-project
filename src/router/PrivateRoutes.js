@@ -22,6 +22,7 @@ import Faq from "scenes/Setting/Faq";
 
 import ContactUser from "scenes/ContactUser";
 import PostApproval from "scenes/Feed/PostApproval";
+import AccessCode from "scenes/Feed/PostApproval/components/AccessCodeForm";
 
 import FeedSettingModal from "scenes/Setting/FeedSetting/FeedSettingModal";
 import FeedDetail from "scenes/Feed/FeedDetail";
@@ -36,6 +37,7 @@ export default () => (
     <Route exact path={routes.OTHER_PROFILE} component={Profile} />
     {/* Approval for posting */}
     <Route exact path={routes.POST_APPROVAL} component={PostApproval} />
+    <Route exact path={routes.ACCESS_CODE} component={AccessCode} />
     <Route exact path={routes.POST_DETAIL} component={FeedDetail} />
     <Route exact path={routes.SETTING} component={Setting} />
     <Route exact path={routes.MY_ACCOUNT} component={MyAccount} />

@@ -18,3 +18,12 @@ export const submitCreateFeedApprovalData = (request) => {
     });
 };
 
+export const submitAccessCode = (request) => {
+    return axios.post(`${API_VERSION}/user/approval/code`, request, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    });
+};
+
