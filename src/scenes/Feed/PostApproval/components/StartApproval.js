@@ -41,10 +41,11 @@ const StartApproval = ({ moveToNextStep }) => {
         <div class="lps_container lps_bg_secondary lps_text_white">
             <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn border_0">
                 <article class="lps_art mt45">
-                    <h3>Want to post your original work?</h3>
-                    <p class="mt45">In order to keep everyone in the Lips Community safe, we just ask that you tell us-yes, we are real humans-a little bit about yourself.</p>
-                    <p>Once approved, you can post anything form cat pics to high art -we're not here to judge, as long as it's your orginal content.</p>
-                    <p>You can still repost without getting approved.</p>
+                    <h3>We are so excited to have you share your voice on Lips! </h3>
+                    <p class="mt45">In order to reduce hate-speech and harassment on the Lips app, we ask that new users tell us a bit about what you’d like to post. This is a one time thing, once approved you will be able to post whenever and whatever you like! </p>
+                    <p>You can post (almost) ANYTHING on Lips and you don’t have to worry about biased censorship here! We see you, we hear you and we want you to express yourself freely! </p>
+                    <p>Our only ask is that you read and adhere to our <Link to={routes.SETTING_COMMUNITY_GUIDELINES} class="lps_link link_underline">Community guidelines</Link>, which have been carefully crafted BY THE COMMUNITY. These guidelines ensure an open & honest environment, where everyone has the chance to safely speak their truth without fear of harassment. </p>
+                    <p>TL/DR - Hate-speech get outta here. </p>
                 </article>
                 <div class="plans_wrp text_center mt45">
                     <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Approval Form</a>

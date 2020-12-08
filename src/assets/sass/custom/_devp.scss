@@ -771,8 +771,22 @@ span.countBadge {
     border-bottom-color: #fd3398 !important;
   }
 }
-@media screen and (min-width: 768px){
-  .accessCodeForm .access-field input{
-    width: auto;
+
+.article_desktopView {
+  text-align: left;
+  max-width: 520px;
+  margin: 0 auto;
+  .ifAccess {
+    .form_group_modify {
+      margin-left: 0;
+      width: 100%;
+      input.input_modify.input_brdrBtnmP {
+        padding: 0;
+      }
+    }
+
   }
+}
+@media screen and (min-width: 768px){
+   
 }

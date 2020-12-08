@@ -28,13 +28,10 @@ export default () => {
           <div className="popup_cont">
             <div className="popup_body post_poup lps_bg_secondary lps_text_white lps_bg_txt_white">
               <Link className="popupCloseButton popupCloseButtonLeft" to={routes.POST_APPROVAL}><img src={require("assets/images/icons/icn_left_arrow.png")} /></Link>
-                <article className="lps_art mt45 text_left">
-                  <h3>Have an access code?</h3>
+                <article className="lps_art mt45 article_desktopView">
                   <div>
-                    <div className="para_list_mb">
-                      <p className="text_white lh26">
-                        Access codes were sent out to selected creators in the invite emails lorem ipsum...... 
-                      </p>
+                    <div className="lps_fields ifAccess">
+                      <p className="mt45">Access codes were sent via email to selected creators who we have worked with in the past. Is this you? Enter below to skip the approved user process, cuz you’re already in babe!</p>
                     </div>
                     <div className="lps_fields ifAccess accessCodeForm">
                       <div className="form_group_modify access-field">
