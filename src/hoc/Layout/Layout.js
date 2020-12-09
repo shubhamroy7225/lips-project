@@ -73,7 +73,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
         }
         let logoContent = (
             <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
-                <img src={require("assets/images/thumbnails/new_logo.svg")} alt="BitCot Logo" className="header__logo" />
+                <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="BitCot Logo" className="header__logo" />
             </Link>
         );
         
@@ -88,7 +88,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                             <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
                         </a>
                         <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
-                            <img src={require("assets/images/thumbnails/new_logo.svg")} alt="Lips Logo" className="header__logo" />
+                            <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="Lips Logo" className="header__logo" />
                         </Link>
                     </>
                 );
@@ -244,7 +244,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                             <div className="lps_media">
                                 <figure className="lps_fig lps_fig_circle notfication_lips_logo">
                                     {notification.content === "You've been approved. You can post now" ? 
-                                        <img src={require("assets/images/thumbnails/lips_Small.png")} alt="Lips Logo" className="header__logo notifcation_logo" /> :
+                                        <img src={require("assets/images/thumbnails/lips_small.svg")} alt="Lips Logo" className="header__logo notifcation_logo" /> :
                                         <img src={notification.user && notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
                                     }
                                 </figure>

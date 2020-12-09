@@ -22,7 +22,7 @@ export default () => {
               <form>
                 <article className="text_center lps_logo_center">
                   <Link className="logo" to="#">
-                    <img src={require("assets/images/thumbnails/new_logo.svg")} alt="Lips Logo" className="header__logo" />
+                    <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="Lips Logo" className="header__logo" />
                   </Link>
                 </article>
                 <div className="product_grid_block saved_product pd_y brand_product_wrp px_0 landingCarouse">

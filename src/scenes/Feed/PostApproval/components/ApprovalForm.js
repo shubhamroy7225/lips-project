@@ -174,7 +174,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
             <div class="lps_approval add_product_con ">
                 <article class="text_center lps_logo_center">
                     <a class="logo mb_0" href="#">
-                        <img src={require("assets/images/thumbnails/new_logo.svg")} alt="Lips Logo" class="header__logo" />
+                        <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="Lips Logo" class="header__logo" />
                     </a>
                 </article>
                 <form onSubmit={handleSubmit}>

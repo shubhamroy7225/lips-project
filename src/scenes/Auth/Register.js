@@ -87,7 +87,7 @@ export default () => {
                     <article className="text_center lps_logo_center">
                       <a className="logo mb_0" href="#">
                         <img
-                            src={require("assets/images/thumbnails/new_logo.svg")}
+                            src={require("assets/images/thumbnails/lips-logo-icon.svg")}
                             alt="Lips Logo"
                             className="header__logo"
                             />
