@@ -4,9 +4,10 @@ import SimpleReactValidator from 'simple-react-validator';
 import { toastMsg } from 'utility/utility';
 import * as commonService from "utility/utility";
 import { routes } from 'utility/constants/constants';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const StartApproval = ({ moveToNextStep }) => {
+    const history = useHistory();
     const simpleValidator = useRef(new SimpleReactValidator());
     const [, forceUpdate] = useState();
     //user data state
@@ -38,9 +39,13 @@ const StartApproval = ({ moveToNextStep }) => {
     };
 
     return (
-        <div class="lps_container lps_bg_secondary lps_text_white">
+        <>
+        <div>
+            <Link className="popupCloseButton popupCloseButtonLeft lps_arrow_approval" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow.png")} /></Link>
+        </div>
+        <div class="lps_container lps_bg_secondary lps_text_white"> 
             <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn border_0">
-                <article class="lps_art">
+                <article class="lps_art lps_heading">
                     <h3>We are so excited to have you share your voice on Lips! </h3>
                     <p>In order to reduce hate-speech and harassment on the Lips app, we ask that new users tell us a bit about what you’d like to post. This is a one time thing, once approved you will be able to post whenever and whatever you like! </p>
                     <p>You can post (almost) ANYTHING on Lips and you don’t have to worry about biased censorship here! We see you, we hear you and we want you to express yourself freely! </p>
@@ -53,6 +58,7 @@ const StartApproval = ({ moveToNextStep }) => {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
