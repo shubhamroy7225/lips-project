@@ -97,18 +97,18 @@ const MainFeed = (props) => {
     let feedContent = [];
     let emptyFeedContent = null;
     if (props.feeds && props.feeds.length > 0) {
-        feedContent = props.feeds.map((feed, index) => {
+        feedContent = props.feeds.map((feed, index) => {            
             if (feed.type === FeedType.image) {
-                return <ImageFeed key={feed.id} feed={feed} />
+                return <ImageFeed key={`feed_key${feed.is_reposted}${feed.id}`} feed={feed} />
             } else if (feed.type === FeedType.repost) {
                 let parentFeed = feed.parent;
                 if (parentFeed.type === FeedType.image) {
-                    return <ImageFeed key={feed.id} feed={feed} isReposted={true} />
+                    return <ImageFeed key={`feed_key_reposted${feed.is_reposted}${feed.id}`} feed={feed} isReposted={true} />
                 } else {
-                    return <TextFeed key={feed.id} feed={feed} isReposted={true} />
+                    return <TextFeed key={`feed_text_reposted${feed.is_reposted}${feed.id}`} feed={feed} isReposted={true} />
                 }
             } else {
-                return <TextFeed key={feed.id} feed={feed} />
+                return <TextFeed key={`feed_text_reposted${feed.is_reposted}${feed.id}`} feed={feed} />
             }
         })
     } else {

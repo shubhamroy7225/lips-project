@@ -25,6 +25,7 @@ const RepostModal = ({ feed }) => {
 
     const repostFeed = () => {
         let feedId = selectedFeed.id;
+        selectedFeed.is_reposted = true
         actions.repostFeed(feedId).then(
             res => {
                 toastMsg("Reposted successfully!");

@@ -14,8 +14,8 @@ import { capitalizeFirstLetter } from 'utility/utility';
 
 const ImageFeed = (props) => {
     const { user, feed, isReposted, refHandler } = props
+    if (typeof feed == "undefined") debugger
     const { attachments, description } = feed;
-
     const repostedByUser = isReposted ? feed.user : {};
     const feed_user = isReposted ? feed.parent.user : feed.user;
     const user_name = feed_user.user_name;

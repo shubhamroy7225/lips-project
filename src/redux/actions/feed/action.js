@@ -251,7 +251,7 @@ export const deleteFeed = (feedId) => {
 export const repostFeed = (feedId) => {
   return API.repostFeed(feedId)
     .then(response => {
-      updateRepostFeed({ feed: response.data.post });
+      updateRepostFeed({ feed: response.data.post, feedId  });
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {

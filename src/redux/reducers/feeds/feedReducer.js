@@ -182,9 +182,12 @@ export const feedReducer = createReducer({
         return updateObject(state, { otherUserFeeds: feeds })
     },
     [actions.updateRepostFeed]: (state, payload) => {
-        let { feed } = payload;
+        let { feed, feedId } = payload;
         let feeds = [...state.feeds];
         let userFeeds = [...state.userFeeds];
+        let feedIndex = feeds.findIndex(ele => ele.id === feedId);
+        
+        feeds[feedIndex].is_reposted = true;
         if (feeds.length > 0) {
             feeds = [feed, ...feeds]
         }
