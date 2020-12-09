@@ -774,7 +774,7 @@ span.countBadge {
 
 .article_desktopView {
   text-align: left;
-  max-width: 520px;
+  max-width: 90%;
   margin: 0 auto;
   .ifAccess {
     .form_group_modify {
@@ -794,4 +794,12 @@ span.countBadge {
 .lps_arrow_approval{
   z-index: 100;
 }
+}
+
+.plans_mobile_top{
+  margin-top: 15px;
+}
+
+.lps_fields.access-code-data{
+  max-width: 510px !important;
 }

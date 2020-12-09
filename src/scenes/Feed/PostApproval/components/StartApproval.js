@@ -52,7 +52,7 @@ const StartApproval = ({ moveToNextStep }) => {
                     <p>Our only ask is that you read and adhere to our <Link to={routes.SETTING_COMMUNITY_GUIDELINES} class="lps_link link_underline">Community guidelines</Link>, which have been carefully crafted BY THE COMMUNITY. These guidelines ensure an open & honest environment, where everyone has the chance to safely speak their truth without fear of harassment. </p>
                     <p>TL/DR - Hate-speech get outta here. </p>
                 </article>
-                <div class="plans_wrp text_center mt45">
+                <div class="plans_wrp text_center plans_mobile_top">
                     <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Approval Form</a>
                     <Link to={routes.ACCESS_CODE} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Use an Access Code</Link>
                 </div>

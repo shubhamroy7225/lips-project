@@ -30,10 +30,10 @@ export default () => {
               <Link className="popupCloseButton popupCloseButtonLeft" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow.png")} /></Link>
                 <article className="lps_art mt45 article_desktopView">
                   <div>
-                    <div className="lps_fields ifAccess">
-                      <p className="mt45">Access codes were sent via email to selected creators who we have worked with in the past. Is this you? Enter below to skip the approved user process, cuz you’re already in babe!</p>
+                    <div className="lps_fields ifAccess access-code-data">
+                      <p className="mt45 ">Access codes were sent via email to selected creators who we have worked with in the past. Is this you? Enter below to skip the approved user process, cuz you’re already in babe!</p>
                     </div>
-                    <div className="lps_fields ifAccess accessCodeForm">
+                    <div className="lps_fields ifAccess accessCodeForm access-code-data">
                       <div className="form_group_modify access-field">
                       <input type="text"
                             name="accessCode"
