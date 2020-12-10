@@ -10,7 +10,7 @@ export const getAllNotification = (params) => {
   getAllNotificationPending();
   return API.getAllNotification(params)
       .then(response => {
-        getAllNotificationSuccessful(response.data)
+        getAllNotificationSuccessful({...response.data, page: params.page})
         return response
       })
 }
