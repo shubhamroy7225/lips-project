@@ -732,8 +732,8 @@ span.countBadge {
 }
 
 .notfication_lips_logo img{
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 .themeOutlineLight {
     background-color: transparent;
@@ -802,4 +802,14 @@ span.countBadge {
 
 .lps_fields.access-code-data{
   max-width: 510px !important;
+}
+
+.popup_cont{
+  .homeModalLogo{
+    width: auto !important;
+    transform: inherit !important;
+  }
+  .lps_top_imgs{
+    background: transparent !important;
+  }
 }

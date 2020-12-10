@@ -245,7 +245,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                                 <figure className="lps_fig lps_fig_circle notfication_lips_logo">
                                     {notification.content === "You've been approved. You can post now" ? 
                                         <img src={require("assets/images/thumbnails/lips_small.svg")} alt="Lips Logo" className="header__logo notifcation_logo" /> :
-                                        <img src={notification.user && notification.user.photo_urls.medium ? notification.user.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
+                                        <img src={notification.user && notification.user.photo_urls.original ? notification.user.photo_urls.original : require("assets/images/icons/icn_profile.svg")} alt="User" />
                                     }
                                 </figure>
                                 <div className="lps_media_body">
@@ -255,7 +255,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                                         </Link>
                                         : <h5 onClick={modalToggle} dangerouslySetInnerHTML={{ __html: capitalizeFirstLetter(NotificationContent(notification)) }}></h5>}
                                     {
-                                        (notification.type === NOTIFICATION_TYPES.requested_follow && notification.follow.status === "requested") ? <div className="btn_group">
+                                        (notification.type === NOTIFICATION_TYPES.requested_follow && (notification.follow && notification.follow.status === "requested")) ? <div className="btn_group">
                                             <button onClick={e => handleRequest("accept", notification)} role="button" className="theme_btn theme_outline_primary accept active">accept</button>
                                             <button onClick={e => handleRequest("deny", notification)} role="button" className="theme_btn theme_outline_primary deny">deny</button>
                                         </div> : ""

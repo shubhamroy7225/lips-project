@@ -34,7 +34,7 @@ const AddToHome = (props) => {
                         <div className="popup_body">
                             <div className="popupCloseButton" id="popupCloseButton"><a onClick={() => { hideModal() }}><img src={require("assets/images/icons/icn_close.png")} /></a></div>
                             <figure className="lps_fig lps_top_imgs">
-                                <img src={require("assets/images/icons/add_to_home_logo.svg")} alt="Image Placeholder" />
+                                <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="Image Placeholder" className="homeModalLogo" />
                             </figure>
                             <h2>Did you know Lips is an app?</h2>
                             <p>Add Lips to your home screen for a better experience.</p>
