@@ -121,18 +121,18 @@ const FeedWidget = ({ user, showWidget, feed }) => {
     );
     let likeOption = (
         <li key={6} class="listed_item">
-            {user && parseInt(feed.user_id) === user.id ? 
-            <div>{likeCount ? <span className="countBadge">{feed.likes_count}</span> : ""}
-            <a class={likeIconClasses} onClick={likeCountShown}>
-                <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
-                {/* <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" /> */}
-            </a>
-            </div>
-            :
-            <a onClick={() => toggleLike()} class={likeIconClasses}>
-                <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
-                <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" />
-            </a>}
+            {user && parseInt(feed.user_id) === user.id ?
+                <div>{likeCount ? <span className="countBadge">{feed.likes_count}</span> : ""}
+                    <a class={likeIconClasses} onClick={likeCountShown}>
+                        <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
+                        {/* <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" /> */}
+                    </a>
+                </div>
+                :
+                <a onClick={() => toggleLike()} class={likeIconClasses}>
+                    <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
+                    <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" />
+                </a>}
         </li>
     );
 

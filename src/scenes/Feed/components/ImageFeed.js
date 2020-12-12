@@ -42,55 +42,55 @@ const ImageFeed = (props) => {
         return (
             <div className="post_shape">
                 <div className="lps_list postBox" ref={(r) => refHandler && refHandler(r)}>
-                <div className={isReposted ? "lps_list_repost" : ""}>
-                    <div className="lps_sm_shape"></div>
-                    <div className="post_img_block lps_widgets_wrp bg_gray_feed">
-                        {isReposted && <div class="reposted_wrps">
-                            <div class="rwposted_txt">
-                            <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
-                            </div>
-                            <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
-                        </div>}
+                    <div className={isReposted ? "lps_list_repost" : ""}>
+                        <div className="lps_sm_shape"></div>
+                        <div className="post_img_block lps_widgets_wrp bg_gray_feed">
+                            {isReposted && <div class="reposted_wrps">
+                                <div class="rwposted_txt">
+                                    <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
+                                </div>
+                                <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
+                            </div>}
 
-                        <a onClick={clickHandler} id="trigger_main_feed">
-                            <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
-                                <img src={photo_urls.medium} alt="Add Image" />
-                            </figure>
-                        </a>
-                        
+                            <a onClick={clickHandler} id="trigger_main_feed">
+                                <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
+                                    <img src={photo_urls.medium} alt="Add Image" />
+                                </figure>
+                            </a>
 
-                        <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
-                    
-                    </div>
-                    <div className="lps_inner_wrp lps_inner_wrp_media post_mediaText">
-                        <div className="lps_media mProfile">
-                            <figure className="lps_fig lps_fig_circle">
-                                <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
-                            </figure>
-                            <div className="lps_media_body">
+
+                            <FeedWidget showWidget={showWidget} feed={feed} user={user} isReposted={isReposted} />
+
+                        </div>
+                        <div className="lps_inner_wrp lps_inner_wrp_media post_mediaText">
+                            <div className="lps_media mProfile">
+                                <figure className="lps_fig lps_fig_circle">
+                                    <img src={feed_user_photo && feed_user_photo.medium ? feed_user_photo.medium : require("assets/images/icons/icn_profile.svg")} alt="User" />
+                                </figure>
                                 <div className="lps_media_body">
-                                    <p className="mb_5 more desc-break">
-                                        <span className="text_primary ft_Weight_500">
-                                            <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
-                                        </span> {shortDesc}
-                                        {pendingText.length > 0 &&
-                                            <>
-                                                <span className="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
-                                                <span className="morecontent moreLess">
-                                                    <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
-                                                    </span>&nbsp;&nbsp;
+                                    <div className="lps_media_body">
+                                        <p className="mb_5 more desc-break">
+                                            <span className="text_primary ft_Weight_500">
+                                                <a onClick={() => { history.push(user ? `${routes.PROFILE}/${feed_user.user_name}` : routes.LOGIN_TO_PROCEED) }}>{user_name} </a>
+                                            </span> {shortDesc}
+                                            {pendingText.length > 0 &&
+                                                <>
+                                                    <span className="moreellipses" style={{ display: moreTextEnabled ? "none" : "" }}>{ellipsestext}&nbsp;</span>
+                                                    <span className="morecontent moreLess">
+                                                        <span style={{ display: moreTextEnabled ? "inline" : "none" }}>{pendingText}
+                                                        </span>&nbsp;&nbsp;
                                                     <a onClick={() => setMoreTextEnabled(!moreTextEnabled)} className={moreTextEnabled ? "morelink less" : "morelink"}>{moreTextEnabled ? "less" : "more"}</a>
-                                                </span>
-                                            </>
-                                        }
-                                    </p>
+                                                    </span>
+                                                </>
+                                            }
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div >
-        </div>
+                </div >
+            </div>
         )
     } else {
         return (
@@ -124,30 +124,30 @@ const ImageFeed = (props) => {
                     </div>
                 </div>
                 <div className={isReposted ? "lps_list_repost" : ""}>
-                <div className="post_img_block lps_pink_bg lps_widgets_wrp model_border textContent hightAuto">
-                    <div className="lps_sm_shape"></div>
-                    {isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
-                        <div class="rwposted_txt">
-                        <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
-                        </div>
-                        <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
-                    </div>}
-                    <a onClick={clickHandler}>
-                        <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
-                            <img src={photo_urls.medium} alt="Add Image" />
-                        </figure>
-                    </a>
-                    {!isMobile &&
-                        <>
-                            <RepostModal feed={feed} />
-                            <TaggedModal feed={feed} />
-                            <ReportModal feed={feed} />
-                            <SharedModal feed={feed} />
-                            <RemoveFeedModal feed={feed} />
-                        </>}
+                    <div className="post_img_block lps_pink_bg lps_widgets_wrp model_border textContent hightAuto">
+                        <div className="lps_sm_shape"></div>
+                        {isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>
+                            <div class="rwposted_txt">
+                                <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} class="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
+                            </div>
+                            <img src={require("assets/images/icons/icn_repeat.svg")} alt="Add Image" />
+                        </div>}
+                        <a onClick={clickHandler}>
+                            <figure className="feed_galary lps_flx_vm_jc lps_f_vm lps_bg_prty" >
+                                <img src={photo_urls.medium} alt="Add Image" />
+                            </figure>
+                        </a>
+                        {!isMobile &&
+                            <>
+                                <RepostModal feed={feed} />
+                                <TaggedModal feed={feed} />
+                                <ReportModal feed={feed} />
+                                <SharedModal feed={feed} />
+                                <RemoveFeedModal feed={feed} />
+                            </>}
+                    </div>
                 </div>
-                </div>
-                <FeedWidget showWidget={true} feed={feed} user={user} isReposted={isReposted} />
+                <FeedWidget showWidget={true} feed={isReposted ? feed.parent : feed} user={user} isReposted={isReposted} />
             </div>
         );
     }
