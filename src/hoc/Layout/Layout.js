@@ -84,9 +84,9 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                 navClassName = "theme_navigation theme_navigationCenterLogo"
                 logoContent = (
                     <>
-                        <a onClick={() => { props.history.goBack() }} className="lps_arrow_left">
+                        {/* <a onClick={() => { props.history.goBack() }} className="lps_arrow_left">
                             <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
-                        </a>
+                        </a> */}
                         <Link className="logo" to={props.user ? '/' : routes.MAIN_FEED}>
                             <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="Lips Logo" className="header__logo" />
                         </Link>

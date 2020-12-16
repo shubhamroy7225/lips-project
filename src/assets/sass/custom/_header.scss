@@ -147,6 +147,11 @@ header.main_header {
 //}
 
 nav.theme_navigationCenterLogo {
+  position: relative;
+  justify-content: center !important;
+  .logo {
+    margin-left: 0;
+}
   .lps_arrow_left {
     margin-top: 0;
     .lps_header_img {
@@ -155,8 +160,12 @@ nav.theme_navigationCenterLogo {
   }
   ul.lp_nav {
     padding-left: 0;
+      float: right;
+      position: absolute;
+      right: 15px;
     .nav-item:first-child {
       margin-left: 0;
     }
   }
+
 }
