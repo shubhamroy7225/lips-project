@@ -99,7 +99,7 @@ const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setS
                                     <li className="mt_15">
                                         {
                                             count > hashTags.length ?
-                                                <button onClick={loadMore} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
+                                                <button onClick={loadMore} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase view_more_button">
                                                     View more</button> : ""
                                         }
                                     </li>
