@@ -91,7 +91,7 @@ const TextFeed = (props) => {
                     </div>
                 </div>
                 <div className={isReposted ? "lps_list_repost_text lps_mobile" : ""}>
-                <div class="lps_inner_wrp post_img_block lps_pink_border lps_widgets_wrp lps_mt_50 textContent">
+                <div class="lps_inner_wrp post_img_block lps_pink_border lps_neon_pink_border lps_widgets_wrp lps_mt_50 textContent">
                     <div class="lps_sm_shape lps_sm_shape1"></div>
                     {
                         isReposted && <div class="reposted_wrps" style={{ zIndex: "100" }}>

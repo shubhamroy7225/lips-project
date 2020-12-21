@@ -12,7 +12,7 @@ const Options = {
         desc: "Registered users can send Lips Love, and share the content they’ve loved with others."
     },
     explore: {
-        title: "Eager to explore the lip universe of creators?",
+        title: "Eager to explore the Lips universe of creators?",
         desc: "Registered users can discover posts to love and accounts to follow using our explore feature."
     },
     profile: {
