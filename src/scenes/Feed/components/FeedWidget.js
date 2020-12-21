@@ -114,8 +114,8 @@ const FeedWidget = ({ user, showWidget, feed }) => {
             <a onClick={() => is_reposted ? () => { } : feedSelectionHandler(FeedModalType.repost)}
                 className={repostIconClasses}
                 id="trigger_popup_fricc1">
-                <img src={require("assets/images/icons/icn_repeat_white.svg")} class="inner_image icn_dfltD" alt="Repeat Icon" />
-                <img src={require("assets/images/icons/icn_repeat.svg")} class="inner_image icn_hvrA" alt="Repeat Icon" />
+                <img src={require("assets/images/icons/refresh.svg")} class="inner_image icn_dfltD" alt="Repeat Icon" />
+                <img src={require("assets/images/icons/refresh_black.svg")} class="inner_image icn_hvrA" alt="Repeat Icon" />
             </a>
         </li>
     );
