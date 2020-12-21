@@ -119,7 +119,7 @@ const MainFeed = (props) => {
             emptyFeedContent = (
                 <div class="lps_tb_para wlcome">
                     <h3>Welcome to your feed</h3>
-                    <h4>Posts from account you follow will appear here.</h4>
+                    <h4>Post from account you follow will appear here.</h4>
                 </div>
             )
         } else {
@@ -199,7 +199,7 @@ const MainFeed = (props) => {
                             </div>
                             <div class="mdl_arrow_wrp">
                                 <h5 class="h5_title text_inherit">Welcome to your feed.</h5>
-                                <h5 class="h5_title text_inherit">Posts from account you follow will appear here.</h5>
+                                <h5 class="h5_title text_inherit">Post from account you follow will appear here.</h5>
                             </div>
                             <div class="up_arrow_wrp down_arrow_wrp">
                                 <div class="h5_title1 inline_img1">Open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
@@ -223,7 +223,7 @@ const MainFeed = (props) => {
                             </div>
                             <div class="mdl_arrow_wrp">
                                 <h5 class="h5_title text_inherit">Welcome to your feed.</h5>
-                                <h5 class="h5_title text_inherit">Posts from account you follow will appear here.</h5>
+                                <h5 class="h5_title text_inherit">Post from account you follow will appear here.</h5>
                             </div>
                             <div class="up_arrow_wrp down_arrow_wrp">
                                 <div class="h5_title1 inline_img1">Click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
