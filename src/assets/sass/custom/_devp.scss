@@ -332,13 +332,13 @@ input.input_modify {
       height: 100vh !important;
   }
   .comuNitiInner {
-    justify-content: initial;
+    // justify-content: initial;
     .onboarding_btm {
       margin-top: 30px;
     }
   }
   .comuNiti {
-      justify-content: initial;
+      // justify-content: initial;
       .onboarding_btm {
           margin-top: 30px;
           flex-direction: column;
@@ -816,4 +816,14 @@ span.countBadge {
 
 .lps_neon_pink_border{
   border: 1px solid #FF6EC7;
+}
+
+@media screen and (max-width: 768px){
+  .post_links_tags{
+    position: absolute;
+    bottom: 30px;
+    left: auto;
+    right: auto;
+    width: 100%;
+  }
 }

@@ -20,7 +20,7 @@ export default ({isSetting, setGuidelineState}) => {
                   entelur adipiscing elit, sed do.
                 </h4>
               </div> */}
-              <div className="onboarding_btm lps_flx_vm_jsbtwn">
+              <div className="onboarding_btm lps_flx_vm_jsbtwn community_btn">
                 <button onClick={() => setGuidelineState(1)} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">COMMUNITY GUIDELINES</button>
                 <Link to={isSetting ? routes.SETTING : routes.ACCOUNT_PRIVACY} className="link_underline lps_link ft_Weight_500">Skip</Link>
               </div>
