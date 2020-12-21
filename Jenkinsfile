@@ -42,7 +42,8 @@ pipeline {
           sh 'npm install'
           sh 'npm run build:staging'
           sh '/usr/local/bin/aws s3 sync ./build/ s3://stage.lips.social --profile lips'
-          sh '/usr/local/bin/aws cloudfront create-invalidation --distribution-id E2CPWGC67UROQL --paths "/*" --profile lips'    
+          sh '/usr/local/bin/aws cloudfront create-invalidation --distribution-id E2CPWGC67UROQL --paths "/*" --profile lips'
+          sh '/usr/local/bin/aws cloudfront create-invalidation --distribution-id EWMALVBEDMA17 --paths "/*" --profile lips'
         }
       }
     }
