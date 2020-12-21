@@ -16,7 +16,7 @@ export default ({isSetting, setGuidelineState}) => {
               
                 <div class="onboarding_btm lps_flx_vm_jsbtwn">
                 <Link to={routes.COMMUNITY_GUIDELINES} onClick={() => setGuidelineState(5)} className="link_underline lps_link ft_Weight_500">Back</Link>
-                <Link to={isSetting ? routes.SETTING : routes.ACCOUNT_PRIVACY} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">Finish</Link>
+                <Link to={isSetting ? routes.SETTING : routes.ACCOUNT_PRIVACY} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase finish_btn">Finish</Link>
                 </div>
               </div>
             </div>
