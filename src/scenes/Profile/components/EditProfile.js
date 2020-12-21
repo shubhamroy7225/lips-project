@@ -127,7 +127,7 @@ const EditProfile = ({setIsEdit, user}) => {
                   </div>
                   <div className="mail_about_wrp">
                   </div>
-                  <textarea className="input_modify txtarea_modify border_0 brds_0" name="bio" rows="5" onChange={calculateTextareaLength}
+                  <textarea className="input_modify txtarea_modify border_0 brds_0 textarea-font-family" name="bio" rows="5" onChange={calculateTextareaLength}
                    value={userForm.bio} maxLength="5000" />
 
                   <span className="textRange">{textAreaCount}/50000</span>

@@ -206,7 +206,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                     </div>
                     <div class="form_group_modify">
                         <label class="label_modify">Alternatively link to your website / portfolio</label>
-                        <input class="input_modify"
+                        <input class="input_modify textarea-font-family"
                             type="text"
                             name="link"
                             value={approvalForm.link}
@@ -217,7 +217,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                     </div>
                     <div class="form_group_modify">
                         <label class="label_modify">Why do you want to post on Lips? *</label>
-                        <textarea class="input_modify txtarea_modify"
+                        <textarea class="input_modify txtarea_modify textarea-font-family"
                             rows="5"
                             name="description"
                             value={approvalForm.description}
