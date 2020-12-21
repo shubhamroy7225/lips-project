@@ -829,8 +829,10 @@ span.countBadge {
     display: block;
   }
   .view_more_button{
-    margin-bottom: 100px !important;
-  }
+    margin-bottom: 80px !important;
+    display: block;
+    margin: 0 auto;
+}
 }
 
 @media screen and (max-width: 768px){
