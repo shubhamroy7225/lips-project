@@ -8,14 +8,14 @@ const NoNetwork = (props) => {
                 <div class="lps_inner_wrp wave_shape_mxW">
                     <div class="lps_top_d">
                         <figure class="lps_fig">
-                            <img src={require("assets/images/icons/no_network.svg")} />
+                            <img src={require("assets/images/thumbnails/no_network.svg")} />
                         </figure>
                         <article class="lps_art">
-                            <h2 class="btm_xs_bdr">Oh Snap!</h2>
+                            <h2 class="btm_xs_bdr">oh snap!</h2>
                             <p>
                                 Something went wrong. Please check your connection and try again.
                 </p>
-                            <button onClick={() => console.log("no network")} class="theme_btn theme_outline_primary text_secondary text_uppercase btnr_25 min_w_170">Try again</button>
+                            <button onClick={() => console.log("no network")} class="theme_btn theme_outline_primary text_white text_uppercase btnr_25 min_w_170">Try again</button>
                         </article>
                     </div>
                 </div>

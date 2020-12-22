@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" height="150" viewBox="0 0 150 150">
+  <defs>
+    <clipPath id="clip-No_Network">
+      <rect width="150" height="150"/>
+    </clipPath>
+  </defs>
+  <g id="No_Network" data-name="No Network" clip-path="url(#clip-No_Network)">
+    <g id="no-network.icon_1" data-name="no-network.icon 1" transform="translate(-1.645 5.125)">
+      <path id="Path_11" data-name="Path 11" d="M77.27,34.152a48.392,48.392,0,0,0-60.58,0,5.378,5.378,0,1,0,6.739,8.384,37.608,37.608,0,0,1,47.1,0,5.379,5.379,0,1,0,6.739-8.384Z" transform="translate(29.347 46.868)" fill="#fd3398" fill-rule="evenodd"/>
+      <path id="Path_12" data-name="Path 12" d="M112.074,32.443a80.6,80.6,0,0,0-100.937,0,5.375,5.375,0,0,0,6.718,8.39,69.9,69.9,0,0,1,87.506,0,5.375,5.375,0,0,0,6.718-8.39Z" transform="translate(14.72 23.43)" fill="#fd3398" fill-rule="evenodd"/>
+      <path id="Path_13" data-name="Path 13" d="M147,30.732a112.9,112.9,0,0,0-141.346,0A5.38,5.38,0,1,0,12.4,39.117a102.1,102.1,0,0,1,127.858,0A5.38,5.38,0,1,0,147,30.732Z" fill="#fd3398" fill-rule="evenodd"/>
+      <path id="Path_14" data-name="Path 14" d="M20.62,41.439l21.5,21.5a5.374,5.374,0,0,0,7.6-7.6l-21.5-21.5a5.374,5.374,0,0,0-7.6,7.6Z" transform="translate(41.13 70.35)" fill="#fd3398" fill-rule="evenodd"/>
+      <path id="Path_15" data-name="Path 15" d="M28.22,62.936l21.5-21.5a5.374,5.374,0,0,0-7.6-7.6l-21.5,21.5a5.374,5.374,0,0,0,7.6,7.6Z" transform="translate(41.13 70.35)" fill="#fd3398" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

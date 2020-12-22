@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="225" height="225" viewBox="0 0 225 225">
+  <defs>
+    <clipPath id="clip-Upload">
+      <rect width="225" height="225"/>
+    </clipPath>
+  </defs>
+  <g id="Upload" clip-path="url(#clip-Upload)">
+    <g id="add-to-homescreen" transform="translate(20 7.75)">
+      <path id="Path_16" data-name="Path 16" d="M1,9V93.7H183.431V9" transform="translate(0 105.269)" fill="none" stroke="#fd3398" stroke-linecap="round" stroke-linejoin="round" stroke-width="19.5"/>
+      <path id="Path_17" data-name="Path 17" d="M81.356,3.112a9.773,9.773,0,0,0-13.821,0l-62.2,62.2A9.773,9.773,0,0,0,19.161,79.129L74.446,23.844,129.73,79.129a9.773,9.773,0,1,0,13.822-13.821Zm2.862,150.249V10.023H64.673V153.362Z" transform="translate(17.77 0)" fill="#fd3398"/>
+    </g>
+  </g>
+</svg>

@@ -3959,12 +3959,15 @@ p.more {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  .wave_shape_mxW {
+    border: 1px solid $brand-primary;
+  }
   .lps_top_d {
-    background-color: $white-200;
-    padding: 40px 26px 40px;
+    background-color: $brand-secondary;;
+    padding: 55px 26px 45px;
     border-radius: 0;
     .lps_fig {
-      width: 70px;
+      width: 50px;
       margin: 0 auto;
     }
   }
@@ -3982,17 +3985,18 @@ p.more {
     text-align: center;
     color: $brand-secondary;
     h2 {
-      color: $brand-secondary;
-      font-weight: 600;
-      margin-top: 10px;
-      margin-bottom: 30px;
+      color: $white;
+      font-weight: 400;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      font-size: 20px;
       line-height: 30px;
     }
     p {
-      color: $brand-secondary;
-      font-size: 18px;
-      line-height: 26px;
-      margin-bottom: 40px;
+      color: $white;
+      font-size: 16px;
+      line-height: 28px;
+      margin-bottom: 55px;
     }
   }
 }

@@ -859,3 +859,19 @@ span.countBadge {
   border-left: none;
 }
 
+.hover_bkgBlack {
+  .popup_body {
+    h5 {
+      color: #fff;
+      margin-bottom: 30px;
+    }
+    h6 {
+      color: #fff;
+      margin-bottom: 0;
+    }
+    p {
+      color: #fff;
+      margin-bottom: 30px;
+  }
+  }
+}
