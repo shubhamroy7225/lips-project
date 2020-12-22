@@ -207,7 +207,7 @@ export default () => {
                       </button>
                       <p className="btm_links mt_25 text_white">
                         Have an account?{" "}
-                        <Link to="/login" className="link_underline lps_link">
+                        <Link to="/login" className="link_underline lps_link link_tag">
                           Sign in
                         </Link>
                       </p>

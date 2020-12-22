@@ -83,8 +83,8 @@ let LoginForm = (props) => {
               </div>
               <div className="pos_wrp onboarding_btm">
                 <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">Sign In</button>
-                <p className="btm_links mt_25 text_white">New to Lips? <Link to="/register" className="link_underline lps_link">Register</Link></p>
-                <Link onClick={()=> history.goBack()} className="link_underline lps_link">Go Back</Link>
+                <p className="btm_links mt_25 text_white">New to Lips? <Link to="/register" className="link_tag link_underline lps_link">Register</Link></p>
+                <Link onClick={()=> history.goBack()} className="link_underline lps_link link_tag">Go Back</Link>
               </div>
             </form>
           </div>

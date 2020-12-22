@@ -38,7 +38,7 @@ export default () => {
               <div className="pos_wrp onboarding_btm">
                 <Link to={routes.SELECT_FAVORITE_TAGS} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10 desktopVersio">Customize feed</Link>
                 <button onClick={loading} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio">Auto-Generate</button>
-                <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button">Go Back</Link>
+                <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button link_tag">Go Back</Link>
               </div>
             </div>
           </div>

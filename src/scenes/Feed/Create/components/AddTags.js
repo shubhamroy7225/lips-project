@@ -106,7 +106,7 @@ const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setS
                                 </div>
                                 <div className="post_links post_links_undr post_links_tags">
                                     <a onClick={() => dismiss()} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</a>
-                                    <span onClick={() => setSuggestedTagModel(true)} className="lps_link mt_15 btn_block textDecor cursor-pointer" id="trigger_submit_tag">Can't find what you're looking for ?</span>
+                                    <span onClick={() => setSuggestedTagModel(true)} className="link_tag lps_link mt_15 btn_block textDecor cursor-pointer" id="trigger_submit_tag">Can't find what you're looking for ?</span>
                                 </div>
                             </div>
                         </div>
