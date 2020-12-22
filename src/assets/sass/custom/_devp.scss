@@ -238,17 +238,23 @@ input.input_modify {
   border-top: 5px solid #fff !important;
 }
 .notification-item {
-  background: #2f2f2f;
-  border-left: 8px solid $brand-primary;
-  .notification-title, .notification-message{
+  background: #D3D3D3;
+  border-bottom: 5px solid $brand-primary;
+  .notification-message{
+    color: #1a1a1a;
+    font-size: 15px !important;
+  }
+  .notification-title{
     color: $brand-primary;
     font-size: 15px !important;
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
   .notification-close {
     background-color: $brand-primary;
   }
   .notification-message {
-      font-weight: 600;
+      font-weight: bold;
   }
 }
 .wlcome h3 {
@@ -843,5 +849,13 @@ span.countBadge {
 
 .link_tag{
   text-decoration: none;
+}
+
+.notification-danger{
+  border-left: none;
+}
+
+.notification-success {
+  border-left: none;
 }
 
