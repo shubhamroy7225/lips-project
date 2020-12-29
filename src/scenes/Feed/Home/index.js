@@ -219,7 +219,7 @@ const MainFeed = (props) => {
                                 <a href="#" class="lips_arrow">
                                     <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" />
                                 </a>
-                                <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo.png")} alt="Image" class="lip_icn" /> </h5>
+                                <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo-2.png")} alt="Image" class="lip_icn" /> </h5>
                             </div>
                             <div class="mdl_arrow_wrp">
                                 <h5 class="h5_title text_inherit title_black">welcome to your feed <img src={require("assets/images/thumbnails/Mask_Group.png")} alt="Image" class="lip_icn_group" /></h5>
