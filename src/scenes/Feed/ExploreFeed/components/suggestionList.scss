@@ -1,3 +1,10 @@
+.exploreSearch .search-cancel-icon{
+  font-size: 40px;
+  vertical-align: top;
+  line-height: 20px;
+  font-weight: 200;
+  cursor: pointer;
+}
 .relative_pos {
     position: relative;
   }
@@ -18,6 +25,14 @@
         padding: 8px 15px;
         cursor: pointer;
         transition: all ease-in-out 0.3s;
+        .hashtag-suggestion-user-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
       }
       li:hover{
         background-color: #f5f5f5;

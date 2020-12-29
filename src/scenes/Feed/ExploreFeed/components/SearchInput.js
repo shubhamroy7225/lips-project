@@ -31,9 +31,12 @@ const SearchInput = ({ submitHandler }) => {
                                 name="email"
                                 placeholder=""
                                 onChange={inputChangeHandler} />
-                            <span className="input-group-addon" onClick={() => submitHandler(searchText)}><img src={require("assets/images/icons/icn_search.png")} alt="Search Icon" /></span>
+                            {
+                                searchText ? <span className="input-group-addon search-cancel-icon" onClick={() => [setSearchText(''), submitHandler('')]}>&times;</span> : 
+                                <span className="input-group-addon" onClick={() => submitHandler(searchText)}><img src={require("assets/images/icons/icn_search.png")} alt="Search Icon" /></span> 
+                            }
                         </form>
-                        <SearchSuggestions  showSuggestions={showSuggestions} setSearchText={setSearchText} setShowSuggestions={setShowSuggestions}/>
+                        <SearchSuggestions submitHandler={submitHandler} showSuggestions={showSuggestions} setSearchText={setSearchText} setShowSuggestions={setShowSuggestions}/>
                     </div>
                     {/* <div className="see_also">
                         <div className="hashtag">
