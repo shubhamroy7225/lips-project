@@ -238,7 +238,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
     return (
         <>
             {
-                !notifications.length ? <li className="list-group-item"><span className="durations text-align-center">No notifications yet</span></li> :
+                !notifications.length ? <li className="list-group-item"><span className="durations text-align-center">no notifications yet</span></li> :
                     notifications.map((notification, index) =>
                         <li key={`noti_${index}`} className="list-group-item">
                             <div className="lps_media">

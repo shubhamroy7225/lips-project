@@ -145,7 +145,7 @@ const Likes = (props) => {
         emptyPostData = (
             <div class="main_feed_cont">
                 <div class="lps_tb_para">
-                    <h4>All the posts you  <img src={require("assets/images/icons/icn_lip_black.svg")} width="40" alt="BitCot Logo" className="header__logo like_logo" />  will appear here</h4>
+                    <h4 className="empty_posts">the posts you &nbsp; <img src={require("assets/images/icons/icn_lip_black.svg")} width="40" alt="BitCot Logo" className="header__logo like_logo" /> &nbsp;  will appear here</h4>
                 </div>
             </div>
         )

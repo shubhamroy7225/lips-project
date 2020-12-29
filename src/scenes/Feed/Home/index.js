@@ -195,14 +195,14 @@ const MainFeed = (props) => {
                                 <a href="#" class="lips_arrow">
                                     <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" />
                                 </a>
-                                <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit">to come back here click <img src={require("assets/images/thumbnails/logo.png")} alt="Image" class="lip_icn" /> </h5>
+                                <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo-2.png")} alt="Image" class="lip_icn_black" /> </h5>
                             </div>
                             <div class="mdl_arrow_wrp">
-                                <h5 class="h5_title text_inherit">Welcome to your feed.</h5>
-                                <h5 class="h5_title text_inherit">Post from account you follow will appear here.</h5>
+                                <h5 class="h5_title text_inherit title_black">welcome to your feed <img src={require("assets/images/thumbnails/Mask_Group.png")} alt="Image" class="lip_icn_group" /></h5>
+                                <h5 class="h5_title text_inherit text_black">posts from account you follow will appear here</h5>
                             </div>
                             <div class="up_arrow_wrp down_arrow_wrp">
-                                <div class="h5_title1 inline_img1">Open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
+                                <div class="h5_title1 inline_img1">open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
                                 <a href="#" class="lips_arrow">
                                     <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" class="lip_icn" />
                                 </a>
@@ -219,11 +219,11 @@ const MainFeed = (props) => {
                                 <a href="#" class="lips_arrow">
                                     <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" />
                                 </a>
-                                <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit">to come back here click <img src={require("assets/images/thumbnails/logo.png")} alt="Image" class="lip_icn" /> </h5>
+                                <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo.png")} alt="Image" class="lip_icn" /> </h5>
                             </div>
                             <div class="mdl_arrow_wrp">
-                                <h5 class="h5_title text_inherit">Welcome to your feed.</h5>
-                                <h5 class="h5_title text_inherit">Post from account you follow will appear here.</h5>
+                                <h5 class="h5_title text_inherit title_black">welcome to your feed <img src={require("assets/images/thumbnails/Mask_Group.png")} alt="Image" class="lip_icn_group" /></h5>
+                                <h5 class="h5_title text_inherit text_black">posts from account you follow will appear here</h5>
                             </div>
                             <div class="up_arrow_wrp down_arrow_wrp">
                                 <div class="h5_title1 inline_img1">Click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
