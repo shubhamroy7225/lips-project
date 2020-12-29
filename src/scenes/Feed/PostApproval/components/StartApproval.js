@@ -53,8 +53,8 @@ const StartApproval = ({ moveToNextStep }) => {
                     <p>TL/DR - Hate-speech get outta here. </p>
                 </article>
                 <div class="plans_wrp text_center plans_mobile_top">
-                    <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Approval Form</a>
-                    <Link to={routes.ACCESS_CODE} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio">Use an Access Code</Link>
+                    <a onClick={handleSubmit} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio approve_btn_bck">Get Approved</a>
+                    <Link to={routes.ACCESS_CODE} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio approve_btn_bck">Use an Access Code</Link>
                 </div>
             </div>
         </div>

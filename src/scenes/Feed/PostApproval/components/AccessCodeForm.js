@@ -31,6 +31,7 @@ export default () => {
                 <article className="lps_art mt45 article_desktopView">
                   <div>
                     <div className="lps_fields ifAccess access-code-data">
+                      <h5>Have an access code?</h5>
                       <p className="mt45 ">Access codes were sent via email to selected creators who we have worked with in the past. Is this you? Enter below to skip the approved user process, cuz you’re already in babe!</p>
                     </div>
                     <div className="lps_fields ifAccess accessCodeForm access-code-data">
@@ -38,7 +39,7 @@ export default () => {
                       <input type="text"
                             name="accessCode"
                             className="input_modify input_brdrBtnmP access_input"
-                            placeholder="enter the code here"
+                            placeholder="type your code here"
                             value={accessCode}
                             onBlur={() => simpleValidator.current.showMessageFor('accessCode')}
                             onChange={handleChange} />
