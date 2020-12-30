@@ -26,7 +26,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
     const simpleValidator2 = useRef(new SimpleReactValidator(
         {
             messages: {
-                required: "Please add 3 image examples of post"
+                required: "Please add 3 images"
             }
         }
     ));
