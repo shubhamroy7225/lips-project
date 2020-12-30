@@ -52,6 +52,7 @@ export const NO_HEADER_ROUTES = {
     NO_NETWORK: "/network_error",
     POST_APPROVAL: '/post-approval',
     ACCESS_CODE: '/access-code',
+    ACCESS_CODE_COMPLETED: '/access_code',
     LOGIN_TO_PROCEED: '/create-account',
     ...SETTINGS_PATH,
     ...ON_BOARD_PATH

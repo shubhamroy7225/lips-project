@@ -11,7 +11,7 @@ export default () => {
     const [, forceUpdate] = useState();
     const handleSubmit = (e) => {
       actions.submitAccessCodeData({code:accessCode}).then(e => {
-        if (e.data.success) history.push(routes.ROOT)
+        if (e.data.success) history.push(routes.ACCESS_CODE_COMPLETED)
         else return false;       
 
       })

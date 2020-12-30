@@ -11,8 +11,8 @@ const AccessCodeCompleted = () => {
                         <p>Our team has already seen your work and is inspired by your vision, so we are streamlining you through the approval process! We trust that you will arrive on Lips with the shared intention of making it a space where we all can express ourselves openly & honestly. </p>
                     </article>
                     <div class="plans_wrp text_center plans_mobile_top">
-                    <a onClick={routes.CREATE} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio approve_btn_bck">create my first post</a>
-                    <Link class="about_link">later</Link>
+                    <Link to={routes.CREATE} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio approve_btn_bck">create my first post</Link>
+                    <Link to={routes.ROOT} class="about_link">later</Link>
                 </div>
                 </div>
             </div>
