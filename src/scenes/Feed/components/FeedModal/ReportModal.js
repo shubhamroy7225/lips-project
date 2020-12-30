@@ -85,7 +85,7 @@ const ReportModal = ({ feed }) => {
                     </div>
                     <div className="popup_body">
                         <ul class="lps_btn_grps lps_ul newButton">
-                            <li class="lps_title">
+                            <li class="lps_title lps_title_size">
                                 Don't want to see this?
                             </li>
                             <li>
