@@ -271,7 +271,7 @@ export const feedReducer = createReducer({
     [actions.addSuggestedHashTagSuccessful]: (state, payload) => updateObject(state, {}),
     [actions.setHashTagJustBrowseSuccessful]: (state, payload) => updateObject(state, { justBrowseTags: { ...state.justBrowseTags, ...payload.hashtags } }),
     [actions.getHashTagSuggestionListPending]: (state, payload) => updateObject(state, { hashTagSuggestionList: [] }),
-    [actions.getHashTagSuggestionListSuccessful]: (state, payload) => updateObject(state, { hashTagSuggestionList: payload.hashtags }),
+    [actions.getHashTagSuggestionListSuccessful]: (state, payload) => updateObject(state, { hashTagSuggestionList: payload.data }),
 
     [actions.setMainFeedPaginationCompleted]: (state, payload) => updateObject(state, { mainFeedIsPaginationCompleted: true })
     ,

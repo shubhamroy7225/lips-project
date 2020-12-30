@@ -2,6 +2,9 @@ import axios, { API_VERSION } from '../config';
 
 export const getAllHashTags = (params) => axios.get(API_VERSION + '/hashtag', { params });
 
+export const getPostSearchSuggestions = (params) => axios.get(API_VERSION + '/hashtag/username', { params });
+
+
 export const getUserHashTags = () => axios.get(API_VERSION + '/user/settings/hashtag');
 
 export const setFavoriteAvoidTags = (body) => axios.put(API_VERSION + '/user/settings/hashtag', body);

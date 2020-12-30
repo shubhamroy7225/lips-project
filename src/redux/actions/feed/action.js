@@ -30,7 +30,7 @@ export const getAllHashTags = (params) => {
 
 export const getPostSearchHashTag = (params) => {
   getHashTagSuggestionListPending();
-  return API.getAllHashTags(params)
+  return API.getPostSearchSuggestions(params)
     .then(response => {
       getHashTagSuggestionListSuccessful(response.data)
       return response
