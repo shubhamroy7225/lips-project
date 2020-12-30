@@ -180,7 +180,7 @@ const ExploreFeed = (props) => {
 
                             </div>
                     }
-                    {gridFeedContent.length === 0 && isDataFetched && <div class="main_feed_cont">
+                    {(gridFeedContent.length === 0 && listFeedContent.length === 0) && isDataFetched && <div class="main_feed_cont">
                         <div class="lps_tb_para">
                             <h4>No Results Found!</h4>
                         </div>
