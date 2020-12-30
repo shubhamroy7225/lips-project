@@ -29,7 +29,6 @@ const Setting = () => {
          onCancel: () => commonService.isDialogOpen.onNext(false)
       });
    };
-
    return (
       <>
          <div id="wrap" className="mt_0">
@@ -49,7 +48,7 @@ const Setting = () => {
                      <Link to="/settings/notification">Notifications</Link>
                   </li> */}
                   <li className="list-group-item">
-                     <a href="mailto://?subject=Invitation from Lips&body=Hello,%0DJoin Today https://stage.lips.social" target="_blank">Invite someone to lips</a>
+                     <a href={`mailto://?subject=Invitation from Lips&body=Hello,%0DJoin Today ${window.location.origin}`} target="_blank">Invite someone to lips</a>
                   </li>
                   <li className="list-group-item lps_hrSep">
                      <Link to={routes.SETTING_COMMUNITY_GUIDELINES}>Community guidelines</Link>
