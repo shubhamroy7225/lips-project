@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { setFeedModalType } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
@@ -7,6 +7,10 @@ import { toastMsg } from 'utility/utility';
 
 const RepostModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
+    const [repostButton, setRepostButton] = useState(false);
+    const showUndoModal = () => {
+        setRepostButton(repostButton ? false : true);
+    }
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
     }
@@ -31,7 +35,7 @@ const RepostModal = ({ feed }) => {
                 toastMsg("Reposted successfully!");
             }
         )
-        closeModal();
+        // closeModal();
     }
 
     return (<>
@@ -44,14 +48,17 @@ const RepostModal = ({ feed }) => {
                     {/* <div class="popup_close_header">
                         <div class="popupCloseButton"><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
                     </div> */}
-                    <div class="popup_body textBody">
+                    <div class="popup_body textBody" onClick={showUndoModal}>
 
                         <ul class="lps_btn_grps lps_ul mb100">
                             <li>
-                                <a href="#" class="text_white">Repost to your account?</a>
+                                <a href="#" class="text_white">{repostButton ? "Reposted" : "Repost to your account?"}</a>
                             </li>
                         </ul>
-                        <a onClick={repostFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>
+                        {repostButton ? 
+                        <a  class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Undo</a> :
+                        <a onClick={repostFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>    
+                        }
                     </div>
                 </div>
             </div>
