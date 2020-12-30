@@ -9,6 +9,11 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
     const postImgFirst = useRef(null);
     const postImgSecond = useRef(null);
     const postImgThird = useRef(null);
+    const [linkCheckbox, setLinkCheckbox] = useState(false);
+
+    const linkCheckboxChecked = () => {
+        setLinkCheckbox(linkCheckbox ? false : true);
+    }
 
     const withoutImageStyle = {
         width: "50%",
@@ -21,7 +26,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
     const simpleValidator2 = useRef(new SimpleReactValidator(
         {
             messages: {
-                required: "Please add 3 image examples of post"
+                required: "Please add 3 images"
             }
         }
     ));
@@ -179,7 +184,27 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                 </article>
                 <form onSubmit={handleSubmit}>
                     <div class="form_group_modify postApproval">
-                        <label class="label_modify">3 post examples of visuals or text that you'd post*</label>
+                    <div class="form_group_modify">
+                        {/* <label class="label_modify">Alternatively link to your website / portfolio</label> */}
+                        <input class="input_modify input_brdrBtnmP access_input"
+                            type="text"
+                            name="link"
+                            placeholder="your website/ portfolio/ blog/ instagram link"
+                            value={approvalForm.link}
+                            onChange={handleInputChange}
+                            onBlur={() => simpleValidator.current.showMessageFor('link')} />
+                        <span style={{ color: "red" }}>{simpleValidator.current.message('link', approvalForm.link, 'url')}</span>
+                    </div>
+                    <div className="form_group_modify mb_25">
+                          <label className="lps_cont_check">
+                            I don't have a link to submit/i don't want to share it
+                            <input type="checkbox" value={linkCheckbox}/>
+                            <span className="lps_Checkmark" onClick={linkCheckboxChecked}></span>
+                          </label>
+                        </div>
+                        {linkCheckbox ? 
+                        <div>
+                        <label class="label_modify">Alternatively, upload 3 post examples (images of visuals or text)</label>
                         <div class="add_product_grid">
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector1)}>
                                 <img style={!image1.base64 ? withoutImageStyle : null} src={image1.base64 ? image1.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgFirst} alt="Image" class="add_img" />
@@ -190,7 +215,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector3)}>
                                 <img style={!image3.base64 ? withoutImageStyle : null} src={image3.base64 ? image3.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgThird} alt="Image" class="add_img" />
                             </div>
-                        </div>
+                        </div></div> : "" }
                         <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio1" ref={fileSelector1} style={{ display: "none" }} 
                         onBlur={() => isSubmitted ? simpleValidator.current.showMessageFor('portfolio1') : true} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
                         {!approvalForm.link && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio1', image1.base64, 'required')}</span>}
@@ -202,17 +227,6 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                         <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio3" ref={fileSelector3} style={{ display: "none" }} 
                         onBlur={ isSubmitted ? () => simpleValidator.current.showMessageFor('portfolio3') : true} onChange={(e) => onFileSelectionHandler(e, fileSelector3)} />
                         {!approvalForm.link && image2.base64 && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio3', image3.base64, 'required')}</span>}
-
-                    </div>
-                    <div class="form_group_modify">
-                        <label class="label_modify">Alternatively link to your website / portfolio</label>
-                        <input class="input_modify textarea-font-family"
-                            type="text"
-                            name="link"
-                            value={approvalForm.link}
-                            onChange={handleInputChange}
-                            onBlur={() => simpleValidator.current.showMessageFor('link')} />
-                        <span style={{ color: "red" }}>{simpleValidator.current.message('link', approvalForm.link, 'url')}</span>
 
                     </div>
                     <div class="form_group_modify">
@@ -236,10 +250,11 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                             <span class="lps_Checkmark"></span>
                         </label>
                     </div> */}
-                    <p>If you plan to share the work of others on your profile that is fine! However, we ask that you give full credit to any artists/creators involved. Lips loves our creators, so intentional plagiarism and copyright infringement is a one-way ticket to outta here town for sure.</p>
+                    <p>If you plan to share the work of others on your profile that is fine! However, we ask that you give full credit to any artists/creators involved.</p>
+                    <p> Lips loves our creators, so intentional plagiarism and copyright infringement is a one-way ticket to outta here town for sure.</p>
                     <div class="post_block mb20 mt_15">
                         <button type="submit" class="circle submit-cursor">Submit</button>
-                        <a onClick={() => props.setStep(props.steps.StartApproval)} class="cancel_post link_underline">Cancel</a>
+                        <a onClick={() => props.setStep(props.steps.StartApproval)} class="cancel_post link_underline about_link">Cancel</a>
                     </div>
                 </form>
 

@@ -296,7 +296,7 @@ const Profile = (props) => {
                         <div id="tab-1" className="tab-content_cst current">
                             <div className="main_feed_cont">
                                 <div className="lps_tb_para">
-                                    <h4>No Posts Yet</h4>
+                                    <h4 className="empty_posts">no posts yet</h4>
                                 </div>
                             </div>
                         </div>
