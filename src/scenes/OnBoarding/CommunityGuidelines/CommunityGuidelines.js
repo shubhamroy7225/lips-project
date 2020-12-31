@@ -10,8 +10,9 @@ export default ({isSetting, setGuidelineState}) => {
               <article className="lps_art">
                 
                 <h3 className="text_white mb45"> Welcome to Lips! </h3>
-                <p>Lips is a safe space that centers marginalized communities including women, non-binary folks, People of Color, and the LGBTQIA+ community. As artists and creators ourselves, we came together to build Lips because we were fed up with the censorship and harassment we faced on mainstream platforms. On Lips, we hope you feel welcomed, recognized, and valued.</p>
-                <p>These 6 guiding principles are based on inclusivity and reflect our community values rather than those of the heterosexual cis white male-dominated tech industry we aim to resist. Please read them carefully and uphold them all while you occupy this digital space.</p>
+                <p>Lips is a digital space that centers and raises the voices and creation of historically marginalized communities including women, non-binary folks, BIPOC, and the LGBTQIA+ community.</p>
+                <p> As artists, creators and members of these marginalized communities ourselves, we built Lips because we were fed up with the biased censorship, harassment, and abuse to our self image we faced on mainstream platforms. On Lips, we hope you feel welcomed, recognized, and valued.</p>
+                <p>These 6 guiding principles are based on inclusivity and reflect our community values rather than those of the heterosexual cis, white, male-dominated tech industry we aim to resist. Please read the guidelines carefully and adhere to them while you occupy this digital space.</p>
                 
                 </article>
               {/* <div className="count_wrp text_center">
@@ -22,7 +23,7 @@ export default ({isSetting, setGuidelineState}) => {
               </div> */}
               <div className="onboarding_btm lps_flx_vm_jsbtwn community_btn">
                 <button onClick={() => setGuidelineState(1)} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">COMMUNITY GUIDELINES</button>
-                <Link to={isSetting ? routes.SETTING : routes.ACCOUNT_PRIVACY} className="link_underline lps_link ft_Weight_500">Skip</Link>
+                <Link to={isSetting ? routes.SETTING : routes.ACCOUNT_PRIVACY} className="link_underline lps_link ft_Weight_500">skip</Link>
               </div>
             </div>
           </div>

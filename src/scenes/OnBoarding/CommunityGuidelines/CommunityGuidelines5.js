@@ -9,13 +9,19 @@ export default ({setGuidelineState}) => {
             <div class="lps_form_wrp on_boarding_wrp_spwn border_0 comuNitiInner">
               <article class="lps_art">
               <p className="text_primary">5/6</p>
-                <h3 class="text_white mb45"> Empathise </h3>
-                <p>Sometimes complex emotions and sentiments can be lost in the digital world, but trust that everyone enters this space with good intentions. You may not agree with everything you see, and that’s okay.  </p>
-                <p>Have empathy and learn from perspectives that are different from your own. Be comfortable with being uncomfortable. This is a “brave” space. </p>
+                <h3 class="text_white mb45"> Empathize </h3>
+                <p>Sometimes complex emotions and sentiments can be lost in the digital world, but trust that everyone enters this space with good intentions. You may not agree with everything you see, and that’s okay. Have empathy and learn from perspectives that are different from your own. Be comfortable with being uncomfortable. </p>
+                <p>Consider this is a “brave” space. </p>
+                <p>
+                  For leagal reasons, we cananot allow pronography on the site. However, we understand the line between pronographyand arotic art /creative expression is blurry, and approach this distinction with an intersectional, and open-minded perspective.
+                </p>
+                <p>
+                  You will always be allowed to promote leagl sex work, as well as link to outside websites to showcase content we are unable to host here.
+                </p>
               </article>
               
                 <div class="onboarding_btm lps_flx_vm_jsbtwn">
-                <Link to={routes.COMMUNITY_GUIDELINES} onClick={() => setGuidelineState(4)} className="link_underline lps_link ft_Weight_500">Back</Link>
+                <Link to={routes.COMMUNITY_GUIDELINES} onClick={() => setGuidelineState(4)} className="link_underline lps_link ft_Weight_500">back</Link>
                   <button onClick={() => setGuidelineState(6)} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">Next</button>
                 </div>
               </div>
