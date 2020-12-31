@@ -193,7 +193,7 @@ const MainFeed = (props) => {
                         <div class="lps_container empty_feed_bg_wrp empty_feed_bg_wrp_spc">
                             <div class="up_arrow_wrp">
                                 <a href="#" class="lips_arrow">
-                                    <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" />
+                                    {/* <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" /> */}
                                 </a>
                                 <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo-2.png")} alt="Image" class="lip_icn_black" /> </h5>
                             </div>
@@ -204,7 +204,7 @@ const MainFeed = (props) => {
                             <div class="up_arrow_wrp down_arrow_wrp">
                                 <div class="h5_title1 inline_img1">open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
                                 <a href="#" class="lips_arrow">
-                                    <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" class="lip_icn" />
+                                    {/* <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" class="lip_icn" /> */}
                                 </a>
                             </div>
                             <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
@@ -217,7 +217,7 @@ const MainFeed = (props) => {
                         <div class="lps_container empty_feed_bg_wrp empty_feed_bg_wrp_spc">
                             <div class="up_arrow_wrp">
                                 <a href="#" class="lips_arrow">
-                                    <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" />
+                                    {/* <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" /> */}
                                 </a>
                                 <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo-2.png")} alt="Image" class="lip_icn" /> </h5>
                             </div>
