@@ -259,6 +259,17 @@ export const repostFeed = (feedId) => {
     })
 }
 
+export const repostUndoFeed = (feedId) => {
+  return API.repostUndoFeed(feedId)
+    .then(response => {
+      // updateRepostFeed({ feed: response.data.post, feedId  });
+      commonService.isLoading.onNext(false); // start loading
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
+
 export const searchFeeds = (queryString, isNextPage = false) => {
   return API.searchFeeds(queryString)
     .then(response => {

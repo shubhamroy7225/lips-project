@@ -37,6 +37,7 @@ export {
     fetchUserFeeds,
     deleteFeed,
     repostFeed,
+    repostUndoFeed,
     searchFeeds,
     hideAFeed,
     reportAFeed,

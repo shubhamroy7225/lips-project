@@ -38,6 +38,17 @@ const RepostModal = ({ feed }) => {
         // closeModal();
     }
 
+    const repostUndoFeed = () => {
+        let feedId = selectedFeed.id;
+        selectedFeed.is_reposted = true
+        actions.repostUndoFeed(feedId).then(
+            res => {
+                toastMsg("Undo successfully!");
+            }
+        )
+        closeModal();
+    }
+
     return (<>
         <div class="hover_bkgr_fricc mobileModal" style={style}>
             <div class="modal-dialog-centered">
@@ -56,7 +67,7 @@ const RepostModal = ({ feed }) => {
                             </li>
                         </ul>
                         {repostButton ? 
-                        <a  class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Undo</a> :
+                        <a onClick={repostUndoFeed}  class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Undo</a> :
                         <a onClick={repostFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>    
                         }
                     </div>
