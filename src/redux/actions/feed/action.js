@@ -32,7 +32,8 @@ export const getPostSearchHashTag = (params) => {
   getHashTagSuggestionListPending();
   return API.getPostSearchSuggestions(params)
     .then(response => {
-      getHashTagSuggestionListSuccessful(response.data)
+        let data = response.data.data.length ? response.data : {data: [{name: 'No search result found', is_hashtag: true, disabled: true}]}
+      getHashTagSuggestionListSuccessful(data)
       return response
     })
 }
