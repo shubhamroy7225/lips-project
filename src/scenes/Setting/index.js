@@ -53,23 +53,23 @@ const Setting = () => {
                   <li className="list-group-item lps_hrSep">
                      <Link to={routes.SETTING_COMMUNITY_GUIDELINES}>Community guidelines</Link>
                   </li>
-                  <li className="list-group-item">
+                  {/* <li className="list-group-item">
                      <Link to={routes.SETTING_TERMS_AND_CONDITIONS}>Terms and conditions</Link>
-                  </li>
+                  </li> */}
                   <li className="list-group-item">
                      <Link to={routes.PRIVACY_POLICY}>Privacy policy</Link>
+                  </li>
+                  <li className="list-group-item">
+                     <Link to={routes.SETTING_FAQ}>FAQ</Link>
+                  </li>
+                  <li className="list-group-item lps_hrSep">
+                     <Link to={routes.SETTING} onClick={logoutConfirm}>Sign out</Link>
                   </li>
                   {isMobile ? 
                   <li className="list-group-item">
                      <Link onClick={()=> toggleModal(true)}>Add Lips to home screen</Link>
                      <AddToHome toggleModal={toggleModal} modalStatus={ModalOpen} />
                   </li> : ""}
-                  <li className="list-group-item lps_hrSep">
-                     <Link to={routes.SETTING} onClick={logoutConfirm}>Sign out</Link>
-                  </li>
-                  <li className="list-group-item">
-                     <Link to={routes.SETTING_FAQ}>FAQ</Link>
-                  </li>
                </ul>
             </div>
          </div>
