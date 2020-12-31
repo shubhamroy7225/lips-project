@@ -307,6 +307,10 @@
     transition: transform 0.4s;
     transition: transform 0.4s, -webkit-transform 0.4s;
   }
+  .accordion__title {
+    font-size: 15px;
+    text-align: left;
+  }
 }
 @media screen and (max-width: 450px) {
   header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
