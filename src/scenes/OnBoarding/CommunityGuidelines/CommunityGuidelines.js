@@ -9,7 +9,7 @@ export default ({isSetting, setGuidelineState}) => {
             <div className="lps_form_wrp on_boarding_wrp_spwn border_0 comuNiti">
               <article className="lps_art">
                 
-                <h3 className="text_white mb45"> Welcome to Lips! </h3>
+                <h3 className="text_white mb45"> welcome to lips </h3>
                 <p>Lips is a digital space that centers and raises the voices and creation of historically marginalized communities including women, non-binary folks, BIPOC, and the LGBTQIA+ community.</p>
                 <p> As artists, creators and members of these marginalized communities ourselves, we built Lips because we were fed up with the biased censorship, harassment, and abuse to our self image we faced on mainstream platforms. On Lips, we hope you feel welcomed, recognized, and valued.</p>
                 <p>These 6 guiding principles are based on inclusivity and reflect our community values rather than those of the heterosexual cis, white, male-dominated tech industry we aim to resist. Please read the guidelines carefully and adhere to them while you occupy this digital space.</p>

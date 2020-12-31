@@ -9,13 +9,13 @@ export default ({setGuidelineState}) => {
             <div class="lps_form_wrp on_boarding_wrp_spwn border_0 comuNitiInner">
               <article class="lps_art">
               <p className="text_primary">4/6</p>
-                <h3 class="text_white mb45"> Respect </h3>
+                <h3 class="text_white mb45"> respect </h3>
                 <p>Treat everyone with dignity and kindness.Respect people’s boundaries by using the Lips hashtag system to thoroughly label your content so that everyone has control over what they see.</p>
                 <p>
                   Also, please have patience for this app and our team! We are a small team who has built this app using very limited resources-this app is a continual work in progress.Know that our team always has our community's best interests in mind and vow to maintain a dialogue with you as a grow.
                 </p>
                 <p>
-                  With your support and feedback, we are excited at the possibilities of the future, and ask for some leeway in the present 3
+                  With your support and feedback, we are excited at the possibilities of the future, and ask for some leeway in the present &#60;3
                 </p>
               </article>
               

@@ -9,7 +9,7 @@ export default ({setGuidelineState}) => {
             <div className="lps_form_wrp on_boarding_wrp_spwn border_0 comuNitiInner">
               <article className="lps_art">
                 <p className="text_primary">1/6</p>
-                <h3 className="text_white mb45"> Create </h3>
+                <h3 className="text_white mb45"> create </h3>
                 <p>Lips originated as a print zine for “open and honest expression,” and this remains our calling.Share art, memes, poetry,selfies-anything at all.</p>
                 <p>
                   Feel free to use the reblog feature to share other's work. However, please don't plagiarize or call another’s work your own. Sharing the content of others is an important facet of social media, but we ask that you always give credit where credit is due.As our platform develops, we will continue to add fetaures that enable you to do this with ease. 

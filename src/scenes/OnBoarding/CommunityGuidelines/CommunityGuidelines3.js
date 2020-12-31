@@ -9,7 +9,7 @@ export default ({setGuidelineState}) => {
             <div class="lps_form_wrp on_boarding_wrp_spwn border_0 comuNitiInner">
               <article class="lps_art">
               <p className="text_primary">3/6</p>
-                <h3 class="text_white mb45"> Find Your Purpose </h3>
+                <h3 class="text_white mb45"> find your purpose </h3>
                 <p>Use Lips as a space to figure out what it is you are meant to do and who it is you are meant to be.
                   Today, creators are fortunate that we can make a living doing what we love. Lips encourages you to clarify, articulate, and act on that with our support 
                 </p>
@@ -17,7 +17,7 @@ export default ({setGuidelineState}) => {
                   Many will come to this platform to find roles models and learn more about historically marginalized/silenced communities.So be patient and compassionate towards each other, knowing we are all stiil learning.
                 </p>
                 <p>
-                  The human body is beautiful 100 but keep in mind you must be 18 years of age or older to share nudity or explicit content.We may reach out via email to ask for proof of age/identity if our community manager deems this necessary.
+                  The human body is beautiful <span className="text_community_danger">💯</span> keep in mind you must be 18 years of age or older to share nudity or explicit content.We may reach out via email to ask for proof of age/identity if our community manager deems this necessary.
                 </p>
               </article>
               

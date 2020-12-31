@@ -9,7 +9,7 @@ export default ({isSetting, setGuidelineState}) => {
             <div class="lps_form_wrp on_boarding_wrp_spwn border_0 comuNitiInner">
               <article class="lps_art">
               <p className="text_primary">6/6</p>
-                <h3 class="text_white mb45"> Pursue Your Vision for a Better World </h3>
+                <h3 class="text_white mb45"> pursue your vision for a better world </h3>
                 <p>We have built Lips to elevate, support, and raise the voices of creators but the rest is up to YOU: the beautiful humans on this app. </p>
                 <p>
                   Being a progressive web app, we are not at the mercy of the moral judgements of app stores, which allows for more freedom of expression. This being said, for obvious reasons, we cannot allow illegal activity (acording to U.S. Federal, california, and Deleware state laws) on this app. We thank you for respecting this, and helping us all stay safe and online! 

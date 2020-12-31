@@ -9,7 +9,7 @@ export default ({setGuidelineState}) => {
             <div class="lps_form_wrp on_boarding_wrp_spwn border_0 comuNitiInner">
               <article class="lps_art">
               <p className="text_primary">5/6</p>
-                <h3 class="text_white mb45"> Empathize </h3>
+                <h3 class="text_white mb45"> empathize </h3>
                 <p>Sometimes complex emotions and sentiments can be lost in the digital world, but trust that everyone enters this space with good intentions. You may not agree with everything you see, and that’s okay. Have empathy and learn from perspectives that are different from your own. Be comfortable with being uncomfortable. </p>
                 <p>Consider this is a “brave” space. </p>
                 <p>
