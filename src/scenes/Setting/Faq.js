@@ -76,9 +76,12 @@ const Faq = () => {
                     </Link>
 
                 <div className="lps_terms_list lps_px15 mb25">
-                    <h3>We're Here To Help You</h3>
+                    {/* <h3>We're Here To Help You</h3> */}
                     <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        Lips is a new app filled with new ideas, so it's normal to have questions. We've answered the most common ones here. 
+                    </p>
+                    <p>
+                        Let us know if we missed anything! 
                     </p>
                 </div>
 
@@ -86,10 +89,8 @@ const Faq = () => {
                     {data.map(({title, content}, index) => <Accordion key={index} title={title} content={content} />)}
                 </div>
                 <div className="lps_terms_list lps_px15 pb25">
-                    <h3>Still confused?</h3>
-                    <p>
-                        Sed ut perspiclatis unde orrinisiste natus error sit volu tatern accusantium doloTemque laudantium. totem re aperrarn eaque ipsequae 
-                    </p>
+                    <h3>Still have questions about lips?</h3>
+                    
                     <Link to={CONTACT_USER} className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">CONTACT US</Link>
                 </div>
             </div>
