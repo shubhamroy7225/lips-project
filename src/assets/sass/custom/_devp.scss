@@ -133,7 +133,7 @@ input.input_modify {
 }
 .lps_text_white .lps_cont_rdo .lps_checkmark:after,
 .lps_cont_rdo .lps_checkmark:after {
-  background: $brand-primary;
+  background: black;
 }
 .lps_fig.lps_fig_circle {
   width: 60px;
@@ -956,4 +956,17 @@ span.countBadge {
 }
 span.text_community_danger {
   color: red;
+}
+.dotsWrp {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .singleDot {
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    background: $brand-primary;
+    border-radius: 50%;
+    margin: 2px;
+}
 }
