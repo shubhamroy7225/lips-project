@@ -2,6 +2,7 @@ import React,{useState, useRef} from "react";
 import SimpleReactValidator from 'simple-react-validator';
 import { routes } from "utility/constants/constants";
 import * as actions from 'redux/actions/feed/action';
+import {fetchUser} from 'redux/actions/user/action'
 import { Link, useHistory } from 'react-router-dom';
 
 export default () => {
@@ -11,9 +12,10 @@ export default () => {
     const [, forceUpdate] = useState();
     const handleSubmit = (e) => {
       actions.submitAccessCodeData({code:accessCode}).then(e => {
-        if (e.data.success) history.push(routes.ACCESS_CODE_COMPLETED)
-        else return false;       
-
+        if (e.data.success) {
+            fetchUser().then(e => history.push(routes.ACCESS_CODE_COMPLETED))
+        }
+        else return false;
       })
   };
 
