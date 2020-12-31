@@ -4,7 +4,7 @@ import { likeAFeed, unlikeAFeed } from 'redux/actions/feed/action';
 import { setFeedModalType, setSelectedFeed } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
 
-const FeedWidget = ({ user, showWidget, feed }) => {
+const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
     const { likable, is_reposted } = feed;
     const [like, setLike] = useState(feed.liked);
     const [likeCount, setLikeCount] = useState(false);
@@ -146,10 +146,20 @@ const FeedWidget = ({ user, showWidget, feed }) => {
             }
         } else {
             if (likable) {
-                listContent = [reportOption, hashtagOptionn, shareOption, repostOption, likeOption];
+                if (isReposted) {
+                    listContent = [reportOption, hashtagOptionn, shareOption, likeOption];
+                } else {
+                    listContent = [reportOption, hashtagOptionn, shareOption, repostOption, likeOption];
+                }
             } else {
-                listContent = [reportOption, hashtagOptionn, shareOption, repostOption];
+                if (isReposted) {
+                    listContent = [reportOption, hashtagOptionn, shareOption];
+
+                } else {
+                    listContent = [reportOption, hashtagOptionn, shareOption, repostOption];
+                }
             }
+
         }
     } else {
         listContent = [hashtagOptionn, shareOption];
