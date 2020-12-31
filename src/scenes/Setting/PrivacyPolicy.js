@@ -16,6 +16,18 @@ const PrivacyPolicy = () => {
                     
                      <div className="lps_terms_cont">
                         <div className="lps_terms_list">
+                        <p>
+                           At Lips, we take your privacy seriously, and are committed to building a platform that allows for data sharing with transparent communication ad consent.
+                        </p>
+                        <p>
+                           Below is an outline of the precise ways we collect and use data on this site. As we grow, we will continue to improve how we communicate our policies and advocate for our privacy.
+                        </p>
+                        <p>
+                            When this terms are updated, you will notified via email or in-app notifications.
+                        </p>
+                        <p>
+                        Last updated: December 27, 2020
+                        </p>
                            {/* <h1>Privacy Policy</h1> */}
                            <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
                            <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
