@@ -450,7 +450,7 @@ const PrivacyPolicy = () => {
                            <h2>Exercising Your CCPA Data Protection Rights</h2>
                            <p>In order to exercise any of Your rights under the CCPA, and if You are a California resident, You can contact Us:</p>
                            <ul>
-                              <li>By email: <a href="https://cdn-cgi/l/email-protection" class="__cf_email__ about_link" data-cfemail="9ce8f9fdf1dcf0f5ecefb2eff3fff5fdf0">[email&#160;protected]</a></li>
+                              <li>By email: <a href="mailto:team@lips.social" class="__cf_email__ about_link" data-cfemail="9ce8f9fdf1dcf0f5ecefb2eff3fff5fdf0">team@lips.social</a></li>
                            </ul>
                            <p>Only You, or a person registered with the California Secretary of State that You authorize to act on Your behalf, may make a verifiable request related to Your personal information.</p>
                            <p>Your request to Us must:</p>
