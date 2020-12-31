@@ -26,13 +26,13 @@ export default () => {
                     <li className="list-group-item">
                       <div className="lps_user_info">
                         <label className="lps_cont_rdo">
-                          <span className="ft_Weight_500 radio_title">Public</span> <br/>
+                          <span className="ft_Weight_500 radio_title">public</span> <br/>
                           Anyone on the internet can see your posts
                           <input type="radio" checked="checked" name="radio" value={privacy_settings} checked={privacy_settings === "public"} onClick={e=> setPrivacy("public")} />
                             <span className="lps_checkmark"></span>
                           </label>
                             <label className="lps_cont_rdo">
-                              <span className="ft_Weight_500 radio_title">Private</span><br/>
+                              <span className="ft_Weight_500 radio_title">private</span><br/>
                               Only your followers can see your posts
                               <input type="radio" name="radio" value={privacy_settings} checked={privacy_settings === "private"} onClick={e=> setPrivacy("private")}/>
                                 <span className="lps_checkmark"></span>
