@@ -942,3 +942,15 @@ span.countBadge {
 .report_link{
   color: #fd3398 !important;
 }
+.onboardingBackArrowWrp {
+
+.topSubHeader {
+  .popupCloseButton.popupCloseButtonLeft {
+    top: 0;
+    z-index: 100;
+    img {
+      opacity: 0.45;
+    }
+  }
+}
+}

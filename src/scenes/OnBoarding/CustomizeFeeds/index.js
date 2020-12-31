@@ -22,23 +22,27 @@ export default () => {
   };
 
   return (
-      <div id="wrap" className="mt_0 lps_bg_secondary">
+      <div id="wrap" className="mt_0 lps_bg_secondary onboardingBackArrowWrp">
+        <div className="topSubHeader">
+            <Link className="popupCloseButton popupCloseButtonLeft" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow_white.png")} /></Link>
+        </div>
         <div className="lps_container mt_0">
           <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
             <div className="lps_form_wrp on_boarding_wrp_spwn border_0 startScratch commonWidth on_boarding_top">
               <article className="lps_art lps_art_white">
-                <h3 className="mb30">Start from scratch or let us fill your feed.</h3>
+                <h3 className="mb30">Choose your tags or skip for now</h3>
                 <h5 className="mb30 ft_Weight_400">
-                  An auto-populated feed may include content that's not for everyone such as nudity or profanity.
+                  {/* An auto-populated feed may include content that's not for everyone such as nudity or profanity. */}
+                  The lips app may include content that's not for everyone such as nudity or profanity. can't decide now?You can always adjust your feed settings later
                 </h5>
-                <h5 className="ft_Weight_400">
+                {/* <h5 className="ft_Weight_400">
                   Can't decide now? You can always adjust your feed settings later.
-                </h5>
+                </h5> */}
               </article>
               <div className="pos_wrp onboarding_btm">
-                <Link to={routes.SELECT_FAVORITE_TAGS} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10 desktopVersio">Customize feed</Link>
-                <button onClick={loading} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio">Auto-Generate</button>
-                <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button link_tag">Go Back</Link>
+                <Link to={routes.SELECT_FAVORITE_TAGS} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase lps_mb10 desktopVersio">choose your tags</Link>
+                <button onClick={loading} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio">skip for now</button>
+                {/* <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button link_tag">Go Back</Link> */}
               </div>
             </div>
           </div>
