@@ -41,7 +41,7 @@ const StartApproval = ({ moveToNextStep }) => {
     return (
         <>
         <div>
-            <Link className="popupCloseButton popupCloseButtonLeft lps_arrow_approval" to={routes.ROOT}><img src={require("assets/images/icons/icn_left_arrow.png")} /></Link>
+            <Link className="popupCloseButton lps_arrow_approval" to={routes.ROOT}><img src={require("assets/images/icons/icn_close_white.svg")} /></Link>
         </div>
         <div class="lps_container lps_bg_secondary lps_text_white"> 
             <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn border_0">
