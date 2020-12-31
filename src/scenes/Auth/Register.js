@@ -185,14 +185,14 @@ export default () => {
                         <div className="form_group_modify mb_25">
                           <label className="lps_cont_check">
                             I am 17 years or older
-                            <input type="checkbox" checked={true} />
+                            <input type="checkbox" />
                             <span className="lps_Checkmark"></span>
                           </label>
                         </div>
                         <div className="form_group_modify">
                           <label className="lps_cont_check">
                             Keep me signed in
-                            <input type="checkbox" defaultChecked />
+                            <input type="checkbox" />
                             <span className="lps_Checkmark"></span>
                           </label>
                         </div>
@@ -201,14 +201,14 @@ export default () => {
                     <div className="pos_wrp onboarding_btm">
                       <button
                           type="submit"
-                          className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio"
+                          className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio approve_btn_bck"
                           >
                         Review Privacy Policy
                       </button>
                       <p className="btm_links mt_25 text_white">
-                        Have an account?{" "}
+                        have an account?{" "}
                         <Link to="/login" className="link_underline lps_link link_tag">
-                          Sign in
+                          sign in
                         </Link>
                       </p>
                     </div>
