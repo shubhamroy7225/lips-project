@@ -147,7 +147,7 @@ const ImageFeed = (props) => {
                             </>}
                     </div>
                 </div>
-                <FeedWidget showWidget={true} feed={isReposted ? feed.parent : feed} user={user} isReposted={isReposted} />
+                <FeedWidget showWidget={true} feed={feed} user={user} isReposted={isReposted} />
             </div>
         );
     }

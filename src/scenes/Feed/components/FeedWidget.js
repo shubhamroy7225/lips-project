@@ -8,7 +8,6 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
     const { likable, is_reposted } = feed;
     const [like, setLike] = useState(feed.liked);
     const [likeCount, setLikeCount] = useState(false);
-
     const likeCountShown = () => {
         setLikeCount(likeCount ? false : true);
     }
