@@ -37,7 +37,10 @@ let LoginForm = (props) => {
     forceUpdate(1)
   };
   return (
-    <div id="wrap" className="mt_0 lps_bg_secondary">
+    <div id="wrap" className="mt_0 lps_bg_secondary onboardingBackArrowWrp">
+    <div className="topSubHeader">
+            <Link className="popupCloseButton popupCloseButtonLeft" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow_white.png")} /></Link>
+        </div>
       <div className="lps_container mt_0">
         <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
           <div className="lps_form_wrp">
