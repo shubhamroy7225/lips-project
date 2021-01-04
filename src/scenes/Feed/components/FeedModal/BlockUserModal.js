@@ -5,8 +5,9 @@ import * as actions from 'redux/actions';
 import { FeedModalType } from 'utility/constants/constants';
 import { toastMsg } from 'utility/utility';
 
-const ReportedModal = ( props ) => {
+const BlockUserModal = ( props ) => {
     const {  selectedFeed } = useSelector(state => state.feedReducer);
+    const username = selectedFeed && selectedFeed.user ? selectedFeed.user.user_name : "johns robin"
     const [blockUserModal, setBlockUserModal] = useState(false);
     const userBlockSuccessModal  = () => {
         setBlockUserModal(blockUserModal ? false : true);
@@ -45,7 +46,7 @@ const ReportedModal = ( props ) => {
                     <div className="popup_body">
                         <ul class="lps_btn_grps lps_ul newButton">
                             <li class="lps_title lps_title_size">
-                                Block username
+                                Block  {username}
                             </li>
                             <li className="lps_title lps_title_size">
                                 <p>
@@ -61,7 +62,7 @@ const ReportedModal = ( props ) => {
                     <div className="popup_body">
                          <ul class="lps_btn_grps lps_ul newButton">
                             <li class="lps_title lps_title_size">
-                            <h5>username blocked</h5>
+                            <h5> {username} blocked</h5>
                             </li>
                             <li className="lps_title lps_title_size">
                             <p>You can change this in your feed setting</p>
@@ -80,4 +81,4 @@ const ReportedModal = ( props ) => {
     );
 }
 
-export default ReportedModal
+export default BlockUserModal
