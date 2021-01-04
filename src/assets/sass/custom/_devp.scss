@@ -239,22 +239,25 @@ input.input_modify {
 }
 .notification-item {
   background: #D3D3D3;
-  border-bottom: 5px solid $brand-primary;
+  border-bottom: 0;
+  box-shadow: 0 5px 5px 0 rgba(253,51,152,1);
+    border-radius: 0;
   .notification-message{
     color: #1a1a1a;
-    font-size: 15px !important;
+    font-size: 16px !important;
   }
   .notification-title{
     color: $brand-primary;
-    font-size: 15px !important;
+    font-size: 16px !important;
     margin-top: 2px;
     margin-bottom: 2px;
+    font-weight: 400;
   }
   .notification-close {
     background-color: $brand-primary;
   }
   .notification-message {
-      font-weight: 500;
+      font-weight: 400;
   }
 }
 .wlcome h3 {
@@ -983,4 +986,55 @@ span.text_community_danger {
 .lps_shareLink_text{
   font-size: 16px !important;
   font-weight: 400 !important;
+}
+  
+  .footer_bck {
+    background: #1a1a1a;
+    border-top: 1px solid #fd3398;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    .onboarding_btm {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 15px;
+      max-width: 999px;
+    margin: 0 auto;
+      .theme_btn {
+        min-width: 160px;
+      }
+  }
+  .footer-text {
+    font-size: 16px !important;
+    color: #FFFFFF !important;
+    padding-right: 20px;
+    margin-bottom: 0;
+}
+}
+@media screen and (max-width: 575px) {
+  .wrap_btm_padding {
+    padding-bottom: 187px;
+  }
+  .footer_bck .onboarding_btm {
+    padding: 15px 15px;
+    flex-direction: column;
+  }
+  .footer_bck .footer-text {
+    font-size: 14px !important;
+}
+.footer_bck .onboarding_btm .theme_btn {
+  margin-top: 15px;
+}
+h1 {
+  font-size: 26px;
+}
+h2 {
+  font-size: 23px;
+}
 }
