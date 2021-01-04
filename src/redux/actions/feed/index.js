@@ -39,6 +39,8 @@ export const fetchedOtherUserFeedsNextSuccessfully = createAction('fetch other u
 
 export const updateRepostFeed = createAction('update repost feed', (feed) => (feed));
 
+export const updateRepostUndoFeed = createAction('update repost undo feed', (feed) => (feed));
+
 export const addCreatedFeed = createAction('update repost feed', (feed) => (feed));
 
 export const hideFeed = createAction('hide feed', (feed) => (feed));

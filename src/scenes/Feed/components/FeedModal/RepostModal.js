@@ -40,7 +40,7 @@ const RepostModal = ({ feed }) => {
 
     const repostUndoFeed = () => {
         let feedId = selectedFeed.id;
-        selectedFeed.is_reposted = true
+        selectedFeed.is_reposted = false
         actions.repostUndoFeed(feedId).then(
             res => {
                 toastMsg("Undo successfully!");

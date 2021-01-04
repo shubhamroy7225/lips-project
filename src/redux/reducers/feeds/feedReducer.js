@@ -199,6 +199,24 @@ export const feedReducer = createReducer({
             userFeeds: userFeeds
         })
     },
+    [actions.updateRepostUndoFeed]: (state, payload) => {
+        let { feed, feedId } = payload;
+        let feeds = [...state.feeds];
+        let userFeeds = [...state.userFeeds];
+        let feedIndex = feeds.findIndex(ele => ele.id === feedId);
+        
+        feeds[feedIndex].is_reposted = false;
+        if (feeds.length > 0) {
+            feeds = [feed, ...feeds]
+        }
+        if (userFeeds.length > 0) {
+            userFeeds = [feed, ...userFeeds];
+        }
+        return updateObject(state, {
+            feeds: feeds,
+            userFeeds: userFeeds
+        })
+    },
     [actions.searchFeedsCompletedSuccessfully]: (state, payload) => updateObject(state, {
         searchFeeds: payload.feeds,
     }),

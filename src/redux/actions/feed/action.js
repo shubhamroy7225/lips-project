@@ -2,7 +2,7 @@ import storage from '../../../utility/storage';
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { fetchedNextPageLikedFeedsSuccessfully, setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
+import { fetchedNextPageLikedFeedsSuccessfully, setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, updateRepostUndoFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
 
 import {
   fetchedLikedFeedsSuccessfully,
@@ -263,7 +263,7 @@ export const repostFeed = (feedId) => {
 export const repostUndoFeed = (feedId) => {
   return API.repostUndoFeed(feedId)
     .then(response => {
-      // updateRepostFeed({ feed: response.data.post, feedId  });
+      updateRepostUndoFeed({ feed: response.data.post, feedId  });
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
