@@ -29,17 +29,17 @@ export default () => {
                   <OwlCarousel ref={ref} options={options} >
                     <div className="item">
                       <div className="product_item_wrp">
-                        <h5>A creative space for women-identified &amp; LGBTQIA+ creators</h5>
+                        <h5>a creative space for women-identified &amp; lgbtqia+ creators &amp; their fans</h5>
                       </div>
                     </div>
                     <div className="item">
                       <div className="product_item_wrp">
-                        <h5>Share your work and explore content by the creators you love</h5>
+                        <h5>share your work and explore content by the creators you love</h5>
                       </div>
                     </div>
                     <div className="item">
                       <div className="product_item_wrp">
-                        <h5>Express yourself without biased censorship or online harassment</h5>
+                        <h5>express yourself without biased censorship or online harassment</h5>
                       </div>
                     </div>
                   </OwlCarousel>
@@ -50,7 +50,7 @@ export default () => {
                   <Link to={routes.CUSTOMIZE_FEEDS} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">
                     Just Browse</Link>
                   <p className="btm_links mt_25 text_gary">
-                    You must be 17 or older to use Lips
+                    you must be 17 or older to use Lips
                   </p>
                 </div>
               </form>

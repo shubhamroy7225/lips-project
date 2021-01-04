@@ -52,8 +52,8 @@ export default () => {
                 some things are not for everybody - and that’s ok!{" "}
               </h3>
               <h5 className="ft_Weight_400">
-                Mark the ones you don't want to see and we will do our best to
-                provide tag-based warnings.
+                Mark the content categories you don't want to see and we will do our best to
+                provide tag-based warnings:
               </h5>
             </article>
             <HashTags setSelectTags={setSelectTags} selectTags={selectTags} showhashTags={showhashTags} />
@@ -62,7 +62,7 @@ export default () => {
                 onClick={addFavoriteTags}
                 className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio"
               >
-                Browse
+                continue
               </button>
               {/* <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button link_tag">Go Back</Link> */}
             </div>
