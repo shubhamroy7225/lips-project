@@ -25,12 +25,15 @@ export default () => {
   };
 
   return (
-          <div id="wrap" className="mt_0 lps_bg_secondary">
+          <div id="wrap" className="mt_0 lps_bg_secondary onboardingBackArrowWrp">
+            <div className="topSubHeader">
+            <Link className="popupCloseButton popupCloseButtonLeft" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow_white.png")} /></Link>
+            </div>
              <div className="lps_container mt_0">
                 <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
                    <div className="lps_form_wrp on_boarding_wrp_spwn border_0 commonWidth on_boarding_top">
                       <article className="lps_art lps_art_white">
-                         <h3>We think you (not an algorithm) should have control of what you see in the Lips app. </h3>
+                         <h3>we think you (not an algorithm) should have control of what you see in the lips app. </h3>
                          {/* <h4 className="mb30">(not the algorithm)</h4> */}
                          <h5 className="ft_Weight_400">
                             Begin by choosing a few things you'd like to see more of.
@@ -40,7 +43,7 @@ export default () => {
                       <div className="pos_wrp onboarding_btm">
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio">
                          Continue</button>
-                         <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button link_tag">Go Back</Link>
+                         {/* <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button link_tag">Go Back</Link> */}
                       </div>
                    </div>
                 </div>

@@ -19,21 +19,21 @@ export default () => {
             <div className="lps_container lps_bg_secondary lps_text_white mt_0">
               <div className="acctn_privacy on_boarding_wrp_spwn border_0">
                 <article className="lps_art lps_px15">
-                  <h3>How private do you want your <br/>account?</h3>
-                    <p>You can always change this in your accounts settings </p>
+                  <h3>how private do you want your <br/>account?</h3>
+                    <p>You can always change this in your accounts settings. We will continue to add privacy options for you to choose from as the app evolves: </p>
                   </article>
                   <ul className="lps_list_group my_acctn_list removeWhiteLine">
                     <li className="list-group-item">
                       <div className="lps_user_info">
                         <label className="lps_cont_rdo">
-                          <span className="ft_Weight_500 radio_title">Public</span> <br/>
+                          <span className="ft_Weight_500 radio_title">public</span> <br/>
                           Anyone on the internet can see your posts
                           <input type="radio" checked="checked" name="radio" value={privacy_settings} checked={privacy_settings === "public"} onClick={e=> setPrivacy("public")} />
                             <span className="lps_checkmark"></span>
                           </label>
                             <label className="lps_cont_rdo">
-                              <span className="ft_Weight_500 radio_title">Private</span><br/>
-                              Only People who follow you can see your posts
+                              <span className="ft_Weight_500 radio_title">private</span><br/>
+                              Only your followers can see your posts
                               <input type="radio" name="radio" value={privacy_settings} checked={privacy_settings === "private"} onClick={e=> setPrivacy("private")}/>
                                 <span className="lps_checkmark"></span>
                               </label>

@@ -133,7 +133,7 @@ input.input_modify {
 }
 .lps_text_white .lps_cont_rdo .lps_checkmark:after,
 .lps_cont_rdo .lps_checkmark:after {
-  background: $brand-primary;
+  background: black;
 }
 .lps_fig.lps_fig_circle {
   width: 60px;
@@ -724,6 +724,7 @@ span.countBadge {
 
 .about_link{
   color: #fd3398 !important;
+  text-decoration: underline;
 }
 
 .btn_bold{
@@ -911,4 +912,61 @@ span.countBadge {
 
 .lps_title_size{
   font-size: 20px !important;
+}
+.lps_titel_report_modal {
+  height: 100%;
+  margin-bottom: 0 !important;
+  padding: 15px 74px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+ -webkit-box-orient: vertical;
+ -webkit-box-direction: normal;
+     -ms-flex-direction: column;
+         flex-direction: column;
+ -webkit-box-pack: justify;
+     -ms-flex-pack: justify;
+         justify-content: space-between;
+}
+@media screen and (max-width: 575px) {
+
+.lps_titel_report_modal {
+  padding: 15px 15px !important;
+}
+.lps_titel_report_modal p {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+}
+
+.report_link{
+  color: #fd3398 !important;
+}
+.onboardingBackArrowWrp {
+
+.topSubHeader {
+  .popupCloseButton.popupCloseButtonLeft {
+    top: 0;
+    z-index: 100;
+    img {
+      opacity: 0.45;
+    }
+  }
+}
+}
+span.text_community_danger {
+  color: red;
+}
+.dotsWrp {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .singleDot {
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    background: $brand-primary;
+    border-radius: 50%;
+    margin: 2px;
+}
 }

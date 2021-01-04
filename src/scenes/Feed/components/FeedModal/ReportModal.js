@@ -1,15 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { setFeedModalType } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 import { FeedModalType } from 'utility/constants/constants';
 import { toastMsg } from 'utility/utility';
 import * as commonService from "utility/utility";
+import ReportedModal from './ReportedModal';
 
 const ReportModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
+    }
+
+    const [ModalOpen, setModalOpen] = useState(false);
+    const toggleModal = () =>{
+      setModalOpen(ModalOpen ? false : true);
     }
 
     let style = { display: "none" }
@@ -95,7 +101,8 @@ const ReportModal = ({ feed }) => {
                                 <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
                             </li>
                             <li>
-                                <a onClick={reportFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Report</a>
+                                <a onClick={e => toggleModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Report</a>
+                                <ReportedModal toggleModal={toggleModal} modalStatus={ModalOpen} />
                             </li>
                             {
                                 isFollowing &&
@@ -111,6 +118,7 @@ const ReportModal = ({ feed }) => {
                 </div>
             </div>
         </div>
+        
     );
 }
 

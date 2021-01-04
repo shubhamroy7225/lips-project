@@ -147,10 +147,14 @@ header.main_header {
 //}
 
 nav.theme_navigationCenterLogo {
-  position: relative;
-  justify-content: center !important;
+  
   .logo {
     margin-left: 0;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
 }
   .lps_arrow_left {
     margin-top: 0;

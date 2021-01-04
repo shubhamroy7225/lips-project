@@ -203,7 +203,7 @@ export default () => {
                           type="submit"
                           className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio"
                           >
-                        Review Terms &amp; Conditions
+                        Review Privacy Policy
                       </button>
                       <p className="btm_links mt_25 text_white">
                         Have an account?{" "}

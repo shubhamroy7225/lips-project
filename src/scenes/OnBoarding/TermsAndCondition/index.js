@@ -27,7 +27,7 @@ export default ({
           />
         </button>
         <span className="lp_left_auto text_black ft_Weight_500">
-          Terms &amp; Conditions
+          Privacy Policy
         </span>
       </div>
 

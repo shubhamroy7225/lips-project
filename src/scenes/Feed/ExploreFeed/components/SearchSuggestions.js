@@ -17,7 +17,7 @@ export default ({ submitHandler, showSuggestions, setSearchText, setShowSuggesti
                 <ul>
                     {hashTagSuggestionList.map((tag, index) => {
                         return (tag.is_hashtag ?
-                            <li onClick={() => handleHashTagsSuggetion(tag.name)} key={index}>{tag.name}</li>
+                            <li onClick={() => handleHashTagsSuggetion(tag.name)} key={index} className={tag.disabled ? "pointer-none" : ''}>{tag.name}</li>
                             : <li onClick={() => history.push(`/profile/${tag.user_name}`)} key={index}>
                                 <img src={tag.photo_urls && tag.photo_urls.medium ? tag.photo_urls.medium : require("assets/images/icons/icn_profile.svg")} alt="User" className="hashtag-suggestion-user-pic" />
                                 {tag.user_name}</li>)
