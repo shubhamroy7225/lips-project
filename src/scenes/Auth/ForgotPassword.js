@@ -17,7 +17,7 @@ let ForgotPasswordForm = (props) => {
     e.preventDefault();
     if (simpleValidator.current.allValid()) {
       AuthActions.forgotPassword({user}).then(res =>{
-        if(res.success)return [ setSubmitted(true)]
+        if(res.success)return [setUser({email: ""}), setSubmitted(true)]
         else return false
       });
     } //check validations
