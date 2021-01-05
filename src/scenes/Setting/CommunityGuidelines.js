@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { routes } from "utility/constants/constants";
 export default () => {
   return (
-    <div id="wrap" className="mt_0">
      
-    <div id="wrap" className="mt_0">
+    <div id="wrap" className="mt_0 wrap_btm_padding">
       <div className="lps_container lps_terms_con_wrps bg_grayCCC">
       <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
         <img
@@ -94,6 +93,5 @@ export default () => {
         
       </div>
     </div>
-  </div>
   )
 }

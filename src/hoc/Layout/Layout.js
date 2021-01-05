@@ -13,6 +13,7 @@ import "assets/sass/style.scss";
 import { routes, NO_HEADER_ROUTES, NOTIFICATION_TYPES } from 'utility/constants/constants';
 import moment from "moment";
 import { capitalizeFirstLetter } from 'utility/utility';
+import CookieConsent from "react-cookie-consent";
 
 const Header = ({ notificationCount, notifications, count, ...props }) => {
     const history = useHistory();
@@ -130,11 +131,45 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
 
 const Footer = (props) => {
     return (
-        <footer>
-            <div className="container">
-                <h1>footer</h1>
-            </div>
-        </footer>
+        <CookieConsent buttonText="ACCEPT" style={{
+            background: "#1a1a1a",
+            borderTop: "1px solid #fd3398",
+            display: "flex",
+            flexWrap: "wrap",
+            width: "100%",
+            height: "auto",
+            position: "fixed",
+            bottom: "0",
+            left: "0",
+            zIndex: "1",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "10px 15px"}}
+            buttonStyle={{
+                backgroundColor: "#1a1a1a",
+                borderColor: "#fd3398",
+                cursor: "pointer",
+                color: "#ffffff",
+                borderRadius: "25px",
+                minWidth: "160px",
+                display: "inline-block",
+                border: "1px solid transparent",
+                fontSize: "16px",
+                fontWeight: "500",
+            }}
+            >
+            
+             <h1 className="footer-text" style={{ fontSize: "16px", paddingRight: "20px",
+              marginBottom: "0", paddingLeft: "50px",  maxWidth: "999px" }}>We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <Link className="report_link" to={routes.TERMS_AND_CONDITION}>privacy policy</Link></h1>
+        {/* <footer className="footer_bck">
+            <div className="pos_wrp onboarding_btm">
+                <h1 className="footer-text">We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <a className="report_link">privacy policy</a></h1>
+                <button className="theme_btn theme_outline_primary text_white theme_btn_rds25 text_uppercase">Accept</button>
+                
+              </div>
+        </footer> */}
+        </CookieConsent>
     );
 }
 
@@ -152,7 +187,7 @@ class Layout extends Component {
                         <div className="clearfix"></div>
                         {this.props.children}
                         <div className="clearfix"></div>
-                        {/* <Footer {...this.props} /> */}
+                        <Footer {...this.props} />
                     </div>
                 </div>
             </Aux>
