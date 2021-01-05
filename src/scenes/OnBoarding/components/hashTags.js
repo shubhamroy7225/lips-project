@@ -46,10 +46,12 @@ export default  ({selectTags, setSelectTags, showhashTags}) => {
               View more</button> : ""
       }
     </li> */}
+    {
+      count > hashTags.length ?
     <div className="dotsWrp">
       <Link  className="single1"><span className="singleDot" onClick={loadMore}></span></Link>
       <Link  className="single2"><span className="singleDot" onClick={loadMore}></span></Link>
       <Link  className="single3"><span className="singleDot" onClick={loadMore}></span></Link>
-    </div>
+    </div> : "" }
   </ul>)
 }

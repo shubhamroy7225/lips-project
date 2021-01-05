@@ -4,6 +4,7 @@ import * as commonService from "utility/utility";
 import { FeedType, routes } from "utility/constants/constants";
 import { useHistory } from "react-router-dom";
 import { decode } from "base64-arraybuffer";
+import {useSelector} from 'react-redux';
 
 const CreateImageTab = ({
   toggleAddTags,
@@ -25,6 +26,7 @@ const CreateImageTab = ({
 
   const fileSelector = useRef(null);
   const postImg = useRef(null);
+  const {  user } = useSelector(state => state.authReducer);
 
 
 
@@ -177,7 +179,7 @@ const CreateImageTab = ({
           ></textarea>
           <span class="textRange"><span style={charCountStyle}>{inputCount}</span>/{captionCharCount}</span>
           <p class="mb_0 mt_5">
-            What's going on in this post? Be sure to @credit others.
+          What's going on in this post? Be sure to credit others - @mention feature coming soon. For now give a shout out!
           </p>
         </div>
 
@@ -206,6 +208,10 @@ const CreateImageTab = ({
                 class="add_icn_outline"
               />
             </a>
+            <p class="mb_0 mt_5">
+        Remember to use  tags when you create a post, 
+        This helps folks find your content.
+        </p>
           </div>
         </div>
 
@@ -234,6 +240,44 @@ const CreateImageTab = ({
             </div>
           </div>
         </div>
+        <div class="tag_product_con border_white_box">
+          <div class="d_inline mb_0">
+            <div class="grid_left lps_flx_vm_jsbtwn lps_flx_vm others_wrp">
+              <h6 class="sm_title">
+                Others Can{" "}
+                <img
+                  src={require("assets/images/icons/refresh_black.svg")}
+                  alt="repost"
+                />{" "}
+              </h6>
+              {user && user.privacy_settings === "public" ? 
+              <label class="lps_switch">
+                <input
+                  type="checkbox"
+                  name="ownContent"
+                  defaultChecked
+                  
+                />
+                <span class="lps_int_slider round"></span>
+              </label> :
+              <label class="lps_switch">
+              <input
+                type="checkbox"
+                name="ownContent"
+                disabled
+                
+              />
+              <span class="lps_int_slider round lps_disable_checkbox"></span>
+            </label> }
+            </div>
+          </div>
+          
+        </div>
+        <div className= "hashtag mt_15">
+        {user && user.privacy_settings === "public" ? 
+        <p class="mb_0 mt_5 ml_5">
+        Please keep in mind! If you delete this post, any reposts will remain. This is a feature we are working on. You can always contact us if you need all reposts removed. 
+        </p> : <p class="mb_0 mt_5 ml_5">Your account needs to be public to enable reposting.</p> }</div>
         <div class="post_block mb20 overlap_menu">
           <a onClick={createPost} class="circle">
             Post

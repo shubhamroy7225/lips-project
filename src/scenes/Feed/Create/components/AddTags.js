@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as feedActions from 'redux/actions/feed/action';
-
+import {Link} from 'react-router-dom';
 import AddSuggestedTag from "./AddSuggestedTag";
 
 const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setSelectedHashTags, hashTags }) => {
@@ -97,10 +97,18 @@ const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setS
                                         }
                                     </div>
                                     <li className="mt_15">
-                                        {
+                                        {/* {
                                             count > hashTags.length ?
                                                 <button onClick={loadMore} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase view_more_button">
                                                     View more</button> : ""
+                                        } */}
+                                        {
+                                            count > hashTags.length ?
+                                            <div className="dotsWrp">
+                                            <Link  className="single1"><span className="singleDot" onClick={loadMore}></span></Link>
+                                            <Link  className="single2"><span className="singleDot" onClick={loadMore}></span></Link>
+                                            <Link  className="single3"><span className="singleDot" onClick={loadMore}></span></Link>
+                                            </div> : ""
                                         }
                                     </li>
                                 </div>
