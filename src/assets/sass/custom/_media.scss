@@ -311,6 +311,13 @@
     font-size: 15px;
     text-align: left;
   }
+
+  .main_feed_cont .infinite-scroll-component{
+    padding-top: 40px;
+  }
+  .main_feed_cont .infinite-scroll-component .post_shape {
+    min-height: 330px;
+  }
 }
 @media screen and (max-width: 450px) {
   header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
