@@ -131,21 +131,22 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
 
 const Footer = (props) => {
     return (
-        <CookieConsent buttonText="ACCEPT" style={{
-            background: "#1a1a1a",
-            borderTop: "1px solid #fd3398",
+        <div className="footer_bck">
+            <CookieConsent buttonText="ACCEPT" style={{
+            backgroundColor: "#1a1a1a",
+            //borderTop: "1px solid #fd3398",
             display: "flex",
             flexWrap: "wrap",
             width: "100%",
             height: "auto",
-            position: "fixed",
-            bottom: "0",
-            left: "0",
+            
+            maxWidth: "800px",
+            margin: "0 auto",
+            position: "initial",
             zIndex: "1",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            padding: "10px 15px"}}
+            justifyContent: "center"}}
             buttonStyle={{
                 backgroundColor: "#1a1a1a",
                 borderColor: "#fd3398",
@@ -161,7 +162,7 @@ const Footer = (props) => {
             >
             
              <h1 className="footer-text" style={{ fontSize: "16px", paddingRight: "20px",
-              marginBottom: "0", paddingLeft: "50px",  maxWidth: "999px" }}>We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <Link className="report_link" to={routes.TERMS_AND_CONDITION}>privacy policy</Link></h1>
+              marginBottom: "0"}}>We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <Link className="report_link" to={routes.TERMS_AND_CONDITION}>privacy policy</Link></h1>
         {/* <footer className="footer_bck">
             <div className="pos_wrp onboarding_btm">
                 <h1 className="footer-text">We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <a className="report_link">privacy policy</a></h1>
@@ -170,6 +171,7 @@ const Footer = (props) => {
               </div>
         </footer> */}
         </CookieConsent>
+        </div>
     );
 }
 
