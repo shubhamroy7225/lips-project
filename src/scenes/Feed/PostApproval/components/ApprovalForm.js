@@ -198,8 +198,8 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                     <div className="form_group_modify mb_25">
                           <label className="lps_cont_check">
                             I don't have a link to submit/i don't want to share it
-                            <input type="checkbox" value={linkCheckbox}/>
-                            <span className="lps_Checkmark" onClick={linkCheckboxChecked}></span>
+                            <input type="checkbox" value={linkCheckbox} onClick={linkCheckboxChecked}/>
+                            <span className="lps_Checkmark"></span>
                           </label>
                         </div>
                         {linkCheckbox ? 
