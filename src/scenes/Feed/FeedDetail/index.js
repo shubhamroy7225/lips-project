@@ -40,7 +40,7 @@ const FeedDetail = (props) => {
         } else if (feed.type === FeedType.repost) {
             let parentFeed = feed.parent;
             if (parentFeed.type === FeedType.image) {
-                content = <ImageFeed refHandler={() => { }} index={feed.id} feed={feed} />
+                content = <ImageFeed refHandler={() => { }} index={feed.id} feed={feed} isReposted={true} />
             } else {
                 content = <TextFeed refHandler={() => { }} index={feed.id} feed={feed} isReposted={true} />
             }
