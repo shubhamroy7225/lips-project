@@ -320,6 +320,34 @@
   .main_feed_cont .infinite-scroll-component .post_shape {
     min-height: 330px;
   }
+
+.on_boardingNChngForms {
+  .lipsFields {
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .lpsFormFlexBtwnV {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    .lps_fields {
+      margin: 0;
+      width: 100%;
+  }
+    article.lps_logo_center {
+      padding-top: 90px;
+      width: 100%;
+    }
+  .pos_wrp {
+      padding-top: 0;
+      padding-bottom: 110px;
+      width: 100%;
+  }
+  }
+}
   
 }
 @media screen and (max-width: 450px) {
