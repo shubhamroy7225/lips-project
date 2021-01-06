@@ -99,7 +99,7 @@ export default () => {
                         <input
                             type="text"
                             className="input_modify"
-                            placeholder="Username"
+                            placeholder="username"
                             name="user_name"
                             value={user.user_name}
                             onChange={e => handleChange({target: {name: e.target.name, value: e.target.value.trim()}})}
@@ -117,7 +117,7 @@ export default () => {
                         <input
                             type="email"
                             className="input_modify"
-                            placeholder="Email"
+                            placeholder="email"
                             name="email"
                             value={user.email}
                             onChange={e => handleChange({target: {name: e.target.name, value: e.target.value.trim()}})}
@@ -135,7 +135,7 @@ export default () => {
                         <input
                             type={passwordShown ? "text" : "password"}
                             className="input_modify"
-                            placeholder="Password"
+                            placeholder="password"
                             name="password"
                             value={user.password}
                             onChange={handleChange}
@@ -159,7 +159,7 @@ export default () => {
                         <input
                             type={resetPasswordShown ? "text" : "password"}
                             className="input_modify"
-                            placeholder="Repeat Password"
+                            placeholder="repeat password"
                             value={user.confirm_password}
                             onChange={handleChange}
                             name="confirm_password"

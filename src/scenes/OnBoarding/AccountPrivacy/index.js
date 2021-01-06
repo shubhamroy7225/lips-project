@@ -27,13 +27,13 @@ export default () => {
                       <div className="lps_user_info">
                         <label className="lps_cont_rdo">
                           <span className="ft_Weight_500 radio_title">public</span> <br/>
-                          Anyone on the internet can see your posts
+                          anyone on the internet can see your posts
                           <input type="radio" checked="checked" name="radio" value={privacy_settings} checked={privacy_settings === "public"} onClick={e=> setPrivacy("public")} />
                             <span className="lps_checkmark"></span>
                           </label>
                             <label className="lps_cont_rdo">
                               <span className="ft_Weight_500 radio_title">private</span><br/>
-                              Only your followers can see your posts
+                              only your followers can see your posts
                               <input type="radio" name="radio" value={privacy_settings} checked={privacy_settings === "private"} onClick={e=> setPrivacy("private")}/>
                                 <span className="lps_checkmark"></span>
                               </label>
@@ -41,7 +41,7 @@ export default () => {
                             </li>
                           </ul>
                             <div className="btn_block">
-                              <button onClick={changePrivacyPolicy} className="theme_btn theme_primary btn_r25 text_uppercase W-50P desktopVersio">Continue</button>
+                              <button onClick={changePrivacyPolicy} className="theme_btn theme_primary btn_r25 text_uppercase W-50P desktopVersio approve_btn_bck">Continue</button>
                             </div>
                           </div>
                         </div>
