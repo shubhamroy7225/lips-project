@@ -9,13 +9,14 @@ const ReportedModal = ( props ) => {
     const {  selectedFeed } = useSelector(state => state.feedReducer);
     const [thankyouModal, setThankyouModal] = useState(false);
     const openThankyouModal = () => {
-        setThankyouModal(thankyouModal ? false : true);
+        setThankyouModal(!thankyouModal);
         reportFeed();
     }
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
         if(props.modalStatus){
             props.toggleModal(false);
+            setThankyouModal(false);
         }
     }
 

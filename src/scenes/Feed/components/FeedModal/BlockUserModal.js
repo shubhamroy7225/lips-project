@@ -17,6 +17,7 @@ const BlockUserModal = ( props ) => {
         setFeedModalType({ modalType: FeedModalType.undefined })
         if(props.modalStatus){
             props.toggleBlockModal(false);
+            setBlockUserModal(false);
         }
     }
 
