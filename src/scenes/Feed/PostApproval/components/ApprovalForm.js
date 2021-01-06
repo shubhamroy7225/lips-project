@@ -193,7 +193,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                             value={approvalForm.link}
                             onChange={handleInputChange}
                             onBlur={() => simpleValidator.current.showMessageFor('link')} />
-                        <span style={{ color: "red" }}>{simpleValidator.current.message('link', approvalForm.link, 'url')}</span>
+                        <span style={{ color: "red" }}>{simpleValidator.current.message('link', approvalForm.link, 'required|url',{messages: {required: 'anywhere we can find you on the internet?'}})}</span>
                     </div>
                     <div className="form_group_modify mb_25">
                           <label className="lps_cont_check">
@@ -236,7 +236,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                             name="description"
                             value={approvalForm.description}
                             onChange={handleInputChange} />
-                        <span style={{ color: "red" }}>{simpleValidator.current.message('description', approvalForm.description, 'required')}</span>
+                        <span style={{ color: "red" }}>{simpleValidator.current.message('description', approvalForm.description, 'required',{messages: {required: 'please write at least 100 symbols, we want to know more!'}})}</span>
 
                     </div>
                     {/* <div class="form_group_modify">
