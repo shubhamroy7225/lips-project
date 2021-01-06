@@ -130,8 +130,12 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
 
 
 const Footer = (props) => {
+    const [acceptButton, setAcceptButton] = useState(false);
+    const hideAcceptButton = () => {
+        setAcceptButton(acceptButton ? false : true);
+    }
     return (
-        <div className="footer_bck">
+        <div className={!acceptButton ? "footer_bck" : "footer_none"} onClick={hideAcceptButton}>
             <CookieConsent buttonText="ACCEPT" style={{
             backgroundColor: "#1a1a1a",
             //borderTop: "1px solid #fd3398",
@@ -140,7 +144,7 @@ const Footer = (props) => {
             width: "100%",
             height: "auto",
             
-            maxWidth: "800px",
+            maxWidth: "1026px",
             margin: "0 auto",
             position: "initial",
             zIndex: "1",
@@ -161,8 +165,8 @@ const Footer = (props) => {
             }}
             >
             
-             <h1 className="footer-text" style={{ fontSize: "16px", paddingRight: "20px",
-              marginBottom: "0"}}>We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <Link className="report_link" to={routes.TERMS_AND_CONDITION}>privacy policy</Link></h1>
+             <h1 className="footer-text" style={{ fontSize: "16px",
+              marginBottom: "0"}}>We use cookies for a number of reasons, such as allowing for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <Link className="report_link" to={routes.TERMS_AND_CONDITION}>privacy policy.</Link></h1>
         {/* <footer className="footer_bck">
             <div className="pos_wrp onboarding_btm">
                 <h1 className="footer-text">We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <a className="report_link">privacy policy</a></h1>
