@@ -49,7 +49,7 @@ let ForgotPasswordForm = (props) => {
                     <div className="lps_fields">
                       <div className="form_group_modify">
                         <input type="text" name="email" className="input_modify"
-                               placeholder="Email" value={user.email}
+                               placeholder="email" value={user.email}
                                onBlur={() => simpleValidator.current.showMessageFor('email')}
                                onChange={handleChange}/>
                         {simpleValidator.current.message('email', user.email, 'required')}
@@ -58,7 +58,7 @@ let ForgotPasswordForm = (props) => {
                       </div>
                     </div>
                    <div className="pos_wrp onboarding_btm">
-                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">Password reset</button>
+                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio approve_btn_bck">Password reset</button>
                     </div>
                   </form>
                 </div>

@@ -55,13 +55,13 @@ let LoginForm = (props) => {
               <div className="lps_fields lipsFields">
                 <div className="form_group_modify">
                   <input type="text" name="user" className="input_modify"
-                    placeholder="Username or Email" value={user.user}
+                    placeholder="username or email" value={user.user}
                     onBlur={() => simpleValidator.current.showMessageFor('user')}
                     onChange={(e) => handleChange({target: {name: e.target.name, value: e.target.value.trim()}})} />
                   {simpleValidator.current.message('user', user.user, 'required')}
                 </div>
                 <div className="form_group_modify lps_pos_rltv">
-                  <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="Password"
+                  <input type={passwordShown ? "text" : "password"} name="password" className="input_modify" placeholder="password"
                     value={user.password}
                     onChange={handleChange}
                     onBlur={() => simpleValidator.current.showMessageFor('password')}
@@ -75,19 +75,19 @@ let LoginForm = (props) => {
                   {simpleValidator.current.message('password', user.password, 'required')}
                 </div>
                 <div className="form_group_modify text_right mb20">
-                  <Link to="/forgot_password" className="link_white">Forgot Password</Link>
+                  <Link to="/forgot_password" className="report_link">Forgot password?</Link>
                 </div>
                 <div className="form_group_modify">
-                  <label className="lps_cont_check">Keep me signed in
+                  <label className="lps_cont_check">keep me signed in
                           <input type="checkbox" />
                     <span className="lps_Checkmark"></span>
                   </label>
                 </div>
               </div>
               <div className="pos_wrp onboarding_btm">
-                <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">Sign In</button>
-                <p className="btm_links mt_25 text_white">New to Lips? <Link to="/register" className="link_tag link_underline lps_link">Register</Link></p>
-                <Link onClick={()=> history.goBack()} className="link_underline lps_link link_tag">Go Back</Link>
+                <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio approve_btn_bck">Sign In</button>
+                <p className="btm_links mt_25 text_white">New to Lips? <Link to="/register" className="link_tag link_underline lps_link">register</Link></p>
+                {/* <Link onClick={()=> history.goBack()} className="link_underline lps_link link_tag">Go Back</Link> */}
               </div>
             </form>
           </div>
