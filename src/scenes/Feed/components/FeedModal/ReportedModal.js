@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { setFeedModalType } from 'redux/actions/feed';
 import * as actions from 'redux/actions';
-import { FeedModalType } from 'utility/constants/constants';
+import { FeedModalType, routes } from 'utility/constants/constants';
 import { toastMsg } from 'utility/utility';
+import { Link } from 'react-router-dom';
 
 const ReportedModal = ( props ) => {
     const {  selectedFeed } = useSelector(state => state.feedReducer);
@@ -61,7 +62,7 @@ const ReportedModal = ( props ) => {
                             <h5>Thanks for keeping our community safe</h5>
                             <p>We are currently improving our report feature. In the meantime, please email us the username belonging to this post.</p>
                             <p>We will reveiw this post and let you know what happens with it in the next 24 hours.</p>
-                            <h6 className="inline_WText">read more about <a className="report_link">lips moderation process</a></h6>
+                            <h6 className="inline_WText">read more about <Link className="report_link" to={routes.SETTING_FAQ}>lips moderation process</Link></h6>
                         </div>
                     </div> }
                 </div>
