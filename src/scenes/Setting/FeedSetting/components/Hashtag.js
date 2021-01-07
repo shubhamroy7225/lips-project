@@ -17,7 +17,7 @@ const Hashtag = ({setEditTag, showhashTags, hideHashtag}) => {
     <>
       <li className="list-group-item">
          <div className="lps_user_info lps_accnt_links my_10">
-            <h5 className="ft_Weight_500 mb_5">Thing you're seeing more of </h5>
+            <h5 className="ft_Weight_500 mb_5">Thing your seeing more of</h5>
             <p className="lps_md_para">Click to unselect or browse for more tags to add</p>
          </div>
          <div className="lps_hash_tags_wrp hash_tag_block hash_tag_links lps_user_info">

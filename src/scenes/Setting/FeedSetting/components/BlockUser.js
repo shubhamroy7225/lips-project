@@ -28,7 +28,7 @@ const blockUser = ({blockedUsers}) => {
     <>
       <li className="list-group-item">
          <div className="lps_user_info lps_accnt_links">
-            <p className="lps_md_title ft_Weight_500 mt_10">Blocked Users</p>
+            <p className="lps_md_title ft_Weight_500 mt_10">blocked users</p>
             {blockedUsers.map((block_user, index) =>
             <div className="lps_media lps_flx_vm my_acctn_pt10" key={index}>
                <figure className="lps_fig lps_fig_circle">
