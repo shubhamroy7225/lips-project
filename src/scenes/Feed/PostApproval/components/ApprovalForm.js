@@ -9,6 +9,9 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
     const postImgFirst = useRef(null);
     const postImgSecond = useRef(null);
     const postImgThird = useRef(null);
+    const [caption, setCaption] = useState("");
+    const captionCharCount = 500;
+    const [inputCount, setInputCount] = useState(0)
 
     const withoutImageStyle = {
         width: "50%",
@@ -68,6 +71,8 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
 
     const handleInputChange = (e) => {
         setApprovalForm({ ...approvalForm, [e.target.name]: e.target.value });
+        setInputCount(e.target.value.length)
+        setCaption(e.target.value)
         forceUpdate(1)
     };
 
@@ -177,7 +182,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                         <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="Lips Logo" class="header__logo" />
                     </a>
                 </article>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="approvalForm">
                     <div class="form_group_modify postApproval">
                         <div>
                         <label class="label_modify">Upload post examples (images of visuals or text)*</label>
@@ -207,7 +212,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                     </div>
                     <div class="form_group_modify">
                         {/* <label class="label_modify">Alternatively link to your website / portfolio</label> */}
-                        <input class="input_modify input_brdrBtnmP access_input"
+                        <input class="input_modify input_brdrBtnmP access_input inputBorder"
                             type="text"
                             name="link"
                             placeholder="website/ public social media/anywhere we can find you"
@@ -216,14 +221,15 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                             onBlur={() => simpleValidator.current.showMessageFor('link')} />
                         <span style={{ color: "red" }}>{simpleValidator.current.message('link', approvalForm.link, 'required|url',{messages: {required: 'anywhere we can find you on the internet?'}})}</span>
                     </div>
-                    <div class="form_group_modify">
+                    <div class="form_group_modify lps_pos_rltv text_sendry">
                         <label class="label_modify">Why do you want to post on Lips? *</label>
                         <textarea class="input_modify txtarea_modify textarea-font-family"
                             rows="5"
                             name="description"
                             value={approvalForm.description}
                             onChange={handleInputChange} />
-                        <span style={{ color: "red" }}>{simpleValidator.current.message('description', approvalForm.description, 'required',{messages: {required: 'please write at least 100 symbols, we want to know more!'}})}</span>
+                            <span class="textRange lps_bg_secondary text_white">{inputCount}/{captionCharCount}</span>
+                        <span style={{ color: "red" }}>{simpleValidator.current.message('description', approvalForm.description, 'required|max:100',{messages: {required: 'please write at least 100 symbols, we want to know more!'}})}</span>
 
                     </div>
                     {/* <div class="form_group_modify">
@@ -241,7 +247,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                     <p> Lips loves our creators, so intentional plagiarism and copyright infringement is a one-way ticket to outta here town for sure.</p>
                     <div class="post_block mb20 mt_15">
                         <button type="submit" class="circle submit-cursor">Submit</button>
-                        <a onClick={() => props.setStep(props.steps.StartApproval)} class="cancel_post report_link">Cancel</a>
+                        <a onClick={() => props.setStep(props.steps.StartApproval)} class="cancel_post report_link">cancel</a>
                     </div>
                 </form>
 
