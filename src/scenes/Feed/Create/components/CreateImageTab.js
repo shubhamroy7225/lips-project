@@ -175,7 +175,6 @@ const CreateImageTab = ({
             value={caption}
             class="textarea_modifier textarea-font-family"
             rows="8"
-            placeholder="Say something about this..."
           ></textarea>
           <span class="textRange"><span style={charCountStyle}>{inputCount}</span>/{captionCharCount}</span>
           <p class="mb_0 mt_5">
@@ -219,7 +218,7 @@ const CreateImageTab = ({
           <div class="d_inline mb_0">
             <div class="grid_left lps_flx_vm_jsbtwn lps_flx_vm others_wrp">
               <h6 class="sm_title">
-                Others Can{" "}
+                others can{" "}
                 <img
                   src={require("assets/images/icons/liked_post.svg")}
                   alt="kiss"
@@ -244,7 +243,7 @@ const CreateImageTab = ({
           <div class="d_inline mb_0">
             <div class="grid_left lps_flx_vm_jsbtwn lps_flx_vm others_wrp">
               <h6 class="sm_title">
-                Others Can{" "}
+                others can{" "}
                 <img
                   src={require("assets/images/icons/refresh_black.svg")}
                   alt="repost"
@@ -283,7 +282,7 @@ const CreateImageTab = ({
             Post
           </a>
           <a onClick={() => history.push(routes.ROOT)} class="cancel_post">
-            Cancel
+            cancel
           </a>
         </div>
       </div>
