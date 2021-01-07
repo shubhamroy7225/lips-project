@@ -117,7 +117,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                         <li className="nav-item">
                             <Link to="/settings" className="nav-link not_line">
                                 <span className="avatar_circle">
-                                    <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
+                                    <img src={require("assets/images/icons/new_setting.svg")} alt="Settings Icon" />
                                 </span>
                             </Link>
                         </li>
