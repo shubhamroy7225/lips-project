@@ -106,7 +106,7 @@ const ReportModal = ({ feed }) => {
                                 <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide This Post</a>
                             </li>
                             <li>
-                                <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
+                                <a class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
                             </li>
                             <li>
                                 <a onClick={e => toggleBlockModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
