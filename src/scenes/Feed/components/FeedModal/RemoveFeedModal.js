@@ -53,7 +53,7 @@ const RemoveFeedModal = ({ feed }) => {
                     <div class="popup_body removeData">
                     <ul class="lps_btn_grps lps_ul mb100">
                         <li>
-                            <a href="#" class="text_white">Deleted</a>
+                            <a href="#" class="text_white">deleted</a>
                         </li>
                     </ul>
                 </div>}
