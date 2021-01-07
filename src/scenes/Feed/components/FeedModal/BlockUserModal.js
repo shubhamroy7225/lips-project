@@ -47,7 +47,7 @@ const BlockUserModal = ( props ) => {
                     <div className="popup_body">
                         <ul class="lps_btn_grps lps_ul newButton">
                             <li class="lps_title lps_title_size">
-                                Block  {username}
+                                Block  {username}?
                             </li>
                             <li className="lps_title lps_title_size">
                                 <p>

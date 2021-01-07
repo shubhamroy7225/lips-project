@@ -59,6 +59,7 @@ const ReportedModal = ( props ) => {
                     <div className="popup_body">
                         <div className="lps_title lps_title_size lps_titel_report_modal">   
                             <h5>Thanks for keeping our community safe</h5>
+                            <p>We are currently improving our report feature. In the meantime, please email us the username belonging to this post.</p>
                             <p>We will reveiw this post and let you know what happens with it in the next 24 hours.</p>
                             <h6 className="inline_WText">read more about <a className="report_link">lips moderation process</a></h6>
                         </div>

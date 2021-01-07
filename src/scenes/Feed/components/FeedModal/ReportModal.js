@@ -109,6 +109,10 @@ const ReportModal = ({ feed }) => {
                                 <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
                             </li>
                             <li>
+                                <a onClick={e => toggleBlockModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
+                                <BlockUserModal toggleBlockModal={toggleBlockModal} modalStatus={blockModalOpen} />
+                            </li>
+                            <li>
                                 <a onClick={e => toggleModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Report</a>
                                 <ReportedModal toggleModal={toggleModal} modalStatus={ModalOpen} />
                             </li>
@@ -118,10 +122,6 @@ const ReportModal = ({ feed }) => {
                                     <a onClick={unfollowAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Unfollow User</a>
                                 </li>
                             }
-                            <li>
-                                <a onClick={e => toggleBlockModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
-                                <BlockUserModal toggleBlockModal={toggleBlockModal} modalStatus={blockModalOpen} />
-                            </li>
                         </ul>
                     </div>
                 </div>
