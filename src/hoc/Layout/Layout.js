@@ -284,7 +284,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                         <li key={`noti_${index}`} className="list-group-item">
                             <div className="lps_media">
                                 <figure className="lps_fig lps_fig_circle notfication_lips_logo">
-                                    {notification.content === "You've been approved - now, go and express yourself!" ? 
+                                    {notification.content === "You've been approved - Now, go and express yourself!" ? 
                                         <img src={require("assets/images/thumbnails/2.svg")} alt="Lips Logo" className="header__logo notifcation_logo" /> :
                                         <img src={notification.user && notification.user.photo_urls.original ? notification.user.photo_urls.original : require("assets/images/icons/icn_profile.svg")} alt="User" />
                                     }
