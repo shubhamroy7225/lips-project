@@ -49,7 +49,7 @@ export default () => {
                     </div>
                     
                     <div className="lps_btns para_list_mb">
-                      <button disabled={!accessCode} onClick={handleSubmit} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170 access_button mb_0">Submit</button>
+                      <button disabled={!accessCode} onClick={handleSubmit} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170 access_button mb_0">Enter</button>
                     </div>
                   </div>
                   </article>
