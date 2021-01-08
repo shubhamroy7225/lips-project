@@ -47,14 +47,14 @@ export default () => {
               <p>
                We have a zero-tolerance policy for hate speech, harassment, abuse, or discrimination. Only if we accept each other at our truest and most vulnerable will we be able to grow into our highest selves.
               </p>
-              <p>
+              {/* <p>
                 You are granted limited license only for purpose of viewing the material contained on this Website
-              </p>
+              </p> */}
             </div>
             <div className="lps_terms_list" id="Restrictions">
               <h5 className="community-data-heading">Find Your Purpose</h5>
               <p>
-                Use Lips as a space to figure out what it is you are meant to do and who it is you are meant to be. Today, creators are fortunate that we can make a living doing what we love. Lips encourages you to clarify, articulate, and act on that with our support along the way
+                Use Lips as a space to figure out what it is you are meant to do and who it is you are meant to be. Today, creators are fortunate that we can make a living doing what we love. Lips encourages you to clarify, articulate, and act on that with our support along the way.
               </p>
               
             </div>
