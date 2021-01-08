@@ -157,7 +157,7 @@ const Likes = (props) => {
                 {
                     likedFeeds.length > 0 && <div class="lps_inner_wrp">
                         <div class="see_also">
-                            <p class="lps_flx_vm tags_lip_inline mb_15">tags you<img src={require("assets/images/icons/liked_post.svg")} alt="Image" class="lip_icn" /></p>
+                            <p class="lps_flx_vm tags_lip_inline mb_15">tags you<img src={require("assets/images/icons/icn_lip_black.svg")} alt="Image" class="lip_icn" /></p>
                             <div class="hashtag hashtag_seondary weightAnchor">
                                 {topHashtags.map((tag, index) => <a key={index} class="theme_btn theme_secondary">{tag}</a>)}
                             </div>
