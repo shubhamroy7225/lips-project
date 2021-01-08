@@ -20,6 +20,7 @@ import storage from 'utility/storage';
 import ToggleListWidget from '../components/ToggleListWidget';
 import { setMainFeedPaginationCompleted } from 'redux/actions/feed';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import {PullToRefresh} from "react-js-pull-to-refresh";
 
 const MainFeed = (props) => {
     const selectedFeed = props.selectedFeed;
@@ -32,6 +33,10 @@ const MainFeed = (props) => {
             fetchFeedsFromServer(true);
         }
     }, [])
+
+    const onRefresh = () => {
+        window.location.reload();
+    }
 
     //scroll listener
     useEffect(() => {
@@ -136,16 +141,26 @@ const MainFeed = (props) => {
         if (isMobile) {
             return (
                 <>
-                    <div id="wrap" >
+                    <div id="wrap" style={{overflow: "scroll"}} >
                         <div class="lps_container main_feed_cont bg_grayCCC post_shape_wrapper">
+                        <PullToRefresh
+                            pullDownThreshold={200}
+                            onRefresh={onRefresh}
+                            triggerHeight={50}
+                            startInvisible={true}
+                        >
                             <InfiniteScroll
                                 dataLength={props.feeds.length}
                                 next={getMoreData}
                                 hasMore={!props.mainFeedIsPaginationCompleted}
+                                // refreshFunction={this.refresh}
+                                // pullDownToRefresh
+                                // pullDownToRefreshThreshold={50}
                                 loader={<PaginationLoader show={true} />}
                             >
                                 {feedContent}
                             </InfiniteScroll>
+                            </PullToRefresh>
                             {emptyFeedContent}
                             {/* <RestrictedFeed /> */}
                             {/* <!-- Menu bottom here --> */}
