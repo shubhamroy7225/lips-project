@@ -89,7 +89,7 @@ const Faq = () => {
                     {data.map(({title, content}, index) => <Accordion key={index} title={title} content={content} />)}
                 </div>
                 <div className="lps_terms_list lps_px15 pb25">
-                    <h3>Still have questions about lips?</h3>
+                    <h3>Still have questions about Lips?</h3>
                     
                     <Link to={CONTACT_USER} className="theme_btn theme_outline_primary btnr_25 text_secondary text_uppercase min_w_170">CONTACT US</Link>
                 </div>
