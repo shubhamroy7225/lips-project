@@ -13,7 +13,7 @@ export default () => {
           className="lps_header_img"
         />
         <span className="lp_left_auto text_black ft_Weight_500">
-          Community Guidelines
+          community guidelines
         </span>
       </Link>
         <div className="lps_inner_wrp">

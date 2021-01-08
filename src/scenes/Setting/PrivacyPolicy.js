@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
                <div className="lps_container mt_0">
                <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
                   <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
-                  <span className="lp_left_auto text_black ft_Weight_500">Privacy policy</span>
+                  <span className="lp_left_auto text_black ft_Weight_500">privacy policy</span>
                </Link>
                
                <div className="lps_inner_wrp">
