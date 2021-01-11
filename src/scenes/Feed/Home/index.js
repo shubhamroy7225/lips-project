@@ -122,14 +122,14 @@ const MainFeed = (props) => {
     } else {
         if (props.user) {
             emptyFeedContent = (
-                <div class="lps_tb_para wlcome">
+                <div className="lps_tb_para wlcome">
                     <h3>Welcome to your feed</h3>
                     <h4>Post from account you follow will appear here.</h4>
                 </div>
             )
         } else {
             emptyFeedContent = (
-                <div class="lps_tb_para">
+                <div className="lps_tb_para">
                     <h4></h4>
                 </div>
             )
@@ -142,7 +142,7 @@ const MainFeed = (props) => {
             return (
                 <>
                     <div id="wrap" style={{overflow: "scroll"}} >
-                        <div class="lps_container main_feed_cont bg_grayCCC post_shape_wrapper">
+                        <div className="lps_container main_feed_cont bg_grayCCC post_shape_wrapper">
                         <PullToRefresh
                             pullDownThreshold={200}
                             onRefresh={onRefresh}
@@ -205,21 +205,21 @@ const MainFeed = (props) => {
             if (isMobile) {
                 return (
                     <div id="wrap">
-                        <div class="lps_container empty_feed_bg_wrp empty_feed_bg_wrp_spc">
-                            <div class="up_arrow_wrp">
-                                <a href="#" class="lips_arrow">
-                                    {/* <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" /> */}
+                        <div className="lps_container empty_feed_bg_wrp empty_feed_bg_wrp_spc">
+                            <div className="up_arrow_wrp">
+                                <a href="#" className="lips_arrow">
+                                    {/* <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" className="lip_icn" /> */}
                                 </a>
-                                <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo-2.png")} alt="Image" class="lip_icn_black" /> </h5>
+                                <h5 className="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo-2.png")} alt="Image" className="lip_icn_black" /> </h5>
                             </div>
-                            <div class="mdl_arrow_wrp">
-                                <h5 class="h5_title text_inherit title_black">welcome to your feed <img src={require("assets/images/thumbnails/Mask_Group.png")} alt="Image" class="lip_icn_group" /></h5>
-                                <h5 class="h5_title text_inherit text_black">posts from account you follow will appear here</h5>
+                            <div className="mdl_arrow_wrp">
+                                <h5 className="h5_title text_inherit title_black">welcome to your feed <img src={require("assets/images/thumbnails/Mask_Group.png")} alt="Image" className="lip_icn_group" /></h5>
+                                <h5 className="h5_title text_inherit text_black">posts from account you follow will appear here</h5>
                             </div>
-                            <div class="up_arrow_wrp down_arrow_wrp">
-                                <div class="h5_title1 inline_img1">open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
-                                <a href="#" class="lips_arrow">
-                                    {/* <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" class="lip_icn" /> */}
+                            <div className="up_arrow_wrp down_arrow_wrp">
+                                <div className="h5_title1 inline_img1">open the menu and click <img src={require("assets/images/icons/icn_search.png")} alt="Image" className="lip_icn" /> to discover accounts to follow.</div>
+                                <a href="#" className="lips_arrow">
+                                    {/* <img src={require("assets/images/icons/icn_down_arrow.png")} alt="Image" className="lip_icn" /> */}
                                 </a>
                             </div>
                             <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
@@ -229,19 +229,19 @@ const MainFeed = (props) => {
             } else {
                 return (
                     <div id="wrap" className="lps_xl_view">
-                        <div class="lps_container empty_feed_bg_wrp empty_feed_bg_wrp_spc">
-                            <div class="up_arrow_wrp">
-                                <a href="#" class="lips_arrow">
-                                    {/* <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" class="lip_icn" /> */}
+                        <div className="lps_container empty_feed_bg_wrp empty_feed_bg_wrp_spc">
+                            <div className="up_arrow_wrp">
+                                <a href="#" className="lips_arrow">
+                                    {/* <img src={require("assets/images/icons/icn_up_arrow.png")} alt="Image" className="lip_icn" /> */}
                                 </a>
-                                <h5 class="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo-2.png")} alt="Image" class="lip_icn" /> </h5>
+                                <h5 className="h5_title lps_flx_vm tags_lip_inline text_inherit text_black">to come back here click <img src={require("assets/images/thumbnails/logo-2.png")} alt="Image" className="lip_icn" /> </h5>
                             </div>
-                            <div class="mdl_arrow_wrp">
-                                <h5 class="h5_title text_inherit title_black">welcome to your feed <img src={require("assets/images/thumbnails/Mask_Group.png")} alt="Image" class="lip_icn_group" /></h5>
-                                <h5 class="h5_title text_inherit text_black">posts from account you follow will appear here</h5>
+                            <div className="mdl_arrow_wrp">
+                                <h5 className="h5_title text_inherit title_black">welcome to your feed <img src={require("assets/images/thumbnails/Mask_Group.png")} alt="Image" className="lip_icn_group" /></h5>
+                                <h5 className="h5_title text_inherit text_black">posts from account you follow will appear here</h5>
                             </div>
-                            <div class="up_arrow_wrp down_arrow_wrp">
-                                <div class="h5_title1 inline_img1">Click <img src={require("assets/images/icons/icn_search.png")} alt="Image" class="lip_icn" /> to discover accounts to follow.</div>
+                            <div className="up_arrow_wrp down_arrow_wrp">
+                                <div className="h5_title1 inline_img1">Click <img src={require("assets/images/icons/icn_search.png")} alt="Image" className="lip_icn" /> to discover accounts to follow.</div>
                             </div>
                             <MenuOptionSlider feed={selectedFeed} hideMenuOptionSlider={props.hideMenuOptionSlider} />
                         </div>

@@ -98,28 +98,28 @@ const ReportModal = ({ feed }) => {
                         <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
                     </div>
                     <div className="popup_body">
-                        <ul class="lps_btn_grps lps_ul newButton">
-                            <li class="lps_title lps_title_size">
+                        <ul className="lps_btn_grps lps_ul newButton">
+                            <li className="lps_title lps_title_size">
                                 Don't want to see this?
                             </li>
                             <li>
-                                <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide This Post</a>
+                                <a onClick={hideFeed} className="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide This Post</a>
                             </li>
                             <li>
-                                <a class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
+                                <a className="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
                             </li>
                             <li>
-                                <a onClick={e => toggleBlockModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
+                                <a onClick={e => toggleBlockModal()} className="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
                                 <BlockUserModal toggleBlockModal={toggleBlockModal} modalStatus={blockModalOpen} />
                             </li>
                             <li>
-                                <a onClick={e => toggleModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Report</a>
+                                <a onClick={e => toggleModal()} className="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Report</a>
                                 <ReportedModal toggleModal={toggleModal} modalStatus={ModalOpen} />
                             </li>
                             {
                                 isFollowing &&
                                 <li>
-                                    <a onClick={unfollowAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Unfollow User</a>
+                                    <a onClick={unfollowAUser} className="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Unfollow User</a>
                                 </li>
                             }
                         </ul>

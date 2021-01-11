@@ -65,7 +65,6 @@ export default () => {
   const [resetPasswordShown, setResetPasswordShown] = useState(false);
 
   const handleChange = (e) => {
-    debugger
     setUser({ ...user, [e.target.name]: e.target.value });
     forceUpdate(1);
   };

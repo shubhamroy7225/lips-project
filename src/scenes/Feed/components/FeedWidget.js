@@ -86,9 +86,9 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
             </a>
         </li>);
     let deleteOption = (
-        <li key={2} class="listed_item">
-            <a onClick={() => feedSelectionHandler(FeedModalType.delete)} class="trash_icon_wrp circle_image lps_flx_vm_jc" id="trigger_delete">
-                <img src={require("assets/images/icons/icn_trash_white.png")} class="inner_image" alt="Close Icon" />
+        <li key={2} className="listed_item">
+            <a onClick={() => feedSelectionHandler(FeedModalType.delete)} className="trash_icon_wrp circle_image lps_flx_vm_jc" id="trigger_delete">
+                <img src={require("assets/images/icons/icn_trash_white.png")} className="inner_image" alt="Close Icon" />
             </a>
         </li>);
     let hashtagOptionn = (
@@ -113,24 +113,24 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
             <a onClick={() => is_reposted ? () => { } : feedSelectionHandler(FeedModalType.repost)}
                 className={repostIconClasses}
                 id="trigger_popup_fricc1">
-                <img src={require("assets/images/icons/refresh.svg")} class="inner_image icn_dfltD" alt="Repeat Icon" />
-                <img src={require("assets/images/icons/refresh_black.svg")} class="inner_image icn_hvrA" alt="Repeat Icon" />
+                <img src={require("assets/images/icons/refresh.svg")} className="inner_image icn_dfltD" alt="Repeat Icon" />
+                <img src={require("assets/images/icons/refresh_black.svg")} className="inner_image icn_hvrA" alt="Repeat Icon" />
             </a>
         </li>
     );
     let likeOption = (
-        <li key={6} class="listed_item">
+        <li key={6} className="listed_item">
             {user && parseInt(feed.user_id) === user.id ?
                 <div>{likeCount ? <span className="countBadge">{feed.likes_count}</span> : ""}
-                    <a class={likeIconClasses} onClick={likeCountShown}>
-                        <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
-                        {/* <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" /> */}
+                    <a className={likeIconClasses} onClick={likeCountShown}>
+                        <img src={require("assets/images/icons/icn_lip_white.svg")} className="icn_dfltD" alt="Mouth Icon" />
+                        {/* <img src={require("assets/images/icons/icn_lip_black.svg")} className="icn_hvrA" alt="User" /> */}
                     </a>
                 </div>
                 :
-                <a onClick={() => toggleLike()} class={likeIconClasses}>
-                    <img src={require("assets/images/icons/icn_lip_white.svg")} class="icn_dfltD" alt="Mouth Icon" />
-                    <img src={require("assets/images/icons/icn_lip_black.svg")} class="icn_hvrA" alt="User" />
+                <a onClick={() => toggleLike()} className={likeIconClasses}>
+                    <img src={require("assets/images/icons/icn_lip_white.svg")} className="icn_dfltD" alt="Mouth Icon" />
+                    <img src={require("assets/images/icons/icn_lip_black.svg")} className="icn_hvrA" alt="User" />
                 </a>}
         </li>
     );

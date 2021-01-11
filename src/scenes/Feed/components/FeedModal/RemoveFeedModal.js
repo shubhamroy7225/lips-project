@@ -35,25 +35,25 @@ const RemoveFeedModal = ({ feed }) => {
     }
 
     return (
-        <div class="hover_bkgr_fricc mobileModal" style={style}>
-            <div class="modal-dialog-centered">
-                <div class="popup_cont popup-custom-header">
+        <div className="hover_bkgr_fricc mobileModal" style={style}>
+            <div className="modal-dialog-centered">
+                <div className="popup_cont popup-custom-header">
                     <div className="popup_close_header">
                         <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
                     </div>
                     {!deletedFeed ? 
-                    <div class="popup_body removeData" onClick={showdeletedFeedModal}>
-                        <ul class="lps_btn_grps lps_ul mb100">
+                    <div className="popup_body removeData" onClick={showdeletedFeedModal}>
+                        <ul className="lps_btn_grps lps_ul mb100">
                             <li>
-                                <a href="#" class="text_white">Delete post?</a>
+                                <a href="#" className="text_white">Delete post?</a>
                             </li>
                         </ul>
-                        <a onClick={removeFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Delete</a>
+                        <a onClick={removeFeed} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Delete</a>
                     </div> :
-                    <div class="popup_body removeData">
-                    <ul class="lps_btn_grps lps_ul mb100">
+                    <div className="popup_body removeData">
+                    <ul className="lps_btn_grps lps_ul mb100">
                         <li>
-                            <a href="#" class="text_white">deleted</a>
+                            <a href="#" className="text_white">deleted</a>
                         </li>
                     </ul>
                 </div>}

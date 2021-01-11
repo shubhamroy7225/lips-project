@@ -36,16 +36,16 @@ const SharedModal = ({ feed }) => {
     }
   }
   return (
-    <div class="hover_bkgr_fricc mobileModal" style={style}>
-      <div class="modal-dialog-centered">
-        <div class="popup_cont popup-custom-header">
+    <div className="hover_bkgr_fricc mobileModal" style={style}>
+      <div className="modal-dialog-centered">
+        <div className="popup_cont popup-custom-header">
           <div className="popup_close_header">
             <div className="popupCloseButton" onClick={closeModal}><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
           </div>
-          <div class="popup_body">
+          <div className="popup_body">
 
-            <ul class="lps_btn_grps lps_ul lps_hash_ul">
-              <li class="lps_title lps_shareLink_text">
+            <ul className="lps_btn_grps lps_ul lps_hash_ul">
+              <li className="lps_title lps_shareLink_text">
                 online people with a lips account will see things
               </li>
               <li>
