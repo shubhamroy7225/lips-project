@@ -7,8 +7,6 @@ import { toastMsg } from 'utility/utility';
 import * as commonService from "utility/utility";
 import ReportedModal from './ReportedModal';
 import BlockUserModal from './BlockUserModal';
-import BlockHashtagModal from './HideHashtagModal';
-
 const ReportModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
     const closeModal = () => {
@@ -23,11 +21,6 @@ const ReportModal = ({ feed }) => {
     const [blockModalOpen, setBlockModalOpen] = useState(false);
     const toggleBlockModal = () => {
         setBlockModalOpen(blockModalOpen ? false : true);
-    }
-
-    const [hideHashtagModal, setHideHashtagModal] = useState(false);
-    const toggleHideHashtagModal = () => {
-      setHideHashtagModal(hideHashtagModal ? false : true)
     }
 
 
@@ -106,15 +99,14 @@ const ReportModal = ({ feed }) => {
                     <div className="popup_body">
                         <ul class="lps_btn_grps lps_ul newButton">
                             <li class="lps_title lps_title_size">
-                                "Don't want to see this?"
+                                Don't want to see this?
                             </li>
                             <li>
                                 <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide This Post</a>
                             </li>
                             <li>
-                                <a onClick={e =>toggleHideHashtagModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
-                                <BlockHashtagModal toggleHideHashtagModal={toggleHideHashtagModal}
-                                 hideHashtagModal={hideHashtagModal} />
+                                <a  class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
+                                 
                             </li>
                             <li>
                                 <a onClick={e => toggleBlockModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
