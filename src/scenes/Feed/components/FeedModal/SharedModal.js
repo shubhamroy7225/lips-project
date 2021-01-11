@@ -5,7 +5,7 @@ import { FeedModalType } from "utility/constants/constants";
 
 const SharedModal = ({ feed }) => {
   const { modalType, selectedFeed } = useSelector((state) => state.feedReducer);
-  const linkVar = "Click to copy"
+  const linkVar = "click to copy"
   const closeModal = () => {
     setFeedModalType({ modalType: FeedModalType.undefined });
   };
@@ -45,16 +45,19 @@ const SharedModal = ({ feed }) => {
           <div class="popup_body">
 
             <ul class="lps_btn_grps lps_ul lps_hash_ul">
+              <li class="lps_title lps_shareLink_text">
+                online people with a lips account will see things
+              </li>
               <li>
                 <span
                   onClick={copyLink}
-                  className="theme_btn theme_outline_light mobileShare"
+                  className="theme_btn theme_outline_light mobileShare share_link_button"
                 >
                   {window.location.origin}/post/
                   {selectedFeed && selectedFeed.id}
                 </span>
                 <p onClick={copyLink} className="copyPara">
-                  {linkCopy ? "Link Copied" : linkVar}
+                  {linkCopy ? "link copied!" : linkVar}
                 </p>
               </li>
             </ul>

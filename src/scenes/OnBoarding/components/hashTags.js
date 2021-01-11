@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
-
+import {Link} from 'react-router-dom';
 import * as actions from "redux/actions";
 
 export default  ({selectTags, setSelectTags, showhashTags}) => {
@@ -39,12 +39,19 @@ export default  ({selectTags, setSelectTags, showhashTags}) => {
       )}
     </li>
 
-    <li className="mt_15">
+    {/* <li className="mt_15">
       {
         count > hashTags.length ?
             <button onClick={loadMore} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase">
               View more</button> : ""
       }
-    </li>
+    </li> */}
+    {
+      count > hashTags.length ?
+    <div className="dotsWrp">
+      <Link  className="single1"><span className="singleDot" onClick={loadMore}></span></Link>
+      <Link  className="single2"><span className="singleDot" onClick={loadMore}></span></Link>
+      <Link  className="single3"><span className="singleDot" onClick={loadMore}></span></Link>
+    </div> : "" }
   </ul>)
 }

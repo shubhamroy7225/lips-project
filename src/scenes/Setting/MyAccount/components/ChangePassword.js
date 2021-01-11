@@ -60,33 +60,33 @@ const [, forceUpdate] = useState();
       <div className="lps_container mt_0">
         <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.MY_ACCOUNT}>
           <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
-          <span className="lp_left_auto text_black">Change Password</span>
+          <span className="lp_left_auto text_black">change password</span>
         </Link>
         <div className="lps_list_group my_acctn_list my_acctn_list_pl0 changePassword lipsFields">
           <form onSubmit={handleSubmit}>
             <div className="lps_fields">
               <div className="form_group_modify">
-                <label for="current_password">Current Password</label>
+                <label for="current_password">current password</label>
                 <input type={currentPasswordShown ? "text" : "password"} className="input_modify" name="current_password" onBlur={(e) =>
                          isSubmitted ?  simpleValidator.current.showMessageFor("current_password") : true
                         }
-                 onChange={handleChange} placeholder="Current Password"/>
-                <span className="icn_passAbslt_password">
+                 onChange={handleChange} placeholder="current password"/>
+                {/* <span className="icn_passAbslt_password">
                           <img
                               onClick={() => setCurrentPasswordShown(!currentPasswordShown)}
                               src={require(`assets/images/icons/${currentPasswordShown? "icb_eye_hide_black" : "icb_eye_pink"}.png`)}
                               />
-                        </span> 
+                        </span>  */}
                  { simpleValidator.current.message("current_password",passwordForm.current_password,"required")}
               </div>
             </div>
             <div className="lps_fields">
               <div className="form_group_modify">
-                <label for="current_password">New Password</label>
+                <label for="current_password">new password</label>
                 <input type={passwordShown ? "text" : "password"} className="input_modify" name="password" onBlur={(e) =>
                          isSubmitted ?  simpleValidator.current.showMessageFor("password") : true
                         }
-                onChange={handleChange} placeholder="New Password"/>
+                onChange={handleChange} placeholder="new password"/>
                 <span className="icn_passAbslt_password">
                           <img
                               onClick={() => setPasswordShown(!passwordShown)}
@@ -98,11 +98,11 @@ const [, forceUpdate] = useState();
             </div>
             <div className="lps_fields">
               <div className="form_group_modify">
-                <label for="current_password">Confirm Password</label>
+                <label for="current_password">confirm password</label>
                 <input type={confirmPasswordShown ? "text" : "password"} className="input_modify" name="password_confirmation"  onBlur={(e) =>
                         isSubmitted ?   simpleValidator.current.showMessageFor("password_confirmation") : true
                         }
-                 onChange={handleChange} placeholder="Confirm Password"/>
+                 onChange={handleChange} placeholder="confirm password"/>
                  <span className="icn_passAbslt_password">
                           <img
                               onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}
@@ -115,7 +115,7 @@ const [, forceUpdate] = useState();
             <div className="pos_wrp onboarding_btm">
               <button
                   type="submit"
-                  className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio"
+                  className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio chng_pwd_btn"
                   >
                 Change Password
               </button>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as feedActions from 'redux/actions/feed/action';
-
+import {Link} from 'react-router-dom';
 import AddSuggestedTag from "./AddSuggestedTag";
 
 const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setSelectedHashTags, hashTags }) => {
@@ -79,6 +79,7 @@ const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setS
                                         </div>
                                     </div>
                                 </div>
+                                {filteredHashtags.length > 0 ?
                                 <div className="hash_tag_block mt_30">
                                     <div className="hashtags weightAnchor">
                                         {
@@ -97,16 +98,27 @@ const AddTags = ({ setShowLipsInfo, count, show, dismiss, selectedHashTags, setS
                                         }
                                     </div>
                                     <li className="mt_15">
-                                        {
+                                        {/* {
                                             count > hashTags.length ?
                                                 <button onClick={loadMore} className="theme_btn theme_outline_primary text_white min_w_170 theme_btn_rds25 text_uppercase view_more_button">
                                                     View more</button> : ""
+                                        } */}
+                                        {
+                                            count > hashTags.length ?
+                                            <div className="dotsWrp">
+                                            <Link  className="single1"><span className="singleDot" onClick={loadMore}></span></Link>
+                                            <Link  className="single2"><span className="singleDot" onClick={loadMore}></span></Link>
+                                            <Link  className="single3"><span className="singleDot" onClick={loadMore}></span></Link>
+                                            </div> : ""
                                         }
                                     </li>
-                                </div>
+                                </div> :                        
+                                <div class="lps_tb_para">
+                                    <h4>no results</h4>
+                                </div>}
                                 <div className="post_links post_links_undr post_links_tags">
                                     <a onClick={() => dismiss()} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</a>
-                                    <span onClick={() => setSuggestedTagModel(true)} className="link_tag lps_link mt_15 btn_block textDecor cursor-pointer" id="trigger_submit_tag">Can't find what you're looking for ?</span>
+                                    <span onClick={() => setSuggestedTagModel(true)} className="link_tag lps_link mt_15 btn_block textDecor cursor-pointer" id="trigger_submit_tag">can't find what you're looking for ?</span>
                                 </div>
                             </div>
                         </div>

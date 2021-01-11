@@ -47,7 +47,7 @@ body.body_overflow {
   padding-left: 15px;
   padding-right: 15px;
   &.lps_inner_wrp_media {
-    padding-top: 25px;
+    padding-top: 16px;
     padding-bottom: 25px;
   }
 }
@@ -1883,10 +1883,10 @@ p.more {
     padding: 0px 15px 20px;
     &.border_white_box {
       padding: 15px;
-      border-top: 1px solid $white;
-      border-bottom: 1px solid $white;
-      margin-top: 30px;
-      margin-bottom: 40px;
+      // border-top: 1px solid $white;
+      border-bottom: 1px solid #1a1a1a;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
     .grid_left {
       img {
@@ -1941,12 +1941,11 @@ p.more {
     }
     .cancel_post {
       display: block;
-      color: $brand-secondary;
+      color: $brand-primary;
       margin-top: 15px;
       font-size: 16px;
       font-weight: $ft_Weight_MD;
       transform: translate(0px, 0px);
-      text-decoration: underline;
     }
     .ratings {
       transform: translate(20px, -20px);
@@ -4459,4 +4458,25 @@ figure.feed_fig310 {
   word-break: break-word;
 }
 
+.on_boardingNChngForms {
+  
+  .lpsFormFlexBtwnV {
+  .pos_wrp {
+      padding-top: 10%;
+  }
+  }
+}
 
+.approvalForm {
+  margin-top: 35px;
+  .postApproval {
+    margin-bottom: 30px;
+    .label_modify {
+      margin-bottom: 25px;
+  }
+  }
+  .text_sendry {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+}

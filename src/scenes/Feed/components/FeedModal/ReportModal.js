@@ -6,6 +6,7 @@ import { FeedModalType } from 'utility/constants/constants';
 import { toastMsg } from 'utility/utility';
 import * as commonService from "utility/utility";
 import ReportedModal from './ReportedModal';
+import BlockUserModal from './BlockUserModal';
 
 const ReportModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
@@ -17,6 +18,13 @@ const ReportModal = ({ feed }) => {
     const toggleModal = () =>{
       setModalOpen(ModalOpen ? false : true);
     }
+
+    const [blockModalOpen, setBlockModalOpen] = useState(false);
+    const toggleBlockModal = () => {
+        setBlockModalOpen(blockModalOpen ? false : true);
+    } 
+
+    
 
     let style = { display: "none" }
     if (modalType === FeedModalType.report) {
@@ -98,7 +106,11 @@ const ReportModal = ({ feed }) => {
                                 <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide This Post</a>
                             </li>
                             <li>
-                                <a onClick={hideFeed} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
+                                <a class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Hide similar posts</a>
+                            </li>
+                            <li>
+                                <a onClick={e => toggleBlockModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
+                                <BlockUserModal toggleBlockModal={toggleBlockModal} modalStatus={blockModalOpen} />
                             </li>
                             <li>
                                 <a onClick={e => toggleModal()} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Report</a>
@@ -110,9 +122,6 @@ const ReportModal = ({ feed }) => {
                                     <a onClick={unfollowAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Unfollow User</a>
                                 </li>
                             }
-                            <li>
-                                <a onClick={blockAUser} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white">Block User</a>
-                            </li>
                         </ul>
                     </div>
                 </div>

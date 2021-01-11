@@ -21,33 +21,27 @@ const LipsTagsInfo = ({setShowLipsInfo, show, dismiss }) => {
                           <h4 className="text_white">Why?</h4>
 
                           <p className="text_white">
-                            Sed ut perspiciatis unde omnis iste natus error sit volu tatem accusantium doloremque
-                            laudantium, totam re aperiam, eaque ipsaquae ab illo inventore veritatis et quasi architecto
-                            beatae vitae dicta sunt explicabo.
+                          Current platforms fail to distinguish between sexual expression and sexual exploitation - meaning that women’s bodies, sex ed, legal sex work promos, and lgbtq+ content is deleted from the Internet for no good reason. In contrast, the Lips app is an inclusive one, meaning you can avoid content you don’t want to see - without having to kick others off the platform.
                           </p>
                         </div>
                         <div className="para_list_mb">
                           <h5 className="text_white">How do i use it?</h5>
 
                           <p className="text_white">
-                            Sed ut perspiciatis unde omnis iste natus error sit volu tatem accusantium doloremque
-                            laudantium, totam re aperiam, eaque ipsaquae ab illo inventore veritatis et quasi architecto
-                            beatae vitae dicta sunt explicabo.
+                          Using our pre-set hashtags, the lips algorithm gets trained by YOU the users in the nuances of creative expression. be sure to label every post with as many hashtags as apply. This allows users to find your content, but it also enables a safe viewing experience for everyone.
                           </p>
                         </div>
                         <div className="para_list_mb">
                           <h5 className="text_white">Can i use my own?</h5>
 
                           <p className="text_white">
-                            Sed ut perspiciatis unde omnis iste natus error sit volu tatem accusantium doloremque
-                            laudantium, totam re aperiam, eaque ipsaquae ab illo inventore veritatis et quasi architecto
-                            beatae vitae dicta sunt explicabo.
+                          Yes! We want our hashtags to reflect the lips community. If you don’t see a tag in our presets, you can suggest it to our team.
                           </p>
                         </div>
                         <div className="lps_btns">
                           <button onClick={() => setSuggestedTagModel(true)}
                                   className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170 mb_0">
-                            Suggest tag
+                            Suggest a tag
                           </button>
                         </div>
                       </article>

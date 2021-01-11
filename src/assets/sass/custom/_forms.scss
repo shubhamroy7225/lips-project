@@ -74,6 +74,28 @@
       border-bottom-color: $white;
     }
   }
+  &.inputBorder {
+  
+      letter-spacing: 0;
+      font-size: 14px;
+      padding-left: 0;
+      padding-right: 0;
+      height: 30px;
+      border-radius: 0;
+      &::placeholder {
+        opacity: 1;
+        color: $white;
+      }
+      &::-webkit-input-placeholder {
+        opacity: 1;
+        color: $white
+      }
+      &::-moz-placeholder {
+        opacity: 1;
+        color: $white;
+      }
+  
+  }
 }
 .select_modify {
   min-height: 30px;

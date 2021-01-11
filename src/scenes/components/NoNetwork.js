@@ -11,7 +11,7 @@ const NoNetwork = (props) => {
                             <img src={require("assets/images/thumbnails/no_network.svg")} />
                         </figure>
                         <article class="lps_art">
-                            <h2 class="btm_xs_bdr">oh snap!</h2>
+                            <h2 class="btm_xs_bdr">oh no!</h2>
                             <p>
                                 Something went wrong. Please check your connection and try again.
                 </p>

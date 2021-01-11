@@ -11,12 +11,14 @@ let ForgotPasswordForm = (props) => {
   const [, forceUpdate] = useState();
   //user data state
   const [user, setUser] = useState({email: ""});
+  const [submitted, setSubmitted] = React.useState(false);
   
   const handleSubmit = (e) => {
     e.preventDefault();
     if (simpleValidator.current.allValid()) {
       AuthActions.forgotPassword({user}).then(res =>{
-        history.push("/login");
+        if(res.success)return [setUser({email: ""}), setSubmitted(true)]
+        else return false
       });
     } //check validations
     else {
@@ -30,11 +32,14 @@ let ForgotPasswordForm = (props) => {
     forceUpdate(1)
   };
   return (
-          <div id="wrap" className="mt_0 lps_bg_secondary">
+          <div id="wrap" className="mt_0 lps_bg_secondary onboardingBackArrowWrp">
+          <div className="topSubHeader">
+            <Link className="popupCloseButton popupCloseButtonLeft" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow_white.png")} /></Link>
+        </div>
             <div className="lps_container mt_0">
-              <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng">
+              <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng on_boardingNChngForms">
                 <div className="lps_form_wrp lipsFields">
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit} className="lpsFormFlexBtwnV">
                     <article className="text_center lps_logo_center">
                       <a className="logo mb_0" href="#">
                         <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="Lips Logo" className="header__logo" />
@@ -44,15 +49,16 @@ let ForgotPasswordForm = (props) => {
                     <div className="lps_fields">
                       <div className="form_group_modify">
                         <input type="text" name="email" className="input_modify"
-                               placeholder="Email" value={user.email}
+                               placeholder="email" value={user.email}
                                onBlur={() => simpleValidator.current.showMessageFor('email')}
                                onChange={handleChange}/>
                         {simpleValidator.current.message('email', user.email, 'required')}
+                        {submitted ? 
+                        <span style={{color: "#fff"}}>Check your inbox!</span> : "" }
                       </div>
                     </div>
                    <div className="pos_wrp onboarding_btm">
-                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio">Submit</button>
-                      <p className="btm_links mt_25 text_white">New to Lips? <Link to="/login" className="link_underline lps_link">Sign In</Link></p>
+                      <button type="submit" className="theme_btn theme_primary btn_block theme_btn_rds25 text_uppercase W-50P desktopVersio approve_btn_bck">Password reset</button>
                     </div>
                   </form>
                 </div>

@@ -136,7 +136,7 @@ const EditProfile = ({setIsEdit, user}) => {
               <ul className="lps_list_group my_acctn_list my_acctn_list1">
                 <li className="list-group-item">
                   <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                    <p className="mb_0">Show Followers</p>
+                    <p className="mb_0">show followers</p>
                     <label className="lps_switch">
                       <input type="checkbox" checked={userForm.show_followers} onChange={e => handleChange({target: {name: "show_followers", value: e.target.checked}})}/>
                       <span className="lps_int_slider round"></span>
@@ -145,7 +145,7 @@ const EditProfile = ({setIsEdit, user}) => {
                 </li>
                 <li className="list-group-item">
                   <div className="lps_user_info lps_flx_vm_jsbtwn lps_f_vm lps_mb15">
-                    <p className="mb_0">Show Followings</p>
+                    <p className="mb_0">show followings</p>
                     <label className="lps_switch">
                       <input type="checkbox" checked={userForm.show_following} onChange={e => handleChange({target: {name: "show_following", value: e.target.checked}})}/>
                       <span className="lps_int_slider round"></span>

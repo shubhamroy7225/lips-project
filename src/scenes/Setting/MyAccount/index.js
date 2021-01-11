@@ -29,7 +29,7 @@ export default ()  => {
         title: "Delete this account?",
         message: "All content on this account will be lost forever."
       },
-      confirmText: "DELETE ACCOUNT",
+      confirmText: "DELETE",
       onConfirm: () => deleteUser(),
       onCancel: () => commonService.isDialogOpen.onNext(false)
     });
@@ -40,13 +40,13 @@ export default ()  => {
         <div className="lps_container mt_0">
           <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
             <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
-            <span className="lp_left_auto text_black">My Account</span>
+            <span className="lp_left_auto text_black">my account</span>
           </Link>
           <ul className="lps_list_group my_acctn_list my_acctn_list_pl0">
             <UsernameSetting user={user}/>
             <li className="list-group-item">
               <div className="lps_user_info">
-                <p className="user_info_label">Email</p>
+                <p className="user_info_label">email</p>
                 <div className="user_info_field">
                   <span className="input_modify">{user.email}</span>
                 </div>
@@ -56,7 +56,7 @@ export default ()  => {
             <li className="list-group-item">
               <div className="lps_user_info lps_accnt_links">
                 <p className="user_info_label" >
-              <Link className="ft_Weight_500" to={routes.CHANGE_PASSWORD}>Change Password</Link>
+              <Link className="ft_Weight_500" to={routes.CHANGE_PASSWORD}>change password</Link>
                   </p>
                 </div>
 
@@ -64,7 +64,7 @@ export default ()  => {
             <li className="list-group-item">
               <div className="lps_user_info lps_accnt_links">
                 <p className="user_info_label" onClick={handleDelete}>
-                  <Link to={routes.MY_ACCOUNT} classname="ft_Weight_500" style={{fontWeight: "500"}}>Delete Account</Link>
+                  <Link to={routes.MY_ACCOUNT} classname="ft_Weight_500" style={{fontWeight: "500"}}>delete account</Link>
                 </p>
               </div>
             </li>

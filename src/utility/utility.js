@@ -283,7 +283,7 @@ export const isAllDay = (startTime, endTime) => {
 export const toastMsg = (msg, error = false, autoClose = 2000) => {
     if (error) {
         store.addNotification({
-            title: "Error",
+            title: "error",
             message: msg,
             type: "danger",
             insert: "top",

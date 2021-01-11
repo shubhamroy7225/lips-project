@@ -9,14 +9,14 @@ const PrivacyPolicy = () => {
                <div className="lps_container mt_0">
                <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
                   <img src={require("assets/images/icons/icn_left_arrow.png")} alt="Icon Arrow" className="lps_header_img" />
-                  <span className="lp_left_auto text_black ft_Weight_500">Privacy policy</span>
+                  <span className="lp_left_auto text_black ft_Weight_500">privacy policy</span>
                </Link>
                
                <div className="lps_inner_wrp">
                     
                      <div className="lps_terms_cont">
                         <div className="lps_terms_list">
-                        <p>
+                        {/* <p>
                            At Lips, we take your privacy seriously, and are committed to building a platform that allows for data sharing with transparent communication ad consent.
                         </p>
                         <p>
@@ -24,7 +24,7 @@ const PrivacyPolicy = () => {
                         </p>
                         <p>
                             When this terms are updated, you will notified via email or in-app notifications.
-                        </p>
+                        </p> */}
                         <p>
                         Last updated: December 27, 2020
                         </p>

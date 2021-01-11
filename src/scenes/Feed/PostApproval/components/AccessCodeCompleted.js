@@ -12,7 +12,7 @@ const AccessCodeCompleted = () => {
                     </article>
                     <div class="plans_wrp text_center plans_mobile_top">
                         <Link to={routes.CREATE} class="theme_btn theme_primary btn_block btn_r25 text_uppercase lps_mb15 W-50P desktopVersio approve_btn_bck">create my first post</Link>
-                        <Link to={routes.ROOT} class="about_link">later</Link>
+                        <Link to={routes.ROOT} class="report_link">later</Link>
                     </div>
                 </div>
             </div>

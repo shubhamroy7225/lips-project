@@ -239,22 +239,25 @@ input.input_modify {
 }
 .notification-item {
   background: #D3D3D3;
-  border-bottom: 5px solid $brand-primary;
+  border-bottom: 0;
+  box-shadow: 0 5px 5px 0 rgba(253,51,152,1);
+    border-radius: 0;
   .notification-message{
     color: #1a1a1a;
-    font-size: 15px !important;
+    font-size: 16px !important;
   }
   .notification-title{
     color: $brand-primary;
-    font-size: 15px !important;
+    font-size: 16px !important;
     margin-top: 2px;
     margin-bottom: 2px;
+    font-weight: 400;
   }
   .notification-close {
     background-color: $brand-primary;
   }
   .notification-message {
-      font-weight: 500;
+      font-weight: 400;
   }
 }
 .wlcome h3 {
@@ -707,14 +710,33 @@ span.countBadge {
   color: #fff;
   border-radius: 5px;
   position: absolute;
-  right: 64px;
+  right: 73px;
   top: 7px;
+  &::after {
+      position: absolute;
+      right: -9px;
+      top: 13px;
+      width: 10px;
+      height: 10px;
+      display: block;
+      background-color: #000;
+      transform: rotate(45deg) translate(-7px);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      box-sizing: border-box;
+      content: "";
+  
+    
+  }
 }
+
+
 
 
 @media screen and (max-width: 575px){
   span.countBadge {
-    right: 40px;
+    right: 50px;
   }
 }
 
@@ -909,6 +931,9 @@ span.countBadge {
 .approve_btn_bck{
   background-color: #1a1a1a;
 }
+.approve_btn_bck:hover{
+  background-color: #1a1a1a;
+}
 
 .lps_title_size{
   font-size: 20px !important;
@@ -969,4 +994,109 @@ span.text_community_danger {
     border-radius: 50%;
     margin: 2px;
 }
+}
+
+.share_link_button{
+  border-color: #fd3398;
+  border-radius: 0px;
+}
+
+.share_link_button:hover{
+  border-color: #fd3398;
+}
+
+.lps_shareLink_text{
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+  
+  .footer_bck {
+      background: #1a1a1a;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      height: auto;
+      z-index: 999;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid  rgb(253, 51, 152);
+    .onboarding_btm {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 15px;
+      max-width: 999px;
+    margin: 0 auto;
+      .theme_btn {
+        min-width: 160px;
+      }
+  }
+  .footer-text {
+    font-size: 16px !important;
+    color: #FFFFFF !important;
+    padding-right: 20px;
+    margin-bottom: 0;
+}
+}
+@media screen and (max-width: 575px) {
+  .wrap_btm_padding {
+    padding-bottom: 187px;
+  }
+  .footer_bck .onboarding_btm {
+    padding: 15px 15px;
+    flex-direction: column;
+  }
+  .footer_bck .footer-text {
+    font-size: 14px !important;
+}
+.footer_bck .onboarding_btm .theme_btn {
+  margin-top: 15px;
+}
+h1 {
+  font-size: 26px;
+}
+h2 {
+  font-size: 23px;
+}
+}
+
+.lps_disable_checkbox{
+  border: 1px solid #1a1a1a;
+}
+
+.lps_disable_checkbox:before{
+  border: 1px solid #1a1a1a;
+}
+
+.footer_none{
+  display: none;
+}
+
+.search-cancel-icon{
+  color: #fd3398;
+}
+
+.setting_header{
+  color: #000;
+}
+
+.chng_pwd_btn{
+  background-color: #E5E5E5;
+  color: #1a1a1a;
+}
+
+.NonRegisterHeightBTWN {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }

@@ -137,7 +137,7 @@ const MainFeed = (props) => {
             return (
                 <>
                     <div id="wrap" >
-                        <div class="lps_container main_feed_cont bg_grayCCC">
+                        <div class="lps_container main_feed_cont bg_grayCCC post_shape_wrapper">
                             <InfiniteScroll
                                 dataLength={props.feeds.length}
                                 next={getMoreData}

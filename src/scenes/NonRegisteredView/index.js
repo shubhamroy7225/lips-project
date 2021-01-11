@@ -4,20 +4,20 @@ import { routes } from 'utility/constants/constants';
 
 const Options = {
     create: {
-        title: "Express yourself!",
-        desc: "Registered and approved users can easily create image or text posts to share with the Lips universe. From selfies and memes, to doodles and high art - you can post & repost (almost) ANYTHING on Lips."
+        title: "express yourself",
+        desc: "Registered and approved users can easily create image or text posts to share with the lips universe. from selfies and memes, to doodles and high art - you can post & repost (almost) ANYTHING on lips."
     },
     likes: {
-        title: "Spread the love!",
-        desc: "Registered users can send Lips Love, and share the content they’ve loved with others."
+        title: "create a profile",
+        desc: "Registered users can show Lips love, and share the content they love with others."
     },
     explore: {
-        title: "Eager to explore the Lips universe of creators?",
+        title: "eager to explore the lips universe of creators?",
         desc: "Registered users can discover posts to love and accounts to follow using our explore feature."
     },
     profile: {
-        title: "Create a profile",
-        desc: "Registered and approved users can easily manage or text posts (from cat pics to high art. Lips is the place for it as long as it's original content)."
+        title: "express yourself",
+        desc: "Registered and approved users can easily create image or text posts to share with the lips universe. from selfies and memes, to doodles and high art - you can post & repost (almost) ANYTHING on lips."
     }
 }
 
@@ -38,7 +38,7 @@ const NonRegisteredView = (props) => {
                     </a>
                 </div>
                 <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn border_0 justifyCenter">
-                    <div className="commonWidth">
+                    <div className="commonWidth NonRegisterHeightBTWN">
                         <article class="lps_art text_center">
                             <h4 class="text_center mb45">{option.title}</h4>
                             <p class="mb45 lh30">
@@ -47,7 +47,7 @@ const NonRegisteredView = (props) => {
                         </article>
                         <div class="plans_wrp mt45 text_center">
                             <a onClick={() => { history.push(routes.REGISTER) }} class="theme_btn theme_outline_primary text_white btn_block btn_r25 text_uppercase lps_mb15 desktopVersio">Register</a>
-                            <p>Already have an account? <a onClick={() => { history.push(routes.LOGIN) }} class="link_underline lps_link">Sign in</a></p>
+                            <p>already have an account? &nbsp; <a onClick={() => { history.push(routes.LOGIN) }} class="lps_link report_link">sign in</a></p>
                         </div>
                     </div>
                 </div>

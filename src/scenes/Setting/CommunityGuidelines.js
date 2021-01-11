@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { routes } from "utility/constants/constants";
 export default () => {
   return (
-    <div id="wrap" className="mt_0">
      
-    <div id="wrap" className="mt_0">
+    <div id="wrap" className="mt_0 wrap_btm_padding">
       <div className="lps_container lps_terms_con_wrps bg_grayCCC">
       <Link className="lps_header_link lps_flx_vm lps_px15 mb25" to={routes.SETTING}>
         <img
@@ -14,7 +13,7 @@ export default () => {
           className="lps_header_img"
         />
         <span className="lp_left_auto text_black ft_Weight_500">
-          Community Guidelines
+          community guidelines
         </span>
       </Link>
         <div className="lps_inner_wrp">
@@ -48,14 +47,14 @@ export default () => {
               <p>
                We have a zero-tolerance policy for hate speech, harassment, abuse, or discrimination. Only if we accept each other at our truest and most vulnerable will we be able to grow into our highest selves.
               </p>
-              <p>
+              {/* <p>
                 You are granted limited license only for purpose of viewing the material contained on this Website
-              </p>
+              </p> */}
             </div>
             <div className="lps_terms_list" id="Restrictions">
               <h5 className="community-data-heading">Find Your Purpose</h5>
               <p>
-                Use Lips as a space to figure out what it is you are meant to do and who it is you are meant to be. Today, creators are fortunate that we can make a living doing what we love. Lips encourages you to clarify, articulate, and act on that with our support along the way
+                Use Lips as a space to figure out what it is you are meant to do and who it is you are meant to be. Today, creators are fortunate that we can make a living doing what we love. Lips encourages you to clarify, articulate, and act on that with our support along the way.
               </p>
               
             </div>
@@ -94,6 +93,5 @@ export default () => {
         
       </div>
     </div>
-  </div>
   )
 }

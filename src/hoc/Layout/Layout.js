@@ -13,6 +13,7 @@ import "assets/sass/style.scss";
 import { routes, NO_HEADER_ROUTES, NOTIFICATION_TYPES } from 'utility/constants/constants';
 import moment from "moment";
 import { capitalizeFirstLetter } from 'utility/utility';
+import CookieConsent from "react-cookie-consent";
 
 const Header = ({ notificationCount, notifications, count, ...props }) => {
     const history = useHistory();
@@ -116,7 +117,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
                         <li className="nav-item">
                             <Link to="/settings" className="nav-link not_line">
                                 <span className="avatar_circle">
-                                    <img src={require("assets/images/icons/icn_settings.png")} alt="Settings Icon" />
+                                    <img src={require("assets/images/icons/new_setting.svg")} alt="Settings Icon" />
                                 </span>
                             </Link>
                         </li>
@@ -129,12 +130,52 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
 
 
 const Footer = (props) => {
+    const [acceptButton, setAcceptButton] = useState(false);
+    const hideAcceptButton = () => {
+        setAcceptButton(acceptButton ? false : true);
+    }
     return (
-        <footer>
-            <div className="container">
-                <h1>footer</h1>
-            </div>
-        </footer>
+        <div className={!acceptButton ? "footer_bck" : "footer_none"} onClick={hideAcceptButton}>
+            <CookieConsent buttonText="ACCEPT" style={{
+            backgroundColor: "#1a1a1a",
+            //borderTop: "1px solid #fd3398",
+            display: "flex",
+            flexWrap: "wrap",
+            width: "100%",
+            height: "auto",
+            
+            maxWidth: "1026px",
+            margin: "0 auto",
+            position: "initial",
+            zIndex: "1",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"}}
+            buttonStyle={{
+                backgroundColor: "#1a1a1a",
+                borderColor: "#fd3398",
+                cursor: "pointer",
+                color: "#ffffff",
+                borderRadius: "25px",
+                minWidth: "160px",
+                display: "inline-block",
+                border: "1px solid transparent",
+                fontSize: "16px",
+                fontWeight: "500",
+            }}
+            >
+            
+             <h1 className="footer-text" style={{ fontSize: "16px",
+              marginBottom: "0"}}>We use cookies for a number of reasons, such as allowing for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <Link className="report_link" to={routes.TERMS_AND_CONDITION}>privacy policy.</Link></h1>
+        {/* <footer className="footer_bck">
+            <div className="pos_wrp onboarding_btm">
+                <h1 className="footer-text">We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <a className="report_link">privacy policy</a></h1>
+                <button className="theme_btn theme_outline_primary text_white theme_btn_rds25 text_uppercase">Accept</button>
+                
+              </div>
+        </footer> */}
+        </CookieConsent>
+        </div>
     );
 }
 
@@ -152,7 +193,7 @@ class Layout extends Component {
                         <div className="clearfix"></div>
                         {this.props.children}
                         <div className="clearfix"></div>
-                        {/* <Footer {...this.props} /> */}
+                        <Footer {...this.props} />
                     </div>
                 </div>
             </Aux>
@@ -243,7 +284,7 @@ const NotificationSliderComponent = ({ modalShown, modalToggle }) => {
                         <li key={`noti_${index}`} className="list-group-item">
                             <div className="lps_media">
                                 <figure className="lps_fig lps_fig_circle notfication_lips_logo">
-                                    {notification.content === "You've been approved - now, go and express yourself!" ? 
+                                    {notification.content === "You've been approved - Now, go and express yourself!" ? 
                                         <img src={require("assets/images/thumbnails/2.svg")} alt="Lips Logo" className="header__logo notifcation_logo" /> :
                                         <img src={notification.user && notification.user.photo_urls.original ? notification.user.photo_urls.original : require("assets/images/icons/icn_profile.svg")} alt="User" />
                                     }

@@ -9,11 +9,9 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
     const postImgFirst = useRef(null);
     const postImgSecond = useRef(null);
     const postImgThird = useRef(null);
-    const [linkCheckbox, setLinkCheckbox] = useState(false);
-
-    const linkCheckboxChecked = () => {
-        setLinkCheckbox(linkCheckbox ? false : true);
-    }
+    const [caption, setCaption] = useState("");
+    const captionCharCount = 500;
+    const [inputCount, setInputCount] = useState(0)
 
     const withoutImageStyle = {
         width: "50%",
@@ -73,6 +71,8 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
 
     const handleInputChange = (e) => {
         setApprovalForm({ ...approvalForm, [e.target.name]: e.target.value });
+        setInputCount(e.target.value.length)
+        setCaption(e.target.value)
         forceUpdate(1)
     };
 
@@ -182,29 +182,10 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                         <img src={require("assets/images/thumbnails/lips-logo-icon.svg")} alt="Lips Logo" class="header__logo" />
                     </a>
                 </article>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="approvalForm">
                     <div class="form_group_modify postApproval">
-                    <div class="form_group_modify">
-                        {/* <label class="label_modify">Alternatively link to your website / portfolio</label> */}
-                        <input class="input_modify input_brdrBtnmP access_input"
-                            type="text"
-                            name="link"
-                            placeholder="your website/ portfolio/ blog/ instagram link"
-                            value={approvalForm.link}
-                            onChange={handleInputChange}
-                            onBlur={() => simpleValidator.current.showMessageFor('link')} />
-                        <span style={{ color: "red" }}>{simpleValidator.current.message('link', approvalForm.link, 'url')}</span>
-                    </div>
-                    <div className="form_group_modify mb_25">
-                          <label className="lps_cont_check">
-                            I don't have a link to submit/i don't want to share it
-                            <input type="checkbox" value={linkCheckbox} onClick={linkCheckboxChecked}/>
-                            <span className="lps_Checkmark"></span>
-                          </label>
-                        </div>
-                        {linkCheckbox ? 
                         <div>
-                        <label class="label_modify">Alternatively, upload 3 post examples (images of visuals or text)</label>
+                        <label class="label_modify">Upload post examples (images of visuals or text)*</label>
                         <div class="add_product_grid">
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector1)}>
                                 <img style={!image1.base64 ? withoutImageStyle : null} src={image1.base64 ? image1.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgFirst} alt="Image" class="add_img" />
@@ -215,7 +196,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                             <div class="add_product_box" onClick={() => handleFileSelect(fileSelector3)}>
                                 <img style={!image3.base64 ? withoutImageStyle : null} src={image3.base64 ? image3.base64 : require("assets/images/icons/icn_add_img_pink.png")} ref={postImgThird} alt="Image" class="add_img" />
                             </div>
-                        </div></div> : "" }
+                        </div></div>
                         <input accept="image/x-png,image/jpeg" type="file" id="file" name="portfolio1" ref={fileSelector1} style={{ display: "none" }} 
                         onBlur={() => isSubmitted ? simpleValidator.current.showMessageFor('portfolio1') : true} onChange={(e) => onFileSelectionHandler(e, fileSelector1)} />
                         {!approvalForm.link && <span style={{ color: "red" }}>{simpleValidator2.current.message('portfolio1', image1.base64, 'required')}</span>}
@@ -230,13 +211,25 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
 
                     </div>
                     <div class="form_group_modify">
+                        {/* <label class="label_modify">Alternatively link to your website / portfolio</label> */}
+                        <input class="input_modify input_brdrBtnmP access_input inputBorder"
+                            type="text"
+                            name="link"
+                            placeholder="website/ public social media/anywhere we can find you"
+                            value={approvalForm.link}
+                            onChange={handleInputChange}
+                            onBlur={() => simpleValidator.current.showMessageFor('link')} />
+                        <span style={{ color: "red" }}>{simpleValidator.current.message('link', approvalForm.link, 'required|url',{messages: {required: 'anywhere we can find you on the internet?'}})}</span>
+                    </div>
+                    <div class="form_group_modify lps_pos_rltv text_sendry">
                         <label class="label_modify">Why do you want to post on Lips? *</label>
                         <textarea class="input_modify txtarea_modify textarea-font-family"
                             rows="5"
                             name="description"
                             value={approvalForm.description}
                             onChange={handleInputChange} />
-                        <span style={{ color: "red" }}>{simpleValidator.current.message('description', approvalForm.description, 'required')}</span>
+                            <span class="textRange lps_bg_secondary text_white">{inputCount}/{captionCharCount}</span>
+                        <span style={{ color: "red" }}>{simpleValidator.current.message('description', approvalForm.description, 'required|max:100',{messages: {required: 'please write at least 100 symbols, we want to know more!'}})}</span>
 
                     </div>
                     {/* <div class="form_group_modify">
@@ -254,7 +247,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
                     <p> Lips loves our creators, so intentional plagiarism and copyright infringement is a one-way ticket to outta here town for sure.</p>
                     <div class="post_block mb20 mt_15">
                         <button type="submit" class="circle submit-cursor">Submit</button>
-                        <a onClick={() => props.setStep(props.steps.StartApproval)} class="cancel_post link_underline about_link">Cancel</a>
+                        <a onClick={() => props.setStep(props.steps.StartApproval)} class="cancel_post report_link">cancel</a>
                     </div>
                 </form>
 

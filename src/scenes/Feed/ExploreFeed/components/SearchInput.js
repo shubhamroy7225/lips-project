@@ -29,11 +29,11 @@ const SearchInput = ({ submitHandler }) => {
                                 autoComplete="off"
                                 className="form-control"
                                 name="email"
-                                placeholder=""
+                                placeholder="search for accounts and tags"
                                 onChange={inputChangeHandler} />
                             {
                                 searchText ? <span className="input-group-addon search-cancel-icon" onClick={() => [setSearchText(''), submitHandler('')]}>&times;</span> : 
-                                <span className="input-group-addon" onClick={() => submitHandler(searchText)}><img src={require("assets/images/icons/icn_search.png")} alt="Search Icon" /></span> 
+                                <span className="input-group-addon" onClick={() => submitHandler(searchText)}><img src={require("assets/images/icons/search.svg")} alt="Search Icon" /></span> 
                             }
                         </div>
                         {searchText && <SearchSuggestions submitHandler={submitHandler} showSuggestions={showSuggestions} setSearchText={setSearchText} setShowSuggestions={setShowSuggestions}/>}

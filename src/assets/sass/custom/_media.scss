@@ -175,7 +175,9 @@
     margin-bottom: 1rem;
   }
 }
+
 @media screen and (max-width: 767px) {
+  
   .browse_category .product_img_block .product_img img {
     width: 70px;
   }
@@ -311,6 +313,42 @@
     font-size: 15px;
     text-align: left;
   }
+
+  .main_feed_cont .infinite-scroll-component{
+    padding-top: 40px;
+  }
+  .main_feed_cont .infinite-scroll-component .post_shape {
+    min-height: 330px;
+  }
+
+.on_boardingNChngForms {
+  .lipsFields {
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .lpsFormFlexBtwnV {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    .lps_fields {
+      margin: 0;
+      width: 100%;
+  }
+    article.lps_logo_center {
+      padding-top: 90px;
+      width: 100%;
+    }
+  .pos_wrp {
+      padding-top: 0;
+      padding-bottom: 110px;
+      width: 100%;
+  }
+  }
+}
+  
 }
 @media screen and (max-width: 450px) {
   header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
@@ -394,5 +432,6 @@
   .lps_tb_para {
     padding: 20% 15px;
   }
+ 
 }
 /* // Media query */

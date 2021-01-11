@@ -33,7 +33,7 @@ export default () => {
                 <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
                    <div className="lps_form_wrp on_boarding_wrp_spwn border_0 commonWidth on_boarding_top">
                       <article className="lps_art lps_art_white">
-                         <h3>we think you (not an algorithm) should have control of what you see in the lips app. </h3>
+                         <h3>we think you (not an algorithm) should have control of what you see on the lips app </h3>
                          {/* <h4 className="mb30">(not the algorithm)</h4> */}
                          <h5 className="ft_Weight_400">
                             Begin by choosing a few things you'd like to see more of.
