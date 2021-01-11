@@ -34,7 +34,7 @@ export default () => {
       <div className="container-login100">
          <div id="wrap" className="mt_0">
             <div className="lps_container">
-               <div className="lps_inner_wrp lps_flx_vm_jc full_scr">
+               <div className="lps_inner_wrp lps_flx_vm_jc contact_page">
                   <div className="lps_form_wrp">
                      <form onSubmit={handleSubmit} className="contactForm">
                         <article>
