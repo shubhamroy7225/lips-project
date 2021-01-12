@@ -129,7 +129,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
 }
 
 
-const Footer = (props) => {
+const Footer = ({...props}) => {
     const [acceptButton, setAcceptButton] = useState(false);
     const hideAcceptButton = () => {
         setAcceptButton(acceptButton ? false : true);
@@ -166,7 +166,7 @@ const Footer = (props) => {
             >
             
              <h1 className="footer-text" style={{ fontSize: "16px",
-              marginBottom: "0"}}>We use cookies for a number of reasons, such as allowing for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <Link className="report_link" to={routes.TERMS_AND_CONDITION}>privacy policy.</Link></h1>
+              marginBottom: "0"}}>We use cookies for a number of reasons, such as allowing for Lips users to browse without an account, personalizing ads, eliminating trolls, and to analyze how our app is used for a better experience.Read more via our <Link className="report_link" to={!props.user ? routes.TERMS_AND_CONDITION : routes.PRIVACY_POLICY} target="_blank">privacy policy.</Link></h1>
         {/* <footer className="footer_bck">
             <div className="pos_wrp onboarding_btm">
                 <h1 className="footer-text">We use cookies for a number of reasons, such as following for Lips users to browse without an account, personalising ads, elimination trolls, and to analyse how our app is used for a better experience.Read more on our <a className="report_link">privacy policy</a></h1>
