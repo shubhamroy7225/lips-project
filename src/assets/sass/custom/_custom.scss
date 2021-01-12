@@ -4480,3 +4480,29 @@ figure.feed_fig310 {
     margin-bottom: 30px;
 }
 }
+
+
+.lps_bottom_para {
+  color: $white;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.flexColumnBtw {
+  height: 100%;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.lpsWH100 {
+  width: 100%;
+  height: 100%;
+}

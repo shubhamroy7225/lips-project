@@ -64,11 +64,12 @@ const HideHashtagModal = ( props ) => {
                     </div>
                     <div className="popup_body">
                         {!showBlockHashtag ? 
+                        <div className="lpsWH100">
                         <ul class="lps_btn_grps lps_ul newButton">
                             <li class="lps_title lps_title_size">
                                 Select tags you don't want to see
                             </li>
-                            <li>
+                            <li class="lps_title lps_title_size">
                             {hashtags && hashtags.map((tag, index) =>
                             <button key={index} className={`themeOutlineLight ${selectTags.includes(tag.hashtag_name) ? "active" : ""}`} onClick={() => toggleHashTag(tag.hashtag_name)}>{tag.hashtag_name}</button>
                             )}
@@ -83,8 +84,8 @@ const HideHashtagModal = ( props ) => {
                                 <Link to={routes.FEED_SETTING} class="report_link" >feed settings</Link>
                             </li>
 
-                        </ul> : 
-                        <div className="popup_body">
+                        </ul></div> : 
+                        <div className="flexColumnBtw">
                         <ul class="lps_btn_grps lps_ul newButton">
                             <li class="lps_title lps_title_size">
                                 You won't see this anymore
@@ -94,14 +95,13 @@ const HideHashtagModal = ( props ) => {
                             <button key={index} className="themeOutlineLight" >{tag}</button>
                             )}
                             </li>
-                            
-                            <li className="lps_title lps_title_size lps_titel_report_modal">
-                                <p>you can change this in your <Link className="report_link" to={routes.FEED_SETTING}>feed settings</Link></p>
-                            </li>
-
                         </ul>
+                        <div className="lps_bottom_para">
+                                <p>you can change this in your <Link className="report_link" to={routes.FEED_SETTING}>feed settings</Link></p>
+                            </div>
+                        </div>
 
-                       </div>}
+                      }
 
                     </div>
                 </div>

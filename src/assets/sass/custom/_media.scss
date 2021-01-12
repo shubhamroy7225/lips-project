@@ -22,6 +22,9 @@
     padding: 10px;
     height: 150px;
   }
+  .lps_xl_view .main_feed_cont .hover_bkgr_fricc {
+    width: 100%;
+}
 }
 @media screen and (min-width: 1200px) {
   .lps_container.empty_feed_bg_wrp.empty_feed_bg_wrp_spc {
@@ -169,6 +172,8 @@
   .lps_xl_view .main_feed_cont .lps_widgets {
     padding-left: 25px;
   }
+ 
+  
 }
 @media (max-width: 991px) and (orientation: landscape) {
   .theme_navigation .nav > li {
@@ -348,7 +353,9 @@
   }
   }
 }
-  
+.lps_bottom_para {
+  padding-top: 40%;
+}  
 }
 @media screen and (max-width: 450px) {
   header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {

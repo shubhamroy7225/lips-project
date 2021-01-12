@@ -304,6 +304,10 @@ input.input_modify {
     width: 100%;
     display: block;
   }
+  .lps_bottom_para a.report_link {
+    width: auto;
+    display: inline-block;
+  }
   .W-100P {
     width: 100%;
   }
@@ -768,7 +772,7 @@ span.countBadge {
     background-color: transparent;
     color: #f8f9fa;
     border: 1px solid #f8f9fa;
-    margin: 0 10px 8px 0;
+    margin: 0 10px 12px 0;
     padding: 5px 8px;
     display: inline-block;
     background-image: none;
