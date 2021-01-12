@@ -33,6 +33,10 @@ const HideHashtagModal = ( props ) => {
     
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
+        if(props.hideHashtagModal){
+            props.toggleHideHashtagModal(false);
+            setShowBlockHashtag(false);
+        }
     }
 
     const checkModalOpen = () => {
@@ -76,7 +80,7 @@ const HideHashtagModal = ( props ) => {
                                 <a onClick={openBlockHashtagModal} class="theme_btn theme_outline_primary theme_btn_rds25 text_uppercase text_white" >Block All Tags</a>
                             </li>
                             <li>
-                                <a onClick={routes.FEED_SETTING} class="report_link" >feed settings</a>
+                                <Link to={routes.FEED_SETTING} class="report_link" >feed settings</Link>
                             </li>
 
                         </ul> : 
