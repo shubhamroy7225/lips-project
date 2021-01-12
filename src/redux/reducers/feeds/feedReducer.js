@@ -208,6 +208,20 @@ export const feedReducer = createReducer({
             searchFeeds: updatedFeeds,
         })
     },
+
+    [actions.updatePostHideHashtag] :(state, payload) => {
+        let feed, feedId = payload;
+        let searchFeed = [...state.searchFeeds, ...state.feeds];
+        let searchFeedIndex = searchFeed.findIndex(ele => ele.id === feedId);
+        searchFeed[searchFeedIndex].has_hidden = true;
+        if (searchFeed.length > 0) {
+            searchFeed = [feed, ...searchFeed];
+        }
+       return updateObject(state, {
+            searchFeed: searchFeed
+        })
+
+    },
     [actions.addCreatedFeed]: (state, payload) => {
         let { feed } = payload;
         let feeds = [...state.feeds];
