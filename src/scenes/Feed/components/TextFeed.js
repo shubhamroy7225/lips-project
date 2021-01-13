@@ -44,7 +44,6 @@ const TextFeed = (props) => {
                 <div className="lps_list" ref={(r) => refHandler && refHandler(r)}>
                     <div className={isReposted ? "lps_list_repost_text" : ""}>
                         <div className="lps_sm_shape lps_sm_shape1"></div>
-
                         {
                             isReposted && <div className="reposted_wrps" style={{ zIndex: "100" }}>
                                 <div className="rwposted_txt">

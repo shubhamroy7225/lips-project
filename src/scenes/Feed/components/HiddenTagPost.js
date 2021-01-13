@@ -29,7 +29,7 @@ const HiddenTagPost = ({viewAnywayHandler, hidden_hashtags}) => {
               </article>
 
               <div className="pos_wrp onboarding_btm text_center">
-                <button onClick={viewAnywayHandler} className="theme_btn theme_outline_primary text_secondary theme_btn_rds25 text_uppercase min_w_170 ft_Weight_500">View
+                <button type="button" onClick={viewAnywayHandler} className="theme_btn theme_outline_primary text_secondary theme_btn_rds25 text_uppercase min_w_170 ft_Weight_500">View
                   Anyway</button>
                 <p className="btm_links mt45 text_white"><Link to="/settings/feed-setting" className="link_underline link_black">Feed Settings</Link>
                 </p>

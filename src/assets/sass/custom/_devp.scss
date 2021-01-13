@@ -1107,3 +1107,29 @@ h2 {
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
+.grideTag {
+  .postBox {
+      display: block;
+      min-height: initial;
+      .lps_widgets_wrp {
+        margin-top: 0;
+        .lps_header_end {
+          display: none;
+        }
+        .lps_feed_settings {
+          .pos_wrp {
+              margin-top: 28px;
+              margin-bottom: 30px;
+          }
+          .lps_art {
+              margin-top: 0;
+          }
+        }
+      }
+      .on_boarding_wrp_spwn{
+        padding: 0;
+        height: 380px;
+        display: block;
+      }
+  }
+}
