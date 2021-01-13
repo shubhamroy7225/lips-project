@@ -4,14 +4,14 @@ import { setFeedModalType , updatePostHideHashtag} from 'redux/actions/feed';
 import * as actions from 'redux/actions';
 import { FeedModalType } from 'utility/constants/constants';
 import { toastMsg } from 'utility/utility';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import { routes } from 'utility/constants/constants';
 
 const HideHashtagModal = ( props ) => {
+    const history = useHistory()
     const [selectTags, setSelectTags] = useState([]);
     const [showBlockHashtag, setShowBlockHashtag] = useState(false);
     const {selectedFeed, hideHashtag} = useSelector(store => store.feedReducer);
-    // let feedId = selectedFeed.id;
     const openBlockHashtagModal = () => {
         setShowBlockHashtag(!showBlockHashtag);
         addHideTags();
@@ -37,7 +37,7 @@ const HideHashtagModal = ( props ) => {
         if(props.hideHashtagModal){
             props.toggleHideHashtagModal(false);
             setShowBlockHashtag(false);
-            updatePostHideHashtag(selectedFeed.id);
+            updatePostHideHashtag({id: selectedFeed.id, page: history.location.pathname, data:selectTags});
         }
     }
 

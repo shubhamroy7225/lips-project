@@ -2,7 +2,8 @@ import storage from '../../../utility/storage';
 import { createReducer } from 'redux-act';
 import * as actions from 'redux/actions/feed';
 import store from 'redux/store/store';
-import { FeedModalType } from 'utility/constants/constants';
+import { FeedModalType, routes } from 'utility/constants/constants';
+
 
 let justBrowseTags = storage.get("justBrowseTags", {})
 
@@ -12,7 +13,12 @@ const updateObject = (oldState, updatedProps) => {
         ...updatedProps
     }
 }
-
+const updateFeedObject = (posts, {data, id}) => {
+    let index = posts.findIndex(ele => ele.id === id);    
+    posts[index].has_hidden = true;
+    posts[index].hidden_hashtags = data;
+    return posts
+}
 export const initialState = {
     hashTags: [],
     showhashTags: [],
@@ -39,10 +45,7 @@ export const initialState = {
 
     searchFeeds: [],
     searchPage: 1, // for search feed initial page
-    searchFeedIsPaginationCompleted: false,
-
-    justBrowseTags,
-    hashTagSuggestionList: []
+    searchFeedIsPaginationCompleted: false    
 }
 
 export const feedReducer = createReducer({
@@ -209,18 +212,11 @@ export const feedReducer = createReducer({
         })
     },
 
-    [actions.updatePostHideHashtag] :(state, payload) => {
-        let feed, feedId = payload;
-        let searchFeed = [...state.searchFeeds, ...state.feeds];
-        let searchFeedIndex = searchFeed.findIndex(ele => ele.id === feedId);
-        searchFeed[searchFeedIndex].has_hidden = true;
-        if (searchFeed.length > 0) {
-            searchFeed = [feed, ...searchFeed];
-        }
-       return updateObject(state, {
-            searchFeed: searchFeed
+    [actions.updatePostHideHashtag] :(state, {page, id, data}) => {
+        let key = (page === routes.EXPLORE) ? 'searchFeeds' : 'feeds';
+        return updateObject(state, {
+            [key]: updateFeedObject([...state[key]], {id, data})
         })
-
     },
     [actions.addCreatedFeed]: (state, payload) => {
         let { feed } = payload;

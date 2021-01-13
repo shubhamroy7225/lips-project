@@ -20,6 +20,7 @@ const CreateImageTab = ({
     photo_path: null,
   });
   const [likable, setLikable] = useState(true);
+  const [repostable, setRepostable] = useState(true);
   const [caption, setCaption] = useState("");
   const captionCharCount = 5000;
   const [inputCount, setInputCount] = useState(0);
@@ -57,6 +58,14 @@ const CreateImageTab = ({
       setLikable(false);
     } else {
       setLikable(true);
+    }
+  };
+
+  const handleRepostBoxChange = (e) => {
+    if (e.target.value === "true") {
+      setRepostable(false);
+    } else {
+      setRepostable(true);
     }
   };
 
@@ -106,6 +115,7 @@ const CreateImageTab = ({
               postRequest["description"] = caption;
             }
             postRequest["likable"] = likable;
+            postRequest["repostable"] = repostable;
             request["post"] = postRequest;
             if (selectedHashTags.length > 0) {
               request["hashTags"] = selectedHashTags.map((ele) => ele.name);
@@ -255,6 +265,8 @@ const CreateImageTab = ({
                   type="checkbox"
                   name="ownContent"
                   defaultChecked
+                  value={repostable}
+                  onChange={handleRepostBoxChange}
                   
                 />
                 <span class="lps_int_slider round"></span>
