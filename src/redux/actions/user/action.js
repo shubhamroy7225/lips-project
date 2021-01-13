@@ -71,7 +71,7 @@ export const refreshToken = (credentials) => {
             setUserData(response.data);
             authorizeUser(user, token, refresh_token);
             return response.data
-        })
+        }).catch(() => signOut())
 };
 
 export const changePrivacy = ({ privacy_settings }) => {

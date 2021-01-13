@@ -10,8 +10,14 @@ const handleAuthentication = async (error) => {
     const token = storage.get("refresh_token", null);
     Axios.defaults.headers.common["x-refreshtoken"] = token;
     return await AuthActions.refreshToken().then(res => {
-        config.headers.Authorization = `Bearer ${res.token}`;
-        return Axios.request(config)
+        if (res) {
+            config.headers.Authorization = `Bearer ${res.token}`;
+            return Axios.request(config);
+        }  
+        else {
+            window.location.reload();
+            return false
+        } 
     });
 };
 
