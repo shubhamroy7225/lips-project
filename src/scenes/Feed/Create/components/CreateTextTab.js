@@ -142,7 +142,7 @@ const CreateTextTab = ({ handleToggleTags, toggleAddTags, toggleLipsInfo, select
                     {user && user.privacy_settings === "public" ? 
                     <p class="mb_0 mt_5 ml_5">
                     Please keep in mind! If you delete this post, any reposts will remain. This is a feature we are working on. You can always contact us if you need all reposts removed. 
-                    </p> : <p class="mb_0 mt_5 ml_5">Your account needs to be public to enable reposting.</p> }
+                    </p> : user && user.privacy_settings === "private" && <p class="mb_0 mt_5 ml_5">Your account needs to be public to enable reposting.</p> }
                 </div>
                 <div class="post_block mb20 overlap_menu">
                     <a onClick={createPost} class="circle">Post</a>
