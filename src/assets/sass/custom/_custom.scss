@@ -3857,6 +3857,19 @@ p.more {
       text-align: center;
       overflow-y: auto;
     }
+    &.removeFigClass {
+      .theme_secondary {
+        margin-left: 5px;
+        margin-bottom: 5px;
+       
+      }
+      img {
+        width: 11px;
+        min-height: 100%;
+        object-fit: inherit;
+        object-position: inherit;
+      }
+    }
   }
 }
 .hashtag_seondary {

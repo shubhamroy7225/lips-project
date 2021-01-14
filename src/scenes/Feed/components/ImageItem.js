@@ -19,7 +19,7 @@ const ImageItem = ({ feed, selectionHandler, isReposted, index }) => {
         );
     }else {
         return (
-            <div class="grideTag" onClick={selectionHandler}>
+            <div class="grideTag product_card removeFigClass" onClick={selectionHandler}>
                 <HiddenTagPost viewAnywayHandler={viewAnywayHandler} hidden_hashtags={feed.hidden_hashtags} />
             </div>
         )
