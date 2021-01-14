@@ -183,7 +183,26 @@
     margin-bottom: 1rem;
   }
 }
-
+@media screen and (max-width: 890px) {
+  .lps_product_grid .product_card.removeFigClass .postBox .on_boarding_wrp_spwn {
+    height: 175px;
+    overflow-y: auto;
+  }
+  .lps_product_grid .product_card.removeFigClass .postBox .post_para1 {
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+.lps_product_grid .product_card.removeFigClass img {
+  width: 8px;
+}
+.grideTag .postBox .lps_widgets_wrp .lps_feed_settings .pos_wrp {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.lps_product_grid .product_card.removeFigClass p.btm_links.mt45 {
+  margin-top: 20px;
+}
+}
 @media screen and (max-width: 767px) {
   
   .browse_category .product_img_block .product_img img {

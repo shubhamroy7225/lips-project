@@ -3869,7 +3869,19 @@ p.more {
         object-fit: inherit;
         object-position: inherit;
       }
+      .postBox {
+        width: 100%;
+        .on_boarding_wrp_spwn {
+          height: 379px;
+        }
+      }
     }
+  }
+}
+.postBox {
+  .theme_secondary {
+    margin-left: 5px;
+    margin-bottom: 5px;
   }
 }
 .hashtag_seondary {
