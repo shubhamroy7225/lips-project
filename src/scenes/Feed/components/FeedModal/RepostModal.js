@@ -4,10 +4,13 @@ import { setFeedModalType } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
 import * as actions from 'redux/actions';
 import { toastMsg } from 'utility/utility';
+import { useHistory } from 'react-router-dom';
 
 const RepostModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
     const [repostButton, setRepostButton] = useState(false);
+    const [post, setPost] = useState(false);
+    const history = useHistory();
     const showUndoModal = () => {
         setRepostButton(repostButton ? false : true);
     }
@@ -29,18 +32,18 @@ const RepostModal = ({ feed }) => {
 
     const repostFeed = () => {
         let feedId = selectedFeed.id;
-        selectedFeed.is_reposted = true
-        actions.repostFeed(feedId).then(
+        let page = history.location.pathname;
+        actions.repostFeed(feedId, page).then(
             res => {
-                toastMsg("Reposted successfully!");
+                setPost(res.data && res.data.post)
+                toastMsg("Reposted successfully!")
+             
             }
         )
-        // closeModal();
     }
 
     const repostUndoFeed = () => {
-        let feedId = selectedFeed.id;
-        selectedFeed.is_reposted = false
+        let feedId = post.id;
         actions.repostUndoFeed(feedId).then(
             res => {
                 toastMsg("Undo successfully!");

@@ -249,10 +249,10 @@ export const deleteFeed = (feedId) => {
     })
 }
 
-export const repostFeed = (feedId) => {
+export const repostFeed = (feedId, page) => {
   return API.repostFeed(feedId)
     .then(response => {
-      updateRepostFeed({ feed: response.data.post, feedId  });
+      updateRepostFeed({ feed: response.data.post,  feedId, page   });
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
@@ -263,7 +263,7 @@ export const repostFeed = (feedId) => {
 export const repostUndoFeed = (feedId) => {
   return API.repostUndoFeed(feedId)
     .then(response => {
-      updateRepostUndoFeed({ feed: response.data.post, feedId  });
+      updateRepostUndoFeed({ feedId  });
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {

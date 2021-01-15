@@ -2,7 +2,7 @@ import storage from '../../../utility/storage';
 import { createReducer } from 'redux-act';
 import * as actions from 'redux/actions/feed';
 import store from 'redux/store/store';
-import { FeedModalType } from 'utility/constants/constants';
+import { FeedModalType, routes } from 'utility/constants/constants';
 
 let justBrowseTags = storage.get("justBrowseTags", {})
 
@@ -11,6 +11,12 @@ const updateObject = (oldState, updatedProps) => {
         ...oldState,
         ...updatedProps
     }
+}
+
+const updateFeedRepostObject = (posts, {feedId}) => {
+    let index = posts.findIndex(ele => ele.id === feedId);    
+    posts[index].is_reposted = true;
+    return posts
 }
 
 export const initialState = {
@@ -181,22 +187,11 @@ export const feedReducer = createReducer({
         let feeds = [...state.otherUserFeeds, ...payload.feeds]
         return updateObject(state, { otherUserFeeds: feeds })
     },
-    [actions.updateRepostFeed]: (state, payload) => {
-        let { feed, feedId } = payload;
-        let feeds = [...state.feeds];
-        let userFeeds = [...state.userFeeds];
-        let feedIndex = feeds.findIndex(ele => ele.id === feedId);
-        
-        feeds[feedIndex].is_reposted = true;
-        if (feeds.length > 0) {
-            feeds = [feed, ...feeds]
-        }
-        if (userFeeds.length > 0) {
-            userFeeds = [feed, ...userFeeds];
-        }
+    [actions.updateRepostFeed] :(state, {page, feedId, feed}) => {
+
+        let key = (page === routes.EXPLORE) ? 'searchFeeds' : 'feeds';
         return updateObject(state, {
-            feeds: feeds,
-            userFeeds: userFeeds
+            [key]: updateFeedRepostObject([...state[key]], {feedId, feed})
         })
     },
     [actions.updateRepostUndoFeed]: (state, payload) => {
@@ -217,6 +212,7 @@ export const feedReducer = createReducer({
             userFeeds: userFeeds
         })
     },
+    
     [actions.searchFeedsCompletedSuccessfully]: (state, payload) => updateObject(state, {
         searchFeeds: payload.feeds,
     }),
