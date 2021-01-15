@@ -44,7 +44,9 @@ const RepostModal = ({ feed }) => {
 
     const repostUndoFeed = () => {
         let feedId = post.id;
-        actions.repostUndoFeed(feedId).then(
+        let page = history.location.pathname;
+        selectedFeed.is_reposted = false;
+        actions.repostUndoFeed(feedId, page).then(
             res => {
                 toastMsg("Undo successfully!");
             }
