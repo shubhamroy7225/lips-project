@@ -97,6 +97,7 @@ export const feedReducer = createReducer({
         justBrowseTags,
         hashTagSuggestionList: [],
         count: 0,
+        changedFeedId: null
     }),
     [actions.setPage]: (state, payload) => updateObject(state, {
         page: payload.page,
@@ -215,7 +216,8 @@ export const feedReducer = createReducer({
     [actions.updatePostHideHashtag] :(state, {page, id, data}) => {
         let key = (page === routes.EXPLORE) ? 'searchFeeds' : 'feeds';
         return updateObject(state, {
-            [key]: updateFeedObject([...state[key]], {id, data})
+            [key]: updateFeedObject([...state[key]], {id, data}),
+            changedFeedId: id
         })
     },
     [actions.addCreatedFeed]: (state, payload) => {
