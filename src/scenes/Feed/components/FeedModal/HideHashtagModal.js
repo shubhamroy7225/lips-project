@@ -37,7 +37,9 @@ const HideHashtagModal = ( props ) => {
         if(props.hideHashtagModal){
             props.toggleHideHashtagModal(false);
             setShowBlockHashtag(false);
-            updatePostHideHashtag({id: selectedFeed.id, page: history.location.pathname, data:selectTags});
+            if(selectTags.length){
+                updatePostHideHashtag({id: selectedFeed.id, page: history.location.pathname, data:selectTags})
+            };
         }
     }
 
