@@ -11,7 +11,7 @@ let ForgotPasswordForm = (props) => {
   const [, forceUpdate] = useState();
   //user data state
   const [user, setUser] = useState({email: ""});
-  const [submitted, setSubmitted] = React.useState(false);
+  const [submitted, setSubmitted] = useState(false);
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +22,7 @@ let ForgotPasswordForm = (props) => {
       });
     } //check validations
     else {
+      setSubmitted(false)
       simpleValidator.current.showMessages(); //show validation messages
       forceUpdate(1)
     }
@@ -52,7 +53,7 @@ let ForgotPasswordForm = (props) => {
                                placeholder="email" value={user.email}
                                onBlur={() => simpleValidator.current.showMessageFor('email')}
                                onChange={handleChange}/>
-                        {simpleValidator.current.message('email', user.email, 'required')}
+                        {!submitted ? simpleValidator.current.message('email', user.email, 'required') : ""}
                         {submitted ? 
                         <span style={{color: "#fff"}}>Check your inbox!</span> : "" }
                       </div>
