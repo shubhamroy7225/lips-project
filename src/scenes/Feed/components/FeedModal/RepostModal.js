@@ -64,10 +64,10 @@ const RepostModal = ({ feed }) => {
 
                         <ul className="lps_btn_grps lps_ul mb100">
                             <li>
-                                <a href="#" class="text_white">{feed.new_post ? "Reposted" : "Repost to your account?"}</a>
+                                <a href="#" class="text_white">{feed && feed.new_post ? "Reposted" : "Repost to your account?"}</a>
                             </li>
                         </ul>
-                        {feed.new_post ? 
+                        {feed && feed.new_post ? 
                         <a onClick={() => repostUndoFeed(feed.new_post.id)}  class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Undo</a> :
                         <a onClick={repostFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>    
                         }
