@@ -8,12 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 const RepostModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
-    const [repostButton, setRepostButton] = useState(false);
-    const [post, setPost] = useState(false);
     const history = useHistory();
-    const showUndoModal = () => {
-        setRepostButton(repostButton ? false : true);
-    }
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
     }
@@ -35,18 +30,19 @@ const RepostModal = ({ feed }) => {
         let page = history.location.pathname;
         actions.repostFeed(feedId, page).then(
             res => {
-                setPost(res.data && res.data.post)
-                toastMsg("Reposted successfully!")
+                if(res.data.success) {
+                    toastMsg("Reposted successfully!")
+                }
              
             }
         )
     }
 
-    const repostUndoFeed = () => {
-        let feedId = post.id;
+    const repostUndoFeed = (feedId) => {
+        let id = selectedFeed.id;
         let page = history.location.pathname;
         selectedFeed.is_reposted = false;
-        actions.repostUndoFeed(feedId, page).then(
+        actions.repostUndoFeed(feedId, page, id).then(
             res => {
                 toastMsg("Undo successfully!");
             }
@@ -64,15 +60,15 @@ const RepostModal = ({ feed }) => {
                     {/* <div class="popup_close_header">
                         <div class="popupCloseButton"><img src={require("assets/images/icons/icn_close_pink.png")} /></div>
                     </div> */}
-                    <div class="popup_body textBody" onClick={showUndoModal}>
+                    <div class="popup_body textBody">
 
                         <ul class="lps_btn_grps lps_ul mb100">
                             <li>
-                                <a href="#" class="text_white">{repostButton ? "Reposted" : "Repost to your account?"}</a>
+                                <a href="#" class="text_white">{feed.new_post ? "Reposted" : "Repost to your account?"}</a>
                             </li>
                         </ul>
-                        {repostButton ? 
-                        <a onClick={repostUndoFeed}  class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Undo</a> :
+                        {feed.new_post ? 
+                        <a onClick={() => repostUndoFeed(feed.new_post.id)}  class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Undo</a> :
                         <a onClick={repostFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>    
                         }
                     </div>

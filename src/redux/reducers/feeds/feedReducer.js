@@ -13,15 +13,17 @@ const updateObject = (oldState, updatedProps) => {
     }
 }
 
-const updateFeedRepostObject = (posts, {feedId}) => {
+const updateFeedRepostObject = (posts, {feedId, feed}) => {
     let index = posts.findIndex(ele => ele.id === feedId);    
     posts[index].is_reposted = true;
+    posts[index].new_post = feed;
     return posts
 }
 
-const updateFeedRepostUndoObject = (posts, {feedId}) => {
-    let index = posts.findIndex(ele => ele.id === feedId);    
+const updateFeedRepostUndoObject = (posts, {id}) => {
+    let index = posts.findIndex(ele => ele.id === id);    
     posts[index].is_reposted = false;
+    posts[index].new_post = false;
     return posts
 }
 
@@ -200,10 +202,10 @@ export const feedReducer = createReducer({
             [key]: updateFeedRepostObject([...state[key]], {feedId, feed})
         })
     },
-    [actions.updateRepostUndoFeed]: (state,  {page, feedId}) => {
+    [actions.updateRepostUndoFeed]: (state,  {page, id}) => {
         let key = (page === routes.EXPLORE) ? 'searchFeeds' : 'feeds';
         return updateObject(state, {
-            [key]: updateFeedRepostUndoObject([...state[key]], {feedId})
+            [key]: updateFeedRepostUndoObject([...state[key]], {id})
         })
     },
     

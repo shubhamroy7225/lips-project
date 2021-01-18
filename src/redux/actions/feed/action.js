@@ -260,10 +260,10 @@ export const repostFeed = (feedId, page) => {
     })
 }
 
-export const repostUndoFeed = (feedId, page) => {
+export const repostUndoFeed = (feedId, page, id) => {
   return API.repostUndoFeed(feedId)
     .then(response => {
-      updateRepostUndoFeed({ feed: response.data.post, feedId , page });
+      updateRepostUndoFeed({ page, id });
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
