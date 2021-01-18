@@ -110,12 +110,15 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
             {/* <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
                 <img src={require("assets/images/icons/icn_repeat_white.svg")} className="inner_image" alt="Repeat Icon" />
             </a> */}
-            <a onClick={() => is_reposted ? () => { } : feedSelectionHandler(FeedModalType.repost)}
-                className={repostIconClasses}
-                id="trigger_popup_fricc1">
-                <img src={require("assets/images/icons/refresh.svg")} className="inner_image icn_dfltD" alt="Repeat Icon" />
-                <img src={require("assets/images/icons/refresh_black.svg")} className="inner_image icn_hvrA" alt="Repeat Icon" />
-            </a>
+            {user && user.approval_status === "accepted" ? 
+            <div>
+                <a onClick={() => is_reposted ? () => { } : feedSelectionHandler(FeedModalType.repost)}
+                    className={repostIconClasses}
+                    id="trigger_popup_fricc1">
+                    <img src={require("assets/images/icons/refresh.svg")} class="inner_image icn_dfltD" alt="Repeat Icon" />
+                    <img src={require("assets/images/icons/refresh_black.svg")} class="inner_image icn_hvrA" alt="Repeat Icon" />
+                </a>
+            </div> : ""}
         </li>
     );
     let likeOption = (
