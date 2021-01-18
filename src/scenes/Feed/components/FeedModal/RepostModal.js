@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { setFeedModalType } from 'redux/actions/feed';
 import { FeedModalType } from 'utility/constants/constants';
 import * as actions from 'redux/actions';
 import { toastMsg } from 'utility/utility';
+import { useHistory } from 'react-router-dom';
 
 const RepostModal = ({ feed }) => {
     const { modalType, selectedFeed } = useSelector(state => state.feedReducer);
+    const history = useHistory();
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
     }
@@ -25,10 +27,24 @@ const RepostModal = ({ feed }) => {
 
     const repostFeed = () => {
         let feedId = selectedFeed.id;
-        selectedFeed.is_reposted = true
-        actions.repostFeed(feedId).then(
+        let page = history.location.pathname;
+        actions.repostFeed(feedId, page).then(
             res => {
-                toastMsg("Reposted successfully!");
+                if(res.data.success) {
+                    toastMsg("Reposted successfully!")
+                }
+             
+            }
+        )
+    }
+
+    const repostUndoFeed = (feedId) => {
+        let id = selectedFeed.id;
+        let page = history.location.pathname;
+        selectedFeed.is_reposted = false;
+        actions.repostUndoFeed(feedId, page, id).then(
+            res => {
+                toastMsg("Undo successfully!");
             }
         )
         closeModal();
@@ -48,10 +64,13 @@ const RepostModal = ({ feed }) => {
 
                         <ul className="lps_btn_grps lps_ul mb100">
                             <li>
-                                <a href="#" className="text_white">Repost to your account?</a>
+                                <a href="#" class="text_white">{feed.new_post ? "Reposted" : "Repost to your account?"}</a>
                             </li>
                         </ul>
-                        <a onClick={repostFeed} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>
+                        {feed.new_post ? 
+                        <a onClick={() => repostUndoFeed(feed.new_post.id)}  class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Undo</a> :
+                        <a onClick={repostFeed} class="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_150">Repost</a>    
+                        }
                     </div>
                 </div>
             </div>

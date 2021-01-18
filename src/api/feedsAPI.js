@@ -19,6 +19,8 @@ export const deleteFeed = (feedID) => axios.delete(`${API_VERSION}/post/${feedID
 
 export const repostFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/repost`);
 
+export const repostUndoFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/repost/undo`);
+
 export const likeFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/like`);
 
 export const unlikeFeed = (feedID) => axios.put(`${API_VERSION}/post/${feedID}/unlike`);

@@ -4,7 +4,6 @@ import * as actions from 'redux/actions/feed';
 import store from 'redux/store/store';
 import { FeedModalType, routes } from 'utility/constants/constants';
 
-
 let justBrowseTags = storage.get("justBrowseTags", {})
 
 const updateObject = (oldState, updatedProps) => {
@@ -17,6 +16,20 @@ const updateFeedObject = (posts, {data, id}) => {
     let index = posts.findIndex(ele => ele.id === id);    
     posts[index].has_hidden = true;
     posts[index].hidden_hashtags = data;
+    return posts
+}
+
+const updateFeedRepostObject = (posts, {feedId, feed}) => {
+    let index = posts.findIndex(ele => ele.id === feedId);    
+    posts[index].is_reposted = true;
+    posts[index].new_post = feed;
+    return posts
+}
+
+const updateFeedRepostUndoObject = (posts, {id}) => {
+    let index = posts.findIndex(ele => ele.id === id);    
+    posts[index].is_reposted = false;
+    posts[index].new_post = false;
     return posts
 }
 export const initialState = {
@@ -185,24 +198,20 @@ export const feedReducer = createReducer({
         let feeds = [...state.otherUserFeeds, ...payload.feeds]
         return updateObject(state, { otherUserFeeds: feeds })
     },
-    [actions.updateRepostFeed]: (state, payload) => {
-        let { feed, feedId } = payload;
-        let feeds = [...state.feeds];
-        let userFeeds = [...state.userFeeds];
-        let feedIndex = feeds.findIndex(ele => ele.id === feedId);
-        
-        feeds[feedIndex].is_reposted = true;
-        if (feeds.length > 0) {
-            feeds = [feed, ...feeds]
-        }
-        if (userFeeds.length > 0) {
-            userFeeds = [feed, ...userFeeds];
-        }
+    [actions.updateRepostFeed] :(state, {page, feedId, feed}) => {
+
+        let key = (page === routes.EXPLORE) ? 'searchFeeds' : 'feeds';
         return updateObject(state, {
-            feeds: feeds,
-            userFeeds: userFeeds
+            [key]: updateFeedRepostObject([...state[key]], {feedId, feed})
         })
     },
+    [actions.updateRepostUndoFeed]: (state,  {page, id}) => {
+        let key = (page === routes.EXPLORE) ? 'searchFeeds' : 'feeds';
+        return updateObject(state, {
+            [key]: updateFeedRepostUndoObject([...state[key]], {id})
+        })
+    },
+    
     [actions.searchFeedsCompletedSuccessfully]: (state, payload) => updateObject(state, {
         searchFeeds: payload.feeds,
     }),

@@ -41,6 +41,7 @@ export const updateRepostFeed = createAction('update repost feed', (feed) => (fe
 
 export const updatePostHideHashtag = createAction('update hide hashtag feed', (feedId) => (feedId));
 
+export const updateRepostUndoFeed = createAction('update repost undo feed', (feed) => (feed));
 
 export const addCreatedFeed = createAction('update repost feed', (feed) => (feed));
 

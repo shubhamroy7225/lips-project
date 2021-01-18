@@ -2,7 +2,7 @@ import storage from '../../../utility/storage';
 import * as API from '../../../api/feedsAPI';
 import * as PostAPI from '../../../api/postAPI';
 import * as commonService from "../../../utility/utility";
-import { fetchedNextPageLikedFeedsSuccessfully, setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
+import { fetchedNextPageLikedFeedsSuccessfully, setHashTagJustBrowseSuccessful, getHashTagSuggestionListPending, getHashTagSuggestionListSuccessful, addSuggestedHashTagSuccessful, filterHashTagsSuccessful, fetchedFeedSuccessfully, hashTagPending, hashTagSuccessful, userhashTagPending, userhashTagSuccessful, nextPageFeeds, fetchedOtherUserFeedsSuccessfully, deleteFeedUpdate, updateRepostFeed, updateRepostUndoFeed, searchFeedsCompletedSuccessfully, addCreatedFeed, nextPageSearchFeeds } from 'redux/actions/feed';
 
 import {
   fetchedLikedFeedsSuccessfully,
@@ -249,10 +249,21 @@ export const deleteFeed = (feedId) => {
     })
 }
 
-export const repostFeed = (feedId) => {
+export const repostFeed = (feedId, page) => {
   return API.repostFeed(feedId)
     .then(response => {
-      updateRepostFeed({ feed: response.data.post, feedId  });
+      updateRepostFeed({ feed: response.data.post,  feedId, page   });
+      commonService.isLoading.onNext(false); // start loading
+      return response;
+    }).catch(error => {
+      return error;
+    })
+}
+
+export const repostUndoFeed = (feedId, page, id) => {
+  return API.repostUndoFeed(feedId)
+    .then(response => {
+      updateRepostUndoFeed({ page, id });
       commonService.isLoading.onNext(false); // start loading
       return response;
     }).catch(error => {
