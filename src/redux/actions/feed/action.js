@@ -250,23 +250,27 @@ export const deleteFeed = (feedId) => {
 }
 
 export const repostFeed = (feedId, page) => {
+  commonService.isLoading.onNext(true);
   return API.repostFeed(feedId)
     .then(response => {
       updateRepostFeed({ feed: response.data.post,  feedId, page   });
-      commonService.isLoading.onNext(false); // start loading
+      commonService.isLoading.onNext(false);
       return response;
     }).catch(error => {
+      commonService.isLoading.onNext(false);
       return error;
     })
 }
 
 export const repostUndoFeed = (feedId, page, id) => {
+  commonService.isLoading.onNext(true);
   return API.repostUndoFeed(feedId)
     .then(response => {
       updateRepostUndoFeed({ page, id });
-      commonService.isLoading.onNext(false); // start loading
+      commonService.isLoading.onNext(false);
       return response;
     }).catch(error => {
+      commonService.isLoading.onNext(false);
       return error;
     })
 }
