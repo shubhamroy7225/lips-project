@@ -7,7 +7,6 @@ import { FeedModalType } from 'utility/constants/constants';
 const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
     const { likable, is_reposted, repostable } = feed;
     let originalPost = feed.type === "repost" ? feed.parent : feed
-// if (!feed.parent)debugger
     const [like, setLike] = useState(feed.type === "repost" ? feed.parent.liked : feed.liked);
     const [likeCount, setLikeCount] = useState(false);
     const likeCountShown = () => {
@@ -81,7 +80,6 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
         setFeedModalType({ modalType });
     }
     const checkIsLikable = () => { 
-        debugger       
         return user && parseInt(originalPost.user_id) === user.id
     }
 
