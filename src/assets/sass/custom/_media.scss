@@ -185,7 +185,7 @@
 }
 @media screen and (max-width: 890px) {
   .lps_product_grid .product_card.removeFigClass .postBox .on_boarding_wrp_spwn {
-    height: 175px;
+    height: 149px;
     overflow-y: auto;
   }
   .lps_product_grid .product_card.removeFigClass .postBox .post_para1 {
@@ -196,8 +196,8 @@
   width: 8px;
 }
 .grideTag .postBox .lps_widgets_wrp .lps_feed_settings .pos_wrp {
-  margin-top: 15px;
-  margin-bottom: 20px;
+  margin-top: 15px !important;
+  margin-bottom: 20px !important;
 }
 .lps_product_grid .product_card.removeFigClass p.btm_links.mt45 {
   margin-top: 20px;
@@ -436,6 +436,9 @@
 }
 .lps_dsk_list button.theme_btn.theme_secondary.text_white {
   margin: 0 0 5px 5px;
+}
+.destkVersion .grideTag.product_card.removeFigClass .postBox {
+  height: 124px;
 }
 }
 @media screen and (max-width: 450px) {
