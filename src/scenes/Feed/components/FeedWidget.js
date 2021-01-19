@@ -6,7 +6,9 @@ import { FeedModalType } from 'utility/constants/constants';
 
 const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
     const { likable, is_reposted, repostable } = feed;
-    const [like, setLike] = useState(feed.liked);
+    let originalPost = feed.type === "repost" ? feed.parent : feed
+// if (!feed.parent)debugger
+    const [like, setLike] = useState(feed.type === "repost" ? feed.parent.liked : feed.liked);
     const [likeCount, setLikeCount] = useState(false);
     const likeCountShown = () => {
         setLikeCount(likeCount ? false : true);
@@ -65,10 +67,11 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
     }
 
     const toggleLike = () => {
+        const feedId = feed.type === "repost" ? feed.parent.id : feed.id
         if (like) {
-            unlikeAFeed(feed.id);
+            unlikeAFeed(feedId);
         } else {
-            likeAFeed(feed.id);
+            likeAFeed(feedId);
         }
         setLike(!like)
     }
@@ -76,6 +79,10 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
     const feedSelectionHandler = (modalType) => {
         setSelectedFeed({ feed });
         setFeedModalType({ modalType });
+    }
+    const checkIsLikable = () => { 
+        debugger       
+        return user && parseInt(originalPost.user_id) === user.id
     }
 
     let listContent = [];
@@ -123,7 +130,7 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
     );
     let likeOption = (
         <li key={6} className="listed_item">
-            {feed && feed.is_reposted ?
+            {checkIsLikable() ?
                 <div>{likeCount ? <span className="countBadge">{feed.likes_count}</span> : ""}
                     <a className={likeIconClasses} onClick={likeCountShown}>
                         <img src={require("assets/images/icons/icn_lip_white.svg")} className="icn_dfltD" alt="Mouth Icon" />
