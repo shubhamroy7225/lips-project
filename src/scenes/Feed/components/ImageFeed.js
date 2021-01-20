@@ -122,9 +122,8 @@ const ImageFeed = (props) => {
                           <a
                             onClick={() => {
                               history.push(
-                                user
-                                  ? `${routes.PROFILE}/${feed_user.user_name}`
-                                  : routes.LOGIN_TO_PROCEED
+                                `${routes.PROFILE}/${feed_user.user_name}`
+                                 
                               );
                             }}
                           >
@@ -200,9 +199,7 @@ const ImageFeed = (props) => {
                       <a
                         onClick={() => {
                           history.push(
-                            user
-                              ? `${routes.PROFILE}/${feed_user.user_name}`
-                              : routes.LOGIN_TO_PROCEED
+                            `${routes.PROFILE}/${feed_user.user_name}`
                           );
                         }}
                       >
