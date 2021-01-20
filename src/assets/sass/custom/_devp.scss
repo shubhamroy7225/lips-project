@@ -786,18 +786,32 @@ span.countBadge {
     letter-spacing: 1.8px;
     transition: all,.4s,ease-in-out;
     cursor: pointer;
-    &:hover, &:focus {
-      background-color: #f8f9fa;
-      border-color: #f8f9fa;
-      color: #212529;
-    }
+    
     &.active {
       color: #212529;
       background-color: #f8f9fa!important;
       border-color: #f8f9fa;
     }
 }
-
+// .lipsHashTagsWrapper {
+//   .themeOutlineLight {
+//     &:hover, &:focus {
+//       background-color: #f8f9fa;
+//       border-color: #f8f9fa;
+//       color: #212529;
+//     }
+//     &.active {
+//       color: #212529;
+//     background-color: #f8f9fa!important;
+//     border-color: #f8f9fa;
+//     &:hover {
+//       color: #212529;
+//     background-color: #f8f9fa!important;
+//     border-color: #f8f9fa;
+//     }
+//     }
+//   }
+// }
 .access_button{
   min-width: 130px !important;
 }
