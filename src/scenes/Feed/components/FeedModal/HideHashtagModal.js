@@ -11,12 +11,11 @@ const HideHashtagModal = ( props ) => {
     const history = useHistory()
     const [selectTags, setSelectTags] = useState([]);
     const [showBlockHashtag, setShowBlockHashtag] = useState(false);
-    const {selectedFeed, hideHashtag} = useSelector(store => store.feedReducer);
+    const {selectedFeed} = useSelector(store => store.feedReducer);
     const openBlockHashtagModal = () => {
         setShowBlockHashtag(!showBlockHashtag);
         addHideTags();
     }
-    const [loaded, setLoaded] = useState(false);
     const toggleHashTag = (tag) => {
       if (selectTags.includes(tag)) {
         selectTags.splice(selectTags.findIndex(e => e === tag), 1);
@@ -25,12 +24,6 @@ const HideHashtagModal = ( props ) => {
       else setSelectTags([...selectTags, tag]);
     };
     const hashtags = selectedFeed ? selectedFeed.hashtagPosts : [];
-    useEffect(() => {
-        if (!hideHashtag.length && !loaded) {
-          setLoaded(true)
-          actions.getUserHashTags();
-        }
-    }, []);
     
     const closeModal = () => {
         setFeedModalType({ modalType: FeedModalType.undefined })
