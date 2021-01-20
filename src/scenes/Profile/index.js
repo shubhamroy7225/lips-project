@@ -220,12 +220,14 @@ const Profile = (props) => {
     }
 
     const feedSelectionHandler = (feed) => {
-        if (user) {
-            selectedFeedOnToggle.current = feed
-            setGridLayoutMode(false)
-        } else {
-            history.push(routes.LOGIN_TO_PROCEED)
-        }
+        // if (user) {
+        //     selectedFeedOnToggle.current = feed
+        //     setGridLayoutMode(false)
+        // } else {
+        //     history.push(routes.LOGIN_TO_PROCEED)
+        // }
+        selectedFeedOnToggle.current = feed
+        setGridLayoutMode(false)
     }
 
     const toggleFeedLayoutMode = () => {
