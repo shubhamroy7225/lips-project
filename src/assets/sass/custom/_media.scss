@@ -251,6 +251,9 @@
   .hover_bkgr_fricc .popup_cont .lps_btn_grps {
     padding: 25% 15px 0;
   }
+  .hover_bkgr_fricc.heart_notify_box .popup_cont .popup_body {
+    font-size: 12px;
+  }
   header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
     width: 375px;
     left: calc(50% - 375px / 2);
@@ -451,6 +454,7 @@
     width: 450px;
     left: calc(50% - 450px / 2);
   }
+
 }
 @media screen and (max-width: 414px) {
   header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
@@ -460,6 +464,20 @@
   .category_block .product_card {
     padding: 30px 0;
   }
+  .lps_checkmark {
+    
+    height: 18px;
+    width: 18px;
+   
+}
+  .lps_cont_rdo .lps_checkmark:after {
+   
+    width: 10px;
+    height: 10px;
+    top: 3px;
+    left: 3px;
+    
+}
 }
 @media screen and (max-width: 411px) {
   header.main_header .lps_dropdown .lps_dropdown-menu.lps_chatBox_list {
