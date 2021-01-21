@@ -15,8 +15,7 @@ import { capitalizeFirstLetter } from 'utility/utility';
 const TextFeed = (props) => {
     let history = useHistory();
     const descriptionViewStyle = {
-        whiteSpace: "pre-line",
-        textAlign: "justify"
+        whiteSpace: "pre-line"
     }
 
     //ref handler is sent by search and profile page - this is to scroll to specific post on toggling between grid and list view
