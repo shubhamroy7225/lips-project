@@ -129,7 +129,7 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
     let likeOption = (
         <li key={6} className="listed_item">
             {checkIsLikable() ?
-                <div>{likeCount ? <span className="countBadge">{feed.likes_count}</span> : ""}
+                <div>{likeCount ? <span className="countBadge">{(feed.type === "repost" ? feed.parent.likes_count : feed.likes_count)}</span> : ""}
                     <a className={likeIconClasses} onClick={likeCountShown}>
                         <img src={require("assets/images/icons/icn_lip_white.svg")} className="icn_dfltD" alt="Mouth Icon" />
                         {/* <img src={require("assets/images/icons/icn_lip_black.svg")} className="icn_hvrA" alt="User" /> */}
