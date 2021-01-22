@@ -35,7 +35,7 @@ let ForgotPasswordForm = (props) => {
   return (
           <div id="wrap" className="mt_0 lps_bg_secondary onboardingBackArrowWrp">
           <div className="topSubHeader">
-            <Link className="popupCloseButton popupCloseButtonLeft" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow_white.png")} /></Link>
+            <Link className="popupCloseButton popupCloseButtonLeft" to='/login'><img src={require("assets/images/icons/icn_left_arrow_white.png")} /></Link>
         </div>
             <div className="lps_container mt_0">
               <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary on_boarding_wrp on_boardingNChng on_boardingNChngForms">
