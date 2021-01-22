@@ -44,7 +44,7 @@ const StartApproval = ({ moveToNextStep }) => {
             <Link className="popupCloseButton lps_arrow_approval" to={routes.ROOT}><img src={require("assets/images/icons/icn_close_white.svg")} /></Link>
         </div>
         <div class="lps_container lps_bg_secondary lps_text_white"> 
-            <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn border_0">
+            <div class="lps_inner_wrp full_scr on_boarding_wrp_spwn on_boarding_wrp_around border_0">
                 <article class="lps_art lps_heading">
                     <h3>We are so excited to have you share your voice on Lips! </h3>
                     <p>In order to reduce hate-speech and harassment on the Lips app, we ask that new users tell us a bit about what you’d like to post. This is a one time thing, once approved you will be able to post whenever and whatever you like! </p>

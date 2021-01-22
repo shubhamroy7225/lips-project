@@ -46,7 +46,7 @@ export default () => {
         </div>
       <div className="lps_container mt_0">
         <div className="lps_flx_vm_jc lps_bg_secondary lps_text_white on_boarding_wrp">
-          <div className="lps_form_wrp on_boarding_wrp_spwn border_0 commonWidth">
+          <div className="lps_form_wrp on_boarding_wrp_spwn on_boarding_wrp_around border_0 commonWidth">
             <article className="lps_art lps_art_white">
               <h3 className="mb30">
                 some things are not for everybody - and that’s ok!{" "}

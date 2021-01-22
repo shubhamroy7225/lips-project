@@ -17,7 +17,7 @@ export default () => {
   return (
           <div id="wrap" className="mt_0 lps_bg_secondary">
             <div className="lps_container lps_bg_secondary lps_text_white mt_0">
-              <div className="acctn_privacy on_boarding_wrp_spwn border_0">
+              <div className="acctn_privacy on_boarding_wrp_spwn on_boarding_wrp_around border_0">
                 <article className="lps_art lps_px15">
                   <h3>how private do you want your <br/>account?</h3>
                     <p>You can always change this in your accounts settings. We will continue to add privacy options for you to choose from as the app evolves: </p>
