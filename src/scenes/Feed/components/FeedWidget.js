@@ -83,6 +83,10 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
         return user && parseInt(originalPost.user_id) === user.id
     }
 
+    const checkIsRepost = () => {
+        return user && user.approval_status === "accepted" && user.privacy_settings !== "private" && feed.repostable
+    }
+
     let listContent = [];
     let reportOption = (
         < li key={1} className="listed_item">
@@ -115,7 +119,7 @@ const FeedWidget = ({ user, showWidget, feed, isReposted }) => {
             {/* <a onClick={() => feedSelectionHandler(FeedModalType.repost)} className="circle_image lps_flx_vm_jc" id="trigger_popup_fricc">
                 <img src={require("assets/images/icons/icn_repeat_white.svg")} className="inner_image" alt="Repeat Icon" />
             </a> */}
-            {user && user.approval_status === "accepted" && repostable ? 
+            {checkIsRepost() ? 
             <div>
                 <a onClick={() => is_reposted ? () => { } : feedSelectionHandler(FeedModalType.repost)}
                     className={repostIconClasses}
