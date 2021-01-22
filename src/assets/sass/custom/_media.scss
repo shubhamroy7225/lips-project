@@ -451,6 +451,10 @@
 .hover_bkgr_fricc.shareTextModal .popup_cont .lps_btn_grps {
   padding: 7% 15px 0;
 }
+.on_boarding_wrp_spwn.on_boarding_wrp_around {
+  -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
 
 }
 @media screen and (max-width: 450px) {
