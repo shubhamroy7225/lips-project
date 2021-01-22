@@ -852,6 +852,22 @@ header.main_header .lps_dropdown .lps_dropdown-menu {
       height: 38px;
     }
   }
+  &.shareTextModal {
+    .popup_cont {
+      .lps_btn_grps {
+        padding: 0 15px 0;
+        li {
+          .copyPara{
+              margin-top: 40px;
+          }
+          span.theme_btn {
+            color: #fff !important;
+            font-weight: 400;
+        }
+        }
+      }
+    }
+  }
 }
 .heart_notify_right {
   text-align: right;
@@ -4550,3 +4566,4 @@ figure.feed_fig310 {
       background-color: $white !important;
     }
   }
+

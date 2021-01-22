@@ -36,7 +36,7 @@ const SharedModal = ({ feed }) => {
     }
   }
   return (
-    <div className="hover_bkgr_fricc mobileModal" style={style}>
+    <div className="hover_bkgr_fricc mobileModal shareTextModal" style={style}>
       <div className="modal-dialog-centered">
         <div className="popup_cont popup-custom-header">
           <div className="popup_close_header">
