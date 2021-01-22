@@ -99,7 +99,7 @@ const TextFeed = (props) => {
                         <div className="lps_inner_wrp post_img_block lps_pink_border lps_neon_pink_border lps_widgets_wrp lps_mt_50 textContent">
                             <div className="lps_sm_shape lps_sm_shape1"></div>
                             {
-                                isReposted && <div className="reposted_wrps" style={{ zIndex: "100" }}>
+                                isReposted && <div className="reposted_wrps reposted_text_wrapper" style={{ zIndex: "100" }}>
                                     <div className="rwposted_txt">
                                         <a onClick={() => { history.push(user ? `${routes.PROFILE}/${repostedByUser.user_name}` : routes.LOGIN_TO_PROCEED) }} className="lps_link">{capitalizeFirstLetter(repostedByUser.user_name)}</a>
                                     </div>
@@ -109,7 +109,7 @@ const TextFeed = (props) => {
                             <div className="lps_inner_cont lps_pos_rltv">
                                 <article className="lps_art">
                                     <a id="trigger_text_feed1" onClick={clickHandler}>
-                                        <p style={descriptionViewStyle}>{description}</p>
+                                        <p className="reposted_text_feed" style={descriptionViewStyle}>{description}</p>
                                     </a>
                                 </article>
                             </div>

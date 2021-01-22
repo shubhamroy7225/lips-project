@@ -4406,6 +4406,12 @@ figure.feed_fig310 {
   position: absolute;
   right: 0;
   border-radius: 0 0 0 5px;
+  &.reposted_text_wrapper {
+    top: -1px !important;
+    right: -1px;
+    border-left: 1px solid $brand-primary;
+    border-bottom: 1px solid $brand-primary;
+}
   img {
     margin-left: 7px;
     width: 24px;
@@ -4416,7 +4422,9 @@ figure.feed_fig310 {
     color: $brand-secondary;
   }
 }
-
+.reposted_text_feed {
+  padding-top: 6px;
+}
 .empty_feed_bg_wrp.empty_feed_bg_wrp_spc {
   display: -webkit-box;
   display: -ms-flexbox;
