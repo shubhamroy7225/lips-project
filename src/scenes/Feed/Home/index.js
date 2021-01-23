@@ -147,7 +147,6 @@ const MainFeed = (props) => {
                             pullDownContent={<PullDownContent />}
                             releaseContent={<ReleaseContent />}
                             refreshContent={<RefreshContent />}
-                            backgroundColor='white'
                             pullDownThreshold={200}
                             onRefresh={onRefresh}
                             triggerHeight={50}
