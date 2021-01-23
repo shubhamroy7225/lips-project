@@ -31,7 +31,7 @@ export default ({
         </span>
       </div>
 
-      <div id="wrap" className="mt_0">
+      
         <div className="lps_container lps_terms_con_wrps bg_grayCCC">
           <TermsAndCondition></TermsAndCondition>
           <div className="lps_fixed_btm lps_bg_gray text-align-center">
@@ -44,6 +44,6 @@ export default ({
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };

@@ -451,9 +451,25 @@
 .hover_bkgr_fricc.shareTextModal .popup_cont .lps_btn_grps {
   padding: 7% 15px 0;
 }
-.on_boarding_wrp_spwn.on_boarding_wrp_around {
-  -ms-flex-pack: distribute;
-        justify-content: space-around;
+// .on_boarding_wrp_spwn.on_boarding_wrp_around {
+//   -ms-flex-pack: distribute;
+//         justify-content: space-around;
+// }
+// .on_boarding_wrp_spwn.on_boarding_flow_wrp_strech {
+//   -webkit-box-pack: start;
+//   -ms-flex-pack: start;
+//       justify-content: start;
+//   padding-bottom: 155px;
+//   position: relative;
+// }
+// .onboarding_flow_bttom {
+//   position: absolute;
+//   bottom: 115px;
+//   width: 100%;
+// }
+.on_boarding_flow_wrp_strech ul.weightAnchor{
+  height: 250px;
+  overflow-y: auto;
 }
 
 }

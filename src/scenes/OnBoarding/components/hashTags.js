@@ -31,7 +31,8 @@ export default  ({selectTags, setSelectTags, showhashTags}) => {
     actions.getAllHashTags({...tempSearch});
   };
 
-  return (<ul className="lps_btn_grps lps_ul lps_hash_ul weightAnchor">
+  return (<>
+  <ul className="lps_btn_grps lps_ul lps_hash_ul weightAnchor">
     <li>
       {hashTags.map((tag, index) =>
         showhashTags.includes(tag.name) ? null :
@@ -46,12 +47,13 @@ export default  ({selectTags, setSelectTags, showhashTags}) => {
               View more</button> : ""
       }
     </li> */}
+  </ul>
+  
     {
       count > hashTags.length ?
     <div className="dotsWrp">
       <Link  className="single1"><span className="singleDot" onClick={loadMore}></span></Link>
       <Link  className="single2"><span className="singleDot" onClick={loadMore}></span></Link>
       <Link  className="single3"><span className="singleDot" onClick={loadMore}></span></Link>
-    </div> : "" }
-  </ul>)
+    </div> : "" }</>)
 }
