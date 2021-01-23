@@ -93,7 +93,7 @@ export default () => {
                         <h5 className="text_uppercase text_white">Register</h5>
                       </a>
                     </article>
-                    <div className="lps_fields lipsFields">
+                    <div className="lps_fields lipsFields mt_0">
                       <div className="form_group_modify">
                         <input
                             type="text"
