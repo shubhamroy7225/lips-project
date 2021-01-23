@@ -20,7 +20,7 @@ import storage from 'utility/storage';
 import ToggleListWidget from '../components/ToggleListWidget';
 import { setMainFeedPaginationCompleted } from 'redux/actions/feed';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {PullToRefresh} from "react-js-pull-to-refresh";
+import {PullToRefresh,PullDownContent, ReleaseContent, RefreshContent} from "react-js-pull-to-refresh";
 
 const MainFeed = (props) => {
     const selectedFeed = props.selectedFeed;
@@ -144,6 +144,10 @@ const MainFeed = (props) => {
                     <div id="wrap" style={{overflow: "scroll"}} >
                         <div className="lps_container main_feed_cont bg_grayCCC post_shape_wrapper">
                         <PullToRefresh
+                            pullDownContent={<PullDownContent />}
+                            releaseContent={<ReleaseContent />}
+                            refreshContent={<RefreshContent />}
+                            backgroundColor='white'
                             pullDownThreshold={200}
                             onRefresh={onRefresh}
                             triggerHeight={50}
