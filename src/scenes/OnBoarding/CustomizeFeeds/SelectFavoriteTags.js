@@ -40,7 +40,7 @@ export default () => {
                          </h5>
                       </article>
                      <HashTags setSelectTags={setSelectTags} selectTags={selectTags} showhashTags={showhashTags}/>
-                      <div className="pos_wrp onboarding_btm onboarding_flow_bttom">
+                      <div className="pos_wrp onboarding_btm onboarding_flow_bttom1">
                          <button onClick={addFavoriteTags} className="theme_btn theme_outline_primary text_white btn_block theme_btn_rds25 text_uppercase desktopVersio">
                          Continue</button>
                          {/* <Link onClick={()=> history.goBack()} className="link_underline lps_link back-button link_tag">Go Back</Link> */}
