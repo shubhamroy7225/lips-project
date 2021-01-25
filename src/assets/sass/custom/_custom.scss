@@ -16,7 +16,7 @@ body.body_overflow {
   .container-login100 {
     width: 100%;
     background-color: $bg_grayCCC;
-    min-height: 100vh;
+    // min-height: 100vh;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -26,14 +26,15 @@ body.body_overflow {
     justify-content: center;
     position: relative;
     z-index: 1;
-   
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+   height: calc(var(--vh, 1vh) * 100);
    
   }
 }
-.container-register-flow {
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-height: calc(var(--vh, 1vh) * 100);
-}
+// .container-register-flow {
+//   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+// height: calc(var(--vh, 1vh) * 100);
+// }
 /**** css here for without scroller ****/
 .lps_container {
   margin: 0 auto;
