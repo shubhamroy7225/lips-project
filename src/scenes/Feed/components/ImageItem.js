@@ -20,7 +20,13 @@ const ImageItem = ({ feed, selectionHandler, isReposted, index }) => {
     }else {
         return (
             <div class="grideTag product_card removeFigClass" onClick={selectionHandler}>
-                <HiddenTagPost viewAnywayHandler={viewAnywayHandler} hidden_hashtags={feed.hidden_hashtags} />
+                <article className="lps_art lps_art_white text_center">
+                <figure className="lps_fig_xs mt_25">
+                  <img src={require("assets/images/icons/icn_pat_active.svg")} alt="Icon" />
+                </figure>
+                
+              </article>
+                {/* <HiddenTagPost viewAnywayHandler={viewAnywayHandler} hidden_hashtags={feed.hidden_hashtags} /> */}
             </div>
         )
     }
