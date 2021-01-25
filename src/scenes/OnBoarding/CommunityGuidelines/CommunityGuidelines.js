@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import { routes } from "utility/constants/constants";
 export default ({isSetting, setGuidelineState}) => {
   return (
-      <div id="wrap" className="mt_0 lps_bg_secondary">
+      <div id="wrap" className="mt_0 lps_bg_secondary container-register-flow">
         <div className="lps_container mt_0">
           <div className="lps_flx_vm_jc lps_bg_txt_white lps_bg_secondary lps_text_white on_boarding_wrp">
             <div className="lps_form_wrp on_boarding_wrp_spwn border_0 comuNiti">

@@ -15,7 +15,7 @@ export default () => {
   };
 
   return (
-          <div id="wrap" className="mt_0 lps_bg_secondary">
+          <div id="wrap" className="mt_0 lps_bg_secondary container-register-flow">
             <div className="lps_container lps_bg_secondary lps_text_white mt_0">
               <div className="acctn_privacy on_boarding_wrp_spwn on_boarding_wrp_around border_0">
                 <article className="lps_art lps_px15">

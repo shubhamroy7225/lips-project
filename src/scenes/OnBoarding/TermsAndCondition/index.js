@@ -17,7 +17,7 @@ export default ({
   };
 
   return (
-    <div id="wrap" className="mt_0">
+    <div id="wrap" className="mt_0 container-register-flow">
       <div className="lps_header_link lps_flx_vm lps_px15 mb25">
         <button className=" btn-transparent" onClick={handleClick}>
           <img

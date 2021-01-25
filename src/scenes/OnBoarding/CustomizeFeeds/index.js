@@ -22,7 +22,7 @@ export default () => {
   };
 
   return (
-      <div id="wrap" className="mt_0 lps_bg_secondary onboardingBackArrowWrp">
+      <div id="wrap" className="mt_0 lps_bg_secondary onboardingBackArrowWrp container-register-flow">
         <div className="topSubHeader">
             <button className="popupCloseButton popupCloseButtonLeft backBtnHash" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow_white.png")} /></button>
         </div>
