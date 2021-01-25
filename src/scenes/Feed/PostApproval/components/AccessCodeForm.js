@@ -29,7 +29,7 @@ export default () => {
         <div className="modal-dialog-centered">
           <div className="popup_cont">
             <div className="popup_body post_poup lps_bg_secondary lps_text_white lps_bg_txt_white">
-              <Link className="popupCloseButton popupCloseButtonLeft" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow.png")} /></Link>
+              <button className="popupCloseButton popupCloseButtonLeft backBtnHash" onClick={()=> history.goBack()}><img src={require("assets/images/icons/icn_left_arrow.png")} /></button>
                 <article className="lps_art mt45 article_desktopView">
                   <div>
                     <div className="lps_fields ifAccess access-code-data">
