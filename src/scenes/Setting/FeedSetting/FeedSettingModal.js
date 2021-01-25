@@ -109,7 +109,7 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, e
                 : ""
               }
             </div>
-            <div className="post_links post_links_undr">
+            <div className="post_links post_links_undr onboarding_flow_bttom1">
               <button onClick={showFavoriteTags} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</button>
             </div>
           </div>
