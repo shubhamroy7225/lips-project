@@ -77,7 +77,7 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, e
   }
   return (
     <>
-        <div className="hover_bkgr_fricc full_Hvh" id="trigger_add_popup" style={{display: "block"}}>
+        <div className="hover_bkgr_fricc full_Hvh feedSeetingModal" id="trigger_add_popup" style={{display: "block"}}>
       <div className="modal-dialog-centered">
         <div className="popup_cont">
           <div className="popup_body post_poup lps_bg_secondary lps_text_white">
@@ -109,7 +109,7 @@ const FeedSettingModal = ({setParentLoaded, setEditTag, editTag, existingTags, e
                 : ""
               }
             </div>
-            <div className="post_links post_links_undr onboarding_flow_bttom1">
+            <div className="post_links post_links_undr onboarding_flow_bttom11">
               <button onClick={showFavoriteTags} className="theme_btn theme_outline_primary text_white btnr_25 text_uppercase min_w_170">add selected</button>
             </div>
           </div>
