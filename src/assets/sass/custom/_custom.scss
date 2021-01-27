@@ -32,10 +32,10 @@ body.body_overflow {
   }
 }
 
-// .container-register-flow {
-//   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+.container-register-flow1 {
+  min-height: 100vh !important; /* Fallback for browsers that do not support Custom Properties */
 // height: calc(var(--vh, 1vh) * 100);
-// }
+}
 /**** css here for without scroller ****/
 .lps_container {
   margin: 0 auto;

@@ -175,7 +175,7 @@ const ApprovalForm = ({ moveToNextStep, ...props }) => {
     }
 
     return (
-        <div class="lps_container lps_bg_secondary lps_text_white lps_inner_cont pt-75">
+        <div class="lps_container lps_bg_secondary lps_text_white lps_inner_cont pt-75 container-register-flow1">
             <div class="lps_approval add_product_con ">
                 <article class="text_center lps_logo_center">
                     <a class="logo mb_0" href="#">
