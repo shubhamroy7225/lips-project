@@ -10,13 +10,18 @@ body.body_overflow {
   margin-top: 80px;
 }
 /**** css here for without scroller ****/
+#root {
+  height: 100%;
+}
 .limiter {
   width: 100%;
   margin: 0 auto;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
   .container-login100 {
     width: 100%;
     background-color: $bg_grayCCC;
-    min-height: 100vh;
+    height: 100%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -26,16 +31,15 @@ body.body_overflow {
     justify-content: center;
     position: relative;
     z-index: 1;
-  //   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  //  height: calc(var(--vh, 1vh) * 100);
-   
+    // height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    // height: calc(var(--vh, 1vh) * 100);
   }
 }
 
-.container-register-flow {
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
-}
+// .container-register-flow {
+//   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+//   height: calc(var(--vh, 1vh) * 100);
+// }
 /**** css here for without scroller ****/
 .lps_container {
   margin: 0 auto;
