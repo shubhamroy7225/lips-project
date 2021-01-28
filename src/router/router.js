@@ -3,16 +3,13 @@ import SuspenseLoader from "scenes/shared/loader/SuspenseLoader";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from "../hoc/Layout/Layout";
 import { routes } from "../utility/constants/constants";
-
 import MainFeed from "scenes/Feed/Home";
-
 import Login from "scenes/Auth/Login";
 import Register from "scenes/Auth/Register";
 import ForgotPassword from "scenes/Auth/ForgotPassword";
 import ResetPassword from "scenes/Auth/ResetPassword";
 import TermsAndCondition from "scenes/OnBoarding/TermsAndCondition";
 import CommunityGuidelines from "scenes/OnBoarding/CommunityGuidelines";
-
 import SelectFavoriteTags from "scenes/OnBoarding/CustomizeFeeds/SelectFavoriteTags";
 import SelectAvoidTags from "scenes/OnBoarding/CustomizeFeeds/SelectAvoidTags";
 import Landing from "scenes/OnBoarding/InitialLanding";
@@ -28,6 +25,7 @@ const PrivateRouteOnBoard = lazy(() => import("./PrivateOnBoardRoutes"));
 const Router = (props) => {
   let routeList = null;
   let user = props.user;
+  debugger
   if (!props.isOnBoard && user) {
     routeList = (
       <Suspense fallback={<SuspenseLoader suspense={true}></SuspenseLoader>}>

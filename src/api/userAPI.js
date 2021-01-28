@@ -53,7 +53,6 @@ export const deleteUser = () => {
         },
     });
 };
-
 export const fetchUser = (id) => {
     return axios.get(`${API_VERSION}/user/${id}`, {
         headers: {

@@ -12,7 +12,6 @@ import { routes } from 'utility/constants/constants';
 import * as actions from 'redux/actions';
 
 const App = (props) => {
-
   const detectedNetworkChange = (isOnline) => {
     console.log(isOnline);
     if (isOnline) {

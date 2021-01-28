@@ -19,7 +19,7 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
     const history = useHistory();
     const [modalShown, setModalShown] = useState(false);
     const [marked, setMarked] = useState(false);
-
+    
     if (modalShown) {
         history.listen(() => {
             setModalShown(false)
@@ -81,7 +81,6 @@ const Header = ({ notificationCount, notifications, count, ...props }) => {
         if (pathName.includes(routes.PROFILE)) {
             if (pathName !== routes.PROFILE || props.user) { //if logged out and accessing other's profile no need of back button - need back button only if user is logged in - that indicates user is navigating
                 //other profile - then show back button
-
                 navClassName = "theme_navigation theme_navigationCenterLogo"
                 logoContent = (
                     <>
